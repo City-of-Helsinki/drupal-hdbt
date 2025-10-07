@@ -1,4 +1,5 @@
 import type OptionType from '../types/OptionType';
+import URLParams from '../types/URLParams';
 
 const transformDropdownsValues = (paramOptions: string[] | undefined = [], availableOptions: OptionType[] = []) => {
   const transformedOptions: OptionType[] = [];
@@ -22,6 +23,26 @@ const transformDropdownsValues = (paramOptions: string[] | undefined = [], avail
   });
 
   return transformedOptions;
+};
+
+export const paramsFromSelections = (values: URLParams) => {
+  values.page = values.page || '1';
+  const newParams = new URLSearchParams();
+
+  // eslint-disable-next-line
+  for (const key in values) {
+    const value = values[key as keyof URLParams];
+
+    if (Array.isArray(value)) {
+      value.forEach((option: string) => newParams.append(key, option));
+    } else if (value) {
+      newParams.set(key, value.toString());
+    } else {
+      newParams.delete(key);
+    }
+  }
+
+  return newParams.toString();
 };
 
 export default transformDropdownsValues;

@@ -13,6 +13,7 @@ import type URLParams from './types/URLParams';
 import AggregationItem from './types/AggregationItem';
 import { getAreaInfo } from './helpers/Areas';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import { paramsFromSelections } from './helpers/Params';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {
@@ -66,22 +67,7 @@ export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
 
   // Set new params to window.location
   const newUrl = new URL(window.location.toString());
-  const newParams = new URLSearchParams();
-
-  // eslint-disable-next-line
-  for (const key in values) {
-    const value = values[key as keyof URLParams];
-
-    if (Array.isArray(value)) {
-      value.forEach((option: string) => newParams.append(key, option));
-    } else if (value) {
-      newParams.set(key, value.toString());
-    } else {
-      newParams.delete(key);
-    }
-  }
-
-  newUrl.search = newParams.toString();
+  newUrl.search = paramsFromSelections(values);
   window.history.pushState({}, '', newUrl);
 });
 
