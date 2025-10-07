@@ -101,6 +101,7 @@ $label-font: 'special.navigation.icon_label';
   overflow: hidden;
   pointer-events: none; // As it's always open, we should disable interacting with it directly
   position: absolute;
+  visibility: hidden;
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
@@ -265,4 +266,9 @@ $label-font: 'special.navigation.icon_label';
 // instead of this hanging around in random file corner
 [data-cssmenu-hide] {
   display: none !important;
+}
+
+.nav-toggle-dropdown--closed,
+.nav-toggle-dropdown--closed nav{
+  visibility: hidden;
 }
