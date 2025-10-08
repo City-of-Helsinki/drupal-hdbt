@@ -13,4 +13,12 @@ export const getLanguageLabel = (key: string) => {
   }
 };
 
-export const getInitialLanguage = (key: string[] | string = '', options: OptionType[] = []) => options.find((option: OptionType) => option?.value === key.toString()) || null;
+export const getInitialLanguage = (key: string[] | string = '', options: OptionType[] = []) => {
+  const result = options.findIndex((option: OptionType) => option?.value === key.toString());
+
+  if (result !== -1) {
+    return options[result];
+  }
+
+  return undefined;
+};

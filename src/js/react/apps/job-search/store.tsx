@@ -280,7 +280,7 @@ export const languagesAtom = atom(async(get) => {
     value: langcode,
   }));
 });
-export const languageSelectionAtom = atom<OptionType[] | Option[] | null>(null);
+export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(undefined);
 
 export const continuousAtom = atom<boolean>(false);
 export const internshipAtom = atom<boolean>(false);

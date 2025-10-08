@@ -64,10 +64,11 @@ const FormContainer = () => {
     setInternship(!!urlParams?.internship);
     setSummerJobs(!!urlParams?.summer_jobs);
     setYouthSummerJobs(!!urlParams?.youth_summer_jobs);
-    const initialLanguage: OptionType[] = [
-      getInitialLanguage(urlParams?.language, languagesOptions) || { label: '', value: '' },
-    ];
-    setLanguageFilter(initialLanguage);
+    const initialLanguage: OptionType | undefined = getInitialLanguage(urlParams?.language, languagesOptions);
+
+    if (initialLanguage) {
+      setLanguageFilter([initialLanguage]);
+    }
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -204,8 +205,7 @@ const FormContainer = () => {
                   language: currentLanguage,
                   placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
                 }}
-                // @ts-ignore
-                value={languageSelection} // @todo Check that this works without @ts-ignore
+                value={languageSelection}
                 theme={defaultSelectTheme}
               />
             </div>

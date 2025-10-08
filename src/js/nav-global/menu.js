@@ -240,6 +240,7 @@ const MobilePanel = {
     rootId: 'mmenu__panels',
     forward: 'mmenu__forward',
     back: 'mmenu__back',
+    dropdown: 'js-menu-dropdown',
   },
   getAPIUrl() {
     const url = new URL(drupalSettings?.helfi_navigation?.links?.api);
@@ -507,6 +508,7 @@ const MobilePanel = {
     window.location.hash = '#menu'; // Open menu with the css way
   },
   close() {
+    this.dropdownInstance.classList.add('nav-toggle-dropdown--closed');
     this.toggleButton.setAttribute('aria-expanded', 'false');
     this.menu.dataset.target = 'false';
     if (this.onClose) {
@@ -514,6 +516,7 @@ const MobilePanel = {
     }
   },
   open() {
+    this.dropdownInstance.classList.remove('nav-toggle-dropdown--closed');
     this.menu.dataset.target = 'true';
     this.toggleButton.setAttribute('aria-expanded', 'true');
     if (this.onOpen) {
@@ -547,6 +550,11 @@ const MobilePanel = {
     if (!this.toggleButton) {
       throw new Error('No toggle button for JS menu.');
     }
+    this.dropdownInstance = document.querySelector(`.${this.selectors.dropdown}`);
+    if (!this.dropdownInstance) {
+      throw new Error('No dropdown element for JS menu.');
+    }
+    this.dropdownInstance.classList.add('nav-toggle-dropdown--closed');
     // TODO: UHF-8791 Where is this #menu coming from? Maybe name it better (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8791).
     this.menu = document.querySelector('#menu');
     if (!this.menu) {
