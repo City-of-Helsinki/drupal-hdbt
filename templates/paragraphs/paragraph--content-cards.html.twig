@@ -1,17 +1,10 @@
 {% set title = content.field_content_cards_title.0 %}
 {% set design = content.field_content_cards_design.0|first|clean_class %}
 
-{% set has_koro = false %}
 {% if design == 'small-cards' %}
   {% set design_class = 'component--content-cards-small' %}
 {% elseif design == 'large-cards' %}
   {% set design_class = 'component--content-cards-large' %}
-{% elseif design == 'small-cards-grey' %}
-  {% set design_class = 'component--full-width component--content-cards-small component--content-cards-grey' %}
-  {% set has_koro = true %}
-{% elseif design == 'large-cards-grey' %}
-  {% set design_class = 'component--full-width component--content-cards-large component--content-cards-grey' %}
-  {% set has_koro = true %}
 {% else %}
   {% set design_class = null %} {# This should not happen #}
 {% endif %}
@@ -23,7 +16,6 @@
         component_classes: [
           'component--content-cards',
           design_class,
-          has_koro ? 'component--has-koro',
         ],
         component_koro: has_koro ? { flip: true },
         component_title: title,
