@@ -110,11 +110,19 @@ type FilterBulletsProps = {
   url: string | null;
 };
 
-const FilterBullets = ({ showClearButton, resetForm, children, url }: FilterBulletsProps) => (
-  <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
-    {children}
-  </SelectionsWrapper>
-);
+const FilterBullets = ({ showClearButton, resetForm, children, url }: FilterBulletsProps) => {
+  // SelectionWrapper hasContent doesn't work for this, we need to bind the check to
+  // showClearButton which checks if any of the filters have values
+  if (!showClearButton) {
+    return null;
+  }
+
+  return (
+    <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
+      {children}
+    </SelectionsWrapper>
+  );
+};
 
 type ListFilterBulletsProps = {
   updater: Function;
