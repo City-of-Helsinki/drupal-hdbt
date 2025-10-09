@@ -135,7 +135,7 @@
   }
 
   .news-listing__datetime {
-    display: block;
+    display: inline-block;
     margin-top: $spacing;
 
     @include breakpoint($breakpoint-l) {
