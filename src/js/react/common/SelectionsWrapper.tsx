@@ -16,25 +16,27 @@ const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsW
       ? children.trim().length > 0
       : Children.toArray(children).some((child) => child !== false && child !== undefined);
 
+  if (!hasContent) {
+    return null;
+  }
+
   return (
     <div className='hdbt-search__selections-wrapper'>
-      {hasContent && (
-        <ul className='hdbt-search__selections-container content-tags__tags'>
-          {children}
-          <li className='hdbt-search__clear-all'>
-            <Button
-              aria-hidden={!showClearButton}
-              className='hdbt-search__clear-all-button'
-              iconStart={<IconCross className='hdbt-search__clear-all-icon' />}
-              onClick={resetForm}
-              style={showClearButton ? {} : { visibility: 'hidden' }}
-              variant={ButtonVariant.Supplementary}
-            >
-              {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
-            </Button>
-          </li>
-        </ul>
-      )}
+      <ul className='hdbt-search__selections-container content-tags__tags'>
+        {children}
+        <li className='hdbt-search__clear-all'>
+          <Button
+            aria-hidden={!showClearButton}
+            className='hdbt-search__clear-all-button'
+            iconStart={<IconCross className='hdbt-search__clear-all-icon' />}
+            onClick={resetForm}
+            style={showClearButton ? {} : { visibility: 'hidden' }}
+            variant={ButtonVariant.Supplementary}
+          >
+            {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
+          </Button>
+        </li>
+      </ul>
     </div>
   );
 };
