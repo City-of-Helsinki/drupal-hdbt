@@ -6,7 +6,7 @@ import bucketToMap from '@/react/common/helpers/Aggregations';
 import CustomIds from '../enum/CustomTermIds';
 import SearchComponents from '../enum/SearchComponents';
 import { getInitialLanguage } from '../helpers/Language';
-import transformDropdownsValues from '../helpers/Params';
+import transformDropdownsValues, { paramsFromSelections } from '../helpers/Params';
 import {
   areaFilterAtom,
   areaFilterSelectionAtom,
@@ -64,18 +64,36 @@ const FormContainer = () => {
     setInternship(!!urlParams?.internship);
     setSummerJobs(!!urlParams?.summer_jobs);
     setYouthSummerJobs(!!urlParams?.youth_summer_jobs);
-    const initialLanguage: OptionType[] = [
-      getInitialLanguage(urlParams?.language, languagesOptions) || { label: '', value: '' },
-    ];
-    setLanguageFilter(initialLanguage);
+    const initialLanguage: OptionType | undefined = getInitialLanguage(urlParams?.language, languagesOptions);
+
+    if (initialLanguage) {
+      setLanguageFilter([initialLanguage]);
+    }
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const selections = {
+      area_filter: areaFilterSelection.map((selection: OptionType) => selection.value),
+      employment: employmentSelection.reduce((acc: any, curr: any) => acc.concat(curr.value), []),
+      keyword,
+      language: languageSelection?.[0]?.value || undefined,
+      continuous,
+      internship,
+      task_areas: taskAreaSelection.map((selection: OptionType) => selection.value),
+      summer_jobs: summerJobs,
+      youth_summer_jobs: youthSummerJobs,
+    };
+
     if (formAction.length) {
-      return true;
+      const newUrl = new URL(formAction, window.location.origin);
+      const newParams = paramsFromSelections(selections);
+      newUrl.search = newParams;
+      window.location.href = newUrl.toString();
+      return;
     }
 
-    event.preventDefault();
     setUrlParams({
       area_filter: areaFilterSelection.map((selection: OptionType) => selection.value),
       employment: employmentSelection.reduce((acc: any, curr: any) => acc.concat(curr.value), []),
@@ -91,10 +109,6 @@ const FormContainer = () => {
   };
 
   const handleKeywordChange = ({ target: { value } }: { target: { value: string } }) => setKeyword(value.replace(/\s+/g, ' '));
-
-  // Input values for native elements
-  const taskAreaInputValue = taskAreaSelection.map((option: OptionType) => option.value);
-  const employmentInputValue = employmentSelection.map((option: OptionType) => option.value);
 
   const isFullSearch = !drupalSettings?.helfi_rekry_job_search?.results_page_path;
 
@@ -170,35 +184,6 @@ const FormContainer = () => {
             />
           </div>
         </div>
-        {/** Hidden select elements to enable native form functions */}
-        {formAction && (
-          <>
-            <select
-              aria-hidden
-              multiple
-              name={SearchComponents.TASK_AREAS}
-              onChange={() => {}}
-              style={{ display: 'none' }}
-              value={taskAreaInputValue}
-            >
-              {taskAreaInputValue.map((value: string) => (
-                <option aria-hidden key={value} value={value} />
-              ))}
-            </select>
-            <select
-              aria-hidden
-              multiple
-              name={SearchComponents.EMPLOYMENT}
-              onChange={() => {}}
-              style={{ display: 'none' }}
-              value={employmentInputValue}
-            >
-              {employmentInputValue.map((value: string) => (
-                <option aria-hidden key={value} value={value} />
-              ))}
-            </select>
-          </>
-        )}
       </div>
       {isFullSearch && (
         <div className='job-search-form__dropdowns'>
@@ -220,8 +205,7 @@ const FormContainer = () => {
                   language: currentLanguage,
                   placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
                 }}
-                // @ts-ignore
-                value={languageSelection} // @todo Check that this works without @ts-ignore
+                value={languageSelection}
                 theme={defaultSelectTheme}
               />
             </div>

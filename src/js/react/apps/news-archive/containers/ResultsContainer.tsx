@@ -79,7 +79,7 @@ const ResultsContainer = ({
       {hideForm || <ResultsHeader
         resultText={
           <>
-            {Drupal.formatPlural(total, '1 search result', '@count search results', {}, {context: 'News archive'})}
+            {Drupal.formatPlural(total, '@count search result', '@count search results', {}, {context: 'News archive'})}
           </>
         }
         ref={scrollTarget}

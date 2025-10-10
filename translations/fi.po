@@ -674,9 +674,9 @@ msgid "Hearing only available in English and Swedish"
 msgstr "Kommentoitavissa vain englanniksi ja ruotsiksi"
 
 msgctxt "News archive"
-msgid "1 search result"
+msgid "@count search result"
 msgid_plural "@count search results"
-msgstr[0] "1 hakutulos"
+msgstr[0] "@count hakutulos"
 msgstr[1] "@count hakutulosta"
 
 msgctxt "News archive topics label"
