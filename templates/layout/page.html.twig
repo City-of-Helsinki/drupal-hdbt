@@ -15,7 +15,7 @@
     node.getType() ? 'page-type--' ~ node.getType()|clean_class,
     'wrapper',
     has_sidebar_first or has_sidebar_second ? 'has-sidebar' : 'no-sidebar',
-    has_sidebar_first ? 'has-sidebar--first' : 'no-sidebar-first',
+    has_sidebar_first and not has_hero ? 'has-sidebar--first' : 'no-sidebar-first',
     has_sidebar_second ? 'has-sidebar--second' : 'no-sidebar-second',
     has_section_nav ? 'has-section-nav' : 'no-section-nav',
   ]
@@ -164,7 +164,7 @@
 
     <div class="main-content">
 
-      {% if has_sidebar_first %}
+      {% if has_sidebar_first and not has_hero %}
         <div class="layout-sidebar-first hide-from-table-of-contents">
           {% block page_sidebar_first %}
             {{ page.sidebar_first }}
