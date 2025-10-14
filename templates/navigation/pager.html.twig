@@ -48,7 +48,7 @@
           </li>
         </ul>
       {% else %}
-        <button type="button" disabled title="{{ 'Go to previous page number'|t({}, {'context': 'Pagination previous page link title'}) }} {{ current - 1 }}" class="hds-button hds-pagination__button-prev">
+        <button type="button" disabled title="{{ 'You are on the first page, you cannot return to the previous page.'|t({}, {'context': 'Pagination previous page link title, first page'}) }}" class="hds-button hds-pagination__button-prev">
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-left'} %}
           <span aria-hidden="true" class="hds-pagination__button-prev-label">{{ items.previous.text|default('Previous'|t({}, {'context': 'Pagination previous page link text'})) }}</span>
         </button>
@@ -109,7 +109,7 @@
           </li>
         </ul>
       {% else %}
-        <button type="button" disabled title="{{ 'Go to next page number'|t({}, {'context': 'Pagination next page link title'}) }} {{ current + 1 }}" class="hds-button hds-pagination__button-next">
+        <button type="button" disabled title="{{ 'You are on the last page, you cannot go on to the next page.'|t({}, {'context': 'Pagination next page link title, last page'}) }}" class="hds-button hds-pagination__button-next">
           <span aria-hidden="true" class="hds-pagination__button-next-label">{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}</span>
           {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'angle-right'} %}
         </button>
