@@ -1,5 +1,5 @@
-import { createRef, useEffect, useState } from 'react';
-import { useAtomValue } from 'jotai';
+import { createRef, useCallback, useEffect } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
 
 import { useAtomCallback } from 'jotai/utils';
 import ResultsError from '@/react/common/ResultsError';
@@ -7,7 +7,7 @@ import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
-import { addressAtom, settingsAtom, urlAtom } from '../store';
+import { addressAtom, initializedAtom, settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -20,6 +20,7 @@ type ResultsContainerProps = {
   events: Event[];
   loading: boolean;
   retriesExhausted?: boolean;
+  validating: boolean;
 };
 
 function ResultsContainer({
@@ -28,7 +29,8 @@ function ResultsContainer({
   error,
   events,
   loading,
-  retriesExhausted
+  retriesExhausted,
+  validating,
 }: ResultsContainerProps) {
   const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
@@ -38,13 +40,24 @@ function ResultsContainer({
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
   const choices = Boolean(url);
-  const [initialized, setInitialized] = useState(false);
-  useScrollToResults(scrollTarget, initialized && choices && !loading);
+  const readInitialized = useAtomCallback(
+    useCallback((get) => get(initializedAtom), []),
+  );
+  const setInitialized = useSetAtom(initializedAtom);
+
+  useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
+
   useEffect(() => {
-    if (!initialized && !loading) {
+    if (!readInitialized() && !loading && !validating && scrollTarget.current) {
       setInitialized(true);
     }
-  }, [initialized, setInitialized, loading]);
+  }, [
+    loading,
+    readInitialized,
+    scrollTarget,
+    setInitialized,
+    validating,
+  ]);
 
   if (error) {
     return retriesExhausted ?

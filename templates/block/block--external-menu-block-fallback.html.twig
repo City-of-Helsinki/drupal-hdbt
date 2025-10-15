@@ -62,7 +62,7 @@
 
   {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
     id: dropdown_id,
-    modifier_class: 'nav-toggle-dropdown--menu',
+    modifier_class: 'nav-toggle-dropdown--menu js-menu-dropdown',
     description: 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'})
   } %}
     {% block content %}

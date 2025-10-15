@@ -7,6 +7,7 @@
     const koroTypesValues = {
       'basic': { baseCoverHeight: 19, scaleBoost: 0 },
       'beat': { baseCoverHeight: 3, scaleBoost: 4 },
+      'calm': { baseCoverHeight: 0, scaleBoost: 0 },
       'pulse': { baseCoverHeight: 14, scaleBoost: 1 },
       'vibration': { baseCoverHeight: 7, scaleBoost: 3 },
       'wave': { baseCoverHeight: 13, scaleBoost: 1 },

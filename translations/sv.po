@@ -2,6 +2,12 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
+msgid "Accessibility information"
+msgstr "Tillgänglighetsuppgifter"
+
+msgid "All accessibility information for the service location"
+msgstr "All information om tillgänglighet för verksamhetsstället"
+
 msgctxt "Cookie compliance"
 msgid "Change cookie settings"
 msgstr "Ändra inställningarna för cookies"
@@ -666,9 +672,9 @@ msgid "Hearing only available in English and Finnish"
 msgstr "Hörandet finns endast på engelska och finska"
 
 msgctxt "News archive"
-msgid "1 search result"
+msgid "@count search result"
 msgid_plural "@count search results"
-msgstr[0] "1 träff"
+msgstr[0] "@count träff"
 msgstr[1] "@count träffar"
 
 msgctxt "News archive topics label"

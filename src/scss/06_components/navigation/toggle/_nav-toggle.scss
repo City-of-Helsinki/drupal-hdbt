@@ -266,3 +266,8 @@ $label-font: 'special.navigation.icon_label';
 [data-cssmenu-hide] {
   display: none !important;
 }
+
+.nav-toggle-dropdown--closed,
+.nav-toggle-dropdown--closed nav{
+  visibility: hidden;
+}

@@ -88,54 +88,18 @@ $-card-spacing: $spacing-and-half;
     @include breakpoint($breakpoint-l) {
       width: calc(33.3333% - #{$-card-spacing});
     }
-  }
-}
 
-.component--content-cards-grey {
-  background: $color-black-5;
-  display: grid;
-  grid-template-columns: [full-width-start] var(--component-gap, #{$spacing}) [content-start] 1fr [content-end] var(--component-gap, #{$spacing}) [full-width-end] ;
-  grid-template-rows: [header-start] auto [header-end] auto;
-  padding-top: 0;
-
-  @include breakpoint($breakpoint-m) {
-    --component-gap: #{$spacing-double};
-  }
-
-  .hds-koros {
-    color: $color-white;
-    grid-column: full-width;
-    grid-row: header;
-
-    // Koro should not be visible unless the component is on the components lower region or landing page.
-    :not(.page-type--landing-page).wrapper .components--upper & {
-      display: none;
+    &:nth-child(-n+2) {
+      @include breakpoint($breakpoint-s) {
+        margin-top: 0;
+      }
     }
-  }
 
-  .content-card {
-    margin-top: $spacing-triple;
-  }
-
-  .component__container {
-    grid-column: content;
-    padding-top: $spacing;
-    width: 100%;
-
-    @include breakpoint($breakpoint-m) {
-      padding-top: $spacing-double;
+    &:nth-child(-n+3) {
+      @include breakpoint($breakpoint-l) {
+        margin-top: 0;
+      }
     }
-  }
-
-  .content-card__link {
-    padding-inline: $spacing;
-  }
-}
-
-// The koro is not visible on these occasions so the padding needs to be removed as well.
-:not(.page-type--landing-page).wrapper .components:not(.components--lower) {
-  .component--content-cards-grey .component__container {
-    padding-top: 0;
   }
 }
 
@@ -148,22 +112,6 @@ $-card-spacing: $spacing-and-half;
     }
 
     &:nth-child(-n+4) {
-      @include breakpoint($breakpoint-l) {
-        margin-top: 0;
-      }
-    }
-  }
-}
-
-.component--content-cards-large {
-  .content-card {
-    &:nth-child(-n+2) {
-      @include breakpoint($breakpoint-s) {
-        margin-top: 0;
-      }
-    }
-
-    &:nth-child(-n+3) {
       @include breakpoint($breakpoint-l) {
         margin-top: 0;
       }

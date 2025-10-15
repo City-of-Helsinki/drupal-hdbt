@@ -1,0 +1,54 @@
+$-icon-size: calc($spacing-and-half - $spacing-quarter);
+
+.heading-anchor-button {
+  background: transparent;
+  border: none;
+  margin-block: 0;
+  margin-inline: $spacing-half 0;
+  padding: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: 2px solid $color-black-90;
+    outline-offset: 2px;
+  }
+}
+
+.js-heading-with-anchor:hover .heading-anchor-button,
+.heading-anchor-button:focus {
+  display: inline-flex;
+  vertical-align: middle;
+
+  &::after {
+    @include pseudo-icon('link', $-icon-size);
+  }
+}
+
+.heading-anchor-button:focus.heading-anchor-button--success {
+  outline-color: $color-success;
+
+  &::after {
+    @include pseudo-icon('check', $-icon-size, $color-success);
+  }
+}
+
+.heading-anchor-button:focus.heading-anchor-button--error {
+  outline-color: $color-error;
+
+  &::after {
+    @include pseudo-icon('cross', $-icon-size, $color-error);
+  }
+}
+
+// White coloring for titles on dark background colors.
+.js-heading-with-anchor:hover .heading-anchor-button.heading-anchor-button--white,
+.heading-anchor-button:focus.heading-anchor-button--white {
+  outline-color: $color-white;
+
+  &::after {
+    background-color: $color-white;
+  }
+}

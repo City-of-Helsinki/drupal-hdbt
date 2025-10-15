@@ -51,13 +51,35 @@ import MenuDropdown from './nav-global/menu';
         element.scrollWidth > element.clientWidth ||
         element.scrollHeight > element.clientHeight;
 
-      // Needs to be 768px as after that breakpoint user can scroll header
-      // almost offscreen, open menu accidentally and not be able to scroll back up.
-      const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+      const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
       const AllElements = brandingElements;
 
       const keys = Object.keys(AllElements);
+
+      // Function to close dropdown when focus moves outside of it.
+      const closeOnFocusOut = (wrapper, dropdownClose, instance) => {
+        const handler = () => {
+          setTimeout(() => {
+            const active = document.activeElement;
+            if (!wrapper.contains(active)) {
+              dropdownClose();
+            }
+          }, 10);
+        };
+
+        const attachHandler = () => {
+          wrapper.removeEventListener('focusout', handler);
+
+          if (!isMobile() || instance?.startsWith('LanguageToast')) {
+            wrapper.addEventListener('focusout', handler);
+          }
+        };
+
+        attachHandler();
+
+        window.addEventListener('resize', attachHandler);
+      };
 
       keys.forEach((key) => {
         const name = AllElements[key];
@@ -86,24 +108,18 @@ import MenuDropdown from './nav-global/menu';
               window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
             }
 
+            const dropdownInstance = AllElements[key];
+            let menuWrapper = dropdownInstance?.dropdownInstance;
+
+            // Language toast dropdown is inside language link wrapper.
             if (key.startsWith('LanguageToast')) {
-              const dropdownInstance = AllElements[key];
-              const languageLinkWrapper = dropdownInstance?.dropdownInstance?.parentElement;
-
-              if (languageLinkWrapper) {
-                // Remove previous listener to avoid duplicates.
-                languageLinkWrapper.onfocusout = null;
-
-                languageLinkWrapper.addEventListener('focusout', () => {
-                  setTimeout(() => {
-                    const active = document.activeElement;
-                    if (!languageLinkWrapper.contains(active)) {
-                      dropdownInstance.simpleClose();
-                    }
-                  }, 10);
-                });
-              }
+              menuWrapper = dropdownInstance?.dropdownInstance?.parentElement;
             }
+
+            if (menuWrapper) {
+              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key);
+            }
+
           },
           targetSelector: `#${name}`,
         });
@@ -116,6 +132,10 @@ import MenuDropdown from './nav-global/menu';
             keys.forEach((key) => {
               AllElements[key].close();
             });
+            const wrapper = document.getElementById('nav-toggle-dropdown--menu');
+            if (wrapper) {
+              closeOnFocusOut(wrapper, () => globalMenu.close());
+            }
             close();
           },
           onClose: open
