@@ -1,5 +1,5 @@
 type MetadataType = {
-  icon: string;
+  icon: JSX.Element | string;
   label: string;
   content: JSX.Element | string | Array<string>;
   langAttribute?: any;
