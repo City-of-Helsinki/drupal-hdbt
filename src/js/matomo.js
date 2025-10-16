@@ -56,7 +56,7 @@ function getBrowserSize() {
       }
 
       const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
-      g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
+      g.async=true; g.src=`${u}piwik.js`; s.parentNode.insertBefore(g,s);
     })();
   }
 
