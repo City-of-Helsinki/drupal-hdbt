@@ -49,7 +49,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
       >
         {prevPageExists ? (
           <a
-            aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage}`}
+            aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             className='hds-button hds-pagination__button-prev'
             href={`?page=${currentPage}`}
             onClick={(e) => {
@@ -57,7 +57,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
                 updatePage(e, currentPage - 1);
               }
             }}
-            title={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage}`}
+            title={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             type='button'
             rel='prev'
             role='button'
