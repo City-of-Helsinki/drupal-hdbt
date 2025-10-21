@@ -12,10 +12,15 @@ export default class HelfiAccordion {
 
   static toggleAllClosed = 'accordion__button--is-closed';
 
+  /**
+   * Accordion types that don’t use toggle-all functionality.
+   * “headerless” = accordion with no visible header.
+   * “hardcoded” = accordion created in static HTML, not dynamically generated.
+   */
   static headerlessTypes = ['headerless', 'hardcoded'];
 
   constructor(accordion, state, urlHash, type = 'default') {
-    // Headerless accordion doesn't have toggle-all functionality.
+    // “Headerless” and “hardcoded” accordions skip toggle-all functionality.
     this.type = type;
 
     this.isSingleItemAccordion = false;
@@ -32,12 +37,13 @@ export default class HelfiAccordion {
   }
 
   /**
-   * Create the accordion items.
+   * Initialize accordion items and optional “hidden until found” support.
    */
   initializeAccordion = () => {
     const accordionItems = this.accordion.getElementsByClassName(AccordionItem.accordionItemElement);
     this.isSingleItemAccordion = accordionItems.length === 1;
 
+    // Create AccordionItem instances for each item in this accordion.
     Array.from(accordionItems).forEach((element) => {
       this.accordionItems.push(new AccordionItem(element, this.localState, this.urlHash, this.updateToggleButtonLabel));
     });
@@ -83,6 +89,10 @@ export default class HelfiAccordion {
     });
   };
 
+  /**
+   * Add event listeners for the toggle-all button (if applicable).
+   * Headerless or single-item accordions skip this.
+   */
   addEventListeners = () => {
     if (HelfiAccordion.isHeaderless(this.type) || this.isSingleItemAccordion) { return; }
 
@@ -91,7 +101,7 @@ export default class HelfiAccordion {
     toggleAllElement.addEventListener('keypress', this.toggleItems);
   };
 
-  addChildAccordion =  (accordion) => {
+  addChildAccordion = (accordion) => {
     this.childAccordion = accordion;
   };
 
@@ -104,7 +114,7 @@ export default class HelfiAccordion {
   };
 
   /**
-   * Callback for accordionItem to invoke changes in accordion.
+   * Update the toggle-all button label based on current accordion state.
    */
   updateToggleButtonLabel = () => {
     const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
@@ -123,7 +133,7 @@ export default class HelfiAccordion {
   toggleItems = () => this.areAllItemsOpen() ? this.closeAll() : this.openAll();
 
   /**
-   * Open all own and child accordion's items.
+   * Opens all accordion items (including child accordions, if any).
    */
   openAll = () => {
     this.accordionItems.forEach(item => item.open());
@@ -133,17 +143,22 @@ export default class HelfiAccordion {
   };
 
   /**
-   * Close all own and child accordion's items.
+   * Closes all accordion items (including child accordions, if any).
    */
   closeAll = () => {
     this.accordionItems.forEach(item => item.closeWithoutFocus());
     this.childAccordion?.closeAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();
+
+    // Move focus back to the toggle-all button for accessibility.
     const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
     toggleAllElement.focus();
   };
 
+  /**
+   * Updates the toggle-all button’s open/closed CSS classes.
+   */
   toggleAllLabelUpdate = () => {
     const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
 

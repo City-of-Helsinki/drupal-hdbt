@@ -249,6 +249,14 @@ msgctxt "Pagination previous page link title"
 msgid "Go to previous page number"
 msgstr "Palaa edelliselle sivulle numero"
 
+msgctxt "Pagination previous page link title, first page"
+msgid "You are on the first page, you cannot return to the previous page."
+msgstr "Olet ensimmäisellä sivulla, et voi palata edelliselle sivulle"
+
+msgctxt "Pagination next page link title, last page"
+msgid "You are on the last page, you cannot go on to the next page."
+msgstr "Olet viimeisellä sivulla, et voi siirtyä seuraavalle sivulle."
+
 msgctxt "Pagination previous page link text"
 msgid "Previous"
 msgstr "Edellinen"
