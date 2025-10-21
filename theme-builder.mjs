@@ -29,7 +29,6 @@ const jsFiles = globSync('./src/js/**/*.js', {
     'src/js/accordion/state.js',
     'src/js/accordion/translations.js',
     'src/js/localStorageManager.js',
-    'src/js/calculator/**/tests/**',
   ],
 }).reduce((acc, file) => ({
   ...acc, [path.parse(file).name]: file
