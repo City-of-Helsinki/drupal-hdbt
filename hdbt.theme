@@ -68,15 +68,13 @@ function _hdbt_get_theme_path(): string {
  * Implements hook_csp_policy_alter().
  */
 function hdbt_csp_policy_alter(Csp $policy): void {
+  $matomo_urls = [
+    'https://digiaiiris.com',
+    'https://*.digiaiiris.com',
+  ];
   // Rules needed for Matomo analytics.
-  $policy->fallbackAwareAppendIfEnabled('connect-src', [
-    'https://webanalytics.digiaiiris.com',
-    'https://digiaiiris.com',
-  ]);
-  $policy->fallbackAwareAppendIfEnabled('script-src', [
-    'https://webanalytics.digiaiiris.com',
-    'https://digiaiiris.com',
-  ]);
+  $policy->fallbackAwareAppendIfEnabled('connect-src', $matomo_urls);
+  $policy->fallbackAwareAppendIfEnabled('script-src', $matomo_urls);
 }
 
 /**
