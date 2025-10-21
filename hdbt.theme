@@ -913,13 +913,6 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
 /**
  * Implements hook_preprocess_paragraph__type().
  */
-function hdbt_preprocess_paragraph__calculator(&$variables) {
-  $variables['theme_path'] = _hdbt_get_theme_path();
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
 function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void {
   $paragraph = $variables['paragraph'];
   $langcode = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();

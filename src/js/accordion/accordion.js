@@ -14,6 +14,12 @@ const {hash} = window.location;
  * - `component--no-header` → headerless accordion (no visible toggle-all button).
  * - `component--hardcoded` → static accordion, fully rendered in HTML.
  * - otherwise → standard (default) accordion.
+ *
+ * @param {string[]} classes
+ *   CSS classes
+ *
+ * @return {string}
+ *   Returns the accordion type.
  */
 const getAccordionType = (classes) => {
   if (classes.includes('component--no-header')) {
@@ -29,6 +35,11 @@ const getAccordionType = (classes) => {
  * MutationObserver callback.
  * Fired when new DOM nodes are added — this allows initializing accordions
  * dynamically.
+ *
+ * @param {MutationRecord[]} mutations
+ *   An array of MutationRecord objects describing each change that occurred.
+ * @param {MutationObserver} observer
+ *   The MutationObserver instance that invoked the callback.
  */
 const callback = (mutations, observer) => {
   const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);

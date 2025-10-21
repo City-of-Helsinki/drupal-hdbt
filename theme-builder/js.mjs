@@ -81,6 +81,7 @@ export async function buildVanillaJs(config = {}) {
           define: {
             'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
           },
+          external: ['@playwright/test'],
           entryPoints: [entry],
           format: 'iife',
           // outfile,
