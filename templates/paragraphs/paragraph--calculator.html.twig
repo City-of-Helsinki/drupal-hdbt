@@ -1,0 +1,21 @@
+{% if is_active %}
+  {% block paragraph %}
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [ 'component--helfi-calculator' ],
+        component_title: content.field_calculator_title,
+        component_description: content.field_calculator_description,
+        component_content_class: 'helfi-calculator',
+      }
+    %}
+      {% block component_content %}
+        <div
+          id="{{ helfi_calculator_id }}"
+          class="js-helfi-calculator"
+          data-calculator="{{ content.field_calculator[0]['#markup'] }}"
+          data-settings-key="{{ helfi_calculator_id }}"
+        ></div>
+      {% endblock component_content %}
+    {% endembed %}
+  {% endblock paragraph %}
+{% endif %}
