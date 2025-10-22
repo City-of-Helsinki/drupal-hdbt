@@ -46,7 +46,7 @@ const useQueryString = (urlParams: URLParams): string => {
           },
           {
             wildcard: {
-              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword.toString().toLowerCase()}*`,
+              [IndexFields.TITLE]: `*${urlParams.keyword.toString().toLowerCase()}*`,
             },
           },
         ],
@@ -202,7 +202,6 @@ const useQueryString = (urlParams: URLParams): string => {
     if (!promotedToShow) {
       const promotedPages = Math.ceil(promoted.length / globalSize);
       const normalPages = page - 1 - promotedPages;
-;
       return [globalSize, globalSize * normalPages + (globalSize - leftovers)];
     }
 
