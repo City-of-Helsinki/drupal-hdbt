@@ -46,7 +46,7 @@ const useQueryString = (urlParams: URLParams): string => {
           },
           {
             wildcard: {
-              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword.toString().toLowerCase()}*`,
+              [IndexFields.TITLE]: `*${urlParams.keyword.toString().toLowerCase()}*`,
             },
           },
         ],
