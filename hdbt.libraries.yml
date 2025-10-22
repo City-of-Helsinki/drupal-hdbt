@@ -144,18 +144,6 @@ health-station-search:
     - core/drupalSettings
     - core/drupal
 
-# Load the Hyphenopoly library loader javascript separately to make sure
-# the global hyphenopoly object is defined before trying to configure it.
-hyphenopoly-loader:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  header: true
-  js:
-    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
-      minified: true,
-      preprocess: false,
-      weight: -1
-    }
-
 hyphenopoly:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   header: true
@@ -167,6 +155,18 @@ hyphenopoly:
     }
   dependencies:
     - hdbt/hyphenopoly-loader
+
+# Load the Hyphenopoly library loader javascript separately to make sure
+# the global hyphenopoly object is defined before trying to configure it.
+hyphenopoly-loader:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  header: true
+  js:
+    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
+      minified: true,
+      preprocess: false,
+      weight: -1
+    }
 
 job-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
