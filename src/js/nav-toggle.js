@@ -57,6 +57,22 @@ import MenuDropdown from './nav-global/menu';
 
       const keys = Object.keys(AllElements);
 
+      // Close all open menus on click outside.
+      const closeFromOutside = ({ target }) => {
+        if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
+          // Close all open menus.
+          keys.forEach((key) => {
+            AllElements[key].simpleClose();
+          });
+
+          // Close global menu if it is open.
+          if (globalMenu) globalMenu.close();
+
+          // Reveal hidden UI elements.
+          open();
+        }
+      };
+
       // Function to close dropdown when focus moves outside of it.
       const closeOnFocusOut = (wrapper, dropdownClose, instance) => {
         const handler = () => {
@@ -88,7 +104,10 @@ import MenuDropdown from './nav-global/menu';
           buttonSelector: `.js-${name}-button`,
           dropdownSelector: `.js-${name}-dropdown`,
           name: `${name} dropdown`,
-          onClose: open,
+          onClose: () => {
+            open();
+            context.removeEventListener('click', closeFromOutside);
+          },
           onOpen: () => {
             // Close all open menus before opening a new one.
             keys.forEach((menuName) => {
@@ -119,7 +138,7 @@ import MenuDropdown from './nav-global/menu';
             if (menuWrapper) {
               closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key);
             }
-
+            context.addEventListener('click', closeFromOutside);
           },
           targetSelector: `#${name}`,
         });
@@ -137,29 +156,17 @@ import MenuDropdown from './nav-global/menu';
               closeOnFocusOut(wrapper, () => globalMenu.close());
             }
             close();
+            context.addEventListener('click', closeFromOutside);
           },
-          onClose: open
+          onClose: () => {
+            open();
+            context.removeEventListener('click', closeFromOutside);
+          }
         });
       }
 
       // Check if any menu instance is open.
       const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (globalMenu && globalMenu.isOpen());
-
-      // Close all open menus on click outside.
-      const closeFromOutside = ({ target }) => {
-        if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
-          // Close all open menus.
-          keys.forEach((key) => {
-            AllElements[key].simpleClose();
-          });
-
-          // Close global menu if it is open.
-          if (globalMenu) globalMenu.close();
-
-          // Reveal hidden UI elements.
-          open();
-        }
-      };
 
       // Prevent body scrolling when menus are open.
       const blockBrandingScroll = (e) => {
@@ -189,7 +196,7 @@ import MenuDropdown from './nav-global/menu';
       // Attach outside click listener to the whole header branding region area,
       // so that other languages menu and mega menu can be closed when clicking
       // outside of header branding region.
-      context.addEventListener('click', closeFromOutside);
+      // context.addEventListener('click', closeFromOutside);
 
       // Prevent body scroll through shared header element when
       // full screen menu is open.
