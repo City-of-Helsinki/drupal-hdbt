@@ -1,3 +1,12 @@
+mobile-language-switcher:
+  version: 1.0.0
+  js:
+    dist/js/mobileLanguageSwitcher.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+
 desktop-menu-toggle:
   version: 1.0.1
   js:
@@ -79,16 +88,6 @@ global-styling:
   dependencies:
     - hdbt/color-palette
     - hdbt/hdbt-icons
-
-# TODO: UHF-8773 Convert branding mobile to its own library (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8773).
-global-scripting:
-  version: 1.0.0
-  js:
-    dist/js/branding-mobile.min.js: {
-      minified: true
-    }
-  dependencies:
-    - core/drupal
 
 matomo:
   version: 1.0.0
