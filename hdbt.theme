@@ -700,14 +700,14 @@ function hdbt_preprocess_block(&$variables): void {
     }
   }
 
-  // Attach "closable_announcements" library to "announcements" block.
+  // Attach "closable-announcements" library to "announcements" block.
   if ($variables['plugin_id'] == 'announcements') {
-    $variables['#attached']['library'][] = 'hdbt/closable_announcements';
+    $variables['#attached']['library'][] = 'hdbt/closable-announcements';
   }
 
-  // Attach "closable_surveys" library to "surveys" block.
+  // Attach "closable-surveys" library to "surveys" block.
   if ($variables['plugin_id'] == 'surveys') {
-    $variables['#attached']['library'][] = 'hdbt/closable_surveys';
+    $variables['#attached']['library'][] = 'hdbt/closable-surveys';
   }
 
   if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
