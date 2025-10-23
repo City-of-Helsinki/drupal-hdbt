@@ -1,9 +1,9 @@
 .error-page {
-  @include -system-page-body;
+  @include system-page-body;
 }
 
 body:has(.error-page__title) {
-  @include -system-page-body; // This enables above on supported browsers for pages where we can not inject the .error-page class
+  @include system-page-body; // This enables above on supported browsers for pages where we can not inject the .error-page class
 }
 
 .error-page-content__container {

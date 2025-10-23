@@ -1,4 +1,4 @@
-@mixin -system-page-body() {
+@mixin system-page-body() {
   // Background on the system pages needs to be gray because the illustrations disappear to the background if its white.
   .wrapper {
     background-color: $color-black-10;
