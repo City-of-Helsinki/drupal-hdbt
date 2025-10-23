@@ -1,11 +1,5 @@
 .user-login-page {
-  // Background on the error pages needs to be gray because the illustrations disappear to the background if its white.
-  background-color: $color-silver-medium-light;
-
-  // For the error pages the gap on top grows too large if this is left in place.
-  .no-sidebar .main-content {
-    margin-top: 0;
-  }
+  @include system-page-body;
 }
 
 .user-login-page-content__container {
