@@ -1,4 +1,4 @@
-import AccordionItem from './accordion-item';
+import AccordionItem from './accordionItem';
 
 export default class Events {
 

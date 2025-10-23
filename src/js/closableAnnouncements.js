@@ -2,7 +2,7 @@ import LocalStorageManager from './localStorageManager';
 
 // eslint-disable-next-line func-names
 (function (Drupal) {
-  Drupal.behaviors.closable_announcements = {
+  Drupal.behaviors.closableAnnouncements = {
     attach: function attach() {
       const ANNOUCEMENT = 'js-announcement';
       const ANNOUCEMENT_HIDE = 'js-announcement--hide';

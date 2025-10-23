@@ -1,4 +1,4 @@
-import { positionDropdown } from './position-dropdown';
+import { positionDropdown } from './positionDropdown';
 
 const OPEN_CLASS = 'menu__item--open';
 const HOVER_CLASS = 'menu__item--hover';

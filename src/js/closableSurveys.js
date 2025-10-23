@@ -1,8 +1,8 @@
 import LocalStorageManager from './localStorageManager';
-import ClientHelpers from './client-helpers';
+import ClientHelpers from './clientHelpers';
 
 (Drupal => {
-  Drupal.behaviors.closable_surveys = {
+  Drupal.behaviors.closableSurveys = {
     attach: function attach() {
       // Move the DOM element with id 'block-surveys' right after the dialog-off-canvas-main-canvas if it is present.
       // If not move it as last element inside the body element so that the header (h1, h2, etc.) structure will be
