@@ -1,5 +1,5 @@
-import HelfiAccordion from './helfi-accordion';
-import AccordionState from './accordion-state';
+import HelfiAccordion from './helfiAccordion';
+import AccordionState from './accordionState';
 import Events from './events';
 
 window.helfiAccordions = [];

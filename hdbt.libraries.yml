@@ -1,12 +1,3 @@
-desktop-menu-toggle:
-  version: 1.0.1
-  js:
-    dist/js/desktop-menu-toggle.min.js: {
-      minified: true
-    }
-  dependencies:
-    - core/drupal
-
 accordion:
   version: 1.7.0
   js:
@@ -18,31 +9,44 @@ accordion:
   dependencies:
     - helfi_platform_config/heading_id_injector
 
-throbber:
-  version: 1.0.0
+card-helper:
+  version: 1.1.1
   js:
-    dist/js/throbber.min.js: {
+    dist/js/cardHelper.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - core/once
+
+chat-trigger:
+  version: 1.0.1
+  js:
+    dist/js/chatTrigger.min.js: {
+      minified: true
+    }
+
+closable-announcements:
+  version: 1.2.1
+  js:
+    dist/js/closableAnnouncements.min.js: {
       minified: true
     }
   dependencies:
     - core/jquery
     - core/drupal
+    - core/drupalSettings
 
-sidebar-menu-toggle:
-  version: 1.0.1
+closable-surveys:
+  version: 1.2.1
   js:
-    dist/js/sidebar-menu-toggle.min.js: {
+    dist/js/closableSurveys.min.js: {
       minified: true
     }
   dependencies:
     - core/drupal
-
-chat-trigger:
-  version: 1.0.0
-  js:
-    dist/js/chat-trigger.min.js: {
-      minified: true
-    }
+    - core/drupalSettings
+    - hdbt/focus-trap
 
 color-palette:
   version: 1.0.0
@@ -52,22 +56,65 @@ color-palette:
         minified: true
       }
 
-hdbt-icons:
-  version: 1.3.0
-  css:
-    theme:
-      dist/css/hdbt-icons.css: {}
+desktop-menu-toggle:
+  version: 1.0.2
+  js:
+    dist/js/desktopMenuToggle.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+
+district-and-project-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/district-and-project-search.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
 
 embedded-content-cookie-compliance:
-  version: 1.2.0
+  version: 1.2.1
   js:
-    dist/js/embedded-content-cookie-compliance.min.js: {
+    dist/js/embeddedContentCookieCompliance.min.js: {
       minified: true
     }
   dependencies:
     - core/jquery
     - core/drupal
     - core/drupalSettings
+
+environment-indicator:
+  version: 1.0.0
+  css:
+    theme:
+      dist/css/environment-indicator.min.css: {
+        minified: true
+      }
+
+event-list:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/linkedevents.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+    - core/drupal
+
+focus-trap:
+  version: 7.5.4
+  js:
+    dist/js/focus-trap/focus-trap.min.js: {
+      minified: true
+    }
+  dependencies:
+    - hdbt/tabbable
 
 global-styling:
   version: HELFI_DEPLOYMENT_IDENTIFIER
@@ -80,14 +127,84 @@ global-styling:
     - hdbt/color-palette
     - hdbt/hdbt-icons
 
-# TODO: UHF-8773 Convert branding mobile to its own library (https://helsinkisolutionoffice.atlassian.net/browse/UHF-8773).
-global-scripting:
-  version: 1.0.0
+hdbt-icons:
+  version: 1.3.0
+  css:
+    theme:
+      dist/css/hdbt-icons.css: {}
+
+health-station-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
-    dist/js/branding-mobile.min.js: {
+    dist/js/health-station-search.min.js: {
+      preprocess: false,
       minified: true
     }
   dependencies:
+    - core/drupalSettings
+    - core/drupal
+
+hyphenopoly:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  header: true
+  js:
+    dist/js/hyphenopolySettings.min.js: {
+      minified: true,
+      preprocess: false,
+      weight: 0
+    }
+  dependencies:
+    - hdbt/hyphenopoly-loader
+
+# Load the Hyphenopoly library loader javascript separately to make sure
+# the global hyphenopoly object is defined before trying to configure it.
+hyphenopoly-loader:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  header: true
+  js:
+    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
+      minified: true,
+      preprocess: false,
+      weight: -1
+    }
+
+job-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/job-search.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+
+koro-helper:
+  version: 1.0.1
+  js:
+    dist/js/koroHelper.min.js: {
+      minified: true
+    }
+
+language-toast:
+  version: 1.0.3
+  js:
+    dist/js/languageToast.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - hdbt/nav-toggle
+
+maternity-and-child-health-clinic-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/maternity-and-child-health-clinic-search.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
     - core/drupal
 
 matomo:
@@ -99,75 +216,40 @@ matomo:
       minified: true
     }
   dependencies:
-  - core/drupal
-  - core/jquery
+    - core/drupal
+    - core/jquery
 
-closable_announcements:
-  version: 1.2.0
+mobile-language-switcher:
+  version: 1.0.0
   js:
-    dist/js/closable-announcements.min.js: {
-      minified: true
-    }
-  dependencies:
-  - core/jquery
-  - core/drupal
-  - core/drupalSettings
-
-closable_surveys:
-  version: 1.2.0
-  js:
-    dist/js/closable-surveys.min.js: {
+    dist/js/mobileLanguageSwitcher.min.js: {
       minified: true
     }
   dependencies:
     - core/drupal
-    - core/drupalSettings
-    - hdbt/focus-trap
 
-tabbable:
-  version: 6.2.0
-  js:
-    dist/js/tabbable/tabbable.min.js: {
-      minified: true
-    }
-
-focus-trap:
-  version: 7.5.4
-  js:
-    dist/js/focus-trap/focus-trap.min.js: {
-      minified: true
-    }
-  dependencies:
-    - hdbt/tabbable
-
-tabs:
-  version: 1.0.0
-  js:
-    dist/js/tabs.min.js: {
-      minified: true
-    }
-  dependencies:
-    - core/jquery
-    - core/drupalSettings
-
-environment-indicator:
-  version: 1.0.0
+nav-global:
+  version: 1.0.3
   css:
     theme:
-      dist/css/environment-indicator.min.css: {
+      dist/css/nav-global.min.css: {
         minified: true
       }
+  dependencies:
+    - core/drupal
+    - hdbt/global-styling
+    - hdbt/nav-toggle
 
 nav-toggle:
   version: 1.0.3
   js:
-    dist/js/nav-toggle.min.js: {
+    dist/js/navToggle.min.js: {
       minified: true,
       attributes: { defer: true }
     }
   css:
     theme:
-      dist/css/nav_toggle.min.css: {
+      dist/css/nav-toggle.min.css: {
         minified: true
       }
   dependencies:
@@ -175,10 +257,10 @@ nav-toggle:
     - core/drupalSettings
 
 nav-local:
-  version: 1.0.2
+  version: 1.0.3
   css:
     theme:
-      dist/css/nav_local.min.css: {
+      dist/css/nav-local.min.css: {
         minified: true
       }
   dependencies:
@@ -186,38 +268,26 @@ nav-local:
     - hdbt/global-styling
     - hdbt/nav-toggle
 
-nav-global:
-  version: 1.0.2
-  css:
-    theme:
-      dist/css/nav_global.min.css: {
-        minified: true
-      }
-  dependencies:
-    - core/drupal
-    - hdbt/global-styling
-    - hdbt/nav-toggle
-
-language-toast:
-  version: 1.0.2
-  js:
-    dist/js/language-toast.min.js: {
-      minified: true
-    }
-  dependencies:
-    - core/drupal
-    - hdbt/nav-toggle
-
-event-list:
+news-archive:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
-    dist/js/linkedevents.min.js: {
+    dist/js/news-archive.min.js: {
       preprocess: false,
       minified: true
     }
   dependencies:
     - core/drupalSettings
-    - core/jquery
+    - core/drupal
+
+ploughing-schedule:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/ploughing-schedule.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
     - core/drupal
 
 roadwork-list:
@@ -243,126 +313,55 @@ school-search:
     - core/drupalSettings
     - core/drupal
 
-# Load the Hyphenopoly library loader javascript separately to make sure
-# the global hyphenopoly object is defined before trying to configure it.
-hyphenopoly-loader:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  header: true
-  js:
-    dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
-      minified: true,
-      preprocess: false,
-      weight: -1
-    }
-
-hyphenopoly:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  header: true
-  js:
-    dist/js/hyphenopoly_settings.min.js: {
-      minified: true,
-      preprocess: false,
-      weight: 0
-    }
-  dependencies:
-    - hdbt/hyphenopoly-loader
-
-job-search:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/job-search.min.js: {
-      preprocess: false,
-      minified: true
-    }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
-
-district-and-project-search:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/district-and-project-search.min.js: {
-      preprocess: false,
-      minified: true
-    }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
-
-news-archive:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/news-archive.min.js: {
-      preprocess: false,
-      minified: true
-    }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
-
 search-helper:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
-    dist/js/search-helper.min.js: {
+    dist/js/searchHelper.min.js: {
       minified: true
     }
 
-table-figcaption:
-  version: 1.0.1
+sidebar-menu-toggle:
+  version: 1.0.2
   js:
-    dist/js/handle-figcaption-source-order.min.js: {
+    dist/js/sidebarMenuToggle.min.js: {
       minified: true
     }
   dependencies:
     - core/drupal
-    - core/once
 
-health-station-search:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
+tabbable:
+  version: 6.2.0
   js:
-    dist/js/health-station-search.min.js: {
-      preprocess: false,
+    dist/js/tabbable/tabbable.min.js: {
       minified: true
     }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
 
-maternity-and-child-health-clinic-search:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/maternity-and-child-health-clinic-search.min.js: {
-      preprocess: false,
-      minified: true
-    }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
-
-ploughing-schedule:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/ploughing-schedule.min.js: {
-      preprocess: false,
-      minified: true
-    }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
-
-card-helper:
-  version: 1.1.0
-  js:
-    dist/js/card-helper.min.js: {
-      minified: true
-    }
-  dependencies:
-    - core/drupal
-    - core/once
-
-koro-helper:
+tabs:
   version: 1.0.0
   js:
-    dist/js/koro-helper.min.js: {
+    dist/js/tabs.min.js: {
       minified: true
     }
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+table-figcaption:
+  version: 1.0.2
+  js:
+    dist/js/handleFigcaptionSourceOrder.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - core/once
+
+throbber:
+  version: 1.0.0
+  js:
+    dist/js/throbber.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/jquery
+    - core/drupal

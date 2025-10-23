@@ -1,4 +1,4 @@
-import { positionDropdown } from './position-dropdown';
+import { positionDropdown } from './positionDropdown';
 
 ((Drupal) => {
   Drupal.behaviors.languageToastPositioning = {
