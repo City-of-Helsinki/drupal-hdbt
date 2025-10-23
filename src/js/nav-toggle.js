@@ -192,12 +192,6 @@ import MenuDropdown from './nav-global/menu';
         }
       };
 
-
-      // Attach outside click listener to the whole header branding region area,
-      // so that other languages menu and mega menu can be closed when clicking
-      // outside of header branding region.
-      // context.addEventListener('click', closeFromOutside);
-
       // Prevent body scroll through shared header element when
       // full screen menu is open.
       const body = document.querySelector('body');
