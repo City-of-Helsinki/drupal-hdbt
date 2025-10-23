@@ -32,6 +32,11 @@ const closeOpenItems = (element) => {
   });
 };
 
+// Show toggle button if js is enabled.
+document.querySelectorAll('.header-bottom .menu__toggle-button').forEach((button) => {
+  button.classList.add('js-show-menu__toggle-button');
+});
+
 const toggleDesktopMenuLevel = (item) => {
   const toggleButton = item.querySelector('.menu__toggle-button');
 
@@ -165,11 +170,6 @@ const handleEscKey = (event) => {
               positionDropdown(button, menuItem, { gutter: 12 });
             }
           });
-        });
-
-        // Show toggle button if js is enabled.
-        document.querySelectorAll('.header-bottom .menu__toggle-button').forEach((button) => {
-          button.classList.add('js-show-menu__toggle-button');
         });
       }
     }
