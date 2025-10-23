@@ -98,8 +98,12 @@ const handleEscKey = (event) => {
 ((Drupal) => {
   Drupal.behaviors.toggleDesktopNavigation = {
     attach(context) {
+      // Add the global event listeners only once.
+      if (context !== document && window.desktopMenuInitialized) {
+        return;
+      }
       const itemsWithVisibleChildren = context.querySelectorAll(
-        '.desktop-menu .menu--level-0 > .menu__item--item-below'
+      '.desktop-menu .menu--level-0 > .menu__item--item-below'
       );
 
       itemsWithVisibleChildren.forEach((item) => {
@@ -123,55 +127,52 @@ const handleEscKey = (event) => {
         item.addEventListener('mouseleave', mouseLeave, false);
       });
 
-      // Add the global event listeners only once.
-      if (context === document && !window.desktopMenuInitialized) {
-        window.desktopMenuInitialized = true;
+      window.desktopMenuInitialized = true;
 
-        document.addEventListener('keydown', handleEscKey);
+      document.addEventListener('keydown', handleEscKey);
 
-        window.addEventListener('click', (event) => {
-          const mainNav = document.querySelector('[data-hdbt-selector="main-navigation"]');
+      window.addEventListener('click', (event) => {
+        const mainNav = document.querySelector('[data-hdbt-selector="main-navigation"]');
 
-          if (mainNav && mainNav.contains(event.target)) {
-            let clickedElement = event.target;
+        if (mainNav && mainNav.contains(event.target)) {
+          let clickedElement = event.target;
 
-            if (clickedElement.classList.contains('menu__toggle-button-icon')) {
-              clickedElement = clickedElement.parentElement;
-            }
+          if (clickedElement.classList.contains('menu__toggle-button-icon')) {
+            clickedElement = clickedElement.parentElement;
+          }
 
-            if (clickedElement.classList.contains('menu__toggle-button')) {
-              const clickedElementParent = clickedElement.parentElement.closest('.menu__item--children');
-              const clickedElementSiblings = getSiblings(clickedElementParent);
+          if (clickedElement.classList.contains('menu__toggle-button')) {
+            const clickedElementParent = clickedElement.parentElement.closest('.menu__item--children');
+            const clickedElementSiblings = getSiblings(clickedElementParent);
 
-              clickedElementSiblings.forEach((sibling) => {
-                if (sibling.classList.contains(OPEN_CLASS)) {
-                  sibling.classList.remove(OPEN_CLASS);
-                  updateFirstChildAriaExpanded(sibling);
-                }
-              });
-            }
-          } else {
-            closeOpenItems();
+            clickedElementSiblings.forEach((sibling) => {
+              if (sibling.classList.contains(OPEN_CLASS)) {
+                sibling.classList.remove(OPEN_CLASS);
+                updateFirstChildAriaExpanded(sibling);
+              }
+            });
+          }
+        } else {
+          closeOpenItems();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        document.querySelectorAll('.menu__toggle-button').forEach((button) => {
+          const buttonParent = button.parentElement;
+          const dropDown = buttonParent.nextElementSibling;
+          const menuItem = buttonParent.parentElement;
+
+          if (dropDown && menuItem.classList.contains(OPEN_CLASS)) {
+            positionDropdown(button, menuItem, { gutter: 12 });
           }
         });
+      });
 
-        window.addEventListener('resize', () => {
-          document.querySelectorAll('.menu__toggle-button').forEach((button) => {
-            const buttonParent = button.parentElement;
-            const dropDown = buttonParent.nextElementSibling;
-            const menuItem = buttonParent.parentElement;
-
-            if (dropDown && menuItem.classList.contains(OPEN_CLASS)) {
-              positionDropdown(button, menuItem, { gutter: 12 });
-            }
-          });
-        });
-
-        // Show toggle button if js is enabled.
-        document.querySelectorAll('.header-bottom .menu__toggle-button').forEach((button) => {
-          button.classList.add('js-show-menu__toggle-button');
-        });
-      }
+      // Show toggle button if js is enabled.
+      document.querySelectorAll('.header-bottom .menu__toggle-button').forEach((button) => {
+        button.classList.add('js-show-menu__toggle-button');
+      });
     }
   };
 })(Drupal);
