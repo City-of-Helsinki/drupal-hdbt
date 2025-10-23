@@ -1,4 +1,4 @@
-import ClientHelpers from '../client-helpers';
+import ClientHelpers from '../clientHelpers';
 import LocalStorageManager from '../localStorageManager';
 
 export default class AccordionState {

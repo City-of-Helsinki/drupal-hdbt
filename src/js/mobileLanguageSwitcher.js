@@ -1,7 +1,7 @@
 ((Drupal) => {
-  Drupal.behaviors.mobileBranding = {
+  Drupal.behaviors.mobileLanguageSwitcher = {
     attach(context) {
-      if (context !== document || window.mobileBrandingInitialized) {
+      if (context !== document || window.mobileLanguageSwitcherInitialized) {
         return;
       }
 
@@ -47,7 +47,7 @@
         window.addEventListener('scroll', checkScroll, { passive: true });
       }
 
-      window.mobileBrandingInitialized = true;
+      window.mobileLanguageSwitcherInitialized = true;
     }
   };
 })(Drupal);

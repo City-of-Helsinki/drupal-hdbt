@@ -1,6 +1,6 @@
-import AccordionItem from './accordion-item';
+import AccordionItem from './accordionItem';
 import Translations from './translations';
-import ClientHelpers from '../client-helpers';
+import ClientHelpers from '../clientHelpers';
 
 export default class HelfiAccordion {
 

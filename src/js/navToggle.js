@@ -1,5 +1,5 @@
-import { close, open } from './nav-toggle/toggle-widgets';
-import NavToggleDropdown from './nav-toggle/nav-toggle-dropdown';
+import { close, open } from './nav-toggle/toggleWidgets';
+import NavToggleDropdown from './nav-toggle/navToggleDropdown';
 import MenuDropdown from './nav-global/menu';
 
 // Not using 'once()' here because NavToggleDropdown manages its own init state via 'this.running'.
