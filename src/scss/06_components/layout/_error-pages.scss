@@ -1,6 +1,6 @@
 @mixin -error-page-body() {
   // Background on the error pages needs to be gray because the illustrations disappear to the background if its white.
-  background-color: $color-silver-medium-light;
+  background-color: $color-black-10;
 
   // For the error pages the gap on top grows too large if this is left in place.
   .no-sidebar .main-content {
@@ -47,8 +47,9 @@ body:has(.error-page__title) {
 
   &::after {
     @include pseudo-icon('arrow-right');
-    @include hover-link-arrow-transition();
+    @include hover-link-arrow-transition;
   }
+
   &[data-is-external]::after {
     content: none;
   }
@@ -58,6 +59,7 @@ body:has(.error-page__title) {
 
     &::after {
       transform: translateX($spacing-quarter);
+
       @media (prefers-reduced-motion) {
         transform: none;
       }
