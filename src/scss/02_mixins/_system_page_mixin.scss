@@ -1,0 +1,26 @@
+@mixin -system-page-body() {
+  // Background on the system pages needs to be gray because the illustrations disappear to the background if its white.
+  .wrapper {
+    background-color: $color-black-10;
+  }
+
+  // To get the gray background all the way to the bottom of the page
+  // we need to remove the margin on top of the footer.
+  .footer {
+    margin-top: 0;
+  }
+
+  // Adds similar spacing at the bottom that was set by the footer margin before.
+  .main-content {
+    padding-bottom: calc(#{$footer-koro-height} + #{$spacing-triple});
+
+    @include breakpoint($breakpoint-l) {
+      padding-bottom: calc(#{$footer-koro-height} + #{$spacing-quadruple});
+    }
+  }
+
+  // For the system pages the gap on top grows too large if this is left in place.
+  .no-sidebar .main-content {
+    margin-top: 0;
+  }
+}
