@@ -1,10 +1,13 @@
 {% set title = content.field_list_of_links_title.0 %}
 {% set design = content.field_list_of_links_design.0|first|clean_class %}
 
-{# By default list-of-links has only image visible, editor can choose to hide image (and show description) or hide both #}
+{# By default list-of-links has only image visible, editor can choose to hide image (and show description) or hide both. #}
 {% set design_class = null %}
 {% if design == 'without-image' or design == 'without-image-desc'%}
   {% set design_class = 'component--list-of-links-without-image' %}
+{% else %}
+  {# Design with images needs to have the alt-texts removed. #}
+  {{ attach_library('hdbt/card-helper') }}
 {% endif %}
 
 {% block paragraph %}
