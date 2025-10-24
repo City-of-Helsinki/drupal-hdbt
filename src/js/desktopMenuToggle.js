@@ -95,6 +95,21 @@ const handleEscKey = (event) => {
   }
 };
 
+// Function to close dropdown when focus moves outside of it.
+const closeOnFocusOut = (item) => {
+  const handler = () => {
+    requestAnimationFrame(() => {
+      const active = document.activeElement;
+
+      if (!item.contains(active)) {
+        closeOpenItems();
+      }
+    });
+  };
+
+  item.addEventListener('focusout', handler);
+};
+
 ((Drupal) => {
   Drupal.behaviors.toggleDesktopNavigation = {
     attach(context) {
@@ -144,6 +159,7 @@ const handleEscKey = (event) => {
           if (clickedElement.classList.contains('menu__toggle-button')) {
             const clickedElementParent = clickedElement.parentElement.closest('.menu__item--children');
             const clickedElementSiblings = getSiblings(clickedElementParent);
+            closeOnFocusOut(clickedElementParent);
 
             clickedElementSiblings.forEach((sibling) => {
               if (sibling.classList.contains(OPEN_CLASS)) {
