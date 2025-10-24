@@ -57,7 +57,7 @@ color-palette:
       }
 
 desktop-menu-toggle:
-  version: 1.0.2
+  version: 1.0.3
   js:
     dist/js/desktopMenuToggle.min.js: {
       minified: true
