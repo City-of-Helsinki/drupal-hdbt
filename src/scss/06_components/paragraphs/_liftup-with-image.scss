@@ -138,7 +138,7 @@ $breakpoint-design-image-on-left-right: 830px;
 
 .liftup-with-image__container {
   grid-area: var(--content-area);
-  position: relative;
+  z-index: 1;
 }
 
 .liftup-with-image__title {
