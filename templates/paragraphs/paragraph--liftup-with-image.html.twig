@@ -33,14 +33,7 @@
   %}
     {% block component_content %}
 
-      {% if content.field_liftup_with_image_image|render %}
-        <div class="liftup-with-image__image">
-          {% include '@hdbt/misc/image-with-caption.twig' with {
-            image: content.field_liftup_with_image_image,
-            image_caption: image_caption
-          } %}
-        </div>
-      {% endif %}
+
       <div class="liftup-with-image__container">
         <div class="liftup-with-image__content">
           <h2 class="liftup-with-image__title">{{ content.field_liftup_with_image_title }}</h2>
@@ -49,6 +42,15 @@
           {% endif %}
         </div>
       </div>
+
+      {% if content.field_liftup_with_image_image|render %}
+        <div class="liftup-with-image__image">
+          {% include '@hdbt/misc/image-with-caption.twig' with {
+            image: content.field_liftup_with_image_image,
+            image_caption: image_caption
+          } %}
+        </div>
+      {% endif %}
 
     {% endblock component_content %}
   {% endembed %}
