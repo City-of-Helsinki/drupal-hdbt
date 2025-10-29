@@ -56,8 +56,18 @@ function getBrowserSize() {
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
 
-      const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
-      g.async=true; g.src=`${u}piwik.js`; s.parentNode.insertBefore(g,s);
+      const d = document;
+      const g = d.createElement('script');
+      const s = d.getElementsByTagName('script')[0];
+      g.async = true;
+      g.src=`${u}piwik.min.js`;
+      s.parentNode.insertBefore(g,s);
+
+      // Load the heatmap plugin separately.
+      const heatmapPlugin= d.createElement('script');
+      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/tracker.min.js`;
+      s.parentNode.insertBefore(heatmapPlugin,s);
+
     })();
   }
 
