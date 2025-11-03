@@ -65,7 +65,7 @@ function getBrowserSize() {
 
       // Load the heatmap plugin separately.
       const heatmapPlugin= d.createElement('script');
-      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/tracker.min.js`;
+      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/configs.php?idsite=${drupalSettings.matomo_site_id}`;
       s.parentNode.insertBefore(heatmapPlugin,s);
 
     })();
