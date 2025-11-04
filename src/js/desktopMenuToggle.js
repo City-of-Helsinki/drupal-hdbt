@@ -110,40 +110,9 @@ const closeOnFocusOut = (item) => {
   item.addEventListener('focusout', handler);
 };
 
-((Drupal) => {
+((Drupal, once) => {
   Drupal.behaviors.toggleDesktopNavigation = {
     attach(context) {
-      // Add the global event listeners only once.
-      if (context !== document || window.desktopMenuInitialized) {
-        return;
-      }
-      const itemsWithVisibleChildren = context.querySelectorAll(
-      '.desktop-menu .menu--level-0 > .menu__item--item-below'
-      );
-
-      itemsWithVisibleChildren.forEach((item) => {
-        const firstLevelItem = item.querySelector(
-          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a'
-        );
-        const firstLevelItemButton = item.querySelector(
-          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button'
-        );
-
-        toggleDesktopMenuLevel(item);
-
-        if (firstLevelItem) {
-          firstLevelItem.addEventListener('mouseover', mouseOver, false);
-        }
-
-        if (firstLevelItemButton) {
-          firstLevelItemButton.addEventListener('mouseover', mouseLeaveButton, false);
-        }
-
-        item.addEventListener('mouseleave', mouseLeave, false);
-      });
-
-      window.desktopMenuInitialized = true;
-
       document.addEventListener('keydown', handleEscKey);
 
       window.addEventListener('click', (event) => {
@@ -189,6 +158,33 @@ const closeOnFocusOut = (item) => {
       document.querySelectorAll('.header-bottom .menu__toggle-button').forEach((button) => {
         button.classList.add('js-show-menu__toggle-button');
       });
+
+      // Use Drupal's once() to ensure this runs only once per element.
+      const itemsWithVisibleChildren = once('toggleDesktopNavigation',
+        '.desktop-menu .menu--level-0 > .menu__item--item-below',
+        context
+      );
+
+      itemsWithVisibleChildren.forEach((item) => {
+        const firstLevelItem = item.querySelector(
+          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a'
+        );
+        const firstLevelItemButton = item.querySelector(
+          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button'
+        );
+
+        toggleDesktopMenuLevel(item);
+
+        if (firstLevelItem) {
+          firstLevelItem.addEventListener('mouseover', mouseOver, false);
+        }
+
+        if (firstLevelItemButton) {
+          firstLevelItemButton.addEventListener('mouseover', mouseLeaveButton, false);
+        }
+
+        item.addEventListener('mouseleave', mouseLeave, false);
+      });
     }
   };
-})(Drupal);
+})(Drupal, once);
