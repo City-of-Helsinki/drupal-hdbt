@@ -57,13 +57,14 @@ color-palette:
       }
 
 desktop-menu-toggle:
-  version: 1.0.3
+  version: 1.0.4
   js:
     dist/js/desktopMenuToggle.min.js: {
       minified: true
     }
   dependencies:
     - core/drupal
+    - core/once
 
 district-and-project-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
