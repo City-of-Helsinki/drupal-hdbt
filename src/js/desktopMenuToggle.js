@@ -114,7 +114,7 @@ const closeOnFocusOut = (item) => {
   Drupal.behaviors.toggleDesktopNavigation = {
     attach(context) {
       // Add the global event listeners only once.
-      if (context !== document && window.desktopMenuInitialized) {
+      if (context !== document || window.desktopMenuInitialized) {
         return;
       }
       const itemsWithVisibleChildren = context.querySelectorAll(
