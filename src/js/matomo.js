@@ -33,18 +33,18 @@ function getBrowserSize() {
     _paq.push(['setCustomDimension', 7, getBrowserSize()]);
     // eslint-disable-next-line func-names
     (function() {
-      const u='//webanalytics.digiaiiris.com/js/';
+      const u='//webanalytics.digiaiiris.com/';
       // Etusivu ID is 141 (1292 in testing).
       const frontPage = ['141', '1292'];
       const siteId = String(drupalSettings.matomo_site_id);
       const isFrontPage = frontPage.includes(siteId);
 
-      _paq.push(['setTrackerUrl', `${u}tracker.php`]);
+      _paq.push(['setTrackerUrl', `${u}js/tracker.php`]);
       _paq.push(['setSiteId', environment === 'prod' ? '141' : '1292']);
 
       // Duplicate tracking of other sites to front page as well.
       if (!isFrontPage) {
-        _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
+        _paq.push(['addTracker', `${u}js/tracker.php`, drupalSettings.matomo_site_id]);
       }
 
       // If the site is Etusivu-instance and there are newsTaxonomyTermIds set, sent them to custom dimension.
@@ -59,13 +59,15 @@ function getBrowserSize() {
       const d = document;
       const g = d.createElement('script');
       const s = d.getElementsByTagName('script')[0];
+      const randomString = Math.random().toString(36).toUpperCase().substring(2, 15);
+      const currentUrl = encodeURIComponent(window.origin);
       g.async = true;
-      g.src=`${u}piwik.min.js`;
+      g.src=`${u}js/piwik.min.js`;
       s.parentNode.insertBefore(g,s);
 
       // Load the heatmap plugin separately.
       const heatmapPlugin= d.createElement('script');
-      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/tracker.min.js`;
+      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/configs.php?idsite=${drupalSettings.matomo_site_id}&trackerid=${randomString}&url=${currentUrl}`;
       s.parentNode.insertBefore(heatmapPlugin,s);
 
     })();
