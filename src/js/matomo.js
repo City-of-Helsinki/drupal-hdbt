@@ -59,13 +59,15 @@ function getBrowserSize() {
       const d = document;
       const g = d.createElement('script');
       const s = d.getElementsByTagName('script')[0];
+      const randomString = Math.random().toString(36).toUpperCase().substring(2, 15);
+      const currentUrl = encodeURIComponent(window.origin);
       g.async = true;
       g.src=`${u}js/piwik.min.js`;
       s.parentNode.insertBefore(g,s);
 
       // Load the heatmap plugin separately.
       const heatmapPlugin= d.createElement('script');
-      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/configs.php?idsite=${drupalSettings.matomo_site_id}`;
+      heatmapPlugin.src = `${u}plugins/HeatmapSessionRecording/configs.php?idsite=${drupalSettings.matomo_site_id}&trackerid=${randomString}&url=${currentUrl}`;
       s.parentNode.insertBefore(heatmapPlugin,s);
 
     })();
