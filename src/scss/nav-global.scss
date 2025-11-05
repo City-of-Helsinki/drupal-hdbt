@@ -2,9 +2,9 @@
 @import 'breakpoint-sass/stylesheets/breakpoint';
 
 // This folder structure is based loosely on ITCSS
-@import '00_functions/_index';
-@import '01_variables/_index';
-@import '02_mixins/_index';
+@import '00-functions/_index';
+@import '01-variables/_index';
+@import '02-mixins/_index';
 
 /* Content is created after this point */
-@import '06_components/navigation/global/_index.scss';
+@import '06-components/navigation/global/_index.scss';

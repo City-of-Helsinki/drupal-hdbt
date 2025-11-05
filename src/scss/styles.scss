@@ -4,16 +4,16 @@
 @import 'breakpoint-sass/stylesheets/breakpoint';
 
 // This folder structure is based loosely on ITCSS
-@import '00_functions/_index';
-@import '01_variables/_index';
-@import '02_mixins/_index';
+@import '00-functions/_index';
+@import '01-variables/_index';
+@import '02-mixins/_index';
 
 // Import hds-core styles.
 @import 'hds';
 
 /* Content is created after this point */
-@import '03_generic/_index';
-@import '04_elements/_index';
-@import '05_objects/_index';
-@import '06_components/_index';
-@import '07_utilities/_index';
+@import '03-generic/_index';
+@import '04-elements/_index';
+@import '05-objects/_index';
+@import '06-components/_index';
+@import '07-utilities/_index';

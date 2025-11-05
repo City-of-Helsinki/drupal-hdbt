@@ -3,7 +3,7 @@ $config: ();
 
 @import 'hds-design-tokens/lib/all';
 @import 'hds-design-tokens/lib/all.css';
-@import 'color_variables';
-@import 'constraint_variables';
-@import 'typography_variables';
-@import 'component_variables'; // This uses the variables from _constraints.scss, so it should be imported after it
+@import 'color-variables';
+@import 'constraint-variables';
+@import 'typography-variables';
+@import 'component-variables'; // This uses the variables from _constraints.scss, so it should be imported after it
