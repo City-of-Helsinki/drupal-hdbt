@@ -10,7 +10,7 @@ import { positionDropdown } from './positionDropdown';
       // Handle click event and position the toast correctly before opening it.
       const buttons = context.querySelectorAll('.nav-toggle__button.has-toast');
 
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         // Prevent attaching multiple listeners (important for AJAX/BigPipe re-runs)
         if (button.dataset.toastInitialized) return;
 
@@ -31,7 +31,7 @@ import { positionDropdown } from './positionDropdown';
       // Ensure only one resize listener is added globally.
       if (!window.__toastResizeBound) {
         window.addEventListener('resize', () => {
-          document.querySelectorAll('.nav-toggle__button.has-toast').forEach(button => {
+          document.querySelectorAll('.nav-toggle__button.has-toast').forEach((button) => {
             const buttonParent = button.parentElement;
             const toast = buttonParent?.nextElementSibling;
 
@@ -45,6 +45,6 @@ import { positionDropdown } from './positionDropdown';
       }
 
       window.languageToastInitialized = true;
-    }
+    },
   };
 })(Drupal);

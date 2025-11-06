@@ -21,10 +21,10 @@ type contentTypeQuery = {
     filter: {
       term: {
         _index: string;
-      }
-    }
-  }
-}
+      };
+    };
+  };
+};
 
 type BooleanQuery = {
   function_score: {
@@ -46,15 +46,15 @@ type BooleanQuery = {
         filter: {
           term: {
             content_type: string;
-          }
+          };
         };
         weight: number;
-      }
+      },
     ];
     score_mode: string;
     boost_mode: string;
     min_score: number;
-  }
+  };
 };
 
 export default BooleanQuery;

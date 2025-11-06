@@ -16,7 +16,7 @@ export const IndexFields = {
   DISTRICTS_FOR_FILTERS_DISTRICT_TITLE_FOR_UI: 'district_title_for_ui',
   PROJECT_THEME_NAME: 'project_theme_name',
   PROJECT_PHASE_NAME: 'project_phase_name',
-  PROJECT_TYPE_NAME: 'project_type_name'
+  PROJECT_TYPE_NAME: 'project_type_name',
 };
 
 export default IndexFields;

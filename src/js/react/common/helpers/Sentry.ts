@@ -13,10 +13,9 @@ const initSentry = () => {
     ignoreErrors: [
       'ResizeObserver loop limit exceeded',
       'ResizeObserver loop completed with undelivered notifications.',
-      'Non-Error promise rejection captured'
-    ]
-});
+      'Non-Error promise rejection captured',
+    ],
+  });
 };
 
 export default initSentry;
-

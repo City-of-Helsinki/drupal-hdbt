@@ -3,25 +3,28 @@ import { useAtomValue } from 'jotai';
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import { nodeFilter } from '../query/queries';
-import URLParams from '../types/URLParams';
-import { configurationsAtom } from '../store';
 import { getAreaInfo } from '../helpers/Areas';
+import { nodeFilter } from '../query/queries';
+import { configurationsAtom } from '../store';
+import type URLParams from '../types/URLParams';
 
 const useQueryString = (urlParams: URLParams): string => {
   const { size: globalSize, sortOptions } = Global;
   const { promoted } = useAtomValue(configurationsAtom);
   const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
-  const must: any[] = [{
-    // Legacy sanity check, make sure forced translations aren't included
-    bool: {
-      must_not: {
-        term: {
-          [IndexFields.PROMOTED]: true
-        }
-      }
-    }
-  }];
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  const must: any[] = [
+    {
+      // Legacy sanity check, make sure forced translations aren't included
+      bool: {
+        must_not: {
+          term: {
+            [IndexFields.PROMOTED]: true,
+          },
+        },
+      },
+    },
+  ];
   const should = [];
 
   if (urlParams.keyword && urlParams.keyword.length > 0) {
@@ -125,12 +128,11 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   const query: any = {
     bool: {
-      filter: [
-        nodeFilter,
-      ],
-    }
+      filter: [nodeFilter],
+    },
   };
 
   if (urlParams.language) {
@@ -143,14 +145,14 @@ const useQueryString = (urlParams: URLParams): string => {
 
   if (urlParams?.area_filter?.length) {
     const postalCodes: string[] = [];
-    urlParams.area_filter.forEach(areaCode => {
-      postalCodes.push(...getAreaInfo.find(area => area.key === areaCode)?.postalCodes || []);
+    urlParams.area_filter.forEach((areaCode) => {
+      postalCodes.push(...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes || []));
     });
 
     query.bool.filter.push({
       terms: {
-        [IndexFields.POSTAL_CODE]: postalCodes
-      }
+        [IndexFields.POSTAL_CODE]: postalCodes,
+      },
     });
   }
 
@@ -193,7 +195,7 @@ const useQueryString = (urlParams: URLParams): string => {
       return [globalSize, globalSize * (page - 1)];
     }
 
-    const promotedOnPage = (globalSize * (page - 1)) < promoted.length;
+    const promotedOnPage = globalSize * (page - 1) < promoted.length;
     const pastResults = globalSize * (page - 1);
     const promotedToShow = promotedOnPage && promoted.length - pastResults;
     const leftovers = promoted.length % globalSize;
@@ -226,9 +228,9 @@ const useQueryString = (urlParams: URLParams): string => {
       // Use cardinality agg to calculate total (collapsing affects the total)
       total_count: {
         cardinality: {
-          field: `${IndexFields.RECRUITMENT_ID}.keyword`
-        }
-      }
+          field: `${IndexFields.RECRUITMENT_ID}.keyword`,
+        },
+      },
     },
     // Use collapse to group translations
     collapse: {
@@ -236,7 +238,7 @@ const useQueryString = (urlParams: URLParams): string => {
       inner_hits: {
         name: 'translations',
         size: 3,
-      }
+      },
     },
     from,
     query,

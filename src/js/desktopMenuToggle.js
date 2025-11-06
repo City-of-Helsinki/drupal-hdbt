@@ -118,7 +118,7 @@ const closeOnFocusOut = (item) => {
       window.addEventListener('click', (event) => {
         const mainNav = document.querySelector('[data-hdbt-selector="main-navigation"]');
 
-        if (mainNav && mainNav.contains(event.target)) {
+        if (mainNav?.contains(event.target)) {
           let clickedElement = event.target;
 
           if (clickedElement.classList.contains('menu__toggle-button-icon')) {
@@ -160,17 +160,16 @@ const closeOnFocusOut = (item) => {
       });
 
       // Use Drupal's once() to ensure this runs only once per element.
-      const itemsWithVisibleChildren = once('toggleDesktopNavigation',
+      const itemsWithVisibleChildren = once(
+        'toggleDesktopNavigation',
         '.desktop-menu .menu--level-0 > .menu__item--item-below',
-        context
+        context,
       );
 
       itemsWithVisibleChildren.forEach((item) => {
-        const firstLevelItem = item.querySelector(
-          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a'
-        );
+        const firstLevelItem = item.querySelector('.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a');
         const firstLevelItemButton = item.querySelector(
-          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button'
+          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button',
         );
 
         toggleDesktopMenuLevel(item);
@@ -185,6 +184,6 @@ const closeOnFocusOut = (item) => {
 
         item.addEventListener('mouseleave', mouseLeave, false);
       });
-    }
+    },
   };
 })(Drupal, once);

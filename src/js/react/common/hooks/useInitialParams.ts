@@ -9,6 +9,7 @@ const coerce = (value: string, type: string) => {
   }
 };
 
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
 const useInitialParams = <T extends Record<string, any>>(params: T) => {
   const initialParams = new URLSearchParams(window.location.search);
   const entries = initialParams.entries();
@@ -20,7 +21,7 @@ const useInitialParams = <T extends Record<string, any>>(params: T) => {
 
     if (value && key in params) {
       hits += 1;
-      // @ts-ignore
+      // @ts-expect-error
       params[key as keyof T] = coerce(value, typeof params[key as keyof T]);
     }
 

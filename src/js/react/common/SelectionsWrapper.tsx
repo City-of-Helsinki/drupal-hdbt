@@ -1,6 +1,6 @@
-import { ReactNode, MouseEventHandler, Children } from 'react';
+import { Button, ButtonVariant, IconCross } from 'hds-react';
 import type { DateTime } from 'luxon';
-import {Button, ButtonVariant, IconCross} from 'hds-react';
+import { Children, type MouseEventHandler, type ReactNode } from 'react';
 
 type SelectionsWrapperProps = {
   showClearButton: string | number | boolean | true | DateTime | undefined;
@@ -8,8 +8,7 @@ type SelectionsWrapperProps = {
   children: ReactNode;
 };
 
-const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsWrapperProps) =>
-{
+const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsWrapperProps) => {
   // hasContent checks for string and react children if there would be any content to render and does not render the ul container if there is none
   const hasContent =
     typeof children === 'string'

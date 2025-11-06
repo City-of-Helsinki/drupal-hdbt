@@ -1,12 +1,11 @@
 import { Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect , useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import Global from '../../enum/Global';
 import { urlAtom, urlUpdateAtom } from '../../store';
 import type OptionType from '../../types/OptionType';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
@@ -25,6 +24,7 @@ const ResultsSort = () => {
   const setUrlParams = useSetAtom(urlUpdateAtom);
   const [sort, setSort] = useState<OptionType>(options[0]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
   useEffect(() => {
     if (urlParams.sort) {
       const matchedSort = options.find((option: OptionType) => option.value === urlParams.sort);

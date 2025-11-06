@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { configurationsAtom } from '../store';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/FeatureQuery';
-import SearchParams from '../types/SearchParams';
+import type SearchParams from '../types/SearchParams';
 
 const UseFeatureQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
@@ -14,7 +14,7 @@ const UseFeatureQuery = (params: SearchParams) => {
   const fetcher = () => {
     const { index } = AppSettings;
 
-      return fetch(`${baseUrl}/${index}/_search`, {
+    return fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -24,14 +24,14 @@ const UseFeatureQuery = (params: SearchParams) => {
   };
 
   const { data, error, isLoading, isValidating } = useSWR(`_${query || ''}}`, fetcher, {
-    revalidateOnFocus: false
+    revalidateOnFocus: false,
   });
 
   return {
     data,
     error,
     isLoading,
-    isValidating
+    isValidating,
   };
 };
 

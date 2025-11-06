@@ -15,9 +15,7 @@ const start = () => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <Suspense fallback={
-        <GhostList count={30} />
-      }>
+      <Suspense fallback={<GhostList count={30} />}>
         <SearchContainer />
       </Suspense>
     </React.StrictMode>,

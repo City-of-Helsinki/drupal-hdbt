@@ -1,8 +1,12 @@
 import { Button, Checkbox, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import React, { useEffect } from 'react';
-
+import type React from 'react';
+import { useEffect } from 'react';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { defaultMultiSelectTheme, defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import bucketToMap from '@/react/common/helpers/Aggregations';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import CustomIds from '../enum/CustomTermIds';
 import SearchComponents from '../enum/SearchComponents';
 import { getInitialLanguage } from '../helpers/Language';
@@ -18,20 +22,16 @@ import {
   keywordAtom,
   languageSelectionAtom,
   languagesAtom,
-  summerJobsAtom,
   monitorSubmittedAtom,
+  summerJobsAtom,
   taskAreasAtom,
   taskAreasSelectionAtom,
+  urlAtom,
   urlUpdateAtom,
   youthSummerJobsAtom,
-  urlAtom
 } from '../store';
 import type OptionType from '../types/OptionType';
 import SelectionsContainer from './SelectionsContainer';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { defaultMultiSelectTheme, defaultSelectTheme } from '@/react/common/constants/selectTheme';
-import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
-import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 
 const FormContainer = () => {
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
@@ -55,6 +55,7 @@ const FormContainer = () => {
   const setSubmitted = useSetAtom(monitorSubmittedAtom);
 
   // Set form control values from url parameters on load
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
   useEffect(() => {
     setKeyword(urlParams?.keyword?.toString() || '');
     setAreaFilter(transformDropdownsValues(urlParams?.area_filter, areaFilterOptions));
@@ -76,6 +77,7 @@ const FormContainer = () => {
 
     const selections = {
       area_filter: areaFilterSelection.map((selection: OptionType) => selection.value),
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       employment: employmentSelection.reduce((acc: any, curr: any) => acc.concat(curr.value), []),
       keyword,
       language: languageSelection?.[0]?.value || undefined,
@@ -88,14 +90,14 @@ const FormContainer = () => {
 
     if (formAction.length) {
       const newUrl = new URL(formAction, window.location.origin);
-      const newParams = paramsFromSelections(selections);
-      newUrl.search = newParams;
+      newUrl.search = paramsFromSelections(selections);
       window.location.href = newUrl.toString();
       return;
     }
 
     setUrlParams({
       area_filter: areaFilterSelection.map((selection: OptionType) => selection.value),
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       employment: employmentSelection.reduce((acc: any, curr: any) => acc.concat(curr.value), []),
       keyword,
       language: languageSelection?.[0]?.value || undefined,
@@ -108,7 +110,8 @@ const FormContainer = () => {
     setSubmitted(false);
   };
 
-  const handleKeywordChange = ({ target: { value } }: { target: { value: string } }) => setKeyword(value.replace(/\s+/g, ' '));
+  const handleKeywordChange = ({ target: { value } }: { target: { value: string } }) =>
+    setKeyword(value.replace(/\s+/g, ' '));
 
   const isFullSearch = !drupalSettings?.helfi_rekry_job_search?.results_page_path;
 
@@ -126,6 +129,7 @@ const FormContainer = () => {
   const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
     <form className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
       <TextInput
         className='job-search-form__filter'
@@ -133,10 +137,14 @@ const FormContainer = () => {
         label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
         name={SearchComponents.KEYWORD}
         onChange={handleKeywordChange}
-        placeholder={Drupal.t('Eg. title, location, department', {}, { context: 'HELfi Rekry job search keyword placeholder' })}
+        placeholder={Drupal.t(
+          'Eg. title, location, department',
+          {},
+          { context: 'HELfi Rekry job search keyword placeholder' },
+        )}
         type='search'
         value={keyword}
-        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         style={defaultTextInputStyle}
       />
       <div className='job-search-form__dropdowns'>
@@ -153,8 +161,16 @@ const FormContainer = () => {
               }}
               options={taskAreasOptions}
               texts={{
-                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
-                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': taskAreasLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_one: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': taskAreasLabel },
+                  { context: 'React search clear selection label' },
+                ),
+                clearButtonAriaLabel_multiple: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': taskAreasLabel },
+                  { context: 'React search clear selection label' },
+                ),
                 label: taskAreasLabel,
                 language: currentLanguage,
                 placeholder: Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' }),
@@ -173,8 +189,16 @@ const FormContainer = () => {
               onChange={(selectedOptions) => setEmploymentFilter(selectedOptions)}
               options={employmentOptions}
               texts={{
-                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
-                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': employmentRelationshipLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_one: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': employmentRelationshipLabel },
+                  { context: 'React search clear selection label' },
+                ),
+                clearButtonAriaLabel_multiple: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': employmentRelationshipLabel },
+                  { context: 'React search clear selection label' },
+                ),
                 label: employmentRelationshipLabel,
                 language: currentLanguage,
                 placeholder: Drupal.t('All types of employment', {}, { context: 'Employment filter placeholder' }),
@@ -199,8 +223,16 @@ const FormContainer = () => {
                 }}
                 options={languagesOptions}
                 texts={{
-                  clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
-                  clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': languageLabel}, { context: 'React search clear selection label' }),
+                  clearButtonAriaLabel_one: Drupal.t(
+                    'Clear @label selection',
+                    { '@label': languageLabel },
+                    { context: 'React search clear selection label' },
+                  ),
+                  clearButtonAriaLabel_multiple: Drupal.t(
+                    'Clear @label selection',
+                    { '@label': languageLabel },
+                    { context: 'React search clear selection label' },
+                  ),
                   label: languageLabel,
                   language: currentLanguage,
                   placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
@@ -222,8 +254,16 @@ const FormContainer = () => {
                 options={areaFilterOptions}
                 value={areaFilterSelection}
                 texts={{
-                  clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' }),
-                  clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': areaFilterLabel}, { context: 'React search clear selection label' }),
+                  clearButtonAriaLabel_one: Drupal.t(
+                    'Clear @label selection',
+                    { '@label': areaFilterLabel },
+                    { context: 'React search clear selection label' },
+                  ),
+                  clearButtonAriaLabel_multiple: Drupal.t(
+                    'Clear @label selection',
+                    { '@label': areaFilterLabel },
+                    { context: 'React search clear selection label' },
+                  ),
                   label: areaFilterLabel,
                   language: currentLanguage,
                   placeholder: Drupal.t('All areas', {}, { context: 'Location placeholder' }),
@@ -289,10 +329,7 @@ const FormContainer = () => {
           )}
         </fieldset>
       )}
-      <Button
-        className='hdbt-search--react__submit-button job-search-form__submit-button'
-        type='submit'
-      >
+      <Button className='hdbt-search--react__submit-button job-search-form__submit-button' type='submit'>
         {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>
       <SelectionsContainer />

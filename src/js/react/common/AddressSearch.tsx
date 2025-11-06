@@ -2,16 +2,22 @@ import { SearchInput } from 'hds-react';
 import { useMemo } from 'react';
 
 import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
-import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
-import getNameTranslation from './helpers/ServiceMap';
+import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
+import getNameTranslation from './helpers/ServiceMap';
 
-type SubmitHandler<T> = T extends true ? (address: {label: string, value: [number, number, string]}) => void : (address: string) => void;
+type SubmitHandler<T> = T extends true
+  ? (address: { label: string; value: [number, number, string] }) => void
+  : (address: string) => void;
 
 export const AddressSearch = ({
   className,
   includeCoordinates = false,
-  loadingSpinnerFinishedText = Drupal.t('Finished loading suggestions', {}, { context: 'Loading finished indicator for suggestive search' }),
+  loadingSpinnerFinishedText = Drupal.t(
+    'Finished loading suggestions',
+    {},
+    { context: 'Loading finished indicator for suggestive search' },
+  ),
   loadingSpinnerText = Drupal.t('Loading suggestions...', {}, { context: 'Loading indicator for suggestive search' }),
   onSubmit,
   searchInputClassname,
@@ -22,10 +28,10 @@ export const AddressSearch = ({
   includeCoordinates?: boolean;
   onSubmit: SubmitHandler<typeof includeCoordinates>;
   searchInputClassname?: string;
-} & Omit<React.ComponentProps<typeof SearchInput>, 'suggestionLabelField' | 'getSuggestions'|'onSubmit'>) => {
+} & Omit<React.ComponentProps<typeof SearchInput>, 'suggestionLabelField' | 'getSuggestions' | 'onSubmit'>) => {
   const addressMap = new Map();
 
-  const getSuggestions = async(searchTerm?: string) => {
+  const getSuggestions = async (searchTerm?: string) => {
     if (!searchTerm || searchTerm === '') {
       return [];
     }
@@ -34,52 +40,52 @@ export const AddressSearch = ({
       const url = new URL(ServiceMap.EVENTS_URL);
       url.search = param.toString();
 
-      return fetch(url.toString()).then(response => response.json());
+      return fetch(url.toString()).then((response) => response.json());
     };
 
-    const params = ['fi', 'sv'].map(lang => new URLSearchParams({
-      format: 'json',
-      language: lang,
-      municipality: 'helsinki',
-      q: searchTerm,
-      type: 'address',
-    }));
+    const params = ['fi', 'sv'].map(
+      (lang) =>
+        new URLSearchParams({
+          format: 'json',
+          language: lang,
+          municipality: 'helsinki',
+          q: searchTerm,
+          type: 'address',
+        }),
+    );
 
     const [fiParams, svParams] = params;
-    const results = Promise.all([
-      fetchSuggestions(fiParams),
-      fetchSuggestions(svParams)
-    ]);
+    const results = Promise.all([fetchSuggestions(fiParams), fetchSuggestions(svParams)]);
 
-    const parseResults = (result: ServiceMapResponse<ServiceMapAddress>, langKey: string) => result.results.map(addressResult => {
-      const resolvedName: string = getNameTranslation(addressResult.name, langKey) || '';
-      if (includeCoordinates) {
-        addressMap.set(resolvedName, addressResult.location?.coordinates);
-      }
+    const parseResults = (result: ServiceMapResponse<ServiceMapAddress>, langKey: string) =>
+      result.results.map((addressResult) => {
+        const resolvedName: string = getNameTranslation(addressResult.name, langKey) || '';
+        if (includeCoordinates) {
+          addressMap.set(resolvedName, addressResult.location?.coordinates);
+        }
 
-      return {label: resolvedName};
-    });
-
+        return { label: resolvedName };
+      });
 
     const [fiResults, svResults] = await results;
 
-    const result = [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
-
-    return result;
+    return [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
   };
 
   const handleSubmit = (address: string) => {
     if (includeCoordinates) {
       onSubmit({
         label: address,
-        value: addressMap.has(address) ? [...addressMap.get(address), address] : null
+        value: addressMap.has(address) ? [...addressMap.get(address), address] : null,
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       } as any);
-    }
-    else {
+    } else {
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       onSubmit(address as any);
     }
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
   const searchInput = useMemo(
     () => (
       <SearchInput
@@ -96,12 +102,9 @@ export const AddressSearch = ({
         style={defaultSearchInputStyle}
       />
     ),
-    [value, getSuggestions]
+    // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+    [value, getSuggestions],
   );
 
-  return (
-    <div className={className || 'hdbt-search__filter'}>
-      {searchInput}
-    </div>
-  );
+  return <div className={className || 'hdbt-search__filter'}>{searchInput}</div>;
 };

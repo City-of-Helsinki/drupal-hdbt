@@ -2,7 +2,6 @@ import ClientHelpers from '../clientHelpers';
 import LocalStorageManager from '../localStorageManager';
 
 export default class AccordionState {
-
   constructor() {
     this.storageManager = new LocalStorageManager('helfi-settings');
     this.site = window.drupalSettings.helfi_instance_name || '';
@@ -29,11 +28,10 @@ export default class AccordionState {
     this.storageManager.setValue(this.getAccordionStorageKey(), JSON.stringify(this.siteAccordionStates));
   };
 
-  loadAccordionItemState = accordionItemId => {
+  loadAccordionItemState = (accordionItemId) => {
     // Use the cached cookie check result
     if (this.AccordionsOpen) return true;
     if (!this.site) return false;
     return !!this.pageAccordionStates[accordionItemId];
   };
-
 }

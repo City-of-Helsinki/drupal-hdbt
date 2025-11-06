@@ -1,7 +1,6 @@
 import LocalStorageManager from './localStorageManager';
 
-// eslint-disable-next-line func-names
-(function (Drupal) {
+((Drupal) => {
   Drupal.behaviors.closableAnnouncements = {
     attach: function attach() {
       const ANNOUCEMENT = 'js-announcement';
@@ -32,7 +31,9 @@ import LocalStorageManager from './localStorageManager';
           // the closed announcement.
           for (let i = 0, max = allAnnouncements.length; i < max; i++) {
             if (allAnnouncements[i].dataset.uuid === announcement.dataset.uuid && i > 0) {
-              const focusableAnnouncement = allAnnouncements[i - 1].querySelectorAll('.announcement__close, .announcement__link a');
+              const focusableAnnouncement = allAnnouncements[i - 1].querySelectorAll(
+                '.announcement__close, .announcement__link a',
+              );
               focusableAnnouncement[focusableAnnouncement.length - 1].focus();
               focused = true;
               break;
@@ -51,7 +52,9 @@ import LocalStorageManager from './localStorageManager';
               focusableElements[focusableElements.length - 1].focus();
             } else {
               // Move the focus on desktop:
-              const focusableElements = document.querySelectorAll('.nav-toggle__button, .header-bottom .menu--level-0 > .menu__item:last-child > .menu__link-wrapper :where(a, button), .breadcrumb a:last-of-type');
+              const focusableElements = document.querySelectorAll(
+                '.nav-toggle__button, .header-bottom .menu--level-0 > .menu__item:last-child > .menu__link-wrapper :where(a, button), .breadcrumb a:last-of-type',
+              );
               focusableElements[focusableElements.length - 1].focus();
             }
           }

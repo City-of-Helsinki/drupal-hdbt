@@ -1,6 +1,6 @@
 type FormErrors = {
-  invalidEndDate: boolean,
-  invalidStartDate: boolean,
+  invalidEndDate: boolean;
+  invalidStartDate: boolean;
 };
 
 export default FormErrors;

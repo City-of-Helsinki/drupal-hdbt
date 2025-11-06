@@ -1,13 +1,12 @@
-import useSWR from 'swr';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-
 import { useEffect, useState } from 'react';
-import ResultsContainer from './ResultsContainer';
-import FormContainer from './FormContainer';
-import type Event from '../types/Event';
-import { useFixturesAtom, settingsAtom, loadableUrlAtom, updateUrlAtom } from '../store';
+import useSWR from 'swr';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import ApiKeys from '../enum/ApiKeys';
+import { loadableUrlAtom, settingsAtom, updateUrlAtom, useFixturesAtom } from '../store';
+import type Event from '../types/Event';
+import FormContainer from './FormContainer';
+import ResultsContainer from './ResultsContainer';
 
 type ResponseType = {
   data: Event[];
@@ -15,7 +14,7 @@ type ResponseType = {
     count: number;
     next?: string;
     previous?: string;
-  }
+  };
 };
 
 const SWR_REFRESH_OPTIONS = {
@@ -35,6 +34,7 @@ const SearchContainer = () => {
 
   const updateUrl = useSetAtom(updateUrlAtom);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('address')) {
@@ -47,12 +47,18 @@ const SearchContainer = () => {
     return (
       <>
         <FormContainer />
-        <ResultsContainer countNumber={fixtureData?.meta.count || 0} loading={false} events={fixtureData?.data || []} />
+        <ResultsContainer
+          countNumber={fixtureData?.meta.count || 0}
+          loading={false}
+          events={fixtureData?.data || []}
+          validating={false}
+        />
       </>
     );
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
     const response = await useTimeoutFetch(reqUrl, undefined, 10000);
 
     if (response.status === 200) {
@@ -66,21 +72,23 @@ const SearchContainer = () => {
     throw new Error('Failed to get data from the API');
   };
 
-  
-  const shouldFetch = urlData.state === 'hasData' && (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
-  const { data, error, isLoading, isValidating  } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
+  const shouldFetch =
+    urlData.state === 'hasData' && (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
+
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  const { data, error, isLoading, isValidating } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
     ...SWR_REFRESH_OPTIONS,
-    onErrorRetry(err, key, config, revalidate, revalidateOpts) {
+    onErrorRetry(_err, _key, _config, revalidate, revalidateOpts) {
       if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
         setRetriesExhausted(true);
         return;
       }
-      
+
       revalidate({
-        ...revalidateOpts
+        ...revalidateOpts,
       });
     },
-    keepPreviousData: true
+    keepPreviousData: true,
   });
 
   return (
@@ -91,7 +99,7 @@ const SearchContainer = () => {
         countNumber={data?.meta.count || 0}
         error={error}
         events={data?.data || []}
-        loading={urlData.loading || isLoading}
+        loading={urlData.state === 'loading' || isLoading}
         validating={isValidating}
         retriesExhausted={retriesExhausted}
       />

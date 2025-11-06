@@ -1,10 +1,11 @@
+import { Tag } from 'hds-react';
 import React from 'react';
-import {Tag} from 'hds-react';
 import type TagType from '@/types/TagType';
 
 interface TagsProps {
   tags: Array<TagType>;
   isInteractive?: boolean;
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   langAttribute?: any;
   insideCard?: boolean;
 }
@@ -19,23 +20,26 @@ export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsPro
     Element,
     {
       className: 'content-tags content-tags--card',
-      'aria-label': Drupal.t('Tags', {}, { context: 'Label for screen reader software users explaining that this is a list of tags related to this page.' }),
+      'aria-label': Drupal.t(
+        'Tags',
+        {},
+        {
+          context:
+            'Label for screen reader software users explaining that this is a list of tags related to this page.',
+        },
+      ),
       role: insideCard ? 'group' : undefined, // When inside a card, use role="group" to group the tags together.
     },
     <ul className={`content-tags__tags ${typeClass}`}>
       {tags.map((item: TagType, key: number) => (
-        <li key={`{item.tag}-${key}`} className="content-tags__tags__tag" {...langAttribute}>
+        // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+        <li key={`{item.tag}-${key}`} className='content-tags__tags__tag' {...langAttribute}>
           {/* @todo UHF-11117 Check if this works after react is updated */}
-          {/* @ts-ignore */} 
-          <Tag
-            className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}
-          >
-            {item.tag}
-          </Tag>
+          {/* @ts-ignore */}
+          <Tag className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}>{item.tag}</Tag>
         </li>
-      ),
-      )}
-    </ul>
+      ))}
+    </ul>,
   );
 }
 

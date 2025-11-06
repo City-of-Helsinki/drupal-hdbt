@@ -7,14 +7,14 @@ interface Result<Type> {
     [key: string]: {
       hits: {
         total: {
-          value: number,
-          relation: string
-        },
-        max_score: number,
-        hits: Result<Type>[]
-      }
-    }
-  }
+          value: number;
+          relation: string;
+        };
+        max_score: number;
+        hits: Result<Type>[];
+      };
+    };
+  };
 }
 
 export default Result;

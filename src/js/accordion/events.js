@@ -1,7 +1,6 @@
 import AccordionItem from './accordionItem';
 
 export default class Events {
-
   constructor() {
     Events.handleTableOfContentsHash();
   }
@@ -9,7 +8,7 @@ export default class Events {
   static handleTableOfContentsHash = () => {
     window.addEventListener('hashchange', () => {
       const { hash } = window.location;
-      if(!hash || hash.length < 2) {
+      if (!hash || hash.length < 2) {
         return;
       }
 
@@ -43,5 +42,4 @@ export default class Events {
       }
     });
   };
-
 }

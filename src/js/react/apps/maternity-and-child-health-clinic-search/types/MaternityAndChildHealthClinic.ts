@@ -1,16 +1,16 @@
-import { ImageOverride } from '@/types/ImageOverride';
+import type { ImageOverride } from '@/types/ImageOverride';
 
 export type MaternityAndChildHealthClinic = {
-  search_api_language: string,
-  address: string[],
-  id: string[],
-  latitude: string[],
-  longitude: string[],
-  name: string[],
-  name_override?: string[],
-  picture_url?: string[],
-  provided_languages: string,
-  media_as_objects?: ImageOverride[],
-  summary_processed?: string[],
-  url: string[]
+  search_api_language: string;
+  address: string[];
+  id: string[];
+  latitude: string[];
+  longitude: string[];
+  name: string[];
+  name_override?: string[];
+  picture_url?: string[];
+  provided_languages: string;
+  media_as_objects?: ImageOverride[];
+  summary_processed?: string[];
+  url: string[];
 };

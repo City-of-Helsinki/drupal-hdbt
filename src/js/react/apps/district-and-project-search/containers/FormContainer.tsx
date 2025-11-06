@@ -1,37 +1,28 @@
-import { useEffect } from 'react';
+import { Accordion, AccordionSize, Button, defaultFilter, IconLocation, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import {
-  Accordion,
-  AccordionSize,
-  Button,
-  defaultFilter,
-  IconLocation,
-  Select,
-  TextInput
-} from 'hds-react';
-
-import {
-  districtsAtom,
-  districtSelectionAtom,
-  phasesAtom,
-  phaseSelectionAtom,
-  themesAtom,
-  themeSelectionAtom,
-  titleAtom,
-  typesAtom,
-  typeSelectionAtom,
-  urlAtom,
-  urlUpdateAtom
-} from '../store';
-import SelectionsContainer from './SelectionsContainer';
-import SearchComponents from '../enum/SearchComponents';
-import transformDropdownsValues from '../helpers/Params';
-import { ComponentMap } from '../helpers/helpers';
-import type OptionType from '../types/OptionType';
-import URLParams from '../types/URLParams';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import SearchComponents from '../enum/SearchComponents';
+import { ComponentMap } from '../helpers/helpers';
+import transformDropdownsValues from '../helpers/Params';
+import {
+  districtSelectionAtom,
+  districtsAtom,
+  phaseSelectionAtom,
+  phasesAtom,
+  themeSelectionAtom,
+  themesAtom,
+  titleAtom,
+  typeSelectionAtom,
+  typesAtom,
+  urlAtom,
+  urlUpdateAtom,
+} from '../store';
+import type OptionType from '../types/OptionType';
+import type URLParams from '../types/URLParams';
+import SelectionsContainer from './SelectionsContainer';
 
 const FormContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -47,6 +38,8 @@ const FormContainer = () => {
   const [typeSelection, setTypeFilter] = useAtom(typeSelectionAtom);
 
   // Set form control values from url parameters on load
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
   useEffect(() => {
     setTitle(urlParams?.title?.toString() || '');
     setDistrictFilter(transformDropdownsValues(urlParams?.districts, districtOptions));
@@ -68,25 +61,44 @@ const FormContainer = () => {
   };
 
   const handleTitleChange = ({ target: { value } }: { target: { value: string } }) => setTitle(value);
-  const accordionInitiallyOpen = !!Object.keys(urlParams).find(param => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length);
-  const residentialAreaLabel: string = Drupal.t('Residential area', {}, { context: 'District and project search form label' });
-  const projectThemeLabel: string = Drupal.t('Project theme', {}, { context: 'District and project search form label' });
-  const projectStageLabel: string = Drupal.t('Project stage', {}, { context: 'District and project search form label' });
+  const accordionInitiallyOpen = !!Object.keys(urlParams).find(
+    (param) => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length,
+  );
+  const residentialAreaLabel: string = Drupal.t(
+    'Residential area',
+    {},
+    { context: 'District and project search form label' },
+  );
+  const projectThemeLabel: string = Drupal.t(
+    'Project theme',
+    {},
+    { context: 'District and project search form label' },
+  );
+  const projectStageLabel: string = Drupal.t(
+    'Project stage',
+    {},
+    { context: 'District and project search form label' },
+  );
   const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
   const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
     <form onSubmit={handleSubmit} role='search'>
-      <div className="district-project-search-form__filters-container">
-        <div className="district-project-search-form__filters">
+      <div className='district-project-search-form__filters-container'>
+        <div className='district-project-search-form__filters'>
           <TextInput
-            id="district-or-project-name"
-            label={Drupal.t('Name of residential area or project', {}, { context: 'District and project search form label' })}
+            id='district-or-project-name'
+            label={Drupal.t(
+              'Name of residential area or project',
+              {},
+              { context: 'District and project search form label' },
+            )}
             onChange={handleTitleChange}
             placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             type='search'
             value={title}
-            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search'})}
+            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
             style={defaultTextInputStyle}
           />
           <Select
@@ -101,8 +113,16 @@ const FormContainer = () => {
             }}
             options={districtOptions}
             texts={{
-              clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
-              clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': residentialAreaLabel}, { context: 'React search clear selection label' }),
+              clearButtonAriaLabel_one: Drupal.t(
+                'Clear @label selection',
+                { '@label': residentialAreaLabel },
+                { context: 'React search clear selection label' },
+              ),
+              clearButtonAriaLabel_multiple: Drupal.t(
+                'Clear @label selection',
+                { '@label': residentialAreaLabel },
+                { context: 'React search clear selection label' },
+              ),
               label: residentialAreaLabel,
               language: currentLanguage,
               placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
@@ -134,8 +154,16 @@ const FormContainer = () => {
               }}
               options={themeOptions}
               texts={{
-                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
-                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectThemeLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_one: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': projectThemeLabel },
+                  { context: 'React search clear selection label' },
+                ),
+                clearButtonAriaLabel_multiple: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': projectThemeLabel },
+                  { context: 'React search clear selection label' },
+                ),
                 label: projectThemeLabel,
                 language: currentLanguage,
                 placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
@@ -153,8 +181,16 @@ const FormContainer = () => {
               }}
               options={phaseOptions}
               texts={{
-                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
-                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectStageLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_one: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': projectStageLabel },
+                  { context: 'React search clear selection label' },
+                ),
+                clearButtonAriaLabel_multiple: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': projectStageLabel },
+                  { context: 'React search clear selection label' },
+                ),
                 label: projectStageLabel,
                 language: currentLanguage,
                 placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
@@ -172,8 +208,16 @@ const FormContainer = () => {
               }}
               options={typeOptions}
               texts={{
-                clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
-                clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': projectTypeLabel}, { context: 'React search clear selection label' }),
+                clearButtonAriaLabel_one: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': projectTypeLabel },
+                  { context: 'React search clear selection label' },
+                ),
+                clearButtonAriaLabel_multiple: Drupal.t(
+                  'Clear @label selection',
+                  { '@label': projectTypeLabel },
+                  { context: 'React search clear selection label' },
+                ),
                 label: projectTypeLabel,
                 language: currentLanguage,
                 placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),

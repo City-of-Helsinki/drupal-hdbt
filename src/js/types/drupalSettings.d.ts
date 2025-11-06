@@ -23,12 +23,12 @@ declare namespace drupalSettings {
         }[];
         hidePagination: boolean;
         places: {
-          [key:string]: {
+          [key: string]: {
             id: string;
             name: {
-              [key: string]: string
+              [key: string]: string;
             };
-          }
+          };
         };
         hideHeading: boolean;
         removeBloatingEvents: boolean;
@@ -37,8 +37,8 @@ declare namespace drupalSettings {
         useFullTopicsFilter: boolean;
         useLocationSearch: boolean;
         useTargetGroupFilter: boolean;
-      }
-    },
+      };
+    };
     seeAllButtonOverride: string;
     seeAllNearYouLink: string;
     cardsWithBorders: boolean;
@@ -56,11 +56,11 @@ declare namespace drupalSettings {
   };
   const helfi_news_archive: {
     elastic_proxy_url: string;
-    default_query?: string
+    default_query?: string;
     max_results?: number;
-    hide_form?: boolean
+    hide_form?: boolean;
     feed_base_url: string;
-    cardsWithBorders: boolean,
+    cardsWithBorders: boolean;
   };
   const helfi_roadworks: {
     [key: string]: {
@@ -71,9 +71,9 @@ declare namespace drupalSettings {
         lat?: string;
         lon?: string;
         q?: string;
-      },
+      };
       scrollToTarget: boolean;
-    }
+    };
   };
   const hdbt_cookie_banner: {
     settingsPageUrl: string;

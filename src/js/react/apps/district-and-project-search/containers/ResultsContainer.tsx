@@ -1,22 +1,21 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import { createRef, type SyntheticEvent } from 'react';
 import useSWR from 'swr';
-import { SyntheticEvent, createRef } from 'react';
-
-import Result from '../types/Result';
-import Pagination from '@/react/common/Pagination';
+import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import Pagination from '@/react/common/Pagination';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
+import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultCard from '../components/results/ResultCard';
 import ResultsSort from '../components/results/ResultsSort';
-import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
-import useQueryString from '../hooks/useQueryString';
 import Global from '../enum/Global';
 import Settings from '../enum/Settings';
+import useQueryString from '../hooks/useQueryString';
+import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
+import type Result from '../types/Result';
 import type URLParams from '../types/URLParams';
-import ResultsHeader from '@/react/common/ResultsHeader';
-import ResultsEmpty from '@/react/common/ResultsEmpty';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
-import { GhostList } from '@/react/common/GhostList';
 
 const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
@@ -30,10 +29,11 @@ const ResultsContainer = (): JSX.Element => {
   const choices = Boolean(window.location.search?.length);
   useScrollToResults(scrollTarget, choices);
 
-  const fetcher = async() => {
+  const fetcher = async () => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl;
-    
+
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
     return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
       method: 'POST',
       headers: {
@@ -48,19 +48,11 @@ const ResultsContainer = (): JSX.Element => {
   });
 
   if (!data && !error) {
-    return (
-      <GhostList count={size} />
-    );
+    return <GhostList count={size} />;
   }
 
   if (error || initializationError) {
-    return (
-      <ResultsError
-        error={error || initializationError}
-        className='react-search__results'
-        ref={scrollTarget}
-      />
-    );
+    return <ResultsError error={error || initializationError} className='react-search__results' ref={scrollTarget} />;
   }
 
   if (!data?.hits?.hits.length) {
@@ -78,23 +70,29 @@ const ResultsContainer = (): JSX.Element => {
   };
 
   return (
-    <div className="react-search__results">
+    <div className='react-search__results'>
       <ResultsHeader
         resultText={
+          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
           <>
-            { Drupal.formatPlural(total, '1 search result', '@count search results',{},{ context: 'District and project search' }) }
+            {Drupal.formatPlural(
+              total,
+              '1 search result',
+              '@count search results',
+              {},
+              { context: 'District and project search' },
+            )}
           </>
         }
         actions={<ResultsSort />}
-        actionsClass="hdbt-search--react__results--sort"
+        actionsClass='hdbt-search--react__results--sort'
         ref={scrollTarget}
       />
 
       <div className='hdbt-search--react__results--container'>
-        {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
-          {results.map((hit: Result) => (
-            <ResultCard key={hit._id} {...hit._source} />
-          ))}
+        {results.map((hit: Result) => (
+          <ResultCard key={hit._id} {...hit._source} />
+        ))}
         <Pagination
           currentPage={currentPage}
           pages={5}

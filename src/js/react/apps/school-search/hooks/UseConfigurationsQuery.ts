@@ -1,7 +1,7 @@
 import useSWR from 'swr';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import AppSettings from '../enum/AppSettings';
 import { AGGREGATIONS } from '../helpers/FeatureQuery';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 
 const UseConfigurationsQuery = () => {
   const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
@@ -9,7 +9,8 @@ const UseConfigurationsQuery = () => {
 
   const body = JSON.stringify(AGGREGATIONS);
 
-  const fetcher = async() => {
+  const fetcher = async () => {
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
     const result = await useTimeoutFetch(`${proxyUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
@@ -29,25 +30,25 @@ const UseConfigurationsQuery = () => {
     if (!aggregations) {
       return {
         aggs: {},
-        baseUrl: proxyUrl
+        baseUrl: proxyUrl,
       };
     }
 
     return {
       aggs: aggregations,
-      baseUrl: proxyUrl
+      baseUrl: proxyUrl,
     };
   };
 
   const { data, error } = useSWR('configurations', fetcher, {
     revalidateOnFocus: false,
     revalidateIfStale: false,
-    suspense: true
+    suspense: true,
   });
 
   return {
     data,
-    error
+    error,
   };
 };
 

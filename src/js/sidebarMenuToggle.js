@@ -7,7 +7,7 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
       item.classList.toggle(cssClass);
       toggleButton.setAttribute(
         'aria-expanded',
-        toggleButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+        toggleButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true',
       );
       event.stopPropagation();
     });
@@ -33,6 +33,6 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
       sectionNavigations.forEach((item) => {
         toggleSidebarMenuVisibility(item, 'sidebar-navigation--section-navigation--open');
       });
-    }
+    },
   };
 })(Drupal);

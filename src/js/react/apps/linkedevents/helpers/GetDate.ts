@@ -6,7 +6,7 @@ const getDateString = ({ startDate, endDate }: DateSelectDateTimes): string => {
     return Drupal.t('All dates', {}, { context: 'Events search' });
   }
 
-  if ((startDate && startDate.isValid) && (!endDate || !endDate.isValid)) {
+  if (startDate?.isValid && (!endDate || !endDate.isValid)) {
     return startDate.toFormat(HDS_DATE_FORMAT);
   }
 

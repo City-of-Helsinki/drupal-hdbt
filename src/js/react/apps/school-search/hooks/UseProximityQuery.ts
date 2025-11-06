@@ -1,15 +1,14 @@
-import useSWR from 'swr';
 import { useAtomValue } from 'jotai';
-
-import { getAddressUrls, getLocationsUrl, getAddresses, parseCoordinates } from '@/react/common/helpers/SubQueries';
-import SearchParams from '../types/SearchParams';
-import { configurationsAtom } from '../store';
-import getQueryString from '../helpers/ProximityQuery';
-import AppSettings from '../enum/AppSettings';
+import useSWR from 'swr';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
+import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
+import AppSettings from '../enum/AppSettings';
+import getQueryString from '../helpers/ProximityQuery';
+import { configurationsAtom } from '../store';
+import type SearchParams from '../types/SearchParams';
 
 type Result = {
-  units?: number[]
+  units?: number[];
 };
 
 const UseProximityQuery = (params: SearchParams) => {
@@ -27,7 +26,7 @@ const UseProximityQuery = (params: SearchParams) => {
 
     if (keyword) {
       let addresses = await getAddresses(getAddressUrls(keyword));
-      addresses = addresses.filter(address => address.results.length);
+      addresses = addresses.filter((address) => address.results.length);
 
       if (addresses.length) {
         resolvedName = getNameTranslation(addresses[0].results[0].name, drupalSettings.path.currentLanguage);
@@ -39,7 +38,7 @@ const UseProximityQuery = (params: SearchParams) => {
       return null;
     }
 
-    if (coordinates && coordinates.length) {
+    if (coordinates?.length) {
       const [lat, lon] = coordinates;
       const locationsResponse = await fetch(getLocationsUrl(locationsBaseUrl, lat, lon));
       const locationsData = await locationsResponse.json();
@@ -71,15 +70,19 @@ const UseProximityQuery = (params: SearchParams) => {
     };
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(baseUrl === '' ? null : `_${Object.values(params).toString()}`, fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data, error, isLoading, isValidating } = useSWR(
+    baseUrl === '' ? null : `_${Object.values(params).toString()}`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    },
+  );
 
   return {
     data,
     error,
     isLoading,
-    isValidating
+    isValidating,
   };
 };
 

@@ -1,4 +1,4 @@
-import URLParams from '../types/URLParams';
+import type URLParams from '../types/URLParams';
 
 class NewsSearchParams extends URLSearchParams {
   constructor(paramString: string | null = null) {
@@ -12,24 +12,26 @@ class NewsSearchParams extends URLSearchParams {
     const params = new URLSearchParams(paramString);
     const entries = params.entries();
     let result = entries.next();
-    const arrayValues: {[key:string]: string[]} = {};
-    const arrayKeys = ['topic','neighbourhoods','groups'];
+    const arrayValues: { [key: string]: string[] } = {};
+    const arrayKeys = ['topic', 'neighbourhoods', 'groups'];
 
     while (!result.done) {
       const [key, value] = result.value;
       const matchedKey = arrayKeys.find((stateKey) => key.includes(stateKey));
 
       if (matchedKey) {
-        arrayValues?.[matchedKey]?.length ? arrayValues[matchedKey].push(value) : arrayValues[matchedKey] = [value];
-      }
-      else {
+        // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+        arrayValues?.[matchedKey]?.length ? arrayValues[matchedKey].push(value) : (arrayValues[matchedKey] = [value]);
+      } else {
         this.set(key, value);
       }
 
       result = entries.next();
     }
 
-    Object.keys(arrayValues).forEach((key) => this.set(key, arrayValues[key].toString()));
+    Object.keys(arrayValues).forEach((key) => {
+      this.set(key, arrayValues[key].toString());
+    });
   }
 
   toInitialValue(): URLParams {
@@ -75,15 +77,19 @@ class NewsSearchParams extends URLSearchParams {
   toString(): string {
     const resultingParams = new URLSearchParams();
 
-    ['page', 'keyword'].forEach(key => {
+    ['page', 'keyword'].forEach((key) => {
       if (this.get(key)) {
         resultingParams.set(key, this.get(key) as string);
       }
     });
 
-    ['topic', 'neighbourhoods', 'groups'].forEach(key => {
+    ['topic', 'neighbourhoods', 'groups'].forEach((key) => {
       if (this.has(key) && this.get(key) !== '') {
-        this.get(key)?.split(',').forEach((id, index) => resultingParams.append(`${key}[${index}]`, id));
+        this.get(key)
+          ?.split(',')
+          .forEach((id, index) => {
+            resultingParams.append(`${key}[${index}]`, id);
+          });
       }
     });
 

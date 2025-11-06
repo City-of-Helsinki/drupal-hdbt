@@ -30,16 +30,15 @@ function Collapsible({
 }: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const helperIds = [
-    helper ? `${id}-helper` : undefined,
-    `${id}-title`,
-  ].filter(Boolean);
+  const helperIds = [helper ? `${id}-helper` : undefined, `${id}-title`].filter(Boolean);
 
   const getHandle = () => {
     if (showHandle !== false) {
-      return isActive ?
-        <Icon icon="angle-up" className='collapsible__handle' onClick={() => setActive(!isActive)} /> :
-        <Icon icon="angle-down" className='collapsible__handle' onClick={() => setActive(!isActive)} />;
+      return isActive ? (
+        <Icon icon='angle-up' className='collapsible__handle' onClick={() => setActive(!isActive)} />
+      ) : (
+        <Icon icon='angle-down' className='collapsible__handle' onClick={() => setActive(!isActive)} />
+      );
     }
   };
 
@@ -53,15 +52,17 @@ function Collapsible({
       id: `${id}-title`,
       className: `collapsible__title${isPlaceholder ? ' collapsible__title--placeholder' : ''}`,
     },
-    title
+    title,
   );
 
   return (
     <div className='collapsible-wrapper' ref={ref}>
-      <label className='collapsible__label' htmlFor={id}>{label}</label>
+      <label className='collapsible__label' htmlFor={id}>
+        {label}
+      </label>
       <button
         id={id}
-        type="button"
+        type='button'
         className='collapsible__element collapsible__control'
         aria-controls={ariaControls}
         aria-expanded={isActive}
@@ -69,21 +70,19 @@ function Collapsible({
         aria-haspopup='dialog'
         onClick={() => setActive(!isActive)}
       >
-        { titleElement }
+        {titleElement}
         {getHandle()}
       </button>
-      {isActive &&
-        <div
-          className='collapsible__element collapsible__children'
-          role='dialog'
-          aria-label={dialogLabel}
-        >
+      {isActive && (
+        <div className='collapsible__element collapsible__children' role='dialog' aria-label={dialogLabel}>
           {children}
         </div>
-      }
-      {helper &&
-        <div id={`${id}-helper`} className='collapsible__helper'>{helper}</div>
-      }
+      )}
+      {helper && (
+        <div id={`${id}-helper`} className='collapsible__helper'>
+          {helper}
+        </div>
+      )}
     </div>
   );
 }

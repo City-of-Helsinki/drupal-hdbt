@@ -19,8 +19,8 @@ export type EventKeyword = {
 
 type EventOffers = {
   info_url: MultilingualString;
-  is_free:  boolean;
-}
+  is_free: boolean;
+};
 
 type EventLocation = {
   id: string;

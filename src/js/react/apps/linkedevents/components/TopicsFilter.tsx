@@ -1,15 +1,15 @@
-import { Select, useSelectStorage } from 'hds-react';
-import { useAtomValue, useAtom, useSetAtom } from 'jotai';
+import { Select } from 'hds-react';
+import { useSelectStorage } from 'hds-react/components/select';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import type OptionType from '../types/OptionType';
-
-import { topicsAtom, topicSelectionAtom, updateParamsAtom} from '../store';
-import SearchComponents from '../enum/SearchComponents';
-import ApiKeys from '../enum/ApiKeys';
-import useSelectedOptions from '@/react/common/hooks/useSelectedOptions';
-import { clearAllSelectionsFromStorage } from '@/react/common/helpers/HDS';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { clearAllSelectionsFromStorage } from '@/react/common/helpers/HDS';
+import useSelectedOptions from '@/react/common/hooks/useSelectedOptions';
+import ApiKeys from '../enum/ApiKeys';
+import SearchComponents from '../enum/SearchComponents';
+import { topicSelectionAtom, topicsAtom, updateParamsAtom } from '../store';
+import type OptionType from '../types/OptionType';
 
 function TopicsFilter() {
   const topics = useAtomValue(topicsAtom);
@@ -17,8 +17,9 @@ function TopicsFilter() {
   const selectedOptions = useSelectedOptions(topics, topicSelection);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const onChange = (value: OptionType[], clickedOption?: OptionType) => {
+  const onChange = (value: OptionType[], _clickedOption?: OptionType) => {
     setTopicsFilter(value);
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     updateParams({ [ApiKeys.KEYWORDS]: value.map((topic: any) => topic.value).join(',') });
   };
 
@@ -35,7 +36,7 @@ function TopicsFilter() {
       language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
     },
-    theme: defaultSelectTheme
+    theme: defaultSelectTheme,
   });
 
   const clearAllSelections = () => {
@@ -43,8 +44,8 @@ function TopicsFilter() {
   };
 
   const updateSelections = () => {
-    storage.updateAllOptions((option, group, groupindex) => {
-      if (option.selected && !topicSelection.some(selection => selection.value === option.value)) {
+    storage.updateAllOptions((option, _group, _groupindex) => {
+      if (option.selected && !topicSelection.some((selection) => selection.value === option.value)) {
         return {
           ...option,
           selected: false,
@@ -67,10 +68,7 @@ function TopicsFilter() {
   return (
     <div className='hdbt-search__filter event-form__filter--topics'>
       {/* @ts-ignore */}
-      <Select
-        className='hdbt-search__dropdown'
-        {...storage.getProps()}
-      />
+      <Select className='hdbt-search__dropdown' {...storage.getProps()} />
     </div>
   );
 }

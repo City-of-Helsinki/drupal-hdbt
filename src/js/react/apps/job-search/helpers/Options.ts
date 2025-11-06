@@ -1,4 +1,4 @@
-import OptionType from '../types/OptionType';
+import type OptionType from '../types/OptionType';
 
 const sortOptions = (a: OptionType, b: OptionType) => {
   const aCount = a?.count || 0;

@@ -3,7 +3,7 @@ import { Suspense, useEffect } from 'react';
 import { useSetAtom } from 'jotai';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
-import SearchParams from '../types/SearchParams';
+import type SearchParams from '../types/SearchParams';
 import useInitialParams from '@/react/common/hooks/useInitialParams';
 import { keywordAtom, paramsAtom } from '../store';
 import { GhostList } from '@/react/common/GhostList';
@@ -26,9 +26,7 @@ const SearchContainer = () => {
   });
 
   return (
-    <Suspense fallback={
-      <GhostList count={AppSettings.size} />
-    }>
+    <Suspense fallback={<GhostList count={AppSettings.size} />}>
       <div className='hdbt-search--react'>
         <FormContainer initialParams={initialParams} />
         <ResultsContainer />

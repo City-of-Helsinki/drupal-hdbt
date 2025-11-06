@@ -1,28 +1,29 @@
-import { SyntheticEvent, createRef, useState } from 'react';
 import { useAtomValue } from 'jotai';
-
-import Result from '@/types/Result';
-import Pagination from '@/react/common/Pagination';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
-import ResultsError from '@/react/common/ResultsError';
-import ResultsMap from '@/react/common/ResultsMap';
-import AppSettings from '../enum/AppSettings';
-import { School } from '../types/School';
-import ResultCard from './ResultCard';
-import { paramsAtom } from '../store';
-import ResultsHeader from '@/react/common/ResultsHeader';
-import ResultsEmpty from '@/react/common/ResultsEmpty';
+import { createRef, type SyntheticEvent, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
+import Pagination from '@/react/common/Pagination';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
+import ResultsError from '@/react/common/ResultsError';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultsMap from '@/react/common/ResultsMap';
+import type Result from '@/types/Result';
+import AppSettings from '../enum/AppSettings';
+import { paramsAtom } from '../store';
+import type { School } from '../types/School';
+import ResultCard from './ResultCard';
 
 type ResultsListProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   data: any;
-  error: string|Error;
+  error: string | Error;
   isLoading: boolean;
   isValidating: boolean;
   page?: number;
-  updatePage: Function
-}
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  updatePage: Function;
+};
 
 const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
@@ -33,18 +34,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   useScrollToResults(scrollTarget, choices);
 
   if (isLoading || isValidating) {
-    return useMap ?
-      <LoadingOverlay /> :
-      <GhostList count={size} />;
+    return useMap ? <LoadingOverlay /> : <GhostList count={size} />;
   }
 
   if (error) {
-    return (
-      <ResultsError
-        error={error}
-        ref={scrollTarget}
-      />
-    );
+    return <ResultsError error={error} ref={scrollTarget} />;
   }
 
   if (!data?.hits?.hits.length) {
@@ -57,12 +51,22 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const addLastPage = total > size && total % size;
   const showPagination = !useMap && (pages > 1 || addLastPage);
 
-  const resultHeader = Drupal.formatPlural(total, '1 school', '@count schools',{},{context: 'React search: schools result count'});
+  const resultHeader = Drupal.formatPlural(
+    total,
+    '1 school',
+    '@count schools',
+    {},
+    { context: 'React search: schools result count' },
+  );
 
   return (
     <div className='react-search__results'>
       <ResultsHeader
-        resultText={data.addressName ? `${resultHeader} ${Drupal.t('using address', {}, {context: 'React search: Address result display'})} ${data.addressName}` : resultHeader}
+        resultText={
+          data.addressName
+            ? `${resultHeader} ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${data.addressName}`
+            : resultHeader
+        }
         actions={
           <div className='hdbt-search--react__results--tablist' role='tablist'>
             <button
@@ -74,7 +78,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               aria-controls='school-search-results-tabpanel-list'
               onClick={() => setUseMap(false)}
             >
-              { Drupal.t('View as a list', {}, {context: 'React search: result display'}) }
+              {Drupal.t('View as a list', {}, { context: 'React search: result display' })}
             </button>
             <button
               id='school-search-results-tab-map'
@@ -85,30 +89,29 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               aria-controls='school-search-results-tabpanel-map'
               onClick={() => setUseMap(true)}
             >
-              { Drupal.t('View in a map', {}, {context: 'React search: result display'}) }
+              {Drupal.t('View in a map', {}, { context: 'React search: result display' })}
             </button>
           </div>
         }
-        actionsClass="hdbt-search--react__results--sort"
+        actionsClass='hdbt-search--react__results--sort'
         ref={scrollTarget}
       />
       <div
         id={`school-search-results-tabpanel-${useMap ? 'map' : 'list'}`}
-        role="tabpanel"
+        role='tabpanel'
         aria-labelledby={`school-search-results-tab-${useMap ? 'map' : 'list'}`}
       >
-        {
-          useMap ?
-            <ResultsMap ids={data?.aggregations?.ids?.buckets} />
-          :
-            <>
-              {results.map((hit: Result<School>) => (
-                <ResultCard key={hit._id} {...hit._source} />
-              ))}
-            </>
-        }
-        {
-          showPagination &&
+        {useMap ? (
+          <ResultsMap ids={data?.aggregations?.ids?.buckets} />
+        ) : (
+          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+          <>
+            {results.map((hit: Result<School>) => (
+              <ResultCard key={hit._id} {...hit._source} />
+            ))}
+          </>
+        )}
+        {showPagination && (
           <Pagination
             currentPage={page || 1}
             pages={5}
@@ -118,7 +121,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               updatePage(nextPage);
             }}
           />
-        }
+        )}
       </div>
     </div>
   );

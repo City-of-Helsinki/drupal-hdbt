@@ -1,13 +1,12 @@
-import HelfiAccordion from './helfiAccordion';
 import AccordionState from './accordionState';
 import Events from './events';
+import HelfiAccordion from './helfiAccordion';
 
 window.helfiAccordions = [];
 
 const state = new AccordionState();
-// eslint-disable-next-line no-unused-vars
-const events = new Events();
-const {hash} = window.location;
+const _events = new Events();
+const { hash } = window.location;
 
 /**
  * Determines accordion type based on its CSS class names.
@@ -36,12 +35,12 @@ const getAccordionType = (classes) => {
  * Fired when new DOM nodes are added — this allows initializing accordions
  * dynamically.
  *
- * @param {MutationRecord[]} mutations
+ * @param {MutationRecord[]} _mutations
  *   An array of MutationRecord objects describing each change that occurred.
  * @param {MutationObserver} observer
  *   The MutationObserver instance that invoked the callback.
  */
-const callback = (mutations, observer) => {
+const callback = (_mutations, observer) => {
   const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
 
   // Initialize any new accordions that haven’t yet been processed.
@@ -58,7 +57,7 @@ const callback = (mutations, observer) => {
          * type “default”, unless it’s explicitly “hardcoded”.
          * This ensures that the first accordion gets full toggle-all functionality.
          */
-        const actualType = (index === 0 && type !== 'hardcoded') ? 'default' : type;
+        const actualType = index === 0 && type !== 'hardcoded' ? 'default' : type;
 
         // Create the accordion instance.
         const accordion = new HelfiAccordion(accordionElement, state, hash, actualType);
@@ -76,8 +75,7 @@ const callback = (mutations, observer) => {
           window.helfiAccordions[index - 1].addChildAccordion(accordion);
         }
       });
-    }
-    catch(e) {
+    } catch (e) {
       console.error(e);
       observer.disconnect();
     }

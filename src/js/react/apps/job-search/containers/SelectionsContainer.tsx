@@ -1,7 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import SearchComponents from '../enum/SearchComponents';
 import { getLanguageLabel } from '../helpers/Language';
 import transformDropdownsValues from '../helpers/Params';
@@ -21,7 +20,7 @@ import {
   urlUpdateAtom,
   youthSummerJobsAtom,
 } from '../store';
-import OptionType from '../types/OptionType';
+import type OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -111,6 +110,7 @@ const SelectionsContainer = () => {
 export default SelectionsContainer;
 
 type ListFilterProps = {
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
   updater: Function;
   valueKey: string;
   values: OptionType[];
@@ -127,7 +127,7 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
     updater(newValue);
     setUrlParams({
       ...urlParams,
-      [valueKey]: newValue.map((selection: OptionType) => selection.value).flat(),
+      [valueKey]: newValue.flatMap((selection: OptionType) => selection.value),
     });
   };
 
@@ -145,6 +145,7 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 };
 
 type CheckboxFilterPillProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   atom: any;
   valueKey: string;
   label: string;
@@ -167,6 +168,7 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
 };
 
 type SingleFilterProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   atom: any;
   label: string;
   valueKey: string;

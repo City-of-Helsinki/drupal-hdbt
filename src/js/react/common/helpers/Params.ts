@@ -5,7 +5,7 @@ const transformDropdownsValues = (paramOptions: string[] | undefined = [], avail
 
   paramOptions.forEach((selection: string) => {
     const matchedOption = availableOptions.find(
-      (option: OptionType) => option.value.toString() === selection.toString()
+      (option: OptionType) => option.value.toString() === selection.toString(),
     );
 
     if (matchedOption) {

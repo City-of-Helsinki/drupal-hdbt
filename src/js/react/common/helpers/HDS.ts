@@ -1,6 +1,6 @@
-import { SelectProps, SupportedLanguage, Texts } from 'hds-react';
-import { OptionIterator } from 'hds-react/utils-ba10fa35';
-import OptionType from '@/types/OptionType';
+import type { SelectProps, SupportedLanguage, Texts } from 'hds-react';
+import type { OptionIterator } from 'hds-react/components/select/utils';
+import type OptionType from '@/types/OptionType';
 
 type HDSStorage = {
   getProps: () => SelectProps;
@@ -14,7 +14,7 @@ type HDSStorage = {
 };
 
 export const clearAllSelectionsFromStorage = (storage: HDSStorage) => {
-  storage.updateAllOptions((option, group, groupindex) => {
+  storage.updateAllOptions((option, _group, _groupindex) => {
     if (option.selected) {
       return {
         ...option,
@@ -28,8 +28,8 @@ export const clearAllSelectionsFromStorage = (storage: HDSStorage) => {
 };
 
 export const updateSelectionsInStorage = (storage: HDSStorage, selections: OptionType[]) => {
-  storage.updateAllOptions((option, group, groupindex) => {
-    if (option.selected && !selections.some(selection => selection.value === option.value)) {
+  storage.updateAllOptions((option, _group, _groupindex) => {
+    if (option.selected && !selections.some((selection) => selection.value === option.value)) {
       return {
         ...option,
         selected: false,

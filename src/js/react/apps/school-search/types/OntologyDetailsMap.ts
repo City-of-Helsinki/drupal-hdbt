@@ -1,6 +1,6 @@
 export type OntologyDetailLabels = {
-  [key: number]: string
-}
+  [key: number]: string;
+};
 
 export type OntologyDetailMap = {
   a1: OntologyDetailLabels;

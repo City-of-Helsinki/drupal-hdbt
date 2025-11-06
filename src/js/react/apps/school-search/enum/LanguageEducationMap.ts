@@ -1,4 +1,4 @@
-import OntologyDetailMap from '../types/OntologyDetailsMap';
+import type OntologyDetailMap from '../types/OntologyDetailsMap';
 
 const ontologyDetailsIdsToLang: OntologyDetailMap = {
   a1: {
@@ -44,18 +44,18 @@ const ontologyDetailsIdsToLang: OntologyDetailMap = {
     112: Drupal.t('Estonian', {}, { context: 'TPR Ontologyword details schools' }),
   },
   b2: {
-    113: Drupal.t('English', {}, {context: 'TPR Ontologyword details schools'}),
-    114: Drupal.t('Spanish', {}, {context: 'TPR Ontologyword details schools'}),
-    115: Drupal.t('Hebrew', {}, {context: 'TPR Ontologyword details schools'}),
-    116: Drupal.t('Italian', {}, {context: 'TPR Ontologyword details schools'}),
-    117: Drupal.t('Chinese', {}, {context: 'TPR Ontologyword details schools'}),
-    118: Drupal.t('Latin', {}, {context: 'TPR Ontologyword details schools'}),
-    119: Drupal.t('French', {}, {context: 'TPR Ontologyword details schools'}),
-    120: Drupal.t('Swedish', {}, {context: 'TPR Ontologyword details schools'}),
-    121: Drupal.t('German', {}, {context: 'TPR Ontologyword details schools'}),
-    122: Drupal.t('Finnish', {}, {context: 'TPR Ontologyword details schools'}),
-    123: Drupal.t('Russian', {}, {context: 'TPR Ontologyword details schools'}),
-    124: Drupal.t('Estonian', {}, {context: 'TPR Ontologyword details schools'}),
+    113: Drupal.t('English', {}, { context: 'TPR Ontologyword details schools' }),
+    114: Drupal.t('Spanish', {}, { context: 'TPR Ontologyword details schools' }),
+    115: Drupal.t('Hebrew', {}, { context: 'TPR Ontologyword details schools' }),
+    116: Drupal.t('Italian', {}, { context: 'TPR Ontologyword details schools' }),
+    117: Drupal.t('Chinese', {}, { context: 'TPR Ontologyword details schools' }),
+    118: Drupal.t('Latin', {}, { context: 'TPR Ontologyword details schools' }),
+    119: Drupal.t('French', {}, { context: 'TPR Ontologyword details schools' }),
+    120: Drupal.t('Swedish', {}, { context: 'TPR Ontologyword details schools' }),
+    121: Drupal.t('German', {}, { context: 'TPR Ontologyword details schools' }),
+    122: Drupal.t('Finnish', {}, { context: 'TPR Ontologyword details schools' }),
+    123: Drupal.t('Russian', {}, { context: 'TPR Ontologyword details schools' }),
+    124: Drupal.t('Estonian', {}, { context: 'TPR Ontologyword details schools' }),
   },
   bilingualEducation: {
     149: Drupal.t('Teaching in English', {}, { context: 'TPR Ontologyword details schools' }),

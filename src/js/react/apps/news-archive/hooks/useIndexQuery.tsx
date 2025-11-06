@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import { PublicConfiguration } from 'swr/_internal';
-import Global from '../enum/Global';
+import type { PublicConfiguration } from 'swr/_internal';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import Global from '../enum/Global';
 
 type useIndexQueryProps = {
   // Dev purposes only, use this to debug certain requests
@@ -12,14 +12,12 @@ type useIndexQueryProps = {
   multi?: boolean;
   // Elastic query
   query: string;
-}
-// Allows passing SWR hook options
-& Partial<PublicConfiguration>;
+} & Partial<PublicConfiguration>; // Allows passing SWR hook options
 
-const useIndexQuery = ({debug, query, multi, key, ...rest}: useIndexQueryProps) => {
+const useIndexQuery = ({ debug, query, multi, key, ...rest }: useIndexQueryProps) => {
   const fetcher = () => {
     const index = Global.INDEX;
-    const url: string|undefined = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
+    const url: string | undefined = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = multi ? 'application/x-ndjson' : 'application/json';
 
@@ -27,10 +25,11 @@ const useIndexQuery = ({debug, query, multi, key, ...rest}: useIndexQueryProps) 
       console.warn('Executing request with props: ', {
         debug,
         query,
-        multi
+        multi,
       });
     }
 
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
     return useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
       headers: {

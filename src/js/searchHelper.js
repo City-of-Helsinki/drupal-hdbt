@@ -25,6 +25,6 @@
       // views based searches.
       const resultCountEl = context.querySelector('[class$="__count-container"]');
       focusElement(resultCountEl);
-    }
+    },
   };
 })(Drupal);

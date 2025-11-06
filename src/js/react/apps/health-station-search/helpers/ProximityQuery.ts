@@ -1,7 +1,7 @@
-import BooleanQuery from '@/types/BooleanQuery';
+import type BooleanQuery from '@/types/BooleanQuery';
 import AppSettings from '../enum/AppSettings';
 
-const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: number, svOnly?: boolean) => {
+const getQueryString = (ids: number[] | null, coordinates: number[] | null, page: number, svOnly?: boolean) => {
   let { size } = AppSettings;
   const lang = drupalSettings.path.currentLanguage;
 
@@ -10,18 +10,18 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       filter: [
         {
           term: {
-            search_api_language: lang
-          }
-        }
+            search_api_language: lang,
+          },
+        },
       ],
-    }
+    },
   };
 
   if (svOnly) {
     query.bool.filter?.push({
       term: {
-        provided_languages: 'sv'
-      }
+        provided_languages: 'sv',
+      },
     });
   }
 
@@ -30,15 +30,16 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
     query.bool.must = [
       {
         terms: {
-          id: ids
-        }
-      }
+          id: ids,
+        },
+      },
     ];
   }
 
-  let sort: any = [{ 'name_override': 'asc' }];
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  let sort: any = [{ name_override: 'asc' }];
 
-  if (coordinates && coordinates.length) {
+  if (coordinates?.length) {
     sort = [{ _score: 'desc' }, ...sort];
 
     // Show closest station with Service in Swedish.
@@ -48,14 +49,14 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
           _geo_distance: {
             coordinates: {
               lat: coordinates[0],
-              lon: coordinates[1]
+              lon: coordinates[1],
             },
             order: 'asc',
             mode: 'min',
             distance_type: 'arc',
-            ignore_unmapped: true
-          }
-        }
+            ignore_unmapped: true,
+          },
+        },
       ];
 
       size = 1;
@@ -67,14 +68,14 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       ids: {
         terms: {
           field: 'id',
-          size: 1000
+          size: 1000,
         },
       },
     },
     from: size * (page - 1),
     query,
     size,
-    sort
+    sort,
   });
 };
 

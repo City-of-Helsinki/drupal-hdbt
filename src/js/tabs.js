@@ -1,5 +1,4 @@
-// eslint-disable-next-line func-names
-(function ($, drupalSettings) {
+(($, drupalSettings) => {
   // Module-level variables to store active tab state
   let activeTabId = null;
   let activeContentId = null;
@@ -103,15 +102,14 @@
   }
 
   // Run after each ajax submit on the element that has tabs.
-  $(document).ajaxComplete(function onDataLoaded(e, xhr, settings) {
+  $(document).ajaxComplete(function onDataLoaded(_e, _xhr, settings) {
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
       initiateTabs(activeTabId, activeContentId);
     }
   });
 
   // Run after page is ready.
-  // eslint-disable-next-line func-names
-  $(document).ready(function () {
+  $(document).ready(() => {
     // Reset the active tab variables
     activeTabId = null;
     activeContentId = null;

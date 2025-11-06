@@ -1,6 +1,6 @@
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import URLParams from '../types/URLParams';
+import type URLParams from '../types/URLParams';
 
 const usePromotedQuery = (baseQuery: string, urlParams: URLParams): string => {
   const { size } = Global;
@@ -9,11 +9,11 @@ const usePromotedQuery = (baseQuery: string, urlParams: URLParams): string => {
 
   const promotedClause = {
     term: {
-      [IndexFields.PROMOTED]: true
-    }
+      [IndexFields.PROMOTED]: true,
+    },
   };
 
-  delete(promotedQuery.query.bool.must[0].bool.must_not);
+  delete promotedQuery.query.bool.must[0].bool.must_not;
   promotedQuery.query.bool.must.push(promotedClause);
   promotedQuery.size = size;
   promotedQuery.from = size * (page - 1);

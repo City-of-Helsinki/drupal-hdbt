@@ -22,7 +22,9 @@ class NavToggleDropdown {
   // other open instances before opening a new one.
   simpleClose() {
     if (this.running) {
-      this.buttonInstances.forEach(button => button.setAttribute('aria-expanded', 'false'));
+      this.buttonInstances.forEach((button) => {
+        button.setAttribute('aria-expanded', 'false');
+      });
       this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
       this.dropdownInstance?.removeAttribute('style');
       this.targetNode.dataset.target = 'false';
@@ -47,7 +49,7 @@ class NavToggleDropdown {
 
       // If the last clicked button is inside the dropdown, find another button outside of it
       if (this.dropdownInstance?.contains(buttonToFocus)) {
-        buttonToFocus = this.buttonInstances.find(button => !this.dropdownInstance.contains(button)) || null;
+        buttonToFocus = this.buttonInstances.find((button) => !this.dropdownInstance.contains(button)) || null;
       }
 
       // Move focus if a valid button is found
@@ -63,7 +65,9 @@ class NavToggleDropdown {
 
   open() {
     if (this.running) {
-      this.buttonInstances.forEach(button => button.setAttribute('aria-expanded', 'true'));
+      this.buttonInstances.forEach((button) => {
+        button.setAttribute('aria-expanded', 'true');
+      });
       this.dropdownInstance?.classList.remove('nav-toggle-dropdown--closed');
       this.targetNode.dataset.target = 'true';
       if (this.onOpen) {
@@ -90,7 +94,7 @@ class NavToggleDropdown {
     });
 
     // Toggle element from each button
-    this.buttonInstances.forEach(button => {
+    this.buttonInstances.forEach((button) => {
       button.addEventListener('click', () => {
         this.toggle(button); // Pass the clicked button
       });

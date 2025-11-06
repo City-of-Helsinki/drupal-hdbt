@@ -1,10 +1,10 @@
-import bucketToMap from '@/react/common/helpers/Aggregations';
 import ExternalLink from '@/react/common/ExternalLink';
-import { AggregationItem } from '@/types/Aggregation';
+import bucketToMap from '@/react/common/helpers/Aggregations';
+import type { AggregationItem } from '@/types/Aggregation';
 
 type ResultsMapProps = {
-  ids?: AggregationItem[]
-}
+  ids?: AggregationItem[];
+};
 
 const ID_THRESHOLD = 90;
 
@@ -47,14 +47,18 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
     <div className='hdbt-search--react__map-container'>
       <div className='unit-search__result--map'>
         <iframe
-          title={Drupal.t('Service Map - Front page', {}, {context: 'React search: result display'})}
+          title={Drupal.t('Service Map - Front page', {}, { context: 'React search: result display' })}
           className='unit-search__map'
           src={mapUrl}
-        >
-        </iframe>
+        ></iframe>
       </div>
       <div className='unit-search__map-actions'>
-        <ExternalLink href={mapUrl} title={<span>{Drupal.t('Open large version of the map', {}, {context: 'React search: result display'})}</span>} />
+        <ExternalLink
+          href={mapUrl}
+          title={
+            <span>{Drupal.t('Open large version of the map', {}, { context: 'React search: result display' })}</span>
+          }
+        />
       </div>
     </div>
   );

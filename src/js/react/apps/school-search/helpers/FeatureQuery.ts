@@ -1,9 +1,10 @@
-import BooleanQuery from '@/types/BooleanQuery';
+import type BooleanQuery from '@/types/BooleanQuery';
 import AppSettings from '../enum/AppSettings';
 import IndexFields from '../enum/IndexFields';
-import SearchParams from '../types/SearchParams';
+import type SearchParams from '../types/SearchParams';
 
 // Filter by current language
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
 export const languageFilter: any = {
   term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
 };
@@ -11,6 +12,7 @@ export const languageFilter: any = {
 const getCheckBoxFilters = (params: SearchParams) => {
   const languageKeys = ['finnish_education', 'swedish_education'];
   const gradeKeys = ['grades_1_6', 'grades_1_9', 'grades_7_9'];
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   const query: any = [];
 
   [languageKeys, gradeKeys].forEach((keys) => {
@@ -28,10 +30,10 @@ const getCheckBoxFilters = (params: SearchParams) => {
           minimum_should_match: 1,
           should: hits.map((hit) => ({
             term: {
-              [`additional_filters.${hit}`]: true
-            }
-          }))
-        }
+              [`additional_filters.${hit}`]: true,
+            },
+          })),
+        },
       });
     }
   });
@@ -39,16 +41,20 @@ const getCheckBoxFilters = (params: SearchParams) => {
   return query;
 };
 
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
 const getDropdownFilters = (filterValues: any, indexField: string) => {
-  const filters: any = [{
-    bool: {
-      minimum_should_match: 1,
-      should: [],
-    }
-  }];
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  const filters: any = [
+    {
+      bool: {
+        minimum_should_match: 1,
+        should: [],
+      },
+    },
+  ];
 
   filterValues.forEach((ontologywordId: string) => {
-    filters[0].bool.should.push({ term: { [indexField]: ontologywordId }});
+    filters[0].bool.should.push({ term: { [indexField]: ontologywordId } });
   });
 
   return filters;
@@ -86,101 +92,107 @@ const getQueryString = (params: SearchParams, page: number) => {
       filter: [
         {
           term: {
-            search_api_language: drupalSettings.path.currentLanguage
-          }
-        }
+            search_api_language: drupalSettings.path.currentLanguage,
+          },
+        },
       ],
       must: [],
-    }
+    },
   };
 
-  if (keyword && keyword.length) {
+  if (keyword?.length) {
     query.bool.should = [
       {
         match_phrase_prefix: {
           name: {
             query: keyword,
-            boost: 1.5
+            boost: 1.5,
           },
-        }
+        },
       },
       {
         match: {
           name: {
-            query: keyword
-          }
-        }
+            query: keyword,
+          },
+        },
       },
       {
         wildcard: {
           name: {
-            value: `*${keyword}*`
-          }
-        }
+            value: `*${keyword}*`,
+          },
+        },
       },
       {
         term: {
-          'postal_code': keyword
-        }
-      }
+          postal_code: keyword,
+        },
+      },
     ];
 
     query.bool.minimum_should_match = 1;
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   const checkBoxFilters: any = getCheckBoxFilters(params);
   if (checkBoxFilters.length) {
-      query.bool.must = [{
+    query.bool.must = [
+      {
         nested: {
-        path: 'additional_filters',
-        query: {
-          bool: {
-            must: checkBoxFilters
-          }
-        }
-      }
-    }];
-  };
+          path: 'additional_filters',
+          query: {
+            bool: {
+              must: checkBoxFilters,
+            },
+          },
+        },
+      },
+    ];
+  }
 
-  if (a1 && a1.length) {
+  if (a1?.length) {
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     const dropdownFilters: any = getDropdownFilters(a1, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
-  if (a2 && a2.length) {
+  if (a2?.length) {
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     const dropdownFilters: any = getDropdownFilters(a2, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
-  if (b1 && b1.length) {
+  if (b1?.length) {
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     const dropdownFilters: any = getDropdownFilters(b1, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
-  if (b2 && b2.length) {
+  if (b2?.length) {
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     const dropdownFilters: any = getDropdownFilters(b2, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
-  if (weighted_education && weighted_education.length) {
+  if (weighted_education?.length) {
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     const dropdownFilters: any = getDropdownFilters(weighted_education, 'ontologyword_details_clarifications');
     query.bool.must?.push(...dropdownFilters);
   }
 
-  if (bilingual_education && bilingual_education.length) {
+  if (bilingual_education?.length) {
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     const dropdownFilters: any = getDropdownFilters(bilingual_education, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
-  const sort: any[] = [
-    {
-      'name.keyword': 'asc'
-    }
-  ];
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  const sort: any[] = [{ 'name.keyword': 'asc' }];
 
   if (keyword?.length) {
     sort.unshift({
-      _score: 'desc'
+      _score: 'desc',
     });
   }
 
@@ -189,7 +201,7 @@ const getQueryString = (params: SearchParams, page: number) => {
       ids: {
         terms: {
           field: 'id',
-          size: 1000
+          size: 1000,
         },
       },
     },

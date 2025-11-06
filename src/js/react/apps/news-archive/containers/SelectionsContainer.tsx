@@ -1,10 +1,9 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
+import type OptionType from '@/types/OptionType';
 import { urlAtom, urlUpdateAtom } from '../store';
-import OptionType from '@/types/OptionType';
-import URLParams from '../types/URLParams';
+import type URLParams from '../types/URLParams';
 
 type SelectionsContainerProps = {
   topic?: OptionType[];
@@ -14,11 +13,7 @@ type SelectionsContainerProps = {
 
 type ParamsKey = keyof Omit<URLParams, 'page' | 'keyword'>;
 
-const SelectionsContainer = ({
-  topic,
-  neighbourhoods,
-  groups
-}: SelectionsContainerProps) => {
+const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContainerProps) => {
   const params = useAtomValue(urlAtom);
   const updateParams = useSetAtom(urlUpdateAtom);
 
@@ -27,12 +22,12 @@ const SelectionsContainer = ({
       key={option.value}
       value={option?.label || option.value}
       clearSelection={() => {
-        const newParams = {...params, page: 1};
+        const newParams = { ...params, page: 1 };
         const index = newParams?.[key]?.indexOf(Number(option.value));
 
         if (typeof index !== 'undefined' && !Number.isNaN(index) && index !== -1) {
           newParams[key]?.splice(index, 1);
-          updateParams({...newParams});
+          updateParams({ ...newParams });
         }
       }}
     />
@@ -45,12 +40,14 @@ const SelectionsContainer = ({
     const passedOptions = {
       topic,
       neighbourhoods,
-      groups
+      groups,
     };
     [params.topic, params.neighbourhoods, params.groups].forEach((selections, index) => {
       if (selections?.length) {
-        selections.forEach(id => {
-          const option  = passedOptions[keys[index]]?.find((valueOption: OptionType) => id === Number(valueOption.value));
+        selections.forEach((id) => {
+          const option = passedOptions[keys[index]]?.find(
+            (valueOption: OptionType) => id === Number(valueOption.value),
+          );
 
           if (!option) {
             return;
@@ -67,7 +64,7 @@ const SelectionsContainer = ({
 
   const clearSelections = () => {
     updateParams({
-      page: 1
+      page: 1,
     });
   };
 

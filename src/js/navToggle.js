@@ -1,6 +1,6 @@
-import { close, open } from './nav-toggle/toggleWidgets';
-import NavToggleDropdown from './nav-toggle/navToggleDropdown';
 import MenuDropdown from './nav-global/menu';
+import NavToggleDropdown from './nav-toggle/navToggleDropdown';
+import { close, open } from './nav-toggle/toggleWidgets';
 
 // Not using 'once()' here because NavToggleDropdown manages its own init state via 'this.running'.
 // Using 'once()' would interfere with dropdown lifecycle and cause skipped or incomplete setups.
@@ -48,8 +48,7 @@ import MenuDropdown from './nav-global/menu';
 
       // Checks if an element has scrollable overflow in either direction.
       const isScrollable = (element) =>
-        element.scrollWidth > element.clientWidth ||
-        element.scrollHeight > element.clientHeight;
+        element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
 
       const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
@@ -124,7 +123,10 @@ import MenuDropdown from './nav-global/menu';
             // Focus search field on open and delay focus
             // until element is focusable.
             if (key === 'SearchDropdown') {
-              window.setTimeout(() => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(), 10);
+              window.setTimeout(
+                () => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(),
+                10,
+              );
             }
 
             const dropdownInstance = AllElements[key];
@@ -161,12 +163,13 @@ import MenuDropdown from './nav-global/menu';
           onClose: () => {
             open();
             context.removeEventListener('click', closeFromOutside);
-          }
+          },
         });
       }
 
       // Check if any menu instance is open.
-      const isAnyMenuOpen = () => keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || (globalMenu && globalMenu.isOpen());
+      const isAnyMenuOpen = () =>
+        keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || globalMenu?.isOpen();
 
       // Prevent body scrolling when menus are open.
       const blockBrandingScroll = (e) => {
@@ -181,9 +184,9 @@ import MenuDropdown from './nav-global/menu';
           isAnyMenuOpen() &&
           // Don't scroll body from shared header.
           (!e.target.closest('.nav-toggle-dropdown') ||
-          // If element has no overflow, it has no overscroll containment.
-          // See overscroll-behavior CSS specifications.
-          (scrolledPanel && !isScrollable(scrolledPanel)));
+            // If element has no overflow, it has no overscroll containment.
+            // See overscroll-behavior CSS specifications.
+            (scrolledPanel && !isScrollable(scrolledPanel)));
 
         if (preventBodyScrolling) {
           e.preventDefault();
@@ -199,6 +202,6 @@ import MenuDropdown from './nav-global/menu';
       body.addEventListener('scroll', blockBrandingScroll, { passive: false });
       body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
       window.navToggleInitialized = true;
-    }
+    },
   };
 })(Drupal);

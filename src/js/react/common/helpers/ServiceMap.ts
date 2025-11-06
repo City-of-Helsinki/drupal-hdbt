@@ -1,8 +1,8 @@
-import { TranslatedString } from '@/types/ServiceMap';
+import type { TranslatedString } from '@/types/ServiceMap';
 
-export const getNameTranslation = (names: TranslatedString, language: string|null) => {
-  if (language && names[language as 'fi'|'sv'|'en']) {
-    return names[language as 'fi'|'sv'|'en'];
+export const getNameTranslation = (names: TranslatedString, language: string | null) => {
+  if (language && names[language as 'fi' | 'sv' | 'en']) {
+    return names[language as 'fi' | 'sv' | 'en'];
   }
 
   if (names.fi) {

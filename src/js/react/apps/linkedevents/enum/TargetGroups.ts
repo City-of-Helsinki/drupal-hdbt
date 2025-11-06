@@ -24,40 +24,40 @@ export const BloatingTargetGroups = [
 ];
 
 export const TargetGroups = {
-  [Drupal.t('Families with babies', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Families with babies', {}, { context: 'Event search: target group' })]: {
     ids: ['yso:p20513'],
   },
-  [Drupal.t('Children', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Children', {}, { context: 'Event search: target group' })]: {
     ids: ['yso:p4354'],
   },
-  [Drupal.t('Youth', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Youth', {}, { context: 'Event search: target group' })]: {
     ids: ['yso:p11617'],
   },
-  [Drupal.t('Adults', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Adults', {}, { context: 'Event search: target group' })]: {
     negateIds: BloatingTargetGroups,
   },
-  [Drupal.t('Seniors', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Seniors', {}, { context: 'Event search: target group' })]: {
     ids: ['yso:p2433'],
   },
-  [Drupal.t('Immigrants', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Immigrants', {}, { context: 'Event search: target group' })]: {
     ids: ['yso:p6165'],
   },
-  [Drupal.t('Unemployed', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Unemployed', {}, { context: 'Event search: target group' })]: {
     ids: [
       // "Unemployed"
       'yso:p7708',
       // "Long term unemployed"
-      'yso:p7709'
+      'yso:p7709',
     ],
   },
-  [Drupal.t('Tourists', {}, {context: 'Event search: target group'})]: {
+  [Drupal.t('Tourists', {}, { context: 'Event search: target group' })]: {
     ids: [
       // "Tourists and travellers"
       'yso:p16596',
       // "Tourist areas"
       'yso:p3451',
       // "Sights and attractions"
-      'yso:p8134'
+      'yso:p8134',
     ],
   },
 };

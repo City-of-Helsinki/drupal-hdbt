@@ -5,7 +5,7 @@ export const currentLanguage = window.drupalSettings.path.currentLanguage || 'fi
 
 // Filter by current language
 const languageFilter = {
-  term: {[`${IndexFields.LANGUAGE}`]: currentLanguage},
+  term: { [`${IndexFields.LANGUAGE}`]: currentLanguage },
 };
 
 // Filter out taxonomy terms
@@ -23,9 +23,9 @@ const alphabeticallySortTerms = {
 const termSubAgg = {
   unique: {
     cardinality: {
-      field: `${IndexFields.RECRUITMENT_ID}.keyword`
-    }
-  }
+      field: `${IndexFields.RECRUITMENT_ID}.keyword`,
+    },
+  },
 };
 
 export const PROMOTED_IDS = {
@@ -34,8 +34,8 @@ export const PROMOTED_IDS = {
       terms: {
         field: IndexFields.NID,
         size: 100,
-      }
-    }
+      },
+    },
   },
   query: {
     bool: {
@@ -44,11 +44,11 @@ export const PROMOTED_IDS = {
         {
           term: {
             [IndexFields.PROMOTED]: true,
-          }
-        }
-      ]
-    }
-  }
+          },
+        },
+      ],
+    },
+  },
 };
 
 // Base aggregations
@@ -59,28 +59,28 @@ export const AGGREGATIONS = {
         field: 'task_area_external_id',
         size: 100,
       },
-      aggs: termSubAgg
+      aggs: termSubAgg,
     },
     employment: {
       terms: {
         field: 'employment_id',
         size: 100,
       },
-      aggs: termSubAgg
+      aggs: termSubAgg,
     },
     employment_type: {
       terms: {
         field: 'employment_type_id',
         size: 100,
       },
-      aggs: termSubAgg
+      aggs: termSubAgg,
     },
     employment_search_id: {
       terms: {
         field: 'employment_search_id',
         size: 100,
       },
-      aggs: termSubAgg
+      aggs: termSubAgg,
     },
   },
   query: {
@@ -121,9 +121,7 @@ export const LANGUAGE_OPTIONS = {
   },
   query: {
     bool: {
-      filter: [
-        nodeFilter,
-      ],
+      filter: [nodeFilter],
     },
   },
 };

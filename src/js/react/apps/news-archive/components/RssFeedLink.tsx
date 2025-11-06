@@ -17,11 +17,20 @@ const RssFeedLink = () => {
 
   return (
     <div className='news-archive__rss-link__container'>
-      <a href={getFeedUrl()} className='news-archive__rss-link' data-hds-variant="supplementary" data-hds-component="button" data-hds-icon-start="rss">
-        {choices ?
-          Drupal.t('Subscribe to RSS feed of news based on your choices', {}, {context: 'News RSS feed subscribe link'}) :
-          Drupal.t('Subscribe to all news as RSS feed', {}, {context: 'News RSS feed subscribe link'})
-        }
+      <a
+        href={getFeedUrl()}
+        className='news-archive__rss-link'
+        data-hds-variant='supplementary'
+        data-hds-component='button'
+        data-hds-icon-start='rss'
+      >
+        {choices
+          ? Drupal.t(
+              'Subscribe to RSS feed of news based on your choices',
+              {},
+              { context: 'News RSS feed subscribe link' },
+            )
+          : Drupal.t('Subscribe to all news as RSS feed', {}, { context: 'News RSS feed subscribe link' })}
       </a>
     </div>
   );

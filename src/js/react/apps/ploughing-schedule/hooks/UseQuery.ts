@@ -1,10 +1,9 @@
-import useSWR from 'swr';
 import { useAtomValue } from 'jotai';
-
-import SearchParams from '../types/SearchParams';
-import configurationsAtom from '../store';
-import getQueryString from '../helpers/GetQueryString';
+import useSWR from 'swr';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import getQueryString from '../helpers/GetQueryString';
+import configurationsAtom from '../store';
+import type SearchParams from '../types/SearchParams';
 
 const UseQuery = (params: SearchParams) => {
   const { baseUrl, index } = useAtomValue(configurationsAtom);
@@ -16,6 +15,7 @@ const UseQuery = (params: SearchParams) => {
       return;
     }
 
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
     return useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
@@ -25,15 +25,15 @@ const UseQuery = (params: SearchParams) => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(`_${  Object.values(params).toString()}`, fetcher, {
-    revalidateOnFocus: false
+  const { data, error, isLoading, isValidating } = useSWR(`_${Object.values(params).toString()}`, fetcher, {
+    revalidateOnFocus: false,
   });
 
   return {
     data,
     error,
     isLoading,
-    isValidating
+    isValidating,
   };
 };
 

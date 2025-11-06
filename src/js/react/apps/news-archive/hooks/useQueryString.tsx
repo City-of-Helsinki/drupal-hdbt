@@ -1,8 +1,8 @@
-import { estypes } from '@elastic/elasticsearch';
+import type { estypes } from '@elastic/elasticsearch';
 
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import URLParams from '../types/URLParams';
+import type URLParams from '../types/URLParams';
 import useLanguageQuery from './useLanguageQuery';
 
 const useQueryString = (urlParams: URLParams): string => {
@@ -15,32 +15,32 @@ const useQueryString = (urlParams: URLParams): string => {
   if (languageFilter?.bool?.filter) {
     must.push({
       term: {
-        entity_type: 'node'
-      }
+        entity_type: 'node',
+      },
     });
   }
 
   if (urlParams?.topic?.length) {
     must.push({
       terms: {
-        [IndexFields.NEWS_TAGS]: urlParams.topic
-      }
+        [IndexFields.NEWS_TAGS]: urlParams.topic,
+      },
     });
   }
 
   if (urlParams?.groups?.length) {
     must.push({
       terms: {
-        [IndexFields.NEWS_GROUPS]: urlParams.groups
-      }
+        [IndexFields.NEWS_GROUPS]: urlParams.groups,
+      },
     });
   }
 
   if (urlParams?.neighbourhoods?.length) {
     must.push({
       terms: {
-        [IndexFields.NEIGHBOURHOODS]: urlParams.neighbourhoods
-      }
+        [IndexFields.NEIGHBOURHOODS]: urlParams.neighbourhoods,
+      },
     });
   }
 
@@ -55,22 +55,23 @@ const useQueryString = (urlParams: URLParams): string => {
                 `${IndexFields.FULLTEXT_TITLE}^2`,
                 `${IndexFields.FIELD_LEAD_IN}^1.5`,
                 `${IndexFields.TEXT_CONTENT}^.1`,
-              ]
-            }
+              ],
+            },
           },
           {
             wildcard: {
-              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword}*`
-            }
-          }
+              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword}*`,
+            },
+          },
         ],
         minimum_should_match: 1,
-      }
+      },
     });
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   const query: any = {
-    ...languageFilter
+    ...languageFilter,
   };
 
   if (must.length) {
@@ -83,8 +84,8 @@ const useQueryString = (urlParams: URLParams): string => {
     sort: [
       '_score',
       {
-        [IndexFields.PUBLISHED_AT]: 'desc'
-      }
+        [IndexFields.PUBLISHED_AT]: 'desc',
+      },
     ],
     size,
   };

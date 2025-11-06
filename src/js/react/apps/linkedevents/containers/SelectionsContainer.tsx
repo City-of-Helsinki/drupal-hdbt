@@ -1,31 +1,30 @@
-import { MouseEventHandler, memo, ReactNode } from 'react';
-import { useAtomValue, useSetAtom, useAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import type { DateTime } from 'luxon';
-
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
+import { type MouseEventHandler, memo, type ReactNode } from 'react';
 import FilterButton from '@/react/common/FilterButton';
-import {
-  resetFormAtom,
-  locationSelectionAtom,
-  topicSelectionAtom,
-  freeFilterAtom,
-  remoteFilterAtom,
-  startDateAtom,
-  endDateAtom,
-  resetParamAtom,
-  updateParamsAtom,
-  updateUrlAtom,
-  languageAtom,
-  eventTypeAtom,
-  targetGroupsAtom,
-  loadableUrlAtom,
-} from '../store';
-import OptionType from '../types/OptionType';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import ApiKeys from '../enum/ApiKeys';
 import getDateString from '../helpers/GetDate';
-import { EventTypeOption } from '../types/EventTypeOption';
-import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
+import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
+import {
+  endDateAtom,
+  eventTypeAtom,
+  freeFilterAtom,
+  languageAtom,
+  loadableUrlAtom,
+  locationSelectionAtom,
+  remoteFilterAtom,
+  resetFormAtom,
+  resetParamAtom,
+  startDateAtom,
+  targetGroupsAtom,
+  topicSelectionAtom,
+  updateParamsAtom,
+  updateUrlAtom,
+} from '../store';
+import type { EventTypeOption } from '../types/EventTypeOption';
+import type OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
   const [urlData] = useAtom(loadableUrlAtom);
@@ -51,7 +50,8 @@ const SelectionsContainer = () => {
     remoteFilter ||
     startDate;
 
-  if (!urlData.data) {
+  // Check if data is available
+  if (urlData.state !== 'hasData' || !urlData.data) {
     return null;
   }
 
@@ -63,10 +63,7 @@ const SelectionsContainer = () => {
         values={topicsSelection}
         url={urlData.data}
       />
-      <TargetGroupPills
-        targetGroups={targetGroups}
-        url={urlData.data}
-      />
+      <TargetGroupPills targetGroups={targetGroups} url={urlData.data} />
       <ListFilterPills
         updater={setLocationSelection}
         valueKey={ApiKeys.LOCATION}
@@ -79,11 +76,7 @@ const SelectionsContainer = () => {
         values={languageSelection}
         url={urlData.data}
       />
-      <DateFilterPill
-        startDate={startDate}
-        endDate={endDate}
-        url={urlData.data}
-      />
+      <DateFilterPill startDate={startDate} endDate={endDate} url={urlData.data} />
       <CheckboxFilterPill
         label={Drupal.t('Remote events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.REMOTE}
@@ -98,18 +91,19 @@ const SelectionsContainer = () => {
         url={urlData.data}
         value={freeFilter}
       />
-      <TypeFilterPills {...{eventTypeSelection}} url={urlData.data}/>
+      <TypeFilterPills {...{ eventTypeSelection }} url={urlData.data} />
     </FilterBulletsWrapper>
   );
 };
 
 type FilterBulletsProps = {
-  showClearButton: string | number | boolean | true | DateTime |undefined;
+  showClearButton: string | number | boolean | true | DateTime | undefined;
   resetForm: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
   url: string | null;
 };
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
 const FilterBullets = ({ showClearButton, resetForm, children, url }: FilterBulletsProps) => {
   // SelectionWrapper hasContent doesn't work for this, we need to bind the check to
   // showClearButton which checks if any of the filters have values
@@ -125,12 +119,14 @@ const FilterBullets = ({ showClearButton, resetForm, children, url }: FilterBull
 };
 
 type ListFilterBulletsProps = {
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
   updater: Function;
   valueKey: string;
   values: OptionType[];
   url: string | null;
 };
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
 const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBulletsProps) => {
   const updateParams = useSetAtom(updateParamsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
@@ -144,6 +140,7 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
     const index = newValue.findIndex((selection: OptionType) => selection.value === value);
     newValue.splice(index, 1);
     updater(newValue);
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     updateUrl();
 
@@ -165,6 +162,7 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
 };
 
 type CheckboxFilterBulletProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   atom: any;
   valueKey: string;
   label: string;
@@ -172,6 +170,7 @@ type CheckboxFilterBulletProps = {
   value: boolean;
 };
 
+// biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
 const CheckboxFilterBullet = ({ atom, valueKey, label, url, value }: CheckboxFilterBulletProps) => {
   const setValue = useSetAtom(atom);
   const resetParam = useSetAtom(resetParamAtom);
@@ -201,10 +200,11 @@ type DateFilterBulletProps = {
 
 const TypeFilterBullets = ({
   eventTypeSelection,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
   url,
 }: {
   eventTypeSelection: EventTypeOption[];
-  url: string|null;
+  url: string | null;
 }) => {
   const setEventTypeSelection = useSetAtom(eventTypeAtom);
   const updateParams = useSetAtom(updateParamsAtom);
@@ -221,13 +221,14 @@ const TypeFilterBullets = ({
           clearSelection={() => {
             const value = eventTypeSelection.filter((type) => type !== selection);
             setEventTypeSelection(value);
-            updateParams({[ApiKeys.EVENT_TYPE]: typeSelectionsToString(value)});
+            updateParams({ [ApiKeys.EVENT_TYPE]: typeSelectionsToString(value) });
             updateUrl();
           }}
           key={selection}
-          value={selection === 'General' ?
-            Drupal.t('Events', {}, {context: 'Event search: events type'}) :
-            Drupal.t('Hobbies', {}, {context: 'Event search: hobbies type'})
+          value={
+            selection === 'General'
+              ? Drupal.t('Events', {}, { context: 'Event search: events type' })
+              : Drupal.t('Hobbies', {}, { context: 'Event search: hobbies type' })
           }
         />
       ))}
@@ -235,7 +236,8 @@ const TypeFilterBullets = ({
   );
 };
 
-const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => {
+// biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+const DateFilterBullet = ({ startDate, endDate, url }: DateFilterBulletProps) => {
   const setStartDate = useSetAtom(startDateAtom);
   const setEndDate = useSetAtom(endDateAtom);
   const resetParam = useSetAtom(resetParamAtom);
@@ -259,10 +261,8 @@ const DateFilterBullet = ({ startDate, endDate, url}: DateFilterBulletProps) => 
   );
 };
 
-const TargetGroupsBullets = ({ targetGroups, url }: {
-  targetGroups: OptionType[],
-  url: string|null
-}) => {
+// biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+const TargetGroupsBullets = ({ targetGroups, url }: { targetGroups: OptionType[]; url: string | null }) => {
   const setTargetGroups = useSetAtom(targetGroupsAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
@@ -289,11 +289,11 @@ const TargetGroupsBullets = ({ targetGroups, url }: {
   );
 };
 
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
 const updateSelections = (prev: any, next: any) => {
   if (prev.url === next.url) {
     return true;
   }
-
   return false;
 };
 

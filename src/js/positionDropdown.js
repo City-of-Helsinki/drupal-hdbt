@@ -19,7 +19,7 @@ const positionDropdown = (button, relativeElement, options = {}) => {
   const viewportWidth = document.documentElement.clientWidth;
 
   // Positioning if the dropdown doesn't fit on the RIGHT side.
-  if ((viewportWidth - dropDownRect.right) < gutter) {
+  if (viewportWidth - dropDownRect.right < gutter) {
     const right = viewportWidth - relativeElementRect.right - gutter;
     dropDown.style.left = 'auto';
     dropDown.style.transform = 'none';
@@ -27,7 +27,7 @@ const positionDropdown = (button, relativeElement, options = {}) => {
 
     // If the dropdown is a toast handle the css variables.
     if (isToast) {
-      const toastArrowRight = ((viewportWidth - buttonRect.right) - gutter) + (buttonWidth / 2);
+      const toastArrowRight = viewportWidth - buttonRect.right - gutter + buttonWidth / 2;
       dropDown.style.setProperty('--toast-arrow-left', 'auto');
       dropDown.style.setProperty('--toast-arrow-right', `${toastArrowRight}px`);
       dropDown.style.setProperty('--toast-arrow-transform', '50%');
@@ -35,14 +35,14 @@ const positionDropdown = (button, relativeElement, options = {}) => {
   }
 
   // Positioning if the dropdown doesn't fit on the LEFT side.
-  if ((dropDownRect.left < gutter) ) {
+  if (dropDownRect.left < gutter) {
     const left = relativeElementRect.left - gutter;
     dropDown.style.left = `-${left}px`;
     dropDown.style.transform = 'none';
 
     // If the dropdown is a toast handle the css variables.
     if (isToast) {
-      const toastArrowLeft = (buttonRect.left - gutter) + (buttonWidth / 2);
+      const toastArrowLeft = buttonRect.left - gutter + buttonWidth / 2;
       dropDown.style.setProperty('--toast-arrow-left', `${toastArrowLeft}px`);
     }
   }

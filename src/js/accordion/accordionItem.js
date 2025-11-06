@@ -1,14 +1,11 @@
 export default class AccordionItem {
-
   static accordionItemElement = 'helfi-accordion-item';
 
   static toggleElement = 'accordion-item__button--toggle';
 
   static closeElement = 'accordion-item__button--close';
 
-  static ariaExpandedElements = [
-    'accordion-item__button--toggle'
-  ];
+  static ariaExpandedElements = ['accordion-item__button--toggle'];
 
   static contentElement = 'accordion-item__content';
 
@@ -58,7 +55,6 @@ export default class AccordionItem {
     if (!AccordionItem.isClick(event.which)) {
       return;
     }
-    // eslint-disable-next-line no-unused-expressions
     this.isOpen ? this.close() : this.open();
   };
 
@@ -77,7 +73,6 @@ export default class AccordionItem {
     });
   };
 
-
   // Show/hide the accordion content with the hidden-attribute.
   setHidden = (noAnimation) => {
     const accordionElement = this.element.closest('.accordion');
@@ -89,11 +84,12 @@ export default class AccordionItem {
       accordionElement.style.setProperty('--js-accordion-open-time', '0s');
 
       // Force a reflow to ensure the style change takes effect
-      // eslint-disable-next-line no-void
       void document.body.offsetHeight;
 
-      // eslint-disable-next-line no-unused-expressions
-      this.isOpen ? accordionItemContent.removeAttribute('hidden') : accordionItemContent.hidden = 'until-found';
+      this.isOpen
+        ? accordionItemContent.removeAttribute('hidden')
+        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+          (accordionItemContent.hidden = 'until-found');
 
       // Remove the css-property to enable animations again.
       setTimeout(() => {
@@ -105,7 +101,8 @@ export default class AccordionItem {
 
     if (!this.isOpen) {
       // Get the show/hide animation duration from the css.
-      const accordionAnimationDuration = parseInt(getComputedStyle(accordionElement).getPropertyValue('--js-accordion-open-time'), 10) || 200;
+      const accordionAnimationDuration =
+        parseInt(getComputedStyle(accordionElement).getPropertyValue('--js-accordion-open-time'), 10) || 200;
 
       // Delay the attribute change until the animation has been completed.
       setTimeout(() => {
@@ -138,8 +135,11 @@ export default class AccordionItem {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
   }
 
-  get id() { return this._id; }
+  get id() {
+    return this._id;
+  }
 
-  get isOpen() { return this._isOpen; }
-
+  get isOpen() {
+    return this._isOpen;
+  }
 }

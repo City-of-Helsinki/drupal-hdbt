@@ -1,4 +1,4 @@
-import { TranslatedString } from './ServiceMap';
+import type { TranslatedString } from './ServiceMap';
 
 export type LinkedEventsTopic = {
   id: string;
@@ -15,4 +15,4 @@ export type LinkedEventsTopic = {
   publisher: string;
   replaced_by: null;
   name: TranslatedString;
-}
+};

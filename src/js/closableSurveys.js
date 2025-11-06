@@ -1,7 +1,7 @@
-import LocalStorageManager from './localStorageManager';
 import ClientHelpers from './clientHelpers';
+import LocalStorageManager from './localStorageManager';
 
-(Drupal => {
+((Drupal) => {
   Drupal.behaviors.closableSurveys = {
     attach: function attach() {
       // Move the DOM element with id 'block-surveys' right after the dialog-off-canvas-main-canvas if it is present.
@@ -48,7 +48,7 @@ import ClientHelpers from './clientHelpers';
 
       function addFocusTrap() {
         surveyFocusTrap = window.focusTrap.createFocusTrap('#helfi-survey', {
-          initialFocus: () => '#helfi-survey__title'
+          initialFocus: () => '#helfi-survey__title',
         });
         surveyFocusTrap.activate();
       }
@@ -85,22 +85,19 @@ import ClientHelpers from './clientHelpers';
         if (mainContent && !mainContent.hasAttribute('inert') && surveyContainer) {
           mainContent.setAttribute('inert', '');
         } else {
-          // eslint-disable-next-line no-unused-expressions
-          mainContent && mainContent.removeAttribute('inert');
+          mainContent?.removeAttribute('inert');
         }
 
         if (skipToMain && !skipToMain.hasAttribute('inert') && surveyContainer) {
           skipToMain.setAttribute('inert', '');
         } else {
-          // eslint-disable-next-line no-unused-expressions
-          skipToMain && skipToMain.removeAttribute('inert');
+          skipToMain?.removeAttribute('inert');
         }
 
         if (cookieBanner && !cookieBanner.hasAttribute('inert') && surveyContainer) {
           cookieBanner.setAttribute('inert', '');
         } else {
-          // eslint-disable-next-line no-unused-expressions
-          cookieBanner && cookieBanner.removeAttribute('inert');
+          cookieBanner?.removeAttribute('inert');
         }
       }
 
@@ -122,7 +119,6 @@ import ClientHelpers from './clientHelpers';
         }
       }
 
-
       // Function to hide the survey and remove noscroll from body.
       function removeSurvey() {
         addToSurveyStorage();
@@ -135,9 +131,9 @@ import ClientHelpers from './clientHelpers';
       }
 
       if (surveyButtons) {
-        surveyButtons.forEach(
-          button => button.addEventListener('click', removeSurvey)
-        );
+        surveyButtons.forEach((button) => {
+          button.addEventListener('click', removeSurvey);
+        });
       }
 
       function handleEscapeKey(event) {
@@ -148,12 +144,11 @@ import ClientHelpers from './clientHelpers';
 
       document.body.addEventListener('keydown', handleEscapeKey);
 
-      // Make sure that its not Siteimprove Crawler viewing the site.
+      // Make sure that it's not Siteimprove Crawler viewing the site.
       if (!siteimproveCrawler) {
         // Set a timeout to show the survey after the defined delay.
         setTimeout(showSurvey, surveyDelay);
       }
-
-    }
+    },
   };
 })(Drupal);

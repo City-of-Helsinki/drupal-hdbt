@@ -6,7 +6,7 @@ export const getDateString = ({ startDate, endDate, showLabels }: DateSelectDate
     return Drupal.t('All dates', {}, { context: 'Events search' });
   }
 
-  if ((startDate && startDate.isValid) && (!endDate || !endDate.isValid)) {
+  if (startDate?.isValid && (!endDate || !endDate.isValid)) {
     if (showLabels) {
       return Drupal.t('From @date', { '@date': startDate.toFormat(HDS_DATE_FORMAT) }, { context: 'Events search' });
     }
@@ -21,7 +21,11 @@ export const getDateString = ({ startDate, endDate, showLabels }: DateSelectDate
   }
 
   if (showLabels) {
-    return Drupal.t('From @date until @date2', { '@date': startDate?.toFormat(HDS_DATE_FORMAT), '@date2': endDate?.toFormat(HDS_DATE_FORMAT) }, { context: 'Events search' });
+    return Drupal.t(
+      'From @date until @date2',
+      { '@date': startDate?.toFormat(HDS_DATE_FORMAT), '@date2': endDate?.toFormat(HDS_DATE_FORMAT) },
+      { context: 'Events search' },
+    );
   }
 
   return `${startDate?.toFormat(HDS_DATE_FORMAT) || 'unset?'} - ${endDate?.toFormat(HDS_DATE_FORMAT)}`;

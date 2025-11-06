@@ -14,6 +14,6 @@ if (rootElement) {
     <React.StrictMode>
       <SearchContainer />
     </React.StrictMode>,
-    rootElement
+    rootElement,
   );
 }

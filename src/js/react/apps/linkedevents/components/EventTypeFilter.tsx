@@ -3,7 +3,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { eventTypeAtom, updateParamsAtom } from '../store';
 import ApiKeys from '../enum/ApiKeys';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
-import { EventTypeOption } from '../types/EventTypeOption';
+import type { EventTypeOption } from '../types/EventTypeOption';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 
 export const EventTypeFilter = () => {
@@ -13,7 +13,9 @@ export const EventTypeFilter = () => {
   const toggleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event?.target?.checked;
     const value = event.target.id === 'event-type-toggle' ? 'General' : 'Course';
-    const newTypeSelections: EventTypeOption[] = checked ? [...typeSelections, value] : typeSelections.filter((type) => type !== value);
+    const newTypeSelections: EventTypeOption[] = checked
+      ? [...typeSelections, value]
+      : typeSelections.filter((type) => type !== value);
     setTypes(newTypeSelections);
     updateParams({ [ApiKeys.EVENT_TYPE]: typeSelectionsToString(newTypeSelections) });
   };

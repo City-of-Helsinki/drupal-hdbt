@@ -1,11 +1,9 @@
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import { languageFilter, nodeFilter, sortOptions } from '../query/queries';
 import { ComponentMap } from '../helpers/helpers';
-
-import type URLParams from '../types/URLParams';
+import { languageFilter, nodeFilter, sortOptions } from '../query/queries';
 import type BooleanQuery from '../types/BooleanQuery';
-
+import type URLParams from '../types/URLParams';
 
 const useQueryString = (urlParams: URLParams): string => {
   const { size } = Global;
@@ -23,10 +21,10 @@ const useQueryString = (urlParams: URLParams): string => {
                 should: [],
                 filter: {
                   term: {
-                    _index: 'districts'
-                  }
-                }
-              }
+                    _index: 'districts',
+                  },
+                },
+              },
             },
             {
               bool: {
@@ -35,20 +33,20 @@ const useQueryString = (urlParams: URLParams): string => {
                 must: [],
                 filter: {
                   term: {
-                    _index: 'projects'
-                  }
-                }
-              }
-            }
+                    _index: 'projects',
+                  },
+                },
+              },
+            },
           ],
-          filter: [languageFilter, nodeFilter]
+          filter: [languageFilter, nodeFilter],
         },
       },
       functions: [
         {
           filter: { term: { content_type: 'district' } },
           weight,
-        }
+        },
       ],
       score_mode: 'sum',
       boost_mode: 'max', // max of query score and function score
@@ -56,13 +54,21 @@ const useQueryString = (urlParams: URLParams): string => {
     },
   };
 
-  if (Object.keys(urlParams).find(param => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length)) {
-    const isProjectFilterSet = Object.keys(ComponentMap).filter((item: string) => item !== 'title' && item !== 'districts' && item !== 'page' && item !== 'sort')
+  if (
+    Object.keys(urlParams).find(
+      (param) => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length,
+    )
+  ) {
+    const isProjectFilterSet = Object.keys(ComponentMap)
+      .filter((item: string) => item !== 'title' && item !== 'districts' && item !== 'page' && item !== 'sort')
       .find((key: string) => urlParams?.[key as keyof URLParams]?.length);
     const isDistrictFilterSet = urlParams?.districts?.length;
     const isTitleFilterSet = urlParams?.title?.length;
 
-    query.function_score.min_score = (isProjectFilterSet && isDistrictFilterSet) || (isProjectFilterSet && isTitleFilterSet) ? Number(300) : Number(weight + 1);
+    query.function_score.min_score =
+      (isProjectFilterSet && isDistrictFilterSet) || (isProjectFilterSet && isTitleFilterSet)
+        ? Number(300)
+        : Number(weight + 1);
 
     if (urlParams?.title?.length) {
       const title = urlParams.title.toString().toLowerCase();
@@ -70,13 +76,23 @@ const useQueryString = (urlParams: URLParams): string => {
       const projectWildcards: object[] = [];
 
       districtWildcards.push({ wildcard: { [IndexFields.TITLE]: { value: `*${title}*`, boost: 300 } } });
-      districtWildcards.push({ wildcard: { [IndexFields.FIELD_DISTRICT_SUBDISTRICTS_TITLE]: { value: `*${title}*`, boost: 200 } } });
-      districtWildcards.push({ wildcard: { [IndexFields.FIELD_DISTRICT_SEARCH_METATAGS]: { value: `*${title}*`, boost: 150 } } });
+      districtWildcards.push({
+        wildcard: { [IndexFields.FIELD_DISTRICT_SUBDISTRICTS_TITLE]: { value: `*${title}*`, boost: 200 } },
+      });
+      districtWildcards.push({
+        wildcard: { [IndexFields.FIELD_DISTRICT_SEARCH_METATAGS]: { value: `*${title}*`, boost: 150 } },
+      });
 
       projectWildcards.push({ wildcard: { [`${IndexFields.TITLE}`]: { value: `*${title}*`, boost: 150 } } });
       // if project filter is also set, boost projects.
-      projectWildcards.push({ wildcard: { [IndexFields.FIELD_PROJECT_DISTRICT_TITLE]: { value: `*${title}*`, boost: isProjectFilterSet ? 3000 : 150 } } });
-      projectWildcards.push({ wildcard: { [IndexFields.FIELD_PROJECT_SEARCH_METATAGS]: { value: `*${title}*`, boost: 150 } } });
+      projectWildcards.push({
+        wildcard: {
+          [IndexFields.FIELD_PROJECT_DISTRICT_TITLE]: { value: `*${title}*`, boost: isProjectFilterSet ? 3000 : 150 },
+        },
+      });
+      projectWildcards.push({
+        wildcard: { [IndexFields.FIELD_PROJECT_SEARCH_METATAGS]: { value: `*${title}*`, boost: 150 } },
+      });
 
       query.function_score.query.bool.should[0].bool.should.push(...districtWildcards);
       query.function_score.query.bool.should[1].bool.should.push(...projectWildcards);
@@ -87,14 +103,37 @@ const useQueryString = (urlParams: URLParams): string => {
       const projectTerms: object[] = [];
       const { districts } = urlParams;
 
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       Object.keys(districts).forEach((key: any) => {
-        districtTerms.push({ term: { [IndexFields.TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 150 : 1000 } } });
+        districtTerms.push({
+          term: {
+            [IndexFields.TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 150 : 1000 },
+          },
+        });
         // if project filter is also set, don't boost districts with subdistricts.
-        districtTerms.push({ term: { [IndexFields.FIELD_DISTRICT_SUBDISTRICTS_TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 0 : 1000 } } });
+        districtTerms.push({
+          term: {
+            [IndexFields.FIELD_DISTRICT_SUBDISTRICTS_TITLE]: {
+              value: districts[key].toLowerCase(),
+              boost: isProjectFilterSet ? 0 : 1000,
+            },
+          },
+        });
 
-        projectTerms.push({ term: { [IndexFields.TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 3000 : 150 } } });
+        projectTerms.push({
+          term: {
+            [IndexFields.TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 3000 : 150 },
+          },
+        });
         // if project filter is also set, boost projects.
-        projectTerms.push({ term: { [IndexFields.FIELD_PROJECT_DISTRICT_TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 3000 : 150 } } });
+        projectTerms.push({
+          term: {
+            [IndexFields.FIELD_PROJECT_DISTRICT_TITLE]: {
+              value: districts[key].toLowerCase(),
+              boost: isProjectFilterSet ? 3000 : 150,
+            },
+          },
+        });
       });
 
       query.function_score.query.bool.should[0].bool.should.push(...districtTerms);
@@ -103,24 +142,24 @@ const useQueryString = (urlParams: URLParams): string => {
 
     if (urlParams?.project_theme?.length) {
       const { project_theme } = urlParams;
-
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       Object.keys(project_theme).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
-            [IndexFields.FIELD_PROJECT_THEME_NAME]: { value: project_theme[key].toLowerCase(), boost: 10 }
-          }
+            [IndexFields.FIELD_PROJECT_THEME_NAME]: { value: project_theme[key].toLowerCase(), boost: 10 },
+          },
         });
       });
     }
 
     if (urlParams?.project_phase?.length) {
       const { project_phase } = urlParams;
-
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       Object.keys(project_phase).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
-            [IndexFields.FIELD_PROJECT_PHASE_NAME]: { value: project_phase[key].toLowerCase(), boost: 10 }
-          }
+            [IndexFields.FIELD_PROJECT_PHASE_NAME]: { value: project_phase[key].toLowerCase(), boost: 10 },
+          },
         });
       });
     }
@@ -128,11 +167,12 @@ const useQueryString = (urlParams: URLParams): string => {
     if (urlParams?.project_type?.length) {
       const { project_type } = urlParams;
 
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       Object.keys(project_type).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
-            [IndexFields.FIELD_PROJECT_TYPE_NAME]: { value: project_type[key].toLowerCase(), boost: 10 }
-          }
+            [IndexFields.FIELD_PROJECT_TYPE_NAME]: { value: project_type[key].toLowerCase(), boost: 10 },
+          },
         });
       });
     }
@@ -146,7 +186,6 @@ const useQueryString = (urlParams: URLParams): string => {
     from: size * (page - 1),
     query,
   });
-
 };
 
 export default useQueryString;

@@ -1,6 +1,6 @@
 type SearchStateItemValue = {
   value: string;
-}
+};
 
 type SearchStateItem = {
   value: SearchStateItemValue[];

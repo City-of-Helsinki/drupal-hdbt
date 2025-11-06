@@ -3,22 +3,22 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import SearchComponents from '../enum/SearchComponents';
-import transformDropdownsValues from '../helpers/Params';
 import { capitalize } from '../helpers/helpers';
+import transformDropdownsValues from '../helpers/Params';
 import {
+  districtSelectionAtom,
+  districtsAtom,
+  phaseSelectionAtom,
+  phasesAtom,
+  resetFormAtom,
+  themeSelectionAtom,
+  themesAtom,
+  typeSelectionAtom,
+  typesAtom,
   urlAtom,
   urlUpdateAtom,
-  districtsAtom,
-  districtSelectionAtom,
-  themesAtom,
-  themeSelectionAtom,
-  phasesAtom,
-  phaseSelectionAtom,
-  typesAtom,
-  typeSelectionAtom,
-  resetFormAtom
 } from '../store';
-import OptionType from '../types/OptionType';
+import type OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -80,6 +80,7 @@ const SelectionsContainer = () => {
 export default SelectionsContainer;
 
 type ListFilterProps = {
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
   updater: Function;
   valueKey: string;
   values: OptionType[];

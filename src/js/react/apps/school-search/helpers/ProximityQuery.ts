@@ -1,7 +1,7 @@
-import BooleanQuery from '@/types/BooleanQuery';
+import type BooleanQuery from '@/types/BooleanQuery';
 import AppSettings from '../enum/AppSettings';
 
-const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: number) => {
+const getQueryString = (ids: number[] | null, coordinates: number[] | null, page: number) => {
   const { size } = AppSettings;
   const lang = drupalSettings.path.currentLanguage;
 
@@ -10,20 +10,20 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       filter: [
         {
           term: {
-            search_api_language: lang
-          }
-        }
+            search_api_language: lang,
+          },
+        },
       ],
-    }
+    },
   };
 
   if (ids && Array.isArray(ids)) {
     query.bool.must = [
       {
         terms: {
-          id: ids
-        }
-      }
+          id: ids,
+        },
+      },
     ];
 
     query.bool.should = [
@@ -38,20 +38,21 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
                 term: {
                   [lang === 'sv' ? 'additional_filters.swedish_education' : 'additional_filters.finnish_education']: {
                     value: true,
-                  }
-                }
-              }
-            }
+                  },
+                },
+              },
+            },
           },
-        }
+        },
       },
     ];
   }
 
-  let sort: any = [{'name.keyword':'asc'}];
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  let sort: any = [{ 'name.keyword': 'asc' }];
 
-  if (coordinates && coordinates.length) {
-    sort = [{_score:'desc'}, ...sort];
+  if (coordinates?.length) {
+    sort = [{ _score: 'desc' }, ...sort];
   }
 
   return JSON.stringify({
@@ -59,14 +60,14 @@ const getQueryString = (ids: number[]|null, coordinates: number[]|null, page: nu
       ids: {
         terms: {
           field: 'id',
-          size: 1000
+          size: 1000,
         },
       },
     },
     from: size * (page - 1),
     query,
     size,
-    sort
+    sort,
   });
 };
 

@@ -1,33 +1,27 @@
-import { Select, SelectData, useSelectStorage } from 'hds-react';
+import { Select, type SelectData } from 'hds-react';
+import { useSelectStorage } from 'hds-react/components/select';
 import { useSetAtom } from 'jotai';
-import { memo, useCallback, useEffect } from 'react';
 import { useAtomCallback } from 'jotai/utils';
-import type OptionType from '../types/OptionType';
-
-import { topicSelectionAtom, updateParamsAtom} from '../store';
-import SearchComponents from '../enum/SearchComponents';
-import ApiKeys from '../enum/ApiKeys';
-import getNameTranslation from '@/react/common/helpers/ServiceMap';
-import { LinkedEventsTopic } from '@/types/LinkedEvents';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
-import LinkedEvents from '@/react/common/enum/LinkedEvents';
-import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { memo, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
+import LinkedEvents from '@/react/common/enum/LinkedEvents';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
+import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
+import getNameTranslation from '@/react/common/helpers/ServiceMap';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import type { LinkedEventsTopic } from '@/types/LinkedEvents';
+import ApiKeys from '../enum/ApiKeys';
+import SearchComponents from '../enum/SearchComponents';
+import { topicSelectionAtom, updateParamsAtom } from '../store';
+import type OptionType from '../types/OptionType';
 
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const getTopicsParamValue = useAtomCallback(
-    useCallback((get) => get(topicSelectionAtom), [])
-  );
+  const getTopicsParamValue = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
 
-  const getTopics = async (
-    searchTerm: string,
-    selectedOptions: OptionType[],
-    data: SelectData,
-  ) => {
+  const getTopics = async (searchTerm: string, _selectedOptions: OptionType[], _data: SelectData) => {
     const url = new URL(LinkedEvents.KEYWORDS_URL);
     const locationParams = new URLSearchParams({
       has_upcoming_events: 'true',
@@ -38,6 +32,7 @@ const FullTopicsFilter = memo(() => {
       options: [],
     };
 
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
     const response = await useTimeoutFetch(url.toString());
 
     if (response.status !== 200) {
@@ -46,10 +41,10 @@ const FullTopicsFilter = memo(() => {
 
     const body = await response.json();
 
-    if (body.data && body.data.length) {
+    if (body.data?.length) {
       const places = body.data.map((place: LinkedEventsTopic) => ({
         value: place.id,
-        label: getNameTranslation(place.name, drupalSettings.path.currentLanguage)
+        label: getNameTranslation(place.name, drupalSettings.path.currentLanguage),
       }));
 
       result.options = places;
@@ -61,12 +56,13 @@ const FullTopicsFilter = memo(() => {
 
   const onChange = (selectedOptions: OptionType[], clickedOption?: OptionType) => {
     setTopicsFilter(selectedOptions);
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
     updateParams({ [ApiKeys.KEYWORDS]: selectedOptions.map((topic: any) => topic.value).join(',') });
 
-    storage.updateAllOptions((option, group, groupindex) => ({
-        ...option,
-        selected: selectedOptions.some(selection => selection.value === option.value),
-      }));
+    storage.updateAllOptions((option, _group, _groupindex) => ({
+      ...option,
+      selected: selectedOptions.some((selection) => selection.value === option.value),
+    }));
 
     if (clickedOption) {
       storage.setOpen(true);

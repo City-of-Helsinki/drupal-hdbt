@@ -12,9 +12,11 @@ interface ResultCardProps extends NewsItem {
 }
 
 const ResultCard = ({
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
   alt,
   cardModifierClass,
   cardTitleLevel,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
   field_main_image_caption,
   field_photographer,
   main_image_url,
@@ -33,7 +35,7 @@ const ResultCard = ({
       month: 'numeric',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   };
 
@@ -54,7 +56,7 @@ const ResultCard = ({
     return (
       <CardPicture
         alt=''
-        photographer={field_photographer && field_photographer.length ? field_photographer[0] : undefined}
+        photographer={field_photographer?.length ? field_photographer[0] : undefined}
         imageUrls={imageUrls}
       />
     );

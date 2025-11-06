@@ -6,25 +6,24 @@
  */
 document.addEventListener('DOMContentLoaded', function enableHyphenopoly() {
   if (typeof Hyphenopoly === 'undefined') return;
-  // eslint-disable-next-line no-undef
   Hyphenopoly.config({
     require: {
-      'fi': 'arvopaperimarkkinalainsäädäntö',
-      'sv': 'informationssäkerhetskampanj',
-      'en': 'supercalifragilisticexpialidocious'
+      fi: 'arvopaperimarkkinalainsäädäntö',
+      sv: 'informationssäkerhetskampanj',
+      en: 'supercalifragilisticexpialidocious',
     },
     fallbacks: {
-      'en': 'en-us'
+      en: 'en-us',
     },
     setup: {
       selectors: {
-        '.hyphenate': {}
+        '.hyphenate': {},
       },
     },
     handleEvent: {
       error(e) {
         e.preventDefault();
-      }
-    }
+      },
+    },
   });
 });

@@ -1,8 +1,8 @@
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
-import Result from '../../types/Result';
 import { capitalize } from '../../helpers/helpers';
-import TagType from '../../types/TagType';
+import type Result from '../../types/Result';
+import type TagType from '../../types/TagType';
 
 type ImageUrls = {
   [key: string]: string;
@@ -21,13 +21,14 @@ const ResultCard = ({
   field_project_district_title_for_ui,
   field_project_external_website,
   field_project_theme_name,
-  field_district_subdistricts_title_for_ui
+  field_district_subdistricts_title_for_ui,
 }: Result) => {
   const linkUrl = field_project_external_website ? field_project_external_website[0] : `${url}`;
   let imageUrl = project_image_absolute_url ? project_image_absolute_url[0] : '';
   imageUrl = district_image_absolute_url ? district_image_absolute_url[0] : imageUrl;
   let imageAlt = field_project_image_alt && field_project_image_alt?.[0] !== '""' ? field_project_image_alt[0] : '';
-  imageAlt = field_district_image_alt && field_district_image_alt?.[0] !== '""' ? field_district_image_alt[0] : imageAlt;
+  imageAlt =
+    field_district_image_alt && field_district_image_alt?.[0] !== '""' ? field_district_image_alt[0] : imageAlt;
 
   const getImage = () => {
     if (!imageUrl || !imageUrl.length || !imageUrl[0]) {
@@ -43,21 +44,15 @@ const ResultCard = ({
       return undefined; // Return undefined if parsing fails
     }
 
-    return (
-      <CardPicture
-        alt={imageAlt}
-        imageUrls={imageUrls}
-      />
-    );
+    return <CardPicture alt={imageAlt} imageUrls={imageUrls} />;
   };
 
   const isProject = content_type[0] === 'project';
   const cardModifierClass = isProject ? 'card--project' : 'card--district';
   const cardCategoryTag: TagType = {
-    tag: isProject ?
-      Drupal.t('Project', {}, { context: 'District and project search' })
-      :
-      Drupal.t('District', {}, { context: 'District and project search' }),
+    tag: isProject
+      ? Drupal.t('Project', {}, { context: 'District and project search' })
+      : Drupal.t('District', {}, { context: 'District and project search' }),
     color: isProject ? 'gold' : 'coat-of-arms',
   };
 
@@ -72,37 +67,40 @@ const ResultCard = ({
 
   const getHtmlTime = (dateString: string): string => {
     const d = new Date(dateString);
-    return `${d.toLocaleString('fi-FI', {year: 'numeric'})}-${d.toLocaleString('fi-FI', {month: '2-digit'})}-${d.toLocaleString('fi-FI', {day: '2-digit'})}T${d.toLocaleString('fi-FI', {hour: '2-digit'})}:${d.toLocaleString('fi-FI', {minute: '2-digit'})}Z`;
+    return `${d.toLocaleString('fi-FI', { year: 'numeric' })}-${d.toLocaleString('fi-FI', { month: '2-digit' })}-${d.toLocaleString('fi-FI', { day: '2-digit' })}T${d.toLocaleString('fi-FI', { hour: '2-digit' })}:${d.toLocaleString('fi-FI', { minute: '2-digit' })}Z`;
   };
 
-  const getTimeItem = (dateStrings: string[]) => (
+  const getTimeItem = (dateStrings: string[]) =>
     dateStrings.map((dateString: string, i: number) => (
-      <time dateTime={getHtmlTime(dateString)} key={`${dateString}-${i}`}> {i !== 0 && '-'} {getVisibleTime(dateString)}</time>
-    ))
-  );
+      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+      <time dateTime={getHtmlTime(dateString)} key={`${dateString}-${i}`}>
+        {' '}
+        {i !== 0 && '-'} {getVisibleTime(dateString)}
+      </time>
+    ));
 
-  let schedule: JSX.Element|undefined;
+  let schedule: JSX.Element | undefined;
   if (project_plan_schedule || project_execution_schedule) {
     schedule = (
       <>
-        { project_plan_schedule &&
-          <span className="metadata__item--schedule metadata__item--schedule--plan-schedule">
+        {project_plan_schedule && (
+          <span className='metadata__item--schedule metadata__item--schedule--plan-schedule'>
             {Drupal.t('planning', {}, { context: 'District and project search' })}
             {getTimeItem(project_plan_schedule)}
           </span>
-        }
-        {project_plan_schedule && project_execution_schedule && ' ' }
-        {project_execution_schedule &&
-          <span className="metadata__item--schedule">
+        )}
+        {project_plan_schedule && project_execution_schedule && ' '}
+        {project_execution_schedule && (
+          <span className='metadata__item--schedule'>
             {Drupal.t('execution', {}, { context: 'District and project search' })}
             {getTimeItem(project_execution_schedule)}
           </span>
-        }
+        )}
       </>
     );
   }
 
-  let location;
+  let location: string | undefined;
   if (field_project_district_title_for_ui) {
     location = field_project_district_title_for_ui.map((item) => item).join(', ');
   }
