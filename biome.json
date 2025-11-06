@@ -1,33 +1,20 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.4/schema.json",
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noGlobalIsFinite": "off",
-        "noArrayIndexKey": "warn"
-      },
+      "suspicious": { "noGlobalIsFinite": "off", "noArrayIndexKey": "warn" },
       "correctness": {
         "noUnusedVariables": "warn",
         "useHookAtTopLevel": "error",
         "useJsxKeyInIterable": "error",
         "noNestedComponentDefinitions": "error"
       },
-      "style": {
-        "noUnusedTemplateLiteral": "warn",
-        "useImportType": "warn"
-      }
+      "style": { "noUnusedTemplateLiteral": "warn", "useImportType": "warn" }
     }
   },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineEnding": "lf",
-    "lineWidth": 120,
-    "expand": "auto"
-  },
+  "formatter": { "enabled": true, "expand": "never", "useEditorconfig": true },
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
@@ -40,7 +27,5 @@
       "bracketSpacing": true
     }
   },
-  "files": {
-    "includes": ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx"]
-  }
+  "files": { "includes": ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx"] }
 }
