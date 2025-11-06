@@ -1,7 +1,7 @@
 import Icon from '@/react/common/Icon';
 
 type PaginationProps = {
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updatePage: Function;
   currentPage: number;
   pages: number;
@@ -65,7 +65,7 @@ export const Pagination = ({
         )}
       >
         {prevPageExists ? (
-          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
+          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
           <a
             aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             className='hds-button hds-pagination__button-prev'
@@ -145,7 +145,7 @@ export const Pagination = ({
             </>
           )}
           {prevPages.map((pageIndex, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
             <li className='pager__item' key={i}>
               <a
                 aria-label={Drupal.t(
@@ -171,7 +171,7 @@ export const Pagination = ({
             </a>
           </li>
           {nextPages.map((pageIndex, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
             <li className='pager__item' key={i}>
               <a
                 aria-label={Drupal.t(
@@ -208,7 +208,7 @@ export const Pagination = ({
           )}
         </ul>
         {nextPageExists ? (
-          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
+          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
           <a
             aria-label={`${Drupal.t('Go to next page number', {}, { context: 'Pagination next page link title' })} ${currentPage + 1}`}
             className='hds-button hds-pagination__button-next'

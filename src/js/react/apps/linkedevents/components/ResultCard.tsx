@@ -31,7 +31,7 @@ function ResultCard({
   enrolment_start_time,
   id,
   images,
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   keywords = [],
   location,
   name,
@@ -78,9 +78,9 @@ function ResultCard({
 
     if (hasAddress) {
       hasName
-        ? // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+        ? // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
           (locationString += `, ${hasAddress}`)
-        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
           (locationString += hasAddress);
     }
 

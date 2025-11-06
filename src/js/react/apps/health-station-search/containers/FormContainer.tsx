@@ -34,7 +34,7 @@ const ProximityFormContainer = ({
   };
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
     <form
       className='hdbt-search--react__form-container'
       role='search'

@@ -1,4 +1,4 @@
-// biome-ignore lint/complexity/noStaticOnlyClass: @todo UHF-12066
+// biome-ignore lint/complexity/noStaticOnlyClass: @todo UHF-12501
 export default class ClientHelpers {
   static isCookieSet = (cookieName) => {
     const cookies = document.cookie;

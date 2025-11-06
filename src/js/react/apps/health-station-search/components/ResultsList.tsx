@@ -15,13 +15,13 @@ import type { HealthStation } from '../types/HealthStation';
 import ResultCard from './ResultCard';
 
 type ResultsListProps = {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   data: any;
   error: string | Error;
   isLoading: boolean;
   isValidating: boolean;
   page?: number;
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updatePage: Function;
 };
 
@@ -63,7 +63,7 @@ const ResultsList = ({
   const mapIds =
     address && sv_only && sv_id
       ? data?.aggregations?.ids?.buckets?.filter(
-          // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+          // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
           (item: any) => item.key === sv_id,
         )
       : data?.aggregations?.ids?.buckets;
@@ -124,7 +124,7 @@ const ResultsList = ({
         {useMap ? (
           <ResultsMap ids={mapIds} />
         ) : (
-          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
           <>
             {results.map((hit: Result<HealthStation>) => (
               <ResultCard key={hit._id} {...hit._source} />

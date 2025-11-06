@@ -20,7 +20,7 @@ function LocationFilter() {
     setLocationFilter(selectedOptions);
     updateParams({
       [ApiKeys.LOCATION]: selectedOptions
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         .map((location: any) => location.value)
         .join(','),
     });

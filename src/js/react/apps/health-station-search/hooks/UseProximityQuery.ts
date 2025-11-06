@@ -32,7 +32,7 @@ const UseProximityQuery = (params: SearchParams) => {
 
     if (address) {
       let addresses = await getAddresses(getAddressUrls(address));
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       addresses = addresses.filter((_address: any) => _address.results.length);
 
       if (addresses.length) {
@@ -64,7 +64,7 @@ const UseProximityQuery = (params: SearchParams) => {
       );
     }
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const result = await useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {

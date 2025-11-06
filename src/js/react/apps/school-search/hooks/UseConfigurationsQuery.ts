@@ -10,7 +10,7 @@ const UseConfigurationsQuery = () => {
   const body = JSON.stringify(AGGREGATIONS);
 
   const fetcher = async () => {
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const result = await useTimeoutFetch(`${proxyUrl}/${index}/_search`, {
       method: 'POST',
       headers: {

@@ -26,7 +26,7 @@ type CardPictureProps = {
 } & ImgHTMLAttributes<HTMLImageElement>;
 
 const CardPicture = (props: CardPictureProps) => {
-  // biome-ignore lint/correctness/noUnusedVariables: @todo UHF-12066
+  // biome-ignore lint/correctness/noUnusedVariables: @todo UHF-12501
   const { alt, photographer, imageUrls, imageOverride, src, ...rest } = props;
 
   // Determine which source of images to use
@@ -74,7 +74,7 @@ const CardPicture = (props: CardPictureProps) => {
     <picture>
       {derivedSources.map((source, index) => (
         <source
-          // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+          // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
           key={index}
           srcSet={source.srcSet}
           media={source.media}

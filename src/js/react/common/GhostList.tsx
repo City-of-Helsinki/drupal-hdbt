@@ -16,7 +16,7 @@ export const GhostList = ({
       )}
     </div>
     {Array.from(Array(count)).map((_, i) => (
-      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
       <CardGhost bordered={bordered} key={i} />
     ))}
   </div>

@@ -13,7 +13,7 @@ export function Icon(props: IconProps): JSX.Element {
   const iconLabelledBy = `hdbt-icon--${Math.floor(Math.random() * 99999)}`;
 
   return (
-    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: @todo UHF-12066
+    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: @todo UHF-12501
     <span
       className={`hel-icon hel-icon--${icon} ${typeof className !== 'undefined' ? className : ''}`}
       aria-labelledby={label && iconLabelledBy}

@@ -9,7 +9,7 @@ const coerce = (value: string, type: string) => {
   }
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 const useInitialParams = <T extends Record<string, any>>(params: T) => {
   const initialParams = new URLSearchParams(window.location.search);
   const entries = initialParams.entries();

@@ -20,7 +20,7 @@ function TopicsFilter() {
   const onChange = (value: OptionType[], _clickedOption?: OptionType) => {
     setTopicsFilter(value);
     updateParams({
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       [ApiKeys.KEYWORDS]: value.map((topic: any) => topic.value).join(','),
     });
   };

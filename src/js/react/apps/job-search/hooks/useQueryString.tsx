@@ -14,7 +14,7 @@ const useQueryString = (urlParams: URLParams): string => {
   const page = Number.isNaN(Number(urlParams.page))
     ? 1
     : Number(urlParams.page);
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const must: any[] = [
     {
       // Legacy sanity check, make sure forced translations aren't included
@@ -130,7 +130,7 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const query: any = {
     bool: {
       filter: [nodeFilter],

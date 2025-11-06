@@ -42,7 +42,7 @@ const FullLocationFilter = memo(() => {
       options: [],
     };
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(url.toString());
 
     if (response.status !== 200) {
@@ -78,7 +78,7 @@ const FullLocationFilter = memo(() => {
     );
     updateParams({
       [ApiKeys.LOCATION]: value
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         .map((location: any) => location.value)
         .join(','),
     });

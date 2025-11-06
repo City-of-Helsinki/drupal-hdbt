@@ -56,7 +56,7 @@ export type ServiceMapPlace = {
 
 export type AdministrativeDivision = {
   end: string;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   extra: any;
   id: number;
   modified_at: string;

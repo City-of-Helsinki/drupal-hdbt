@@ -39,7 +39,7 @@ const SearchContainer = () => {
 
   const updateUrl = useSetAtom(updateUrlAtom);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('address')) {
@@ -63,7 +63,7 @@ const SearchContainer = () => {
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(reqUrl, undefined, 10000);
 
     if (response.status === 200) {
@@ -81,7 +81,7 @@ const SearchContainer = () => {
     urlData.state === 'hasData' &&
     (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
   const { data, error, isLoading, isValidating } = useSWR(
     shouldFetch ? urlData.data : null,
     getEvents,

@@ -20,7 +20,7 @@ const useIndexQuery = ({ query, multi, ...rest }: UseIndexQueryProps) => {
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = `application/${multi ? 'x-ndjson' : 'json'}`;
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const res = await useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
       headers: {

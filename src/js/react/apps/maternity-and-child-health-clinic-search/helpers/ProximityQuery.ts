@@ -41,7 +41,7 @@ const getQueryString = (
     ];
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   let sort: any = [{ name_override: 'asc' }];
 
   if (coordinates?.length) {

@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12066 */
+/** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12501 */
 import { atom } from 'jotai';
 import { loadable } from 'jotai/utils';
 import type { DateTime } from 'luxon';
@@ -19,7 +19,7 @@ interface Options {
 }
 
 // Transform locations from API response to options
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 const transformLocations = (locations: any = null) => {
   if (!locations) {
     return [];
@@ -198,7 +198,7 @@ const getDateParams = (dates: { start?: DateTime; end?: DateTime }) => {
 
   (['end', 'start'] as const).forEach((key) => {
     if (dates[key]) {
-      // biome-ignore lint/style/noNonNullAssertion: @todo UHF-12066
+      // biome-ignore lint/style/noNonNullAssertion: @todo UHF-12501
       dateParams[key] = getIsoTime(dates[key]!, key);
     } else {
       dateParams[key] = undefined;

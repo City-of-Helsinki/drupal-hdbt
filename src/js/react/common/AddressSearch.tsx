@@ -96,15 +96,15 @@ export const AddressSearch = ({
         value: addressMap.has(address)
           ? [...addressMap.get(address), address]
           : null,
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       } as any);
     } else {
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       onSubmit(address as any);
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   const searchInput = useMemo(
     () => (
       <SearchInput
@@ -124,7 +124,7 @@ export const AddressSearch = ({
         style={defaultSearchInputStyle}
       />
     ),
-    // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+    // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
     [value, getSuggestions],
   );
 

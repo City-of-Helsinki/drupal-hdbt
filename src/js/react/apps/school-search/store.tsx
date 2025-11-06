@@ -5,7 +5,7 @@ import type SearchParams from './types/SearchParams';
 
 type Configurations = {
   error: Error | null;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   aggs: any;
   baseUrl: string;
 };
@@ -33,7 +33,7 @@ export const a1Atom = atom(async (get) => {
   }
 
   // A1 options.
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.a1[currentItem.key]) {
       acc.push({
@@ -58,7 +58,7 @@ export const a2Atom = atom(async (get) => {
   }
 
   // A2 options.
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.a2[currentItem.key]) {
       acc.push({
@@ -82,7 +82,7 @@ export const b1Atom = atom(async (get) => {
   }
 
   // B1 options.
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.b1[currentItem.key]) {
       acc.push({
@@ -106,7 +106,7 @@ export const b2Atom = atom(async (get) => {
   }
 
   // B2 options.
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.b2[currentItem.key]) {
       acc.push({
@@ -131,7 +131,7 @@ export const weightedEducationAtom = atom(async (get) => {
 
   // Weighted options.
   return ontologywordClarifications?.buckets.reduce(
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     (acc: any, currentItem: any) => {
       acc.push({ label: currentItem.key, value: currentItem.key });
       return acc;
@@ -154,14 +154,14 @@ export const bilingualEducationAtom = atom(async (get) => {
   }
 
   // Bilingual education options.
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.bilingualEducation[currentItem.key]) {
       const label =
         ontologyDetailsIdsToLang.bilingualEducation[currentItem.key];
 
       // Deduplicate options.
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       if (!acc.some((item: any) => item.label === label)) {
         const option: OptionType = {
           label,

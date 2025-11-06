@@ -39,7 +39,7 @@ const SearchContainer = () => {
     setSearchMode(mode);
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (initialParams?.address) {
       setParams({
@@ -50,7 +50,7 @@ const SearchContainer = () => {
     }
   }, [initialParams]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (configurations) {
       setConfigurations({

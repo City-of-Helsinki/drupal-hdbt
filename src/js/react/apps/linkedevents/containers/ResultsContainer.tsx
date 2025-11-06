@@ -84,7 +84,7 @@ function ResultsContainer({
       return (
         <ResultsHeader
           resultText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
             <>
               {Drupal.t(
                 'Start by searching with your address.',

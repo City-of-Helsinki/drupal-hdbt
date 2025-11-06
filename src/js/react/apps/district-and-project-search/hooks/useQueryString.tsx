@@ -142,7 +142,7 @@ const useQueryString = (urlParams: URLParams): string => {
       const projectTerms: object[] = [];
       const { districts } = urlParams;
 
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(districts).forEach((key: any) => {
         districtTerms.push({
           term: {
@@ -191,7 +191,7 @@ const useQueryString = (urlParams: URLParams): string => {
 
     if (urlParams?.project_theme?.length) {
       const { project_theme } = urlParams;
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(project_theme).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
@@ -206,7 +206,7 @@ const useQueryString = (urlParams: URLParams): string => {
 
     if (urlParams?.project_phase?.length) {
       const { project_phase } = urlParams;
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(project_phase).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {
@@ -222,7 +222,7 @@ const useQueryString = (urlParams: URLParams): string => {
     if (urlParams?.project_type?.length) {
       const { project_type } = urlParams;
 
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(project_type).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
           term: {

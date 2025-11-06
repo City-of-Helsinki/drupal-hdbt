@@ -47,7 +47,7 @@ const FormContainer = () => {
 
   // Set form control values from url parameters on load
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     setTitle(urlParams?.title?.toString() || '');
     setDistrictFilter(
@@ -119,7 +119,7 @@ const FormContainer = () => {
   );
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
     <form onSubmit={handleSubmit} role='search'>
       <div className='district-project-search-form__filters-container'>
         <div className='district-project-search-form__filters'>

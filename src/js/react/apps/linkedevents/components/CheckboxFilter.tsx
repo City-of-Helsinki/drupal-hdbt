@@ -6,7 +6,7 @@ import { resetParamAtom, updateParamsAtom } from '../store';
 type CheckboxFilterProps = {
   id: string;
   label: string;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   valueKey: string;
 };

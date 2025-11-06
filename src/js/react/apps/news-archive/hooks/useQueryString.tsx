@@ -71,7 +71,7 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const query: any = {
     ...languageFilter,
   };

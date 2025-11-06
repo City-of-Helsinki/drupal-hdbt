@@ -41,7 +41,7 @@ const FullTopicsFilter = memo(() => {
       options: [],
     };
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(url.toString());
 
     if (response.status !== 200) {
@@ -73,7 +73,7 @@ const FullTopicsFilter = memo(() => {
     setTopicsFilter(selectedOptions);
     updateParams({
       [ApiKeys.KEYWORDS]: selectedOptions
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         .map((topic: any) => topic.value)
         .join(','),
     });

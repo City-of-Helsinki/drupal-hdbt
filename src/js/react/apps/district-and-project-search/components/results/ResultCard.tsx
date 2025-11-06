@@ -83,7 +83,7 @@ const ResultCard = ({
 
   const getTimeItem = (dateStrings: string[]) =>
     dateStrings.map((dateString: string, i: number) => (
-      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
       <time dateTime={getHtmlTime(dateString)} key={`${dateString}-${i}`}>
         {' '}
         {i !== 0 && '-'} {getVisibleTime(dateString)}

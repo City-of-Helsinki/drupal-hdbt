@@ -45,7 +45,7 @@ const FormContainer = ({
         }
 
         const hits = data?.hits?.hits ?? [];
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         const streetNames: SuggestionItemType[] = hits.map((hit: any) => ({
           value: hit.fields.street_name[0],
         }));
@@ -65,7 +65,7 @@ const FormContainer = ({
       });
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
     <form
       className='hdbt-search--react__form-container'
       role='search'

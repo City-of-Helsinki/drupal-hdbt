@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12066 */
+/** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501 */
 import type { Option } from 'hds-react';
 import { atom } from 'jotai';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
@@ -212,7 +212,7 @@ export const employmentAtom = atom(async (get) => {
   );
 
   const options = visibleOptions
-    // biome-ignore lint/suspicious/useIterableCallbackReturn: @todo UHF-12066
+    // biome-ignore lint/suspicious/useIterableCallbackReturn: @todo UHF-12501
     .map((term: Result<Term>) => {
       const tid = term._source.tid[0];
       const customId = term._source.field_search_id?.[0];

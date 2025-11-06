@@ -21,7 +21,7 @@ export const LanguageFilter = () => {
     setLanguage(selectedOptions);
     updateParams({
       [ApiKeys.LANGUAGE]: selectedOptions
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         .map((language: any) => language.value)
         .join(','),
     });

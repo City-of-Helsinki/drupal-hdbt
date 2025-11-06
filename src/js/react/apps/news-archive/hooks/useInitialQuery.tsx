@@ -41,7 +41,7 @@ const useInitialQuery = () => {
     [IndexFields.FIELD_NEWS_GROUPS]: 'news_group',
   };
 
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const queries: any[] = [];
 
   // Aggregations for field options

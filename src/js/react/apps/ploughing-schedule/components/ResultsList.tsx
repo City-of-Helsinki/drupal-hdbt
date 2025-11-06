@@ -9,7 +9,7 @@ import { paramsAtom } from '../store';
 import ResultCard from './ResultCard';
 
 type ResultsListProps = {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   data: any;
   error: string | Error;
   isLoading: boolean;

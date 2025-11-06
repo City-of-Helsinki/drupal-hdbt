@@ -22,7 +22,7 @@ class NewsSearchParams extends URLSearchParams {
       if (matchedKey) {
         arrayValues?.[matchedKey]?.length
           ? arrayValues[matchedKey].push(value)
-          : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+          : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
             (arrayValues[matchedKey] = [value]);
       } else {
         this.set(key, value);

@@ -1,4 +1,4 @@
-// biome-ignore-all lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+// biome-ignore-all lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import type { DateTime } from 'luxon';
 import { type MouseEventHandler, memo, type ReactNode } from 'react';
@@ -138,7 +138,7 @@ const FilterBullets = ({
 };
 
 type ListFilterBulletsProps = {
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updater: Function;
   valueKey: string;
   values: OptionType[];
@@ -165,7 +165,7 @@ const ListFilterBullets = ({
     );
     newValue.splice(index, 1);
     updater(newValue);
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     updateUrl();
 
@@ -187,7 +187,7 @@ const ListFilterBullets = ({
 };
 
 type CheckboxFilterBulletProps = {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   valueKey: string;
   label: string;
@@ -336,7 +336,7 @@ const TargetGroupsBullets = ({
   );
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 const updateSelections = (prev: any, next: any) => {
   if (prev.url === next.url) {
     return true;

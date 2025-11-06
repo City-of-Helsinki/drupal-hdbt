@@ -70,7 +70,7 @@ export const DateRangeSelect = ({
     {},
     { context: 'React search: date range select' },
   ),
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   title,
 }: {
   dialogLabel?: string;

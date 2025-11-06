@@ -241,7 +241,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
 export default SelectionsContainer;
 
 type ListFilterProps = {
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updater: Function;
   valueKey: string;
   values: OptionType[];

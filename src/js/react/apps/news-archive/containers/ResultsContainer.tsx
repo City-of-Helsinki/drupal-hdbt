@@ -20,7 +20,7 @@ type ResultsContainerProps = {
 };
 
 const ResultsContainer = ({
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   hidePagination = false,
 }: ResultsContainerProps): JSX.Element => {
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
@@ -81,7 +81,7 @@ const ResultsContainer = ({
       {hideForm || (
         <ResultsHeader
           resultText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
             <>
               {Drupal.formatPlural(
                 total,

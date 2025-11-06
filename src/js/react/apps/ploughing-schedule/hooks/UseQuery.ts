@@ -15,7 +15,7 @@ const UseQuery = (params: SearchParams) => {
       return;
     }
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     return useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {

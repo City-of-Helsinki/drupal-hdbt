@@ -2,7 +2,7 @@ import parse from 'html-react-parser';
 
 const getScheduleCard = (maintenanceClass: number, several?: boolean) => {
   if (maintenanceClass > 0) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const schedules: any = [];
     schedules[1] = Drupal.t(
       'We will start to clear snow when there is three centimetres of snow.<br>We will clear the street of snow within four hours. If snow has fallen in the evening or late into the night (19.00–3.00), we will clear the street by seven in the morning.<br>If it snows heavily and for a long time, clearing may be delayed.',

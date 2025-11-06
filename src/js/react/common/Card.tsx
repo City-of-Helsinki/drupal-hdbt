@@ -35,7 +35,7 @@ export type CardItemProps = {
   daterange?: string | JSX.Element;
   dateRangeLabel?: string;
   distance?: string;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   langAttribute?: any;
   language?: string;
   languageEducation?: string;

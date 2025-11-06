@@ -71,7 +71,7 @@ const getResultCard = ({
   const typeTags = Array.isArray(field_employment_type)
     ? field_employment_type
     : [];
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const tags: any = employmentTags.concat(typeTags).map((tag) => ({ tag }));
 
   return (
@@ -110,7 +110,7 @@ const ResultCard = ({ job, innerHits }: ResultCardProps) => {
     return null;
   }
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
   const languageFilterActive = useAtomValue(urlAtom)?.language;
   // If no filtering by language, prefer showing current language translation
   if (

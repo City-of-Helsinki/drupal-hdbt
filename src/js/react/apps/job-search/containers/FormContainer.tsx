@@ -65,7 +65,7 @@ const FormContainer = () => {
   const setSubmitted = useSetAtom(monitorSubmittedAtom);
 
   // Set form control values from url parameters on load
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     setKeyword(urlParams?.keyword?.toString() || '');
     setAreaFilter(
@@ -99,7 +99,7 @@ const FormContainer = () => {
         (selection: OptionType) => selection.value,
       ),
       employment: employmentSelection.reduce(
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         (acc: any, curr: any) => acc.concat(curr.value),
         [],
       ),
@@ -126,7 +126,7 @@ const FormContainer = () => {
         (selection: OptionType) => selection.value,
       ),
       employment: employmentSelection.reduce(
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         (acc: any, curr: any) => acc.concat(curr.value),
         [],
       ),
@@ -186,7 +186,7 @@ const FormContainer = () => {
   );
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
     <form
       className='job-search-form'
       role='search'

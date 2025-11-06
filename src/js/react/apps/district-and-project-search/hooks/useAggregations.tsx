@@ -1,4 +1,4 @@
-// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
 import { capitalize } from '../helpers/helpers';
 import type Aggregations from '../types/Aggregations';
 import type { AggregationItem, CustomAggs } from '../types/Aggregations';

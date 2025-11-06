@@ -1,8 +1,8 @@
 import { type MutableRefObject, useEffect } from 'react';
 
 // Make any element listen outside click and focus events.
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-// biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
+// biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
 const useOutsideClick = (ref: MutableRefObject<any>, callback: Function) => {
   useEffect(() => {
     const handleClick = (event: MouseEvent | FocusEvent) => {

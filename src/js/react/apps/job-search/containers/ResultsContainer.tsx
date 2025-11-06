@@ -73,7 +73,7 @@ const ResultsContainer = () => {
       <>
         <ResultsHeader
           resultText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
             <>
               {Drupal.formatPlural(
                 jobs,
@@ -85,7 +85,7 @@ const ResultsContainer = () => {
             </>
           }
           optionalResultsText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
             <>
               {Drupal.formatPlural(
                 total,

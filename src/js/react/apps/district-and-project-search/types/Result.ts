@@ -3,7 +3,7 @@ type Result = {
   _type: string;
   _id: string;
   _score: number;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   _source: any;
   search_api_language: string;
   url: string[];

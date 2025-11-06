@@ -12,11 +12,11 @@ interface ResultCardProps extends NewsItem {
 }
 
 const ResultCard = ({
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   alt,
   cardModifierClass,
   cardTitleLevel,
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   field_main_image_caption,
   field_photographer,
   main_image_url,

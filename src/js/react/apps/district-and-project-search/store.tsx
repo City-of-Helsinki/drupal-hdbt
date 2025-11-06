@@ -9,12 +9,12 @@ import type URLParams from './types/URLParams';
 
 type configurations = {
   error: Error | null;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   aggs: any;
 };
 
 const getParams = (searchParams: URLSearchParams) => {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const params: { [k: string]: any } = {};
   const entries = searchParams.entries();
   let result = entries.next();
@@ -123,7 +123,7 @@ export const districtsAtom = atom(async (get) => {
     return [];
   }
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
   const options: OptionType[] = useAggregations(
     aggs,
     IndexFields.FIELD_PROJECT_DISTRICT_TITLE,
@@ -140,7 +140,7 @@ export const themesAtom = atom(async (get) => {
     return [];
   }
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
   const options: OptionType[] = useAggregations(
     aggs,
     IndexFields.FIELD_PROJECT_THEME_NAME,
@@ -157,7 +157,7 @@ export const phasesAtom = atom(async (get) => {
     return [];
   }
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
   const options: OptionType[] = useAggregations(
     aggs,
     IndexFields.FIELD_PROJECT_PHASE_NAME,
@@ -174,7 +174,7 @@ export const typesAtom = atom(async (get) => {
     return [];
   }
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
   const options: OptionType[] = useAggregations(
     aggs,
     IndexFields.FIELD_PROJECT_TYPE_NAME,

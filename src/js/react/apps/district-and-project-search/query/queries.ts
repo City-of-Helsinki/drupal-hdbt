@@ -1,7 +1,7 @@
 import IndexFields from '../enum/IndexFields';
 
 // Filter by current language
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 export const languageFilter: any = {
   term: {
     [`${IndexFields.LANGUAGE}`]:
@@ -10,12 +10,12 @@ export const languageFilter: any = {
 };
 
 // Filter out taxonomy terms
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 export const nodeFilter: any = {
   terms: { [IndexFields.CONTENT_TYPE]: ['project', 'district'] },
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 export const sortOptions: any = {
   most_relevant: {
     _score: { order: 'desc' },

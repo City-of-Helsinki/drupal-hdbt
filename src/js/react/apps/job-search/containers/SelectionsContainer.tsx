@@ -131,7 +131,7 @@ const SelectionsContainer = () => {
 export default SelectionsContainer;
 
 type ListFilterProps = {
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updater: Function;
   valueKey: string;
   values: OptionType[];
@@ -168,7 +168,7 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 };
 
 type CheckboxFilterPillProps = {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   valueKey: string;
   label: string;
@@ -195,7 +195,7 @@ const CheckboxFilterPill = ({
 };
 
 type SingleFilterProps = {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   label: string;
   valueKey: string;

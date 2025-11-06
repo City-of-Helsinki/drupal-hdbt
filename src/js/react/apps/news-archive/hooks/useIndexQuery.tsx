@@ -36,7 +36,7 @@ const useIndexQuery = ({
       });
     }
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     return useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
       headers: {

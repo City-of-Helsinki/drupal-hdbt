@@ -4,7 +4,7 @@ import IndexFields from '../enum/IndexFields';
 import type SearchParams from '../types/SearchParams';
 
 // Filter by current language
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 export const languageFilter: any = {
   term: {
     [`${IndexFields.LANGUAGE}`]:
@@ -15,7 +15,7 @@ export const languageFilter: any = {
 const getCheckBoxFilters = (params: SearchParams) => {
   const languageKeys = ['finnish_education', 'swedish_education'];
   const gradeKeys = ['grades_1_6', 'grades_1_9', 'grades_7_9'];
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const query: any = [];
 
   [languageKeys, gradeKeys].forEach((keys) => {
@@ -44,9 +44,9 @@ const getCheckBoxFilters = (params: SearchParams) => {
   return query;
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 const getDropdownFilters = (filterValues: any, indexField: string) => {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const filters: any = [
     {
       bool: {
@@ -138,7 +138,7 @@ const getQueryString = (params: SearchParams, page: number) => {
     query.bool.minimum_should_match = 1;
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const checkBoxFilters: any = getCheckBoxFilters(params);
   if (checkBoxFilters.length) {
     query.bool.must = [
@@ -156,31 +156,31 @@ const getQueryString = (params: SearchParams, page: number) => {
   }
 
   if (a1?.length) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const dropdownFilters: any = getDropdownFilters(a1, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
   if (a2?.length) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const dropdownFilters: any = getDropdownFilters(a2, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
   if (b1?.length) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const dropdownFilters: any = getDropdownFilters(b1, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
   if (b2?.length) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const dropdownFilters: any = getDropdownFilters(b2, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 
   if (weighted_education?.length) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const dropdownFilters: any = getDropdownFilters(
       weighted_education,
       'ontologyword_details_clarifications',
@@ -189,7 +189,7 @@ const getQueryString = (params: SearchParams, page: number) => {
   }
 
   if (bilingual_education?.length) {
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const dropdownFilters: any = getDropdownFilters(
       bilingual_education,
       'ontologyword_ids',
@@ -197,7 +197,7 @@ const getQueryString = (params: SearchParams, page: number) => {
     query.bool.must?.push(...dropdownFilters);
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const sort: any[] = [{ 'name.keyword': 'asc' }];
 
   if (keyword?.length) {

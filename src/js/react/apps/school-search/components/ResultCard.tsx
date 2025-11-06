@@ -37,7 +37,7 @@ const ResultCard = ({
     cardImage = undefined; // No image to display
   }
 
-  // biome-ignore lint/suspicious/noImplicitAnyLet: @todo UHF-12066
+  // biome-ignore lint/suspicious/noImplicitAnyLet: @todo UHF-12501
   let language;
 
   if (additionalFilters.finnish_education) {
@@ -60,7 +60,7 @@ const ResultCard = ({
   }
 
   let languageEducation = ontologyword_ids?.reduce(
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     (acc: any, currentItem: any) => {
       (['a1', 'a2', 'b1', 'b2'] as const).forEach((option) => {
         if (ontologyDetailsIdsToLang[option][currentItem]) {
@@ -76,7 +76,7 @@ const ResultCard = ({
   languageEducation = [...new Set(languageEducation)];
 
   const bilingualEducation = ontologyword_ids?.reduce(
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     (acc: any, currentItem: any) => {
       if (ontologyDetailsIdsToLang.bilingualEducation[currentItem]) {
         acc.push(ontologyDetailsIdsToLang.bilingualEducation[currentItem]);

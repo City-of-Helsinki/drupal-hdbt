@@ -1,4 +1,4 @@
-// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12066
+// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
 import { useAtomValue } from 'jotai';
 import IndexFields from '../enum/IndexFields';
 import { configurationsAtom } from '../store';

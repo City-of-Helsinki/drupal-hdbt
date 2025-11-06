@@ -5,7 +5,7 @@ import type TagType from '@/types/TagType';
 interface TagsProps {
   tags: Array<TagType>;
   isInteractive?: boolean;
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   langAttribute?: any;
   insideCard?: boolean;
 }
@@ -40,7 +40,7 @@ export function Tags({
     <ul className={`content-tags__tags ${typeClass}`}>
       {tags.map((item: TagType, key: number) => (
         <li
-          // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+          // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
           key={`{item.tag}-${key}`}
           className='content-tags__tags__tag'
           {...langAttribute}

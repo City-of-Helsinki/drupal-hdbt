@@ -24,7 +24,7 @@ const ResultsSort = () => {
   const setUrlParams = useSetAtom(urlUpdateAtom);
   const [sort, setSort] = useState<OptionType>(options[0]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (urlParams.sort) {
       const matchedSort = options.find(

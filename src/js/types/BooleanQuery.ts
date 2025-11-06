@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12066 */
+/** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501 */
 type BooleanQuery = {
   bool: {
     filter?: Array<any>;

@@ -15,13 +15,13 @@ import type { School } from '../types/School';
 import ResultCard from './ResultCard';
 
 type ResultsListProps = {
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   data: any;
   error: string | Error;
   isLoading: boolean;
   isValidating: boolean;
   page?: number;
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12066
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updatePage: Function;
 };
 
@@ -119,7 +119,7 @@ const ResultsList = ({
         {useMap ? (
           <ResultsMap ids={data?.aggregations?.ids?.buckets} />
         ) : (
-          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
           <>
             {results.map((hit: Result<School>) => (
               <ResultCard key={hit._id} {...hit._source} />

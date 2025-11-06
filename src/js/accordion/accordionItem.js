@@ -92,7 +92,7 @@ export default class AccordionItem {
 
       this.isOpen
         ? accordionItemContent.removeAttribute('hidden')
-        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
           (accordionItemContent.hidden = 'until-found');
 
       // Remove the css-property to enable animations again.

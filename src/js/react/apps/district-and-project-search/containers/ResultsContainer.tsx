@@ -33,7 +33,7 @@ const ResultsContainer = (): JSX.Element => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
     const url: string | undefined = proxyUrl;
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
+    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
       method: 'POST',
       headers: {
@@ -79,7 +79,7 @@ const ResultsContainer = (): JSX.Element => {
     <div className='react-search__results'>
       <ResultsHeader
         resultText={
-          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
           <>
             {Drupal.formatPlural(
               total,
