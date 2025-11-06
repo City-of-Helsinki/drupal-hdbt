@@ -6,7 +6,7 @@
           <div class="user-login__text-container">
             <h1 class="user-login-page__title">{{ 'Log in'|t }}</h1>
           </div>
-          {{ page.content|without(page_title_block) }}
+          {{ page.content|without(page_title_block, 'page_title') }}
         </div>
         {% embed '@hdbt/misc/special-page-illustration.twig' with {
           illustration_modifier_class: 'special-page__illustration-container--user-login',

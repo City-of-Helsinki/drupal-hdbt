@@ -1,4 +1,3 @@
-
 {% if is_active %}
   {% block paragraph %}
     {% embed "@hdbt/misc/component.twig" with
@@ -10,38 +9,12 @@
       }
     %}
       {% block component_content %}
-
-        <noscript>
-          <div class="component__needs-js">
-            <p>Sorry, as we do not send your data anywhere from this calculator to keep your data safe, it needs Javascript to work. Please enable Javascript in your browser to use this calculator.</p>
-          </div>
-        </noscript>
-
-        {% set helfi_calculator_id =  'helfi_calc_' ~ random() %}
-        <div id="{{ helfi_calculator_id }}"></div>
-        {{ attach_library('hdbt/helfi_calculator') }}
-
-        {% set calculator_name = content.field_calculator[0]['#markup'] %}
-
-        {% if calculator_name in [
-          'home_care_service_voucher',
-          'home_care_client_fee',
-          'early_childhood_education_fee',
-          'continuous_housing_service_voucher',
-          'families_home_services_client_fee',
-          'helsinki_benefit_amount_estimate',
-        ] %}
-
-          <script src="{{ theme_path }}/dist/js/{{calculator_name}}.min.js"></script>
-          <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-              const clean = window.helfi_calculator.{{calculator_name}}('{{ helfi_calculator_id }}', drupalSettings.{{calculator_name}});
-            });
-          </script>
-        {# {% else %}
-          {{ calculator_name }} #}
-        {% endif %}
-
+        <div
+          id="{{ helfi_calculator_id }}"
+          class="js-helfi-calculator"
+          data-calculator="{{ content.field_calculator[0]['#markup'] }}"
+          data-settings-key="{{ helfi_calculator_id }}"
+        ></div>
       {% endblock component_content %}
     {% endembed %}
   {% endblock paragraph %}

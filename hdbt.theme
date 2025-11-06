@@ -68,15 +68,13 @@ function _hdbt_get_theme_path(): string {
  * Implements hook_csp_policy_alter().
  */
 function hdbt_csp_policy_alter(Csp $policy): void {
+  $matomo_urls = [
+    'https://digiaiiris.com',
+    'https://*.digiaiiris.com',
+  ];
   // Rules needed for Matomo analytics.
-  $policy->fallbackAwareAppendIfEnabled('connect-src', [
-    'https://webanalytics.digiaiiris.com',
-    'https://digiaiiris.com',
-  ]);
-  $policy->fallbackAwareAppendIfEnabled('script-src', [
-    'https://webanalytics.digiaiiris.com',
-    'https://digiaiiris.com',
-  ]);
+  $policy->fallbackAwareAppendIfEnabled('connect-src', $matomo_urls);
+  $policy->fallbackAwareAppendIfEnabled('script-src', $matomo_urls);
 }
 
 /**
@@ -246,6 +244,8 @@ function hdbt_preprocess_page(&$variables): void {
 
   // Check that language switcher is added to the header branding.
   if (isset($variables['page']['header_branding'])) {
+    // Attach mobile language switcher library.
+    $variables['#attached']['library'][] = 'hdbt/mobile-language-switcher';
     $variables['use_language_switcher_block'] = array_filter(
       array_keys($variables['page']['header_branding']
     ), function ($key) {
@@ -700,14 +700,14 @@ function hdbt_preprocess_block(&$variables): void {
     }
   }
 
-  // Attach "closable_announcements" library to "announcements" block.
+  // Attach "closable-announcements" library to "announcements" block.
   if ($variables['plugin_id'] == 'announcements') {
-    $variables['#attached']['library'][] = 'hdbt/closable_announcements';
+    $variables['#attached']['library'][] = 'hdbt/closable-announcements';
   }
 
-  // Attach "closable_surveys" library to "surveys" block.
+  // Attach "closable-surveys" library to "surveys" block.
   if ($variables['plugin_id'] == 'surveys') {
-    $variables['#attached']['library'][] = 'hdbt/closable_surveys';
+    $variables['#attached']['library'][] = 'hdbt/closable-surveys';
   }
 
   if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
@@ -910,13 +910,6 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
     // Set image caption variable to render array for the template.
     $variables['image_caption'] = $caption;
   }
-}
-
-/**
- * Implements hook_preprocess_paragraph__type().
- */
-function hdbt_preprocess_paragraph__calculator(&$variables) {
-  $variables['theme_path'] = _hdbt_get_theme_path();
 }
 
 /**

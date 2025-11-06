@@ -49,7 +49,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
       >
         {prevPageExists ? (
           <a
-            aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage}`}
+            aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             className='hds-button hds-pagination__button-prev'
             href={`?page=${currentPage}`}
             onClick={(e) => {
@@ -57,7 +57,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
                 updatePage(e, currentPage - 1);
               }
             }}
-            title={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage}`}
+            title={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             type='button'
             rel='prev'
             role='button'
@@ -71,7 +71,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
           <button
             className='hds-button hds-pagination__button-prev'
             disabled
-            title={Drupal.t('Go to previous page', {}, { context: 'Pagination previous page link title' })}
+            title={Drupal.t('You are on the first page, you cannot return to the previous page.', {}, { context: 'Pagination previous page link title, first page' })}
             type='button'
           >
             <Icon icon="angle-left" />
@@ -180,7 +180,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
           <button
             className='hds-button hds-pagination__button-next'
             disabled
-            title={Drupal.t('Go to next page', {}, { context: 'Pagination next page link title' })}
+            title={Drupal.t('You are on the last page, you cannot go on to the next page.', {}, { context: 'Pagination next page link title, last page' })}
             type='button'
           >
             <span aria-hidden='true' className='hds-pagination__button-next-label'>
