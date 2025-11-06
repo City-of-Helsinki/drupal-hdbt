@@ -13,9 +13,12 @@ export const configurationsAtom = atom(() => {
 
 export const paramsAtom = atom<SearchParams>({});
 export const stagedParamsAtom = atom<SearchParams>({});
-export const updateParamsAtom = atom(null, (_get, set, params: SearchParams) => {
-  set(stagedParamsAtom, { ...params });
-  set(paramsAtom, { ...params });
-});
+export const updateParamsAtom = atom(
+  null,
+  (_get, set, params: SearchParams) => {
+    set(stagedParamsAtom, { ...params });
+    set(paramsAtom, { ...params });
+  },
+);
 
 export default configurationsAtom;

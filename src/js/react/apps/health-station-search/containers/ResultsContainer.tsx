@@ -17,7 +17,11 @@ const ProximityResultsContainer = () => {
   const { data, error, isLoading, isValidating } = UseProximityQuery(params);
   const { page } = params;
 
-  return <ResultsList {...{ data, error, isLoading, isValidating, page, updatePage }} />;
+  return (
+    <ResultsList
+      {...{ data, error, isLoading, isValidating, page, updatePage }}
+    />
+  );
 };
 
 export default ProximityResultsContainer;

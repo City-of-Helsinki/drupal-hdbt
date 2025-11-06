@@ -13,7 +13,11 @@ type SelectionsContainerProps = {
 
 type ParamsKey = keyof Omit<URLParams, 'page' | 'keyword'>;
 
-const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContainerProps) => {
+const SelectionsContainer = ({
+  topic,
+  neighbourhoods,
+  groups,
+}: SelectionsContainerProps) => {
   const params = useAtomValue(urlAtom);
   const updateParams = useSetAtom(urlUpdateAtom);
 
@@ -25,7 +29,11 @@ const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContai
         const newParams = { ...params, page: 1 };
         const index = newParams?.[key]?.indexOf(Number(option.value));
 
-        if (typeof index !== 'undefined' && !Number.isNaN(index) && index !== -1) {
+        if (
+          typeof index !== 'undefined' &&
+          !Number.isNaN(index) &&
+          index !== -1
+        ) {
           newParams[key]?.splice(index, 1);
           updateParams({ ...newParams });
         }
@@ -42,22 +50,24 @@ const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContai
       neighbourhoods,
       groups,
     };
-    [params.topic, params.neighbourhoods, params.groups].forEach((selections, index) => {
-      if (selections?.length) {
-        selections.forEach((id) => {
-          const option = passedOptions[keys[index]]?.find(
-            (valueOption: OptionType) => id === Number(valueOption.value),
-          );
+    [params.topic, params.neighbourhoods, params.groups].forEach(
+      (selections, index) => {
+        if (selections?.length) {
+          selections.forEach((id) => {
+            const option = passedOptions[keys[index]]?.find(
+              (valueOption: OptionType) => id === Number(valueOption.value),
+            );
 
-          if (!option) {
-            return;
-          }
+            if (!option) {
+              return;
+            }
 
-          const paramKey = keys[index];
-          pills.push(generatePill(option, paramKey));
-        });
-      }
-    });
+            const paramKey = keys[index];
+            pills.push(generatePill(option, paramKey));
+          });
+        }
+      },
+    );
 
     return pills;
   };
@@ -68,10 +78,16 @@ const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContai
     });
   };
 
-  const showClearButton = params.topic?.length || params.neighbourhoods?.length || params.groups?.length;
+  const showClearButton =
+    params.topic?.length ||
+    params.neighbourhoods?.length ||
+    params.groups?.length;
 
   return (
-    <SelectionsWrapper showClearButton={showClearButton} resetForm={clearSelections}>
+    <SelectionsWrapper
+      showClearButton={showClearButton}
+      resetForm={clearSelections}
+    >
       {getPills()}
     </SelectionsWrapper>
   );

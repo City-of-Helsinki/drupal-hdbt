@@ -20,8 +20,10 @@ class NewsSearchParams extends URLSearchParams {
       const matchedKey = arrayKeys.find((stateKey) => key.includes(stateKey));
 
       if (matchedKey) {
-        // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
-        arrayValues?.[matchedKey]?.length ? arrayValues[matchedKey].push(value) : (arrayValues[matchedKey] = [value]);
+        arrayValues?.[matchedKey]?.length
+          ? arrayValues[matchedKey].push(value)
+          : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12066
+            (arrayValues[matchedKey] = [value]);
       } else {
         this.set(key, value);
       }
@@ -50,7 +52,8 @@ class NewsSearchParams extends URLSearchParams {
 
       if (matchedKey) {
         const arrayValue = value.split(',');
-        initialParams[matchedKey as keyof Omit<URLParams, 'page' | 'keyword'>] = arrayValue.map((id) => Number(id));
+        initialParams[matchedKey as keyof Omit<URLParams, 'page' | 'keyword'>] =
+          arrayValue.map((id) => Number(id));
       }
 
       result = entries.next();

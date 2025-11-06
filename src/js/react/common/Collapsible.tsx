@@ -30,14 +30,24 @@ function Collapsible({
 }: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const helperIds = [helper ? `${id}-helper` : undefined, `${id}-title`].filter(Boolean);
+  const helperIds = [helper ? `${id}-helper` : undefined, `${id}-title`].filter(
+    Boolean,
+  );
 
   const getHandle = () => {
     if (showHandle !== false) {
       return isActive ? (
-        <Icon icon='angle-up' className='collapsible__handle' onClick={() => setActive(!isActive)} />
+        <Icon
+          icon='angle-up'
+          className='collapsible__handle'
+          onClick={() => setActive(!isActive)}
+        />
       ) : (
-        <Icon icon='angle-down' className='collapsible__handle' onClick={() => setActive(!isActive)} />
+        <Icon
+          icon='angle-down'
+          className='collapsible__handle'
+          onClick={() => setActive(!isActive)}
+        />
       );
     }
   };
@@ -74,7 +84,11 @@ function Collapsible({
         {getHandle()}
       </button>
       {isActive && (
-        <div className='collapsible__element collapsible__children' role='dialog' aria-label={dialogLabel}>
+        <div
+          className='collapsible__element collapsible__children'
+          role='dialog'
+          aria-label={dialogLabel}
+        >
           {children}
         </div>
       )}

@@ -18,7 +18,11 @@ function SeeAllButton() {
             href={eventsUrl}
             title={
               seeAllButtonOverride ||
-              Drupal.t('Search for more events on the Events website', {}, { context: 'Events search' })
+              Drupal.t(
+                'Search for more events on the Events website',
+                {},
+                { context: 'Events search' },
+              )
             }
           />
         </div>
@@ -29,7 +33,11 @@ function SeeAllButton() {
             data-hds-component='button'
             data-hds-variant='secondary'
             href={hobbiesPublicUrl}
-            title={Drupal.t('Search for more events on the Hobbies website', {}, { context: 'Events search' })}
+            title={Drupal.t(
+              'Search for more events on the Hobbies website',
+              {},
+              { context: 'Events search' },
+            )}
           />
         </div>
       )}

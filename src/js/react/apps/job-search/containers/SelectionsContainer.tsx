@@ -42,8 +42,12 @@ const SelectionsContainer = () => {
     urlParams?.youth_summer_jobs ||
     urlParams?.employment?.length;
 
-  const showTaskAreas = Boolean(urlParams.task_areas?.length && urlParams.task_areas.length > 0);
-  const showEmployment = Boolean(urlParams.employment?.length && urlParams.employment?.length > 0);
+  const showTaskAreas = Boolean(
+    urlParams.task_areas?.length && urlParams.task_areas.length > 0,
+  );
+  const showEmployment = Boolean(
+    urlParams.employment?.length && urlParams.employment?.length > 0,
+  );
 
   return (
     <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
@@ -51,14 +55,20 @@ const SelectionsContainer = () => {
         <ListFilter
           updater={updateTaskAreas}
           valueKey={SearchComponents.TASK_AREAS}
-          values={transformDropdownsValues(urlParams.task_areas, taskAreaOptions)}
+          values={transformDropdownsValues(
+            urlParams.task_areas,
+            taskAreaOptions,
+          )}
         />
       )}
       {showEmployment && (
         <ListFilter
           updater={updateEmploymentOptions}
           valueKey={SearchComponents.EMPLOYMENT}
-          values={transformDropdownsValues(urlParams.employment, employmentOptions)}
+          values={transformDropdownsValues(
+            urlParams.employment,
+            employmentOptions,
+          )}
         />
       )}
       {urlParams.language && (
@@ -72,12 +82,19 @@ const SelectionsContainer = () => {
         <ListFilter
           updater={updateAreaFilter}
           valueKey={SearchComponents.AREA_FILTER}
-          values={transformDropdownsValues(urlParams.area_filter, areaFilterOptions)}
+          values={transformDropdownsValues(
+            urlParams.area_filter,
+            areaFilterOptions,
+          )}
         />
       )}
       {urlParams.continuous && (
         <CheckboxFilterPill
-          label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
+          label={Drupal.t(
+            'Open-ended vacancies',
+            {},
+            { context: 'Job search' },
+          )}
           atom={continuousAtom}
           valueKey={SearchComponents.CONTINUOUS}
         />
@@ -98,7 +115,11 @@ const SelectionsContainer = () => {
       )}
       {urlParams.youth_summer_jobs && (
         <CheckboxFilterPill
-          label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
+          label={Drupal.t(
+            'Summer jobs for young people',
+            {},
+            { context: 'Job search' },
+          )}
           atom={youthSummerJobsAtom}
           valueKey={SearchComponents.YOUTH_SUMMER_JOBS}
         />
@@ -122,7 +143,9 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 
   const removeSelection = (value: string) => {
     const newValue = values;
-    const index = newValue.findIndex((selection: OptionType) => selection.value === value);
+    const index = newValue.findIndex(
+      (selection: OptionType) => selection.value === value,
+    );
     newValue.splice(index, 1);
     updater(newValue);
     setUrlParams({
@@ -151,7 +174,11 @@ type CheckboxFilterPillProps = {
   label: string;
 };
 
-const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) => {
+const CheckboxFilterPill = ({
+  atom,
+  valueKey,
+  label,
+}: CheckboxFilterPillProps) => {
   const setValue = useSetAtom(atom);
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);

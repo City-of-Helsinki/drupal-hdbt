@@ -18,7 +18,11 @@ export const SearchInput = () => {
           [SearchComponents.KEYWORD]: e.target.value,
         })
       }
-      placeholder={Drupal.t('For example, budget proposal', {}, { context: 'News archive: keyword placeholder' })}
+      placeholder={Drupal.t(
+        'For example, budget proposal',
+        {},
+        { context: 'News archive: keyword placeholder' },
+      )}
       type='search'
       value={params?.keyword || ''}
       style={defaultTextInputStyle}

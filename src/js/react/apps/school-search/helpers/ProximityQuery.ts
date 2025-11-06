@@ -1,7 +1,11 @@
 import type BooleanQuery from '@/types/BooleanQuery';
 import AppSettings from '../enum/AppSettings';
 
-const getQueryString = (ids: number[] | null, coordinates: number[] | null, page: number) => {
+const getQueryString = (
+  ids: number[] | null,
+  coordinates: number[] | null,
+  page: number,
+) => {
   const { size } = AppSettings;
   const lang = drupalSettings.path.currentLanguage;
 
@@ -36,7 +40,9 @@ const getQueryString = (ids: number[] | null, coordinates: number[] | null, page
               boost: 1,
               filter: {
                 term: {
-                  [lang === 'sv' ? 'additional_filters.swedish_education' : 'additional_filters.finnish_education']: {
+                  [lang === 'sv'
+                    ? 'additional_filters.swedish_education'
+                    : 'additional_filters.finnish_education']: {
                     value: true,
                   },
                 },

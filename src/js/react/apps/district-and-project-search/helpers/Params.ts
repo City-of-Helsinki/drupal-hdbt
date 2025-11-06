@@ -1,6 +1,9 @@
 import type OptionType from '../types/OptionType';
 
-const transformDropdownsValues = (paramOptions: string[] | undefined = [], availableOptions: OptionType[] = []) => {
+const transformDropdownsValues = (
+  paramOptions: string[] | undefined = [],
+  availableOptions: OptionType[] = [],
+) => {
   const transformedOptions: OptionType[] = [];
 
   paramOptions.forEach((selection: string) => {

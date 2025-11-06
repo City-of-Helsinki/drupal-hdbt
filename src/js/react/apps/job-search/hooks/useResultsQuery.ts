@@ -1,3 +1,4 @@
+// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12066
 import { useAtomValue } from 'jotai';
 import IndexFields from '../enum/IndexFields';
 import { configurationsAtom } from '../store';
@@ -5,25 +6,36 @@ import type URLParams from '../types/URLParams';
 import usePromotedQuery from './usePromotedQuery';
 import useQueryString from './useQueryString';
 
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-type HandleQueryResults = (data: any) => { jobs: any; results: any; total: any };
+type HandleQueryResults = (data: any) => {
+  jobs: any;
+  results: any;
+  total: any;
+};
 
 const handlePromotedResults: HandleQueryResults = (data) => {
   const [promotedResponse, baseResponse] = data.responses;
 
   // Typecheck and combine totals from both queries
-  const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
+  const promotedTotal = Number(
+    promotedResponse.aggregations?.total_count?.value,
+  );
   const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
-  const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal) ? 0 : baseTotal);
+  const total =
+    (Number.isNaN(promotedTotal) ? 0 : promotedTotal) +
+    (Number.isNaN(baseTotal) ? 0 : baseTotal);
 
   if (total <= 0) {
     return { results: null, jobs: null, total };
   }
 
   // Typecheck and combine job totals (aggregated vacancies)
-  const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-  const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-  const jobs: string = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs) ? 0 : baseJobs);
+  const promotedJobs =
+    promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+  const baseJobs =
+    baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+  const jobs: string =
+    (Number.isNaN(promotedJobs) ? 0 : promotedJobs) +
+    (Number.isNaN(baseJobs) ? 0 : baseJobs);
   const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
 
   return {

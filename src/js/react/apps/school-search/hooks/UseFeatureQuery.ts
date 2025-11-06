@@ -23,9 +23,13 @@ const UseFeatureQuery = (params: SearchParams) => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(`_${query || ''}}`, fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data, error, isLoading, isValidating } = useSWR(
+    `_${query || ''}}`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+    },
+  );
 
   return {
     data,

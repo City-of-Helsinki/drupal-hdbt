@@ -13,7 +13,13 @@ type FilterProps = {
   stateKey: keyof URLParams;
 };
 
-const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps) => {
+const Filter = ({
+  label,
+  options,
+  placeholder,
+  stateKey,
+  ...rest
+}: FilterProps) => {
   const [params, setParams] = useAtom(stagedParamsAtom);
   const valueIds = params?.[stateKey] || [];
 
@@ -22,7 +28,9 @@ const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps)
 
     if (Array.isArray(valueIds)) {
       valueIds.forEach((id: number) => {
-        const option = options.find((valueOption: OptionType) => id.toString() === valueOption.value);
+        const option = options.find(
+          (valueOption: OptionType) => id.toString() === valueOption.value,
+        );
 
         if (option) {
           values.push(option);
@@ -33,10 +41,15 @@ const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps)
     return values;
   };
 
-  const onChange = (selectedOptions: OptionType[], _clickedOption?: OptionType) => {
+  const onChange = (
+    selectedOptions: OptionType[],
+    _clickedOption?: OptionType,
+  ) => {
     setParams({
       ...params,
-      [stateKey]: selectedOptions.map((option: OptionType) => Number(option.value)),
+      [stateKey]: selectedOptions.map((option: OptionType) =>
+        Number(option.value),
+      ),
     });
   };
 
@@ -59,7 +72,9 @@ const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps)
           { context: 'React search clear selection label' },
         ),
         label,
-        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+        language: getCurrentLanguage(
+          window.drupalSettings.path.currentLanguage,
+        ),
         placeholder,
       }}
       theme={defaultMultiSelectTheme}

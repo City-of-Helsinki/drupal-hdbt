@@ -88,7 +88,9 @@ function CardItem({
     ${cardModifierClass ? ` ${cardModifierClass}` : ''}
     ${cardUrlExternal ? ' card--external' : ''}
   `;
-  const HeadingTag = cardTitleLevel ? (`h${cardTitleLevel}` as keyof JSX.IntrinsicElements) : 'h4';
+  const HeadingTag = cardTitleLevel
+    ? (`h${cardTitleLevel}` as keyof JSX.IntrinsicElements)
+    : 'h4';
 
   return (
     <div className={cardClass}>
@@ -101,7 +103,12 @@ function CardItem({
               {cardTitle}
             </a>
           ) : (
-            <ExternalLink href={cardUrl} title={cardTitle} className='card__link' rel='bookmark' />
+            <ExternalLink
+              href={cardUrl}
+              title={cardTitle}
+              className='card__link'
+              rel='bookmark'
+            />
           )}
         </HeadingTag>
         {cardCategoryTag && (
@@ -112,36 +119,54 @@ function CardItem({
 
         {cardDescription && (
           <div className='card__description'>
-            {cardDescriptionHtml ? parse(cardDescription) : <p {...langAttribute}>{cardDescription}</p>}
+            {cardDescriptionHtml ? (
+              parse(cardDescription)
+            ) : (
+              <p {...langAttribute}>{cardDescription}</p>
+            )}
           </div>
         )}
 
         {cardHelptext && (
-          <div className='card__helptext'>{cardHelptextHtml ? parse(cardHelptext) : <p>{cardHelptext}</p>}</div>
+          <div className='card__helptext'>
+            {cardHelptextHtml ? parse(cardHelptext) : <p>{cardHelptext}</p>}
+          </div>
         )}
 
         <div className='card__metas'>
           {location && (
             <Metarow
               icon='location'
-              label={locationLabel || Drupal.t('Location', {}, { context: 'React search' })}
+              label={
+                locationLabel ||
+                Drupal.t('Location', {}, { context: 'React search' })
+              }
               content={location}
             />
           )}
           {distance && (
-            <Metarow icon='map' label={Drupal.t('Distance', {}, { context: 'React search' })} content={distance} />
+            <Metarow
+              icon='map'
+              label={Drupal.t('Distance', {}, { context: 'React search' })}
+              content={distance}
+            />
           )}
           {date && (
             <Metarow
               icon='clock'
-              label={dateLabel || Drupal.t('Date', {}, { context: 'React search' })}
+              label={
+                dateLabel || Drupal.t('Date', {}, { context: 'React search' })
+              }
               content={date}
             />
           )}
           {daterange && (
             <Metarow
               icon='calendar'
-              label={dateRangeLabel || Drupal.t('Estimated schedule', {}, { context: 'React search' })}
+              label={
+                dateRangeLabel ||
+                Drupal.t('Estimated schedule', {}, { context: 'React search' })
+              }
               content={daterange}
               langAttribute={langAttribute}
             />
@@ -149,42 +174,61 @@ function CardItem({
           {theme && (
             <Metarow
               icon='locate'
-              label={themeLabel || Drupal.t('Theme', {}, { context: 'React search' })}
+              label={
+                themeLabel || Drupal.t('Theme', {}, { context: 'React search' })
+              }
               content={theme}
             />
           )}
           {weightedEducation && (
             <Metarow
               icon='layers'
-              label={Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' })}
+              label={Drupal.t(
+                'Weighted curriculum education',
+                {},
+                { context: 'TPR Ontologyword details schools' },
+              )}
               content={weightedEducation}
             />
           )}
           {languageEducation && (
             <Metarow
               icon='group'
-              label={Drupal.t('Language offering', {}, { context: 'TPR Ontologyword details schools' })}
+              label={Drupal.t(
+                'Language offering',
+                {},
+                { context: 'TPR Ontologyword details schools' },
+              )}
               content={languageEducation}
             />
           )}
           {language && (
             <Metarow
               icon='globe'
-              label={languageLabel || Drupal.t('Language', {}, { context: 'React search' })}
+              label={
+                languageLabel ||
+                Drupal.t('Language', {}, { context: 'React search' })
+              }
               content={language}
             />
           )}
           {time && (
             <Metarow
               icon='calendar'
-              label={timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })}
+              label={
+                timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })
+              }
               content={time}
             />
           )}
           {signUp && (
             <Metarow
               icon='bell'
-              label={Drupal.t('Registration time', {}, { context: 'Event signup period' })}
+              label={Drupal.t(
+                'Registration time',
+                {},
+                { context: 'Event signup period' },
+              )}
               content={signUp}
               langAttribute={langAttribute}
             />
@@ -192,7 +236,11 @@ function CardItem({
           {registrationRequired && (
             <Metarow
               icon='info-circle'
-              label={Drupal.t('Additional information', {}, { context: 'Event additional information label' })}
+              label={Drupal.t(
+                'Additional information',
+                {},
+                { context: 'Event additional information label' },
+              )}
               content={Drupal.t(
                 'The event requires registration or a ticket.',
                 {},

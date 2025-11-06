@@ -11,19 +11,27 @@ import type OptionType from '../types/OptionType';
 export const LanguageFilter = () => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-  const languageOptions = Object.entries(LanguageOptions).map(([key, value]) => ({
-    label: value,
-    value: key,
-  }));
+  const languageOptions = Object.entries(LanguageOptions).map(
+    ([key, value]) => ({
+      label: value,
+      value: key,
+    }),
+  );
   const onChange = (selectedOptions: OptionType[]) => {
     setLanguage(selectedOptions);
     updateParams({
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-      [ApiKeys.LANGUAGE]: selectedOptions.map((language: any) => language.value).join(','),
+      [ApiKeys.LANGUAGE]: selectedOptions
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        .map((language: any) => language.value)
+        .join(','),
     });
   };
 
-  const selectLanguageLabel: string = Drupal.t('Language', {}, { context: 'React search' });
+  const selectLanguageLabel: string = Drupal.t(
+    'Language',
+    {},
+    { context: 'React search' },
+  );
 
   return (
     <div className='hdbt-search__filter'>
@@ -46,8 +54,14 @@ export const LanguageFilter = () => {
             { context: 'React search clear selection label' },
           ),
           label: selectLanguageLabel,
-          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-          placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
+          language: getCurrentLanguage(
+            window.drupalSettings.path.currentLanguage,
+          ),
+          placeholder: Drupal.t(
+            'All languages',
+            {},
+            { context: 'Language placeholder' },
+          ),
         }}
         theme={defaultMultiSelectTheme}
         value={languageSelection}

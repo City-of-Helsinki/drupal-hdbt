@@ -25,7 +25,14 @@ type ResultsListProps = {
   updatePage: Function;
 };
 
-const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
+const ResultsList = ({
+  data,
+  error,
+  isLoading,
+  isValidating,
+  page,
+  updatePage,
+}: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
@@ -47,15 +54,18 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   }
 
   const results = data.hits.hits;
-  const total = address && sv_only ? data.hits.hits.length : data.hits.total.value;
+  const total =
+    address && sv_only ? data.hits.hits.length : data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
   const showPagination = !useMap && (pages > 1 || addLastPage);
   const sv_id = results?.[0]?._source?.id?.[0];
   const mapIds =
     address && sv_only && sv_id
-      ? // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-        data?.aggregations?.ids?.buckets?.filter((item: any) => item.key === sv_id)
+      ? data?.aggregations?.ids?.buckets?.filter(
+          // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+          (item: any) => item.key === sv_id,
+        )
       : data?.aggregations?.ids?.buckets;
 
   return (
@@ -68,7 +78,10 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               '1 clinic',
               '@count clinics',
               {},
-              { context: 'React search: Maternity and child health clinic result count' },
+              {
+                context:
+                  'React search: Maternity and child health clinic result count',
+              },
             )}
             {data?.addressName
               ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${data?.addressName}`
@@ -85,7 +98,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               aria-controls='hdbt-search--react__results--tabpanel'
               onClick={() => setUseMap(false)}
             >
-              {Drupal.t('View as a list', {}, { context: 'React search: result display' })}
+              {Drupal.t(
+                'View as a list',
+                {},
+                { context: 'React search: result display' },
+              )}
             </button>
             <button
               type='button'
@@ -95,7 +112,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               aria-controls='hdbt-search--react__results--tabpanel'
               onClick={() => setUseMap(true)}
             >
-              {Drupal.t('View in a map', {}, { context: 'React search: result display' })}
+              {Drupal.t(
+                'View in a map',
+                {},
+                { context: 'React search: result display' },
+              )}
             </button>
           </div>
         }

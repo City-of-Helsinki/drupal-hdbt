@@ -52,7 +52,13 @@ const ResultsContainer = (): JSX.Element => {
   }
 
   if (error || initializationError) {
-    return <ResultsError error={error || initializationError} className='react-search__results' ref={scrollTarget} />;
+    return (
+      <ResultsError
+        error={error || initializationError}
+        className='react-search__results'
+        ref={scrollTarget}
+      />
+    );
   }
 
   if (!data?.hits?.hits.length) {

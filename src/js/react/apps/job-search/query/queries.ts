@@ -1,7 +1,8 @@
 import CustomIds from '../enum/CustomTermIds';
 import IndexFields from '../enum/IndexFields';
 
-export const currentLanguage = window.drupalSettings.path.currentLanguage || 'fi';
+export const currentLanguage =
+  window.drupalSettings.path.currentLanguage || 'fi';
 
 // Filter by current language
 const languageFilter = {
@@ -103,7 +104,10 @@ export const EMPLOYMENT_FILTER_OPTIONS = {
         { term: { field_search_id: CustomIds.ALTERNATION } },
       ],
       minimum_should_match: 1,
-      filter: [languageFilter, { term: { [IndexFields.ENTITY_TYPE]: 'taxonomy_term' } }],
+      filter: [
+        languageFilter,
+        { term: { [IndexFields.ENTITY_TYPE]: 'taxonomy_term' } },
+      ],
     },
   },
   sort: [alphabeticallySortTerms],

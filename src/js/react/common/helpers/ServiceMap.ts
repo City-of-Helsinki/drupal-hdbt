@@ -1,6 +1,9 @@
 import type { TranslatedString } from '@/types/ServiceMap';
 
-export const getNameTranslation = (names: TranslatedString, language: string | null) => {
+export const getNameTranslation = (
+  names: TranslatedString,
+  language: string | null,
+) => {
   if (language && names[language as 'fi' | 'sv' | 'en']) {
     return names[language as 'fi' | 'sv' | 'en'];
   }

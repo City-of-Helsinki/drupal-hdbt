@@ -9,7 +9,12 @@ type ResultsHeaderProps = {
 
 const ResultsHeader = forwardRef(
   (
-    { resultText, optionalResultsText, actions, actionsClass }: ResultsHeaderProps,
+    {
+      resultText,
+      optionalResultsText,
+      actions,
+      actionsClass,
+    }: ResultsHeaderProps,
     ref: ForwardedRef<HTMLHeadingElement>,
   ) => (
     <div className='hdbt-search--react__result-top-area'>

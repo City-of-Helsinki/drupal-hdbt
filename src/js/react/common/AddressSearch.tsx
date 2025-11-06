@@ -18,7 +18,11 @@ export const AddressSearch = ({
     {},
     { context: 'Loading finished indicator for suggestive search' },
   ),
-  loadingSpinnerText = Drupal.t('Loading suggestions...', {}, { context: 'Loading indicator for suggestive search' }),
+  loadingSpinnerText = Drupal.t(
+    'Loading suggestions...',
+    {},
+    { context: 'Loading indicator for suggestive search' },
+  ),
   onSubmit,
   searchInputClassname,
   value,
@@ -28,7 +32,10 @@ export const AddressSearch = ({
   includeCoordinates?: boolean;
   onSubmit: SubmitHandler<typeof includeCoordinates>;
   searchInputClassname?: string;
-} & Omit<React.ComponentProps<typeof SearchInput>, 'suggestionLabelField' | 'getSuggestions' | 'onSubmit'>) => {
+} & Omit<
+  React.ComponentProps<typeof SearchInput>,
+  'suggestionLabelField' | 'getSuggestions' | 'onSubmit'
+>) => {
   const addressMap = new Map();
 
   const getSuggestions = async (searchTerm?: string) => {
@@ -55,11 +62,18 @@ export const AddressSearch = ({
     );
 
     const [fiParams, svParams] = params;
-    const results = Promise.all([fetchSuggestions(fiParams), fetchSuggestions(svParams)]);
+    const results = Promise.all([
+      fetchSuggestions(fiParams),
+      fetchSuggestions(svParams),
+    ]);
 
-    const parseResults = (result: ServiceMapResponse<ServiceMapAddress>, langKey: string) =>
+    const parseResults = (
+      result: ServiceMapResponse<ServiceMapAddress>,
+      langKey: string,
+    ) =>
       result.results.map((addressResult) => {
-        const resolvedName: string = getNameTranslation(addressResult.name, langKey) || '';
+        const resolvedName: string =
+          getNameTranslation(addressResult.name, langKey) || '';
         if (includeCoordinates) {
           addressMap.set(resolvedName, addressResult.location?.coordinates);
         }
@@ -69,14 +83,19 @@ export const AddressSearch = ({
 
     const [fiResults, svResults] = await results;
 
-    return [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
+    return [
+      ...parseResults(fiResults, 'fi'),
+      ...parseResults(svResults, 'sv'),
+    ].slice(0, 10);
   };
 
   const handleSubmit = (address: string) => {
     if (includeCoordinates) {
       onSubmit({
         label: address,
-        value: addressMap.has(address) ? [...addressMap.get(address), address] : null,
+        value: addressMap.has(address)
+          ? [...addressMap.get(address), address]
+          : null,
         // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
       } as any);
     } else {
@@ -96,7 +115,10 @@ export const AddressSearch = ({
           value,
           ...rest,
         }}
-        className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
+        className={
+          searchInputClassname ||
+          'hdbt-search__input hdbt-search__input--address'
+        }
         onSubmit={handleSubmit}
         suggestionLabelField='label'
         style={defaultSearchInputStyle}
@@ -106,5 +128,7 @@ export const AddressSearch = ({
     [value, getSuggestions],
   );
 
-  return <div className={className || 'hdbt-search__filter'}>{searchInput}</div>;
+  return (
+    <div className={className || 'hdbt-search__filter'}>{searchInput}</div>
+  );
 };

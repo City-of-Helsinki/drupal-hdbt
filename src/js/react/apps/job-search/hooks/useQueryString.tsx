@@ -11,7 +11,9 @@ import type URLParams from '../types/URLParams';
 const useQueryString = (urlParams: URLParams): string => {
   const { size: globalSize, sortOptions } = Global;
   const { promoted } = useAtomValue(configurationsAtom);
-  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
+  const page = Number.isNaN(Number(urlParams.page))
+    ? 1
+    : Number(urlParams.page);
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   const must: any[] = [
     {
@@ -146,7 +148,10 @@ const useQueryString = (urlParams: URLParams): string => {
   if (urlParams?.area_filter?.length) {
     const postalCodes: string[] = [];
     urlParams.area_filter.forEach((areaCode) => {
-      postalCodes.push(...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes || []));
+      postalCodes.push(
+        ...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes ||
+          []),
+      );
     });
 
     query.bool.filter.push({

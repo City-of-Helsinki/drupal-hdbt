@@ -19,11 +19,14 @@ type ResultsContainerProps = {
   hidePagination?: boolean;
 };
 
-// biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
-const ResultsContainer = ({ hidePagination = false }: ResultsContainerProps): JSX.Element => {
+const ResultsContainer = ({
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+  hidePagination = false,
+}: ResultsContainerProps): JSX.Element => {
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
   const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
-  const cardsWithBorders = drupalSettings?.helfi_news_archive?.cardsWithBorders ?? false;
+  const cardsWithBorders =
+    drupalSettings?.helfi_news_archive?.cardsWithBorders ?? false;
   const urlParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);
   const setPage = useSetAtom(setPageAtom);
@@ -52,14 +55,23 @@ const ResultsContainer = ({ hidePagination = false }: ResultsContainerProps): JS
   }
 
   if (error) {
-    return <ResultsError error={error} className='react-search__results' ref={!hideForm ? scrollTarget : undefined} />;
+    return (
+      <ResultsError
+        error={error}
+        className='react-search__results'
+        ref={!hideForm ? scrollTarget : undefined}
+      />
+    );
   }
 
   if (!results?.length) {
     return <ResultsEmpty ref={scrollTarget} />;
   }
 
-  const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
+  const updatePage = (
+    e: SyntheticEvent<HTMLButtonElement>,
+    newPage: number,
+  ) => {
     e.preventDefault();
     setPage(newPage);
   };

@@ -26,7 +26,15 @@ type SelectionsContainerProps = {
   keys: Array<
     keyof Omit<
       SearchParams,
-      'keyword' | 'page' | 'query' | 'a1' | 'a2' | 'b1' | 'b2' | 'weighted_education' | 'bilingual_education'
+      | 'keyword'
+      | 'page'
+      | 'query'
+      | 'a1'
+      | 'a2'
+      | 'b1'
+      | 'b2'
+      | 'weighted_education'
+      | 'bilingual_education'
     >
   >;
 };
@@ -48,11 +56,31 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
   const updateBilingual = useSetAtom(bilingualEducationSelectionAtom);
 
   const checkBoxFilters = {
-    grades_1_6: Drupal.t('School providing grades 1 to 6', {}, { context: 'School search: education level option' }),
-    grades_1_9: Drupal.t('School providing grades 1 to 9', {}, { context: 'School search: education level option' }),
-    grades_7_9: Drupal.t('School providing grades 7 to 9', {}, { context: 'School search: education level option' }),
-    finnish_education: Drupal.t('Finnish', {}, { context: 'School search: language option' }),
-    swedish_education: Drupal.t('Swedish', {}, { context: 'School search: language option' }),
+    grades_1_6: Drupal.t(
+      'School providing grades 1 to 6',
+      {},
+      { context: 'School search: education level option' },
+    ),
+    grades_1_9: Drupal.t(
+      'School providing grades 1 to 9',
+      {},
+      { context: 'School search: education level option' },
+    ),
+    grades_7_9: Drupal.t(
+      'School providing grades 7 to 9',
+      {},
+      { context: 'School search: education level option' },
+    ),
+    finnish_education: Drupal.t(
+      'Finnish',
+      {},
+      { context: 'School search: language option' },
+    ),
+    swedish_education: Drupal.t(
+      'Swedish',
+      {},
+      { context: 'School search: language option' },
+    ),
   };
   const checkBoxKeys = Object.keys(checkBoxFilters);
 
@@ -109,13 +137,25 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
     searchParams.weighted_education?.length ||
     searchParams.bilingual_education?.length;
 
-  const showA1 = Boolean(searchParams.a1?.length && searchParams.a1?.length > 0);
-  const showA2 = Boolean(searchParams.a2?.length && searchParams.a2?.length > 0);
-  const showB1 = Boolean(searchParams.b1?.length && searchParams.b1?.length > 0);
-  const showB2 = Boolean(searchParams.b2?.length && searchParams.b2?.length > 0);
-  const showWeighted = Boolean(searchParams.weighted_education?.length && searchParams.weighted_education?.length > 0);
+  const showA1 = Boolean(
+    searchParams.a1?.length && searchParams.a1?.length > 0,
+  );
+  const showA2 = Boolean(
+    searchParams.a2?.length && searchParams.a2?.length > 0,
+  );
+  const showB1 = Boolean(
+    searchParams.b1?.length && searchParams.b1?.length > 0,
+  );
+  const showB2 = Boolean(
+    searchParams.b2?.length && searchParams.b2?.length > 0,
+  );
+  const showWeighted = Boolean(
+    searchParams.weighted_education?.length &&
+      searchParams.weighted_education?.length > 0,
+  );
   const showBilingual = Boolean(
-    searchParams.bilingual_education?.length && searchParams.bilingual_education?.length > 0,
+    searchParams.bilingual_education?.length &&
+      searchParams.bilingual_education?.length > 0,
   );
 
   return (
@@ -126,7 +166,11 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
           updater={updateA1}
           valueKey={SearchComponents.A1}
           values={transformDropdownsValues(searchParams.a1, a1Options)}
-          labelPrefix={Drupal.t('A1-language', {}, { context: 'TPR Ontologyword details schools' })}
+          labelPrefix={Drupal.t(
+            'A1-language',
+            {},
+            { context: 'TPR Ontologyword details schools' },
+          )}
         />
       )}
       {showA2 && (
@@ -134,7 +178,11 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
           updater={updateA2}
           valueKey={SearchComponents.A2}
           values={transformDropdownsValues(searchParams.a2, a2Options)}
-          labelPrefix={Drupal.t('A2-language', {}, { context: 'TPR Ontologyword details schools' })}
+          labelPrefix={Drupal.t(
+            'A2-language',
+            {},
+            { context: 'TPR Ontologyword details schools' },
+          )}
         />
       )}
       {showB1 && (
@@ -142,7 +190,11 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
           updater={updateB1}
           valueKey={SearchComponents.B1}
           values={transformDropdownsValues(searchParams.b1, b1Options)}
-          labelPrefix={Drupal.t('B1-language', {}, { context: 'TPR Ontologyword details schools' })}
+          labelPrefix={Drupal.t(
+            'B1-language',
+            {},
+            { context: 'TPR Ontologyword details schools' },
+          )}
         />
       )}
       {showB2 && (
@@ -150,22 +202,36 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
           updater={updateB2}
           valueKey={SearchComponents.B2}
           values={transformDropdownsValues(searchParams.b2, b2Options)}
-          labelPrefix={Drupal.t('B2-language', {}, { context: 'TPR Ontologyword details schools' })}
+          labelPrefix={Drupal.t(
+            'B2-language',
+            {},
+            { context: 'TPR Ontologyword details schools' },
+          )}
         />
       )}
       {showWeighted && (
         <ListFilter
           updater={updateWeighted}
           valueKey={SearchComponents.WeightedEducation}
-          values={transformDropdownsValues(searchParams.weighted_education, weightedOptions)}
-          labelPrefix={Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' })}
+          values={transformDropdownsValues(
+            searchParams.weighted_education,
+            weightedOptions,
+          )}
+          labelPrefix={Drupal.t(
+            'Weighted curriculum education',
+            {},
+            { context: 'TPR Ontologyword details schools' },
+          )}
         />
       )}
       {showBilingual && (
         <ListFilter
           updater={updateBilingual}
           valueKey={SearchComponents.BilingualEducation}
-          values={transformDropdownsValues(searchParams.bilingual_education, bilingualOptions)}
+          values={transformDropdownsValues(
+            searchParams.bilingual_education,
+            bilingualOptions,
+          )}
         />
       )}
     </SelectionsWrapper>
@@ -182,13 +248,20 @@ type ListFilterProps = {
   labelPrefix?: string;
 };
 
-const ListFilter = ({ updater, values, valueKey, labelPrefix }: ListFilterProps) => {
+const ListFilter = ({
+  updater,
+  values,
+  valueKey,
+  labelPrefix,
+}: ListFilterProps) => {
   const searchParams = useAtomValue(paramsAtom);
   const setSearchParams = useSetAtom(updateParamsAtom);
 
   const removeSelection = (value: string) => {
     const newValue = values;
-    const index = newValue.findIndex((selection: OptionType) => selection.value === value);
+    const index = newValue.findIndex(
+      (selection: OptionType) => selection.value === value,
+    );
     newValue.splice(index, 1);
     updater(newValue);
     setSearchParams({
@@ -201,7 +274,9 @@ const ListFilter = ({ updater, values, valueKey, labelPrefix }: ListFilterProps)
     <>
       {values.map((selection: OptionType) => (
         <FilterButton
-          value={labelPrefix ? `${labelPrefix}: ${selection.label}` : selection.label}
+          value={
+            labelPrefix ? `${labelPrefix}: ${selection.label}` : selection.label
+          }
           clearSelection={() => removeSelection(selection.value)}
           key={selection.value}
         />

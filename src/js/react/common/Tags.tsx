@@ -10,8 +10,15 @@ interface TagsProps {
   insideCard?: boolean;
 }
 
-export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsProps): JSX.Element {
-  const typeClass = isInteractive ? 'content-tags__tags--interactive' : 'content-tags__tags--static';
+export function Tags({
+  tags,
+  isInteractive,
+  langAttribute,
+  insideCard,
+}: TagsProps): JSX.Element {
+  const typeClass = isInteractive
+    ? 'content-tags__tags--interactive'
+    : 'content-tags__tags--static';
 
   // When inside a card, use a div instead of a section to avoid duplicating the aria-label description on each card.
   const Element = insideCard ? 'div' : 'section';
@@ -32,11 +39,19 @@ export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsPro
     },
     <ul className={`content-tags__tags ${typeClass}`}>
       {tags.map((item: TagType, key: number) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
-        <li key={`{item.tag}-${key}`} className='content-tags__tags__tag' {...langAttribute}>
+        <li
+          // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+          key={`{item.tag}-${key}`}
+          className='content-tags__tags__tag'
+          {...langAttribute}
+        >
           {/* @todo UHF-11117 Check if this works after react is updated */}
           {/* @ts-ignore */}
-          <Tag className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}>{item.tag}</Tag>
+          <Tag
+            className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}
+          >
+            {item.tag}
+          </Tag>
         </li>
       ))}
     </ul>,

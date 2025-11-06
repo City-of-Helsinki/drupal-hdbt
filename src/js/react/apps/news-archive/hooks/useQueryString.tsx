@@ -8,7 +8,9 @@ import useLanguageQuery from './useLanguageQuery';
 const useQueryString = (urlParams: URLParams): string => {
   const languageFilter = useLanguageQuery();
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
-  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
+  const page = Number.isNaN(Number(urlParams.page))
+    ? 1
+    : Number(urlParams.page);
   const must: estypes.QueryDslQueryContainer[] = [];
 
   // Add entity type filteration to languageFilter so that only nodes are listed on results.

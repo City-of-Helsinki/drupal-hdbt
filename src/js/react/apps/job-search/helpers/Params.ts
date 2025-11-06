@@ -1,7 +1,10 @@
 import type OptionType from '../types/OptionType';
 import type URLParams from '../types/URLParams';
 
-const transformDropdownsValues = (paramOptions: string[] | undefined = [], availableOptions: OptionType[] = []) => {
+const transformDropdownsValues = (
+  paramOptions: string[] | undefined = [],
+  availableOptions: OptionType[] = [],
+) => {
   const transformedOptions: OptionType[] = [];
 
   paramOptions.forEach((selection: string) => {
@@ -15,7 +18,10 @@ const transformDropdownsValues = (paramOptions: string[] | undefined = [], avail
     });
 
     // If a matching option is found and it's not in the transformed options yet, add it to the transformed options
-    if (matchedOption && !transformedOptions.some((option) => option.value === matchedOption.value)) {
+    if (
+      matchedOption &&
+      !transformedOptions.some((option) => option.value === matchedOption.value)
+    ) {
       transformedOptions.push(matchedOption);
     }
   });

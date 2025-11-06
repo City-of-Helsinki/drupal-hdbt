@@ -24,7 +24,11 @@ export const BloatingTargetGroups = [
 ];
 
 export const TargetGroups = {
-  [Drupal.t('Families with babies', {}, { context: 'Event search: target group' })]: {
+  [Drupal.t(
+    'Families with babies',
+    {},
+    { context: 'Event search: target group' },
+  )]: {
     ids: ['yso:p20513'],
   },
   [Drupal.t('Children', {}, { context: 'Event search: target group' })]: {

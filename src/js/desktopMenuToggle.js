@@ -11,7 +11,10 @@ const clearStyles = (element) => {
 };
 
 const updateFirstChildAriaExpanded = (item) => {
-  const state = item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS) ? 'true' : 'false';
+  const state =
+    item.classList.contains(OPEN_CLASS) || item.classList.contains(HOVER_CLASS)
+      ? 'true'
+      : 'false';
   const firstChild = item.querySelector(':first-child .menu__toggle-button');
   if (firstChild) {
     firstChild.setAttribute('aria-expanded', state);
@@ -19,7 +22,9 @@ const updateFirstChildAriaExpanded = (item) => {
 };
 
 const closeOpenItems = (element) => {
-  const allOpenItems = document.querySelectorAll(`.desktop-menu .${OPEN_CLASS}`);
+  const allOpenItems = document.querySelectorAll(
+    `.desktop-menu .${OPEN_CLASS}`,
+  );
 
   // Check that the item we are about to close is not the
   // element-variable given to the function.
@@ -54,7 +59,9 @@ const mouseOver = (event) => {
   closeOpenItems(item);
   item.classList.add(HOVER_CLASS);
   updateFirstChildAriaExpanded(item);
-  positionDropdown(item.querySelector('.menu__toggle-button'), item, { gutter: 12 });
+  positionDropdown(item.querySelector('.menu__toggle-button'), item, {
+    gutter: 12,
+  });
 };
 
 const mouseLeave = (event) => {
@@ -116,7 +123,9 @@ const closeOnFocusOut = (item) => {
       document.addEventListener('keydown', handleEscKey);
 
       window.addEventListener('click', (event) => {
-        const mainNav = document.querySelector('[data-hdbt-selector="main-navigation"]');
+        const mainNav = document.querySelector(
+          '[data-hdbt-selector="main-navigation"]',
+        );
 
         if (mainNav?.contains(event.target)) {
           let clickedElement = event.target;
@@ -126,7 +135,9 @@ const closeOnFocusOut = (item) => {
           }
 
           if (clickedElement.classList.contains('menu__toggle-button')) {
-            const clickedElementParent = clickedElement.parentElement.closest('.menu__item--children');
+            const clickedElementParent = clickedElement.parentElement.closest(
+              '.menu__item--children',
+            );
             const clickedElementSiblings = getSiblings(clickedElementParent);
             closeOnFocusOut(clickedElementParent);
 
@@ -155,9 +166,11 @@ const closeOnFocusOut = (item) => {
       });
 
       // Show toggle button if js is enabled.
-      document.querySelectorAll('.header-bottom .menu__toggle-button').forEach((button) => {
-        button.classList.add('js-show-menu__toggle-button');
-      });
+      document
+        .querySelectorAll('.header-bottom .menu__toggle-button')
+        .forEach((button) => {
+          button.classList.add('js-show-menu__toggle-button');
+        });
 
       // Use Drupal's once() to ensure this runs only once per element.
       const itemsWithVisibleChildren = once(
@@ -167,7 +180,9 @@ const closeOnFocusOut = (item) => {
       );
 
       itemsWithVisibleChildren.forEach((item) => {
-        const firstLevelItem = item.querySelector('.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a');
+        const firstLevelItem = item.querySelector(
+          '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > a',
+        );
         const firstLevelItemButton = item.querySelector(
           '.menu--level-0 > .menu__item--item-below > .menu__link-wrapper > .menu__toggle-button',
         );
@@ -179,7 +194,11 @@ const closeOnFocusOut = (item) => {
         }
 
         if (firstLevelItemButton) {
-          firstLevelItemButton.addEventListener('mouseover', mouseLeaveButton, false);
+          firstLevelItemButton.addEventListener(
+            'mouseover',
+            mouseLeaveButton,
+            false,
+          );
         }
 
         item.addEventListener('mouseleave', mouseLeave, false);

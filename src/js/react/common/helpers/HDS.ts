@@ -27,9 +27,15 @@ export const clearAllSelectionsFromStorage = (storage: HDSStorage) => {
   storage.render();
 };
 
-export const updateSelectionsInStorage = (storage: HDSStorage, selections: OptionType[]) => {
+export const updateSelectionsInStorage = (
+  storage: HDSStorage,
+  selections: OptionType[],
+) => {
   storage.updateAllOptions((option, _group, _groupindex) => {
-    if (option.selected && !selections.some((selection) => selection.value === option.value)) {
+    if (
+      option.selected &&
+      !selections.some((selection) => selection.value === option.value)
+    ) {
       return {
         ...option,
         selected: false,

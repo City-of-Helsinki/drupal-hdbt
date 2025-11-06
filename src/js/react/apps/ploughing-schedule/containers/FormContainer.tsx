@@ -9,7 +9,11 @@ type SuggestionItemType = {
   value: string;
 };
 
-const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null }) => {
+const FormContainer = ({
+  initialParams,
+}: {
+  initialParams?: SearchParams | null;
+}) => {
   const setParams = useSetAtom(paramsAtom);
   const [address, setAddress] = useState(initialParams?.address || '');
   const { baseUrl, index } = useAtomValue(configurationsAtom);
@@ -20,7 +24,9 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
     setParams(params);
   };
 
-  const getSuggestions = (searchString: string): Promise<SuggestionItemType[]> =>
+  const getSuggestions = (
+    searchString: string,
+  ): Promise<SuggestionItemType[]> =>
     fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: {
@@ -32,7 +38,8 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
       .then((data) => {
         if (data?.error?.type === 'index_not_found_exception') {
           console.warn(
-            `[Ploughing Schedule] Elasticsearch index "${index}" not found. ` + `Reason: ${data.error.reason}`,
+            `[Ploughing Schedule] Elasticsearch index "${index}" not found. ` +
+              `Reason: ${data.error.reason}`,
           );
           return [];
         }
@@ -45,19 +52,31 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
 
         // Remove duplicates
         return streetNames.filter(
-          (item, itemIndex, self) => itemIndex === self.findIndex((curr) => curr.value === item.value),
+          (item, itemIndex, self) =>
+            itemIndex === self.findIndex((curr) => curr.value === item.value),
         );
       })
       .catch((error) => {
-        console.warn('[Ploughing Schedule] Failed to fetch suggestions.', error);
+        console.warn(
+          '[Ploughing Schedule] Failed to fetch suggestions.',
+          error,
+        );
         return [];
       });
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12066
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+    <form
+      className='hdbt-search--react__form-container'
+      role='search'
+      onSubmit={onSubmit}
+    >
       <h2 className='hdbt-search--react__form-title'>
-        {Drupal.t('See the ploughing schedule', {}, { context: 'Ploughing schedule: Form title / submit' })}
+        {Drupal.t(
+          'See the ploughing schedule',
+          {},
+          { context: 'Ploughing schedule: Form title / submit' },
+        )}
       </h2>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
@@ -69,20 +88,32 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
       <SearchInput
         className='hdbt-search__filter'
         hideSearchButton
-        label={Drupal.t('Street name', {}, { context: 'Ploughing schedule: Input label' })}
+        label={Drupal.t(
+          'Street name',
+          {},
+          { context: 'Ploughing schedule: Input label' },
+        )}
         suggestionLabelField='value'
         getSuggestions={getSuggestions}
         onSubmit={(value) => setAddress(value)}
         onChange={(value) => setAddress(value)}
         visibleSuggestions={5}
-        placeholder={Drupal.t('For example, Mannerheimintie', {}, { context: 'Ploughing schedule: Input placeholder' })}
+        placeholder={Drupal.t(
+          'For example, Mannerheimintie',
+          {},
+          { context: 'Ploughing schedule: Input placeholder' },
+        )}
         value={address}
       />
       <Button
         className='hdbt-search--react__submit-button hdbt-search--ploughing-schedule__submit-button'
         type='submit'
       >
-        {Drupal.t('See the ploughing schedule', {}, { context: 'Ploughing schedule: Form title / submit' })}
+        {Drupal.t(
+          'See the ploughing schedule',
+          {},
+          { context: 'Ploughing schedule: Form title / submit' },
+        )}
       </Button>
     </form>
   );

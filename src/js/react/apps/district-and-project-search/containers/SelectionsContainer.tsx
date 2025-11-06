@@ -49,21 +49,30 @@ const SelectionsContainer = () => {
         <ListFilter
           updater={updateDistricts}
           valueKey={SearchComponents.DISTRICTS}
-          values={transformDropdownsValues(urlParams.districts, districtOptions)}
+          values={transformDropdownsValues(
+            urlParams.districts,
+            districtOptions,
+          )}
         />
       )}
       {showProjectThemes && (
         <ListFilter
           updater={updateThemes}
           valueKey={SearchComponents.THEME}
-          values={transformDropdownsValues(urlParams.project_theme, themeOptions)}
+          values={transformDropdownsValues(
+            urlParams.project_theme,
+            themeOptions,
+          )}
         />
       )}
       {showProjectPhases && (
         <ListFilter
           updater={updatePhases}
           valueKey={SearchComponents.PHASE}
-          values={transformDropdownsValues(urlParams.project_phase, phaseOptions)}
+          values={transformDropdownsValues(
+            urlParams.project_phase,
+            phaseOptions,
+          )}
         />
       )}
       {showProjectTypes && (
@@ -92,7 +101,9 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 
   const removeSelection = (value: string) => {
     const newValue = values;
-    const index = newValue.findIndex((selection: OptionType) => selection.value === value);
+    const index = newValue.findIndex(
+      (selection: OptionType) => selection.value === value,
+    );
     newValue.splice(index, 1);
     updater(newValue);
     setUrlParams({

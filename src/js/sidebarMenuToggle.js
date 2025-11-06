@@ -7,7 +7,9 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
       item.classList.toggle(cssClass);
       toggleButton.setAttribute(
         'aria-expanded',
-        toggleButton.getAttribute('aria-expanded') === 'true' ? 'false' : 'true',
+        toggleButton.getAttribute('aria-expanded') === 'true'
+          ? 'false'
+          : 'true',
       );
       event.stopPropagation();
     });
@@ -22,16 +24,23 @@ const toggleSidebarMenuVisibility = (item, cssClass) => {
       const sidebarNavigation = context.querySelector('.sidebar-navigation');
 
       if (sidebarNavigation) {
-        const itemsWithChildren = sidebarNavigation.querySelectorAll('.menu__item--children');
+        const itemsWithChildren = sidebarNavigation.querySelectorAll(
+          '.menu__item--children',
+        );
         itemsWithChildren.forEach((item) => {
           toggleSidebarMenuVisibility(item, 'menu__item--open');
         });
       }
 
       // In case of section navigation find the section navigation.
-      const sectionNavigations = context.querySelectorAll('.sidebar-navigation--section-navigation');
+      const sectionNavigations = context.querySelectorAll(
+        '.sidebar-navigation--section-navigation',
+      );
       sectionNavigations.forEach((item) => {
-        toggleSidebarMenuVisibility(item, 'sidebar-navigation--section-navigation--open');
+        toggleSidebarMenuVisibility(
+          item,
+          'sidebar-navigation--section-navigation--open',
+        );
       });
     },
   };

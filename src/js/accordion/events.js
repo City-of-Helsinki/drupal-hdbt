@@ -16,7 +16,9 @@ export default class Events {
       let accordionItemFound = false;
 
       window.helfiAccordions.forEach((accordion) => {
-        const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
+        const accordionItem = accordion.getAccordionItemById(
+          hash.replace('#', ''),
+        );
         if (accordionItem) {
           accordionItemFound = true;
           accordionItem.handleLinkAnchor(hash);
@@ -29,10 +31,14 @@ export default class Events {
         if (!anchorElement) {
           return;
         }
-        const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
+        const accordionItemToOpen = anchorElement.closest(
+          `.${AccordionItem.accordionItemElement}`,
+        );
         if (accordionItemToOpen) {
           window.helfiAccordions.forEach((accordion) => {
-            const idToSearch = accordionItemToOpen.querySelector('.helfi-accordion__header').id;
+            const idToSearch = accordionItemToOpen.querySelector(
+              '.helfi-accordion__header',
+            ).id;
             const accordionItem = accordion.getAccordionItemById(idToSearch);
             if (accordionItem) {
               accordionItem.handleLinkAnchor();

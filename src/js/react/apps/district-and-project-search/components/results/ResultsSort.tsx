@@ -14,7 +14,9 @@ const ResultsSort = () => {
 
   useEffect(() => {
     if (urlParams.sort) {
-      const matchedSort = sortOptions.find((option: OptionType) => option.value === urlParams.sort);
+      const matchedSort = sortOptions.find(
+        (option: OptionType) => option.value === urlParams.sort,
+      );
 
       if (matchedSort) {
         setSort(matchedSort);
@@ -37,8 +39,14 @@ const ResultsSort = () => {
         theme={defaultSelectTheme}
         style={{ minWidth: '280px' }}
         texts={{
-          label: Drupal.t('Sort search results', {}, { context: 'District and project search form label' }),
-          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+          label: Drupal.t(
+            'Sort search results',
+            {},
+            { context: 'District and project search form label' },
+          ),
+          language: getCurrentLanguage(
+            window.drupalSettings.path.currentLanguage,
+          ),
         }}
         value={[sort]}
       />

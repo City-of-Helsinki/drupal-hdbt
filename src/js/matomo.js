@@ -8,14 +8,22 @@ function getBrowserSize() {
   function loadMatomoAnalytics() {
     const { helfi_environment: environment } = drupalSettings;
 
-    if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && drupalSettings.matomo_site_id)) {
+    if (
+      !(
+        Drupal.cookieConsent.getConsentStatus(['statistics']) &&
+        drupalSettings.matomo_site_id
+      )
+    ) {
       return;
     }
     const getViewportWidth = () => window.innerWidth;
     const getViewportHeight = () => window.innerHeight;
     const getLanguage = () => document.querySelector('html')?.lang || 'unknown';
-    const getPublishedTime = () => document.querySelector('meta[property="article:published_time"]')?.content || '';
-    const getUpdatedTime = () => document.querySelector('meta[property="og:updated_time"]')?.content || '';
+    const getPublishedTime = () =>
+      document.querySelector('meta[property="article:published_time"]')
+        ?.content || '';
+    const getUpdatedTime = () =>
+      document.querySelector('meta[property="og:updated_time"]')?.content || '';
     const getNewsTaxonomyTermIds = () => drupalSettings.news_taxonomy_term_ids;
     // biome-ignore lint/suspicious/noAssignInExpressions: _paq assignment is intentional.
     const _paq = (window._paq = window._paq || []);
@@ -208,7 +216,11 @@ function getBrowserSize() {
 
       // Duplicate tracking of other sites to front page as well.
       if (!isFrontPage) {
-        _paq.push(['addTracker', `${u}tracker.php`, drupalSettings.matomo_site_id]);
+        _paq.push([
+          'addTracker',
+          `${u}tracker.php`,
+          drupalSettings.matomo_site_id,
+        ]);
       }
 
       // If the site is Etusivu-instance and there are newsTaxonomyTermIds set, sent them to custom dimension.
@@ -231,7 +243,8 @@ function getBrowserSize() {
       s.parentNode.insertBefore(g, s);
 
       // Load the heatmap plugin separately.
-      const heatmapPluginBaseUrl = '//digiaiiris.com/web-analytics/plugins/HeatmapSessionRecording/';
+      const heatmapPluginBaseUrl =
+        '//digiaiiris.com/web-analytics/plugins/HeatmapSessionRecording/';
       const heatmapPlugin = d.createElement('script');
       heatmapPlugin.src = `${heatmapPluginBaseUrl}configs.php?idsite=${drupalSettings.matomo_site_id}&trackerid=${randomString}&url=${currentUrl}`;
       s.parentNode.insertBefore(heatmapPlugin, s);

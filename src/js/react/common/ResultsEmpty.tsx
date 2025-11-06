@@ -9,14 +9,27 @@ type ResultsEmptyProps = {
 
 const ResultsEmpty = forwardRef(
   (
-    // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
-    { title, content, wrapperClass = 'react-search__results' }: ResultsEmptyProps,
+    {
+      // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+      title,
+      // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12066
+      content,
+      wrapperClass = 'react-search__results',
+    }: ResultsEmptyProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => (
     <div className={wrapperClass}>
       <ResultsHeader
-        // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
-        resultText={<>{Drupal.t('No results', {}, { context: 'Unit search no results title' })}</>}
+        resultText={
+          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12066
+          <>
+            {Drupal.t(
+              'No results',
+              {},
+              { context: 'Unit search no results title' },
+            )}
+          </>
+        }
         ref={ref}
       />
       <p>

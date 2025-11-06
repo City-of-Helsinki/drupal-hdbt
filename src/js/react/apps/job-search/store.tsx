@@ -49,7 +49,9 @@ const getParams = (searchParams: URLSearchParams) => {
     } else {
       const existing = params[key];
       if (existing) {
-        const updatedValue = Array.isArray(existing) ? [...existing, value] : [existing, value];
+        const updatedValue = Array.isArray(existing)
+          ? [...existing, value]
+          : [existing, value];
         params[key] = updatedValue;
       } else {
         params[key] = [value];
@@ -62,7 +64,9 @@ const getParams = (searchParams: URLSearchParams) => {
   return params;
 };
 
-export const urlAtom = atom<URLParams>(getParams(new URLSearchParams(window.location.search)));
+export const urlAtom = atom<URLParams>(
+  getParams(new URLSearchParams(window.location.search)),
+);
 
 export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
   // set atom value
@@ -135,7 +139,8 @@ export const configurationsAtom = atom(async (): Promise<configurations> => {
         };
       }
 
-      const [aggs, taskAreas, employmentOptions, languages, promoted] = responses;
+      const [aggs, taskAreas, employmentOptions, languages, promoted] =
+        responses;
 
       return {
         error: null,
@@ -143,7 +148,8 @@ export const configurationsAtom = atom(async (): Promise<configurations> => {
         taskAreas: aggs?.aggregations?.occupations?.buckets || [],
         employment: aggs?.aggregations?.employment?.buckets || [],
         employmentOptions: employmentOptions?.hits?.hits || [],
-        employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
+        employmentSearchIds:
+          aggs?.aggregations?.employment_search_id?.buckets || [],
         employmentType: aggs?.aggregations?.employment_type?.buckets || [],
         languages: languages?.aggregations?.languages?.buckets || [],
         promoted: promoted?.aggregations?.promoted?.buckets || [],
@@ -188,7 +194,8 @@ export const taskAreasAtom = atom(async (get) => {
 export const taskAreasSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const employmentAtom = atom(async (get) => {
-  const { error, employment, employmentOptions, employmentType } = await get(configurationsAtom);
+  const { error, employment, employmentOptions, employmentType } =
+    await get(configurationsAtom);
 
   if (error) {
     return [];
@@ -199,7 +206,9 @@ export const employmentAtom = atom(async (get) => {
   const visibleOptions = employmentOptions.filter(
     (term: Result<Term>) =>
       term._source?.field_search_id?.[0] &&
-      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(term._source.field_search_id[0]),
+      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(
+        term._source.field_search_id[0],
+      ),
   );
 
   const options = visibleOptions
@@ -219,10 +228,14 @@ export const employmentAtom = atom(async (get) => {
       // Combine results for service / contractual employments
       if (customId.toString() === CustomIds.PERMANENT_CONTRACTUAL) {
         const permanentService = employmentOptions.find(
-          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.PERMANENT_SERVICE,
+          (optionTerm: Result<Term>) =>
+            optionTerm._source?.field_search_id?.[0] ===
+            CustomIds.PERMANENT_SERVICE,
         )?._source.tid[0];
         additionalValue = permanentService;
-        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(permanentService) || 0);
+        count =
+          (combinedAggs.get(tid) || 0) +
+          (combinedAggs.get(permanentService) || 0);
         label = `${Drupal.t('Permanent', {}, { context: 'Employment filter value' })} (${count})`;
         simpleLabel = Drupal.t(
           'Permanent contract and service employment',
@@ -231,10 +244,13 @@ export const employmentAtom = atom(async (get) => {
         );
       } else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
         const fixedService = employmentOptions.find(
-          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.FIXED_SERVICE,
+          (optionTerm: Result<Term>) =>
+            optionTerm._source?.field_search_id?.[0] ===
+            CustomIds.FIXED_SERVICE,
         )?._source.tid[0];
         additionalValue = fixedService;
-        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
+        count =
+          (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
         label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value' })} (${count})`;
         simpleLabel = Drupal.t(
           'Fixed-term contract and service employment',
@@ -274,7 +290,9 @@ export const languagesAtom = atom(async (get) => {
     value: langcode,
   }));
 });
-export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(undefined);
+export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(
+  undefined,
+);
 
 export const continuousAtom = atom<boolean>(false);
 export const internshipAtom = atom<boolean>(false);

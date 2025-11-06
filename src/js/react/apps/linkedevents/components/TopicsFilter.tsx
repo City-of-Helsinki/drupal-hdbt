@@ -19,11 +19,17 @@ function TopicsFilter() {
 
   const onChange = (value: OptionType[], _clickedOption?: OptionType) => {
     setTopicsFilter(value);
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-    updateParams({ [ApiKeys.KEYWORDS]: value.map((topic: any) => topic.value).join(',') });
+    updateParams({
+      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+      [ApiKeys.KEYWORDS]: value.map((topic: any) => topic.value).join(','),
+    });
   };
 
-  const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
+  const selectLabel: string = Drupal.t(
+    'Topic',
+    {},
+    { context: 'React search: topics filter' },
+  );
 
   const storage = useSelectStorage({
     id: SearchComponents.TOPICS,
@@ -34,7 +40,11 @@ function TopicsFilter() {
     texts: {
       label: selectLabel,
       language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-      placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
+      placeholder: Drupal.t(
+        'All topics',
+        {},
+        { context: 'React search: topics filter' },
+      ),
     },
     theme: defaultSelectTheme,
   });
@@ -45,7 +55,10 @@ function TopicsFilter() {
 
   const updateSelections = () => {
     storage.updateAllOptions((option, _group, _groupindex) => {
-      if (option.selected && !topicSelection.some((selection) => selection.value === option.value)) {
+      if (
+        option.selected &&
+        !topicSelection.some((selection) => selection.value === option.value)
+      ) {
         return {
           ...option,
           selected: false,
@@ -57,11 +70,17 @@ function TopicsFilter() {
   };
 
   useEffect(() => {
-    window.addEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
+    window.addEventListener(
+      `eventsearch-clear-${SearchComponents.TOPICS}`,
+      updateSelections,
+    );
 
     return () => {
       window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
+      window.removeEventListener(
+        `eventsearch-clear-${SearchComponents.TOPICS}`,
+        updateSelections,
+      );
     };
   });
 

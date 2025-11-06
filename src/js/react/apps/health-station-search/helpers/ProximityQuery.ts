@@ -1,7 +1,12 @@
 import type BooleanQuery from '@/types/BooleanQuery';
 import AppSettings from '../enum/AppSettings';
 
-const getQueryString = (ids: number[] | null, coordinates: number[] | null, page: number, svOnly?: boolean) => {
+const getQueryString = (
+  ids: number[] | null,
+  coordinates: number[] | null,
+  page: number,
+  svOnly?: boolean,
+) => {
   let { size } = AppSettings;
   const lang = drupalSettings.path.currentLanguage;
 

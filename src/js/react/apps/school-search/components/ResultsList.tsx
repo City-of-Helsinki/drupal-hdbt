@@ -25,7 +25,14 @@ type ResultsListProps = {
   updatePage: Function;
 };
 
-const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
+const ResultsList = ({
+  data,
+  error,
+  isLoading,
+  isValidating,
+  page,
+  updatePage,
+}: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
@@ -78,7 +85,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               aria-controls='school-search-results-tabpanel-list'
               onClick={() => setUseMap(false)}
             >
-              {Drupal.t('View as a list', {}, { context: 'React search: result display' })}
+              {Drupal.t(
+                'View as a list',
+                {},
+                { context: 'React search: result display' },
+              )}
             </button>
             <button
               id='school-search-results-tab-map'
@@ -89,7 +100,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               aria-controls='school-search-results-tabpanel-map'
               onClick={() => setUseMap(true)}
             >
-              {Drupal.t('View in a map', {}, { context: 'React search: result display' })}
+              {Drupal.t(
+                'View in a map',
+                {},
+                { context: 'React search: result display' },
+              )}
             </button>
           </div>
         }

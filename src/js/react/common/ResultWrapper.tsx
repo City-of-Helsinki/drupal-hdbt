@@ -7,7 +7,11 @@ type ResultWrapperProps = {
   loading: boolean;
 };
 
-const ResultWrapper = ({ className, children, loading }: ResultWrapperProps) => (
+const ResultWrapper = ({
+  className,
+  children,
+  loading,
+}: ResultWrapperProps) => (
   <div className={`hdbt__loading-wrapper${className ? ` ${className}` : ''}`}>
     {loading && <GhostList count={1} />}
     {children}

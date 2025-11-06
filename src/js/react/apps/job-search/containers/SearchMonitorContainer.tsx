@@ -56,20 +56,30 @@ const SearchMonitorContainer = () => {
     lang: window.drupalSettings.path.currentLanguage || 'fi',
   };
 
-  const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const onSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
 
     // Validate stuff to submit form
     if (!termsAgreed) {
       seterrorMessage(
-        Drupal.t('The choice is mandatory: Terms of service', {}, { context: 'Search monitor error terms' }),
+        Drupal.t(
+          'The choice is mandatory: Terms of service',
+          {},
+          { context: 'Search monitor error terms' },
+        ),
       );
       return;
     }
 
     if (!email) {
       seterrorMessage(
-        Drupal.t('This field is mandatory: Email address', {}, { context: 'Search monitor error email' }),
+        Drupal.t(
+          'This field is mandatory: Email address',
+          {},
+          { context: 'Search monitor error email' },
+        ),
       );
       return;
     }
@@ -88,7 +98,9 @@ const SearchMonitorContainer = () => {
     }
 
     // Make submit button disabled after submitting to prevent double submits
-    const submitButton = document.getElementById('job-search-form__search-monitor__submit-button');
+    const submitButton = document.getElementById(
+      'job-search-form__search-monitor__submit-button',
+    );
     if (submitButton) {
       submitButton.setAttribute('disabled', 'true');
     }
@@ -142,7 +154,11 @@ const SearchMonitorContainer = () => {
     if (!response.ok) {
       console.warn(response.statusText);
       seterrorMessage(
-        Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor error submitting' }),
+        Drupal.t(
+          'Saving search failed. Please try again.',
+          {},
+          { context: 'Search monitor error submitting' },
+        ),
       );
       if (submitButton) {
         submitButton.removeAttribute('disabled');
@@ -174,10 +190,26 @@ const SearchMonitorContainer = () => {
     }
   }, [shouldScroll, setShouldScroll]);
 
-  const formHeader: string = Drupal.t('Receive search results by email', {}, { context: 'Search monitor header' });
-  const openLabel: string = Drupal.t('Open the order form', {}, { context: 'Search monitor open label' });
-  const closeLabel: string = Drupal.t('Close the order form', {}, { context: 'Search monitor close label' });
-  const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
+  const formHeader: string = Drupal.t(
+    'Receive search results by email',
+    {},
+    { context: 'Search monitor header' },
+  );
+  const openLabel: string = Drupal.t(
+    'Open the order form',
+    {},
+    { context: 'Search monitor open label' },
+  );
+  const closeLabel: string = Drupal.t(
+    'Close the order form',
+    {},
+    { context: 'Search monitor close label' },
+  );
+  const descriptionHeader: string = Drupal.t(
+    'Saved search',
+    {},
+    { context: 'Search monitor content title' },
+  );
   const descriptionFirstPart: string = Drupal.t(
     'To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches.',
     {},
@@ -188,8 +220,16 @@ const SearchMonitorContainer = () => {
     {},
     { context: 'Search monitor content' },
   );
-  const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
-  const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
+  const emailLabel: string = Drupal.t(
+    'Email address',
+    {},
+    { context: 'Search monitor email label' },
+  );
+  const buttonLabel: string = Drupal.t(
+    'Save your search',
+    {},
+    { context: 'Search monitor submit button label' },
+  );
   const thankYouHeader: string = Drupal.t(
     'Your search has been saved',
     {},
@@ -200,21 +240,33 @@ const SearchMonitorContainer = () => {
     {},
     { context: 'Search monitor thank you message' },
   );
-  const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
-  const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_label;
-  const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_text;
-  const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
+  const errorLabel: string = Drupal.t(
+    'Please check these selections',
+    {},
+    { context: 'Search monitor error label' },
+  );
+  const tosCheckboxLabel: string =
+    window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_label;
+  const tosLinkLabel: string =
+    window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_text;
+  const tosLinkUrl: string =
+    window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
   const tosLinkSuffix: string = Drupal.t(
     'The link opens in a new tab',
     {},
-    { context: 'Explanation for users that the link opens in a new tab instead of the expected current tab' },
+    {
+      context:
+        'Explanation for users that the link opens in a new tab instead of the expected current tab',
+    },
   );
 
   return (
     <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
       {!submitted && (
         <>
-          <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
+          <h3 className='job-search-form__search-monitor__heading'>
+            {formHeader}
+          </h3>
           <Button
             aria-controls='job-search-form__search-monitor__content'
             aria-expanded={isFormVisible}
@@ -244,7 +296,9 @@ const SearchMonitorContainer = () => {
             className='job-search-form__search-monitor__content'
             aria-hidden={!isFormVisible}
           >
-            <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
+            <h4 className='job-search-form__search-monitor__content__heading'>
+              {descriptionHeader}
+            </h4>
             <p>{descriptionFirstPart}</p>
             <p>{descriptionSecondPart}</p>
 
@@ -258,7 +312,10 @@ const SearchMonitorContainer = () => {
                 notificationAriaLabel={Drupal.t(
                   'Notification',
                   {},
-                  { context: 'Search monitor error message type for screen reader' },
+                  {
+                    context:
+                      'Search monitor error message type for screen reader',
+                  },
                 )}
               >
                 {errorMessage}
@@ -318,7 +375,10 @@ const SearchMonitorContainer = () => {
 
       {submitted && (
         <>
-          <h3 className='job-search-form__search-monitor__heading' ref={scrollTarget}>
+          <h3
+            className='job-search-form__search-monitor__heading'
+            ref={scrollTarget}
+          >
             {thankYouHeader}
           </h3>
           <p>{thankYouMessage}</p>

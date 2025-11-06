@@ -22,7 +22,14 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
     updatePageParam(index);
   };
 
-  return <CommonPagination updatePage={updatePage} currentPage={page} pages={pages} totalPages={totalPages} />;
+  return (
+    <CommonPagination
+      updatePage={updatePage}
+      currentPage={page}
+      pages={pages}
+      totalPages={totalPages}
+    />
+  );
 };
 
 export default Pagination;

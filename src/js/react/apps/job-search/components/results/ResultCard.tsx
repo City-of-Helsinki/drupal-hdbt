@@ -18,13 +18,17 @@ const getResultCard = ({
   url,
   _language,
 }: Job) => {
-  const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
+  const langAttribute = {
+    lang: _language === currentLanguage ? undefined : _language,
+  };
 
   const heading = title[0];
   const cardTitle = (
     <>
       <span {...langAttribute}>{heading}</span>
-      {field_jobs?.[0] > 1 && <span>{` (${field_jobs} ${Drupal.t('jobs', {}, { context: 'Job search' })})`}</span>}
+      {field_jobs?.[0] > 1 && (
+        <span>{` (${field_jobs} ${Drupal.t('jobs', {}, { context: 'Job search' })})`}</span>
+      )}
     </>
   );
 
@@ -47,16 +51,26 @@ const getResultCard = ({
         minute: '2-digit',
       });
     } catch (e) {
-      console.warn(`Unable to parse date for job ${field_recruitment_id?.[0]}: ${e}`);
+      console.warn(
+        `Unable to parse date for job ${field_recruitment_id?.[0]}: ${e}`,
+      );
       return undefined;
     }
 
     return date;
   };
 
-  const orgName = (field_organization_name && field_organization_name.length > 0 && field_organization_name[0]) || '';
-  const employmentTags = Array.isArray(field_employment) ? field_employment : [];
-  const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
+  const orgName =
+    (field_organization_name &&
+      field_organization_name.length > 0 &&
+      field_organization_name[0]) ||
+    '';
+  const employmentTags = Array.isArray(field_employment)
+    ? field_employment
+    : [];
+  const typeTags = Array.isArray(field_employment_type)
+    ? field_employment_type
+    : [];
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
   const tags: any = employmentTags.concat(typeTags).map((tag) => ({ tag }));
 
@@ -68,9 +82,17 @@ const getResultCard = ({
       cardTitle={cardTitle}
       cardUrl={url?.[0]}
       date={getDate()}
-      dateLabel={Drupal.t('Application period ends', {}, { context: 'Job search' })}
+      dateLabel={Drupal.t(
+        'Application period ends',
+        {},
+        { context: 'Job search' },
+      )}
       daterange={field_job_duration?.[0].toString()}
-      dateRangeLabel={Drupal.t('Employment contract', {}, { context: 'Job search' })}
+      dateRangeLabel={Drupal.t(
+        'Employment contract',
+        {},
+        { context: 'Job search' },
+      )}
       langAttribute={langAttribute}
     />
   );
@@ -91,7 +113,11 @@ const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12066
   const languageFilterActive = useAtomValue(urlAtom)?.language;
   // If no filtering by language, prefer showing current language translation
-  if (!languageFilterActive && innerHits.length > 1 && !_language.includes(currentLanguage)) {
+  if (
+    !languageFilterActive &&
+    innerHits.length > 1 &&
+    !_language.includes(currentLanguage)
+  ) {
     for (const hit of innerHits) {
       if (hit._source._language.includes(currentLanguage)) {
         return getResultCard(hit._source);

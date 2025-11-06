@@ -47,7 +47,10 @@ const ResultCard = ({
     let imageUrls: ImageUrls = {};
 
     try {
-      imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
+      imageUrls =
+        typeof main_image_url?.[0] === 'string'
+          ? JSON.parse(main_image_url?.[0])
+          : main_image_url?.[0];
     } catch (e) {
       console.error('Failed to parse main_image_url', e);
       return undefined; // Return undefined if parsing fails
@@ -56,7 +59,9 @@ const ResultCard = ({
     return (
       <CardPicture
         alt=''
-        photographer={field_photographer?.length ? field_photographer[0] : undefined}
+        photographer={
+          field_photographer?.length ? field_photographer[0] : undefined
+        }
         imageUrls={imageUrls}
       />
     );

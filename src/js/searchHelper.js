@@ -23,7 +23,9 @@
 
       // Focus to the result count element. This is usually used in
       // views based searches.
-      const resultCountEl = context.querySelector('[class$="__count-container"]');
+      const resultCountEl = context.querySelector(
+        '[class$="__count-container"]',
+      );
       focusElement(resultCountEl);
     },
   };

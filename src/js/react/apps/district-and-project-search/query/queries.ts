@@ -3,7 +3,10 @@ import IndexFields from '../enum/IndexFields';
 // Filter by current language
 // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
 export const languageFilter: any = {
-  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
+  term: {
+    [`${IndexFields.LANGUAGE}`]:
+      window.drupalSettings.path.currentLanguage || 'fi',
+  },
 };
 
 // Filter out taxonomy terms

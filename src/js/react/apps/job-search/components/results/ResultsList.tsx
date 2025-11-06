@@ -9,7 +9,11 @@ type ResultsListProps = {
 const ResultsList = ({ hits }: ResultsListProps) => (
   <>
     {hits.map((hit) => (
-      <ResultCard key={hit._id} innerHits={hit?.inner_hits.translations.hits.hits || null} job={hit._source} />
+      <ResultCard
+        key={hit._id}
+        innerHits={hit?.inner_hits.translations.hits.hits || null}
+        job={hit._source}
+      />
     ))}
   </>
 );

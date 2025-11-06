@@ -16,7 +16,11 @@ const FeatureResultsContainer = () => {
   const { data, error, isLoading, isValidating } = UseFeatureQuery(params);
   const { page } = params;
 
-  return <ResultsList {...{ data, error, isLoading, isValidating, page, updatePage }} />;
+  return (
+    <ResultsList
+      {...{ data, error, isLoading, isValidating, page, updatePage }}
+    />
+  );
 };
 
 export default FeatureResultsContainer;

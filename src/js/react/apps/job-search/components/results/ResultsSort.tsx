@@ -27,7 +27,9 @@ const ResultsSort = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12066
   useEffect(() => {
     if (urlParams.sort) {
-      const matchedSort = options.find((option: OptionType) => option.value === urlParams.sort);
+      const matchedSort = options.find(
+        (option: OptionType) => option.value === urlParams.sort,
+      );
 
       if (matchedSort) {
         setSort(matchedSort);
@@ -47,8 +49,14 @@ const ResultsSort = () => {
       }}
       options={options}
       texts={{
-        label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
-        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+        label: Drupal.t(
+          'Sort search results',
+          {},
+          { context: 'HELfi Rekry job search' },
+        ),
+        language: getCurrentLanguage(
+          window.drupalSettings.path.currentLanguage,
+        ),
       }}
       value={[sort]}
       theme={defaultSelectTheme}

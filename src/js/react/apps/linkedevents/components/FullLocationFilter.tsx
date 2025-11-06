@@ -6,7 +6,10 @@ import { memo, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
+import {
+  clearAllSelectionsFromStorage,
+  updateSelectionsInStorage,
+} from '@/react/common/helpers/HDS';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { ServiceMapPlace } from '@/types/ServiceMap';
@@ -19,9 +22,15 @@ const FullLocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const getLocationParamValue = useAtomCallback(useCallback((get) => get(locationSelectionAtom), []));
+  const getLocationParamValue = useAtomCallback(
+    useCallback((get) => get(locationSelectionAtom), []),
+  );
 
-  const getLocations = async (searchTerm: string, _selectedOptions: OptionType[], _data: SelectData) => {
+  const getLocations = async (
+    searchTerm: string,
+    _selectedOptions: OptionType[],
+    _data: SelectData,
+  ) => {
     const url = new URL(LinkedEvents.PLACES_URL);
     const locationParams = new URLSearchParams({
       has_upcoming_events: 'true',
@@ -45,7 +54,10 @@ const FullLocationFilter = memo(() => {
     if (body.data?.length) {
       result.options = body.data.map((place: ServiceMapPlace) => ({
         value: place.id,
-        label: getNameTranslation(place.name, drupalSettings.path.currentLanguage),
+        label: getNameTranslation(
+          place.name,
+          drupalSettings.path.currentLanguage,
+        ),
       }));
       return result;
     }
@@ -53,15 +65,23 @@ const FullLocationFilter = memo(() => {
     return result;
   };
 
-  const onChange = (value: OptionType[], clickedOption: OptionType, _data: SelectData) => {
+  const onChange = (
+    value: OptionType[],
+    clickedOption: OptionType,
+    _data: SelectData,
+  ) => {
     setLocationFilter(
       value.map((option) => ({
         label: option.label,
         value: option.value,
       })),
     );
-    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-    updateParams({ [ApiKeys.LOCATION]: value.map((location: any) => location.value).join(',') });
+    updateParams({
+      [ApiKeys.LOCATION]: value
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
+        .map((location: any) => location.value)
+        .join(','),
+    });
 
     storage.updateAllOptions((option, _group, _groupindex) => ({
       ...option,
@@ -73,7 +93,11 @@ const FullLocationFilter = memo(() => {
     }
   };
 
-  const selectVenueLabel: string = Drupal.t('Venue', {}, { context: 'Events search' });
+  const selectVenueLabel: string = Drupal.t(
+    'Venue',
+    {},
+    { context: 'Events search' },
+  );
 
   const storage = useSelectStorage({
     id: SearchComponents.LOCATION,
@@ -94,11 +118,17 @@ const FullLocationFilter = memo(() => {
 
   useEffect(() => {
     window.addEventListener('eventsearch-clear', clearAllSelections);
-    window.addEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
+    window.addEventListener(
+      `eventsearch-clear-${ApiKeys.LOCATION}`,
+      updateSelections,
+    );
 
     return () => {
       window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
+      window.removeEventListener(
+        `eventsearch-clear-${ApiKeys.LOCATION}`,
+        updateSelections,
+      );
     };
   });
 
@@ -109,10 +139,24 @@ const FullLocationFilter = memo(() => {
         className='hdbt-search__dropdown'
         texts={{
           label: selectVenueLabel,
-          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-          placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
-          searchLabel: Drupal.t('Search term', {}, { context: 'React search: all available options' }),
-          searchPlaceholder: Drupal.t('For example, Oodi', {}, { context: 'React search: all available options' }),
+          language: getCurrentLanguage(
+            window.drupalSettings.path.currentLanguage,
+          ),
+          placeholder: Drupal.t(
+            'All venues',
+            {},
+            { context: 'React search: all available options' },
+          ),
+          searchLabel: Drupal.t(
+            'Search term',
+            {},
+            { context: 'React search: all available options' },
+          ),
+          searchPlaceholder: Drupal.t(
+            'For example, Oodi',
+            {},
+            { context: 'React search: all available options' },
+          ),
           assistive: Drupal.t(
             'Events are shown only from venues less than two kilometres from the address',
             {},

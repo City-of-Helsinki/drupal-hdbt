@@ -73,10 +73,20 @@ const CardPicture = (props: CardPictureProps) => {
   return (
     <picture>
       {derivedSources.map((source, index) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
-        <source key={index} srcSet={source.srcSet} media={source.media} type={source.type} />
+        <source
+          // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12066
+          key={index}
+          srcSet={source.srcSet}
+          media={source.media}
+          type={source.type}
+        />
       ))}
-      <img src={derivedSrc} alt='' data-photographer={photographer || imageOverride?.photographer} {...rest} />
+      <img
+        src={derivedSrc}
+        alt=''
+        data-photographer={photographer || imageOverride?.photographer}
+        {...rest}
+      />
     </picture>
   );
 };

@@ -59,7 +59,12 @@ const ResultsContainer = () => {
     const { results, jobs, total } = handleResults(data);
 
     if (total <= 0) {
-      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
+      return (
+        <ResultsEmpty
+          wrapperClass='hdbt-search--react__results--container'
+          ref={scrollTarget}
+        />
+      );
     }
 
     const pages = Math.ceil(total / size);
@@ -96,16 +101,25 @@ const ResultsContainer = () => {
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
-        <Pagination currentPage={currentPage} pages={5} totalPages={pages} updatePage={updatePage} />
+        <Pagination
+          currentPage={currentPage}
+          pages={5}
+          totalPages={pages}
+          updatePage={updatePage}
+        />
       </>
     );
   };
 
   return (
     <>
-      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && <SearchMonitorContainer />}
+      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && (
+        <SearchMonitorContainer />
+      )}
       <div className='job-search__results'>
-        <ResultWrapper loading={isLoading || isValidating}>{getResults()}</ResultWrapper>
+        <ResultWrapper loading={isLoading || isValidating}>
+          {getResults()}
+        </ResultWrapper>
       </div>
     </>
   );

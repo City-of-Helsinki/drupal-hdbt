@@ -57,7 +57,8 @@ const getInitialSettings = () => {
   const useFixtures = settings?.use_fixtures;
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
-  const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
+  const eventsPublicUrl =
+    settings?.events_public_url || 'https://tapahtumat.hel.fi';
 
   const filterSettings: FilterSettings = {
     eventCount: Number(settings?.field_event_count),
@@ -135,7 +136,9 @@ export const initialUrlAtom = atom((get) => {
   return `${baseUrl}?${initialParams.toString()}`;
 });
 
-export const initialParamsAtom = atom((get) => get(baseAtom)?.initialParams || new URLSearchParams());
+export const initialParamsAtom = atom(
+  (get) => get(baseAtom)?.initialParams || new URLSearchParams(),
+);
 
 export const locationAtom = atom((get) => get(baseAtom)?.locations || []);
 
@@ -167,7 +170,9 @@ export const settingsAtom = atom(
     },
 );
 
-export const useFixturesAtom = atom<object | false>((get) => get(baseAtom)?.useFixtures);
+export const useFixturesAtom = atom<object | false>(
+  (get) => get(baseAtom)?.useFixtures,
+);
 
 export const pageAtom = atom<number>(1);
 
@@ -183,7 +188,9 @@ const getIsoTime = (date: DateTime, key: string) => {
   if (!date) {
     return undefined;
   }
-  return key === 'start' ? date.startOf('day').toISO() : date.endOf('day').toISO();
+  return key === 'start'
+    ? date.startOf('day').toISO()
+    : date.endOf('day').toISO();
 };
 
 const getDateParams = (dates: { start?: DateTime; end?: DateTime }) => {
@@ -220,22 +227,25 @@ export const setEndDisabledAtom = atom(null, (get, set, disabled: boolean) => {
   set(endDisabledAtom, disabled);
 });
 
-export const updateDateAtom = atom(null, (get, set, date: DateTime | undefined, key: string) => {
-  const endDisabled = get(endDisabledAtom);
-  const dateAtom = key === 'start' ? startDateAtom : endDateAtom;
-  const dates = {
-    [key]: date,
-  };
+export const updateDateAtom = atom(
+  null,
+  (get, set, date: DateTime | undefined, key: string) => {
+    const endDisabled = get(endDisabledAtom);
+    const dateAtom = key === 'start' ? startDateAtom : endDateAtom;
+    const dates = {
+      [key]: date,
+    };
 
-  if (key === 'start' && endDisabled) {
-    dates.end = date;
-  }
+    if (key === 'start' && endDisabled) {
+      dates.end = date;
+    }
 
-  const dateParams = getDateParams(dates);
+    const dateParams = getDateParams(dates);
 
-  set(dateAtom, date);
-  set(updateParamsAtom, dateParams);
-});
+    set(dateAtom, date);
+    set(updateParamsAtom, dateParams);
+  },
+);
 
 export const formErrorsAtom = atom<FormErrors>({
   invalidEndDate: false,
@@ -274,7 +284,9 @@ export const resetFormAtom = atom(null, (get, set) => {
   window.dispatchEvent(clearEvent);
 });
 
-export const submittedParamsAtom = atom<URLSearchParams>(new URLSearchParams(initialSettings.initialParams));
+export const submittedParamsAtom = atom<URLSearchParams>(
+  new URLSearchParams(initialSettings.initialParams),
+);
 
 export const updateUrlAtom = atom(null, async (get, set) => {
   const address = get(addressAtom);
@@ -302,7 +314,9 @@ export const urlAtom = atom(async (get) => {
 
 export const loadableUrlAtom = loadable(urlAtom);
 
-export const paramsAtom = atom(new URLSearchParams(initialSettings.initialParams));
+export const paramsAtom = atom(
+  new URLSearchParams(initialSettings.initialParams),
+);
 
 export const updatePageParamAtom = atom(null, (get, set, page: number) => {
   const submittedParams = new URLSearchParams(get(submittedParamsAtom));
@@ -316,7 +330,10 @@ export const resetParamAtom = atom(null, (get, set, option: string) => {
   const params = new URLSearchParams(get(paramsAtom));
   const skipParams = [ApiKeys.COORDINATES, ApiKeys.RADIUS];
 
-  if (Object.values(ApiKeys).indexOf(option) !== -1 && skipParams.indexOf(option) === -1) {
+  if (
+    Object.values(ApiKeys).indexOf(option) !== -1 &&
+    skipParams.indexOf(option) === -1
+  ) {
     const initial = initialParams.get(option);
     initial ? params.set(option, initial) : params.delete(option);
     set(paramsAtom, params);
@@ -327,14 +344,18 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
   const params = new URLSearchParams(get(paramsAtom));
   Object.keys(options).forEach((option: string) => {
     if (Object.values(ApiKeys).indexOf(option) !== -1) {
-      options[option] === undefined ? params.delete(option) : params.set(option, options[option]);
+      options[option] === undefined
+        ? params.delete(option)
+        : params.set(option, options[option]);
     }
   });
   set(paramsAtom, params);
 });
 
 // Strore address input. Converted to coordinates during form submit.
-export const addressAtom = atom<string | undefined | null>(queryStringParams.get('address'));
+export const addressAtom = atom<string | undefined | null>(
+  queryStringParams.get('address'),
+);
 
 export const languageAtom = atom<OptionType[]>([]);
 

@@ -6,7 +6,10 @@ import type SearchParams from '../types/SearchParams';
 // Filter by current language
 // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
 export const languageFilter: any = {
-  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
+  term: {
+    [`${IndexFields.LANGUAGE}`]:
+      window.drupalSettings.path.currentLanguage || 'fi',
+  },
 };
 
 const getCheckBoxFilters = (params: SearchParams) => {
@@ -85,7 +88,8 @@ export const AGGREGATIONS = {
 
 const getQueryString = (params: SearchParams, page: number) => {
   const { size } = AppSettings;
-  const { keyword, a1, a2, b1, b2, weighted_education, bilingual_education } = params;
+  const { keyword, a1, a2, b1, b2, weighted_education, bilingual_education } =
+    params;
 
   const query: BooleanQuery = {
     bool: {
@@ -177,13 +181,19 @@ const getQueryString = (params: SearchParams, page: number) => {
 
   if (weighted_education?.length) {
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-    const dropdownFilters: any = getDropdownFilters(weighted_education, 'ontologyword_details_clarifications');
+    const dropdownFilters: any = getDropdownFilters(
+      weighted_education,
+      'ontologyword_details_clarifications',
+    );
     query.bool.must?.push(...dropdownFilters);
   }
 
   if (bilingual_education?.length) {
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12066
-    const dropdownFilters: any = getDropdownFilters(bilingual_education, 'ontologyword_ids');
+    const dropdownFilters: any = getDropdownFilters(
+      bilingual_education,
+      'ontologyword_ids',
+    );
     query.bool.must?.push(...dropdownFilters);
   }
 

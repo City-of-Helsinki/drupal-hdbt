@@ -32,12 +32,13 @@ const useAddressToCoordsQuery = async (
       }),
   );
 
-  const results: Array<Promise<ServiceMapResponse<ServiceMapAddress>>> = params.map((param) => {
-    const url = new URL(ServiceMap.EVENTS_URL);
-    url.search = param.toString();
+  const results: Array<Promise<ServiceMapResponse<ServiceMapAddress>>> =
+    params.map((param) => {
+      const url = new URL(ServiceMap.EVENTS_URL);
+      url.search = param.toString();
 
-    return fetch(url.toString()).then((response) => response.json());
-  });
+      return fetch(url.toString()).then((response) => response.json());
+    });
 
   const settled = await Promise.allSettled(results);
   const fulfilled = settled.filter(
@@ -46,10 +47,15 @@ const useAddressToCoordsQuery = async (
   );
 
   const coordinates: Array<[number, number, string]> = (
-    fulfilled as Array<PromiseFulfilledResult<ServiceMapResponse<ServiceMapAddress>>>
+    fulfilled as Array<
+      PromiseFulfilledResult<ServiceMapResponse<ServiceMapAddress>>
+    >
   ).map((result) => [
     ...result.value.results[0].location.coordinates,
-    getNameTranslation(result.value.results[0].name, drupalSettings.path.currentLanguage) || '',
+    getNameTranslation(
+      result.value.results[0].name,
+      drupalSettings.path.currentLanguage,
+    ) || '',
   ]);
 
   return coordinates.length ? coordinates[0] : null;

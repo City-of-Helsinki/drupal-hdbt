@@ -12,7 +12,10 @@ const start = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
 
   if (!rootElement) {
-    console.warn('Root id missing for Maternity and Child Health Clinic search app', { ROOT_ID });
+    console.warn(
+      'Root id missing for Maternity and Child Health Clinic search app',
+      { ROOT_ID },
+    );
     return;
   }
 

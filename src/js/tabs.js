@@ -19,7 +19,9 @@
     const tabParent = tab.closest('[data-drupal-selector="tabbed-content"]');
     const tabsContentId = tab.getAttribute('aria-controls');
     if (!tabsContentId) return;
-    const tabsContent = document.querySelector(`[data-drupal-selector="${tabsContentId}"]`);
+    const tabsContent = document.querySelector(
+      `[data-drupal-selector="${tabsContentId}"]`,
+    );
 
     // First hide all tabs.
     hideEverything(tabParent);
@@ -49,7 +51,9 @@
   }
 
   function initiateTabs(activeTab, activeContent) {
-    const containers = document.querySelectorAll('[data-drupal-selector="tabbed-content"]');
+    const containers = document.querySelectorAll(
+      '[data-drupal-selector="tabbed-content"]',
+    );
 
     // Guard clause if no containers found
     if (!containers.length) return;
@@ -67,8 +71,12 @@
       }
 
       // Find the active tab elements.
-      const activeTabElement = document.querySelector(`[data-drupal-selector="${activeTab}"]`);
-      const activeContentElement = document.querySelector(`[data-drupal-selector="${activeContent}"]`);
+      const activeTabElement = document.querySelector(
+        `[data-drupal-selector="${activeTab}"]`,
+      );
+      const activeContentElement = document.querySelector(
+        `[data-drupal-selector="${activeContent}"]`,
+      );
 
       // Guard clause if elements not found
       if (!activeTabElement || !activeContentElement) {
