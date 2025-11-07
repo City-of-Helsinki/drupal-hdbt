@@ -1,9 +1,10 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 $column-gap: $spacing-and-half;
 
 .columns {
   @include breakpoint($breakpoint-m) {
-    grid-gap: calc($column-gap * 2);
     display: grid;
+    grid-gap: calc($column-gap * 2);
   }
 
   // Overrides for image paragraph styles.

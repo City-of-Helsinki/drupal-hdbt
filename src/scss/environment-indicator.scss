@@ -9,7 +9,7 @@
 .toolbar-vertical .toolbar .toolbar-bar {
   background-color: var(--bg);
 
-  .toolbar-tab > .toolbar-icon:before {
+  .toolbar-tab > .toolbar-icon::before {
     background-color: var(--color);
   }
 
@@ -39,7 +39,7 @@
 .env-local {
   &.toolbar .toolbar-bar,
   &.toolbar .toolbar-menu,
-  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon:before,
+  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon::before,
   &.toolbar .toolbar-bar .toolbar-tab > .toolbar-item,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
@@ -52,7 +52,7 @@
 .env-testing {
   &.toolbar .toolbar-bar,
   &.toolbar .toolbar-menu,
-  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon:before,
+  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon::before,
   &.toolbar .toolbar-bar .toolbar-tab > .toolbar-item,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
@@ -65,7 +65,7 @@
 .env-staging {
   &.toolbar .toolbar-bar,
   &.toolbar .toolbar-menu,
-  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon:before,
+  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon::before,
   &.toolbar .toolbar-bar .toolbar-tab > .toolbar-item,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
@@ -78,7 +78,7 @@
 .env-production {
   &.toolbar .toolbar-bar,
   &.toolbar .toolbar-menu,
-  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon:before,
+  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon::before,
   &.toolbar .toolbar-bar .toolbar-tab > .toolbar-item,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
@@ -91,7 +91,7 @@
 .env-development {
   &.toolbar .toolbar-bar,
   &.toolbar .toolbar-menu,
-  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon:before,
+  &.toolbar .toolbar-bar .toolbar-tab > .toolbar-icon::before,
   &.toolbar .toolbar-bar .toolbar-tab > .toolbar-item,
   .toolbar-horizontal .toolbar-tray .toolbar-menu-administration > ul > .menu-item--expanded,
   .toolbar-lining {
