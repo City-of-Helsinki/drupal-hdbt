@@ -28,7 +28,6 @@
     }
   ],
   "dependencies": {
-    "@biomejs/biome": "^2.2.4",
     "@dotenvx/dotenvx": "^1.15.0",
     "@elastic/elasticsearch": "^9.0.2",
     "@hdbt/theme-builder": "file:theme-builder",
