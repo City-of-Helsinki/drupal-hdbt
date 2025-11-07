@@ -2,12 +2,10 @@ import chokidar from 'chokidar';
 import { rmSync } from 'fs';
 import path from 'path';
 import { performance } from 'perf_hooks';
-/* eslint-disable import/extensions */
 import themeBuilderIcons from './icons.mjs';
 import themeBuilderCopy from './copy.mjs';
 import { buildVanillaJs, buildReactApps } from './js.mjs';
 import { themeBuilderCss, findStylesForFile } from './css.mjs';
-/* eslint-enable import/extensions */
 
 // Time the builds.
 async function withTimer(label, fn) {
