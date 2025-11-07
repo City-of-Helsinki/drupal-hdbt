@@ -1,10 +1,10 @@
 import { Checkbox } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { eventTypeAtom, updateParamsAtom } from '../store';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import ApiKeys from '../enum/ApiKeys';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
+import { eventTypeAtom, updateParamsAtom } from '../store';
 import type { EventTypeOption } from '../types/EventTypeOption';
-import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 
 export const EventTypeFilter = () => {
   const [typeSelections, setTypes] = useAtom(eventTypeAtom);
