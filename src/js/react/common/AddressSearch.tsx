@@ -6,7 +6,11 @@ import { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import getNameTranslation from './helpers/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
 
-type SubmitHandler<T> = T extends true ? (address: {label: string, value: [number, number, string]}) => void : (address: string) => void;
+export type AddressWithCoordinates = {
+  label: string;
+  value: [number, number, string];
+};
+type SubmitHandler<T> = T extends true ? (address: AddressWithCoordinates) => void : (address: string) => void;
 
 export const AddressSearch = ({
   className,

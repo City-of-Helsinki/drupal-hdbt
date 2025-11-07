@@ -90,7 +90,7 @@ function CardItem({
   time,
   timeLabel,
   weightedEducation,
-}: CardItemProps): JSX.Element {
+}: CardItemProps) {
   const cardClass = `
     card
     ${cardModifierClass ? ` ${cardModifierClass}` : ''}
