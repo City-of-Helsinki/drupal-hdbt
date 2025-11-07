@@ -1,5 +1,5 @@
 accordion:
-  version: 1.7.0
+  version: 1.7.1
   js:
     dist/js/accordion.min.js: {
       weight: -50,
@@ -10,7 +10,7 @@ accordion:
     - helfi_platform_config/heading_id_injector
 
 card-helper:
-  version: 1.1.1
+  version: 1.1.2
   js:
     dist/js/cardHelper.min.js: {
       minified: true
@@ -20,14 +20,14 @@ card-helper:
     - core/once
 
 chat-trigger:
-  version: 1.0.1
+  version: 1.0.2
   js:
     dist/js/chatTrigger.min.js: {
       minified: true
     }
 
 closable-announcements:
-  version: 1.2.1
+  version: 1.2.2
   js:
     dist/js/closableAnnouncements.min.js: {
       minified: true
@@ -38,7 +38,7 @@ closable-announcements:
     - core/drupalSettings
 
 closable-surveys:
-  version: 1.2.1
+  version: 1.2.2
   js:
     dist/js/closableSurveys.min.js: {
       minified: true
@@ -49,7 +49,7 @@ closable-surveys:
     - hdbt/focus-trap
 
 color-palette:
-  version: 1.0.0
+  version: 1.0.1
   css:
     theme:
       dist/css/color-palette.min.css: {
@@ -57,7 +57,7 @@ color-palette:
       }
 
 desktop-menu-toggle:
-  version: 1.0.4
+  version: 1.0.5
   js:
     dist/js/desktopMenuToggle.min.js: {
       minified: true
@@ -78,7 +78,7 @@ district-and-project-search:
     - core/drupal
 
 embedded-content-cookie-compliance:
-  version: 1.2.1
+  version: 1.2.2
   js:
     dist/js/embeddedContentCookieCompliance.min.js: {
       minified: true
@@ -89,7 +89,7 @@ embedded-content-cookie-compliance:
     - core/drupalSettings
 
 environment-indicator:
-  version: 1.0.0
+  version: 1.0.1
   css:
     theme:
       dist/css/environment-indicator.min.css: {
@@ -181,14 +181,14 @@ job-search:
     - core/drupal
 
 koro-helper:
-  version: 1.0.1
+  version: 1.0.2
   js:
     dist/js/koroHelper.min.js: {
       minified: true
     }
 
 language-toast:
-  version: 1.0.3
+  version: 1.0.4
   js:
     dist/js/languageToast.min.js: {
       minified: true
@@ -209,7 +209,7 @@ maternity-and-child-health-clinic-search:
     - core/drupal
 
 matomo:
-  version: 1.0.0
+  version: 1.0.1
   header: true
   js:
     dist/js/matomo.min.js: {
@@ -221,7 +221,7 @@ matomo:
     - core/jquery
 
 mobile-language-switcher:
-  version: 1.0.0
+  version: 1.0.1
   js:
     dist/js/mobileLanguageSwitcher.min.js: {
       minified: true
@@ -230,7 +230,7 @@ mobile-language-switcher:
     - core/drupal
 
 nav-global:
-  version: 1.0.3
+  version: 1.0.4
   css:
     theme:
       dist/css/nav-global.min.css: {
@@ -242,7 +242,7 @@ nav-global:
     - hdbt/nav-toggle
 
 nav-toggle:
-  version: 1.0.3
+  version: 1.0.4
   js:
     dist/js/navToggle.min.js: {
       minified: true,
@@ -258,7 +258,7 @@ nav-toggle:
     - core/drupalSettings
 
 nav-local:
-  version: 1.0.3
+  version: 1.0.4
   css:
     theme:
       dist/css/nav-local.min.css: {
@@ -322,7 +322,7 @@ search-helper:
     }
 
 sidebar-menu-toggle:
-  version: 1.0.2
+  version: 1.0.3
   js:
     dist/js/sidebarMenuToggle.min.js: {
       minified: true
@@ -338,7 +338,7 @@ tabbable:
     }
 
 tabs:
-  version: 1.0.0
+  version: 1.0.1
   js:
     dist/js/tabs.min.js: {
       minified: true
@@ -348,7 +348,7 @@ tabs:
     - core/drupalSettings
 
 table-figcaption:
-  version: 1.0.2
+  version: 1.0.3
   js:
     dist/js/handleFigcaptionSourceOrder.min.js: {
       minified: true
@@ -358,7 +358,7 @@ table-figcaption:
     - core/once
 
 throbber:
-  version: 1.0.0
+  version: 1.0.1
   js:
     dist/js/throbber.min.js: {
       minified: true
