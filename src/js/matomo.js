@@ -235,9 +235,6 @@ function getBrowserSize() {
       const d = document;
       const g = d.createElement('script');
       const s = d.getElementsByTagName('script')[0];
-      // Generate a 6-character random string with mixed case letters and numbers
-      const randomString = Math.random().toString(36).substring(2, 8);
-      const currentUrl = encodeURIComponent(window.origin);
       g.async = true;
       g.src = `${u}piwik.min.js`;
       s.parentNode.insertBefore(g, s);
@@ -246,7 +243,7 @@ function getBrowserSize() {
       const heatmapPluginBaseUrl =
         '//digiaiiris.com/web-analytics/plugins/HeatmapSessionRecording/';
       const heatmapPlugin = d.createElement('script');
-      heatmapPlugin.src = `${heatmapPluginBaseUrl}configs.php?idsite=${drupalSettings.matomo_site_id}&trackerid=${randomString}&url=${currentUrl}`;
+      heatmapPlugin.src = `${heatmapPluginBaseUrl}tracker.min.js`;
       s.parentNode.insertBefore(heatmapPlugin, s);
 
       _paq.push(['HeatmapSessionRecording::enableDebugMode']);
