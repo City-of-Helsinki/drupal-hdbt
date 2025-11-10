@@ -1,0 +1,9 @@
+// Initialize $config variable.
+$config: ();
+
+@import 'hds-design-tokens/lib/all';
+@import 'hds-design-tokens/lib/all.css';
+@import 'color-variables';
+@import 'constraint-variables';
+@import 'typography-variables';
+@import 'component-variables'; // This uses the variables from _constraints.scss, so it should be imported after it
