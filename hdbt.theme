@@ -385,16 +385,16 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       // caption.
       if (!empty($caption)) {
         $caption = t(
-          '@caption Photo: @photographer',
+          '@caption Photo: <span translate="no">@photographer</span>',
           ['@photographer' => $photographer, '@caption' => $caption],
-          ['context' => 'Image caption and photographer']
+          ['context' => 'Image caption and photographer', 'html' => TRUE]
         );
       }
       else {
         $caption = t(
-          'Photo: @photographer',
+          'Photo: <span translate="no">@photographer</span>',
           ['@photographer' => $photographer],
-          ['context' => 'Image photographer']
+          ['context' => 'Image photographer', 'html' => TRUE]
         );
       }
     }
@@ -901,9 +901,9 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
     }
     else {
       $caption = t(
-        'Photo: @photographer',
+        'Photo: <span translate="no">@photographer</span>',
         ['@photographer' => $photographer],
-        ['context' => 'Image photographer']
+        ['context' => 'Image photographer', 'html' => TRUE]
       );
     }
 
