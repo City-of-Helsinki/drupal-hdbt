@@ -5,10 +5,15 @@ import type TagType from '@/types/TagType';
 import Icon from './Icon';
 import Tags from './Tags';
 
-const Metarow = ({ icon, label, content, langAttribute }: MetadataType) => (
+export const Metarow = ({
+  icon,
+  label,
+  content,
+  langAttribute,
+}: MetadataType) => (
   <div className='card__meta'>
     <span className='card__meta__icon'>
-      <Icon icon={icon} />
+      {typeof icon === 'string' ? <Icon icon={icon} /> : icon}
     </span>
     <span className='card__meta__label'>{label}: </span>
     <span className='card__meta__content' {...langAttribute}>
@@ -30,6 +35,10 @@ export type CardItemProps = {
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
   cardUrl: string;
   cardUrlExternal?: boolean;
+  customMetaRows?: {
+    bottom?: JSX.Element[];
+    top?: JSX.Element[];
+  };
   date?: string;
   dateLabel?: string;
   daterange?: string | JSX.Element;
@@ -64,6 +73,7 @@ function CardItem({
   cardTitleLevel,
   cardUrl,
   cardUrlExternal = false,
+  customMetaRows,
   date,
   dateLabel,
   daterange,
@@ -82,7 +92,7 @@ function CardItem({
   time,
   timeLabel,
   weightedEducation,
-}: CardItemProps): JSX.Element {
+}: CardItemProps) {
   const cardClass = `
     card
     ${cardModifierClass ? ` ${cardModifierClass}` : ''}
@@ -134,6 +144,9 @@ function CardItem({
         )}
 
         <div className='card__metas'>
+          {customMetaRows?.top &&
+            customMetaRows.top.length > 0 &&
+            customMetaRows.top}
           {location && (
             <Metarow
               icon='location'
@@ -248,6 +261,9 @@ function CardItem({
               )}
             />
           )}
+          {customMetaRows?.bottom &&
+            customMetaRows.bottom.length > 0 &&
+            customMetaRows.bottom}
         </div>
 
         {cardTags && cardTags.length > 0 && (

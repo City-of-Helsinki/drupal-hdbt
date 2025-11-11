@@ -7,6 +7,7 @@ type Props = {
   active?: boolean;
   ariaControls?: string;
   children: React.ReactElement;
+  className?: string;
   dialogLabel?: string;
   helper?: string;
   id: string;
@@ -20,6 +21,7 @@ function Collapsible({
   active,
   ariaControls,
   children,
+  className,
   dialogLabel,
   helper,
   id,
@@ -66,7 +68,10 @@ function Collapsible({
   );
 
   return (
-    <div className='collapsible-wrapper' ref={ref}>
+    <div
+      className={`collapsible-wrapper${className ? ` ${className}` : ''}`}
+      ref={ref}
+    >
       <label className='collapsible__label' htmlFor={id}>
         {label}
       </label>

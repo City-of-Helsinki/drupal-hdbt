@@ -1,13 +1,16 @@
 import { SearchInput } from 'hds-react';
 import { useMemo } from 'react';
-
 import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
 import getNameTranslation from './helpers/ServiceMap';
 
+export type AddressWithCoordinates = {
+  label: string;
+  value: [number, number, string];
+};
 type SubmitHandler<T> = T extends true
-  ? (address: { label: string; value: [number, number, string] }) => void
+  ? (address: AddressWithCoordinates) => void
   : (address: string) => void;
 
 export const AddressSearch = ({
@@ -83,10 +86,12 @@ export const AddressSearch = ({
 
     const [fiResults, svResults] = await results;
 
-    return [
+    const result = [
       ...parseResults(fiResults, 'fi'),
       ...parseResults(svResults, 'sv'),
     ].slice(0, 10);
+
+    return result;
   };
 
   const handleSubmit = (address: string) => {
