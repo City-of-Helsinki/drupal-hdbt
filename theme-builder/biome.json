@@ -27,7 +27,7 @@
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",
       "semicolons": "always",
-      "expand": "auto",
+      "expand": "never",
       "quoteProperties": "asNeeded",
       "trailingCommas": "all",
       "attributePosition": "auto",
