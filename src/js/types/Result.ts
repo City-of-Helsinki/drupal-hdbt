@@ -14,7 +14,7 @@ interface Result<Type> {
         hits: Result<Type>[]
       }
     }
-  }
+  };
 }
 
 export default Result;

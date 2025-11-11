@@ -27,7 +27,7 @@ export const ResultsWrapper = ({
   customTotal?: number;
   getHeaderText: () => string;
   isLoading: boolean;
-  resultItemCallBack: (item: Result<any>) => JSX.Element;
+  resultItemCallBack: (item: types.SearchHit<any>) => JSX.Element;
   setPage: (string) => void;
   sortElement?: JSX.Element;
   shouldScroll?: boolean;
