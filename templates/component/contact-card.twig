@@ -1,0 +1,51 @@
+{% set heading_level = heading_level is defined ? heading_level : 'h2' %}
+
+
+<div class="contact-card">
+  <div class="{% if contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
+      {% if contact_image_reference|render %}
+      {{ contact_image_reference }}
+      {% endif %}
+  </div>
+  <div class="contact-card__information-container">
+  {% if contact_name|render|striptags|trim %}
+      <{{ heading_level }} class="contact-card__person-name">
+      <div class="label visually-hidden">{{ 'Name'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
+      {{ contact_name }}
+      </{{ heading_level }}>
+  {% endif %}
+  {% if contact_title|render|striptags|trim %}
+      <div class="contact-card__person-title">
+      <div class="label visually-hidden">{{ 'Title'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
+      {{ contact_title }}
+      </div>
+  {% endif %}
+  {% if phone_number|render|striptags|trim or email|render|striptags|trim or social_media|render|striptags|trim %}
+      <div class="contact-card__person-links">
+      {% if phone_number|render|striptags|trim %}
+          <div class="contact-card__person-link contact-card__person-link--phone">
+          <div class="label visually-hidden">{{ 'Phone number'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
+          {{ phone_number }}
+          </div>
+      {% endif %}
+      {% if email|render|striptags|trim %}
+          <div class="contact-card__person-link contact-card__person-link--email">
+          <div class="label visually-hidden">{{ 'Email'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
+          {{ email }}
+          </div>
+      {% endif %}
+      {% if social_media|render|striptags|trim %}
+          <div class="contact-card__person-link contact-card__person-link--social-media">
+          {{ social_media }}
+          </div>
+      {% endif %}
+      </div>
+  {% endif %}
+  {% if contact_description|render|striptags|trim %}
+      <div class="contact-card__person-description">
+      <div class="label visually-hidden">{{ 'Description'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
+      {{ contact_description }}
+      </div>
+  {% endif %}
+  </div>
+</div>

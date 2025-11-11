@@ -29,6 +29,7 @@ export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsPro
           {/* @ts-ignore */} 
           <Tag
             className={`${item.color ? `content-tags__tags__tag--${item.color}` : ''}`}
+            iconStart={item.iconStart}
           >
             {item.tag}
           </Tag>
