@@ -28,7 +28,7 @@
           illustration_url: theme_path ~ '/src/images/illustration_error_page_404.svg',
           illustration_width: '379',
           illustration_height: '566',
-          illustration_caption: 'Photo: @photographer'|t({'@photographer': 'Lille Santanen'}, {'context': 'Image photographer'}),
+          illustration_caption: 'Photo: <span translate="no">@photographer</span>'|t({'@photographer': 'Lille Santanen'}, {'context': 'Image photographer', 'html': TRUE}),
         } %}
         {% endembed %}
       {% endblock container_content %}
