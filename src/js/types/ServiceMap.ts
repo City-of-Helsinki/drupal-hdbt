@@ -1,27 +1,15 @@
-export type TranslatedString = {
-  en?: string;
-  fi?: string;
-  sv?: string;
-};
+export type TranslatedString = { en?: string; fi?: string; sv?: string };
 
 export type ServiceMapAddress = {
   letter: string;
-  location: {
-    type: string;
-    coordinates: [number, number];
-  };
+  location: { type: string; coordinates: [number, number] };
   modified_at: string;
   name: TranslatedString;
   number_end?: number;
   number?: number;
-  municipality: {
-    id: string;
-    name: TranslatedString;
-  };
+  municipality: { id: string; name: TranslatedString };
   object_type: string;
-  street: {
-    name: TranslatedString;
-  };
+  street: { name: TranslatedString };
 };
 
 export type ServiceMapPlace = {

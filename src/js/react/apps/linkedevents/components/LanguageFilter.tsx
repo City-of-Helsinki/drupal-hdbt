@@ -12,10 +12,7 @@ export const LanguageFilter = () => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const languageOptions = Object.entries(LanguageOptions).map(
-    ([key, value]) => ({
-      label: value,
-      value: key,
-    }),
+    ([key, value]) => ({ label: value, value: key }),
   );
   const onChange = (selectedOptions: OptionType[]) => {
     setLanguage(selectedOptions);

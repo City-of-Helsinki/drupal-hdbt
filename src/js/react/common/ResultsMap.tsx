@@ -2,9 +2,7 @@ import ExternalLink from '@/react/common/ExternalLink';
 import bucketToMap from '@/react/common/helpers/Aggregations';
 import type { AggregationItem } from '@/types/Aggregation';
 
-type ResultsMapProps = {
-  ids?: AggregationItem[];
-};
+type ResultsMapProps = { ids?: AggregationItem[] };
 
 const ID_THRESHOLD = 90;
 

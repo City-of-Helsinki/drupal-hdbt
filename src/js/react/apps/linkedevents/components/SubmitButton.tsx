@@ -1,8 +1,6 @@
 import { Button } from 'hds-react';
 
-type SubmitButtonProps = {
-  disabled: boolean;
-};
+type SubmitButtonProps = { disabled: boolean };
 
 function SubmitButton({ disabled }: SubmitButtonProps) {
   return (

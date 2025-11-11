@@ -2,9 +2,7 @@ import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
 import type NewsItem from '../../types/NewsItem';
 
-type ImageUrls = {
-  [key: string]: string;
-};
+type ImageUrls = { [key: string]: string };
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;

@@ -28,9 +28,7 @@ export const TargetGroups = {
     'Families with babies',
     {},
     { context: 'Event search: target group' },
-  )]: {
-    ids: ['yso:p20513'],
-  },
+  )]: { ids: ['yso:p20513'] },
   [Drupal.t('Children', {}, { context: 'Event search: target group' })]: {
     ids: ['yso:p4354'],
   },

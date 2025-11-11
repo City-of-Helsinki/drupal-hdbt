@@ -13,9 +13,7 @@ import getQueryString from '../helpers/ProximityQuery';
 import { configurationsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
-type Result = {
-  units?: number[];
-};
+type Result = { units?: number[] };
 
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
@@ -67,9 +65,7 @@ const UseProximityQuery = (params: SearchParams) => {
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const result = await useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: getQueryString(ids, coordinates, page, sv_only),
     });
 
@@ -79,26 +75,16 @@ const UseProximityQuery = (params: SearchParams) => {
 
     const json = await result.json();
 
-    return {
-      addressName: resolvedName,
-      ...json,
-    };
+    return { addressName: resolvedName, ...json };
   };
 
   const { data, error, isLoading, isValidating } = useSWR(
     `_${Object.values(params).toString()}`,
     fetcher,
-    {
-      revalidateOnFocus: false,
-    },
+    { revalidateOnFocus: false },
   );
 
-  return {
-    data,
-    error,
-    isLoading,
-    isValidating,
-  };
+  return { data, error, isLoading, isValidating };
 };
 
 export default UseProximityQuery;

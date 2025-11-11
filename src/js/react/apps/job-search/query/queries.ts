@@ -10,44 +10,21 @@ const languageFilter = {
 };
 
 // Filter out taxonomy terms
-export const nodeFilter = {
-  term: { [IndexFields.ENTITY_TYPE]: 'node' },
-};
+export const nodeFilter = { term: { [IndexFields.ENTITY_TYPE]: 'node' } };
 
 // Alphabetical sort for terms
-const alphabeticallySortTerms = {
-  name: {
-    order: 'asc',
-  },
-};
+const alphabeticallySortTerms = { name: { order: 'asc' } };
 
 const termSubAgg = {
-  unique: {
-    cardinality: {
-      field: `${IndexFields.RECRUITMENT_ID}.keyword`,
-    },
-  },
+  unique: { cardinality: { field: `${IndexFields.RECRUITMENT_ID}.keyword` } },
 };
 
 export const PROMOTED_IDS = {
-  aggs: {
-    promoted: {
-      terms: {
-        field: IndexFields.NID,
-        size: 100,
-      },
-    },
-  },
+  aggs: { promoted: { terms: { field: IndexFields.NID, size: 100 } } },
   query: {
     bool: {
       filter: [nodeFilter],
-      must: [
-        {
-          term: {
-            [IndexFields.PROMOTED]: true,
-          },
-        },
-      ],
+      must: [{ term: { [IndexFields.PROMOTED]: true } }],
     },
   },
 };
@@ -56,39 +33,23 @@ export const PROMOTED_IDS = {
 export const AGGREGATIONS = {
   aggs: {
     occupations: {
-      terms: {
-        field: 'task_area_external_id',
-        size: 100,
-      },
+      terms: { field: 'task_area_external_id', size: 100 },
       aggs: termSubAgg,
     },
     employment: {
-      terms: {
-        field: 'employment_id',
-        size: 100,
-      },
+      terms: { field: 'employment_id', size: 100 },
       aggs: termSubAgg,
     },
     employment_type: {
-      terms: {
-        field: 'employment_type_id',
-        size: 100,
-      },
+      terms: { field: 'employment_type_id', size: 100 },
       aggs: termSubAgg,
     },
     employment_search_id: {
-      terms: {
-        field: 'employment_search_id',
-        size: 100,
-      },
+      terms: { field: 'employment_search_id', size: 100 },
       aggs: termSubAgg,
     },
   },
-  query: {
-    bool: {
-      filter: [nodeFilter],
-    },
-  },
+  query: { bool: { filter: [nodeFilter] } },
 };
 
 // Get all employment filter options
@@ -116,18 +77,8 @@ export const EMPLOYMENT_FILTER_OPTIONS = {
 
 // Get all eligible language options
 export const LANGUAGE_OPTIONS = {
-  aggs: {
-    languages: {
-      terms: {
-        field: '_language',
-      },
-    },
-  },
-  query: {
-    bool: {
-      filter: [nodeFilter],
-    },
-  },
+  aggs: { languages: { terms: { field: '_language' } } },
+  query: { bool: { filter: [nodeFilter] } },
 };
 
 // Get all task area options
@@ -135,16 +86,8 @@ export const TASK_AREA_OPTIONS = {
   query: {
     bool: {
       filter: [
-        {
-          term: {
-            vid: 'task_area',
-          },
-        },
-        {
-          term: {
-            entity_type: 'taxonomy_term',
-          },
-        },
+        { term: { vid: 'task_area' } },
+        { term: { entity_type: 'taxonomy_term' } },
         languageFilter,
       ],
     },

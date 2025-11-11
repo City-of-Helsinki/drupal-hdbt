@@ -4,9 +4,7 @@ import { capitalize } from '../../helpers/helpers';
 import type Result from '../../types/Result';
 import type TagType from '../../types/TagType';
 
-type ImageUrls = {
-  [key: string]: string;
-};
+type ImageUrls = { [key: string]: string };
 
 const ResultCard = ({
   content_type,

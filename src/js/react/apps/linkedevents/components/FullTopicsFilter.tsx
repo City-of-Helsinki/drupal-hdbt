@@ -37,9 +37,7 @@ const FullTopicsFilter = memo(() => {
       text: searchTerm,
     });
     url.search = locationParams.toString();
-    const result = {
-      options: [],
-    };
+    const result = { options: [] };
 
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(url.toString());

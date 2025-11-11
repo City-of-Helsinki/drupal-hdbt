@@ -15,11 +15,7 @@ import ResultsContainer from './ResultsContainer';
 
 type ResponseType = {
   data: Event[];
-  meta: {
-    count: number;
-    next?: string;
-    previous?: string;
-  };
+  meta: { count: number; next?: string; previous?: string };
 };
 
 const SWR_REFRESH_OPTIONS = {
@@ -93,9 +89,7 @@ const SearchContainer = () => {
           return;
         }
 
-        revalidate({
-          ...revalidateOpts,
-        });
+        revalidate({ ...revalidateOpts });
       },
       keepPreviousData: true,
     },

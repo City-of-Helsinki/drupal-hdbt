@@ -13,10 +13,7 @@ export const SearchInput = () => {
       id={SearchComponents.KEYWORD}
       label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
       onChange={(e) =>
-        setParams({
-          ...params,
-          [SearchComponents.KEYWORD]: e.target.value,
-        })
+        setParams({ ...params, [SearchComponents.KEYWORD]: e.target.value })
       }
       placeholder={Drupal.t(
         'For example, budget proposal',

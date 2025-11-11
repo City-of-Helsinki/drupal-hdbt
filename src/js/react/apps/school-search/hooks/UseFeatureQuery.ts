@@ -16,9 +16,7 @@ const UseFeatureQuery = (params: SearchParams) => {
 
     return fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: getQueryString(params, page),
     }).then((res) => res.json());
   };
@@ -26,17 +24,10 @@ const UseFeatureQuery = (params: SearchParams) => {
   const { data, error, isLoading, isValidating } = useSWR(
     `_${query || ''}}`,
     fetcher,
-    {
-      revalidateOnFocus: false,
-    },
+    { revalidateOnFocus: false },
   );
 
-  return {
-    data,
-    error,
-    isLoading,
-    isValidating,
-  };
+  return { data, error, isLoading, isValidating };
 };
 
 export default UseFeatureQuery;

@@ -35,10 +35,7 @@ export type CardItemProps = {
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
   cardUrl: string;
   cardUrlExternal?: boolean;
-  customMetaRows?: {
-    bottom?: JSX.Element[];
-    top?: JSX.Element[];
-  };
+  customMetaRows?: { bottom?: JSX.Element[]; top?: JSX.Element[] };
   date?: string;
   dateLabel?: string;
   daterange?: string | JSX.Element;

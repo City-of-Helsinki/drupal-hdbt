@@ -11,34 +11,16 @@ const getQueryString = (
   const lang = drupalSettings.path.currentLanguage;
 
   const query: BooleanQuery = {
-    bool: {
-      filter: [
-        {
-          term: {
-            search_api_language: lang,
-          },
-        },
-      ],
-    },
+    bool: { filter: [{ term: { search_api_language: lang } }] },
   };
 
   if (svOnly) {
-    query.bool.filter?.push({
-      term: {
-        provided_languages: 'sv',
-      },
-    });
+    query.bool.filter?.push({ term: { provided_languages: 'sv' } });
   }
 
   // Don't query by id, when sv_only filter is set.
   if (ids && Array.isArray(ids) && !svOnly) {
-    query.bool.must = [
-      {
-        terms: {
-          id: ids,
-        },
-      },
-    ];
+    query.bool.must = [{ terms: { id: ids } }];
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
@@ -52,10 +34,7 @@ const getQueryString = (
       sort = [
         {
           _geo_distance: {
-            coordinates: {
-              lat: coordinates[0],
-              lon: coordinates[1],
-            },
+            coordinates: { lat: coordinates[0], lon: coordinates[1] },
             order: 'asc',
             mode: 'min',
             distance_type: 'arc',
@@ -69,14 +48,7 @@ const getQueryString = (
   }
 
   return JSON.stringify({
-    aggs: {
-      ids: {
-        terms: {
-          field: 'id',
-          size: 1000,
-        },
-      },
-    },
+    aggs: { ids: { terms: { field: 'id', size: 1000 } } },
     from: size * (page - 1),
     query,
     size,

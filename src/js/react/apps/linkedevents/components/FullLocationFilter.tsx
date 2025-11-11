@@ -38,9 +38,7 @@ const FullLocationFilter = memo(() => {
       text: searchTerm,
     });
     url.search = locationParams.toString();
-    const result = {
-      options: [],
-    };
+    const result = { options: [] };
 
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(url.toString());
@@ -71,10 +69,7 @@ const FullLocationFilter = memo(() => {
     _data: SelectData,
   ) => {
     setLocationFilter(
-      value.map((option) => ({
-        label: option.label,
-        value: option.value,
-      })),
+      value.map((option) => ({ label: option.label, value: option.value })),
     );
     updateParams({
       [ApiKeys.LOCATION]: value

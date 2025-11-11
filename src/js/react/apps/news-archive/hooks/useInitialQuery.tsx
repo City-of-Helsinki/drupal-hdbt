@@ -1,9 +1,7 @@
 import IndexFields from '../enum/IndexFields';
 import useLanguageQuery from './useLanguageQuery';
 
-const termFilter = {
-  term: { entity_type: 'taxonomy_term' },
-};
+const termFilter = { term: { entity_type: 'taxonomy_term' } };
 
 const useInitialQuery = () => {
   const languageFilter = useLanguageQuery();
@@ -12,18 +10,9 @@ const useInitialQuery = () => {
     aggs: {
       [key]: {
         multi_terms: {
-          terms: [
-            {
-              field: 'name',
-            },
-            {
-              field: 'tid',
-            },
-          ],
+          terms: [{ field: 'name' }, { field: 'tid' }],
           size: 100000,
-          order: {
-            _key: 'asc',
-          },
+          order: { _key: 'asc' },
         },
       },
     },

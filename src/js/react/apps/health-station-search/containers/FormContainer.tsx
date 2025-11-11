@@ -5,9 +5,7 @@ import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
-type SubmitFormType = HTMLFormElement & {
-  sv_only: HTMLInputElement;
-};
+type SubmitFormType = HTMLFormElement & { sv_only: HTMLInputElement };
 
 const ProximityFormContainer = ({
   initialParams,

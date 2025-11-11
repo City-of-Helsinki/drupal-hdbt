@@ -32,9 +32,7 @@ const getCheckBoxFilters = (params: SearchParams) => {
         bool: {
           minimum_should_match: 1,
           should: hits.map((hit) => ({
-            term: {
-              [`additional_filters.${hit}`]: true,
-            },
+            term: { [`additional_filters.${hit}`]: true },
           })),
         },
       });
@@ -47,14 +45,7 @@ const getCheckBoxFilters = (params: SearchParams) => {
 // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 const getDropdownFilters = (filterValues: any, indexField: string) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-  const filters: any = [
-    {
-      bool: {
-        minimum_should_match: 1,
-        should: [],
-      },
-    },
-  ];
+  const filters: any = [{ bool: { minimum_should_match: 1, should: [] } }];
 
   filterValues.forEach((ontologywordId: string) => {
     filters[0].bool.should.push({ term: { [indexField]: ontologywordId } });
@@ -66,24 +57,12 @@ const getDropdownFilters = (filterValues: any, indexField: string) => {
 // Base aggregations
 export const AGGREGATIONS = {
   aggs: {
-    ontologywordIds: {
-      terms: {
-        field: 'ontologyword_ids',
-        size: 100,
-      },
-    },
+    ontologywordIds: { terms: { field: 'ontologyword_ids', size: 100 } },
     ontologywordClarifications: {
-      terms: {
-        field: 'ontologyword_details_clarifications',
-        size: 100,
-      },
+      terms: { field: 'ontologyword_details_clarifications', size: 100 },
     },
   },
-  query: {
-    bool: {
-      filter: [languageFilter],
-    },
-  },
+  query: { bool: { filter: [languageFilter] } },
 };
 
 const getQueryString = (params: SearchParams, page: number) => {
@@ -94,11 +73,7 @@ const getQueryString = (params: SearchParams, page: number) => {
   const query: BooleanQuery = {
     bool: {
       filter: [
-        {
-          term: {
-            search_api_language: drupalSettings.path.currentLanguage,
-          },
-        },
+        { term: { search_api_language: drupalSettings.path.currentLanguage } },
       ],
       must: [],
     },
@@ -106,33 +81,10 @@ const getQueryString = (params: SearchParams, page: number) => {
 
   if (keyword?.length) {
     query.bool.should = [
-      {
-        match_phrase_prefix: {
-          name: {
-            query: keyword,
-            boost: 1.5,
-          },
-        },
-      },
-      {
-        match: {
-          name: {
-            query: keyword,
-          },
-        },
-      },
-      {
-        wildcard: {
-          name: {
-            value: `*${keyword}*`,
-          },
-        },
-      },
-      {
-        term: {
-          postal_code: keyword,
-        },
-      },
+      { match_phrase_prefix: { name: { query: keyword, boost: 1.5 } } },
+      { match: { name: { query: keyword } } },
+      { wildcard: { name: { value: `*${keyword}*` } } },
+      { term: { postal_code: keyword } },
     ];
 
     query.bool.minimum_should_match = 1;
@@ -145,11 +97,7 @@ const getQueryString = (params: SearchParams, page: number) => {
       {
         nested: {
           path: 'additional_filters',
-          query: {
-            bool: {
-              must: checkBoxFilters,
-            },
-          },
+          query: { bool: { must: checkBoxFilters } },
         },
       },
     ];
@@ -201,20 +149,11 @@ const getQueryString = (params: SearchParams, page: number) => {
   const sort: any[] = [{ 'name.keyword': 'asc' }];
 
   if (keyword?.length) {
-    sort.unshift({
-      _score: 'desc',
-    });
+    sort.unshift({ _score: 'desc' });
   }
 
   return JSON.stringify({
-    aggs: {
-      ids: {
-        terms: {
-          field: 'id',
-          size: 1000,
-        },
-      },
-    },
+    aggs: { ids: { terms: { field: 'id', size: 1000 } } },
     from: size * (page - 1),
     query,
     size,

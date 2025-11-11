@@ -12,9 +12,7 @@ import getQueryString from '../helpers/ProximityQuery';
 import { configurationsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
-type Result = {
-  units?: number[];
-};
+type Result = { units?: number[] };
 
 const UseProximityQuery = (params: SearchParams) => {
   const { baseUrl } = useAtomValue(configurationsAtom);
@@ -64,9 +62,7 @@ const UseProximityQuery = (params: SearchParams) => {
 
     const result = await fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: getQueryString(ids, coordinates, page),
     });
 
@@ -76,26 +72,16 @@ const UseProximityQuery = (params: SearchParams) => {
 
     const json = await result.json();
 
-    return {
-      addressName: resolvedName,
-      ...json,
-    };
+    return { addressName: resolvedName, ...json };
   };
 
   const { data, error, isLoading, isValidating } = useSWR(
     baseUrl === '' ? null : `_${Object.values(params).toString()}`,
     fetcher,
-    {
-      revalidateOnFocus: false,
-    },
+    { revalidateOnFocus: false },
   );
 
-  return {
-    data,
-    error,
-    isLoading,
-    isValidating,
-  };
+  return { data, error, isLoading, isValidating };
 };
 
 export default UseProximityQuery;

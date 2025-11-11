@@ -13,9 +13,7 @@ const UseConfigurationsQuery = () => {
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const result = await useTimeoutFetch(`${proxyUrl}/${index}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body,
     });
 
@@ -28,16 +26,10 @@ const UseConfigurationsQuery = () => {
     const { aggregations } = data;
 
     if (!aggregations) {
-      return {
-        aggs: {},
-        baseUrl: proxyUrl,
-      };
+      return { aggs: {}, baseUrl: proxyUrl };
     }
 
-    return {
-      aggs: aggregations,
-      baseUrl: proxyUrl,
-    };
+    return { aggs: aggregations, baseUrl: proxyUrl };
   };
 
   const { data, error } = useSWR('configurations', fetcher, {
@@ -46,10 +38,7 @@ const UseConfigurationsQuery = () => {
     suspense: true,
   });
 
-  return {
-    data,
-    error,
-  };
+  return { data, error };
 };
 
 export default UseConfigurationsQuery;

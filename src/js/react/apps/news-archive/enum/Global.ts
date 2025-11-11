@@ -1,6 +1,3 @@
-const Global = {
-  INDEX: 'news',
-  SIZE: 15,
-};
+const Global = { INDEX: 'news', SIZE: 15 };
 
 export default Global;

@@ -45,11 +45,7 @@ const SelectionsContainer = ({
     const pills: JSX.Element[] = [];
 
     const keys: ParamsKey[] = ['topic', 'neighbourhoods', 'groups'];
-    const passedOptions = {
-      topic,
-      neighbourhoods,
-      groups,
-    };
+    const passedOptions = { topic, neighbourhoods, groups };
     [params.topic, params.neighbourhoods, params.groups].forEach(
       (selections, index) => {
         if (selections?.length) {
@@ -73,9 +69,7 @@ const SelectionsContainer = ({
   };
 
   const clearSelections = () => {
-    updateParams({
-      page: 1,
-    });
+    updateParams({ page: 1 });
   };
 
   const showClearButton =

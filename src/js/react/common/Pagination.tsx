@@ -27,10 +27,7 @@ const getPagination = (current: number, pages: number, totalPages: number) => {
 
   prevPages.reverse();
 
-  return {
-    prevPages,
-    nextPages,
-  };
+  return { prevPages, nextPages };
 };
 
 export const Pagination = ({

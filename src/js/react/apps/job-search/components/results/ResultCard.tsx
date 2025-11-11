@@ -98,10 +98,7 @@ const getResultCard = ({
   );
 };
 
-type ResultCardProps = {
-  job: Job;
-  innerHits: Result<Job>[];
-};
+type ResultCardProps = { job: Job; innerHits: Result<Job>[] };
 
 const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   const { _language, title } = job;

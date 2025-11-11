@@ -8,10 +8,7 @@ const FeatureResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
   const setParams = useSetAtom(updateParamsAtom);
   const updatePage = (page: number) => {
-    setParams({
-      ...params,
-      page,
-    });
+    setParams({ ...params, page });
   };
   const { data, error, isLoading, isValidating } = UseFeatureQuery(params);
   const { page } = params;

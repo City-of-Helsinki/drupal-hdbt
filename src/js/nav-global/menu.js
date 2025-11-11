@@ -383,12 +383,8 @@ const MobilePanel = {
     const root = this.getRoot();
     root.innerHTML = Mustache.render(
       this.templates.panel,
-      {
-        panels: this.getView(state),
-      },
-      {
-        sub_tree: this.templates.list,
-      },
+      { panels: this.getView(state) },
+      { sub_tree: this.templates.list },
     );
 
     if (state === 'load') {

@@ -6,10 +6,7 @@ export default async function useTimeoutFetch(
   const controller = new AbortController();
   const enforceTimeout = setTimeout(() => controller.abort(), timeout);
 
-  const result = await fetch(url, {
-    ...options,
-    signal: controller.signal,
-  });
+  const result = await fetch(url, { ...options, signal: controller.signal });
   clearTimeout(enforceTimeout);
 
   return result;

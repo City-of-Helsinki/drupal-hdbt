@@ -26,9 +26,7 @@ const SearchContainer = () => {
   const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
   const setConfigurations = useSetAtom(setConfigurationsAtom);
-  const initialParams = useInitialParams({
-    address: '',
-  });
+  const initialParams = useInitialParams({ address: '' });
 
   const changeSearchMode = (mode: string) => {
     if (mode === searchMode) {
@@ -42,9 +40,7 @@ const SearchContainer = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (initialParams?.address) {
-      setParams({
-        keyword: initialParams.address,
-      });
+      setParams({ keyword: initialParams.address });
       setKeyword(initialParams.address);
       setSearchMode(MODE_OPTIONS.proximity);
     }
@@ -53,10 +49,7 @@ const SearchContainer = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (configurations) {
-      setConfigurations({
-        ...configurations,
-        error: configurationsError,
-      });
+      setConfigurations({ ...configurations, error: configurationsError });
     }
   }, [configurations]);
 

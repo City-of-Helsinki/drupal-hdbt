@@ -108,9 +108,7 @@ const SearchMonitorContainer = () => {
     // Get csrf token from Drupal
     let sessionToken = '';
     try {
-      const response = await fetch('/session/token', {
-        method: 'GET',
-      });
+      const response = await fetch('/session/token', { method: 'GET' });
 
       if (!response.ok) {
         seterrorMessage(`Error getting session token: ${response.statusText}`);
@@ -143,10 +141,7 @@ const SearchMonitorContainer = () => {
     }
     const response = await fetch(apiPath, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        token: sessionToken,
-      },
+      headers: { 'Content-Type': 'application/json', token: sessionToken },
       body,
     });
 
@@ -361,10 +356,7 @@ const SearchMonitorContainer = () => {
             <Button
               className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
               id='job-search-form__search-monitor__submit-button'
-              style={{
-                marginBottom: '0',
-                marginTop: 'var(--spacing-l)',
-              }}
+              style={{ marginBottom: '0', marginTop: 'var(--spacing-l)' }}
               type='submit'
             >
               {buttonLabel}

@@ -1,16 +1,12 @@
 import type { ImgHTMLAttributes } from 'react';
 
-type ImageUrls = {
-  [key: string]: string;
-};
+type ImageUrls = { [key: string]: string };
 
 type ImageOverride = {
   alt?: string;
   photographer?: string;
   title?: string;
-  variants: {
-    [key: string]: string;
-  };
+  variants: { [key: string]: string };
 };
 
 type CardPictureProps = {
@@ -18,11 +14,7 @@ type CardPictureProps = {
   alt?: string;
   imageUrls?: ImageUrls;
   imageOverride?: ImageOverride;
-  sources?: {
-    srcSet: string;
-    media: string;
-    type?: string;
-  }[];
+  sources?: { srcSet: string; media: string; type?: string }[];
 } & ImgHTMLAttributes<HTMLImageElement>;
 
 const CardPicture = (props: CardPictureProps) => {

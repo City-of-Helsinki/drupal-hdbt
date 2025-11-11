@@ -21,12 +21,8 @@ export const sortOptions: any = {
     _score: { order: 'desc' },
     [`${IndexFields.TITLE}`]: { order: 'asc' },
   },
-  asc: {
-    [`${IndexFields.TITLE}`]: { order: 'asc' },
-  },
-  desc: {
-    [`${IndexFields.TITLE}`]: { order: 'desc' },
-  },
+  asc: { [`${IndexFields.TITLE}`]: { order: 'asc' } },
+  desc: { [`${IndexFields.TITLE}`]: { order: 'desc' } },
 };
 
 // Base aggregations
@@ -107,9 +103,5 @@ export const AGGREGATIONS = {
       },
     },
   },
-  query: {
-    bool: {
-      filter: [languageFilter],
-    },
-  },
+  query: { bool: { filter: [languageFilter] } },
 };

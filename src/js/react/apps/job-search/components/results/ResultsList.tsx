@@ -2,9 +2,7 @@ import type Result from '@/types/Result';
 import type Job from '../../types/Job';
 import ResultCard from './ResultCard';
 
-type ResultsListProps = {
-  hits: Result<Job>[];
-};
+type ResultsListProps = { hits: Result<Job>[] };
 
 const ResultsList = ({ hits }: ResultsListProps) => (
   <>

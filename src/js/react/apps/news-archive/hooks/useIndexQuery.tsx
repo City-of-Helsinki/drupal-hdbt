@@ -29,27 +29,18 @@ const useIndexQuery = ({
     const contentType = multi ? 'application/x-ndjson' : 'application/json';
 
     if (debug) {
-      console.warn('Executing request with props: ', {
-        debug,
-        query,
-        multi,
-      });
+      console.warn('Executing request with props: ', { debug, query, multi });
     }
 
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     return useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': contentType,
-      },
+      headers: { 'Content-Type': contentType },
       body: query,
     }).then((res) => res.json());
   };
 
-  return useSWR(key || query, fetcher, {
-    revalidateOnFocus: false,
-    ...rest,
-  });
+  return useSWR(key || query, fetcher, { revalidateOnFocus: false, ...rest });
 };
 
 export default useIndexQuery;

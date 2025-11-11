@@ -21,11 +21,7 @@ const useQueryString = (urlParams: URLParams): string => {
               bool: {
                 _name: 'Match district',
                 should: [],
-                filter: {
-                  term: {
-                    _index: 'districts',
-                  },
-                },
+                filter: { term: { _index: 'districts' } },
               },
             },
             {
@@ -33,23 +29,14 @@ const useQueryString = (urlParams: URLParams): string => {
                 _name: 'Match Project',
                 should: [],
                 must: [],
-                filter: {
-                  term: {
-                    _index: 'projects',
-                  },
-                },
+                filter: { term: { _index: 'projects' } },
               },
             },
           ],
           filter: [languageFilter, nodeFilter],
         },
       },
-      functions: [
-        {
-          filter: { term: { content_type: 'district' } },
-          weight,
-        },
-      ],
+      functions: [{ filter: { term: { content_type: 'district' } }, weight }],
       score_mode: 'sum',
       boost_mode: 'max', // max of query score and function score
       min_score: 0,
@@ -240,12 +227,7 @@ const useQueryString = (urlParams: URLParams): string => {
     ? sortOptions[urlParams?.sort]
     : sortOptions.most_relevant;
 
-  return JSON.stringify({
-    sort: [sort],
-    size,
-    from: size * (page - 1),
-    query,
-  });
+  return JSON.stringify({ sort: [sort], size, from: size * (page - 1), query });
 };
 
 export default useQueryString;

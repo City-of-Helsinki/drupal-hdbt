@@ -10,25 +10,11 @@ const getQueryString = (
   const lang = drupalSettings.path.currentLanguage;
 
   const query: BooleanQuery = {
-    bool: {
-      filter: [
-        {
-          term: {
-            search_api_language: lang,
-          },
-        },
-      ],
-    },
+    bool: { filter: [{ term: { search_api_language: lang } }] },
   };
 
   if (ids && Array.isArray(ids)) {
-    query.bool.must = [
-      {
-        terms: {
-          id: ids,
-        },
-      },
-    ];
+    query.bool.must = [{ terms: { id: ids } }];
 
     query.bool.should = [
       // Show finnish schools first when using fi or en, swedish when sv
@@ -42,9 +28,7 @@ const getQueryString = (
                 term: {
                   [lang === 'sv'
                     ? 'additional_filters.swedish_education'
-                    : 'additional_filters.finnish_education']: {
-                    value: true,
-                  },
+                    : 'additional_filters.finnish_education']: { value: true },
                 },
               },
             },
@@ -62,14 +46,7 @@ const getQueryString = (
   }
 
   return JSON.stringify({
-    aggs: {
-      ids: {
-        terms: {
-          field: 'id',
-          size: 1000,
-        },
-      },
-    },
+    aggs: { ids: { terms: { field: 'id', size: 1000 } } },
     from: size * (page - 1),
     query,
     size,

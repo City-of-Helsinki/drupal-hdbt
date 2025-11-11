@@ -42,10 +42,7 @@ const ResultsSort = () => {
       clearable={false}
       onChange={(_selectedOptions, clickedOption) => {
         setSort(clickedOption);
-        setUrlParams({
-          ...urlParams,
-          sort: clickedOption.value,
-        });
+        setUrlParams({ ...urlParams, sort: clickedOption.value });
       }}
       options={options}
       texts={{

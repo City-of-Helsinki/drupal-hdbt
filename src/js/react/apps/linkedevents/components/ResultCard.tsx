@@ -193,19 +193,13 @@ function ResultCard({
   const getUrl = () => {
     if (type_id && type_id === 'Course') {
       const type =
-        {
-          fi: 'kurssit',
-          sv: 'kurser',
-        }[currentLanguage] ?? 'courses';
+        { fi: 'kurssit', sv: 'kurser' }[currentLanguage] ?? 'courses';
 
       return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
     }
 
     const type =
-      {
-        fi: 'tapahtumat',
-        sv: 'kurser',
-      }[currentLanguage] ?? 'events';
+      { fi: 'tapahtumat', sv: 'kurser' }[currentLanguage] ?? 'events';
 
     return `${baseUrl}/${currentLanguage}/${type}/${id}`;
   };

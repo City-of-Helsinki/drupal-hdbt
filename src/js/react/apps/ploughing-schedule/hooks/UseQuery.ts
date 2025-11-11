@@ -18,9 +18,7 @@ const UseQuery = (params: SearchParams) => {
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     return useTimeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: getQueryString(address),
     }).then((res) => res.json());
   };
@@ -28,17 +26,10 @@ const UseQuery = (params: SearchParams) => {
   const { data, error, isLoading, isValidating } = useSWR(
     `_${Object.values(params).toString()}`,
     fetcher,
-    {
-      revalidateOnFocus: false,
-    },
+    { revalidateOnFocus: false },
   );
 
-  return {
-    data,
-    error,
-    isLoading,
-    isValidating,
-  };
+  return { data, error, isLoading, isValidating };
 };
 
 export default UseQuery;

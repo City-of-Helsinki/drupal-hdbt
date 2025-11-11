@@ -19,10 +19,7 @@ export const TargetGroupFilter = () => {
 
   const getOptions = () =>
     Object.entries(TargetGroups)
-      .map(([label, _value]) => ({
-        label,
-        value: label,
-      }))
+      .map(([label, _value]) => ({ label, value: label }))
       .sort((a, b) => a.label.localeCompare(b.label));
 
   const selectLabel = Drupal.t(

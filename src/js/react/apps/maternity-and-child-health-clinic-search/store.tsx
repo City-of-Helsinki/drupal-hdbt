@@ -5,9 +5,7 @@ import type SearchParams from './types/SearchParams';
 export const configurationsAtom = atom(() => {
   const proxyUrl = drupalSettings?.helfi_react_search.elastic_proxy_url;
 
-  return {
-    baseUrl: proxyUrl,
-  };
+  return { baseUrl: proxyUrl };
 });
 
 export const paramsAtom = atom<SearchParams>({});

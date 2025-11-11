@@ -1,6 +1,1 @@
-export type Place = {
-  id: string;
-  name: {
-    [key: string]: string;
-  };
-};
+export type Place = { id: string; name: { [key: string]: string } };

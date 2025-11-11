@@ -49,6 +49,4 @@ const positionDropdown = (button, relativeElement, options = {}) => {
   }
 };
 
-module.exports = {
-  positionDropdown,
-};
+module.exports = { positionDropdown };

@@ -12,14 +12,8 @@ document.addEventListener('DOMContentLoaded', function enableHyphenopoly() {
       sv: 'informationssäkerhetskampanj',
       en: 'supercalifragilisticexpialidocious',
     },
-    fallbacks: {
-      en: 'en-us',
-    },
-    setup: {
-      selectors: {
-        '.hyphenate': {},
-      },
-    },
+    fallbacks: { en: 'en-us' },
+    setup: { selectors: { '.hyphenate': {} } },
     handleEvent: {
       error(e) {
         e.preventDefault();

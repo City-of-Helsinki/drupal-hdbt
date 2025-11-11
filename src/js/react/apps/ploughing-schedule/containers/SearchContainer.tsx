@@ -8,9 +8,7 @@ import ResultsContainer from './ResultsContainer';
 
 const SearchContainer = () => {
   const [params, setParams] = useAtom(paramsAtom);
-  const initialParams = useInitialParams({
-    address: '',
-  });
+  const initialParams = useInitialParams({ address: '' });
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {

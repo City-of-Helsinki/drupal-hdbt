@@ -10,10 +10,7 @@ import { stagedParamsAtom, urlUpdateAtom } from '../store';
 import type AggregationItem from '../types/AggregationItem';
 import SelectionsContainer from './SelectionsContainer';
 
-type OptionType = {
-  label: string;
-  value: string;
-};
+type OptionType = { label: string; value: string };
 
 const parseAggData = (data: AggregationItem[]) => {
   if (!data.length) {
@@ -23,10 +20,7 @@ const parseAggData = (data: AggregationItem[]) => {
   return data.map((item) => {
     const [name, tid] = item.key;
 
-    return {
-      label: name.toString(),
-      value: tid.toString(),
-    };
+    return { label: name.toString(), value: tid.toString() };
   });
 };
 

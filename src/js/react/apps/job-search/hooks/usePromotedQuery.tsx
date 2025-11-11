@@ -9,11 +9,7 @@ const usePromotedQuery = (baseQuery: string, urlParams: URLParams): string => {
     : Number(urlParams.page);
   const promotedQuery = JSON.parse(baseQuery);
 
-  const promotedClause = {
-    term: {
-      [IndexFields.PROMOTED]: true,
-    },
-  };
+  const promotedClause = { term: { [IndexFields.PROMOTED]: true } };
 
   delete promotedQuery.query.bool.must[0].bool.must_not;
   promotedQuery.query.bool.must.push(promotedClause);

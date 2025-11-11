@@ -114,9 +114,7 @@ export const configurationsAtom = atom(async (): Promise<configurations> => {
 
   return useTimeoutFetch(`${url}/${index}/_msearch`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-ndjson',
-    },
+    headers: { 'Content-Type': 'application/x-ndjson' },
     body,
   })
     .then((res) => res.json())
@@ -313,10 +311,7 @@ export const resetFormAtom = atom(null, (_get, set) => {
 });
 
 export const areaFilterAtom = atom(
-  getAreaInfo.map((item: any) => ({
-    label: item.label,
-    value: item.key,
-  })),
+  getAreaInfo.map((item: any) => ({ label: item.label, value: item.key })),
 );
 
 export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);

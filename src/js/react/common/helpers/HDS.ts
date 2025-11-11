@@ -16,10 +16,7 @@ type HDSStorage = {
 export const clearAllSelectionsFromStorage = (storage: HDSStorage) => {
   storage.updateAllOptions((option, _group, _groupindex) => {
     if (option.selected) {
-      return {
-        ...option,
-        selected: false,
-      };
+      return { ...option, selected: false };
     }
     return option;
   });
@@ -36,10 +33,7 @@ export const updateSelectionsInStorage = (
       option.selected &&
       !selections.some((selection) => selection.value === option.value)
     ) {
-      return {
-        ...option,
-        selected: false,
-      };
+      return { ...option, selected: false };
     }
     return option;
   });

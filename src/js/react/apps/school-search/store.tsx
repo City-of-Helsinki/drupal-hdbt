@@ -163,10 +163,7 @@ export const bilingualEducationAtom = atom(async (get) => {
       // Deduplicate options.
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       if (!acc.some((item: any) => item.label === label)) {
-        const option: OptionType = {
-          label,
-          value: currentItem.key,
-        };
+        const option: OptionType = { label, value: currentItem.key };
 
         // Combined keys.
         if (currentItem.key >= 149 && currentItem.key <= 150) {

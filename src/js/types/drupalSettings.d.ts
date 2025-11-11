@@ -1,7 +1,5 @@
 declare namespace drupalSettings {
-  const path: {
-    currentLanguage: 'fi' | 'en' | 'sv';
-  };
+  const path: { currentLanguage: 'fi' | 'en' | 'sv' };
   const helfi_events: {
     baseUrl: string;
     imagePlaceholder: string;
@@ -17,18 +15,10 @@ declare namespace drupalSettings {
         field_free_events: boolean;
         field_language: boolean;
         field_remote_events: boolean;
-        field_filter_keywords: {
-          id: string;
-          name: string;
-        }[];
+        field_filter_keywords: { id: string; name: string }[];
         hidePagination: boolean;
         places: {
-          [key: string]: {
-            id: string;
-            name: {
-              [key: string]: string;
-            };
-          };
+          [key: string]: { id: string; name: { [key: string]: string } };
         };
         hideHeading: boolean;
         removeBloatingEvents: boolean;
@@ -67,15 +57,9 @@ declare namespace drupalSettings {
       cardsWithBorders: boolean;
       isShortList: boolean;
       roadworkCount: number;
-      initialData: {
-        lat?: string;
-        lon?: string;
-        q?: string;
-      };
+      initialData: { lat?: string; lon?: string; q?: string };
       scrollToTarget: boolean;
     };
   };
-  const hdbt_cookie_banner: {
-    settingsPageUrl: string;
-  };
+  const hdbt_cookie_banner: { settingsPageUrl: string };
 }

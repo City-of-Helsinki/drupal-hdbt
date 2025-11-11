@@ -59,10 +59,7 @@ function TopicsFilter() {
         option.selected &&
         !topicSelection.some((selection) => selection.value === option.value)
       ) {
-        return {
-          ...option,
-          selected: false,
-        };
+        return { ...option, selected: false };
       }
       return option;
     });

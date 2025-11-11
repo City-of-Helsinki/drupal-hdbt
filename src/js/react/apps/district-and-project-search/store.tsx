@@ -87,9 +87,7 @@ export const configurationsAtom = atom(async (): Promise<configurations> => {
 
   return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body,
   })
     .then((res) => res.json())
@@ -97,21 +95,12 @@ export const configurationsAtom = atom(async (): Promise<configurations> => {
       const aggregations = json?.aggregations;
 
       if (!aggregations) {
-        return {
-          error: new Error('Initialization failed.'),
-          aggs: {},
-        };
+        return { error: new Error('Initialization failed.'), aggs: {} };
       }
 
-      return {
-        error: null,
-        aggs: aggregations,
-      };
+      return { error: null, aggs: aggregations };
     })
-    .catch((error) => ({
-      error,
-      aggs: {},
-    }));
+    .catch((error) => ({ error, aggs: {} }));
 });
 
 export const titleAtom = atom('');

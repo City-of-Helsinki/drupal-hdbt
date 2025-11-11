@@ -6,11 +6,7 @@
       sv: 'Chatten är inte tillgänglig.',
       en: 'The chat is not available.',
     },
-    openChat: {
-      fi: 'Avaa chat',
-      sv: 'Öppna chatten',
-      en: 'Open the chat',
-    },
+    openChat: { fi: 'Avaa chat', sv: 'Öppna chatten', en: 'Open the chat' },
   };
 
   /**

@@ -15,9 +15,7 @@ import useQueryString from '../hooks/useQueryString';
 import { setPageAtom, urlAtom } from '../store';
 import type NewsItem from '../types/NewsItem';
 
-type ResultsContainerProps = {
-  hidePagination?: boolean;
-};
+type ResultsContainerProps = { hidePagination?: boolean };
 
 const ResultsContainer = ({
   // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501

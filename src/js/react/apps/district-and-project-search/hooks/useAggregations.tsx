@@ -52,10 +52,7 @@ export default function useAggregations(
         label = `${capitalize(bucket.key)} (${match.doc_count})`;
       }
 
-      return {
-        label,
-        value: bucket.key,
-      };
+      return { label, value: bucket.key };
     });
   }
 

@@ -5,9 +5,7 @@ import getSuggestionsQuery from '../helpers/GetSuggestionsQuery';
 import configurationsAtom, { paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
-type SuggestionItemType = {
-  value: string;
-};
+type SuggestionItemType = { value: string };
 
 const FormContainer = ({
   initialParams,
@@ -29,9 +27,7 @@ const FormContainer = ({
   ): Promise<SuggestionItemType[]> =>
     fetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: getSuggestionsQuery(searchString),
     })
       .then((res) => res.json())

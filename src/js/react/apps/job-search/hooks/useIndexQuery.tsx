@@ -23,19 +23,14 @@ const useIndexQuery = ({ query, multi, ...rest }: UseIndexQueryProps) => {
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const res = await useTimeoutFetch(`${url}/${index}/${endpoint}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': contentType,
-      },
+      headers: { 'Content-Type': contentType },
       body: query,
     });
 
     return res.json();
   };
 
-  return useSWR(query, fetcher, {
-    revalidateOnFocus: false,
-    ...rest,
-  });
+  return useSWR(query, fetcher, { revalidateOnFocus: false, ...rest });
 };
 
 export default useIndexQuery;

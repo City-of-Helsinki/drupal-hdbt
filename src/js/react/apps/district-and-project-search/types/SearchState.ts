@@ -1,13 +1,7 @@
-type SearchStateItemValue = {
-  value: string;
-};
+type SearchStateItemValue = { value: string };
 
-type SearchStateItem = {
-  value: SearchStateItemValue[];
-};
+type SearchStateItem = { value: SearchStateItemValue[] };
 
-type SearchState = {
-  [key: string]: SearchStateItem;
-};
+type SearchState = { [key: string]: SearchStateItem };
 
 export default SearchState;

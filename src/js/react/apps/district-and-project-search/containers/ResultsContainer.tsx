@@ -36,9 +36,7 @@ const ResultsContainer = (): JSX.Element => {
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     return useTimeoutFetch(`${url}/${Settings.INDEX}/_search`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: queryString,
     }).then((res) => res.json());
   };

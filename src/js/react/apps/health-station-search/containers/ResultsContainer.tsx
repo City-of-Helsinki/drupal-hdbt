@@ -9,10 +9,7 @@ const ProximityResultsContainer = () => {
   const setParams = useSetAtom(updateParamsAtom);
 
   const updatePage = (page: number) => {
-    setParams({
-      ...params,
-      page,
-    });
+    setParams({ ...params, page });
   };
   const { data, error, isLoading, isValidating } = UseProximityQuery(params);
   const { page } = params;

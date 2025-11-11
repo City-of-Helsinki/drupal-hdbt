@@ -38,11 +38,7 @@ const handlePromotedResults: HandleQueryResults = (data) => {
     (Number.isNaN(baseJobs) ? 0 : baseJobs);
   const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
 
-  return {
-    results,
-    jobs,
-    total,
-  };
+  return { results, jobs, total };
 };
 
 const handleSimpleResults: HandleQueryResults = (data) => {
@@ -56,11 +52,7 @@ const handleSimpleResults: HandleQueryResults = (data) => {
   // Total number of available jobs
   const jobs = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
 
-  return {
-    results,
-    jobs,
-    total,
-  };
+  return { results, jobs, total };
 };
 
 const useResultsQuery = (urlParams: URLParams) => {
