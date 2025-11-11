@@ -29,7 +29,6 @@ const jsFiles = globSync('./src/js/**/*.js', {
     'src/js/accordion/state.js',
     'src/js/accordion/translations.js',
     'src/js/localStorageManager.js',
-    'src/js/calculator/**/tests/**',
   ],
 }).reduce((acc, file) => ({
   ...acc, [path.parse(file).name]: file
@@ -38,9 +37,9 @@ const jsFiles = globSync('./src/js/**/*.js', {
 // SCSS files.
 const styles = [
   ['src/scss/styles.scss', 'css/styles.min.css'],
-  ['src/scss/nav-local.scss', 'css/nav_local.min.css'],
-  ['src/scss/nav-global.scss', 'css/nav_global.min.css'],
-  ['src/scss/nav-toggle.scss', 'css/nav_toggle.min.css'],
+  ['src/scss/nav-local.scss', 'css/nav-local.min.css'],
+  ['src/scss/nav-global.scss', 'css/nav-global.min.css'],
+  ['src/scss/nav-toggle.scss', 'css/nav-toggle.min.css'],
   ['src/scss/ckeditor.scss', 'css/ckeditor.min.css'],
   ['src/scss/color-palette.scss', 'css/color-palette.min.css'],
   ['src/scss/environment-indicator.scss', 'css/environment-indicator.min.css'],

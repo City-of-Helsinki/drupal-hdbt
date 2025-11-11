@@ -5,12 +5,12 @@
 
 @import 'breakpoint-sass/stylesheets/breakpoint';
 
-@import '00_functions/_index';
-@import '01_variables/_index';
-@import '02_mixins/_index';
+@import '00-functions/_index';
+@import '01-variables/_index';
+@import '02-mixins/_index';
 
 .ck-content {
-  @import '03_generic/_index';
+  @import '03-generic/_index';
 
   // Text paragraph styles as written in 03_generic/_base.scss and '06_components/paragraphs/text'.
   @include font('body');
@@ -22,11 +22,11 @@
     max-width: $content-width-max;
   }
 
-  @import '04_elements/_index';
+  @import '04-elements/_index';
 
   // Import only the styles that are needed for the ckeditor content creation and not the whole __index.scss
-  @import '05_objects/_quote';
-  @import '05_objects/_button';
+  @import '05-objects/quote';
+  @import '05-objects/button';
   @include hds-button-colors-on-light-bg;
 }
 
@@ -88,7 +88,7 @@
 
 // 04_elements/_table.scss
 .ck-editor .ck-content {
-  @import '04_elements/_table';
+  @import '04-elements/table';
 
   // CKEditor and Gin styling overrides. These are quite nasty but so are the styles automatically set by
   // the Gin-theme and CKEditor-module.

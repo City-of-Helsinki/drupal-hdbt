@@ -31,11 +31,9 @@ function getBrowserSize() {
     _paq.push(['setCustomDimension', 5, getPublishedTime()]);
     _paq.push(['setCustomDimension', 6, getUpdatedTime()]);
     _paq.push(['setCustomDimension', 7, getBrowserSize()]);
-    _paq.push(['trackPageView']);
-    _paq.push(['enableLinkTracking']);
     // eslint-disable-next-line func-names
     (function() {
-      const u='//webanalytics.digiaiiris.com/js/';
+      const u = '//webanalytics.digiaiiris.com/js/';
       // Etusivu ID is 141 (1292 in testing).
       const frontPage = ['141', '1292'];
       const siteId = String(drupalSettings.matomo_site_id);
@@ -52,11 +50,26 @@ function getBrowserSize() {
       // If the site is Etusivu-instance and there are newsTaxonomyTermIds set, sent them to custom dimension.
       if (isFrontPage && getNewsTaxonomyTermIds()) {
         _paq.push(['setCustomDimension', 9, getNewsTaxonomyTermIds()]);
-        _paq.push(['trackPageView']);
       }
+      
+      // Track page view after all configurations are set
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
 
-      const d=document; const g=d.createElement('script'); const s=d.getElementsByTagName('script')[0];
-      g.async=true; g.src=`${u}piwik.min.js`; s.parentNode.insertBefore(g,s);
+      const d = document;
+      const g = d.createElement('script');
+      const s = d.getElementsByTagName('script')[0];
+      g.async = true;
+      g.src=`${u}piwik.min.js`;
+      s.parentNode.insertBefore(g,s);
+
+      // Load the heatmap plugin separately.
+      const heatmapPluginBaseUrl = '//digiaiiris.com/web-analytics/plugins/HeatmapSessionRecording/';
+      const heatmapPlugin = d.createElement('script');
+      heatmapPlugin.src = `${heatmapPluginBaseUrl}tracker.min.js`;
+      s.parentNode.insertBefore(heatmapPlugin,s);
+
+      _paq.push(['HeatmapSessionRecording::enableDebugMode']);
     })();
   }
 

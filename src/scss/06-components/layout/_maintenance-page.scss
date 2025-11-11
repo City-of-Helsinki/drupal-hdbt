@@ -1,0 +1,76 @@
+.maintenance-page {
+  // Background on the maintenance page needs to be gray because the illustrations disappear to the background if its white.
+  background-color: $color-black-10;
+}
+
+.maintenance-page-content__container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+  }
+}
+
+.maintenance-page__text-container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+  }
+}
+
+.maintenance-page__title {
+  margin-bottom: 0;
+}
+
+.maintenance-page__description {
+  @include font('body');
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.maintenance-page__link {
+  @include font('special.large_link');
+  display: inline-flex;
+  margin-top: $spacing-double;
+
+  &::after {
+    @include pseudo-icon('arrow-right');
+    @include hover-link-arrow-transition;
+  }
+
+  &[data-is-external]::after {
+    content: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    &::after {
+      transform: translateX($spacing-quarter);
+
+      @media (prefers-reduced-motion) {
+        transform: none;
+      }
+    }
+  }
+
+  + .maintenance-page__link {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.special-page__illustration-container--maintenance-page {
+  --illustration-large-width: 350px;
+  margin-bottom: $spacing-triple;
+
+  @include breakpoint($breakpoint-m) {
+    --illustration-large-width: 460px;
+    padding-inline: $spacing-triple;
+  }
+
+  .special-page__illustration {
+    margin-top: $spacing-sextuple;
+  }
+}

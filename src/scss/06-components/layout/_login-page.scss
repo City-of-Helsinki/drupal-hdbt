@@ -1,0 +1,51 @@
+.user-login-page {
+  @include system-page-body;
+}
+
+.user-login-page-content__container {
+  @include breakpoint($breakpoint-m) {
+    display: flex;
+  }
+}
+
+.user-login-page__title {
+  @include font('h2');
+  margin-bottom: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-triple;
+  }
+}
+
+.user-login__form-container {
+  @include breakpoint($breakpoint-m) {
+    width: 50%;
+  }
+}
+
+.special-page__illustration-container--user-login {
+  --illustration-large-width: 450px;
+  justify-content: center;
+  max-width: 600px; // Match the illustration container with the login form.
+
+  @include breakpoint($breakpoint-m) {
+    max-width: unset;
+  }
+
+  .special-page__illustration {
+    @include breakpoint($breakpoint-m) {
+      max-width: unset;
+    }
+  }
+}
+
+.login-form {
+  // Hides the help texts from input fields
+  .description {
+    display: none;
+  }
+
+  .form-item--error-message {
+    margin-top: $spacing-double;
+  }
+}

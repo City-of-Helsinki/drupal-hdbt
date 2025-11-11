@@ -1,0 +1,416 @@
+/* stylelint-disable max-nesting-depth */
+.unit__contact {
+  .unit__contact-row {
+    @include font('body');
+    margin-bottom: $spacing;
+    padding-bottom: $spacing;
+    padding-left: $spacing-double;
+
+    &:last-of-type {
+      border-bottom: 0 none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .unit__contact-row__label {
+      @include font('h6');
+      align-items: flex-start;
+      display: flex;
+      margin-bottom: $spacing-half;
+
+      .hel-icon {
+        --icon-size: 24px;
+        margin-left: -$spacing-double;
+        margin-right: $spacing-half;
+        margin-top: 2px;
+      }
+    }
+
+    .form-item:last-child {
+      margin-bottom: 0;
+    }
+
+    p:first-of-type {
+      margin-top: 0;
+    }
+  }
+  .unit__contact-row--address {
+    overflow: hidden;
+
+    a {
+      clear: both;
+      float: left;
+    }
+  }
+
+  .unit__contact-row--email a {
+    word-break: break-all;
+  }
+
+  .phone {
+    display: block;
+    margin-bottom: $spacing-half;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .address {
+    display: block;
+  }
+}
+
+.unit__content {
+  margin-top: $spacing-quadruple;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
+}
+
+.unit__services {
+  padding: 0;
+
+  .unit--services__container {
+    padding-top: 0;
+  }
+
+  .unit__services__title {
+    margin-top: 0;
+  }
+
+  .unit__services__list {
+    margin-top: $spacing-and-half;
+  }
+}
+
+.unit__accessibility_sentences {
+  &.component--accordion {
+    .accordion-item__content {
+      h3 {
+        margin-top: 0;
+
+        &:not(:first-of-type) {
+          padding-top: $spacing-double;
+        }
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        display: list-item;
+        margin-left: $spacing-and-half;
+        margin-top: $spacing;
+      }
+    }
+
+    .accordion-item__content__inner {
+      @include breakpoint($breakpoint-s) {
+        padding-left: 50px;
+      }
+
+      @include breakpoint($breakpoint-l) {
+        padding-left: 72px;
+      }
+    }
+  }
+}
+
+.main-content:last-child .unit.unit--full {
+  .unit__services:last-child {
+    // Make the keywords element go "under" the footer.
+    margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-triple}));
+    padding-bottom: $spacing-double + $footer-koro-height;
+
+    @include breakpoint($breakpoint-l) {
+      margin-bottom: calc(-1 * (#{$footer-koro-height} + #{$spacing-quadruple}));
+      padding-bottom: $spacing-quadruple + $footer-koro-height;
+    }
+  }
+}
+
+.unit.unit--full .content-tags {
+  margin-bottom: $spacing-and-half;
+  margin-top: $spacing-and-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-bottom: $spacing-double;
+  }
+}
+
+.unit.unit--teaser {
+  align-items: flex-start;
+  background-color: $color-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  @include breakpoint($breakpoint-m) {
+    align-items: stretch;
+    flex-direction: row;
+    min-height: 220px; // From designs.
+    padding-left: 325px; // Width of the unit picture from the designs + spacing
+  }
+
+  .views-row:last-child & {
+    margin-bottom: 0;
+  }
+
+  .unit__image {
+    background-color: var(--hdbt-color-palette--primary);
+    color: var(--hdbt-color-palette-text--primary);
+    margin: 0;
+    overflow: hidden;
+
+    @include breakpoint($breakpoint-m) {
+      height: 100%;
+      left: 0;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      width: 325px;
+    }
+
+    img {
+      @include image-defaults($width: 100%, $max-width: null);
+
+      @include breakpoint($breakpoint-m) {
+        @include image-defaults($height: 100%, $width: 100%, $max-width: null);
+        object-fit: cover;
+      }
+    }
+  }
+
+  .unit__image--placeholder {
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      align-items: center;
+      display: flex;
+      width: 325px;
+    }
+  }
+
+  .unit__text {
+    margin-top: $spacing-double;
+    padding: 0 $spacing-and-half $spacing-double;
+    width: 100%;
+
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-top: 0;
+      padding: $spacing-double;
+    }
+
+    .unit__text__content {
+      align-content: flex-start;
+
+      @include breakpoint($breakpoint-m) {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 530px;
+      }
+    }
+  }
+
+  .unit__link {
+    text-decoration: none;
+
+    &::after {
+      bottom: 0;
+      content: '';
+      height: 100%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100%;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      text-decoration-thickness: remify(2px);
+    }
+  }
+
+  .unit__title {
+    @include font('special.card_title');
+    margin-bottom: $spacing-quarter;
+    margin-top: 0;
+    padding-right: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: 0;
+      padding-right: 0;
+      width: 100%;
+    }
+  }
+
+  .unit__info {
+    margin-top: $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      width: 100%;
+    }
+  }
+
+  .unit__info-row {
+    @include font('body');
+    display: flex;
+    margin-bottom: $spacing-and-half;
+
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: $spacing;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .unit__info-row--address {
+    @include breakpoint($breakpoint-m) {
+      margin-bottom: $spacing-half;
+    }
+
+    .address {
+      display: inline;
+    }
+  }
+
+  .content-tags {
+    margin-top: $spacing;
+  }
+}
+
+.unit--minimal {
+  background-color: $color-white;
+
+  .unit__link {
+    display: block;
+    padding: $spacing-and-half;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      .unit__title {
+        text-decoration: underline;
+        text-decoration-thickness: remify(2px);
+      }
+
+      .unit__read-more {
+        .hel-icon {
+          transform: translateX($spacing-half);
+
+          @media (prefers-reduced-motion) {
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+
+  .unit__text {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .unit__text__content {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+
+      // Width of the element - icon width + icon padding on left
+      width: calc(100% - #{$spacing-double} + #{$spacing-and-half});
+    }
+  }
+
+  .unit__title {
+    @include font('h4');
+    margin-bottom: 0;
+
+    @include breakpoint($breakpoint-m) {
+      font-weight: $font-weight-bold;
+
+      // Align the address to center with the arrow and the title.
+      margin-top: 2px;
+      padding-right: $spacing-and-half;
+      width: 60%;
+    }
+  }
+
+  .unit__info {
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      justify-content: space-between;
+      padding-right: $spacing-and-half;
+      width: 40%;
+    }
+  }
+
+  .unit__info-row--address {
+    margin-top: $spacing-half;
+
+    @include breakpoint($breakpoint-m) {
+      @include font('body');
+
+      // Align the address to center with the arrow and the title.
+      margin-top: 2px;
+    }
+
+    p:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .unit__info-row--distance {
+    @include font('special.helper_text');
+    color: $color-black-60;
+    margin-top: $spacing-half;
+    white-space: nowrap;
+
+    @include breakpoint($breakpoint-m) {
+      margin-left: $spacing;
+
+      // Align the distance to center with the arrow and the title.
+      margin-top: 7px;
+    }
+  }
+
+  .unit__read-more {
+    margin-top: $spacing;
+
+    @include breakpoint($breakpoint-m) {
+      display: flex;
+      margin-top: 0;
+    }
+
+    .hel-icon {
+      --icon-size: #{$spacing-double};
+
+      @include hover-link-arrow-transition;
+    }
+  }
+}
+
+.component--unit-contact-information {
+  .component__container {
+    background-color: $color-black-5;
+    padding: $spacing-and-half $spacing $spacing-triple;
+
+    @include breakpoint($breakpoint-m) {
+      padding: $spacing-double $spacing-double $spacing-triple;
+    }
+  }
+}
