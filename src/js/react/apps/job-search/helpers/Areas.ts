@@ -32,12 +32,12 @@ export const getAreaInfo = [
   {
     key: 'northern',
     label: Drupal.t('Northern area', {}, {context: 'Search filter option: Northern area'}),
-    PostalCodes: PostalCodes.northern,    
+    postalCodes: PostalCodes.northern,
   },  
   { 
     key: 'northeast',   
     label: Drupal.t('North-Eastern area', {}, {context: 'Search filter option: North-Eastern area'}),
-    PostalCodes: PostalCodes.northeast,    
+    postalCodes: PostalCodes.northeast,
   },
 ];
 
