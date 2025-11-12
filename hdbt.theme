@@ -896,11 +896,10 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
       $caption = '';
     }
     else {
-      $caption = t(
-        'Photo: <span translate="no">@photographer</span>',
-        ['@photographer' => $photographer],
-        ['context' => 'Image photographer', 'html' => TRUE]
-      );
+      $caption = [
+        'caption_identifier_class' => 'image__caption',
+        'credit' => $photographer,
+      ];
     }
 
     // Set image caption variable to render array for the template.
