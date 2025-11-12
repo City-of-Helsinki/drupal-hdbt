@@ -342,10 +342,10 @@ function hdbt_preprocess_node(&$variables): void {
  * Preprocess image caption.
  *
  * Modifies $variables by adding a render array with the following structure:
- *  - caption_identifier_class: (string) CSS class for the caption
- *  - caption: (string) The caption text
- *  - credit: (string) Photographer credit if available
- * 
+ *  - caption_identifier_class: (string) CSS class for the caption.
+ *  - caption: (string) The caption text.
+ *  - credit: (string) Photographer credit if available.
+ *
  * @param array $variables
  *   Render array.
  * @param string $entity_type
