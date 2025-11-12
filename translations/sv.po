@@ -89,14 +89,6 @@ msgctxt "Footer back to top link"
 msgid "Back to top"
 msgstr "Tillbaka till toppen"
 
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: <span translate="no">@photographer</span>"
-msgstr "@caption Bild: <span translate="no">@photographer</span>"
-
-msgctxt "Image photographer"
-msgid "Photo: <span translate="no">@photographer</span>"
-msgstr "Bild: <span translate="no">@photographer</span>"
-
 msgctxt "Image photographer"
 msgid "Photo"
 msgstr "Bild"
