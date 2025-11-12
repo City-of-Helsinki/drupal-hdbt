@@ -341,6 +341,11 @@ function hdbt_preprocess_node(&$variables): void {
 /**
  * Preprocess image caption.
  *
+ * Modifies $variables by adding a render array with the following structure:
+ *  - caption_identifier_class: (string) CSS class for the caption
+ *  - caption: (string) The caption text
+ *  - credit: (string) Photographer credit if available
+ * 
  * @param array $variables
  *   Render array.
  * @param string $entity_type
@@ -349,12 +354,6 @@ function hdbt_preprocess_node(&$variables): void {
  *   Image field name.
  * @param string $image_caption
  *   Image caption field name.
- *
- * @return void
- *   Modifies $variables by adding a render array with the following structure:
- *   - caption_identifier_class: (string) CSS class for the caption
- *   - caption: (string) The caption text
- *   - credit: (string) Photographer credit if available
  */
 function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption): void {
   $entity = $variables[$entity_type];
