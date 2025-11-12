@@ -8,7 +8,13 @@ export const getInitialAreaFilter = (
   options.find((option: OptionType) => option?.value === key.toString()) ||
   null;
 
-export const getAreaInfo = [
+interface AreaInfo {
+  key: keyof typeof PostalCodes;
+  label: string;
+  postalCodes: string[];
+}
+
+export const getAreaInfo: AreaInfo[] = [
   {
     key: 'eastern',
     label: Drupal.t(
@@ -61,7 +67,7 @@ export const getAreaInfo = [
       {},
       { context: 'Search filter option: Northern area' },
     ),
-    PostalCodes: PostalCodes.northern,
+    postalCodes: PostalCodes.northern,
   },
   {
     key: 'northeast',
@@ -70,7 +76,7 @@ export const getAreaInfo = [
       {},
       { context: 'Search filter option: North-Eastern area' },
     ),
-    PostalCodes: PostalCodes.northeast,
+    postalCodes: PostalCodes.northeast,
   },
 ];
 
