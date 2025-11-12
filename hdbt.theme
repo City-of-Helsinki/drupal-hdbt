@@ -349,6 +349,12 @@ function hdbt_preprocess_node(&$variables): void {
  *   Image field name.
  * @param string $image_caption
  *   Image caption field name.
+ *
+ * @return void
+ *   Modifies $variables by adding a render array with the following structure:
+ *   - caption_identifier_class: (string) CSS class for the caption
+ *   - caption: (string) The caption text
+ *   - credit: (string) Photographer credit if available
  */
 function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, string $image, string $image_caption): void {
   $entity = $variables[$entity_type];
@@ -361,6 +367,7 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
   if ($entity->hasField($image) && $entity->hasField($image_caption)) {
     $caption_variable = str_replace('field_', '', $image_caption);
     $caption = '';
+    $photographer = '';
 
     // If caption exists, set it as initial variable for the image caption.
     if (!$entity->{$image_caption}->isEmpty()) {
@@ -380,23 +387,12 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
         $photographer = $entity->{$image}->entity->field_photographer->value;
       }
 
-      // If both caption and photographer exists, use targeted translation
-      // for the caption and photographer. Otherwise, set only photographer as
-      // caption.
-      if (!empty($caption)) {
-        $caption = t(
-          '@caption Photo: <span translate="no">@photographer</span>',
-          ['@photographer' => $photographer, '@caption' => $caption],
-          ['context' => 'Image caption and photographer', 'html' => TRUE]
-        );
-      }
-      else {
-        $caption = t(
-          'Photo: <span translate="no">@photographer</span>',
-          ['@photographer' => $photographer],
-          ['context' => 'Image photographer', 'html' => TRUE]
-        );
-      }
+      // Set image caption variable to render array for the templates.
+      $caption = [
+        'caption_identifier_class' => 'image__caption',
+        'caption' => $caption ?: '',
+        'credit' => $photographer,
+      ];
     }
 
     // Set image caption variable to render array for the templates.

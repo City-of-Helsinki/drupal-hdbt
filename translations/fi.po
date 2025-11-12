@@ -97,6 +97,10 @@ msgctxt "Image photographer"
 msgid "Photo: <span translate="no">@photographer</span>"
 msgstr "Kuva: <span translate="no">@photographer</span>"
 
+msgctxt "Image photographer"
+msgid "Photo"
+msgstr "Kuva"
+
 msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
 msgid "Tags"
 msgstr "Tunnisteet"

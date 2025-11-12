@@ -97,6 +97,10 @@ msgctxt "Image photographer"
 msgid "Photo: <span translate="no">@photographer</span>"
 msgstr "Bild: <span translate="no">@photographer</span>"
 
+msgctxt "Image photographer"
+msgid "Photo"
+msgstr "Bild"
+
 msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
 msgid "Tags"
 msgstr "Taggar"

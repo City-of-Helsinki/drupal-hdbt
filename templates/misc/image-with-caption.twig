@@ -1,15 +1,11 @@
 <figure class="image {{figure_class}}">
   {{ image }}
-
   {% if image_caption %}
-    {% set figcaption_attributes = {
-        'class': [
-          'image__caption',
-        ]
-      }
-    %}
-    <figcaption {{ create_attribute(figcaption_attributes) }}>
-      {{ image_caption }}
-    </figcaption>
+    {% embed '@hdbt/misc/photo-caption.twig' with {
+        caption_identifier_class: image_caption.caption_identifier_class,
+        caption: image_caption.caption,
+        credit: image_caption.credit,
+      } %}
+    {% endembed %}
   {% endif %}
 </figure>
