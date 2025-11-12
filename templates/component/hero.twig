@@ -119,15 +119,11 @@
 {% if image_author %}
   {% embed "@hdbt/misc/container.twig" with {container_element: 'hero__image-author'} %}
     {% block container_content %}
-      {% set figcaption_attributes = {
-        'class': [
-          'hero__image-author',
-        ]
-      }%}
-      <figcaption {{ create_attribute(figcaption_attributes) }}>
-        {{ image_author }}
-      </figcaption>
+      {% embed '@hdbt/misc/photo-caption.twig' with {
+        caption_identifier_class: 'hero__image-author',
+        credit: image_author,
+      } %}
+      {% endembed %}
     {% endblock %}
   {% endembed %}
-  </figure>
 {% endif %}

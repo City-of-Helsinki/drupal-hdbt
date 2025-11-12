@@ -17,7 +17,7 @@
     <div class="contact-card__information-container">
     {% if content.field_contact_name|render|striptags|trim %}
       <{{ heading_level }} class="contact-card__person-name" translate="no">
-      <div class="label visually-hidden" translate="yes">{{ 'Name'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
+        <div class="label visually-hidden" translate="yes">{{ 'Name'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
         {{ content.field_contact_name }}
       </{{ heading_level }}>
     {% endif %}
