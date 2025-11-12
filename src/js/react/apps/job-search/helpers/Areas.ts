@@ -4,7 +4,7 @@ import OptionType from '../types/OptionType';
 export const getInitialAreaFilter = (key: string[] | string = '', options: OptionType[] = []) => options.find((option: OptionType) => option?.value === key.toString()) || null;
 
 interface AreaInfo {
-  key: keyof typeof PostalCodes;
+  key: string;
   label: string;
   postalCodes: string[];
 }
