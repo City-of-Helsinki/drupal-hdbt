@@ -2,12 +2,10 @@ import chokidar from 'chokidar';
 import { rmSync } from 'fs';
 import path from 'path';
 import { performance } from 'perf_hooks';
-/* eslint-disable import/extensions */
-import themeBuilderIcons from './icons.mjs';
 import themeBuilderCopy from './copy.mjs';
-import { buildVanillaJs, buildReactApps } from './js.mjs';
-import { themeBuilderCss, findStylesForFile } from './css.mjs';
-/* eslint-enable import/extensions */
+import { findStylesForFile, themeBuilderCss } from './css.mjs';
+import themeBuilderIcons from './icons.mjs';
+import { buildReactApps, buildVanillaJs } from './js.mjs';
 
 // Time the builds.
 async function withTimer(label, fn) {
@@ -38,7 +36,14 @@ const cleanDist = (outDir) => {
  * @return {Promise<void>}                  Resolves when all tasks finish
  */
 export async function buildAll(config) {
-  const { outDir, iconsConfig = {}, staticFiles= {}, jsConfig = {}, reactConfig = {}, cssConfig = {}} = config;
+  const {
+    outDir,
+    iconsConfig = {},
+    staticFiles = {},
+    jsConfig = {},
+    reactConfig = {},
+    cssConfig = {},
+  } = config;
 
   await withTimer('Everything', async () => {
     cleanDist(outDir);
@@ -77,10 +82,12 @@ export function watchAndBuild({
   buildArguments,
   watchPaths = ['src/js', 'src/scss'],
 }) {
-  buildAll(buildArguments).catch((e) => {
-    console.error('❌ Build failed:', e);
-    process.exit(1);
-  }).then(() => console.warn('\n👀 Watching for changes…'));
+  buildAll(buildArguments)
+    .catch((e) => {
+      console.error('❌ Build failed:', e);
+      process.exit(1);
+    })
+    .then(() => console.warn('\n👀 Watching for changes…'));
 
   const watcher = chokidar.watch(watchPaths, {
     ignored: /node_modules|^dist$|theme-buidler/,
@@ -97,7 +104,8 @@ export function watchAndBuild({
     const ext = path.extname(filePath);
     if (ext === '.scss') {
       const matched = findStylesForFile({ filePath, styles });
-      const cfg = matched.length ? { ...cssConfig, styles: matched }
+      const cfg = matched.length
+        ? { ...cssConfig, styles: matched }
         : { ...cssConfig, styles };
       withTimer('CSS', () => themeBuilderCss(cfg));
     } else if (ext === '.js') {

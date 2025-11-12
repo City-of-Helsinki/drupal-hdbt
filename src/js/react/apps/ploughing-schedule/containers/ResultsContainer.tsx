@@ -8,9 +8,7 @@ const ResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
   const { data, error, isLoading, isValidating } = UseQuery(params);
 
-  return (
-    <ResultsList {...{data, error, isLoading, isValidating}} />
-  );
+  return <ResultsList {...{ data, error, isLoading, isValidating }} />;
 };
 
 export default ResultsContainer;

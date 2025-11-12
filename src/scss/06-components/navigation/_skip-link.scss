@@ -5,7 +5,6 @@
   --background-color: var(--hdbt-color-black);
   --color: var(--color-white);
   --focus-outline-color: var(--hdbt-color-black);
-  word-wrap: normal;
   background-color: var(--background-color);
   border: var(--border-width) solid var(--border-color);
   color: var(--color);
@@ -19,6 +18,7 @@
   transform: translate(-50%, 0);
   transition: transform ease-out 0.2s;
   width: max-content; // This avoids pushing the content to two rows until absolutely necessary
+  word-wrap: normal;
   z-index: 2;
 
   @media (prefers-reduced-motion) {

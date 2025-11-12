@@ -1,14 +1,11 @@
 export default class AccordionItem {
-
   static accordionItemElement = 'helfi-accordion-item';
 
   static toggleElement = 'accordion-item__button--toggle';
 
   static closeElement = 'accordion-item__button--close';
 
-  static ariaExpandedElements = [
-    'accordion-item__button--toggle'
-  ];
+  static ariaExpandedElements = ['accordion-item__button--toggle'];
 
   static contentElement = 'accordion-item__content';
 
@@ -58,7 +55,6 @@ export default class AccordionItem {
     if (!AccordionItem.isClick(event.which)) {
       return;
     }
-    // eslint-disable-next-line no-unused-expressions
     this.isOpen ? this.close() : this.open();
   };
 
@@ -73,15 +69,18 @@ export default class AccordionItem {
 
   setAriaOpen = () => {
     AccordionItem.ariaExpandedElements.forEach((className) => {
-      this.element.getElementsByClassName(className)[0].setAttribute('aria-expanded', this.isOpen);
+      this.element
+        .getElementsByClassName(className)[0]
+        .setAttribute('aria-expanded', this.isOpen);
     });
   };
-
 
   // Show/hide the accordion content with the hidden-attribute.
   setHidden = (noAnimation) => {
     const accordionElement = this.element.closest('.accordion');
-    const accordionItemContent = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
+    const accordionItemContent = this.element.getElementsByClassName(
+      AccordionItem.contentElement,
+    )[0];
 
     // No animation version of show/hide functionality.
     if (noAnimation) {
@@ -89,11 +88,12 @@ export default class AccordionItem {
       accordionElement.style.setProperty('--js-accordion-open-time', '0s');
 
       // Force a reflow to ensure the style change takes effect
-      // eslint-disable-next-line no-void
       void document.body.offsetHeight;
 
-      // eslint-disable-next-line no-unused-expressions
-      this.isOpen ? accordionItemContent.removeAttribute('hidden') : accordionItemContent.hidden = 'until-found';
+      this.isOpen
+        ? accordionItemContent.removeAttribute('hidden')
+        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
+          (accordionItemContent.hidden = 'until-found');
 
       // Remove the css-property to enable animations again.
       setTimeout(() => {
@@ -105,7 +105,13 @@ export default class AccordionItem {
 
     if (!this.isOpen) {
       // Get the show/hide animation duration from the css.
-      const accordionAnimationDuration = parseInt(getComputedStyle(accordionElement).getPropertyValue('--js-accordion-open-time'), 10) || 200;
+      const accordionAnimationDuration =
+        parseInt(
+          getComputedStyle(accordionElement).getPropertyValue(
+            '--js-accordion-open-time',
+          ),
+          10,
+        ) || 200;
 
       // Delay the attribute change until the animation has been completed.
       setTimeout(() => {
@@ -116,10 +122,13 @@ export default class AccordionItem {
     }
   };
 
-  changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
+  changeFocus = () =>
+    this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
 
   addEventListeners = () => {
-    const toggleElement = this.element.getElementsByClassName(AccordionItem.toggleElement)[0];
+    const toggleElement = this.element.getElementsByClassName(
+      AccordionItem.toggleElement,
+    )[0];
     toggleElement.addEventListener('mouseup', this.toggle);
     toggleElement.addEventListener('keypress', this.toggle);
 
@@ -128,7 +137,9 @@ export default class AccordionItem {
     // button inside an accordion so we should select the last one
     // since it is the correct one that we want to bind the event
     // listeners.
-    const closeElements = this.element.getElementsByClassName(AccordionItem.closeElement);
+    const closeElements = this.element.getElementsByClassName(
+      AccordionItem.closeElement,
+    );
     const closeElement = closeElements[closeElements.length - 1];
     closeElement.addEventListener('mouseup', this.close);
     closeElement.addEventListener('keypress', this.close);
@@ -138,8 +149,11 @@ export default class AccordionItem {
     return buttonKey === 1 || buttonKey === 13 || buttonKey === 32;
   }
 
-  get id() { return this._id; }
+  get id() {
+    return this._id;
+  }
 
-  get isOpen() { return this._isOpen; }
-
+  get isOpen() {
+    return this._isOpen;
+  }
 }

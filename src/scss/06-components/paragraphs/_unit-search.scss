@@ -47,11 +47,13 @@
       max-width: $content-width-max;
     }
 
+    /* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
     .form-item {
       @include breakpoint($breakpoint-m) {
         width: 100%;
       }
     }
+    /* stylelint-enable max-nesting-depth -- @todo UHF-12501 */
 
     .description {
       white-space: normal;

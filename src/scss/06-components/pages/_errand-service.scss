@@ -1,3 +1,4 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .errand-service {
   margin-top: $spacing-triple;
   max-width: $content-width-max;
@@ -49,7 +50,7 @@
     .errand-service__detail-link {
       display: flex;
 
-      &:before {
+      &::before {
         @include pseudo-icon('globe', $spacing-and-half, $color-black, flex);
         flex-shrink: 0;
         margin-right: $spacing-half;

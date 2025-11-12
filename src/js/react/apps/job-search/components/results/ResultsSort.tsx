@@ -1,12 +1,11 @@
 import { Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect , useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import Global from '../../enum/Global';
 import { urlAtom, urlUpdateAtom } from '../../store';
 import type OptionType from '../../types/OptionType';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
@@ -25,9 +24,12 @@ const ResultsSort = () => {
   const setUrlParams = useSetAtom(urlUpdateAtom);
   const [sort, setSort] = useState<OptionType>(options[0]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (urlParams.sort) {
-      const matchedSort = options.find((option: OptionType) => option.value === urlParams.sort);
+      const matchedSort = options.find(
+        (option: OptionType) => option.value === urlParams.sort,
+      );
 
       if (matchedSort) {
         setSort(matchedSort);
@@ -40,15 +42,18 @@ const ResultsSort = () => {
       clearable={false}
       onChange={(_selectedOptions, clickedOption) => {
         setSort(clickedOption);
-        setUrlParams({
-          ...urlParams,
-          sort: clickedOption.value,
-        });
+        setUrlParams({ ...urlParams, sort: clickedOption.value });
       }}
       options={options}
       texts={{
-        label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
-        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+        label: Drupal.t(
+          'Sort search results',
+          {},
+          { context: 'HELfi Rekry job search' },
+        ),
+        language: getCurrentLanguage(
+          window.drupalSettings.path.currentLanguage,
+        ),
       }}
       value={[sort]}
       theme={defaultSelectTheme}

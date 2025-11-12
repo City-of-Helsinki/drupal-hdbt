@@ -2,9 +2,7 @@
  * @file
  * Load embedded content once the user has approved required cookie category.
  */
-// eslint-disable-next-line func-names
-(function ($, Drupal, drupalSettings) {
-
+(($, Drupal, drupalSettings) => {
   // Check whether the given cookie categories have been accepted.
   const categoriesAgreed = (categories) => {
     // Set default categories if none exists.
@@ -19,13 +17,15 @@
   };
 
   const loadEmbeddedContent = () => {
-    Object.entries(drupalSettings?.embedded_media_attributes || {})
-      .forEach(([id, attributes]) => {
+    Object.entries(drupalSettings?.embedded_media_attributes || {}).forEach(
+      ([id, attributes]) => {
         if (!categoriesAgreed(attributes?.cookieConsentGroups)) {
           return;
         }
 
-        const mediaContainers = $(`.embedded-content-cookie-compliance.media-${id}`);
+        const mediaContainers = $(
+          `.embedded-content-cookie-compliance.media-${id}`,
+        );
 
         // Each of the media type is grouped to their own
         // mediaContainers so we need to iterate through them.
@@ -57,10 +57,20 @@
           let mediaName = '';
           switch (attributes.type) {
             case 'video':
-              mediaName = mediaContainer.parent().siblings('.remote-video__video-title').text().trim() || '';
+              mediaName =
+                mediaContainer
+                  .parent()
+                  .siblings('.remote-video__video-title')
+                  .text()
+                  .trim() || '';
               break;
             default:
-              mediaName = mediaContainer.closest(`.component__content.${attributes.type}`).siblings('.component__title').text().trim() || '';
+              mediaName =
+                mediaContainer
+                  .closest(`.component__content.${attributes.type}`)
+                  .siblings('.component__title')
+                  .text()
+                  .trim() || '';
               break;
           }
 
@@ -81,39 +91,87 @@
 
           switch (attributes.type) {
             case 'video':
-              containerElement.classList.add(`responsive-${attributes.type}-container`);
+              containerElement.classList.add(
+                `responsive-${attributes.type}-container`,
+              );
               skipLinkAfter.classList.add('skip-link--video--after');
               skipLinkBefore.classList.add('skip-link--video--before');
 
               // Adjust the skip link text based on whether the mediaName is found.
-              skipLinkAfter.text = Drupal.t('Continue above the @video video', { '@video': mediaName }, { context: 'Skip links' });
-              skipLinkBefore.text = Drupal.t('Continue below the @video video', { '@video': mediaName }, { context: 'Skip links' });
-              mediaContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+              skipLinkAfter.text = Drupal.t(
+                'Continue above the @video video',
+                { '@video': mediaName },
+                { context: 'Skip links' },
+              );
+              skipLinkBefore.text = Drupal.t(
+                'Continue below the @video video',
+                { '@video': mediaName },
+                { context: 'Skip links' },
+              );
+              mediaContainer.replaceWith(
+                skipLinkBefore,
+                containerElement,
+                skipLinkAfter,
+              );
               break;
 
             case 'chart':
-              containerElement.classList.add(`responsive-${attributes.type}-container`);
+              containerElement.classList.add(
+                `responsive-${attributes.type}-container`,
+              );
               skipLinkAfter.classList.add('skip-link--chart--after');
               skipLinkBefore.classList.add('skip-link--chart--before');
 
               // Adjust the skip link text based on whether the mediaName is found.
               skipLinkAfter.text = mediaName
-                ? Drupal.t('Continue above the @chart chart', { '@chart': mediaName }, { context: 'Skip links' })
-                : Drupal.t('Continue above the chart', {}, { context: 'Skip links' });
+                ? Drupal.t(
+                    'Continue above the @chart chart',
+                    { '@chart': mediaName },
+                    { context: 'Skip links' },
+                  )
+                : Drupal.t(
+                    'Continue above the chart',
+                    {},
+                    { context: 'Skip links' },
+                  );
               skipLinkBefore.text = mediaName
-                ? Drupal.t('Continue below the @chart chart', { '@chart': mediaName }, { context: 'Skip links' })
-                : Drupal.t('Continue below the chart', {}, { context: 'Skip links' });
+                ? Drupal.t(
+                    'Continue below the @chart chart',
+                    { '@chart': mediaName },
+                    { context: 'Skip links' },
+                  )
+                : Drupal.t(
+                    'Continue below the chart',
+                    {},
+                    { context: 'Skip links' },
+                  );
 
-              mediaContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+              mediaContainer.replaceWith(
+                skipLinkBefore,
+                containerElement,
+                skipLinkAfter,
+              );
               break;
 
             case 'journey_planner':
               containerElement.classList.add('journey-planner-container');
               skipLinkAfter.classList.add('skip-link--planner--after');
               skipLinkBefore.classList.add('skip-link--planner--before');
-              skipLinkAfter.text = Drupal.t('Continue above the journey planner', {}, { context: 'Skip links' });
-              skipLinkBefore.text = Drupal.t('Continue below the journey planner', {}, { context: 'Skip links' });
-              mediaContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+              skipLinkAfter.text = Drupal.t(
+                'Continue above the journey planner',
+                {},
+                { context: 'Skip links' },
+              );
+              skipLinkBefore.text = Drupal.t(
+                'Continue below the journey planner',
+                {},
+                { context: 'Skip links' },
+              );
+              mediaContainer.replaceWith(
+                skipLinkBefore,
+                containerElement,
+                skipLinkAfter,
+              );
               break;
 
             case 'map':
@@ -123,20 +181,41 @@
 
               // Adjust the skip link text based on whether the mediaName is found.
               skipLinkAfter.text = mediaName
-                ? Drupal.t('Continue above the @map map', { '@map': mediaName }, { context: 'Skip links' })
-                : Drupal.t('Continue above the map', {}, { context: 'Skip links' });
+                ? Drupal.t(
+                    'Continue above the @map map',
+                    { '@map': mediaName },
+                    { context: 'Skip links' },
+                  )
+                : Drupal.t(
+                    'Continue above the map',
+                    {},
+                    { context: 'Skip links' },
+                  );
               skipLinkBefore.text = mediaName
-                ? Drupal.t('Continue below the @map map', { '@map': mediaName }, { context: 'Skip links' })
-                : Drupal.t('Continue below the map', {}, { context: 'Skip links' });
+                ? Drupal.t(
+                    'Continue below the @map map',
+                    { '@map': mediaName },
+                    { context: 'Skip links' },
+                  )
+                : Drupal.t(
+                    'Continue below the map',
+                    {},
+                    { context: 'Skip links' },
+                  );
 
-              mediaContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+              mediaContainer.replaceWith(
+                skipLinkBefore,
+                containerElement,
+                skipLinkAfter,
+              );
               break;
 
             default:
               break;
           }
         });
-    });
+      },
+    );
   };
 
   // Remove noscript element.

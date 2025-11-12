@@ -1,12 +1,12 @@
 import { Checkbox } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-
-import { resetParamAtom, updateParamsAtom } from '../store';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { resetParamAtom, updateParamsAtom } from '../store';
 
 type CheckboxFilterProps = {
   id: string;
   label: string;
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   valueKey: string;
 };
@@ -35,7 +35,7 @@ function CheckboxFilter({ id, label, atom, valueKey }: CheckboxFilterProps) {
   return (
     <Checkbox
       checked={checked}
-      className="hdbt-search--react__checkbox"
+      className='hdbt-search--react__checkbox'
       id={id}
       label={label}
       onChange={(event) => toggleValue(event)}

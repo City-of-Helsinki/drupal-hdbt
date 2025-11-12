@@ -1,9 +1,8 @@
+import ClientHelpers from '../clientHelpers';
 import AccordionItem from './accordionItem';
 import Translations from './translations';
-import ClientHelpers from '../clientHelpers';
 
 export default class HelfiAccordion {
-
   static accordionWrapper = 'component--accordion';
 
   static toggleAllElement = 'js-accordion__button--toggle-all';
@@ -40,12 +39,21 @@ export default class HelfiAccordion {
    * Initialize accordion items and optional “hidden until found” support.
    */
   initializeAccordion = () => {
-    const accordionItems = this.accordion.getElementsByClassName(AccordionItem.accordionItemElement);
+    const accordionItems = this.accordion.getElementsByClassName(
+      AccordionItem.accordionItemElement,
+    );
     this.isSingleItemAccordion = accordionItems.length === 1;
 
     // Create AccordionItem instances for each item in this accordion.
     Array.from(accordionItems).forEach((element) => {
-      this.accordionItems.push(new AccordionItem(element, this.localState, this.urlHash, this.updateToggleButtonLabel));
+      this.accordionItems.push(
+        new AccordionItem(
+          element,
+          this.localState,
+          this.urlHash,
+          this.updateToggleButtonLabel,
+        ),
+      );
     });
 
     // Initialize hidden="until-found" functionality if it is supported.
@@ -58,9 +66,11 @@ export default class HelfiAccordion {
    * Make it possible for the browser search find content inside the closed accordions.
    */
   enableHiddenUntilFound = () => {
-    this.accordionItems.forEach(accordionItem => {
+    this.accordionItems.forEach((accordionItem) => {
       accordionItem.element.classList.add('accordion-item--hidden-until-found');
-      const accordionItemContent = accordionItem.element.querySelector('.accordion-item__content');
+      const accordionItemContent = accordionItem.element.querySelector(
+        '.accordion-item__content',
+      );
 
       // If item is defined in the state as open, don't close it.
       if (!accordionItem.isOpen) {
@@ -70,12 +80,13 @@ export default class HelfiAccordion {
       // Add event listener to the beforematch event what is triggered when browser finds something or
       // highlight is found on the url parameters.
       accordionItem.element.addEventListener('beforematch', () => {
-
         // Disable animations on the accordion on these events.
-        accordionItem.element.style.setProperty('--js-accordion-open-time', '0s');
+        accordionItem.element.style.setProperty(
+          '--js-accordion-open-time',
+          '0s',
+        );
 
         // Force a reflow to ensure the style change takes effect.
-        // eslint-disable-next-line no-void
         void accordionItem.element.offsetHeight;
 
         // Open the accordion that contains the found text.
@@ -83,7 +94,9 @@ export default class HelfiAccordion {
 
         // Enable the animations again after the accordion has been opened.
         setTimeout(() => {
-          accordionItem.element.style.removeProperty('--js-accordion-open-time');
+          accordionItem.element.style.removeProperty(
+            '--js-accordion-open-time',
+          );
         }, 10);
       });
     });
@@ -94,9 +107,13 @@ export default class HelfiAccordion {
    * Headerless or single-item accordions skip this.
    */
   addEventListeners = () => {
-    if (HelfiAccordion.isHeaderless(this.type) || this.isSingleItemAccordion) { return; }
+    if (HelfiAccordion.isHeaderless(this.type) || this.isSingleItemAccordion) {
+      return;
+    }
 
-    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+    const toggleAllElement = this.accordion.getElementsByClassName(
+      HelfiAccordion.toggleAllElement,
+    )[0];
     toggleAllElement.addEventListener('mouseup', this.toggleItems);
     toggleAllElement.addEventListener('keypress', this.toggleItems);
   };
@@ -107,9 +124,13 @@ export default class HelfiAccordion {
 
   showToggleButton = () => {
     if (HelfiAccordion.isHeaderless(this.type) || this.isSingleItemAccordion) {
-      this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0]?.classList.add('is-hidden');
+      this.accordion
+        .getElementsByClassName(HelfiAccordion.toggleAllElement)[0]
+        ?.classList.add('is-hidden');
     } else {
-      this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0]?.classList.remove('is-hidden');
+      this.accordion
+        .getElementsByClassName(HelfiAccordion.toggleAllElement)[0]
+        ?.classList.remove('is-hidden');
     }
   };
 
@@ -117,26 +138,40 @@ export default class HelfiAccordion {
    * Update the toggle-all button label based on current accordion state.
    */
   updateToggleButtonLabel = () => {
-    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
-    if (!toggleAllElement) { return; }
+    const toggleAllElement = this.accordion.getElementsByClassName(
+      HelfiAccordion.toggleAllElement,
+    )[0];
+    if (!toggleAllElement) return;
 
-    // eslint-disable-next-line no-unused-expressions
-    this.areAllItemsOpen() ?
-      toggleAllElement.querySelector('span').textContent = Translations.close_all?.[this.currentLanguage] ?? Translations.close_all.en :
-      toggleAllElement.querySelector('span').textContent = Translations.open_all?.[this.currentLanguage] ?? Translations.open_all.en;
+    const span = toggleAllElement.querySelector('span');
+    if (!span) return;
+
+    if (this.areAllItemsOpen()) {
+      span.textContent =
+        Translations.close_all?.[this.currentLanguage] ??
+        Translations.close_all.en;
+    } else {
+      span.textContent =
+        Translations.open_all?.[this.currentLanguage] ??
+        Translations.open_all.en;
+    }
 
     this.toggleAllLabelUpdate();
   };
 
-  getAccordionItemById = (id) => this.accordionItems.find(accordionItem => accordionItem.id === id);
+  getAccordionItemById = (id) =>
+    this.accordionItems.find((accordionItem) => accordionItem.id === id);
 
-  toggleItems = () => this.areAllItemsOpen() ? this.closeAll() : this.openAll();
+  toggleItems = () =>
+    this.areAllItemsOpen() ? this.closeAll() : this.openAll();
 
   /**
    * Opens all accordion items (including child accordions, if any).
    */
   openAll = () => {
-    this.accordionItems.forEach(item => item.open());
+    this.accordionItems.forEach((item) => {
+      item.open();
+    });
     this.childAccordion?.openAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();
@@ -146,13 +181,17 @@ export default class HelfiAccordion {
    * Closes all accordion items (including child accordions, if any).
    */
   closeAll = () => {
-    this.accordionItems.forEach(item => item.closeWithoutFocus());
+    this.accordionItems.forEach((item) => {
+      item.closeWithoutFocus();
+    });
     this.childAccordion?.closeAll();
     this.updateToggleButtonLabel();
     this.toggleAllLabelUpdate();
 
     // Move focus back to the toggle-all button for accessibility.
-    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+    const toggleAllElement = this.accordion.getElementsByClassName(
+      HelfiAccordion.toggleAllElement,
+    )[0];
     toggleAllElement.focus();
   };
 
@@ -160,7 +199,9 @@ export default class HelfiAccordion {
    * Updates the toggle-all button’s open/closed CSS classes.
    */
   toggleAllLabelUpdate = () => {
-    const toggleAllElement = this.accordion.getElementsByClassName(HelfiAccordion.toggleAllElement)[0];
+    const toggleAllElement = this.accordion.getElementsByClassName(
+      HelfiAccordion.toggleAllElement,
+    )[0];
 
     if (toggleAllElement && this.areAllItemsOpen()) {
       toggleAllElement.classList.remove(HelfiAccordion.toggleAllClosed);
@@ -171,12 +212,15 @@ export default class HelfiAccordion {
     }
   };
 
-  areAllItemsOpen = () => (this.accordionItems?.every(item => item.isOpen)) && this.areChildItemsOpen();
+  areAllItemsOpen = () =>
+    this.accordionItems?.every((item) => item.isOpen) &&
+    this.areChildItemsOpen();
 
-  areChildItemsOpen = () => this.childAccordion?.areAllItemsOpen() ?? this.accordionItems?.every(item => item.isOpen);
+  areChildItemsOpen = () =>
+    this.childAccordion?.areAllItemsOpen() ??
+    this.accordionItems?.every((item) => item.isOpen);
 
-  static isHeaderless = type => HelfiAccordion.headerlessTypes.includes(type);
+  static isHeaderless = (type) => HelfiAccordion.headerlessTypes.includes(type);
 
   isHardcoded = () => this.type === 'hardcoded';
-
 }

@@ -1,8 +1,4 @@
-export const CardGhost = ({
-  bordered = false
-}: {
-  bordered?: boolean
-}) => (
+export const CardGhost = ({ bordered = false }: { bordered?: boolean }) => (
   <div className={`card card--ghost${bordered ? ' card--border' : ''}`}>
     <div className='card__image'></div>
     <div className='card__text'>

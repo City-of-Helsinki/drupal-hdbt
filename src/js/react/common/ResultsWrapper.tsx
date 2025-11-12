@@ -1,12 +1,14 @@
-import { types } from '@elastic/elasticsearch';
-import { createRef, SyntheticEvent } from 'react';
+// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
+// biome-ignore-all lint/complexity/noUselessFragments: @todo UHF-12501
+import type { types } from '@elastic/elasticsearch';
+import { createRef, type SyntheticEvent } from 'react';
 
 import { GhostList } from './GhostList';
-import ResultsError from './ResultsError';
 import useScrollToResults from './hooks/useScrollToResults';
-import ResultsEmpty from './ResultsEmpty';
-import ResultsHeader from './ResultsHeader';
 import Pagination from './Pagination';
+import ResultsEmpty from './ResultsEmpty';
+import ResultsError from './ResultsError';
+import ResultsHeader from './ResultsHeader';
 
 export const ResultsWrapper = ({
   currentPage,
@@ -21,7 +23,7 @@ export const ResultsWrapper = ({
   shouldScroll = false,
   size = 10,
 }: {
-  currentPage: string|number;
+  currentPage: string | number;
   data?: types.SearchResponse<any>;
   error?: string;
   customTotal?: number;

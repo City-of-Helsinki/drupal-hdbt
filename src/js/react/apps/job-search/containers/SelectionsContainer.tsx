@@ -1,7 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import SearchComponents from '../enum/SearchComponents';
 import { getLanguageLabel } from '../helpers/Language';
 import transformDropdownsValues from '../helpers/Params';
@@ -21,7 +20,7 @@ import {
   urlUpdateAtom,
   youthSummerJobsAtom,
 } from '../store';
-import OptionType from '../types/OptionType';
+import type OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -43,8 +42,12 @@ const SelectionsContainer = () => {
     urlParams?.youth_summer_jobs ||
     urlParams?.employment?.length;
 
-  const showTaskAreas = Boolean(urlParams.task_areas?.length && urlParams.task_areas.length > 0);
-  const showEmployment = Boolean(urlParams.employment?.length && urlParams.employment?.length > 0);
+  const showTaskAreas = Boolean(
+    urlParams.task_areas?.length && urlParams.task_areas.length > 0,
+  );
+  const showEmployment = Boolean(
+    urlParams.employment?.length && urlParams.employment?.length > 0,
+  );
 
   return (
     <SelectionsWrapper showClearButton={showClearButton} resetForm={resetForm}>
@@ -52,14 +55,20 @@ const SelectionsContainer = () => {
         <ListFilter
           updater={updateTaskAreas}
           valueKey={SearchComponents.TASK_AREAS}
-          values={transformDropdownsValues(urlParams.task_areas, taskAreaOptions)}
+          values={transformDropdownsValues(
+            urlParams.task_areas,
+            taskAreaOptions,
+          )}
         />
       )}
       {showEmployment && (
         <ListFilter
           updater={updateEmploymentOptions}
           valueKey={SearchComponents.EMPLOYMENT}
-          values={transformDropdownsValues(urlParams.employment, employmentOptions)}
+          values={transformDropdownsValues(
+            urlParams.employment,
+            employmentOptions,
+          )}
         />
       )}
       {urlParams.language && (
@@ -73,12 +82,19 @@ const SelectionsContainer = () => {
         <ListFilter
           updater={updateAreaFilter}
           valueKey={SearchComponents.AREA_FILTER}
-          values={transformDropdownsValues(urlParams.area_filter, areaFilterOptions)}
+          values={transformDropdownsValues(
+            urlParams.area_filter,
+            areaFilterOptions,
+          )}
         />
       )}
       {urlParams.continuous && (
         <CheckboxFilterPill
-          label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
+          label={Drupal.t(
+            'Open-ended vacancies',
+            {},
+            { context: 'Job search' },
+          )}
           atom={continuousAtom}
           valueKey={SearchComponents.CONTINUOUS}
         />
@@ -99,7 +115,11 @@ const SelectionsContainer = () => {
       )}
       {urlParams.youth_summer_jobs && (
         <CheckboxFilterPill
-          label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
+          label={Drupal.t(
+            'Summer jobs for young people',
+            {},
+            { context: 'Job search' },
+          )}
           atom={youthSummerJobsAtom}
           valueKey={SearchComponents.YOUTH_SUMMER_JOBS}
         />
@@ -111,6 +131,7 @@ const SelectionsContainer = () => {
 export default SelectionsContainer;
 
 type ListFilterProps = {
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updater: Function;
   valueKey: string;
   values: OptionType[];
@@ -122,12 +143,14 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 
   const removeSelection = (value: string) => {
     const newValue = values;
-    const index = newValue.findIndex((selection: OptionType) => selection.value === value);
+    const index = newValue.findIndex(
+      (selection: OptionType) => selection.value === value,
+    );
     newValue.splice(index, 1);
     updater(newValue);
     setUrlParams({
       ...urlParams,
-      [valueKey]: newValue.map((selection: OptionType) => selection.value).flat(),
+      [valueKey]: newValue.flatMap((selection: OptionType) => selection.value),
     });
   };
 
@@ -145,12 +168,17 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 };
 
 type CheckboxFilterPillProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   valueKey: string;
   label: string;
 };
 
-const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) => {
+const CheckboxFilterPill = ({
+  atom,
+  valueKey,
+  label,
+}: CheckboxFilterPillProps) => {
   const setValue = useSetAtom(atom);
   const urlParams = useAtomValue(urlAtom);
   const setUrlParams = useSetAtom(urlUpdateAtom);
@@ -167,6 +195,7 @@ const CheckboxFilterPill = ({ atom, valueKey, label }: CheckboxFilterPillProps) 
 };
 
 type SingleFilterProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   atom: any;
   label: string;
   valueKey: string;

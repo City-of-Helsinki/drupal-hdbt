@@ -8,7 +8,7 @@ html {
 }
 
 // Border box is applied to all elements but individual elements can change this setting if required.
-*, *:before, *:after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 

@@ -1,4 +1,1 @@
-export type TargetGroup = {
-  ids?: string[];
-  negateIds?: string[];
-}
+export type TargetGroup = { ids?: string[]; negateIds?: string[] };

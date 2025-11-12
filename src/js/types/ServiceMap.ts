@@ -1,27 +1,15 @@
-export type TranslatedString = {
-  en?: string;
-  fi?: string;
-  sv?: string;
-}
+export type TranslatedString = { en?: string; fi?: string; sv?: string };
 
 export type ServiceMapAddress = {
   letter: string;
-  location: {
-    type: string;
-    coordinates: [number, number];
-  }
+  location: { type: string; coordinates: [number, number] };
   modified_at: string;
   name: TranslatedString;
   number_end?: number;
   number?: number;
-  municipality: {
-    id: string;
-    name: TranslatedString;
-  }
+  municipality: { id: string; name: TranslatedString };
   object_type: string;
-  street: {
-    name: TranslatedString;
-  }
+  street: { name: TranslatedString };
 };
 
 export type ServiceMapPlace = {
@@ -52,10 +40,11 @@ export type ServiceMapPlace = {
   replaced_by: null;
   street_address: TranslatedString;
   telephone: TranslatedString;
-}
+};
 
 export type AdministrativeDivision = {
   end: string;
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   extra: any;
   id: number;
   modified_at: string;
@@ -68,11 +57,11 @@ export type AdministrativeDivision = {
   start: string;
   type: string;
   units: number[];
-}
+};
 
 export type ServiceMapResponse<T> = {
   count: number;
-  next: string|null;
-  previous: string|null;
+  next: string | null;
+  previous: string | null;
   results: T[];
 };

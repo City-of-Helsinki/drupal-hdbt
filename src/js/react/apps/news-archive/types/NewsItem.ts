@@ -19,6 +19,6 @@ type Result = {
   title: string[];
   url: string[];
   uuid: string[];
-}
+};
 
 export default Result;

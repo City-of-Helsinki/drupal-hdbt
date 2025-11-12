@@ -1,16 +1,16 @@
 import { atom } from 'jotai';
-
-import type URLParams from './types/URLParams';
 import NewsSearchParams from './helpers/NewsSearchParams';
+import type URLParams from './types/URLParams';
 
-const initialParamString = drupalSettings.helfi_news_archive.default_query ?? window.location.search;
+const initialParamString =
+  drupalSettings.helfi_news_archive.default_query ?? window.location.search;
 const params = new NewsSearchParams(initialParamString);
 
 const initialParams = params.toInitialValue();
 
 export const urlAtom = atom<URLParams>(initialParams);
 
-export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
+export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
   // Set atom value
   values.page = values.page || 1;
   set(urlAtom, values);
@@ -20,7 +20,6 @@ export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
   const newUrl = new URL(window.location.toString());
   const newParams = new NewsSearchParams();
 
-  // eslint-disable-next-line
   for (const key in values) {
     const value = values[key as keyof URLParams];
 

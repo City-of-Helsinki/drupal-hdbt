@@ -1,12 +1,26 @@
-import Mustache from 'mustache';
 import cls from 'classnames';
+import Mustache from 'mustache';
 
-const frontpageTranslation = Drupal.t('Frontpage', {}, { context: 'Global navigation mobile menu top level' });
-const openSubMenuTranslation = Drupal.t('Open submenu:', {}, { context: 'Mobile navigation menu prefix' });
-const openParentMenuTranslation = Drupal.t('Open parent menu:', {}, { context: 'Mobile navigation menu prefix' });
+const frontpageTranslation = Drupal.t(
+  'Frontpage',
+  {},
+  { context: 'Global navigation mobile menu top level' },
+);
+const openSubMenuTranslation = Drupal.t(
+  'Open submenu:',
+  {},
+  { context: 'Mobile navigation menu prefix' },
+);
+const openParentMenuTranslation = Drupal.t(
+  'Open parent menu:',
+  {},
+  { context: 'Mobile navigation menu prefix' },
+);
 
-// eslint-disable-next-line no-extend-native
-Array.prototype.findRecursive = function findRecursivelyFromArray(predicate, childrenPropertyName) {
+Array.prototype.findRecursive = function findRecursivelyFromArray(
+  predicate,
+  childrenPropertyName,
+) {
   if (!childrenPropertyName) {
     throw new Error('findRecursive requires parameter `childrenPropertyName`');
   }
@@ -49,8 +63,7 @@ function isCurrentPath() {
 
   try {
     url = new URL(this.url).pathname;
-  }
-  catch (e) {
+  } catch (_e) {
     url = this.url;
   }
   return !this.external && this.url && url === window.location.pathname;
@@ -80,8 +93,9 @@ function isInjected() {
   return !!this.is_injected;
 }
 
-/** *
- * Convert attributes to to template-friendly object
+/**
+ * Convert attributes to template-friendly object
+ *
  * @return {object}  {external:bool, protocol:bool}
  */
 function externalLinkAttributes() {
@@ -100,7 +114,8 @@ function hasLang() {
 }
 
 /**
- * Determinine icon type and text for external link
+ * Determine icon type and text for external link
+ *
  * @return {object} {class: list of related CSS classes, text: translated description text }
  */
 function externalLinkIcon() {
@@ -108,7 +123,10 @@ function externalLinkIcon() {
     return false;
   }
 
-  return externalLinkIcon.ICONS[this.attributes['data-protocol']] || externalLinkIcon.ICONS.external;
+  return (
+    externalLinkIcon.ICONS[this.attributes['data-protocol']] ||
+    externalLinkIcon.ICONS.external
+  );
 }
 
 externalLinkIcon.ICONS = {
@@ -228,7 +246,7 @@ const MobilePanel = {
   },
   menu: null,
   templates: null,
-  SCROLL_TRESHOLD: 100,
+  scroll_threshold: 100,
   size: 10, // Maximum assumed depth of tree. Used for checking if going up is allowed
   running: false,
   data: null,
@@ -254,16 +272,19 @@ const MobilePanel = {
   sortPanelsByPath() {
     const panels = [];
     const allItems = this.data;
-    const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
-    let parentIndex = currentItem?.sub_tree?.length ? currentItem.id : currentItem?.parentId;
+    const currentItem = allItems.findRecursive(
+      (item) => isCurrentPath.call(item),
+      'sub_tree',
+    );
+    let parentIndex = currentItem?.sub_tree?.length
+      ? currentItem.id
+      : currentItem?.parentId;
 
     while (parentIndex) {
       const found = allItems.findRecursive(
         // sub_tree is api  data key.
-        // eslint-disable-next-line no-loop-func, camelcase,
         ({ id, url, name, sub_tree, parentId, inPath, active }) => {
           if (id === parentIndex) {
-            // eslint-disable-next-line camelcase
             panels.push({ sub_tree, name, url, parentId, inPath, active });
             // Set new parent id. If this is empty, it will stop the while-loop.
             parentIndex = parentId;
@@ -301,7 +322,8 @@ const MobilePanel = {
       hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
-      back: i > 0 ? this.content.at(i - 1)?.name ?? frontpageTranslation : false,
+      back:
+        i > 0 ? (this.content.at(i - 1)?.name ?? frontpageTranslation) : false,
       openSubMenuTranslation,
       openParentMenuTranslation,
       /** *
@@ -321,7 +343,8 @@ const MobilePanel = {
           (state === 'up' && i >= this.currentIndex) ||
           (state === 'down' && i > this.currentIndex + 1),
         'mmenu__panel--visible-left':
-          (state === 'up' && i < this.currentIndex - 1) || (state === 'down' && i <= this.currentIndex),
+          (state === 'up' && i < this.currentIndex - 1) ||
+          (state === 'down' && i <= this.currentIndex),
       }),
     }));
   },
@@ -333,13 +356,18 @@ const MobilePanel = {
      * Find the item corresponding to given id in item arrow click event.
      * It's items will be the new current panel. Old panel swipes left.
      */
-    const next = this.content.at(this.currentIndex).sub_tree.find(({ id }) => id === parentId);
+    const next = this.content
+      .at(this.currentIndex)
+      .sub_tree.find(({ id }) => id === parentId);
 
     if (!next) {
       throw new Error(`ID mismatch in menu items${parentId}`);
     }
 
-    this.currentIndex = this.currentIndex + 1 < this.size ? this.currentIndex + 1 : this.currentIndex;
+    this.currentIndex =
+      this.currentIndex + 1 < this.size
+        ? this.currentIndex + 1
+        : this.currentIndex;
     this.content[this.currentIndex] = next;
     this.render('up');
   },
@@ -347,19 +375,16 @@ const MobilePanel = {
     if (this.currentIndex === 0) {
       return;
     }
-    this.currentIndex = this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
+    this.currentIndex =
+      this.currentIndex - 1 >= 0 ? this.currentIndex - 1 : this.currentIndex;
     this.render('down');
   },
   render(state) {
     const root = this.getRoot();
     root.innerHTML = Mustache.render(
       this.templates.panel,
-      {
-        panels: this.getView(state),
-      },
-      {
-        sub_tree: this.templates.list,
-      },
+      { panels: this.getView(state) },
+      { sub_tree: this.templates.list },
     );
 
     if (state === 'load') {
@@ -369,19 +394,31 @@ const MobilePanel = {
     const panels = [...root.querySelectorAll('.mmenu__panel')];
     const current = panels.at(this.currentIndex);
 
-    if (root.parentElement.scrollTop > this.SCROLL_TRESHOLD && this.currentIndex > 0) {
-      current.querySelector('.mmenu__back').scrollIntoView({ block: 'start', behaviour: 'smooth' });
+    if (
+      root.parentElement.scrollTop > this.scroll_threshold &&
+      this.currentIndex > 0
+    ) {
+      current
+        .querySelector('.mmenu__back')
+        .scrollIntoView({ block: 'start', behaviour: 'smooth' });
     }
 
     setTimeout(() => {
-      current.classList.remove('mmenu__panel--visible-right', 'mmenu__panel--visible-left');
+      current.classList.remove(
+        'mmenu__panel--visible-right',
+        'mmenu__panel--visible-left',
+      );
       switch (state) {
         case 'up':
-          panels.at(this.currentIndex - 1).classList.add('mmenu__panel--visible-left');
+          panels
+            .at(this.currentIndex - 1)
+            .classList.add('mmenu__panel--visible-left');
           break;
 
         case 'down':
-          panels.at(this.currentIndex + 1).classList.add('mmenu__panel--visible-right');
+          panels
+            .at(this.currentIndex + 1)
+            .classList.add('mmenu__panel--visible-right');
           break;
 
         default:
@@ -418,7 +455,10 @@ const MobilePanel = {
       return item;
     });
 
-    const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
+    const currentItem = allItems.findRecursive(
+      (item) => isCurrentPath.call(item),
+      'sub_tree',
+    );
 
     if (currentItem) {
       currentItem.active = true;
@@ -428,7 +468,6 @@ const MobilePanel = {
     let parentIndex = currentItem?.parentId;
 
     while (parentIndex) {
-      // eslint-disable-next-line no-loop-func
       const found = allItems.findRecursive((item) => {
         if (item.id === parentIndex) {
           // set new parent id. If this is empty, it will stop the while-loop.
@@ -457,10 +496,7 @@ const MobilePanel = {
     try {
       await this.load();
     } catch (e) {
-      console.error(
-        'Unable to load menu API, using fallback menu instead',
-        e,
-      );
+      console.error('Unable to load menu API, using fallback menu instead', e);
       this.enableFallback();
       return;
     }
@@ -485,18 +521,21 @@ const MobilePanel = {
       // Or outside-of-menu-click listener will be triggered incorrectly due to rerender before parent lookup.
       // See nav-global.js
 
-      if (classList && classList.contains(this.selectors.forward)) {
+      if (classList?.contains(this.selectors.forward)) {
         this.up(id);
       } else if (
-        (classList && classList.contains(this.selectors.back)) ||
-        (parentElement?.classList && parentElement?.classList.contains(this.selectors.back))
+        classList?.contains(this.selectors.back) ||
+        parentElement?.classList?.contains(this.selectors.back)
       ) {
         this.down();
       }
     });
   },
   isOpen() {
-    return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
+    return (
+      window.location.hash === '#menu' ||
+      this.toggleButton.getAttribute('aria-expanded') === 'true'
+    );
   },
   disableFallback() {
     this.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
@@ -538,7 +577,9 @@ const MobilePanel = {
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
      */
     if (this.running) {
-      console.warn('MobilePanel already initiated. Is it include more than once?');
+      console.warn(
+        'MobilePanel already initiated. Is it include more than once?',
+      );
       return;
     }
     this.onOpen = onOpen;
@@ -550,7 +591,9 @@ const MobilePanel = {
     if (!this.toggleButton) {
       throw new Error('No toggle button for JS menu.');
     }
-    this.dropdownInstance = document.querySelector(`.${this.selectors.dropdown}`);
+    this.dropdownInstance = document.querySelector(
+      `.${this.selectors.dropdown}`,
+    );
     if (!this.dropdownInstance) {
       throw new Error('No dropdown element for JS menu.');
     }

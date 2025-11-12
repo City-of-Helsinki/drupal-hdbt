@@ -17,6 +17,7 @@
 //   }
 // }
 ////
+/* stylelint-disable-next-line scss/at-mixin-pattern -- @todo UHF-12501 */
 @mixin content_count($number_of_items...) {
   @each $item in $number_of_items {
     @if meta.type-of($item) == number {

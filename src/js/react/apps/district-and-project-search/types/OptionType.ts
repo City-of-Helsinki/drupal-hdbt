@@ -1,6 +1,3 @@
-type OptionType = {
-  label?: string;
-  value: string;
-};
+type OptionType = { label?: string; value: string };
 
 export default OptionType;

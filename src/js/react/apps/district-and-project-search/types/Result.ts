@@ -3,6 +3,7 @@ type Result = {
   _type: string;
   _id: string;
   _score: number;
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   _source: any;
   search_api_language: string;
   url: string[];
@@ -26,6 +27,6 @@ type Result = {
   field_district_search_metatags?: string[];
   field_district_subdistricts_title?: string[];
   field_district_subdistricts_title_for_ui?: string[];
-}
+};
 
 export default Result;

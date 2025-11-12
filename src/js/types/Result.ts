@@ -6,14 +6,11 @@ interface Result<Type> {
   inner_hits: {
     [key: string]: {
       hits: {
-        total: {
-          value: number,
-          relation: string
-        },
-        max_score: number,
-        hits: Result<Type>[]
-      }
-    }
+        total: { value: number; relation: string };
+        max_score: number;
+        hits: Result<Type>[];
+      };
+    };
   };
 }
 

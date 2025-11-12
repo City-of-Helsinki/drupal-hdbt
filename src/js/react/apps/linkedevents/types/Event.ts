@@ -1,8 +1,4 @@
-type MultilingualString = {
-  fi?: string;
-  en?: string;
-  sv?: string;
-};
+type MultilingualString = { fi?: string; en?: string; sv?: string };
 
 export type EventImage = {
   alt_text: string;
@@ -12,15 +8,9 @@ export type EventImage = {
   url?: string;
 };
 
-export type EventKeyword = {
-  id: string;
-  name: MultilingualString;
-};
+export type EventKeyword = { id: string; name: MultilingualString };
 
-type EventOffers = {
-  info_url: MultilingualString;
-  is_free:  boolean;
-}
+type EventOffers = { info_url: MultilingualString; is_free: boolean };
 
 type EventLocation = {
   id: string;

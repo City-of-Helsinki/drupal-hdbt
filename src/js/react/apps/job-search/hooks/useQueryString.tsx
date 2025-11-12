@@ -3,25 +3,24 @@ import { useAtomValue } from 'jotai';
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
-import { nodeFilter } from '../query/queries';
-import URLParams from '../types/URLParams';
-import { configurationsAtom } from '../store';
 import { getAreaInfo } from '../helpers/Areas';
+import { nodeFilter } from '../query/queries';
+import { configurationsAtom } from '../store';
+import type URLParams from '../types/URLParams';
 
 const useQueryString = (urlParams: URLParams): string => {
   const { size: globalSize, sortOptions } = Global;
   const { promoted } = useAtomValue(configurationsAtom);
-  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
-  const must: any[] = [{
-    // Legacy sanity check, make sure forced translations aren't included
-    bool: {
-      must_not: {
-        term: {
-          [IndexFields.PROMOTED]: true
-        }
-      }
-    }
-  }];
+  const page = Number.isNaN(Number(urlParams.page))
+    ? 1
+    : Number(urlParams.page);
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
+  const must: any[] = [
+    {
+      // Legacy sanity check, make sure forced translations aren't included
+      bool: { must_not: { term: { [IndexFields.PROMOTED]: true } } },
+    },
+  ];
   const should = [];
 
   if (urlParams.keyword && urlParams.keyword.length > 0) {
@@ -61,9 +60,7 @@ const useQueryString = (urlParams: URLParams): string => {
 
   if (urlParams?.task_areas?.length) {
     must.push({
-      terms: {
-        [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas,
-      },
+      terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas },
     });
   }
 
@@ -72,16 +69,8 @@ const useQueryString = (urlParams: URLParams): string => {
     must.push({
       bool: {
         should: [
-          {
-            terms: {
-              [IndexFields.EMPLOYMENT_ID]: urlParams.employment,
-            },
-          },
-          {
-            terms: {
-              [IndexFields.EMPLOYMENT_TYPE_ID]: urlParams.employment,
-            },
-          },
+          { terms: { [IndexFields.EMPLOYMENT_ID]: urlParams.employment } },
+          { terms: { [IndexFields.EMPLOYMENT_TYPE_ID]: urlParams.employment } },
         ],
         minimum_should_match: 1,
       },
@@ -90,33 +79,25 @@ const useQueryString = (urlParams: URLParams): string => {
 
   if (urlParams.continuous) {
     should.push({
-      term: {
-        [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.CONTINUOUS,
-      },
+      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.CONTINUOUS },
     });
   }
 
   if (urlParams.internship) {
     should.push({
-      term: {
-        [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.TRAINING,
-      },
+      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.TRAINING },
     });
   }
 
   if (urlParams.summer_jobs) {
     should.push({
-      term: {
-        [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SUMMER_JOBS,
-      },
+      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SUMMER_JOBS },
     });
   }
 
   if (urlParams.youth_summer_jobs) {
     should.push({
-      term: {
-        [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.YOUTH_SUMMER_JOBS,
-      },
+      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.YOUTH_SUMMER_JOBS },
     });
     should.push({
       term: {
@@ -125,32 +106,26 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
-  const query: any = {
-    bool: {
-      filter: [
-        nodeFilter,
-      ],
-    }
-  };
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
+  const query: any = { bool: { filter: [nodeFilter] } };
 
   if (urlParams.language) {
     query.bool.filter.push({
-      term: {
-        [IndexFields.LANGUAGE]: urlParams.language.toString(),
-      },
+      term: { [IndexFields.LANGUAGE]: urlParams.language.toString() },
     });
   }
 
   if (urlParams?.area_filter?.length) {
     const postalCodes: string[] = [];
-    urlParams.area_filter.forEach(areaCode => {
-      postalCodes.push(...getAreaInfo.find(area => area.key === areaCode)?.postalCodes || []);
+    urlParams.area_filter.forEach((areaCode) => {
+      postalCodes.push(
+        ...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes ||
+          []),
+      );
     });
 
     query.bool.filter.push({
-      terms: {
-        [IndexFields.POSTAL_CODE]: postalCodes
-      }
+      terms: { [IndexFields.POSTAL_CODE]: postalCodes },
     });
   }
 
@@ -163,16 +138,8 @@ const useQueryString = (urlParams: URLParams): string => {
     query.bool.minimum_should_match = 1;
   }
 
-  const closing = {
-    [IndexFields.UNPUBLISH_ON]: {
-      order: 'asc',
-    },
-  };
-  const newest = {
-    [IndexFields.PUBLICATION_STARTS]: {
-      order: 'desc',
-    },
-  };
+  const closing = { [IndexFields.UNPUBLISH_ON]: { order: 'asc' } };
+  const newest = { [IndexFields.PUBLICATION_STARTS]: { order: 'desc' } };
 
   const getSort = () => {
     if (urlParams?.sort === sortOptions.closing) {
@@ -193,7 +160,7 @@ const useQueryString = (urlParams: URLParams): string => {
       return [globalSize, globalSize * (page - 1)];
     }
 
-    const promotedOnPage = (globalSize * (page - 1)) < promoted.length;
+    const promotedOnPage = globalSize * (page - 1) < promoted.length;
     const pastResults = globalSize * (page - 1);
     const promotedToShow = promotedOnPage && promoted.length - pastResults;
     const leftovers = promoted.length % globalSize;
@@ -218,25 +185,17 @@ const useQueryString = (urlParams: URLParams): string => {
   return JSON.stringify({
     aggs: {
       [IndexFields.NUMBER_OF_JOBS]: {
-        sum: {
-          field: IndexFields.NUMBER_OF_JOBS,
-          missing: 1,
-        },
+        sum: { field: IndexFields.NUMBER_OF_JOBS, missing: 1 },
       },
       // Use cardinality agg to calculate total (collapsing affects the total)
       total_count: {
-        cardinality: {
-          field: `${IndexFields.RECRUITMENT_ID}.keyword`
-        }
-      }
+        cardinality: { field: `${IndexFields.RECRUITMENT_ID}.keyword` },
+      },
     },
     // Use collapse to group translations
     collapse: {
       field: `${IndexFields.RECRUITMENT_ID}.keyword`,
-      inner_hits: {
-        name: 'translations',
-        size: 3,
-      }
+      inner_hits: { name: 'translations', size: 3 },
     },
     from,
     query,
