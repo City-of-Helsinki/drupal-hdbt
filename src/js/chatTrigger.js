@@ -4,13 +4,9 @@
     fallback: {
       fi: 'Chatti ei ole saatavilla.',
       sv: 'Chatten är inte tillgänglig.',
-      en: 'The chat is not available.'
+      en: 'The chat is not available.',
     },
-    openChat: {
-      fi: 'Avaa chat',
-      sv: 'Öppna chatten',
-      en: 'Open the chat'
-    }
+    openChat: { fi: 'Avaa chat', sv: 'Öppna chatten', en: 'Open the chat' },
   };
 
   /**
@@ -20,12 +16,13 @@
    * @return {Promise<Element>} A promise that resolves with the element once it appears in the DOM.
    */
   function waitForElement(selector) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       // First check, if the element exists already.
       const element = document.querySelector(selector);
       if (element) {
         resolve(element);
-      } else { // If not, wait for it to appear.
+      } else {
+        // If not, wait for it to appear.
         const observer = new MutationObserver(() => {
           const elem = document.querySelector(selector);
           if (elem) {
@@ -33,7 +30,10 @@
             resolve(elem);
           }
         });
-        observer.observe(document.documentElement, { childList: true, subtree: true, });
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
       }
     });
   }
@@ -42,7 +42,6 @@
    * Try to find the chat trigger placeholder elements and replace them with buttons that open the chat.
    */
   function init() {
-
     // Find all chat trigger placeholder elements.
     const placeholders = document.querySelectorAll('p[data-chat-trigger]');
 
@@ -50,20 +49,22 @@
     const lang = window?.drupalSettings?.path?.currentLanguage || 'en';
 
     // Iterate over each placeholder.
-    placeholders.forEach(placeholder => {
+    placeholders.forEach((placeholder) => {
       // Get target selector from attribute
       const targetSelector = placeholder.dataset.chatTrigger;
 
       // The trigger is present but the chat is not available, show fallback until chat is available.
       if (!document.querySelector(targetSelector)) {
-        const content = triggerTranslations.fallback[lang] || triggerTranslations.fallback.en;
+        const content =
+          triggerTranslations.fallback[lang] || triggerTranslations.fallback.en;
         placeholder.textContent = content;
       }
 
       // Wait for the target element to appear in the DOM and replace the trigger with a button that opens the chat.
       waitForElement(targetSelector).then(() => {
         const triggerButton = document.createElement('button');
-        triggerButton.textContent = triggerTranslations.openChat[lang] || triggerTranslations.openChat.en;
+        triggerButton.textContent =
+          triggerTranslations.openChat[lang] || triggerTranslations.openChat.en;
         triggerButton.dataset.hdsComponent = 'button';
         triggerButton.dataset.hdsVariant = 'secondary';
         triggerButton.dataset.clickSelector = targetSelector;

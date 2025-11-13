@@ -14,9 +14,9 @@ $-title-spacing: calc(0.5 * (var(--icon-size) - var(--title-line-height))); // T
 .target-group-link {
   --icon-size: #{$spacing-double};
   --title-line-height: #{get-line-height('h4')};
-  grid-column-gap: $spacing-and-half;
   background-color: $color-black-5;
   display: grid;
+  grid-column-gap: $spacing-and-half;
   grid-template-areas:
     'icon title'
     'icon subtitle';

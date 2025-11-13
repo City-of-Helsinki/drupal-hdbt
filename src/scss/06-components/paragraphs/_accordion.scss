@@ -1,3 +1,5 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
+/* stylelint-disable plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
 .accordion {
   --js-accordion-open-time: 200ms;
 

@@ -48,6 +48,6 @@
       }
 
       window.mobileLanguageSwitcherInitialized = true;
-    }
+    },
   };
 })(Drupal);

@@ -23,7 +23,11 @@ const start = () => {
   ReactDOM.render(
     <React.StrictMode>
       <div className='component--react-search component--react-search--schools'>
-        <ErrorBoundary fallback={<ResultsError error="School search initialization failed" />}>
+        <ErrorBoundary
+          fallback={
+            <ResultsError error='School search initialization failed' />
+          }
+        >
           <Suspense fallback={<GhostList count={AppSettings.size} />}>
             <SearchContainer />
           </Suspense>

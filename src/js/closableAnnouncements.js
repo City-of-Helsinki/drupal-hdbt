@@ -1,7 +1,6 @@
 import LocalStorageManager from './localStorageManager';
 
-// eslint-disable-next-line func-names
-(function (Drupal) {
+((Drupal) => {
   Drupal.behaviors.closableAnnouncements = {
     attach: function attach() {
       const ANNOUCEMENT = 'js-announcement';
@@ -24,15 +23,22 @@ import LocalStorageManager from './localStorageManager';
         announcement.style = `--js-announcement-height: ${announcement.offsetHeight}px`;
         window.setTimeout(() => {
           let focused = false;
-          const allAnnouncements = document.querySelectorAll('.announcement:not(.js-announcement--hide)');
+          const allAnnouncements = document.querySelectorAll(
+            '.announcement:not(.js-announcement--hide)',
+          );
           announcement.classList.add(ANNOUCEMENT_HIDE);
           // Moving focus to correct place after closing the announcement.
           // NOTICE: This is very dependent on the html-structure of the header and its components.
           // Go through all announcements and use the uuid to determine which focusable announcement is before
           // the closed announcement.
           for (let i = 0, max = allAnnouncements.length; i < max; i++) {
-            if (allAnnouncements[i].dataset.uuid === announcement.dataset.uuid && i > 0) {
-              const focusableAnnouncement = allAnnouncements[i - 1].querySelectorAll('.announcement__close, .announcement__link a');
+            if (
+              allAnnouncements[i].dataset.uuid === announcement.dataset.uuid &&
+              i > 0
+            ) {
+              const focusableAnnouncement = allAnnouncements[
+                i - 1
+              ].querySelectorAll('.announcement__close, .announcement__link a');
               focusableAnnouncement[focusableAnnouncement.length - 1].focus();
               focused = true;
               break;
@@ -41,17 +47,24 @@ import LocalStorageManager from './localStorageManager';
           // If there is no more announcements to focus to we need to figure out if we are viewing the page with mobile
           // or desktop navigation. We check if the header-bottom menu is visible to determine this.
           if (focused === false) {
-            const desktopMenu = document.querySelector('.header-bottom .desktop-menu > .menu');
-            const desktopMenuHidden = window.getComputedStyle(desktopMenu).display === 'none';
+            const desktopMenu = document.querySelector(
+              '.header-bottom .desktop-menu > .menu',
+            );
+            const desktopMenuHidden =
+              window.getComputedStyle(desktopMenu).display === 'none';
             // Depending on the visible menu we move the focus straight to nav-toggle buttons or the menu links if no
             // breadcrumb is set.
             if (desktopMenuHidden === true) {
               // Move the focus on mobile:
-              const focusableElements = document.querySelectorAll('.nav-toggle__button, .breadcrumb a:last-of-type');
+              const focusableElements = document.querySelectorAll(
+                '.nav-toggle__button, .breadcrumb a:last-of-type',
+              );
               focusableElements[focusableElements.length - 1].focus();
             } else {
               // Move the focus on desktop:
-              const focusableElements = document.querySelectorAll('.nav-toggle__button, .header-bottom .menu--level-0 > .menu__item:last-child > .menu__link-wrapper :where(a, button), .breadcrumb a:last-of-type');
+              const focusableElements = document.querySelectorAll(
+                '.nav-toggle__button, .header-bottom .menu--level-0 > .menu__item:last-child > .menu__link-wrapper :where(a, button), .breadcrumb a:last-of-type',
+              );
               focusableElements[focusableElements.length - 1].focus();
             }
           }

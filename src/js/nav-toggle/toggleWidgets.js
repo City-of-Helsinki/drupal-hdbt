@@ -28,9 +28,4 @@ const setHide = (hide) => {
   (hide === true ? close : open)();
 };
 
-module.exports = {
-  setHide,
-  close,
-  open,
-  HIDE_SELECTORS,
-};
+module.exports = { setHide, close, open, HIDE_SELECTORS };

@@ -3,7 +3,6 @@
  * Use this class if you need to update for example helfi-settings.
  */
 export default class LocalStorageManager {
-
   saveEventKey = 'localstorage-save-event';
 
   /**
@@ -14,7 +13,6 @@ export default class LocalStorageManager {
     this.storageKey = storageKey;
     this.loadData();
 
-    // eslint-disable-next-line
     addEventListener(this.saveEventKey, this.loadOnChange);
   }
 
@@ -47,8 +45,7 @@ export default class LocalStorageManager {
 
     try {
       data = localStorage.getItem(this.storageKey);
-    }
-    catch(error) {
+    } catch (error) {
       LocalStorageManager.handleError(error);
     }
 
@@ -64,8 +61,7 @@ export default class LocalStorageManager {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.data));
       this.triggerSaveEvent();
-    }
-    catch(error) {
+    } catch (error) {
       LocalStorageManager.handleError(error);
     }
   };
@@ -143,8 +139,7 @@ export default class LocalStorageManager {
   static handleError(error) {
     if (error instanceof ReferenceError) {
       // Prevent security error caused by incognito-mode.
-    }
-    else {
+    } else {
       throw error;
     }
   }

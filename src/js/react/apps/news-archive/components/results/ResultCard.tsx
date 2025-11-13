@@ -2,9 +2,7 @@ import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
 import type NewsItem from '../../types/NewsItem';
 
-type ImageUrls = {
-  [key: string]: string;
-};
+type ImageUrls = { [key: string]: string };
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;
@@ -12,9 +10,11 @@ interface ResultCardProps extends NewsItem {
 }
 
 const ResultCard = ({
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   alt,
   cardModifierClass,
   cardTitleLevel,
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   field_main_image_caption,
   field_photographer,
   main_image_url,
@@ -33,7 +33,7 @@ const ResultCard = ({
       month: 'numeric',
       day: 'numeric',
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
     });
   };
 
@@ -45,7 +45,10 @@ const ResultCard = ({
     let imageUrls: ImageUrls = {};
 
     try {
-      imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
+      imageUrls =
+        typeof main_image_url?.[0] === 'string'
+          ? JSON.parse(main_image_url?.[0])
+          : main_image_url?.[0];
     } catch (e) {
       console.error('Failed to parse main_image_url', e);
       return undefined; // Return undefined if parsing fails
@@ -54,7 +57,9 @@ const ResultCard = ({
     return (
       <CardPicture
         alt=''
-        photographer={field_photographer && field_photographer.length ? field_photographer[0] : undefined}
+        photographer={
+          field_photographer?.length ? field_photographer[0] : undefined
+        }
         imageUrls={imageUrls}
       />
     );

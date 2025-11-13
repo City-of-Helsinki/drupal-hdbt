@@ -1,29 +1,34 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501 */
+import type { Option } from 'hds-react';
 import { atom } from 'jotai';
-
-import {Option} from 'hds-react';
+import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type Result from '@/types/Result';
 import CustomIds from './enum/CustomTermIds';
+import Global from './enum/Global';
+import { getAreaInfo } from './helpers/Areas';
 import { getLanguageLabel } from './helpers/Language';
 import sortOptions from './helpers/Options';
-import { AGGREGATIONS, EMPLOYMENT_FILTER_OPTIONS, LANGUAGE_OPTIONS, PROMOTED_IDS, TASK_AREA_OPTIONS } from './query/queries';
+import { paramsFromSelections } from './helpers/Params';
+import {
+  AGGREGATIONS,
+  EMPLOYMENT_FILTER_OPTIONS,
+  LANGUAGE_OPTIONS,
+  PROMOTED_IDS,
+  TASK_AREA_OPTIONS,
+} from './query/queries';
+import type AggregationItem from './types/AggregationItem';
 import type OptionType from './types/OptionType';
-import Global from './enum/Global';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
-import AggregationItem from './types/AggregationItem';
-import { getAreaInfo } from './helpers/Areas';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
-import { paramsFromSelections } from './helpers/Params';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {
   const result = new Map();
 
-  bucket.forEach(item => {
+  bucket.forEach((item) => {
     if (item?.unique?.value) {
       result.set(item.key, item.unique.value);
-    }
-    else {
+    } else {
       result.set(item.key, item.doc_count);
     }
   });
@@ -41,11 +46,12 @@ const getParams = (searchParams: URLSearchParams) => {
 
     if (!value) {
       result = entries.next();
-    }
-    else {
+    } else {
       const existing = params[key];
       if (existing) {
-        const updatedValue = Array.isArray(existing) ? [...existing, value] : [existing, value];
+        const updatedValue = Array.isArray(existing)
+          ? [...existing, value]
+          : [existing, value];
         params[key] = updatedValue;
       } else {
         params[key] = [value];
@@ -58,9 +64,11 @@ const getParams = (searchParams: URLSearchParams) => {
   return params;
 };
 
-export const urlAtom = atom<URLParams>(getParams(new URLSearchParams(window.location.search)));
+export const urlAtom = atom<URLParams>(
+  getParams(new URLSearchParams(window.location.search)),
+);
 
-export const urlUpdateAtom = atom(null, (get, set, values: URLParams) => {
+export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
   // set atom value
   values.page = values.page || '1';
   set(urlAtom, values);
@@ -81,97 +89,81 @@ export const setPageAtom = atom(null, (get, set, page: string) => {
 export const pageAtom = atom((get) => Number(get(urlAtom)?.page) || 1);
 
 type configurations = {
-  error: Error|null,
-  taskAreaOptions: any,
-  taskAreas: any,
-  employment: any,
-  employmentOptions: any,
-  employmentSearchIds: any,
-  employmentType: any,
-  languages: any,
-  promoted: any
+  error: Error | null;
+  taskAreaOptions: any;
+  taskAreas: any;
+  employment: any;
+  employmentOptions: any;
+  employmentSearchIds: any;
+  employmentType: any;
+  languages: any;
+  promoted: any;
 };
 
-export const configurationsAtom = atom(async(): Promise<configurations> => {
+export const configurationsAtom = atom(async (): Promise<configurations> => {
   const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
   const { index } = Global;
   const url: string | undefined = proxyUrl;
   const ndjsonHeader = '{}';
 
-  const body =
-    `${ndjsonHeader
-    }\n${
-    JSON.stringify(AGGREGATIONS)
-    }\n${
-    ndjsonHeader
-    }\n${
-    JSON.stringify(TASK_AREA_OPTIONS)
-    }\n${
-    ndjsonHeader
-    }\n${
-    JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)
-    }\n${
-    ndjsonHeader
-    }\n${
-    JSON.stringify(LANGUAGE_OPTIONS)
-    }\n${
-    ndjsonHeader
-    }\n${
-    JSON.stringify(PROMOTED_IDS)
-    }\n`;
+  const body = `${ndjsonHeader}\n${JSON.stringify(AGGREGATIONS)}\n${ndjsonHeader}\n${JSON.stringify(
+    TASK_AREA_OPTIONS,
+  )}\n${ndjsonHeader}\n${JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)}\n${ndjsonHeader}\n${JSON.stringify(
+    LANGUAGE_OPTIONS,
+  )}\n${ndjsonHeader}\n${JSON.stringify(PROMOTED_IDS)}\n`;
 
   return useTimeoutFetch(`${url}/${index}/_msearch`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-ndjson',
-    },
+    headers: { 'Content-Type': 'application/x-ndjson' },
     body,
   })
-  .then(res => res.json())
-  .then(json => {
-    const responses = json?.responses;
+    .then((res) => res.json())
+    .then((json) => {
+      const responses = json?.responses;
 
-    if (!responses || !Array.isArray(responses)) {
+      if (!responses || !Array.isArray(responses)) {
+        return {
+          error: new Error(
+            `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`,
+          ),
+          taskAreaOptions: [],
+          taskAreas: [],
+          employment: [],
+          employmentOptions: [],
+          employmentSearchIds: [],
+          employmentType: [],
+          languages: [],
+          promoted: [],
+        };
+      }
+
+      const [aggs, taskAreas, employmentOptions, languages, promoted] =
+        responses;
+
       return {
-        error: new Error(
-          `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`
-        ),
-        taskAreaOptions: [],
-        taskAreas: [],
-        employment: [],
-        employmentOptions: [],
-        employmentSearchIds: [],
-        employmentType: [],
-        languages: [],
-        promoted: [],
+        error: null,
+        taskAreaOptions: taskAreas?.hits?.hits || [],
+        taskAreas: aggs?.aggregations?.occupations?.buckets || [],
+        employment: aggs?.aggregations?.employment?.buckets || [],
+        employmentOptions: employmentOptions?.hits?.hits || [],
+        employmentSearchIds:
+          aggs?.aggregations?.employment_search_id?.buckets || [],
+        employmentType: aggs?.aggregations?.employment_type?.buckets || [],
+        languages: languages?.aggregations?.languages?.buckets || [],
+        promoted: promoted?.aggregations?.promoted?.buckets || [],
       };
-    }
-
-    const [aggs, taskAreas, employmentOptions, languages, promoted] = responses;
-
-    return {
-      error: null,
-      taskAreaOptions: taskAreas?.hits?.hits || [],
-      taskAreas: aggs?.aggregations?.occupations?.buckets || [],
-      employment: aggs?.aggregations?.employment?.buckets || [],
-      employmentOptions: employmentOptions?.hits?.hits || [],
-      employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
-      employmentType: aggs?.aggregations?.employment_type?.buckets || [],
-      languages: languages?.aggregations?.languages?.buckets || [],
-      promoted: promoted?.aggregations?.promoted?.buckets || [],
-    };
-  })
-  .catch(error => ({
-    error,
-    taskAreaOptions: [],
-    taskAreas: [],
-    employment: [],
-    employmentOptions: [],
-    employmentSearchIds: [],
-    employmentType: [],
-    languages: [],
-    promoted: [],
-  }));
+    })
+    .catch((error) => ({
+      error,
+      taskAreaOptions: [],
+      taskAreas: [],
+      employment: [],
+      employmentOptions: [],
+      employmentSearchIds: [],
+      employmentType: [],
+      languages: [],
+      promoted: [],
+    }));
 });
 
 export const taskAreasAtom = atom(async (get) => {
@@ -186,7 +178,7 @@ export const taskAreasAtom = atom(async (get) => {
   return taskAreaOptions
     .map((option: Result<Term>) => {
       const count = aggs.get(option._source.field_external_id[0]) || 0;
-      const {name} = option._source;
+      const { name } = option._source;
 
       return {
         count,
@@ -199,8 +191,9 @@ export const taskAreasAtom = atom(async (get) => {
 });
 export const taskAreasSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
-export const employmentAtom = atom(async(get) => {
-  const { error, employment, employmentOptions, employmentType } = await get(configurationsAtom);
+export const employmentAtom = atom(async (get) => {
+  const { error, employment, employmentOptions, employmentType } =
+    await get(configurationsAtom);
 
   if (error) {
     return [];
@@ -211,10 +204,13 @@ export const employmentAtom = atom(async(get) => {
   const visibleOptions = employmentOptions.filter(
     (term: Result<Term>) =>
       term._source?.field_search_id?.[0] &&
-      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(term._source.field_search_id[0])
+      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(
+        term._source.field_search_id[0],
+      ),
   );
 
-  const options =  visibleOptions
+  const options = visibleOptions
+    // biome-ignore lint/suspicious/useIterableCallbackReturn: @todo UHF-12501
     .map((term: Result<Term>) => {
       const tid = term._source.tid[0];
       const customId = term._source.field_search_id?.[0];
@@ -230,27 +226,39 @@ export const employmentAtom = atom(async(get) => {
       // Combine results for service / contractual employments
       if (customId.toString() === CustomIds.PERMANENT_CONTRACTUAL) {
         const permanentService = employmentOptions.find(
-          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.PERMANENT_SERVICE
+          (optionTerm: Result<Term>) =>
+            optionTerm._source?.field_search_id?.[0] ===
+            CustomIds.PERMANENT_SERVICE,
         )?._source.tid[0];
         additionalValue = permanentService;
-        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(permanentService) || 0);
-        label = `${Drupal.t('Permanent', {}, {context: 'Employment filter value'})} (${count})`;
-        simpleLabel = Drupal.t('Permanent contract and service employment', {}, {context: 'Employment filter selection value'});
-      }
-      else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
+        count =
+          (combinedAggs.get(tid) || 0) +
+          (combinedAggs.get(permanentService) || 0);
+        label = `${Drupal.t('Permanent', {}, { context: 'Employment filter value' })} (${count})`;
+        simpleLabel = Drupal.t(
+          'Permanent contract and service employment',
+          {},
+          { context: 'Employment filter selection value' },
+        );
+      } else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
         const fixedService = employmentOptions.find(
-          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.FIXED_SERVICE
+          (optionTerm: Result<Term>) =>
+            optionTerm._source?.field_search_id?.[0] ===
+            CustomIds.FIXED_SERVICE,
         )?._source.tid[0];
         additionalValue = fixedService;
-        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
-        label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value'})} (${count})`;
-        simpleLabel = Drupal.t('Fixed-term contract and service employment', {}, { context: 'Employment filter selection value'});
-      }
-      else {
+        count =
+          (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
+        label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value' })} (${count})`;
+        simpleLabel = Drupal.t(
+          'Fixed-term contract and service employment',
+          {},
+          { context: 'Employment filter selection value' },
+        );
+      } else {
         count = combinedAggs.get(tid) || 0;
         label = `${term._source.name} (${count})`;
       }
-
 
       return {
         count,
@@ -260,11 +268,11 @@ export const employmentAtom = atom(async(get) => {
       };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
-    return options;
+  return options;
 });
 export const employmentSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
-export const languagesAtom = atom(async(get) => {
+export const languagesAtom = atom(async (get) => {
   const { error, languages } = await get(configurationsAtom);
 
   if (error) {
@@ -280,14 +288,16 @@ export const languagesAtom = atom(async(get) => {
     value: langcode,
   }));
 });
-export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(undefined);
+export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(
+  undefined,
+);
 
 export const continuousAtom = atom<boolean>(false);
 export const internshipAtom = atom<boolean>(false);
 export const summerJobsAtom = atom<boolean>(false);
 export const youthSummerJobsAtom = atom<boolean>(false);
 
-export const resetFormAtom = atom(null, (get, set) => {
+export const resetFormAtom = atom(null, (_get, set) => {
   set(areaFilterSelectionAtom, []);
   set(taskAreasSelectionAtom, []);
   set(keywordAtom, '');
@@ -297,17 +307,12 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(youthSummerJobsAtom, false);
   set(employmentSelectionAtom, []);
   set(urlUpdateAtom, {});
-  set(languageSelectionAtom, null);
+  set(languageSelectionAtom, undefined);
 });
 
 export const areaFilterAtom = atom(
-  getAreaInfo.map((item: any) => (
-    {
-      label: item.label,
-      value: item.key,
-    }
-  )
-));
+  getAreaInfo.map((item: any) => ({ label: item.label, value: item.key })),
+);
 
 export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 

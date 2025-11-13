@@ -1,13 +1,12 @@
 import { Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-
-import { targetGroupsAtom, updateParamsAtom } from '../store';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import SearchComponents from '../enum/SearchComponents';
 import { TargetGroups } from '../enum/TargetGroups';
-import OptionType from '../types/OptionType';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { targetGroupsAtom, updateParamsAtom } from '../store';
+import type OptionType from '../types/OptionType';
 
 export const TargetGroupFilter = () => {
   const [targetGroupSelection, setTargetGroups] = useAtom(targetGroupsAtom);
@@ -18,12 +17,16 @@ export const TargetGroupFilter = () => {
     updateParams(targetGroupsToParams(selectedGroups));
   };
 
-  const getOptions = () => Object.entries(TargetGroups).map(([label, value]) => ({
-    label,
-    value: label,
-  })).sort((a, b) => a.label.localeCompare(b.label));
+  const getOptions = () =>
+    Object.entries(TargetGroups)
+      .map(([label, _value]) => ({ label, value: label }))
+      .sort((a, b) => a.label.localeCompare(b.label));
 
-  const selectLabel = Drupal.t('Target group', {}, {context: 'Event search: target group label'});
+  const selectLabel = Drupal.t(
+    'Target group',
+    {},
+    { context: 'Event search: target group label' },
+  );
 
   return (
     <div className='hdbt-search__filter'>
@@ -35,11 +38,25 @@ export const TargetGroupFilter = () => {
         onChange={onChange}
         options={getOptions()}
         texts={{
-          clearButtonAriaLabel_one: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
-          clearButtonAriaLabel_multiple: Drupal.t('Clear @label selection', {'@label': selectLabel}, { context: 'React search clear selection label' }),
+          clearButtonAriaLabel_one: Drupal.t(
+            'Clear @label selection',
+            { '@label': selectLabel },
+            { context: 'React search clear selection label' },
+          ),
+          clearButtonAriaLabel_multiple: Drupal.t(
+            'Clear @label selection',
+            { '@label': selectLabel },
+            { context: 'React search clear selection label' },
+          ),
           label: selectLabel,
-          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-          placeholder: Drupal.t('All target groups', {}, {context: 'Event search: target group placeholder'}),
+          language: getCurrentLanguage(
+            window.drupalSettings.path.currentLanguage,
+          ),
+          placeholder: Drupal.t(
+            'All target groups',
+            {},
+            { context: 'Event search: target group placeholder' },
+          ),
         }}
         theme={defaultSelectTheme}
         value={targetGroupSelection}

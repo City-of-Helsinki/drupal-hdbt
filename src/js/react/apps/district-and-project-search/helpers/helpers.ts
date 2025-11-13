@@ -6,7 +6,7 @@ export const ComponentMap = {
   [SearchComponents.DISTRICTS]: `${IndexFields.FIELD_PROJECT_DISTRICT_TITLE}`,
   [SearchComponents.THEME]: `${IndexFields.FIELD_PROJECT_THEME_NAME}`,
   [SearchComponents.PHASE]: `${IndexFields.FIELD_PROJECT_PHASE_NAME}`,
-  [SearchComponents.TYPE]: `${IndexFields.FIELD_PROJECT_TYPE_NAME}`
+  [SearchComponents.TYPE]: `${IndexFields.FIELD_PROJECT_TYPE_NAME}`,
 };
 
 export const capitalize = (s: string) => {

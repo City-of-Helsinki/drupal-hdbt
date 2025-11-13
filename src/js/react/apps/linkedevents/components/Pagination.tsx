@@ -1,13 +1,9 @@
-import React from 'react';
 import { useAtom, useSetAtom } from 'jotai';
-
+import type React from 'react';
 import { Pagination as CommonPagination } from '@/react/common/Pagination';
 import { pageAtom, updatePageParamAtom } from '../store';
 
-type PaginationProps = {
-  pages: number;
-  totalPages: number;
-};
+type PaginationProps = { pages: number; totalPages: number };
 
 export const Pagination = ({ pages, totalPages }: PaginationProps) => {
   const [page, setPage] = useAtom(pageAtom);
@@ -24,7 +20,12 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
   };
 
   return (
-    <CommonPagination updatePage={updatePage} currentPage={page} pages={pages} totalPages={totalPages} />
+    <CommonPagination
+      updatePage={updatePage}
+      currentPage={page}
+      pages={pages}
+      totalPages={totalPages}
+    />
   );
 };
 

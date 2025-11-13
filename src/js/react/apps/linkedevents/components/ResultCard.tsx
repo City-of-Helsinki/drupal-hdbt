@@ -1,11 +1,11 @@
 import parse from 'html-react-parser';
-
-import type { Event, EventImage } from '../types/Event';
 import CardItem from '@/react/common/Card';
 import { hobbiesPublicUrl } from '../store';
+import type { Event, EventImage } from '../types/Event';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
-const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
+const overDayApart = (start: Date, end: Date) =>
+  start.toDateString() !== end.toDateString();
 
 // Return start day string with increasing specificity the further apart it is from end date
 const formatStartDate = (start: Date, end: Date) => {
@@ -32,7 +32,8 @@ function ResultCard({
   enrolment_start_time,
   id,
   images,
-  keywords=[],
+  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
+  keywords = [],
   location,
   name,
   offers,
@@ -41,14 +42,16 @@ function ResultCard({
 }: ResultCardProps) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
+  const resolvedName =
+    name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
 
-  const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
+  const formatTime = (date: Date) =>
+    date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
   const getDate = () => {
-    let startDate;
-    let endDate;
-    let isMultiDate;
+    let startDate: Date;
+    let endDate: Date;
+    let isMultiDate: boolean;
 
     try {
       startDate = new Date(start_time);
@@ -67,15 +70,19 @@ function ResultCard({
 
   const getLocation = () => {
     let locationString = '';
-    const hasName = location?.name && location?.name[currentLanguage];
-    const hasAddress = location?.street_address && location?.street_address[currentLanguage];
+    const hasName = location?.name?.[currentLanguage];
+    const hasAddress = location?.street_address?.[currentLanguage];
 
     if (hasName) {
       locationString += hasName;
     }
 
     if (hasAddress) {
-      hasName ? locationString += `, ${hasAddress}` : locationString += hasAddress;
+      hasName
+        ? // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
+          (locationString += `, ${hasAddress}`)
+        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
+          (locationString += hasAddress);
     }
 
     return locationString;
@@ -84,16 +91,22 @@ function ResultCard({
   // Function to check if the url is valid that can be found in the info_url field.
   function isValidUrl(urlToCheck: string | undefined | null) {
     if (!urlToCheck) return false;
-    const urlPattern = /^(http|https):\/\/[^ "]+$/; // Regex because the eslint rules tell me not to use new.
+    const urlPattern = /^(http|https):\/\/[^ "]+$/;
     return urlPattern.test(urlToCheck);
   }
 
-  const getOffers = (): boolean => offers?.some(({ info_url }) =>
-    info_url != null && info_url[currentLanguage] != null && isValidUrl(info_url[currentLanguage])
-  ) ?? false;
+  const getOffers = (): boolean =>
+    offers?.some(
+      ({ info_url }) =>
+        info_url != null &&
+        info_url[currentLanguage] != null &&
+        isValidUrl(info_url[currentLanguage]),
+    ) ?? false;
 
   const imageToElement = (image: EventImage): JSX.Element => {
-    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?:string } = {};
+    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & {
+      'data-photographer'?: string;
+    } = {};
 
     if (image.url) {
       imageProps.src = image.url;
@@ -107,7 +120,7 @@ function ResultCard({
   };
 
   const getImage = () => {
-    const image = images?.find(img => img.url);
+    const image = images?.find((img) => img.url);
 
     if (image) {
       return imageToElement(image);
@@ -116,9 +129,7 @@ function ResultCard({
       return parse(imagePlaceholder);
     }
 
-    return (
-      <div className='image-placeholder'></div>
-    );
+    return <div className='image-placeholder'></div>;
   };
 
   const getCardCategoryTag = () => {
@@ -126,9 +137,15 @@ function ResultCard({
       return;
     }
 
-    return type_id === 'Course' ?
-      {tag: Drupal.t('Hobby', {}, {context: 'Event search: hobby tag'}), color: 'gold'} :
-      {tag: Drupal.t('Event', {}, {context: 'Event search: event tag'}), color: 'fog-medium-light'};
+    return type_id === 'Course'
+      ? {
+          tag: Drupal.t('Hobby', {}, { context: 'Event search: hobby tag' }),
+          color: 'gold',
+        }
+      : {
+          tag: Drupal.t('Event', {}, { context: 'Event search: event tag' }),
+          color: 'fog-medium-light',
+        };
   };
 
   const isRemote = location && location.id === INTERNET_EXCEPTION;
@@ -138,7 +155,11 @@ function ResultCard({
 
     if (isRemote) {
       tags.push({
-        tag: Drupal.t('Remote participation', {}, { context: 'Label for remote events' }),
+        tag: Drupal.t(
+          'Remote participation',
+          {},
+          { context: 'Label for remote events' },
+        ),
         color: 'silver',
       });
     }
@@ -159,7 +180,7 @@ function ResultCard({
     }
 
     const startDate = new Date(enrolment_start_time);
-    const startString = `${startDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, {context: 'Indication that events take place in a certain timeframe' })} ${formatTime(startDate)}`;
+    const startString = `${startDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${formatTime(startDate)}`;
 
     // There should never be a case where we have end date but no start date.
     if (!enrolment_end_time) {
@@ -167,23 +188,19 @@ function ResultCard({
     }
 
     const endDate = new Date(enrolment_end_time);
-    return `${startString} - ${endDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, {context: 'Indication that events take place in a certain timeframe' })} ${formatTime(endDate)}`;
+    return `${startString} - ${endDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${formatTime(endDate)}`;
   };
 
   const getUrl = () => {
     if (type_id && type_id === 'Course') {
-      const type = {
-        'fi': 'kurssit',
-        'sv': 'kurser'
-      }[currentLanguage] ?? 'courses';
+      const type =
+        { fi: 'kurssit', sv: 'kurser' }[currentLanguage] ?? 'courses';
 
       return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
     }
 
-    const type = {
-      'fi': 'tapahtumat',
-      'sv': 'kurser'
-    }[currentLanguage] ?? 'events';
+    const type =
+      { fi: 'tapahtumat', sv: 'kurser' }[currentLanguage] ?? 'events';
 
     return `${baseUrl}/${currentLanguage}/${type}/${id}`;
   };

@@ -3,22 +3,22 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import SearchComponents from '../enum/SearchComponents';
-import transformDropdownsValues from '../helpers/Params';
 import { capitalize } from '../helpers/helpers';
+import transformDropdownsValues from '../helpers/Params';
 import {
+  districtSelectionAtom,
+  districtsAtom,
+  phaseSelectionAtom,
+  phasesAtom,
+  resetFormAtom,
+  themeSelectionAtom,
+  themesAtom,
+  typeSelectionAtom,
+  typesAtom,
   urlAtom,
   urlUpdateAtom,
-  districtsAtom,
-  districtSelectionAtom,
-  themesAtom,
-  themeSelectionAtom,
-  phasesAtom,
-  phaseSelectionAtom,
-  typesAtom,
-  typeSelectionAtom,
-  resetFormAtom
 } from '../store';
-import OptionType from '../types/OptionType';
+import type OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
   const urlParams = useAtomValue(urlAtom);
@@ -49,21 +49,30 @@ const SelectionsContainer = () => {
         <ListFilter
           updater={updateDistricts}
           valueKey={SearchComponents.DISTRICTS}
-          values={transformDropdownsValues(urlParams.districts, districtOptions)}
+          values={transformDropdownsValues(
+            urlParams.districts,
+            districtOptions,
+          )}
         />
       )}
       {showProjectThemes && (
         <ListFilter
           updater={updateThemes}
           valueKey={SearchComponents.THEME}
-          values={transformDropdownsValues(urlParams.project_theme, themeOptions)}
+          values={transformDropdownsValues(
+            urlParams.project_theme,
+            themeOptions,
+          )}
         />
       )}
       {showProjectPhases && (
         <ListFilter
           updater={updatePhases}
           valueKey={SearchComponents.PHASE}
-          values={transformDropdownsValues(urlParams.project_phase, phaseOptions)}
+          values={transformDropdownsValues(
+            urlParams.project_phase,
+            phaseOptions,
+          )}
         />
       )}
       {showProjectTypes && (
@@ -80,6 +89,7 @@ const SelectionsContainer = () => {
 export default SelectionsContainer;
 
 type ListFilterProps = {
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updater: Function;
   valueKey: string;
   values: OptionType[];
@@ -91,7 +101,9 @@ const ListFilter = ({ updater, values, valueKey }: ListFilterProps) => {
 
   const removeSelection = (value: string) => {
     const newValue = values;
-    const index = newValue.findIndex((selection: OptionType) => selection.value === value);
+    const index = newValue.findIndex(
+      (selection: OptionType) => selection.value === value,
+    );
     newValue.splice(index, 1);
     updater(newValue);
     setUrlParams({

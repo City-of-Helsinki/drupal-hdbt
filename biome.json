@@ -1,0 +1,12 @@
+{
+  "extends": ["@hdbt/theme-builder/biome"],
+  "files": {
+    "includes": [
+      "src/**/*.js",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "theme-builder/**/*.mjs",
+      "backstop/**/*.js"
+    ]
+  }
+}

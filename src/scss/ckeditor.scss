@@ -1,10 +1,9 @@
-// stylelint-disable at-rule-empty-line-before
+/* stylelint-disable no-invalid-position-at-import-rule -- @todo UHF-12501 */
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 // This file includes styling for WYSIWYG editor.
 
 @import 'hds';
-
 @import 'breakpoint-sass/stylesheets/breakpoint';
-
 @import '00-functions/_index';
 @import '01-variables/_index';
 @import '02-mixins/_index';
@@ -224,6 +223,7 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon], [data-is-extern
 
   &:hover::after,
   &:focus-visible::after {
+    /* stylelint-disable-next-line number-max-precision -- @todo UHF-12501 */
     $mask-move: 0.166666666em;
     mask-position: center, $mask-move (-1 * $mask-move);
   }

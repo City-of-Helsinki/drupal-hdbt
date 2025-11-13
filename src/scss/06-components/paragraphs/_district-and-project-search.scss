@@ -1,3 +1,4 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .district-and-project-search {
   ul[role='listbox'] {
     background-color: var(--color-white);
@@ -16,6 +17,7 @@
 
     > div {
       flex-basis: 100%;
+
       // HDS has 420px max-width set for selects. This is OK when the form is limited to 860px width but not here.
       max-width: unset;
     }

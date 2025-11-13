@@ -1,24 +1,13 @@
-import BooleanQuery from '@/types/BooleanQuery';
+import type BooleanQuery from '@/types/BooleanQuery';
 
 const getQueryString = (address: string) => {
   const query: BooleanQuery = {
-    bool: {
-      must: [
-        {
-          match: { street_name: address }
-        }
-      ]
-    }
+    bool: { must: [{ match: { street_name: address } }] },
   };
 
-  const sort = [{ length:'desc' }];
+  const sort = [{ length: 'desc' }];
 
-  const queryString = JSON.stringify({
-    query,
-    sort
-  });
-
-  return queryString;
+  return JSON.stringify({ query, sort });
 };
 
 export default getQueryString;

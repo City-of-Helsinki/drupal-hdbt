@@ -1,3 +1,5 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
+/* stylelint-disable no-duplicate-selectors -- @todo UHF-12501 */
 $breakpoint-design-image-on-left-right: 830px;
 
 .component--liftup-with-image-img {
@@ -227,7 +229,6 @@ $breakpoint-design-image-on-left-right: 830px;
       position: relative;
     }
 
-    // stylelint-disable-next-line max-nesting-depth
     picture {
       @include breakpoint($breakpoint-l) {
         inset: 0;
@@ -235,7 +236,6 @@ $breakpoint-design-image-on-left-right: 830px;
       }
     }
 
-    // stylelint-disable-next-line max-nesting-depth
     img {
       @include breakpoint($breakpoint-l) {
         @include image-defaults($height: 100%, $width: 100%, $max-width: null);
@@ -243,7 +243,6 @@ $breakpoint-design-image-on-left-right: 830px;
       }
     }
 
-    // stylelint-disable-next-line max-nesting-depth
     .image__caption {
       color: $color-black;
       margin-top: $spacing;

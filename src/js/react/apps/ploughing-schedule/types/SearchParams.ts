@@ -1,5 +1,3 @@
-type SearchParams = {
-  address?: string;
-};
+type SearchParams = { address?: string };
 
 export default SearchParams;

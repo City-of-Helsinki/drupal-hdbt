@@ -1,6 +1,7 @@
 import Icon from '@/react/common/Icon';
 
 type PaginationProps = {
+  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updatePage: Function;
   currentPage: number;
   pages: number;
@@ -26,14 +27,20 @@ const getPagination = (current: number, pages: number, totalPages: number) => {
 
   prevPages.reverse();
 
-  return {
-    prevPages,
-    nextPages,
-  };
+  return { prevPages, nextPages };
 };
 
-export const Pagination = ({ updatePage, currentPage, pages, totalPages }: PaginationProps) => {
-  const { prevPages, nextPages } = getPagination(currentPage, pages, totalPages);
+export const Pagination = ({
+  updatePage,
+  currentPage,
+  pages,
+  totalPages,
+}: PaginationProps) => {
+  const { prevPages, nextPages } = getPagination(
+    currentPage,
+    pages,
+    totalPages,
+  );
   const prevPageExists = currentPage > 1;
   const nextPageExists = currentPage < totalPages;
   const firstWithinRange = prevPages.includes(1) || !prevPages.length;
@@ -43,11 +50,19 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
     <div className='hds-pagination-container'>
       <nav
         className='hds-pagination pager'
-        role='navigation'
-        aria-label={Drupal.t('Pagination', {}, { context: 'Pagination aria-label' })}
-        data-next={Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
+        aria-label={Drupal.t(
+          'Pagination',
+          {},
+          { context: 'Pagination aria-label' },
+        )}
+        data-next={Drupal.t(
+          'Next',
+          {},
+          { context: 'Pagination next page link text' },
+        )}
       >
         {prevPageExists ? (
+          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
           <a
             aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             className='hds-button hds-pagination__button-prev'
@@ -62,21 +77,39 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
             rel='prev'
             role='button'
           >
-            <Icon icon="angle-left" />
-            <span aria-hidden='true' className='hds-pagination__button-prev-label'>
-              {Drupal.t('Previous', {}, { context: 'Pagination previous page link text' })}
+            <Icon icon='angle-left' />
+            <span
+              aria-hidden='true'
+              className='hds-pagination__button-prev-label'
+            >
+              {Drupal.t(
+                'Previous',
+                {},
+                { context: 'Pagination previous page link text' },
+              )}
             </span>
           </a>
         ) : (
           <button
             className='hds-button hds-pagination__button-prev'
             disabled
-            title={Drupal.t('You are on the first page, you cannot return to the previous page.', {}, { context: 'Pagination previous page link title, first page' })}
+            title={Drupal.t(
+              'You are on the first page, you cannot return to the previous page.',
+              {},
+              { context: 'Pagination previous page link title, first page' },
+            )}
             type='button'
           >
-            <Icon icon="angle-left" />
-            <span aria-hidden='true' className='hds-pagination__button-prev-label'>
-              {Drupal.t('Previous', {}, { context: 'Pagination previous page link text' })}
+            <Icon icon='angle-left' />
+            <span
+              aria-hidden='true'
+              className='hds-pagination__button-prev-label'
+            >
+              {Drupal.t(
+                'Previous',
+                {},
+                { context: 'Pagination previous page link text' },
+              )}
             </span>
           </button>
         )}
@@ -85,7 +118,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
             <>
               <li>
                 <a
-                  href="?page=1"
+                  href='?page=1'
                   onClick={(e) => {
                     if (prevPageExists) {
                       updatePage(e, 1);
@@ -97,16 +130,26 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
                 </a>
               </li>
               {prevPages[0] - 1 > 0 && (
-                <li className='pager__item pager__item--ellipsis' role='presentation'>
-                  <span className='hds-pagination__item-ellipsis'>&hellip;</span>
+                <li
+                  className='pager__item pager__item--ellipsis'
+                  role='presentation'
+                >
+                  <span className='hds-pagination__item-ellipsis'>
+                    &hellip;
+                  </span>
                 </li>
               )}
             </>
           )}
           {prevPages.map((pageIndex, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
             <li className='pager__item' key={i}>
               <a
-                aria-label={Drupal.t('Go to page @key', { '@key': pageIndex }, { context: 'React search pager'})}
+                aria-label={Drupal.t(
+                  'Go to page @key',
+                  { '@key': pageIndex },
+                  { context: 'React search pager' },
+                )}
                 href={`?page=${pageIndex}`}
                 className='hds-pagination__item-link'
                 onClick={(e) => updatePage(e, pageIndex)}
@@ -125,9 +168,14 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
             </a>
           </li>
           {nextPages.map((pageIndex, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
             <li className='pager__item' key={i}>
               <a
-                aria-label={Drupal.t('Go to page @key', { '@key': pageIndex }, { context: 'React search pager'})}
+                aria-label={Drupal.t(
+                  'Go to page @key',
+                  { '@key': pageIndex },
+                  { context: 'React search pager' },
+                )}
                 href={`?page=${pageIndex}`}
                 className='hds-pagination__item-link'
                 onClick={(e) => updatePage(e, pageIndex)}
@@ -157,6 +205,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
           )}
         </ul>
         {nextPageExists ? (
+          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
           <a
             aria-label={`${Drupal.t('Go to next page number', {}, { context: 'Pagination next page link title' })} ${currentPage + 1}`}
             className='hds-button hds-pagination__button-next'
@@ -171,22 +220,40 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
             rel='next'
             role='button'
           >
-            <span aria-hidden='true' className='hds-pagination__button-next-label'>
-              {Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
+            <span
+              aria-hidden='true'
+              className='hds-pagination__button-next-label'
+            >
+              {Drupal.t(
+                'Next',
+                {},
+                { context: 'Pagination next page link text' },
+              )}
             </span>
-            <Icon icon="angle-right" />
+            <Icon icon='angle-right' />
           </a>
         ) : (
           <button
             className='hds-button hds-pagination__button-next'
             disabled
-            title={Drupal.t('You are on the last page, you cannot go on to the next page.', {}, { context: 'Pagination next page link title, last page' })}
+            title={Drupal.t(
+              'You are on the last page, you cannot go on to the next page.',
+              {},
+              { context: 'Pagination next page link title, last page' },
+            )}
             type='button'
           >
-            <span aria-hidden='true' className='hds-pagination__button-next-label'>
-              {Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
+            <span
+              aria-hidden='true'
+              className='hds-pagination__button-next-label'
+            >
+              {Drupal.t(
+                'Next',
+                {},
+                { context: 'Pagination next page link text' },
+              )}
             </span>
-            <Icon icon="angle-right" />
+            <Icon icon='angle-right' />
           </button>
         )}
       </nav>

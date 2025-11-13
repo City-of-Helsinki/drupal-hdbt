@@ -2,7 +2,6 @@ $-contact-card-font: body;
 $-contact-card-padding: $spacing-and-half;
 $-contact-card-max-width: calc(250px + $-contact-card-padding * 2);
 $-contact-card-link-padding: calc((44px - get-line-height($-contact-card-font, true)) / 2);
-
 $-contact-card-gap: $spacing-and-half;
 $-contact-card-two-columns: calc(100% / 2);
 $-contact-card-two-columns-spacing: calc($-contact-card-gap / 2);

@@ -15,14 +15,19 @@ class NavToggleDropdown {
   }
 
   isOpen() {
-    return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
+    return (
+      window.location.hash === this.HASH_ID ||
+      this.targetNode.dataset.target === 'true'
+    );
   }
 
   // The simpleClose function is for events such as closing all the
   // other open instances before opening a new one.
   simpleClose() {
     if (this.running) {
-      this.buttonInstances.forEach(button => button.setAttribute('aria-expanded', 'false'));
+      this.buttonInstances.forEach((button) => {
+        button.setAttribute('aria-expanded', 'false');
+      });
       this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
       this.dropdownInstance?.removeAttribute('style');
       this.targetNode.dataset.target = 'false';
@@ -47,7 +52,10 @@ class NavToggleDropdown {
 
       // If the last clicked button is inside the dropdown, find another button outside of it
       if (this.dropdownInstance?.contains(buttonToFocus)) {
-        buttonToFocus = this.buttonInstances.find(button => !this.dropdownInstance.contains(button)) || null;
+        buttonToFocus =
+          this.buttonInstances.find(
+            (button) => !this.dropdownInstance.contains(button),
+          ) || null;
       }
 
       // Move focus if a valid button is found
@@ -63,7 +71,9 @@ class NavToggleDropdown {
 
   open() {
     if (this.running) {
-      this.buttonInstances.forEach(button => button.setAttribute('aria-expanded', 'true'));
+      this.buttonInstances.forEach((button) => {
+        button.setAttribute('aria-expanded', 'true');
+      });
       this.dropdownInstance?.classList.remove('nav-toggle-dropdown--closed');
       this.targetNode.dataset.target = 'true';
       if (this.onOpen) {
@@ -90,34 +100,49 @@ class NavToggleDropdown {
     });
 
     // Toggle element from each button
-    this.buttonInstances.forEach(button => {
+    this.buttonInstances.forEach((button) => {
       button.addEventListener('click', () => {
         this.toggle(button); // Pass the clicked button
       });
     });
   }
 
-  init({ name, buttonSelector, dropdownSelector = null, targetSelector, onOpen, onClose }) {
+  init({
+    name,
+    buttonSelector,
+    dropdownSelector = null,
+    targetSelector,
+    onOpen,
+    onClose,
+  }) {
     this.name = name;
     this.buttonSelector = buttonSelector;
-    this.buttonInstances = Array.from(document.querySelectorAll(this.buttonSelector)); // Get all matching buttons
+    this.buttonInstances = Array.from(
+      document.querySelectorAll(this.buttonSelector),
+    ); // Get all matching buttons
 
     if (this.buttonInstances.length === 0) {
       this.running = false;
       if (this.debug) {
-        console.warn(`${name} buttons missing. Looking for ${this.buttonSelector}`);
+        console.warn(
+          `${name} buttons missing. Looking for ${this.buttonSelector}`,
+        );
       }
       return;
     }
     if (this.running) {
       if (this.debug) {
-        console.warn(`${name} already initiated. Is it included more than once?`);
+        console.warn(
+          `${name} already initiated. Is it included more than once?`,
+        );
       }
       return;
     }
 
     this.dropdownSelector = dropdownSelector;
-    this.dropdownInstance = this.dropdownSelector ? document.querySelector(this.dropdownSelector) : null;
+    this.dropdownInstance = this.dropdownSelector
+      ? document.querySelector(this.dropdownSelector)
+      : null;
     this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
     this.HASH_ID = targetSelector;
     this.onOpen = onOpen;
@@ -126,7 +151,9 @@ class NavToggleDropdown {
     // Ensure the target node exists
     this.targetNode = document.querySelector(this.HASH_ID);
     if (!this.targetNode) {
-      throw new Error(`${name} target node missing. Looking for ${this.HASH_ID}`);
+      throw new Error(
+        `${name} target node missing. Looking for ${this.HASH_ID}`,
+      );
     }
 
     this.targetNode.dataset.js = true;

@@ -1,5 +1,5 @@
 const PostalCodes = {
-  'eastern': [
+  eastern: [
     '00880',
     '00890',
     '00900',
@@ -13,7 +13,7 @@ const PostalCodes = {
     '00980',
     '00990',
   ],
-  'central': [
+  central: [
     '00230',
     '00240',
     '00500',
@@ -27,7 +27,7 @@ const PostalCodes = {
     '00600',
     '00610',
   ],
-  'southern': [
+  southern: [
     '00100',
     '00120',
     '00130',
@@ -43,7 +43,7 @@ const PostalCodes = {
     '00250',
     '00260',
   ],
-  'southeastern': [
+  southeastern: [
     '00570',
     '00590',
     '00800',
@@ -55,7 +55,7 @@ const PostalCodes = {
     '00860',
     '00870',
   ],
-  'western': [
+  western: [
     '00270',
     '00280',
     '00290',
@@ -77,7 +77,7 @@ const PostalCodes = {
     '08100',
     '10900',
   ],
-  'northern': [
+  northern: [
     '00620',
     '00630',
     '00640',
@@ -89,7 +89,7 @@ const PostalCodes = {
     '01510',
     '05950',
   ],
-  'northeast': [
+  northeast: [
     '00700',
     '00710',
     '00720',
@@ -101,7 +101,7 @@ const PostalCodes = {
     '00770',
     '00780',
     '00790',
-  ]
+  ],
 };
 
 export default PostalCodes;
