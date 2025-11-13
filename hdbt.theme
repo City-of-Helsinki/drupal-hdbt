@@ -341,6 +341,11 @@ function hdbt_preprocess_node(&$variables): void {
 /**
  * Preprocess image caption.
  *
+ * Modifies $variables by adding a render array with the following structure:
+ *  - caption_identifier_class: (string) CSS class for the caption.
+ *  - caption: (string) The caption text.
+ *  - credit: (string) Photographer credit if available.
+ *
  * @param array $variables
  *   Render array.
  * @param string $entity_type
@@ -360,14 +365,20 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
   // Check for image and image caption availability.
   if ($entity->hasField($image) && $entity->hasField($image_caption)) {
     $caption_variable = str_replace('field_', '', $image_caption);
-    $caption = '';
+    $caption_array = [
+      'caption_identifier_class' => 'image__caption',
+      'caption' => '',
+      'credit' => '',
+    ];
+    $photographer = &$caption_array['credit'];
+    $caption = &$caption_array['caption'];
 
     // If caption exists, set it as initial variable for the image caption.
     if (!$entity->{$image_caption}->isEmpty()) {
       $caption = $entity->{$image_caption}->value;
     }
 
-    // Combine photographer field value with caption.
+    // Photographer field value from media entity.
     if (
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
@@ -379,28 +390,10 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       else {
         $photographer = $entity->{$image}->entity->field_photographer->value;
       }
-
-      // If both caption and photographer exists, use targeted translation
-      // for the caption and photographer. Otherwise, set only photographer as
-      // caption.
-      if (!empty($caption)) {
-        $caption = t(
-          '@caption Photo: @photographer',
-          ['@photographer' => $photographer, '@caption' => $caption],
-          ['context' => 'Image caption and photographer']
-        );
-      }
-      else {
-        $caption = t(
-          'Photo: @photographer',
-          ['@photographer' => $photographer],
-          ['context' => 'Image photographer']
-        );
-      }
     }
 
     // Set image caption variable to render array for the templates.
-    $variables[$caption_variable] = $caption;
+    $variables[$caption_variable] = $caption_array;
   }
 }
 
@@ -900,11 +893,10 @@ function hdbt_preprocess_paragraph__liftup_with_image(&$variables) {
       $caption = '';
     }
     else {
-      $caption = t(
-        'Photo: @photographer',
-        ['@photographer' => $photographer],
-        ['context' => 'Image photographer']
-      );
+      $caption = [
+        'caption_identifier_class' => 'image__caption',
+        'credit' => $photographer,
+      ];
     }
 
     // Set image caption variable to render array for the template.

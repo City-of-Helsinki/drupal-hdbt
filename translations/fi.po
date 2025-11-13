@@ -89,13 +89,9 @@ msgctxt "Footer back to top link"
 msgid "Back to top"
 msgstr "Takaisin ylös"
 
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: @photographer"
-msgstr "@caption Kuva: @photographer"
-
 msgctxt "Image photographer"
-msgid "Photo: @photographer"
-msgstr "Kuva: @photographer"
+msgid "Photo"
+msgstr "Kuva"
 
 msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
 msgid "Tags"
