@@ -365,15 +365,20 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
   // Check for image and image caption availability.
   if ($entity->hasField($image) && $entity->hasField($image_caption)) {
     $caption_variable = str_replace('field_', '', $image_caption);
-    $caption = '';
-    $photographer = '';
+    $caption_array = [
+      'caption_identifier_class' => 'image__caption',
+      'caption' => '',
+      'credit' => '',
+    ];
+    $photographer = &$caption_array['credit'];
+    $caption = &$caption_array['caption'];
 
     // If caption exists, set it as initial variable for the image caption.
     if (!$entity->{$image_caption}->isEmpty()) {
       $caption = $entity->{$image_caption}->value;
     }
 
-    // Combine photographer field value with caption.
+    // Photographer field value from media entity.
     if (
       $entity->{$image}->entity?->hasField('field_photographer') &&
       !$entity->{$image}->entity->field_photographer->isEmpty()
@@ -385,17 +390,10 @@ function _hdbt_preprocess_image_caption(array &$variables, string $entity_type, 
       else {
         $photographer = $entity->{$image}->entity->field_photographer->value;
       }
-
-      // Set image caption variable to render array for the templates.
-      $caption = [
-        'caption_identifier_class' => 'image__caption',
-        'caption' => $caption ?: '',
-        'credit' => $photographer,
-      ];
     }
 
     // Set image caption variable to render array for the templates.
-    $variables[$caption_variable] = $caption;
+    $variables[$caption_variable] = $caption_array;
   }
 }
 
