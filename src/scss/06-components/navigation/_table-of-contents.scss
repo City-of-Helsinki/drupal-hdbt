@@ -21,7 +21,7 @@
 .table-of-contents__container {
   background-color: $color-black-5;
   border-inline-start: $spacing-half solid $color-gold;
-  max-width: $spacing-and-half + $content-width-max + $spacing-and-half; // Max-width: Content max width (860px) + left and right paddings.
+  max-width: $content-width-max;
   padding: $spacing-double $spacing-and-half;
 }
 
