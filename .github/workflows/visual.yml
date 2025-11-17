@@ -55,6 +55,13 @@ jobs:
         env:
           COMPOSER_MIRROR_PATH_REPOS: 1
         run: |
+          # We use mglaman/composer-drupal-lenient to patch modules that are
+          # not compatible with the latest core version.
+          # The package must be installed globally because otherwise it
+          # doesn't work.
+          # @see https://github.com/mglaman/composer-drupal-lenient?tab=readme-ov-file#support-when-composerlock-removed
+          composer global config --no-plugins allow-plugins.mglaman/composer-drupal-lenient true
+          composer global require mglaman/composer-drupal-lenient
           composer config repositories.5 path $GITHUB_WORKSPACE
           composer require drupal/redis drupal/$THEME_NAME -W
           # We use COMPOSER_MIRROR_PATH_REPOS=1 to mirror local repository
