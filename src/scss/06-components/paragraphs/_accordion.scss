@@ -1,3 +1,5 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
+/* stylelint-disable plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
 .accordion {
   --js-accordion-open-time: 200ms;
 
@@ -175,6 +177,7 @@
 .accordion-item__content {
   border: none;
   display: grid!important; // Has to be important to battle the default hiding that blocks animation
+  grid-template-columns: 100%;
   grid-template-rows: 0fr;
   overflow: hidden;
   transition: grid-template-rows var(--js-accordion-open-time) ease-in, visibility 0s linear var(--js-accordion-open-time);

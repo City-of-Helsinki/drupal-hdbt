@@ -1,3 +1,4 @@
+/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .banner__title {
   @include font('h3');
   margin-top: 0;
@@ -14,8 +15,8 @@
 
 .banner__icon {
   display: inline-flex;
-  margin-bottom: $spacing-and-half;
   margin-inline-end: $spacing;
+  margin-bottom: $spacing-and-half;
 
   @include breakpoint($breakpoint-m) {
     margin-inline-end: $spacing-and-half;

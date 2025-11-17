@@ -1,5 +1,4 @@
-// eslint-disable-next-line func-names
-(function ($, drupalSettings) {
+(($, drupalSettings) => {
   // Module-level variables to store active tab state
   let activeTabId = null;
   let activeContentId = null;
@@ -20,7 +19,9 @@
     const tabParent = tab.closest('[data-drupal-selector="tabbed-content"]');
     const tabsContentId = tab.getAttribute('aria-controls');
     if (!tabsContentId) return;
-    const tabsContent = document.querySelector(`[data-drupal-selector="${tabsContentId}"]`);
+    const tabsContent = document.querySelector(
+      `[data-drupal-selector="${tabsContentId}"]`,
+    );
 
     // First hide all tabs.
     hideEverything(tabParent);
@@ -50,7 +51,9 @@
   }
 
   function initiateTabs(activeTab, activeContent) {
-    const containers = document.querySelectorAll('[data-drupal-selector="tabbed-content"]');
+    const containers = document.querySelectorAll(
+      '[data-drupal-selector="tabbed-content"]',
+    );
 
     // Guard clause if no containers found
     if (!containers.length) return;
@@ -68,8 +71,12 @@
       }
 
       // Find the active tab elements.
-      const activeTabElement = document.querySelector(`[data-drupal-selector="${activeTab}"]`);
-      const activeContentElement = document.querySelector(`[data-drupal-selector="${activeContent}"]`);
+      const activeTabElement = document.querySelector(
+        `[data-drupal-selector="${activeTab}"]`,
+      );
+      const activeContentElement = document.querySelector(
+        `[data-drupal-selector="${activeContent}"]`,
+      );
 
       // Guard clause if elements not found
       if (!activeTabElement || !activeContentElement) {
@@ -103,15 +110,14 @@
   }
 
   // Run after each ajax submit on the element that has tabs.
-  $(document).ajaxComplete(function onDataLoaded(e, xhr, settings) {
+  $(document).ajaxComplete(function onDataLoaded(_e, _xhr, settings) {
     if (settings.extraData.view_name === drupalSettings.tabsParent) {
       initiateTabs(activeTabId, activeContentId);
     }
   });
 
   // Run after page is ready.
-  // eslint-disable-next-line func-names
-  $(document).ready(function () {
+  $(document).ready(() => {
     // Reset the active tab variables
     activeTabId = null;
     activeContentId = null;

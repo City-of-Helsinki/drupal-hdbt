@@ -16,13 +16,11 @@ if (rootElement) {
   const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
   ReactDOM.render(
     <React.StrictMode>
-      <Suspense fallback={
-        <GhostList count={GlobalSettings.SIZE} />
-      }>
+      <Suspense fallback={<GhostList count={GlobalSettings.SIZE} />}>
         {hideForm || <FormContainer />}
         <ResultsContainer />
       </Suspense>
     </React.StrictMode>,
-    rootElement
+    rootElement,
   );
 }

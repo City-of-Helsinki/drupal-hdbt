@@ -1,4 +1,3 @@
-
 type SearchParams = {
   keyword?: string;
   finnish_education?: boolean;

@@ -40,7 +40,7 @@ $-sidebar-width: calc($spacing-double + 340px + $spacing-double);
       grid-template-areas:
         'subnav content'
         'sidebar content';
-      grid-template-columns: $-sidebar-width auto;
+      grid-template-columns: $-sidebar-width calc(100% - $-sidebar-width);
       grid-template-rows: auto 1fr;
     }
   }

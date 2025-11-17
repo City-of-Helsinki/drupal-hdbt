@@ -41,6 +41,10 @@
   }
 }
 
+.dialog--danger {
+  --survey-border-color: var(--color-error);
+}
+
 // If there is close-button on the header it is printed first for accessibility reasons on dom.
 // To have them other way around visually we check that if there is more than one element in the dialog__header
 // and flip them around.

@@ -1,10 +1,10 @@
 import { Checkbox } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { eventTypeAtom, updateParamsAtom } from '../store';
+import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import ApiKeys from '../enum/ApiKeys';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
-import { EventTypeOption } from '../types/EventTypeOption';
-import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { eventTypeAtom, updateParamsAtom } from '../store';
+import type { EventTypeOption } from '../types/EventTypeOption';
 
 export const EventTypeFilter = () => {
   const [typeSelections, setTypes] = useAtom(eventTypeAtom);
@@ -12,10 +12,15 @@ export const EventTypeFilter = () => {
 
   const toggleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event?.target?.checked;
-    const value = event.target.id === 'event-type-toggle' ? 'General' : 'Course';
-    const newTypeSelections: EventTypeOption[] = checked ? [...typeSelections, value] : typeSelections.filter((type) => type !== value);
+    const value =
+      event.target.id === 'event-type-toggle' ? 'General' : 'Course';
+    const newTypeSelections: EventTypeOption[] = checked
+      ? [...typeSelections, value]
+      : typeSelections.filter((type) => type !== value);
     setTypes(newTypeSelections);
-    updateParams({ [ApiKeys.EVENT_TYPE]: typeSelectionsToString(newTypeSelections) });
+    updateParams({
+      [ApiKeys.EVENT_TYPE]: typeSelectionsToString(newTypeSelections),
+    });
   };
 
   return (
@@ -32,7 +37,11 @@ export const EventTypeFilter = () => {
         checked={typeSelections.includes('Course')}
         className='hdbt-search--react__checkbox'
         id='hobby-type-toggle'
-        label={Drupal.t('Hobbies', {}, { context: 'Event search: hobbies type' })}
+        label={Drupal.t(
+          'Hobbies',
+          {},
+          { context: 'Event search: hobbies type' },
+        )}
         onChange={toggleValue}
         style={defaultCheckboxStyle}
       />

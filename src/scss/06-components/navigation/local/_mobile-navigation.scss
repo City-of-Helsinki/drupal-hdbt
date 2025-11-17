@@ -150,6 +150,7 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   box-shadow: inset 0 0 0 0 var(--cssnav-fg);
   color: var(--cssnav-fg);
   text-decoration: none;
+  /* stylelint-disable-next-line plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
   transition: box-shadow ease-in 0.1s;
 
   &:active,

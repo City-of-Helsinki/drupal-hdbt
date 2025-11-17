@@ -254,27 +254,37 @@ And finally - you want to run it for scss-files so add this to the Run for files
 ```
 **/* {scss}
 ```
-Now you should be set. Just press Apply and PhpStorm should start scanning the files usint the stylelint
-rules provided.
-## ESLint
+Now you should be set. Just press Apply and PhpStorm should start scanning the files using the stylelint rules provided.
 
-We are using the airbnb. The current eslint config is the bare minimum that should pass always everywhere.
-Extend as necessary.
+## JavaScript/TypeScript Linting with Biome
 
-### Why is it so hard?
- - the eslint rules might be used from root (or beyond root) due to husky being funny
- - prettier overrides airbnb if setup incorrectly
- - root eslint rules (inside instance) might be very old
- - instance gitignore excludes subsequent eslints
- - when developing modules/themes under instance, the rules might chain in an unpredictable way
+This project uses [Biome](https://biomejs.dev/) for JavaScript and TypeScript linting and formatting, replacing the previous ESLint setup. Biome provides faster performance and better developer experience with nearly zero configuration.
 
-### How to use the eslint rules
-- please use formatting and lint rules included in this repository
-- make sure that your IDE applies these rules and not others when using this repo in an instance
-- always use eslint formatting with prettier, never only prettier
-- always verify, never override lint-staged
-- fix your code before commit
-- only override eslint rules inline for readability
+### Available Scripts
+
+- `npm run lint:js` - Lint all JavaScript and TypeScript files
+- `npm run format:js` - Format all JavaScript and TypeScript files
+- `npm run lint` - Run both SCSS and JavaScript linters
+
+### Configuration
+
+The Biome configuration is defined in `theme-builder/biome.json` and includes:
+
+- **Linting Rules**:
+  - Recommended ruleset enabled by default
+  - Additional React-specific rules for component structure
+  - Warnings for unused variables and template literals
+  - Error on missing React component keys
+
+- **Formatting Rules**:
+  - Single quotes for strings and JSX
+  - Trailing commas in multi-line objects/arrays
+  - Consistent semicolon usage
+  - Auto-formatting on save (when using the Biome extension)
+
+### Editor Integration
+
+For the best development experience, install the Biome extension for your editor. This way you don't find surprises when building the theme.
 
 ## Visual regression testing
 

@@ -1,11 +1,18 @@
-import { MutableRefObject, useEffect } from 'react';
+import { type MutableRefObject, useCallback, useEffect } from 'react';
 
 // Make any element listen outside click and focus events.
+// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
+// biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
 const useOutsideClick = (ref: MutableRefObject<any>, callback: Function) => {
+  const isChild = useCallback((event) =>
+    ref.current?.contains(event.target as Node),
+  );
+
   useEffect(() => {
     const handleClick = (event: MouseEvent | FocusEvent) => {
       // Is the click or focus outside this component
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      if (!isChild(event)) {
+        event.stopPropagation();
         callback();
       }
     };

@@ -1,10 +1,10 @@
 ((Drupal) => {
   Drupal.behaviors.cardHelper = {
-    attach (context) {
+    attach(context) {
       const cardImages = once(
         'cardHelper',
         '.card .card__image img, .list-of-links__item .list-of-links__item__image img',
-        context
+        context,
       );
 
       // Empty all card images and list of links items with images alt-texts
@@ -16,6 +16,6 @@
       cardImages.forEach((cardImage) => {
         cardImage.alt = '';
       });
-    }
+    },
   };
 })(Drupal);

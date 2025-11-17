@@ -1,10 +1,9 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
+import type OptionType from '@/types/OptionType';
 import { urlAtom, urlUpdateAtom } from '../store';
-import OptionType from '@/types/OptionType';
-import URLParams from '../types/URLParams';
+import type URLParams from '../types/URLParams';
 
 type SelectionsContainerProps = {
   topic?: OptionType[];
@@ -17,7 +16,7 @@ type ParamsKey = keyof Omit<URLParams, 'page' | 'keyword'>;
 const SelectionsContainer = ({
   topic,
   neighbourhoods,
-  groups
+  groups,
 }: SelectionsContainerProps) => {
   const params = useAtomValue(urlAtom);
   const updateParams = useSetAtom(urlUpdateAtom);
@@ -27,12 +26,16 @@ const SelectionsContainer = ({
       key={option.value}
       value={option?.label || option.value}
       clearSelection={() => {
-        const newParams = {...params, page: 1};
+        const newParams = { ...params, page: 1 };
         const index = newParams?.[key]?.indexOf(Number(option.value));
 
-        if (typeof index !== 'undefined' && !Number.isNaN(index) && index !== -1) {
+        if (
+          typeof index !== 'undefined' &&
+          !Number.isNaN(index) &&
+          index !== -1
+        ) {
           newParams[key]?.splice(index, 1);
-          updateParams({...newParams});
+          updateParams({ ...newParams });
         }
       }}
     />
@@ -42,39 +45,43 @@ const SelectionsContainer = ({
     const pills: JSX.Element[] = [];
 
     const keys: ParamsKey[] = ['topic', 'neighbourhoods', 'groups'];
-    const passedOptions = {
-      topic,
-      neighbourhoods,
-      groups
-    };
-    [params.topic, params.neighbourhoods, params.groups].forEach((selections, index) => {
-      if (selections?.length) {
-        selections.forEach(id => {
-          const option  = passedOptions[keys[index]]?.find((valueOption: OptionType) => id === Number(valueOption.value));
+    const passedOptions = { topic, neighbourhoods, groups };
+    [params.topic, params.neighbourhoods, params.groups].forEach(
+      (selections, index) => {
+        if (selections?.length) {
+          selections.forEach((id) => {
+            const option = passedOptions[keys[index]]?.find(
+              (valueOption: OptionType) => id === Number(valueOption.value),
+            );
 
-          if (!option) {
-            return;
-          }
+            if (!option) {
+              return;
+            }
 
-          const paramKey = keys[index];
-          pills.push(generatePill(option, paramKey));
-        });
-      }
-    });
+            const paramKey = keys[index];
+            pills.push(generatePill(option, paramKey));
+          });
+        }
+      },
+    );
 
     return pills;
   };
 
   const clearSelections = () => {
-    updateParams({
-      page: 1
-    });
+    updateParams({ page: 1 });
   };
 
-  const showClearButton = params.topic?.length || params.neighbourhoods?.length || params.groups?.length;
+  const showClearButton =
+    params.topic?.length ||
+    params.neighbourhoods?.length ||
+    params.groups?.length;
 
   return (
-    <SelectionsWrapper showClearButton={showClearButton} resetForm={clearSelections}>
+    <SelectionsWrapper
+      showClearButton={showClearButton}
+      resetForm={clearSelections}
+    >
       {getPills()}
     </SelectionsWrapper>
   );

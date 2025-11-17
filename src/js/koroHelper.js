@@ -5,12 +5,12 @@
   // Each koro has its own base cover height requirement that can be determined from the koro type.
   function getKoroConfig(wrapper) {
     const koroTypesValues = {
-      'basic': { baseCoverHeight: 19, scaleBoost: 0 },
-      'beat': { baseCoverHeight: 3, scaleBoost: 4 },
-      'calm': { baseCoverHeight: 0, scaleBoost: 0 },
-      'pulse': { baseCoverHeight: 14, scaleBoost: 1 },
-      'vibration': { baseCoverHeight: 7, scaleBoost: 3 },
-      'wave': { baseCoverHeight: 13, scaleBoost: 1 },
+      basic: { baseCoverHeight: 19, scaleBoost: 0 },
+      beat: { baseCoverHeight: 3, scaleBoost: 4 },
+      calm: { baseCoverHeight: 0, scaleBoost: 0 },
+      pulse: { baseCoverHeight: 14, scaleBoost: 1 },
+      vibration: { baseCoverHeight: 7, scaleBoost: 3 },
+      wave: { baseCoverHeight: 13, scaleBoost: 1 },
     };
 
     const koroTypes = Object.keys(koroTypesValues);
@@ -61,7 +61,7 @@
   // Loop through all koros and update their cover height.
   function updateAllKoros(koroPatternWidth, context) {
     const wrappers = (context || document).querySelectorAll('.hds-koros');
-    wrappers.forEach(wrapper => {
+    wrappers.forEach((wrapper) => {
       adjustCoverHeight(wrapper, koroPatternWidth);
     });
   }
@@ -69,7 +69,7 @@
   // Observe each koro for resizing and update their cover height accordingly.
   function observeKoros(koroPatternWidth, context) {
     const wrappers = (context || document).querySelectorAll('.hds-koros');
-    wrappers.forEach(wrapper => {
+    wrappers.forEach((wrapper) => {
       const koros = wrapper.querySelector('.hds-koros__inner');
       if (koros) {
         const resizeObserver = new ResizeObserver(() => {
@@ -85,7 +85,6 @@
     attach(context) {
       updateAllKoros(baseKoroPatternWidth, context);
       observeKoros(baseKoroPatternWidth, context);
-    }
+    },
   };
-
 })(Drupal);

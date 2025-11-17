@@ -1,17 +1,22 @@
-import LocalStorageManager from './localStorageManager';
 import ClientHelpers from './clientHelpers';
+import LocalStorageManager from './localStorageManager';
 
-(Drupal => {
+((Drupal) => {
   Drupal.behaviors.closableSurveys = {
     attach: function attach() {
       // Move the DOM element with id 'block-surveys' right after the dialog-off-canvas-main-canvas if it is present.
       // If not move it as last element inside the body element so that the header (h1, h2, etc.) structure will be
       // correct.
       const blockSurveys = document.getElementById('block-surveys');
-      const offCanvas = document.getElementById('dialog-off-canvas-main-canvas');
+      const offCanvas = document.getElementById(
+        'dialog-off-canvas-main-canvas',
+      );
       if (blockSurveys) {
         if (offCanvas) {
-          offCanvas.parentNode.insertBefore(blockSurveys, offCanvas.nextSibling);
+          offCanvas.parentNode.insertBefore(
+            blockSurveys,
+            offCanvas.nextSibling,
+          );
         } else {
           document.body.insertBefore(blockSurveys, document.body.lastChild);
         }
@@ -22,7 +27,9 @@ import ClientHelpers from './clientHelpers';
 
       const root = document.documentElement;
       const surveyDelay = 2000;
-      const surveyButtons = document.querySelectorAll('.dialog__actions .dialog__action-button');
+      const surveyButtons = document.querySelectorAll(
+        '.dialog__actions .dialog__action-button',
+      );
       const surveyKey = 'hidden-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveysToHide = null;
@@ -34,7 +41,9 @@ import ClientHelpers from './clientHelpers';
 
       try {
         // @todo Use the storageManager instead.
-        surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
+        surveysToHide = JSON.parse(
+          window.localStorage.getItem('helfi-settings'),
+        );
       } catch (e) {
         console.error('Error parsing local storage data:', e);
       }
@@ -48,7 +57,7 @@ import ClientHelpers from './clientHelpers';
 
       function addFocusTrap() {
         surveyFocusTrap = window.focusTrap.createFocusTrap('#helfi-survey', {
-          initialFocus: () => '#helfi-survey__title'
+          initialFocus: () => '#helfi-survey__title',
         });
         surveyFocusTrap.activate();
       }
@@ -69,7 +78,9 @@ import ClientHelpers from './clientHelpers';
         // Check if the cookie banner exists and focus the appropriate button
         const cookieBanner = document.querySelector('.hds-cc__target');
         const shadowRoot = cookieBanner?.shadowRoot;
-        const cookieButton = shadowRoot?.querySelector('.hds-cc__all-cookies-button');
+        const cookieButton = shadowRoot?.querySelector(
+          '.hds-cc__all-cookies-button',
+        );
 
         if (cookieBanner && cookieButton) {
           cookieButton.focus();
@@ -77,30 +88,43 @@ import ClientHelpers from './clientHelpers';
       }
 
       function toggleOtherContentVisibility() {
-        const mainContent = document.querySelector('.dialog-off-canvas-main-canvas');
+        const mainContent = document.querySelector(
+          '.dialog-off-canvas-main-canvas',
+        );
         const cookieBanner = document.querySelector('.hds-cc__target');
         const skipToMain = document.querySelector('.skip-link--skip-to-main');
-        const surveyContainer = document.getElementById('helfi-survey__container');
+        const surveyContainer = document.getElementById(
+          'helfi-survey__container',
+        );
 
-        if (mainContent && !mainContent.hasAttribute('inert') && surveyContainer) {
+        if (
+          mainContent &&
+          !mainContent.hasAttribute('inert') &&
+          surveyContainer
+        ) {
           mainContent.setAttribute('inert', '');
         } else {
-          // eslint-disable-next-line no-unused-expressions
-          mainContent && mainContent.removeAttribute('inert');
+          mainContent?.removeAttribute('inert');
         }
 
-        if (skipToMain && !skipToMain.hasAttribute('inert') && surveyContainer) {
+        if (
+          skipToMain &&
+          !skipToMain.hasAttribute('inert') &&
+          surveyContainer
+        ) {
           skipToMain.setAttribute('inert', '');
         } else {
-          // eslint-disable-next-line no-unused-expressions
-          skipToMain && skipToMain.removeAttribute('inert');
+          skipToMain?.removeAttribute('inert');
         }
 
-        if (cookieBanner && !cookieBanner.hasAttribute('inert') && surveyContainer) {
+        if (
+          cookieBanner &&
+          !cookieBanner.hasAttribute('inert') &&
+          surveyContainer
+        ) {
           cookieBanner.setAttribute('inert', '');
         } else {
-          // eslint-disable-next-line no-unused-expressions
-          cookieBanner && cookieBanner.removeAttribute('inert');
+          cookieBanner?.removeAttribute('inert');
         }
       }
 
@@ -122,7 +146,6 @@ import ClientHelpers from './clientHelpers';
         }
       }
 
-
       // Function to hide the survey and remove noscroll from body.
       function removeSurvey() {
         addToSurveyStorage();
@@ -135,9 +158,9 @@ import ClientHelpers from './clientHelpers';
       }
 
       if (surveyButtons) {
-        surveyButtons.forEach(
-          button => button.addEventListener('click', removeSurvey)
-        );
+        surveyButtons.forEach((button) => {
+          button.addEventListener('click', removeSurvey);
+        });
       }
 
       function handleEscapeKey(event) {
@@ -148,12 +171,11 @@ import ClientHelpers from './clientHelpers';
 
       document.body.addEventListener('keydown', handleEscapeKey);
 
-      // Make sure that its not Siteimprove Crawler viewing the site.
+      // Make sure that it's not Siteimprove Crawler viewing the site.
       if (!siteimproveCrawler) {
         // Set a timeout to show the survey after the defined delay.
         setTimeout(showSurvey, surveyDelay);
       }
-
-    }
+    },
   };
 })(Drupal);

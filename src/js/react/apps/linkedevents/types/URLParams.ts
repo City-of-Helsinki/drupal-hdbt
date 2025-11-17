@@ -1,5 +1,3 @@
-type URLParams = {
-  page?: string;
-};
+type URLParams = { page?: string };
 
 export default URLParams;

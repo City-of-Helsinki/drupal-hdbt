@@ -1,7 +1,5 @@
 declare namespace drupalSettings {
-  const path: {
-    currentLanguage: 'fi' | 'en' | 'sv';
-  };
+  const path: { currentLanguage: 'fi' | 'en' | 'sv' };
   const helfi_events: {
     baseUrl: string;
     imagePlaceholder: string;
@@ -17,18 +15,10 @@ declare namespace drupalSettings {
         field_free_events: boolean;
         field_language: boolean;
         field_remote_events: boolean;
-        field_filter_keywords: {
-          id: string;
-          name: string;
-        }[];
+        field_filter_keywords: { id: string; name: string }[];
         hidePagination: boolean;
         places: {
-          [key:string]: {
-            id: string;
-            name: {
-              [key: string]: string
-            };
-          }
+          [key: string]: { id: string; name: { [key: string]: string } };
         };
         hideHeading: boolean;
         removeBloatingEvents: boolean;
@@ -37,8 +27,8 @@ declare namespace drupalSettings {
         useFullTopicsFilter: boolean;
         useLocationSearch: boolean;
         useTargetGroupFilter: boolean;
-      }
-    },
+      };
+    };
     seeAllButtonOverride: string;
     seeAllNearYouLink: string;
     cardsWithBorders: boolean;
@@ -56,26 +46,20 @@ declare namespace drupalSettings {
   };
   const helfi_news_archive: {
     elastic_proxy_url: string;
-    default_query?: string
+    default_query?: string;
     max_results?: number;
-    hide_form?: boolean
+    hide_form?: boolean;
     feed_base_url: string;
-    cardsWithBorders: boolean,
+    cardsWithBorders: boolean;
   };
   const helfi_roadworks: {
     [key: string]: {
       cardsWithBorders: boolean;
       isShortList: boolean;
       roadworkCount: number;
-      initialData: {
-        lat?: string;
-        lon?: string;
-        q?: string;
-      },
+      initialData: { lat?: string; lon?: string; q?: string };
       scrollToTarget: boolean;
-    }
+    };
   };
-  const hdbt_cookie_banner: {
-    settingsPageUrl: string;
-  };
+  const hdbt_cookie_banner: { settingsPageUrl: string };
 }

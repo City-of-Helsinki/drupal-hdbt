@@ -1,21 +1,20 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { SyntheticEvent, createRef } from 'react';
-
-import Pagination from '@/react/common/Pagination';
-import ResultWrapper from '@/react/common/ResultWrapper';
+import { createRef, type SyntheticEvent } from 'react';
+import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import Pagination from '@/react/common/Pagination';
+import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
+import ResultsHeader from '@/react/common/ResultsHeader';
+import ResultWrapper from '@/react/common/ResultWrapper';
+import ResultsList from '../components/results/ResultsList';
+import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
-import URLParams from '../types/URLParams';
-import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import useIndexQuery from '../hooks/useIndexQuery';
 import useResultsQuery from '../hooks/useResultsQuery';
-import ResultsSort from '../components/results/ResultsSort';
-import ResultsList from '../components/results/ResultsList';
-import ResultsHeader from '@/react/common/ResultsHeader';
-import ResultsEmpty from '@/react/common/ResultsEmpty';
+import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
+import type URLParams from '../types/URLParams';
 import SearchMonitorContainer from './SearchMonitorContainer';
-import { GhostList } from '@/react/common/GhostList';
 
 const ResultsContainer = () => {
   const { size } = Global;
@@ -29,7 +28,7 @@ const ResultsContainer = () => {
   const { data, error, isLoading, isValidating } = useIndexQuery({
     keepPreviousData: true,
     query,
-    multi: promoted
+    multi: promoted,
   });
 
   // Scroll to results when they change.
@@ -60,7 +59,12 @@ const ResultsContainer = () => {
     const { results, jobs, total } = handleResults(data);
 
     if (total <= 0) {
-      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
+      return (
+        <ResultsEmpty
+          wrapperClass='hdbt-search--react__results--container'
+          ref={scrollTarget}
+        />
+      );
     }
 
     const pages = Math.ceil(total / size);
@@ -69,17 +73,31 @@ const ResultsContainer = () => {
       <>
         <ResultsHeader
           resultText={
+            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
             <>
-              { Drupal.formatPlural(jobs, '1 open position', '@count open positions',{},{ context: 'Job search results statline' }) }
+              {Drupal.formatPlural(
+                jobs,
+                '1 open position',
+                '@count open positions',
+                {},
+                { context: 'Job search results statline' },
+              )}
             </>
           }
           optionalResultsText={
+            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
             <>
-              { Drupal.formatPlural(total, '1 job listing', '@count job listings',{},{context: 'Job search results statline'}) }
+              {Drupal.formatPlural(
+                total,
+                '1 job listing',
+                '@count job listings',
+                {},
+                { context: 'Job search results statline' },
+              )}
             </>
           }
           actions={<ResultsSort />}
-          actionsClass="hdbt-search--react__results--sort"
+          actionsClass='hdbt-search--react__results--sort'
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
@@ -95,7 +113,9 @@ const ResultsContainer = () => {
 
   return (
     <>
-      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && <SearchMonitorContainer />}
+      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && (
+        <SearchMonitorContainer />
+      )}
       <div className='job-search__results'>
         <ResultWrapper loading={isLoading || isValidating}>
           {getResults()}

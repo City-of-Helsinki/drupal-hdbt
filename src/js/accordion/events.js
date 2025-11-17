@@ -1,7 +1,6 @@
 import AccordionItem from './accordionItem';
 
 export default class Events {
-
   constructor() {
     Events.handleTableOfContentsHash();
   }
@@ -9,7 +8,7 @@ export default class Events {
   static handleTableOfContentsHash = () => {
     window.addEventListener('hashchange', () => {
       const { hash } = window.location;
-      if(!hash || hash.length < 2) {
+      if (!hash || hash.length < 2) {
         return;
       }
 
@@ -17,7 +16,9 @@ export default class Events {
       let accordionItemFound = false;
 
       window.helfiAccordions.forEach((accordion) => {
-        const accordionItem = accordion.getAccordionItemById(hash.replace('#', ''));
+        const accordionItem = accordion.getAccordionItemById(
+          hash.replace('#', ''),
+        );
         if (accordionItem) {
           accordionItemFound = true;
           accordionItem.handleLinkAnchor(hash);
@@ -30,10 +31,14 @@ export default class Events {
         if (!anchorElement) {
           return;
         }
-        const accordionItemToOpen = anchorElement.closest(`.${AccordionItem.accordionItemElement}`);
+        const accordionItemToOpen = anchorElement.closest(
+          `.${AccordionItem.accordionItemElement}`,
+        );
         if (accordionItemToOpen) {
           window.helfiAccordions.forEach((accordion) => {
-            const idToSearch = accordionItemToOpen.querySelector('.helfi-accordion__header').id;
+            const idToSearch = accordionItemToOpen.querySelector(
+              '.helfi-accordion__header',
+            ).id;
             const accordionItem = accordion.getAccordionItemById(idToSearch);
             if (accordionItem) {
               accordionItem.handleLinkAnchor();
@@ -43,5 +48,4 @@ export default class Events {
       }
     });
   };
-
 }

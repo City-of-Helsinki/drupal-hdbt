@@ -4,6 +4,6 @@ type URLParams = {
   page?: number;
   keyword?: string;
   topic?: number[];
-}
+};
 
 export default URLParams;

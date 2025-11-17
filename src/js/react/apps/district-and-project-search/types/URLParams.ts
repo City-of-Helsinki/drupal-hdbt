@@ -9,4 +9,3 @@ type URLParams = {
 };
 
 export default URLParams;
-

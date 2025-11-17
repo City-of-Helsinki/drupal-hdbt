@@ -10,7 +10,6 @@ import postcssNested from 'postcss-nested';
 import postcssNesting from 'postcss-nesting';
 import postcssImport from 'postcss-import';
 import cssnano from 'cssnano';
-// eslint-disable-next-line import/extensions
 import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins.mjs';
 
 /**
