@@ -17,7 +17,7 @@
     {% if illustration_width %}width="{{ illustration_width }}"{% endif %}
     {% if illustration_height %}height="{{ illustration_height }}"{% endif %}
   />
-  {% embed '@hdbt/misc/photo-caption.twig' with {
+  {% embed '@hdbt/misc/caption.twig' with {
       caption_identifier_class: 'special-page__illustration__caption',
       credit: illustration_credit,
     } %}

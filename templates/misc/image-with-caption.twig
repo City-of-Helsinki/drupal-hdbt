@@ -1,7 +1,7 @@
 <figure class="image {{figure_class}}">
   {{ image }}
   {% if image_caption.caption or image_caption.credit %}
-    {% embed '@hdbt/misc/photo-caption.twig' with {
+    {% embed '@hdbt/misc/caption.twig' with {
         caption_identifier_class: image_caption.caption_identifier_class,
         caption: image_caption.caption,
         credit: image_caption.credit,

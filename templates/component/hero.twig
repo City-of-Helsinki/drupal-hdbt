@@ -119,7 +119,7 @@
 {% if image_author %}
   {% embed "@hdbt/misc/container.twig" with {container_element: 'hero__image-author'} %}
     {% block container_content %}
-      {% embed '@hdbt/misc/photo-caption.twig' with {
+      {% embed '@hdbt/misc/caption.twig' with {
         caption_identifier_class: 'hero__image-author',
         credit: image_author,
       } %}
