@@ -228,7 +228,7 @@ function getBrowserSize() {
         _paq.push(['setCustomDimension', 9, getNewsTaxonomyTermIds()]);
       }
 
-      // Track page view after all configurations are set
+      // Track page view after all configurations are set.
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
 
@@ -239,12 +239,11 @@ function getBrowserSize() {
       g.src = `${u}piwik.min.js`;
       s.parentNode.insertBefore(g, s);
 
-      // Load the heatmap plugin separately.
-      const heatmapPluginBaseUrl =
-        '//digiaiiris.com/web-analytics/plugins/HeatmapSessionRecording/';
-      const heatmapPlugin = d.createElement('script');
-      heatmapPlugin.src = `${heatmapPluginBaseUrl}tracker.min.js`;
-      s.parentNode.insertBefore(heatmapPlugin, s);
+      // Testing manual heatmap recording to one heatmap.
+      _paq.push([
+        'HeatmapSessionRecording.addConfig',
+        { heatmap: { id: 864, sample_rate: '100.0' } },
+      ]);
 
       _paq.push(['HeatmapSessionRecording::enableDebugMode']);
     })();
