@@ -15,7 +15,7 @@ const formatStartDate = (start: Date, end: Date) => {
     }
 
     // The getMonth function returns a zero-based index, so we need to add 1 to get the correct month.
-    return `${start.getDate()}.${start.getMonth() + 1}`;
+    return `${start.getDate()}.${start.getMonth() + 1}.`;
   }
 
   return start.toLocaleDateString('fi-FI');
