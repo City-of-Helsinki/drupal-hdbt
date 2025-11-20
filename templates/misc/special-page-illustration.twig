@@ -4,7 +4,7 @@
     illustration_url: '/url/to/illustration.svg',
     illustration_width: '200',
     illustration_height: '500',
-    illustration_caption: 'Photo: @photographer'|t({'@photographer': 'Petra Photographer'}, {'context': 'Image photographer'}),
+    illustration_credit: 'Petra Photographer',
   } %}
 {% endembed %}
 #}
@@ -17,7 +17,9 @@
     {% if illustration_width %}width="{{ illustration_width }}"{% endif %}
     {% if illustration_height %}height="{{ illustration_height }}"{% endif %}
   />
-  <figcaption class="special-page__illustration__caption">
-    {{ illustration_caption }}
-  </figcaption>
+  {% embed '@hdbt/misc/caption.twig' with {
+      caption_identifier_class: 'special-page__illustration__caption',
+      credit: illustration_credit,
+    } %}
+  {% endembed %}
 </figure>
