@@ -4,7 +4,7 @@
       {{content.field_gallery_image}}
     </div>
     {% if gallery_image_description.caption or gallery_image_description.credit %}
-      {% embed '@hdbt/misc/photo-caption.twig' with {
+      {% embed '@hdbt/misc/caption.twig' with {
         caption_identifier_class: 'image-gallery__item-meta',
         caption: gallery_image_description.caption,
         credit: gallery_image_description.credit,
