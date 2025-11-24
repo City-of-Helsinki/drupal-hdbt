@@ -105,44 +105,13 @@ const SearchMonitorContainer = () => {
       submitButton.setAttribute('disabled', 'true');
     }
 
-    // Get csrf token from Drupal
-    let sessionToken = '';
-    try {
-      const response = await fetch('/session/token', { method: 'GET' });
+    const { pathname } = window.location;
+    const basePath = pathname.split('/').slice(0, -1).join('/');
 
-      if (!response.ok) {
-        seterrorMessage(`Error getting session token: ${response.statusText}`);
-        if (submitButton) {
-          submitButton.removeAttribute('disabled');
-        }
-        return;
-      }
-
-      sessionToken = await response.text();
-    } catch (error) {
-      seterrorMessage(`Error getting session token: ${error}`);
-      if (submitButton) {
-        submitButton.removeAttribute('disabled');
-      }
-      return;
-    }
-
-    // Send form to Hakuvahti subscribe service
-    const body = JSON.stringify(requestBody);
-
-    // In production this runs under a non-root /path/structure.
-    const { host, pathname } = window.location;
-    const pathParts = pathname.split('/').slice(0, -1);
-    const basePath = pathParts.join('/');
-
-    let apiPath = `${basePath}/hakuvahti/subscribe`;
-    if (host.includes('docker.so')) {
-      apiPath = '/hakuvahti/subscribe';
-    }
-    const response = await fetch(apiPath, {
+    const response = await fetch(`${basePath}/hakuvahti/subscribe`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', token: sessionToken },
-      body,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody),
     });
 
     // Oops, error from backend
