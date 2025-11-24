@@ -882,6 +882,10 @@ msgctxt "Employment filter value"
 msgid "Fixed-term"
 msgstr "Visstidsanställning"
 
+msgctxt "Employment filter value"
+msgid "Job alternation leave substitute for Helsinki residents"
+msgstr "Lönesubvention för helsingforsare"
+
 msgctxt "Employment filter selection value"
 msgid "Permanent contract and service employment"
 msgstr "Fast anställning och tjänsteförhållande"

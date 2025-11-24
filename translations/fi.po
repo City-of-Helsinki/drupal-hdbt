@@ -881,6 +881,10 @@ msgid "Permanent"
 msgstr "Vakinainen"
 
 msgctxt "Employment filter value"
+msgid "Job alternation leave substitute for Helsinki residents"
+msgstr "Palkkatuki helsinkiläisille"
+
+msgctxt "Employment filter value"
 msgid "Fixed-term"
 msgstr "Määräaikainen"
 
