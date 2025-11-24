@@ -140,6 +140,7 @@ export async function buildReactApps(config = {}) {
           charset: 'utf8',
           define: {
             'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
+            ...(isDev ? { 'ELASTIC_DEV_URL': JSON.stringify(process.env.ELASTIC_DEV_URL || '') } : {}),
           },
           entryPoints: [entry],
           external: ['Drupal', 'drupalSettings'],

@@ -1,6 +1,8 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501 */
 import type { Option } from 'hds-react';
 import { atom } from 'jotai';
+
+declare const ELASTIC_DEV_URL: string | undefined;
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type Result from '@/types/Result';
 import CustomIds from './enum/CustomTermIds';
@@ -20,6 +22,7 @@ import type AggregationItem from './types/AggregationItem';
 import type OptionType from './types/OptionType';
 import type Term from './types/Term';
 import type URLParams from './types/URLParams';
+import SearchComponents from './enum/SearchComponents';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {
@@ -46,19 +49,34 @@ const getParams = (searchParams: URLSearchParams) => {
 
     if (!value) {
       result = entries.next();
-    } else {
-      const existing = params[key];
-      if (existing) {
-        const updatedValue = Array.isArray(existing)
-          ? [...existing, value]
-          : [existing, value];
-        params[key] = updatedValue;
-      } else {
-        params[key] = [value];
-      }
+      continue;
+    }
+
+    const parsedValue =
+      ![SearchComponents.KEYWORD, 'page'].includes(key) &&
+      value.toString().includes(',')
+        ? value.toString().split(',')
+        : value;
+    const existing = params[key];
+
+    if (Array.isArray(parsedValue)) {
+      const existingValues = Array.isArray(existing)
+        ? existing
+        : (existing ?? []);
+      params[key] = [...existingValues, ...parsedValue];
 
       result = entries.next();
+      continue;
     }
+
+    const updatedValue = Array.isArray(existing)
+      ? [...existing, parsedValue]
+      : existing
+        ? [existing, parsedValue]
+        : parsedValue;
+    params[key] = updatedValue;
+
+    result = entries.next();
   }
 
   return params;
@@ -100,71 +118,73 @@ type configurations = {
   promoted: any;
 };
 
-export const configurationsAtom = atom(async (): Promise<configurations> => {
-  const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
-  const { index } = Global;
-  const url: string | undefined = proxyUrl;
-  const ndjsonHeader = '{}';
+export const configurationsAtom = atom(
+  async (_get): Promise<configurations> => {
+    const proxyUrl = _get(getElasticUrlAtom);
+    const { index } = Global;
+    const url: string | undefined = proxyUrl;
+    const ndjsonHeader = '{}';
 
-  const body = `${ndjsonHeader}\n${JSON.stringify(AGGREGATIONS)}\n${ndjsonHeader}\n${JSON.stringify(
-    TASK_AREA_OPTIONS,
-  )}\n${ndjsonHeader}\n${JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)}\n${ndjsonHeader}\n${JSON.stringify(
-    LANGUAGE_OPTIONS,
-  )}\n${ndjsonHeader}\n${JSON.stringify(PROMOTED_IDS)}\n`;
+    const body = `${ndjsonHeader}\n${JSON.stringify(AGGREGATIONS)}\n${ndjsonHeader}\n${JSON.stringify(
+      TASK_AREA_OPTIONS,
+    )}\n${ndjsonHeader}\n${JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)}\n${ndjsonHeader}\n${JSON.stringify(
+      LANGUAGE_OPTIONS,
+    )}\n${ndjsonHeader}\n${JSON.stringify(PROMOTED_IDS)}\n`;
 
-  return useTimeoutFetch(`${url}/${index}/_msearch`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-ndjson' },
-    body,
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      const responses = json?.responses;
-
-      if (!responses || !Array.isArray(responses)) {
-        return {
-          error: new Error(
-            `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`,
-          ),
-          taskAreaOptions: [],
-          taskAreas: [],
-          employment: [],
-          employmentOptions: [],
-          employmentSearchIds: [],
-          employmentType: [],
-          languages: [],
-          promoted: [],
-        };
-      }
-
-      const [aggs, taskAreas, employmentOptions, languages, promoted] =
-        responses;
-
-      return {
-        error: null,
-        taskAreaOptions: taskAreas?.hits?.hits || [],
-        taskAreas: aggs?.aggregations?.occupations?.buckets || [],
-        employment: aggs?.aggregations?.employment?.buckets || [],
-        employmentOptions: employmentOptions?.hits?.hits || [],
-        employmentSearchIds:
-          aggs?.aggregations?.employment_search_id?.buckets || [],
-        employmentType: aggs?.aggregations?.employment_type?.buckets || [],
-        languages: languages?.aggregations?.languages?.buckets || [],
-        promoted: promoted?.aggregations?.promoted?.buckets || [],
-      };
+    return useTimeoutFetch(`${url}/${index}/_msearch`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-ndjson' },
+      body,
     })
-    .catch((error) => ({
-      error,
-      taskAreaOptions: [],
-      taskAreas: [],
-      employment: [],
-      employmentOptions: [],
-      employmentSearchIds: [],
-      employmentType: [],
-      languages: [],
-      promoted: [],
-    }));
-});
+      .then((res) => res.json())
+      .then((json) => {
+        const responses = json?.responses;
+
+        if (!responses || !Array.isArray(responses)) {
+          return {
+            error: new Error(
+              `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`,
+            ),
+            taskAreaOptions: [],
+            taskAreas: [],
+            employment: [],
+            employmentOptions: [],
+            employmentSearchIds: [],
+            employmentType: [],
+            languages: [],
+            promoted: [],
+          };
+        }
+
+        const [aggs, taskAreas, employmentOptions, languages, promoted] =
+          responses;
+
+        return {
+          error: null,
+          taskAreaOptions: taskAreas?.hits?.hits || [],
+          taskAreas: aggs?.aggregations?.occupations?.buckets || [],
+          employment: aggs?.aggregations?.employment?.buckets || [],
+          employmentOptions: employmentOptions?.hits?.hits || [],
+          employmentSearchIds:
+            aggs?.aggregations?.employment_search_id?.buckets || [],
+          employmentType: aggs?.aggregations?.employment_type?.buckets || [],
+          languages: languages?.aggregations?.languages?.buckets || [],
+          promoted: promoted?.aggregations?.promoted?.buckets || [],
+        };
+      })
+      .catch((error) => ({
+        error,
+        taskAreaOptions: [],
+        taskAreas: [],
+        employment: [],
+        employmentOptions: [],
+        employmentSearchIds: [],
+        employmentType: [],
+        languages: [],
+        promoted: [],
+      }));
+  },
+);
 
 export const taskAreasAtom = atom(async (get) => {
   const { error, taskAreaOptions, taskAreas } = await get(configurationsAtom);
@@ -317,3 +337,10 @@ export const areaFilterAtom = atom(
 export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const monitorSubmittedAtom = atom(false);
+
+const getElasticUrl = () => {
+  const devUrl = typeof ELASTIC_DEV_URL !== 'undefined' ? ELASTIC_DEV_URL : '';
+
+  return devUrl || drupalSettings?.helfi_react_search?.elastic_proxy_url || '';
+};
+export const getElasticUrlAtom = atom(getElasticUrl());
