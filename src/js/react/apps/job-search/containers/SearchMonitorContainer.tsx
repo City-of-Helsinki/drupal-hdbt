@@ -105,48 +105,14 @@ const SearchMonitorContainer = () => {
       submitButton.setAttribute('disabled', 'true');
     }
 
-    // In production this runs under a non-root /path/structure.
     const { pathname } = window.location;
     const basePath = pathname.split('/').slice(0, -1).join('/');
 
-    // Get csrf token from Drupal
-    let sessionToken = '';
-    try {
-      const response = await fetch(`${basePath}/session/token`, {
-        method: 'GET',
-      });
-
-      if (!response.ok) {
-        seterrorMessage(
-          Drupal.t(
-            'Saving search failed. Please try again.',
-            {},
-            { context: 'Search monitor error submitting' },
-          ),
-        );
-
-        if (submitButton) {
-          submitButton.removeAttribute('disabled');
-        }
-        return;
-      }
-
-      sessionToken = await response.text();
-    } catch (error) {
-      seterrorMessage(`Error getting session token: ${error}`);
-      if (submitButton) {
-        submitButton.removeAttribute('disabled');
-      }
-      return;
-    }
-
-    // Send form to Hakuvahti subscribe service
-    const body = JSON.stringify(requestBody);
-
-    const response = await fetch(
-      `${basePath}/hakuvahti/subscribe?token=${sessionToken}`,
-      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body },
-    );
+    const response = await fetch(`${basePath}/hakuvahti/subscribe`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestBody),
+    });
 
     // Oops, error from backend
     if (!response.ok) {
