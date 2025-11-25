@@ -15,6 +15,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
 use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_platform_config\JsInliner;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\ErrandService;
@@ -740,7 +741,14 @@ function hdbt_preprocess_block(&$variables): void {
  */
 function hdbt_preprocess_block__announcements(&$variables): void {
   // Inline javascript for hiding announcements.
-  $variables['js_hide_announcements'] = Markup::create(_hdbt_get_inline_javascript('hide-announcements'));
+  $variables['js_hide_announcements'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'script',
+    '#attributes' => [
+      'type' => 'text/javascript',
+    ],
+    '#value' => Markup::create(_hdbt_get_inline_javascript('hide-announcements')),
+  ];
 }
 
 /**
@@ -1677,27 +1685,10 @@ function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void 
  * @see hdbt_csp_policy_alter()
  */
 function _hdbt_get_inline_javascript(?string $script_id = NULL): string|array|null {
+  $inliner = \Drupal::service(JsInliner::class);
+
   $js = [
-    // Hide announcements inline javascript.
-    // Minimized from source:
-    // phpcs:disable
-    // (function(){
-    //   const uuidsToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
-    //   const elements = document.querySelectorAll('.js-announcement');
-    //
-    //   if (!uuidsToHide || !('hidden-helfi-announcements' in uuidsToHide) || !elements) {
-    //     return;
-    //   }
-    //
-    //   elements.forEach((element)=>{
-    //     const { uuid } = element.dataset;
-    //     if (uuidsToHide['hidden-helfi-announcements'].includes(uuid)) {
-    //       element.remove();
-    //     }
-    //   });
-    // })();
-    // phpcs:enable
-    'hide-announcements' => '!function(){const e=JSON.parse(window.localStorage.getItem("helfi-settings")),t=document.querySelectorAll(".js-announcement");if(!e||!("hidden-helfi-announcements"in e)||!t)return;t.forEach((t=>{const{uuid:n}=t.dataset;e["hidden-helfi-announcements"].includes(n)&&t.remove()}))}();',
+    'hide-announcements' => $inliner->getInline('hdbt', 'hide-announcements'),
   ];
 
   if (!$script_id) {
