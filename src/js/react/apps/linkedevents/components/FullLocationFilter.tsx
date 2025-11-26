@@ -1,5 +1,5 @@
 import { Select, type SelectData } from 'hds-react';
-import { useSelectStorage } from 'hds-react/components/select';
+import { useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';

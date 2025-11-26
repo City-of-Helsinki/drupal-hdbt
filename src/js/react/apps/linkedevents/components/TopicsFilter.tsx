@@ -1,5 +1,5 @@
 import { Select } from 'hds-react';
-import { useSelectStorage } from 'hds-react/components/select';
+import { useSelectStorage } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
