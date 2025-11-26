@@ -277,7 +277,16 @@ export const employmentAtom = atom(async (get) => {
         );
       } else {
         count = combinedAggs.get(tid) || 0;
-        label = `${term._source.name} (${count})`;
+        if (customId.toString() === CustomIds.ALTERNATION) {
+          label = `${Drupal.t('Job alternation leave substitute for Helsinki residents', {}, { context: 'Employment filter value' })} (${count})`;
+          simpleLabel = Drupal.t(
+            'Job alternation leave substitute for Helsinki residents',
+            {},
+            { context: 'Employment filter value' },
+          );
+        } else {
+          label = `${term._source.name} (${count})`;
+        }
       }
 
       return {

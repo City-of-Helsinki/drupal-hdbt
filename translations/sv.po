@@ -89,13 +89,9 @@ msgctxt "Footer back to top link"
 msgid "Back to top"
 msgstr "Tillbaka till toppen"
 
-msgctxt "Image caption and photographer"
-msgid "@caption Photo: @photographer"
-msgstr "@caption Bild: @photographer"
-
 msgctxt "Image photographer"
-msgid "Photo: @photographer"
-msgstr "Bild: @photographer"
+msgid "Photo"
+msgstr "Bild"
 
 msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
 msgid "Tags"
@@ -885,6 +881,10 @@ msgstr "Fast anställning"
 msgctxt "Employment filter value"
 msgid "Fixed-term"
 msgstr "Visstidsanställning"
+
+msgctxt "Employment filter value"
+msgid "Job alternation leave substitute for Helsinki residents"
+msgstr "Lönesubvention för helsingforsare"
 
 msgctxt "Employment filter selection value"
 msgid "Permanent contract and service employment"

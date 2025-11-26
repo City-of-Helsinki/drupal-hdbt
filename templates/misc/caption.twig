@@ -1,0 +1,15 @@
+{#
+{% embed '@hdbt/misc/caption.twig' with {
+    caption_identifier_class: 'image__caption',
+    caption: 'Caption for the image'|t,
+    credit: 'Petra Photographer',
+  } %}
+{% endembed %}
+#}
+
+<figcaption class="{% if caption_identifier_class %}{{ caption_identifier_class }} {% endif %}caption">
+  {{ caption }}{% if caption and credit %} {% endif -%}
+  {%- if credit -%}
+    {{- 'Photo'|t({}, {'context': 'Image photographer'}) -}}: <span translate="no">{{ credit }}</span>
+  {%- endif -%}
+</figcaption>

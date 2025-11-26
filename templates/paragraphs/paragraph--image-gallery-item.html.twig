@@ -3,10 +3,13 @@
     <div class="image-gallery__item-image">
       {{content.field_gallery_image}}
     </div>
-    {% if gallery_image_description|render %}
-      <figcaption class="image-gallery__item-meta">
-        {{ gallery_image_description }}
-      </figcaption>
+    {% if gallery_image_description.caption or gallery_image_description.credit %}
+      {% embed '@hdbt/misc/caption.twig' with {
+        caption_identifier_class: 'image-gallery__item-meta',
+        caption: gallery_image_description.caption,
+        credit: gallery_image_description.credit,
+      } %}
+      {% endembed %}
     {% endif %}
   </figure>
 {% endblock paragraph %}
