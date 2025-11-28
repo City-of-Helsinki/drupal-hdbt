@@ -1,5 +1,11 @@
+{% set classes = ['table-of-contents'] %}
+
+{% if modifier_class %}
+  {% set classes = classes|merge(modifier_class) %}
+{% endif %}
+
 {% if toc_enabled|render|striptags|trim is not empty %}
-  <div class="table-of-contents">
+  <div{{ attributes.addClass(classes) }}>
     <div id="helfi-toc-table-of-contents" class="table-of-contents__container table-of-contents__js hide-from-table-of-contents">
       {% if toc_title|render %}
         {% set toc_id = 'table-of-contents__title'%}
