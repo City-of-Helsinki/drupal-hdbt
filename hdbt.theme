@@ -1685,6 +1685,10 @@ function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void 
  * @see hdbt_csp_policy_alter()
  */
 function _hdbt_get_inline_javascript(?string $script_id = NULL): string|array|null {
+  if (!class_exists(JsInliner::class)) {
+    return NULL;
+  }
+
   $inliner = \Drupal::service(JsInliner::class);
 
   $js = [
