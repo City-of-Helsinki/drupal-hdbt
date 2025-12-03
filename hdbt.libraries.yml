@@ -366,3 +366,8 @@ throbber:
   dependencies:
     - core/jquery
     - core/drupal
+
+hide-announcements:
+  version: 1.0.0
+  js:
+    dist/js/hideAnnouncements.min.js: {}
