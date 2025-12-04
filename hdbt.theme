@@ -83,6 +83,10 @@ function hdbt_csp_policy_alter(Csp $policy): void {
   $inline_javascript = _hdbt_get_inline_javascript();
   $cspHelper = \Drupal::service('csp.policy_helper');
   foreach ($inline_javascript as $script) {
+    if (!$script) {
+      continue;
+    }
+
     $hash = Csp::calculateHash($script);
     $cspHelper->appendHash($policy, 'script', 'elem', ['unsafe-inline'], $hash);
   }
@@ -747,7 +751,7 @@ function hdbt_preprocess_block__announcements(&$variables): void {
     '#attributes' => [
       'type' => 'text/javascript',
     ],
-    '#value' => Markup::create(_hdbt_get_inline_javascript('hide-announcements')),
+    '#value' => Markup::create(_hdbt_get_inline_javascript('hide-announcements') ?? ''),
   ];
 }
 
