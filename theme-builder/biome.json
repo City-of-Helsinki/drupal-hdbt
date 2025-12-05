@@ -24,7 +24,7 @@
             ]
           }
         },
-        "noGlobalIsFinite":"off"
+        "noGlobalIsFinite": "off"
       },
       "correctness": {
         "noUnusedVariables": "warn",
