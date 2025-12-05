@@ -10,7 +10,7 @@
 
   {# Created date and modified date #}
   {% if published_at is not empty %}
-    {% if date(published_at) < date('-365days') %}
+    {% if date(published_at) < date('-365days') and not updating_news %}
       {% set tag_content %}
         <span>{{ 'Published over a year ago'|t({}, {'context': 'The helper text before the node published timestamp'}) }}</span>
       {% endset %}
