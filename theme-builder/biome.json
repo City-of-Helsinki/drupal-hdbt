@@ -11,7 +11,21 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": { "noGlobalIsFinite": "off", "noArrayIndexKey": "warn" },
+      "suspicious": {
+        "noArrayIndexKey": "warn",
+        "noConsole": {
+          "level": "warn",
+          "options": {
+            "allow": [
+              "assert",
+              "error",
+              "info",
+              "warn"
+            ]
+          }
+        },
+        "noGlobalIsFinite": "off"
+      },
       "correctness": {
         "noUnusedVariables": "warn",
         "useHookAtTopLevel": "error",
