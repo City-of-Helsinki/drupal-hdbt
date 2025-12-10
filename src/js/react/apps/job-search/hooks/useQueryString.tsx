@@ -59,8 +59,18 @@ const useQueryString = (urlParams: URLParams): string => {
   }
 
   if (urlParams?.task_areas?.length) {
+    const taskAreas = Array.isArray(urlParams.task_areas)
+      ? urlParams.task_areas
+      : [urlParams.task_areas];
+
+    // First, convert string values to numbers.
+    // If there are values that couldn't be converted to numbers, filter them out.
     must.push({
-      terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas },
+      terms: {
+        [IndexFields.TASK_AREA_EXTERNAL_ID]: taskAreas
+          .map(Number)
+          .filter((n) => !isNaN(n)),
+      },
     });
   }
 
@@ -115,18 +125,24 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
-  if (urlParams?.area_filter?.length) {
+  if (urlParams?.area_filter) {
+    const areaFilters = Array.isArray(urlParams.area_filter)
+      ? urlParams.area_filter
+      : [urlParams.area_filter];
+
     const postalCodes: string[] = [];
-    urlParams.area_filter.forEach((areaCode) => {
+    areaFilters.forEach((areaCode) => {
       postalCodes.push(
         ...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes ||
           []),
       );
     });
 
-    query.bool.filter.push({
-      terms: { [IndexFields.POSTAL_CODE]: postalCodes },
-    });
+    if (postalCodes.length) {
+      query.bool.filter.push({
+        terms: { [IndexFields.POSTAL_CODE]: postalCodes },
+      });
+    }
   }
 
   if (Object.keys(must).length) {
