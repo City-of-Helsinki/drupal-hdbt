@@ -103,12 +103,14 @@ const ResultsContainer = () => {
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
-        <Pagination
-          currentPage={currentPage}
-          pages={5}
-          totalPages={pages}
-          updatePage={updatePage}
-        />
+        {pages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            pages={5}
+            totalPages={pages}
+            updatePage={updatePage}
+          />
+        )}
       </>
     );
   };
