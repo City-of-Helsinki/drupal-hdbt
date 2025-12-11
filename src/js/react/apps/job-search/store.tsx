@@ -43,6 +43,11 @@ const getParams = (searchParams: URLSearchParams) => {
   const params: { [k: string]: any } = {};
   const entries = searchParams.entries();
   let result = entries.next();
+  const arrayParams = [
+    SearchComponents.TASK_AREAS,
+    SearchComponents.EMPLOYMENT,
+    SearchComponents.AREA_FILTER,
+  ];
 
   while (!result.done) {
     const [key, value] = result.value;
@@ -52,11 +57,15 @@ const getParams = (searchParams: URLSearchParams) => {
       continue;
     }
 
-    const parsedValue =
-      ![SearchComponents.KEYWORD, 'page'].includes(key) &&
-      value.toString().includes(',')
+    let parsedValue: string | string[];
+
+    if (arrayParams.includes(key)) {
+      parsedValue = value.toString().includes(',')
         ? value.toString().split(',')
-        : value;
+        : [value];
+    } else {
+      parsedValue = value;
+    }
     const existing = params[key];
 
     if (Array.isArray(parsedValue)) {

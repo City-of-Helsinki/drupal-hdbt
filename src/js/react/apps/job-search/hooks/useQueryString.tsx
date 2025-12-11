@@ -63,15 +63,7 @@ const useQueryString = (urlParams: URLParams): string => {
       ? urlParams.task_areas
       : [urlParams.task_areas];
 
-    // First, convert string values to numbers.
-    // If there are values that couldn't be converted to numbers, filter them out.
-    must.push({
-      terms: {
-        [IndexFields.TASK_AREA_EXTERNAL_ID]: taskAreas
-          .map(Number)
-          .filter((n) => !isNaN(n)),
-      },
-    });
+    must.push({ terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: taskAreas } });
   }
 
   // These values can match either employment or employment_type IDs
