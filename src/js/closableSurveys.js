@@ -8,15 +8,10 @@ import LocalStorageManager from './localStorageManager';
       // If not move it as last element inside the body element so that the header (h1, h2, etc.) structure will be
       // correct.
       const blockSurveys = document.getElementById('block-surveys');
-      const offCanvas = document.getElementById(
-        'dialog-off-canvas-main-canvas',
-      );
+      const offCanvas = document.getElementById('dialog-off-canvas-main-canvas');
       if (blockSurveys) {
         if (offCanvas) {
-          offCanvas.parentNode.insertBefore(
-            blockSurveys,
-            offCanvas.nextSibling,
-          );
+          offCanvas.parentNode.insertBefore(blockSurveys, offCanvas.nextSibling);
         } else {
           document.body.insertBefore(blockSurveys, document.body.lastChild);
         }
@@ -27,9 +22,7 @@ import LocalStorageManager from './localStorageManager';
 
       const root = document.documentElement;
       const surveyDelay = 2000;
-      const surveyButtons = document.querySelectorAll(
-        '.dialog__actions .dialog__action-button',
-      );
+      const surveyButtons = document.querySelectorAll('.dialog__actions .dialog__action-button');
       const surveyKey = 'hidden-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveysToHide = null;
@@ -41,9 +34,7 @@ import LocalStorageManager from './localStorageManager';
 
       try {
         // @todo Use the storageManager instead.
-        surveysToHide = JSON.parse(
-          window.localStorage.getItem('helfi-settings'),
-        );
+        surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
       } catch (e) {
         console.error('Error parsing local storage data:', e);
       }
@@ -78,9 +69,7 @@ import LocalStorageManager from './localStorageManager';
         // Check if the cookie banner exists and focus the appropriate button
         const cookieBanner = document.querySelector('.hds-cc__target');
         const shadowRoot = cookieBanner?.shadowRoot;
-        const cookieButton = shadowRoot?.querySelector(
-          '.hds-cc__all-cookies-button',
-        );
+        const cookieButton = shadowRoot?.querySelector('.hds-cc__all-cookies-button');
 
         if (cookieBanner && cookieButton) {
           cookieButton.focus();
@@ -88,40 +77,24 @@ import LocalStorageManager from './localStorageManager';
       }
 
       function toggleOtherContentVisibility() {
-        const mainContent = document.querySelector(
-          '.dialog-off-canvas-main-canvas',
-        );
+        const mainContent = document.querySelector('.dialog-off-canvas-main-canvas');
         const cookieBanner = document.querySelector('.hds-cc__target');
         const skipToMain = document.querySelector('.skip-link--skip-to-main');
-        const surveyContainer = document.getElementById(
-          'helfi-survey__container',
-        );
+        const surveyContainer = document.getElementById('helfi-survey__container');
 
-        if (
-          mainContent &&
-          !mainContent.hasAttribute('inert') &&
-          surveyContainer
-        ) {
+        if (mainContent && !mainContent.hasAttribute('inert') && surveyContainer) {
           mainContent.setAttribute('inert', '');
         } else {
           mainContent?.removeAttribute('inert');
         }
 
-        if (
-          skipToMain &&
-          !skipToMain.hasAttribute('inert') &&
-          surveyContainer
-        ) {
+        if (skipToMain && !skipToMain.hasAttribute('inert') && surveyContainer) {
           skipToMain.setAttribute('inert', '');
         } else {
           skipToMain?.removeAttribute('inert');
         }
 
-        if (
-          cookieBanner &&
-          !cookieBanner.hasAttribute('inert') &&
-          surveyContainer
-        ) {
+        if (cookieBanner && !cookieBanner.hasAttribute('inert') && surveyContainer) {
           cookieBanner.setAttribute('inert', '');
         } else {
           cookieBanner?.removeAttribute('inert');

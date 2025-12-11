@@ -6,11 +6,7 @@ const transformDropdownsValues = (
   availableOptions: OptionType[] = [],
 ) => {
   const transformedOptions: OptionType[] = [];
-  const options = Array.isArray(paramOptions)
-    ? paramOptions
-    : paramOptions
-      ? [paramOptions]
-      : [];
+  const options = Array.isArray(paramOptions) ? paramOptions : paramOptions ? [paramOptions] : [];
 
   options.forEach((selection: string) => {
     const matchedOption = availableOptions.find((option: OptionType) => {
@@ -23,10 +19,7 @@ const transformDropdownsValues = (
     });
 
     // If a matching option is found and it's not in the transformed options yet, add it to the transformed options
-    if (
-      matchedOption &&
-      !transformedOptions.some((option) => option.value === matchedOption.value)
-    ) {
+    if (matchedOption && !transformedOptions.some((option) => option.value === matchedOption.value)) {
       transformedOptions.push(matchedOption);
     }
   });

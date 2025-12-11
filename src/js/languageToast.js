@@ -18,10 +18,7 @@ import { positionDropdown } from './positionDropdown';
           const buttonParent = button.parentElement;
           const toast = buttonParent?.nextElementSibling;
 
-          if (
-            !toast ||
-            !toast.classList.contains('nav-toggle-dropdown--language-toast')
-          ) {
+          if (!toast || !toast.classList.contains('nav-toggle-dropdown--language-toast')) {
             return;
           }
 
@@ -34,19 +31,14 @@ import { positionDropdown } from './positionDropdown';
       // Ensure only one resize listener is added globally.
       if (!window.__toastResizeBound) {
         window.addEventListener('resize', () => {
-          document
-            .querySelectorAll('.nav-toggle__button.has-toast')
-            .forEach((button) => {
-              const buttonParent = button.parentElement;
-              const toast = buttonParent?.nextElementSibling;
+          document.querySelectorAll('.nav-toggle__button.has-toast').forEach((button) => {
+            const buttonParent = button.parentElement;
+            const toast = buttonParent?.nextElementSibling;
 
-              if (
-                toast &&
-                !toast.classList.contains('nav-toggle-dropdown--closed')
-              ) {
-                positionDropdown(button, button, { isToast: true });
-              }
-            });
+            if (toast && !toast.classList.contains('nav-toggle-dropdown--closed')) {
+              positionDropdown(button, button, { isToast: true });
+            }
+          });
         });
 
         window.__toastResizeBound = true;

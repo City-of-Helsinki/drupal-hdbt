@@ -41,22 +41,14 @@ const ResultsContainer = (): JSX.Element => {
     }).then((res) => res.json());
   };
 
-  const { data, error } = useSWR(queryString, fetcher, {
-    revalidateOnFocus: false,
-  });
+  const { data, error } = useSWR(queryString, fetcher, { revalidateOnFocus: false });
 
   if (!data && !error) {
     return <GhostList count={size} />;
   }
 
   if (error || initializationError) {
-    return (
-      <ResultsError
-        error={error || initializationError}
-        className='react-search__results'
-        ref={scrollTarget}
-      />
-    );
+    return <ResultsError error={error || initializationError} className='react-search__results' ref={scrollTarget} />;
   }
 
   if (!data?.hits?.hits.length) {

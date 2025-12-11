@@ -39,15 +39,10 @@ function ResultsContainer({
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
   const choices = Boolean(url);
-  const readInitialized = useAtomCallback(
-    useCallback((get) => get(initializedAtom), []),
-  );
+  const readInitialized = useAtomCallback(useCallback((get) => get(initializedAtom), []));
   const setInitialized = useSetAtom(initializedAtom);
 
-  useScrollToResults(
-    scrollTarget,
-    readInitialized() && choices && !loading && !validating,
-  );
+  useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
 
   useEffect(() => {
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
@@ -85,13 +80,7 @@ function ResultsContainer({
         <ResultsHeader
           resultText={
             // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-            <>
-              {Drupal.t(
-                'Start by searching with your address.',
-                {},
-                { context: 'Helsinki near you events search' },
-              )}
-            </>
+            <>{Drupal.t('Start by searching with your address.', {}, { context: 'Helsinki near you events search' })}</>
           }
           ref={scrollTarget}
         />
@@ -121,26 +110,15 @@ function ResultsContainer({
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
             events.map((event) => (
-              <ResultCard
-                key={event.id}
-                {...event}
-                {...(cardsWithBorders && { cardModifierClass: 'card--border' })}
-              />
+              <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
             ))
           )}
-          {!settings.hidePagination && (
-            <Pagination
-              pages={5}
-              totalPages={addLastPage ? pages + 1 : pages}
-            />
-          )}
+          {!settings.hidePagination && <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />}
         </>
       );
     }
 
-    return (
-      <ResultsEmpty wrapperClass='event-list__no-results' ref={scrollTarget} />
-    );
+    return <ResultsEmpty wrapperClass='event-list__no-results' ref={scrollTarget} />;
   };
 
   return (
@@ -149,11 +127,7 @@ function ResultsContainer({
       {seeAllNearYouLink ? (
         <div className='see-all-button see-all-button--near-results'>
           <a data-hds-component='button' href={seeAllNearYouLink}>
-            {Drupal.t(
-              'See all events near you',
-              {},
-              { context: 'Helsinki near you events search' },
-            )}
+            {Drupal.t('See all events near you', {}, { context: 'Helsinki near you events search' })}
           </a>
         </div>
       ) : (

@@ -4,9 +4,7 @@ import type URLParams from '../types/URLParams';
 
 const usePromotedQuery = (baseQuery: string, urlParams: URLParams): string => {
   const { size } = Global;
-  const page = Number.isNaN(Number(urlParams.page))
-    ? 1
-    : Number(urlParams.page);
+  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const promotedQuery = JSON.parse(baseQuery);
 
   const promotedClause = { term: { [IndexFields.PROMOTED]: true } };

@@ -27,8 +27,7 @@ const positionDropdown = (button, relativeElement, options = {}) => {
 
     // If the dropdown is a toast handle the css variables.
     if (isToast) {
-      const toastArrowRight =
-        viewportWidth - buttonRect.right - gutter + buttonWidth / 2;
+      const toastArrowRight = viewportWidth - buttonRect.right - gutter + buttonWidth / 2;
       dropDown.style.setProperty('--toast-arrow-left', 'auto');
       dropDown.style.setProperty('--toast-arrow-right', `${toastArrowRight}px`);
       dropDown.style.setProperty('--toast-arrow-transform', '50%');

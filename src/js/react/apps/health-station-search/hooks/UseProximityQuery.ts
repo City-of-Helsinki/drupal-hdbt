@@ -1,12 +1,7 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
-import {
-  getAddresses,
-  getAddressUrls,
-  getLocationsUrl,
-  parseCoordinates,
-} from '@/react/common/helpers/SubQueries';
+import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/ProximityQuery';
@@ -34,10 +29,7 @@ const UseProximityQuery = (params: SearchParams) => {
       addresses = addresses.filter((_address: any) => _address.results.length);
 
       if (addresses.length) {
-        resolvedName = getNameTranslation(
-          addresses[0].results[0].name,
-          drupalSettings.path.currentLanguage,
-        );
+        resolvedName = getNameTranslation(addresses[0].results[0].name, drupalSettings.path.currentLanguage);
         coordinates = parseCoordinates(addresses);
       }
     }
@@ -48,18 +40,14 @@ const UseProximityQuery = (params: SearchParams) => {
 
     if (coordinates?.length) {
       const [lat, lon] = coordinates;
-      const locationsResponse = await fetch(
-        getLocationsUrl(locationsBaseUrl, lat, lon),
-      );
+      const locationsResponse = await fetch(getLocationsUrl(locationsBaseUrl, lat, lon));
       const locationsData = await locationsResponse.json();
 
       if (!locationsData || !locationsData.results) {
         return null;
       }
 
-      ids = locationsData.results.flatMap(
-        (result: Result) => result.units ?? [],
-      );
+      ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
@@ -78,11 +66,9 @@ const UseProximityQuery = (params: SearchParams) => {
     return { addressName: resolvedName, ...json };
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(
-    `_${Object.values(params).toString()}`,
-    fetcher,
-    { revalidateOnFocus: false },
-  );
+  const { data, error, isLoading, isValidating } = useSWR(`_${Object.values(params).toString()}`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return { data, error, isLoading, isValidating };
 };

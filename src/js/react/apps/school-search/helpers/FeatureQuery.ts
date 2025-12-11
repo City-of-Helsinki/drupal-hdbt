@@ -6,10 +6,7 @@ import type SearchParams from '../types/SearchParams';
 // Filter by current language
 // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 export const languageFilter: any = {
-  term: {
-    [`${IndexFields.LANGUAGE}`]:
-      window.drupalSettings.path.currentLanguage || 'fi',
-  },
+  term: { [`${IndexFields.LANGUAGE}`]: window.drupalSettings.path.currentLanguage || 'fi' },
 };
 
 const getCheckBoxFilters = (params: SearchParams) => {
@@ -31,9 +28,7 @@ const getCheckBoxFilters = (params: SearchParams) => {
       query.push({
         bool: {
           minimum_should_match: 1,
-          should: hits.map((hit) => ({
-            term: { [`additional_filters.${hit}`]: true },
-          })),
+          should: hits.map((hit) => ({ term: { [`additional_filters.${hit}`]: true } })),
         },
       });
     }
@@ -58,25 +53,17 @@ const getDropdownFilters = (filterValues: any, indexField: string) => {
 export const AGGREGATIONS = {
   aggs: {
     ontologywordIds: { terms: { field: 'ontologyword_ids', size: 100 } },
-    ontologywordClarifications: {
-      terms: { field: 'ontologyword_details_clarifications', size: 100 },
-    },
+    ontologywordClarifications: { terms: { field: 'ontologyword_details_clarifications', size: 100 } },
   },
   query: { bool: { filter: [languageFilter] } },
 };
 
 const getQueryString = (params: SearchParams, page: number) => {
   const { size } = AppSettings;
-  const { keyword, a1, a2, b1, b2, weighted_education, bilingual_education } =
-    params;
+  const { keyword, a1, a2, b1, b2, weighted_education, bilingual_education } = params;
 
   const query: BooleanQuery = {
-    bool: {
-      filter: [
-        { term: { search_api_language: drupalSettings.path.currentLanguage } },
-      ],
-      must: [],
-    },
+    bool: { filter: [{ term: { search_api_language: drupalSettings.path.currentLanguage } }], must: [] },
   };
 
   if (keyword?.length) {
@@ -93,14 +80,7 @@ const getQueryString = (params: SearchParams, page: number) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const checkBoxFilters: any = getCheckBoxFilters(params);
   if (checkBoxFilters.length) {
-    query.bool.must = [
-      {
-        nested: {
-          path: 'additional_filters',
-          query: { bool: { must: checkBoxFilters } },
-        },
-      },
-    ];
+    query.bool.must = [{ nested: { path: 'additional_filters', query: { bool: { must: checkBoxFilters } } } }];
   }
 
   if (a1?.length) {
@@ -129,19 +109,13 @@ const getQueryString = (params: SearchParams, page: number) => {
 
   if (weighted_education?.length) {
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-    const dropdownFilters: any = getDropdownFilters(
-      weighted_education,
-      'ontologyword_details_clarifications',
-    );
+    const dropdownFilters: any = getDropdownFilters(weighted_education, 'ontologyword_details_clarifications');
     query.bool.must?.push(...dropdownFilters);
   }
 
   if (bilingual_education?.length) {
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-    const dropdownFilters: any = getDropdownFilters(
-      bilingual_education,
-      'ontologyword_ids',
-    );
+    const dropdownFilters: any = getDropdownFilters(bilingual_education, 'ontologyword_ids');
     query.bool.must?.push(...dropdownFilters);
   }
 

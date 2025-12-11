@@ -4,8 +4,7 @@ import { hobbiesPublicUrl } from '../store';
 import type { Event, EventImage } from '../types/Event';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
-const overDayApart = (start: Date, end: Date) =>
-  start.toDateString() !== end.toDateString();
+const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
 
 // Return start day string with increasing specificity the further apart it is from end date
 const formatStartDate = (start: Date, end: Date) => {
@@ -42,11 +41,9 @@ function ResultCard({
 }: ResultCardProps) {
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const resolvedName =
-    name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
+  const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
 
-  const formatTime = (date: Date) =>
-    date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
+  const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
   const getDate = () => {
     let startDate: Date;
@@ -97,16 +94,11 @@ function ResultCard({
 
   const getOffers = (): boolean =>
     offers?.some(
-      ({ info_url }) =>
-        info_url != null &&
-        info_url[currentLanguage] != null &&
-        isValidUrl(info_url[currentLanguage]),
+      ({ info_url }) => info_url != null && info_url[currentLanguage] != null && isValidUrl(info_url[currentLanguage]),
     ) ?? false;
 
   const imageToElement = (image: EventImage): JSX.Element => {
-    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & {
-      'data-photographer'?: string;
-    } = {};
+    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?: string } = {};
 
     if (image.url) {
       imageProps.src = image.url;
@@ -138,14 +130,8 @@ function ResultCard({
     }
 
     return type_id === 'Course'
-      ? {
-          tag: Drupal.t('Hobby', {}, { context: 'Event search: hobby tag' }),
-          color: 'gold',
-        }
-      : {
-          tag: Drupal.t('Event', {}, { context: 'Event search: event tag' }),
-          color: 'fog-medium-light',
-        };
+      ? { tag: Drupal.t('Hobby', {}, { context: 'Event search: hobby tag' }), color: 'gold' }
+      : { tag: Drupal.t('Event', {}, { context: 'Event search: event tag' }), color: 'fog-medium-light' };
   };
 
   const isRemote = location && location.id === INTERNET_EXCEPTION;
@@ -154,21 +140,11 @@ function ResultCard({
     const tags = [];
 
     if (isRemote) {
-      tags.push({
-        tag: Drupal.t(
-          'Remote participation',
-          {},
-          { context: 'Label for remote events' },
-        ),
-        color: 'silver',
-      });
+      tags.push({ tag: Drupal.t('Remote participation', {}, { context: 'Label for remote events' }), color: 'silver' });
     }
 
     if (isFree) {
-      tags.push({
-        tag: Drupal.t('Free', {}, { context: 'Label for free events' }),
-        color: 'silver',
-      });
+      tags.push({ tag: Drupal.t('Free', {}, { context: 'Label for free events' }), color: 'silver' });
     }
 
     return tags;
@@ -193,14 +169,12 @@ function ResultCard({
 
   const getUrl = () => {
     if (type_id && type_id === 'Course') {
-      const type =
-        { fi: 'kurssit', sv: 'kurser' }[currentLanguage] ?? 'courses';
+      const type = { fi: 'kurssit', sv: 'kurser' }[currentLanguage] ?? 'courses';
 
       return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
     }
 
-    const type =
-      { fi: 'tapahtumat', sv: 'kurser' }[currentLanguage] ?? 'events';
+    const type = { fi: 'tapahtumat', sv: 'kurser' }[currentLanguage] ?? 'events';
 
     return `${baseUrl}/${currentLanguage}/${type}/${id}`;
   };

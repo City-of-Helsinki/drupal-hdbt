@@ -48,53 +48,29 @@ const FeatureFormContainer = () => {
   const b2Options = useAtomValue(b2Atom);
   const [b2Selection, setB2Filter] = useAtom(b2SelectionAtom);
   const weightedOptions = useAtomValue(weightedEducationAtom);
-  const [weightedSelection, setWeightedFilter] = useAtom(
-    weightedEducationSelectionAtom,
-  );
+  const [weightedSelection, setWeightedFilter] = useAtom(weightedEducationSelectionAtom);
   const bilingualOptions = useAtomValue(bilingualEducationAtom);
-  const [bilingualSelection, setBilingualFilter] = useAtom(
-    bilingualEducationSelectionAtom,
-  );
+  const [bilingualSelection, setBilingualFilter] = useAtom(bilingualEducationSelectionAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const {
-      keyword,
-      finnish_education,
-      grades_1_6,
-      grades_1_9,
-      grades_7_9,
-      swedish_education,
-    } = event.target as SubmitFormType;
+    const { keyword, finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education } =
+      event.target as SubmitFormType;
     const params: SearchParams = {};
 
     if (keyword.value?.length) {
       params.keyword = keyword.value;
     }
 
-    [
-      finnish_education,
-      grades_1_6,
-      grades_1_9,
-      grades_7_9,
-      swedish_education,
-    ].forEach((element) => {
+    [finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education].forEach((element) => {
       if (!element || !element.checked || !element.name) {
         return;
       }
 
       const name = element.name as keyof Omit<
         SearchParams,
-        | 'keyword'
-        | 'page'
-        | 'query'
-        | 'a1'
-        | 'a2'
-        | 'b1'
-        | 'b2'
-        | 'weighted_education'
-        | 'bilingual_education'
+        'keyword' | 'page' | 'query' | 'a1' | 'a2' | 'b1' | 'b2' | 'weighted_education' | 'bilingual_education'
       >;
       params[name] = true;
     });
@@ -103,12 +79,8 @@ const FeatureFormContainer = () => {
     params.a2 = a2Selection.map((selection: OptionType) => selection.value);
     params.b1 = b1Selection.map((selection: OptionType) => selection.value);
     params.b2 = b2Selection.map((selection: OptionType) => selection.value);
-    params.weighted_education = weightedSelection.map(
-      (selection: OptionType) => selection.value,
-    );
-    params.bilingual_education = bilingualSelection.flatMap(
-      (selection: OptionType) => selection.value.split(','),
-    );
+    params.weighted_education = weightedSelection.map((selection: OptionType) => selection.value);
+    params.bilingual_education = bilingualSelection.flatMap((selection: OptionType) => selection.value.split(','));
 
     setParams(params);
   };
@@ -116,23 +88,9 @@ const FeatureFormContainer = () => {
   const keys: Array<
     keyof Omit<
       SearchParams,
-      | 'keyword'
-      | 'page'
-      | 'query'
-      | 'a1'
-      | 'a2'
-      | 'b1'
-      | 'b2'
-      | 'weighted_education'
-      | 'bilingual_education'
+      'keyword' | 'page' | 'query' | 'a1' | 'a2' | 'b1' | 'b2' | 'weighted_education' | 'bilingual_education'
     >
-  > = [
-    'grades_1_6',
-    'grades_1_9',
-    'grades_7_9',
-    'finnish_education',
-    'swedish_education',
-  ];
+  > = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education'];
   const a1Label: string = Drupal.t(
     'Language starting in Grade 1 (A1)',
     {},
@@ -163,24 +121,12 @@ const FeatureFormContainer = () => {
     {},
     { context: 'TPR Ontologyword details schools' },
   );
-  const currentLanguage = getCurrentLanguage(
-    window.drupalSettings.path.currentLanguage,
-  );
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form
-      className='hdbt-search--react__form-container'
-      role='search'
-      onSubmit={onSubmit}
-    >
-      <h3>
-        {Drupal.t(
-          'Search with school details',
-          {},
-          { context: 'School search: Feature form title' },
-        )}
-      </h3>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+      <h3>{Drupal.t('Search with school details', {}, { context: 'School search: Feature form title' })}</h3>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
           'You can search for a school by its name, language of instruction, grade or post code.',
@@ -191,11 +137,7 @@ const FeatureFormContainer = () => {
       <TextInput
         className='hdbt-search__filter'
         id='keyword'
-        label={Drupal.t(
-          "School's name or post code",
-          {},
-          { context: 'School search: Feature input label' },
-        )}
+        label={Drupal.t("School's name or post code", {}, { context: 'School search: Feature input label' })}
         name='keyword'
         onChange={({ target: { value } }) => setKeywordValue(value)}
         placeholder={Drupal.t(
@@ -205,38 +147,21 @@ const FeatureFormContainer = () => {
         )}
         type='search'
         value={keywordValue || ''} // Ensure value is always a string.
-        clearButtonAriaLabel={Drupal.t(
-          'Clear',
-          {},
-          { context: 'React search' },
-        )}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         style={defaultTextInputStyle}
       />
       <div className='hdbt-search--react__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
           <legend className='hdbt-search--react__legend'>
-            {Drupal.t(
-              'Language of instruction',
-              {},
-              { context: 'School search: language options' },
-            )}
+            {Drupal.t('Language of instruction', {}, { context: 'School search: language options' })}
           </legend>
           <Checkbox
             checked={stagedParams?.finnish_education || false}
             className='hdbt-search--react__checkbox'
             id='finnish_education'
-            label={Drupal.t(
-              'Finnish',
-              {},
-              { context: 'School search: language option' },
-            )}
+            label={Drupal.t('Finnish', {}, { context: 'School search: language option' })}
             name='finnish_education'
-            onClick={() =>
-              setStagedParams({
-                ...stagedParams,
-                finnish_education: !stagedParams?.finnish_education,
-              })
-            }
+            onClick={() => setStagedParams({ ...stagedParams, finnish_education: !stagedParams?.finnish_education })}
             value={stagedParams?.finnish_education?.toString() || 'false'}
             style={defaultCheckboxStyle}
           />
@@ -244,46 +169,24 @@ const FeatureFormContainer = () => {
             checked={stagedParams?.swedish_education || false}
             className='hdbt-search--react__checkbox'
             id='swedish_education'
-            label={Drupal.t(
-              'Swedish',
-              {},
-              { context: 'School search: language option' },
-            )}
+            label={Drupal.t('Swedish', {}, { context: 'School search: language option' })}
             name='swedish_education'
-            onClick={() =>
-              setStagedParams({
-                ...stagedParams,
-                swedish_education: !stagedParams?.swedish_education,
-              })
-            }
+            onClick={() => setStagedParams({ ...stagedParams, swedish_education: !stagedParams?.swedish_education })}
             value={stagedParams?.swedish_education?.toString() || 'false'}
             style={defaultCheckboxStyle}
           />
         </fieldset>
         <fieldset className='hdbt-search--react__fieldset'>
           <legend className='hdbt-search--react__legend'>
-            {Drupal.t(
-              'Grade',
-              {},
-              { context: 'School search: education level' },
-            )}
+            {Drupal.t('Grade', {}, { context: 'School search: education level' })}
           </legend>
           <Checkbox
             checked={stagedParams?.grades_1_6 || false}
             className='hdbt-search--react__checkbox'
             id='grades_1_6'
-            label={Drupal.t(
-              'School providing grades 1 to 6',
-              {},
-              { context: 'School search: education level option' },
-            )}
+            label={Drupal.t('School providing grades 1 to 6', {}, { context: 'School search: education level option' })}
             name='grades_1_6'
-            onClick={() =>
-              setStagedParams({
-                ...stagedParams,
-                grades_1_6: !stagedParams?.grades_1_6,
-              })
-            }
+            onClick={() => setStagedParams({ ...stagedParams, grades_1_6: !stagedParams?.grades_1_6 })}
             value={stagedParams?.grades_1_6?.toString() || 'false'}
             style={defaultCheckboxStyle}
           />
@@ -291,18 +194,9 @@ const FeatureFormContainer = () => {
             checked={stagedParams?.grades_1_9 || false}
             className='hdbt-search--react__checkbox'
             id='grades_1_9'
-            label={Drupal.t(
-              'School providing grades 1 to 9',
-              {},
-              { context: 'School search: education level option' },
-            )}
+            label={Drupal.t('School providing grades 1 to 9', {}, { context: 'School search: education level option' })}
             name='grades_1_9'
-            onClick={() =>
-              setStagedParams({
-                ...stagedParams,
-                grades_1_9: !stagedParams?.grades_1_9,
-              })
-            }
+            onClick={() => setStagedParams({ ...stagedParams, grades_1_9: !stagedParams?.grades_1_9 })}
             value={stagedParams?.grades_1_9?.toString() || 'false'}
             style={defaultCheckboxStyle}
           />
@@ -310,18 +204,9 @@ const FeatureFormContainer = () => {
             checked={stagedParams?.grades_7_9 || false}
             className='hdbt-search--react__checkbox'
             id='grades_7_9'
-            label={Drupal.t(
-              'School providing grades 7 to 9',
-              {},
-              { context: 'School search: education level option' },
-            )}
+            label={Drupal.t('School providing grades 7 to 9', {}, { context: 'School search: education level option' })}
             name='grades_7_9'
-            onClick={() =>
-              setStagedParams({
-                ...stagedParams,
-                grades_7_9: !stagedParams?.grades_7_9,
-              })
-            }
+            onClick={() => setStagedParams({ ...stagedParams, grades_7_9: !stagedParams?.grades_7_9 })}
             value={stagedParams?.grades_7_9?.toString() || 'false'}
             style={defaultCheckboxStyle}
           />
@@ -341,11 +226,7 @@ const FeatureFormContainer = () => {
           texts={{
             label: a1Label,
             language: currentLanguage,
-            placeholder: Drupal.t(
-              'All languages',
-              {},
-              { context: 'School search: language placeholder' },
-            ),
+            placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t(
               'Clear @label selection',
               { '@label': a2Label },
@@ -373,11 +254,7 @@ const FeatureFormContainer = () => {
           texts={{
             label: a2Label,
             language: currentLanguage,
-            placeholder: Drupal.t(
-              'All languages',
-              {},
-              { context: 'School search: language placeholder' },
-            ),
+            placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t(
               'Clear @label selection',
               { '@label': a2Label },
@@ -405,11 +282,7 @@ const FeatureFormContainer = () => {
           texts={{
             label: b1Label,
             language: currentLanguage,
-            placeholder: Drupal.t(
-              'All languages',
-              {},
-              { context: 'School search: language placeholder' },
-            ),
+            placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t(
               'Clear @label selection',
               { '@label': b1Label },
@@ -437,11 +310,7 @@ const FeatureFormContainer = () => {
           texts={{
             label: b2Label,
             language: currentLanguage,
-            placeholder: Drupal.t(
-              'All languages',
-              {},
-              { context: 'School search: language placeholder' },
-            ),
+            placeholder: Drupal.t('All languages', {}, { context: 'School search: language placeholder' }),
             clearButtonAriaLabel_one: Drupal.t(
               'Clear @label selection',
               { '@label': b2Label },
@@ -469,11 +338,7 @@ const FeatureFormContainer = () => {
           texts={{
             label: weightedEducationLabel,
             language: currentLanguage,
-            placeholder: Drupal.t(
-              'All',
-              {},
-              { context: 'React search all placeholder' },
-            ),
+            placeholder: Drupal.t('All', {}, { context: 'React search all placeholder' }),
             clearButtonAriaLabel_one: Drupal.t(
               'Clear @label selection',
               { '@label': weightedEducationLabel },
@@ -501,11 +366,7 @@ const FeatureFormContainer = () => {
           texts={{
             label: bilingualEducationLabel,
             language: currentLanguage,
-            placeholder: Drupal.t(
-              'All',
-              {},
-              { context: 'React search all placeholder' },
-            ),
+            placeholder: Drupal.t('All', {}, { context: 'React search all placeholder' }),
             clearButtonAriaLabel_one: Drupal.t(
               'Clear @label selection',
               { '@label': bilingualEducationLabel },
@@ -523,11 +384,7 @@ const FeatureFormContainer = () => {
       </div>
       <div className='hdbt-search--react__submit'>
         <Button className='hdbt-search--react__submit-button' type='submit'>
-          {Drupal.t(
-            'Search',
-            {},
-            { context: 'React search: submit button label' },
-          )}
+          {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
         </Button>
       </div>
       <SelectionsContainer keys={keys} />

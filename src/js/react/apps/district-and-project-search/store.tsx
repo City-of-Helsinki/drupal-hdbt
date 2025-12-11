@@ -27,9 +27,7 @@ const getParams = (searchParams: URLSearchParams) => {
     } else {
       const existing = params[key];
       if (existing) {
-        params[key] = Array.isArray(existing)
-          ? [...existing, value]
-          : [existing, value];
+        params[key] = Array.isArray(existing) ? [...existing, value] : [existing, value];
       } else {
         params[key] = [value];
       }
@@ -41,9 +39,7 @@ const getParams = (searchParams: URLSearchParams) => {
   return params;
 };
 
-export const urlAtom = atom<URLParams>(
-  getParams(new URLSearchParams(window.location.search)),
-);
+export const urlAtom = atom<URLParams>(getParams(new URLSearchParams(window.location.search)));
 
 export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
   // set atom value

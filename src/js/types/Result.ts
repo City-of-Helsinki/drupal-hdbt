@@ -4,13 +4,7 @@ interface Result<Type> {
   _score: string;
   _source: Type;
   inner_hits: {
-    [key: string]: {
-      hits: {
-        total: { value: number; relation: string };
-        max_score: number;
-        hits: Result<Type>[];
-      };
-    };
+    [key: string]: { hits: { total: { value: number; relation: string }; max_score: number; hits: Result<Type>[] } };
   };
 }
 

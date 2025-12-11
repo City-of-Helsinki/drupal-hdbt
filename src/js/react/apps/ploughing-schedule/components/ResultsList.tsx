@@ -16,12 +16,7 @@ type ResultsListProps = {
   isValidating: boolean;
 };
 
-const ResultsList = ({
-  data,
-  error,
-  isLoading,
-  isValidating,
-}: ResultsListProps) => {
+const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps) => {
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
   const choices = Boolean(Object.keys(params).length);
@@ -41,8 +36,7 @@ const ResultsList = ({
 
   const results = data.hits.hits;
   const several = results.length > 1;
-  const address =
-    params.address?.replace(/^(?![A-Za-z]\d+$)(.*?)(\s*\d+\w?)$/, '$1') ?? '';
+  const address = params.address?.replace(/^(?![A-Za-z]\d+$)(.*?)(\s*\d+\w?)$/, '$1') ?? '';
 
   return (
     <div className='hdbt-search--react__results'>

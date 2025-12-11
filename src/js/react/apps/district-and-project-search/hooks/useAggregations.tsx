@@ -4,11 +4,7 @@ import type Aggregations from '../types/Aggregations';
 import type { AggregationItem, CustomAggs } from '../types/Aggregations';
 import type OptionType from '../types/OptionType';
 
-export default function useAggregations(
-  aggregations: Aggregations,
-  indexKey: string,
-  filterKey: string,
-) {
+export default function useAggregations(aggregations: Aggregations, indexKey: string, filterKey: string) {
   let options: OptionType[] = [];
 
   if (aggregations?.[indexKey]?.buckets) {
@@ -22,31 +18,21 @@ export default function useAggregations(
     });
 
     // Combine aggs and hit count.
-    const aggs: CustomAggs = buckets.reduce(
-      (acc: any, current: AggregationItem) => {
-        const existingItem: any = Object.values(acc).find(
-          (value: any) => value.key === current.key,
-        );
+    const aggs: CustomAggs = buckets.reduce((acc: any, current: AggregationItem) => {
+      const existingItem: any = Object.values(acc).find((value: any) => value.key === current.key);
 
-        if (existingItem) {
-          acc[current.key] = {
-            key: current.key,
-            doc_count: existingItem.doc_count + current.doc_count,
-          };
-          return acc;
-        }
-
-        acc[current.key] = current;
+      if (existingItem) {
+        acc[current.key] = { key: current.key, doc_count: existingItem.doc_count + current.doc_count };
         return acc;
-      },
-      [],
-    );
+      }
+
+      acc[current.key] = current;
+      return acc;
+    }, []);
 
     options = aggregations[filterKey].buckets.map((bucket: AggregationItem) => {
       let label = `${capitalize(bucket.key)} (0)`;
-      const match: any = Object.values(aggs).find(
-        (item: any) => item.key === bucket.key,
-      );
+      const match: any = Object.values(aggs).find((item: any) => item.key === bucket.key);
 
       if (match !== undefined) {
         label = `${capitalize(bucket.key)} (${match.doc_count})`;
