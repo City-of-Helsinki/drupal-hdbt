@@ -59,11 +59,9 @@ const useQueryString = (urlParams: URLParams): string => {
   }
 
   if (urlParams?.task_areas?.length) {
-    const taskAreas = Array.isArray(urlParams.task_areas)
-      ? urlParams.task_areas
-      : [urlParams.task_areas];
-
-    must.push({ terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: taskAreas } });
+    must.push({
+      terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas },
+    });
   }
 
   // These values can match either employment or employment_type IDs
@@ -117,24 +115,18 @@ const useQueryString = (urlParams: URLParams): string => {
     });
   }
 
-  if (urlParams?.area_filter) {
-    const areaFilters = Array.isArray(urlParams.area_filter)
-      ? urlParams.area_filter
-      : [urlParams.area_filter];
-
+  if (urlParams?.area_filter?.length) {
     const postalCodes: string[] = [];
-    areaFilters.forEach((areaCode) => {
+    urlParams.area_filter.forEach((areaCode) => {
       postalCodes.push(
         ...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes ||
           []),
       );
     });
 
-    if (postalCodes.length) {
-      query.bool.filter.push({
-        terms: { [IndexFields.POSTAL_CODE]: postalCodes },
-      });
-    }
+    query.bool.filter.push({
+      terms: { [IndexFields.POSTAL_CODE]: postalCodes },
+    });
   }
 
   if (Object.keys(must).length) {
