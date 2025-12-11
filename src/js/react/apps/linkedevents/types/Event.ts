@@ -1,22 +1,12 @@
 type MultilingualString = { fi?: string; en?: string; sv?: string };
 
-export type EventImage = {
-  alt_text: string;
-  id: number;
-  name?: string;
-  photographer_name?: string;
-  url?: string;
-};
+export type EventImage = { alt_text: string; id: number; name?: string; photographer_name?: string; url?: string };
 
 export type EventKeyword = { id: string; name: MultilingualString };
 
 type EventOffers = { info_url: MultilingualString; is_free: boolean };
 
-type EventLocation = {
-  id: string;
-  name?: MultilingualString;
-  street_address?: MultilingualString;
-};
+type EventLocation = { id: string; name?: MultilingualString; street_address?: MultilingualString };
 
 export type Event = {
   end_time: number;

@@ -11,9 +11,7 @@ import type URLParams from '../types/URLParams';
 const useQueryString = (urlParams: URLParams): string => {
   const { size: globalSize, sortOptions } = Global;
   const { promoted } = useAtomValue(configurationsAtom);
-  const page = Number.isNaN(Number(urlParams.page))
-    ? 1
-    : Number(urlParams.page);
+  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const must: any[] = [
     {
@@ -27,11 +25,7 @@ const useQueryString = (urlParams: URLParams): string => {
     must.push({
       bool: {
         should: [
-          {
-            match_phrase_prefix: {
-              [IndexFields.RECRUITMENT_ID]: urlParams.keyword.toString(),
-            },
-          },
+          { match_phrase_prefix: { [IndexFields.RECRUITMENT_ID]: urlParams.keyword.toString() } },
           {
             combined_fields: {
               query: urlParams.keyword.toString().toLowerCase(),
@@ -43,25 +37,15 @@ const useQueryString = (urlParams: URLParams): string => {
               ],
             },
           },
-          {
-            wildcard: {
-              [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword.toString().toLowerCase()}*`,
-            },
-          },
-          {
-            wildcard: {
-              [IndexFields.TITLE]: `*${urlParams.keyword.toString().toLowerCase()}*`,
-            },
-          },
+          { wildcard: { [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword.toString().toLowerCase()}*` } },
+          { wildcard: { [IndexFields.TITLE]: `*${urlParams.keyword.toString().toLowerCase()}*` } },
         ],
       },
     });
   }
 
   if (urlParams?.task_areas?.length) {
-    must.push({
-      terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas },
-    });
+    must.push({ terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas } });
   }
 
   // These values can match either employment or employment_type IDs
@@ -78,55 +62,36 @@ const useQueryString = (urlParams: URLParams): string => {
   }
 
   if (urlParams.continuous) {
-    should.push({
-      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.CONTINUOUS },
-    });
+    should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.CONTINUOUS } });
   }
 
   if (urlParams.internship) {
-    should.push({
-      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.TRAINING },
-    });
+    should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.TRAINING } });
   }
 
   if (urlParams.summer_jobs) {
-    should.push({
-      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SUMMER_JOBS },
-    });
+    should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SUMMER_JOBS } });
   }
 
   if (urlParams.youth_summer_jobs) {
-    should.push({
-      term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.YOUTH_SUMMER_JOBS },
-    });
-    should.push({
-      term: {
-        [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.COOL_SUMMER_PROJECT,
-      },
-    });
+    should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.YOUTH_SUMMER_JOBS } });
+    should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.COOL_SUMMER_PROJECT } });
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const query: any = { bool: { filter: [nodeFilter] } };
 
   if (urlParams.language) {
-    query.bool.filter.push({
-      term: { [IndexFields.LANGUAGE]: urlParams.language.toString() },
-    });
+    query.bool.filter.push({ term: { [IndexFields.LANGUAGE]: urlParams.language.toString() } });
   }
 
   if (urlParams?.area_filter?.length) {
     const postalCodes: string[] = [];
     urlParams.area_filter.forEach((areaCode) => {
-      postalCodes.push(
-        ...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes ||
-          []),
-      );
+      postalCodes.push(...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes || []));
     });
 
-    query.bool.filter.push({
-      terms: { [IndexFields.POSTAL_CODE]: postalCodes },
-    });
+    query.bool.filter.push({ terms: { [IndexFields.POSTAL_CODE]: postalCodes } });
   }
 
   if (Object.keys(must).length) {
@@ -184,19 +149,12 @@ const useQueryString = (urlParams: URLParams): string => {
 
   return JSON.stringify({
     aggs: {
-      [IndexFields.NUMBER_OF_JOBS]: {
-        sum: { field: IndexFields.NUMBER_OF_JOBS, missing: 1 },
-      },
+      [IndexFields.NUMBER_OF_JOBS]: { sum: { field: IndexFields.NUMBER_OF_JOBS, missing: 1 } },
       // Use cardinality agg to calculate total (collapsing affects the total)
-      total_count: {
-        cardinality: { field: `${IndexFields.RECRUITMENT_ID}.keyword` },
-      },
+      total_count: { cardinality: { field: `${IndexFields.RECRUITMENT_ID}.keyword` } },
     },
     // Use collapse to group translations
-    collapse: {
-      field: `${IndexFields.RECRUITMENT_ID}.keyword`,
-      inner_hits: { name: 'translations', size: 3 },
-    },
+    collapse: { field: `${IndexFields.RECRUITMENT_ID}.keyword`, inner_hits: { name: 'translations', size: 3 } },
     from,
     query,
     sort: [sort, '_score'],

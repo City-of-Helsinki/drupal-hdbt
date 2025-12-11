@@ -59,9 +59,4 @@ export type AdministrativeDivision = {
   units: number[];
 };
 
-export type ServiceMapResponse<T> = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: T[];
-};
+export type ServiceMapResponse<T> = { count: number; next: string | null; previous: string | null; results: T[] };

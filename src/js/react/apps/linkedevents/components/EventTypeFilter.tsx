@@ -12,15 +12,12 @@ export const EventTypeFilter = () => {
 
   const toggleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event?.target?.checked;
-    const value =
-      event.target.id === 'event-type-toggle' ? 'General' : 'Course';
+    const value = event.target.id === 'event-type-toggle' ? 'General' : 'Course';
     const newTypeSelections: EventTypeOption[] = checked
       ? [...typeSelections, value]
       : typeSelections.filter((type) => type !== value);
     setTypes(newTypeSelections);
-    updateParams({
-      [ApiKeys.EVENT_TYPE]: typeSelectionsToString(newTypeSelections),
-    });
+    updateParams({ [ApiKeys.EVENT_TYPE]: typeSelectionsToString(newTypeSelections) });
   };
 
   return (
@@ -37,11 +34,7 @@ export const EventTypeFilter = () => {
         checked={typeSelections.includes('Course')}
         className='hdbt-search--react__checkbox'
         id='hobby-type-toggle'
-        label={Drupal.t(
-          'Hobbies',
-          {},
-          { context: 'Event search: hobbies type' },
-        )}
+        label={Drupal.t('Hobbies', {}, { context: 'Event search: hobbies type' })}
         onChange={toggleValue}
         style={defaultCheckboxStyle}
       />

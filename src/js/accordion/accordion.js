@@ -41,9 +41,7 @@ const getAccordionType = (classes) => {
  *   The MutationObserver instance that invoked the callback.
  */
 const callback = (_mutations, observer) => {
-  const items = document.querySelectorAll(
-    `.${HelfiAccordion.accordionWrapper}`,
-  );
+  const items = document.querySelectorAll(`.${HelfiAccordion.accordionWrapper}`);
 
   // Initialize any new accordions that haven’t yet been processed.
   if (items.length > window.helfiAccordions.length) {
@@ -59,16 +57,10 @@ const callback = (_mutations, observer) => {
          * type “default”, unless it’s explicitly “hardcoded”.
          * This ensures that the first accordion gets full toggle-all functionality.
          */
-        const actualType =
-          index === 0 && type !== 'hardcoded' ? 'default' : type;
+        const actualType = index === 0 && type !== 'hardcoded' ? 'default' : type;
 
         // Create the accordion instance.
-        const accordion = new HelfiAccordion(
-          accordionElement,
-          state,
-          hash,
-          actualType,
-        );
+        const accordion = new HelfiAccordion(accordionElement, state, hash, actualType);
         window.helfiAccordions.push(accordion);
 
         /**

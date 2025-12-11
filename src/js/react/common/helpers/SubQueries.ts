@@ -17,28 +17,18 @@ export const getAddressUrls = (address: string) => {
   });
 };
 
-export const getAddresses = (
-  urls: string[],
-): Promise<ServiceMapResponse<ServiceMapAddress>[]> => {
-  const promises = urls.map(async (url: string) =>
-    fetch(url).then((res) => res.json()),
-  );
+export const getAddresses = (urls: string[]): Promise<ServiceMapResponse<ServiceMapAddress>[]> => {
+  const promises = urls.map(async (url: string) => fetch(url).then((res) => res.json()));
 
   return Promise.all(promises);
 };
 
-export const parseCoordinates = (
-  addressData: ServiceMapResponse<ServiceMapAddress>[],
-) => {
+export const parseCoordinates = (addressData: ServiceMapResponse<ServiceMapAddress>[]) => {
   const [lon, lat]: number[] = addressData[0].results[0].location.coordinates;
   return [lat, lon];
 };
 
-export const getLocationsUrl = (
-  locationsBaseUrl: string,
-  lat: number | undefined,
-  lon: number | undefined,
-) => {
+export const getLocationsUrl = (locationsBaseUrl: string, lat: number | undefined, lon: number | undefined) => {
   const url = new URL(locationsBaseUrl);
   const params = new URLSearchParams(url.search);
 

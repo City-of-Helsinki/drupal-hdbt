@@ -1,17 +1,11 @@
 import type BooleanQuery from '@/types/BooleanQuery';
 import AppSettings from '../enum/AppSettings';
 
-const getQueryString = (
-  ids: number[] | null,
-  coordinates: number[] | null,
-  page: number,
-) => {
+const getQueryString = (ids: number[] | null, coordinates: number[] | null, page: number) => {
   const { size } = AppSettings;
   const lang = drupalSettings.path.currentLanguage;
 
-  const query: BooleanQuery = {
-    bool: { filter: [{ term: { search_api_language: lang } }] },
-  };
+  const query: BooleanQuery = { bool: { filter: [{ term: { search_api_language: lang } }] } };
 
   if (ids && Array.isArray(ids)) {
     query.bool.must = [{ terms: { id: ids } }];
@@ -26,9 +20,9 @@ const getQueryString = (
               boost: 1,
               filter: {
                 term: {
-                  [lang === 'sv'
-                    ? 'additional_filters.swedish_education'
-                    : 'additional_filters.finnish_education']: { value: true },
+                  [lang === 'sv' ? 'additional_filters.swedish_education' : 'additional_filters.finnish_education']: {
+                    value: true,
+                  },
                 },
               },
             },

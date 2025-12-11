@@ -55,27 +55,11 @@ function FormContainer() {
   };
 
   const bothCheckboxes = showFreeFilter && showRemoteFilter;
-  const showOnlyLabel = Drupal.t(
-    'Show only',
-    {},
-    { context: 'Events search: event type prefix' },
-  );
-  const freeTranslation = Drupal.t(
-    'Free-of-charge',
-    {},
-    { context: 'Events search: free filter label' },
-  );
-  const remoteTranslation = Drupal.t(
-    'Remote participation',
-    {},
-    { context: 'Events search: remote filter label' },
-  );
-  const freeLabel = bothCheckboxes
-    ? freeTranslation
-    : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
-  const remoteLabel = bothCheckboxes
-    ? remoteTranslation
-    : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
+  const showOnlyLabel = Drupal.t('Show only', {}, { context: 'Events search: event type prefix' });
+  const freeTranslation = Drupal.t('Free-of-charge', {}, { context: 'Events search: free filter label' });
+  const remoteTranslation = Drupal.t('Remote participation', {}, { context: 'Events search: remote filter label' });
+  const freeLabel = bothCheckboxes ? freeTranslation : `${showOnlyLabel} ${freeTranslation.toLowerCase()}`;
+  const remoteLabel = bothCheckboxes ? remoteTranslation : `${showOnlyLabel} ${remoteTranslation.toLowerCase()}`;
 
   const showForm =
     showLocation ||
@@ -93,25 +77,13 @@ function FormContainer() {
   let heading = '';
   switch (eventListType) {
     case 'events':
-      heading = Drupal.t(
-        'Filter events',
-        {},
-        { context: 'Events search: search form title' },
-      );
+      heading = Drupal.t('Filter events', {}, { context: 'Events search: search form title' });
       break;
     case 'hobbies':
-      heading = Drupal.t(
-        'Filter hobbies',
-        {},
-        { context: 'Events search: search form title' },
-      );
+      heading = Drupal.t('Filter hobbies', {}, { context: 'Events search: search form title' });
       break;
     case 'events_and_hobbies':
-      heading = Drupal.t(
-        'Filter events and hobbies',
-        {},
-        { context: 'Events search: search form title' },
-      );
+      heading = Drupal.t('Filter events and hobbies', {}, { context: 'Events search: search form title' });
       break;
     default:
       break;
@@ -119,36 +91,18 @@ function FormContainer() {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form
-      className='hdbt-search--react__form-container'
-      role='search'
-      onSubmit={handleSubmit}
-    >
-      {!hideHeading && (
-        <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>
-      )}
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
+      {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
       <div className='event-form__filters-container'>
         {useLocationSearch && (
           <AddressSearch
-            clearButtonAriaLabel={Drupal.t(
-              'Clear',
-              {},
-              { context: 'React search' },
-            )}
+            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
             hideSearchButton
             id='location'
-            label={Drupal.t(
-              'Address',
-              {},
-              { context: 'React search: location label' },
-            )}
+            label={Drupal.t('Address', {}, { context: 'React search: location label' })}
             onChange={(value: string) => updateAddress(value)}
             onSubmit={(value: string) => updateAddress(value)}
-            placeholder={Drupal.t(
-              'For example, Kotikatu 1',
-              {},
-              { context: 'Helsinki near you events search' },
-            )}
+            placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Helsinki near you events search' })}
             value={address || ''}
             visibleSuggestions={5}
           />
@@ -157,12 +111,7 @@ function FormContainer() {
           {showTopicsFilter && <TopicsFilter />}
           {useFullTopicsFilter && <FullTopicsFilter />}
           {useTargetGroupFilter && <TargetGroupFilter />}
-          {showLocation &&
-            (useFullLocationFilter ? (
-              <FullLocationFilter />
-            ) : (
-              <LocationFilter />
-            ))}
+          {showLocation && (useFullLocationFilter ? <FullLocationFilter /> : <LocationFilter />)}
           {showTimeFilter && <DateSelect />}
           {showLanguageFilter && <LanguageFilter />}
         </div>
@@ -170,11 +119,7 @@ function FormContainer() {
           <div className='hdbt-search--react__checkbox-filter-container'>
             <fieldset className='hdbt-search--react__fieldset'>
               <legend className='hdbt-search--react__legend'>
-                {Drupal.t(
-                  'Type',
-                  {},
-                  { context: 'Event search: type filter label' },
-                )}
+                {Drupal.t('Type', {}, { context: 'Event search: type filter label' })}
               </legend>
               <EventTypeFilter />
             </fieldset>
@@ -183,11 +128,7 @@ function FormContainer() {
         {(showFreeFilter || showRemoteFilter) && (
           <div className='hdbt-search--react__checkbox-filter-container'>
             <fieldset className='hdbt-search--react__fieldset'>
-              {bothCheckboxes && (
-                <legend className='hdbt-search--react__legend'>
-                  {showOnlyLabel}
-                </legend>
-              )}
+              {bothCheckboxes && <legend className='hdbt-search--react__legend'>{showOnlyLabel}</legend>}
               {showRemoteFilter && (
                 <CheckboxFilter
                   id='remote-toggle'
@@ -197,19 +138,12 @@ function FormContainer() {
                 />
               )}
               {showFreeFilter && (
-                <CheckboxFilter
-                  id='free-toggle'
-                  label={freeLabel}
-                  atom={freeFilterAtom}
-                  valueKey={ApiKeys.FREE}
-                />
+                <CheckboxFilter id='free-toggle' label={freeLabel} atom={freeFilterAtom} valueKey={ApiKeys.FREE} />
               )}
             </fieldset>
           </div>
         )}
-        <SubmitButton
-          disabled={errors.invalidEndDate || errors.invalidStartDate}
-        />
+        <SubmitButton disabled={errors.invalidEndDate || errors.invalidStartDate} />
         <SelectionsContainer />
       </div>
     </form>

@@ -8,19 +8,9 @@ const useInitialQuery = () => {
 
   const getAggQuery = (key: string, vid: string) => ({
     aggs: {
-      [key]: {
-        multi_terms: {
-          terms: [{ field: 'name' }, { field: 'tid' }],
-          size: 100000,
-          order: { _key: 'asc' },
-        },
-      },
+      [key]: { multi_terms: { terms: [{ field: 'name' }, { field: 'tid' }], size: 100000, order: { _key: 'asc' } } },
     },
-    query: {
-      bool: {
-        filter: [{ term: { vid } }, termFilter, ...languageFilter.bool.filter],
-      },
-    },
+    query: { bool: { filter: [{ term: { vid } }, termFilter, ...languageFilter.bool.filter] } },
     size: 10000,
   });
 

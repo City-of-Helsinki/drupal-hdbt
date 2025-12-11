@@ -3,20 +3,12 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import ApiKeys from '../enum/ApiKeys';
-import {
-  loadableUrlAtom,
-  settingsAtom,
-  updateUrlAtom,
-  useFixturesAtom,
-} from '../store';
+import { loadableUrlAtom, settingsAtom, updateUrlAtom, useFixturesAtom } from '../store';
 import type Event from '../types/Event';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 
-type ResponseType = {
-  data: Event[];
-  meta: { count: number; next?: string; previous?: string };
-};
+type ResponseType = { data: Event[]; meta: { count: number; next?: string; previous?: string } };
 
 const SWR_REFRESH_OPTIONS = {
   errorRetryCount: 3,
@@ -74,26 +66,21 @@ const SearchContainer = () => {
   };
 
   const shouldFetch =
-    urlData.state === 'hasData' &&
-    (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
+    urlData.state === 'hasData' && (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
 
   // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
-  const { data, error, isLoading, isValidating } = useSWR(
-    shouldFetch ? urlData.data : null,
-    getEvents,
-    {
-      ...SWR_REFRESH_OPTIONS,
-      onErrorRetry(_err, _key, _config, revalidate, revalidateOpts) {
-        if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
-          setRetriesExhausted(true);
-          return;
-        }
+  const { data, error, isLoading, isValidating } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
+    ...SWR_REFRESH_OPTIONS,
+    onErrorRetry(_err, _key, _config, revalidate, revalidateOpts) {
+      if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
+        setRetriesExhausted(true);
+        return;
+      }
 
-        revalidate({ ...revalidateOpts });
-      },
-      keepPreviousData: true,
+      revalidate({ ...revalidateOpts });
     },
-  );
+    keepPreviousData: true,
+  });
 
   return (
     <>

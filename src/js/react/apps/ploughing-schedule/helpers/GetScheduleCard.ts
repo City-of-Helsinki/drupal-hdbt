@@ -26,11 +26,7 @@ const getScheduleCard = (maintenanceClass: number, several?: boolean) => {
     );
 
     return {
-      title: Drupal.t(
-        'Estimated ploughing schedule',
-        {},
-        { context: 'Ploughing schedule: Result title' },
-      ),
+      title: Drupal.t('Estimated ploughing schedule', {}, { context: 'Ploughing schedule: Result title' }),
       description: parse(schedules[maintenanceClass]),
       lead: several ? leadText : '',
     };

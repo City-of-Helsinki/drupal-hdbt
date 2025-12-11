@@ -2,12 +2,7 @@ import type { ImgHTMLAttributes } from 'react';
 
 type ImageUrls = { [key: string]: string };
 
-type ImageOverride = {
-  alt?: string;
-  photographer?: string;
-  title?: string;
-  variants: { [key: string]: string };
-};
+type ImageOverride = { alt?: string; photographer?: string; title?: string; variants: { [key: string]: string } };
 
 type CardPictureProps = {
   photographer?: string;
@@ -73,12 +68,7 @@ const CardPicture = (props: CardPictureProps) => {
           type={source.type}
         />
       ))}
-      <img
-        src={derivedSrc}
-        alt=''
-        data-photographer={photographer || imageOverride?.photographer}
-        {...rest}
-      />
+      <img src={derivedSrc} alt='' data-photographer={photographer || imageOverride?.photographer} {...rest} />
     </picture>
   );
 };
