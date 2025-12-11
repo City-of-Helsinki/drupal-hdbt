@@ -200,9 +200,14 @@ const FormContainer = () => {
         name={SearchComponents.KEYWORD}
         onChange={handleKeywordChange}
         placeholder={Drupal.t(
-          'Eg. title, location, department',
+          'E.g. psychologist or sports services',
           {},
           { context: 'HELfi Rekry job search keyword placeholder' },
+        )}
+        helperText={Drupal.t(
+          'Enter a title or location, for example',
+          {},
+          { context: 'HELfi Rekry job search keyword input helper' },
         )}
         type='search'
         value={keyword}
@@ -274,7 +279,7 @@ const FormContainer = () => {
                 label: employmentRelationshipLabel,
                 language: currentLanguage,
                 placeholder: Drupal.t(
-                  'All types of employment',
+                  'All employment types',
                   {},
                   { context: 'Employment filter placeholder' },
                 ),
