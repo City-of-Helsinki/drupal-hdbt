@@ -73,14 +73,6 @@
   }
 }
 
-.table-of-contents__js {
-  display: none;
-
-  &[data-js="true"] {
-    display: block;
-  }
-}
-
 .table-of-contents__nojs {
   background-color: $color-black-5;
   display: flex;
