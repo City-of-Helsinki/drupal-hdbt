@@ -42,11 +42,13 @@ const ResultsContainer = () => {
   };
 
   const getResults = () => {
-    if (!data && !error) {
+    // Show the GhostCards when the search is loading its inital state
+    // and when the filters are applied and new results are fetched.
+    if (isLoading || isValidating) {
       return <GhostList count={size} />;
     }
 
-    if (error || initializationError || data.error) {
+    if (error || initializationError || data?.error) {
       return (
         <ResultsError
           error={error || initializationError || data.error}
@@ -56,7 +58,7 @@ const ResultsContainer = () => {
       );
     }
 
-    const { results, jobs, total } = handleResults(data);
+    const { results, jobs, total } = handleResults(data || {});
 
     if (total <= 0) {
       return (
@@ -101,12 +103,14 @@ const ResultsContainer = () => {
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
-        <Pagination
-          currentPage={currentPage}
-          pages={5}
-          totalPages={pages}
-          updatePage={updatePage}
-        />
+        {pages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            pages={5}
+            totalPages={pages}
+            updatePage={updatePage}
+          />
+        )}
       </>
     );
   };
