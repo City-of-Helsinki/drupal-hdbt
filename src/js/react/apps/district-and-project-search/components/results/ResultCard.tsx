@@ -21,23 +21,12 @@ const ResultCard = ({
   field_project_theme_name,
   field_district_subdistricts_title_for_ui,
 }: Result) => {
-  const linkUrl = field_project_external_website
-    ? field_project_external_website[0]
-    : `${url}`;
-  let imageUrl = project_image_absolute_url
-    ? project_image_absolute_url[0]
-    : '';
-  imageUrl = district_image_absolute_url
-    ? district_image_absolute_url[0]
-    : imageUrl;
-  let imageAlt =
-    field_project_image_alt && field_project_image_alt?.[0] !== '""'
-      ? field_project_image_alt[0]
-      : '';
+  const linkUrl = field_project_external_website ? field_project_external_website[0] : `${url}`;
+  let imageUrl = project_image_absolute_url ? project_image_absolute_url[0] : '';
+  imageUrl = district_image_absolute_url ? district_image_absolute_url[0] : imageUrl;
+  let imageAlt = field_project_image_alt && field_project_image_alt?.[0] !== '""' ? field_project_image_alt[0] : '';
   imageAlt =
-    field_district_image_alt && field_district_image_alt?.[0] !== '""'
-      ? field_district_image_alt[0]
-      : imageAlt;
+    field_district_image_alt && field_district_image_alt?.[0] !== '""' ? field_district_image_alt[0] : imageAlt;
 
   const getImage = () => {
     if (!imageUrl || !imageUrl.length || !imageUrl[0]) {
@@ -68,10 +57,7 @@ const ResultCard = ({
   const getVisibleTime = (dateString: string): string => {
     const dateObject = new Date(dateString);
     // en-US because the date is displayed month/year.
-    return dateObject.toLocaleString('en-US', {
-      month: '2-digit',
-      year: 'numeric',
-    });
+    return dateObject.toLocaleString('en-US', { month: '2-digit', year: 'numeric' });
   };
 
   const getHtmlTime = (dateString: string): string => {
@@ -94,22 +80,14 @@ const ResultCard = ({
       <>
         {project_plan_schedule && (
           <span className='metadata__item--schedule metadata__item--schedule--plan-schedule'>
-            {Drupal.t(
-              'planning',
-              {},
-              { context: 'District and project search' },
-            )}
+            {Drupal.t('planning', {}, { context: 'District and project search' })}
             {getTimeItem(project_plan_schedule)}
           </span>
         )}
         {project_plan_schedule && project_execution_schedule && ' '}
         {project_execution_schedule && (
           <span className='metadata__item--schedule'>
-            {Drupal.t(
-              'execution',
-              {},
-              { context: 'District and project search' },
-            )}
+            {Drupal.t('execution', {}, { context: 'District and project search' })}
             {getTimeItem(project_execution_schedule)}
           </span>
         )}
@@ -119,15 +97,11 @@ const ResultCard = ({
 
   let location: string | undefined;
   if (field_project_district_title_for_ui) {
-    location = field_project_district_title_for_ui
-      .map((item) => item)
-      .join(', ');
+    location = field_project_district_title_for_ui.map((item) => item).join(', ');
   }
 
   if (field_district_subdistricts_title_for_ui) {
-    location = field_district_subdistricts_title_for_ui
-      .map((item) => item)
-      .join(', ');
+    location = field_district_subdistricts_title_for_ui.map((item) => item).join(', ');
   }
 
   return (
@@ -139,9 +113,7 @@ const ResultCard = ({
       cardUrlExternal={!!field_project_external_website}
       cardCategoryTag={cardCategoryTag}
       location={location}
-      theme={field_project_theme_name
-        ?.map((item) => capitalize(item))
-        .join(', ')}
+      theme={field_project_theme_name?.map((item) => capitalize(item)).join(', ')}
       daterange={schedule && schedule}
     />
   );

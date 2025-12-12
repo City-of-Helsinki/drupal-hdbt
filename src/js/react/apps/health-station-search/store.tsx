@@ -10,23 +10,18 @@ export const configurationsAtom = atom(() => {
 
 export const paramsAtom = atom<SearchParams>({});
 export const stagedParamsAtom = atom<SearchParams>({});
-export const updateParamsAtom = atom(
-  null,
-  (_get, set, params: SearchParams) => {
-    const urlSearchParams: { [key: string]: string } = {};
-    Object.keys(params).forEach((key: string) => {
-      if (key === 'query') {
-        return;
-      }
+export const updateParamsAtom = atom(null, (_get, set, params: SearchParams) => {
+  const urlSearchParams: { [key: string]: string } = {};
+  Object.keys(params).forEach((key: string) => {
+    if (key === 'query') {
+      return;
+    }
 
-      urlSearchParams[key as string] = String(
-        params[key as keyof SearchParams],
-      );
-    });
-    const query = new URLSearchParams(urlSearchParams).toString();
-    set(stagedParamsAtom, { ...params, query });
-    set(paramsAtom, { ...params, query });
-  },
-);
+    urlSearchParams[key as string] = String(params[key as keyof SearchParams]);
+  });
+  const query = new URLSearchParams(urlSearchParams).toString();
+  set(stagedParamsAtom, { ...params, query });
+  set(paramsAtom, { ...params, query });
+});
 
 export const keywordAtom = atom<string | undefined>('');

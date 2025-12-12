@@ -33,9 +33,7 @@ const SelectionsContainer = () => {
   const remoteFilter = useAtomValue(remoteFilterAtom);
   const startDate = useAtomValue(startDateAtom);
   const endDate = useAtomValue(endDateAtom);
-  const [locationSelection, setLocationSelection] = useAtom(
-    locationSelectionAtom,
-  );
+  const [locationSelection, setLocationSelection] = useAtom(locationSelectionAtom);
   const [topicsSelection, setTopicsSelection] = useAtom(topicSelectionAtom);
   const targetGroups = useAtomValue(targetGroupsAtom);
   const [languageSelection, setLanguageSelection] = useAtom(languageAtom);
@@ -59,11 +57,7 @@ const SelectionsContainer = () => {
   }
 
   return (
-    <FilterBulletsWrapper
-      showClearButton={showClearButton}
-      resetForm={resetForm}
-      url={urlData.data}
-    >
+    <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={urlData.data}>
       <ListFilterPills
         updater={setTopicsSelection}
         valueKey={ApiKeys.KEYWORDS}
@@ -83,11 +77,7 @@ const SelectionsContainer = () => {
         values={languageSelection}
         url={urlData.data}
       />
-      <DateFilterPill
-        startDate={startDate}
-        endDate={endDate}
-        url={urlData.data}
-      />
+      <DateFilterPill startDate={startDate} endDate={endDate} url={urlData.data} />
       <CheckboxFilterPill
         label={Drupal.t('Remote events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.REMOTE}
@@ -96,11 +86,7 @@ const SelectionsContainer = () => {
         value={remoteFilter}
       />
       <CheckboxFilterPill
-        label={Drupal.t(
-          'Free-of-charge events',
-          {},
-          { context: 'Events search' },
-        )}
+        label={Drupal.t('Free-of-charge events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.FREE}
         atom={freeFilterAtom}
         url={urlData.data}
@@ -118,12 +104,7 @@ type FilterBulletsProps = {
   url: string | null;
 };
 
-const FilterBullets = ({
-  showClearButton,
-  resetForm,
-  children,
-  url,
-}: FilterBulletsProps) => {
+const FilterBullets = ({ showClearButton, resetForm, children, url }: FilterBulletsProps) => {
   // SelectionWrapper hasContent doesn't work for this, we need to bind the check to
   // showClearButton which checks if any of the filters have values
   if (!showClearButton) {
@@ -145,12 +126,7 @@ type ListFilterBulletsProps = {
   url: string | null;
 };
 
-const ListFilterBullets = ({
-  updater,
-  values,
-  valueKey,
-  url,
-}: ListFilterBulletsProps) => {
+const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBulletsProps) => {
   const updateParams = useSetAtom(updateParamsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
 
@@ -160,9 +136,7 @@ const ListFilterBullets = ({
 
   const removeSelection = (value: string) => {
     const newValue = values;
-    const index = newValue.findIndex(
-      (selection: OptionType) => selection.value === value,
-    );
+    const index = newValue.findIndex((selection: OptionType) => selection.value === value);
     newValue.splice(index, 1);
     updater(newValue);
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
@@ -195,13 +169,7 @@ type CheckboxFilterBulletProps = {
   value: boolean;
 };
 
-const CheckboxFilterBullet = ({
-  atom,
-  valueKey,
-  label,
-  url,
-  value,
-}: CheckboxFilterBulletProps) => {
+const CheckboxFilterBullet = ({ atom, valueKey, label, url, value }: CheckboxFilterBulletProps) => {
   const setValue = useSetAtom(atom);
   const resetParam = useSetAtom(resetParamAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
@@ -222,11 +190,7 @@ const CheckboxFilterBullet = ({
   );
 };
 
-type DateFilterBulletProps = {
-  startDate: DateTime | undefined;
-  endDate: DateTime | undefined;
-  url: string | null;
-};
+type DateFilterBulletProps = { startDate: DateTime | undefined; endDate: DateTime | undefined; url: string | null };
 
 const TypeFilterBullets = ({
   eventTypeSelection,
@@ -248,24 +212,16 @@ const TypeFilterBullets = ({
       {eventTypeSelection.map((selection: EventTypeOption) => (
         <FilterButton
           clearSelection={() => {
-            const value = eventTypeSelection.filter(
-              (type) => type !== selection,
-            );
+            const value = eventTypeSelection.filter((type) => type !== selection);
             setEventTypeSelection(value);
-            updateParams({
-              [ApiKeys.EVENT_TYPE]: typeSelectionsToString(value),
-            });
+            updateParams({ [ApiKeys.EVENT_TYPE]: typeSelectionsToString(value) });
             updateUrl();
           }}
           key={selection}
           value={
             selection === 'General'
               ? Drupal.t('Events', {}, { context: 'Event search: events type' })
-              : Drupal.t(
-                  'Hobbies',
-                  {},
-                  { context: 'Event search: hobbies type' },
-                )
+              : Drupal.t('Hobbies', {}, { context: 'Event search: hobbies type' })
           }
         />
       ))}
@@ -273,11 +229,7 @@ const TypeFilterBullets = ({
   );
 };
 
-const DateFilterBullet = ({
-  startDate,
-  endDate,
-  url,
-}: DateFilterBulletProps) => {
+const DateFilterBullet = ({ startDate, endDate, url }: DateFilterBulletProps) => {
   const setStartDate = useSetAtom(startDateAtom);
   const setEndDate = useSetAtom(endDateAtom);
   const resetParam = useSetAtom(resetParamAtom);
@@ -301,13 +253,7 @@ const DateFilterBullet = ({
   );
 };
 
-const TargetGroupsBullets = ({
-  targetGroups,
-  url,
-}: {
-  targetGroups: OptionType[];
-  url: string | null;
-}) => {
+const TargetGroupsBullets = ({ targetGroups, url }: { targetGroups: OptionType[]; url: string | null }) => {
   const setTargetGroups = useSetAtom(targetGroupsAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
@@ -321,9 +267,7 @@ const TargetGroupsBullets = ({
       {targetGroups.map((selection: OptionType) => (
         <FilterButton
           clearSelection={() => {
-            const value = targetGroups.filter(
-              (targetGroup) => targetGroup.value !== selection.value,
-            );
+            const value = targetGroups.filter((targetGroup) => targetGroup.value !== selection.value);
             setTargetGroups(value);
             updateParams(targetGroupsToParams(value));
             updateUrl();

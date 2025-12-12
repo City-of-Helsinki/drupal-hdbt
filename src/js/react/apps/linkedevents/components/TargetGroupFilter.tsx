@@ -22,11 +22,7 @@ export const TargetGroupFilter = () => {
       .map(([label, _value]) => ({ label, value: label }))
       .sort((a, b) => a.label.localeCompare(b.label));
 
-  const selectLabel = Drupal.t(
-    'Target group',
-    {},
-    { context: 'Event search: target group label' },
-  );
+  const selectLabel = Drupal.t('Target group', {}, { context: 'Event search: target group label' });
 
   return (
     <div className='hdbt-search__filter'>
@@ -49,14 +45,8 @@ export const TargetGroupFilter = () => {
             { context: 'React search clear selection label' },
           ),
           label: selectLabel,
-          language: getCurrentLanguage(
-            window.drupalSettings.path.currentLanguage,
-          ),
-          placeholder: Drupal.t(
-            'All target groups',
-            {},
-            { context: 'Event search: target group placeholder' },
-          ),
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+          placeholder: Drupal.t('All target groups', {}, { context: 'Event search: target group placeholder' }),
         }}
         theme={defaultSelectTheme}
         value={targetGroupSelection}

@@ -23,11 +23,9 @@ const UseQuery = (params: SearchParams) => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(
-    `_${Object.values(params).toString()}`,
-    fetcher,
-    { revalidateOnFocus: false },
-  );
+  const { data, error, isLoading, isValidating } = useSWR(`_${Object.values(params).toString()}`, fetcher, {
+    revalidateOnFocus: false,
+  });
 
   return { data, error, isLoading, isValidating };
 };

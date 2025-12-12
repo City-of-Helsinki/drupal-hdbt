@@ -20,8 +20,7 @@ const MODE_OPTIONS = {
 };
 
 const SearchContainer = () => {
-  const { data: configurations, error: configurationsError } =
-    UseConfigurationsQuery();
+  const { data: configurations, error: configurationsError } = UseConfigurationsQuery();
   const [searchMode, setSearchMode] = useState<string>(MODE_OPTIONS.proximity);
   const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
@@ -65,11 +64,7 @@ const SearchContainer = () => {
           aria-controls='school-search-tabpanel-proximity'
           onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}
         >
-          {Drupal.t(
-            'Search for your local school',
-            {},
-            { context: 'School search: local search title' },
-          )}
+          {Drupal.t('Search for your local school', {}, { context: 'School search: local search title' })}
         </button>
         <button
           id='school-search-tab-feature'
@@ -80,36 +75,18 @@ const SearchContainer = () => {
           aria-controls='school-search-tabpanel-feature'
           onClick={() => changeSearchMode(MODE_OPTIONS.feature)}
         >
-          {Drupal.t(
-            'Search with school information',
-            {},
-            { context: 'School search: Feature form title' },
-          )}
+          {Drupal.t('Search with school information', {}, { context: 'School search: Feature form title' })}
         </button>
       </div>
-      <ErrorBoundary
-        fallback={
-          <ResultsError
-            error={new Error('Error loading school search results')}
-          />
-        }
-      >
+      <ErrorBoundary fallback={<ResultsError error={new Error('Error loading school search results')} />}>
         <Suspense fallback={<GhostList count={AppSettings.size} />}>
           {searchMode === MODE_OPTIONS.proximity ? (
-            <div
-              id='school-search-tabpanel-proximity'
-              role='tabpanel'
-              aria-labelledby='school-search-tab-proximity'
-            >
+            <div id='school-search-tabpanel-proximity' role='tabpanel' aria-labelledby='school-search-tab-proximity'>
               <ProximityFormContainer initialAddress={initialParams?.address} />
               <ProximityResultsContainer />
             </div>
           ) : (
-            <div
-              id='school-search-tabpanel-feature'
-              role='tabpanel'
-              aria-labelledby='school-search-tab-feature'
-            >
+            <div id='school-search-tabpanel-feature' role='tabpanel' aria-labelledby='school-search-tab-feature'>
               <FeatureFormContainer />
               <FeatureResultsContainer />
             </div>

@@ -69,18 +69,14 @@ export default class AccordionItem {
 
   setAriaOpen = () => {
     AccordionItem.ariaExpandedElements.forEach((className) => {
-      this.element
-        .getElementsByClassName(className)[0]
-        .setAttribute('aria-expanded', this.isOpen);
+      this.element.getElementsByClassName(className)[0].setAttribute('aria-expanded', this.isOpen);
     });
   };
 
   // Show/hide the accordion content with the hidden-attribute.
   setHidden = (noAnimation) => {
     const accordionElement = this.element.closest('.accordion');
-    const accordionItemContent = this.element.getElementsByClassName(
-      AccordionItem.contentElement,
-    )[0];
+    const accordionItemContent = this.element.getElementsByClassName(AccordionItem.contentElement)[0];
 
     // No animation version of show/hide functionality.
     if (noAnimation) {
@@ -106,12 +102,7 @@ export default class AccordionItem {
     if (!this.isOpen) {
       // Get the show/hide animation duration from the css.
       const accordionAnimationDuration =
-        parseInt(
-          getComputedStyle(accordionElement).getPropertyValue(
-            '--js-accordion-open-time',
-          ),
-          10,
-        ) || 200;
+        parseInt(getComputedStyle(accordionElement).getPropertyValue('--js-accordion-open-time'), 10) || 200;
 
       // Delay the attribute change until the animation has been completed.
       setTimeout(() => {
@@ -122,13 +113,10 @@ export default class AccordionItem {
     }
   };
 
-  changeFocus = () =>
-    this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
+  changeFocus = () => this.element.querySelector(`.${AccordionItem.toggleElement}`).focus();
 
   addEventListeners = () => {
-    const toggleElement = this.element.getElementsByClassName(
-      AccordionItem.toggleElement,
-    )[0];
+    const toggleElement = this.element.getElementsByClassName(AccordionItem.toggleElement)[0];
     toggleElement.addEventListener('mouseup', this.toggle);
     toggleElement.addEventListener('keypress', this.toggle);
 
@@ -137,9 +125,7 @@ export default class AccordionItem {
     // button inside an accordion so we should select the last one
     // since it is the correct one that we want to bind the event
     // listeners.
-    const closeElements = this.element.getElementsByClassName(
-      AccordionItem.closeElement,
-    );
+    const closeElements = this.element.getElementsByClassName(AccordionItem.closeElement);
     const closeElement = closeElements[closeElements.length - 1];
     closeElement.addEventListener('mouseup', this.close);
     closeElement.addEventListener('keypress', this.close);

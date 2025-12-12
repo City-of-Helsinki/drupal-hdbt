@@ -1,11 +1,7 @@
 // This script replaces chat trigger placeholder elements with buttons that open the chat.
 (function chatTriggerWrapper() {
   const triggerTranslations = {
-    fallback: {
-      fi: 'Chatti ei ole saatavilla.',
-      sv: 'Chatten är inte tillgänglig.',
-      en: 'The chat is not available.',
-    },
+    fallback: { fi: 'Chatti ei ole saatavilla.', sv: 'Chatten är inte tillgänglig.', en: 'The chat is not available.' },
     openChat: { fi: 'Avaa chat', sv: 'Öppna chatten', en: 'Open the chat' },
   };
 
@@ -30,10 +26,7 @@
             resolve(elem);
           }
         });
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-        });
+        observer.observe(document.documentElement, { childList: true, subtree: true });
       }
     });
   }
@@ -55,16 +48,14 @@
 
       // The trigger is present but the chat is not available, show fallback until chat is available.
       if (!document.querySelector(targetSelector)) {
-        const content =
-          triggerTranslations.fallback[lang] || triggerTranslations.fallback.en;
+        const content = triggerTranslations.fallback[lang] || triggerTranslations.fallback.en;
         placeholder.textContent = content;
       }
 
       // Wait for the target element to appear in the DOM and replace the trigger with a button that opens the chat.
       waitForElement(targetSelector).then(() => {
         const triggerButton = document.createElement('button');
-        triggerButton.textContent =
-          triggerTranslations.openChat[lang] || triggerTranslations.openChat.en;
+        triggerButton.textContent = triggerTranslations.openChat[lang] || triggerTranslations.openChat.en;
         triggerButton.dataset.hdsComponent = 'button';
         triggerButton.dataset.hdsVariant = 'secondary';
         triggerButton.dataset.clickSelector = targetSelector;

@@ -23,9 +23,7 @@ const ResultCard = ({
   let cardImage: CardImageType;
 
   if (imageOverride) {
-    cardImage = (
-      <CardPicture imageOverride={imageOverride} title={imageOverride.title} />
-    );
+    cardImage = <CardPicture imageOverride={imageOverride} title={imageOverride.title} />;
   } else if (picture_url?.[0]) {
     cardImage = <CardImage src={picture_url?.[0]} />;
   } else {
@@ -39,20 +37,10 @@ const ResultCard = ({
       cardTitle={title}
       cardUrl={url?.[0] || ''}
       location={address?.[0]}
-      locationLabel={Drupal.t(
-        'Address',
-        {},
-        { context: 'React search: location label' },
-      )}
+      locationLabel={Drupal.t('Address', {}, { context: 'React search: location label' })}
       cardCategoryTag={
         provided_languages.includes('sv')
-          ? {
-              tag: Drupal.t(
-                'Service in Swedish',
-                {},
-                { context: 'React search: Service in Swedish tag' },
-              ),
-            }
+          ? { tag: Drupal.t('Service in Swedish', {}, { context: 'React search: Service in Swedish tag' }) }
           : undefined
       }
     />
