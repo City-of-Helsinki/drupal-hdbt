@@ -1,6 +1,6 @@
 {# Link tags #}
-{% if interactive == true %}
-  {% embed '@hdbt/misc/tag-list.twig' with { type: 'interactive' }%}
+{% if link == true %}
+  {% embed '@hdbt/misc/tag-list.twig' with { type: 'link' }%}
     {% block content %}
       {% if topics is not empty %}
         {% for term in topics %}

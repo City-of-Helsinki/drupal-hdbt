@@ -24,7 +24,7 @@
 {% if taxonomy_terms is not empty %}
   {% include "@hdbt/module/helfi_node_news_item/news-tags.twig" with
     {
-      interactive: true,
+      link: true,
       topics: taxonomy_terms.field_news_item_tags,
       neighbourhoods: taxonomy_terms.field_news_neighbourhoods,
       groups: taxonomy_terms.field_news_groups,

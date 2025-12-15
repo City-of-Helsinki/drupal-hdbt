@@ -11,7 +11,7 @@
   <li class="content-tags__tags__tag">
     {% if addSpan %}
       <span class="hds-tag {{ tag_color_class }} {{ type_class }}">{{ tag }}</span>
-    {% elseif type is same as('interactive') %}
+    {% elseif type is same as('link') %}
       <a class="hds-tag {{ tag_color_class }} {{ type_class }}" href="{{ url }}">{{ tag }}</a>
     {% else %}
       <div class="hds-tag {{ tag_color_class }} {{ type_class }}">{{ tag }}</div>
