@@ -1,5 +1,35 @@
-
-{% if tags|render or neighbourhoods|render or groups|render %}
+{# Link tags #}
+{% if interactive == true %}
+  {% embed '@hdbt/misc/tag-list.twig' with { type: 'interactive' }%}
+    {% block content %}
+      {% if topics is not empty %}
+        {% for term in topics %}
+          {% include '@hdbt/misc/tag.twig' with {
+            tag: term.name,
+            url: term.url,
+          }%}
+        {% endfor %}
+      {% endif %}
+      {% if neighbourhoods is not empty %}
+         {% for term in neighbourhoods %}
+          {% include '@hdbt/misc/tag.twig' with {
+            tag: term.name,
+            url: term.url,
+          }%}
+        {% endfor %}
+      {% endif %}
+      {% if groups is not empty %}
+        {% for term in groups %}
+          {% include '@hdbt/misc/tag.twig' with {
+            tag: term.name,
+            url: term.url,
+          }%}
+        {% endfor %}
+      {% endif %}
+    {% endblock content %}
+  {% endembed %}
+{# Static tags #}
+{% elseif tags|render or neighbourhoods|render or groups|render %}
   {% embed '@hdbt/misc/tag-list.twig' with { type: 'static' }%}
     {% block content %}
       {% if tags|render %}
