@@ -12,6 +12,7 @@ import {
 import type Event from '../types/Event';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
+import * as Sentry from '@sentry/react';
 
 type ResponseType = {
   data: Event[];
@@ -59,8 +60,11 @@ const SearchContainer = () => {
   }
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
-    const response = await useTimeoutFetch(reqUrl, undefined, 10000);
+    const response = await Sentry.startSpan(
+      { name: 'Linkedevents api call', op: 'external.api' },
+      // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
+      async () => await useTimeoutFetch(reqUrl, undefined, 10000),
+    );
 
     if (response.status === 200) {
       const result = await response.json();
