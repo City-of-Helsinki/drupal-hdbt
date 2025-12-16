@@ -6,7 +6,7 @@ import ROOT_ID from './enum/RootId';
 import { GhostList } from '@/react/common/GhostList';
 
 const start = () => {
-  initSentry();
+  initSentry(0.05);
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
 
   if (!rootElement) {
