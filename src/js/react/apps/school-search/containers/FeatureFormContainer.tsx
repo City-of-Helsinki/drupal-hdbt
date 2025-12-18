@@ -30,6 +30,7 @@ type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
   finnish_education: HTMLInputElement;
   swedish_education: HTMLInputElement;
+  enlish_education: HTMLInputElement;
   grades_1_6: HTMLInputElement;
   grades_7_9: HTMLInputElement;
 };
@@ -55,7 +56,7 @@ const FeatureFormContainer = () => {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { keyword, finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education } =
+    const { keyword, finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education, english_education } =
       event.target as SubmitFormType;
     const params: SearchParams = {};
 
@@ -63,7 +64,7 @@ const FeatureFormContainer = () => {
       params.keyword = keyword.value;
     }
 
-    [finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education].forEach((element) => {
+    [finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education, english_education].forEach((element) => {
       if (!element || !element.checked || !element.name) {
         return;
       }
@@ -90,7 +91,7 @@ const FeatureFormContainer = () => {
       SearchParams,
       'keyword' | 'page' | 'query' | 'a1' | 'a2' | 'b1' | 'b2' | 'weighted_education' | 'bilingual_education'
     >
-  > = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education'];
+  > = ['grades_1_6', 'grades_1_9', 'grades_7_9', 'finnish_education', 'swedish_education', 'english_education'];
   const a1Label: string = Drupal.t(
     'Language starting in Grade 1 (A1)',
     {},
@@ -173,6 +174,16 @@ const FeatureFormContainer = () => {
             name='swedish_education'
             onClick={() => setStagedParams({ ...stagedParams, swedish_education: !stagedParams?.swedish_education })}
             value={stagedParams?.swedish_education?.toString() || 'false'}
+            style={defaultCheckboxStyle}
+          />
+          <Checkbox
+            checked={stagedParams?.english_education || false}
+            className='hdbt-search--react__checkbox'
+            id='english_education'
+            label={Drupal.t('English', {}, { context: 'School search: language option' })}
+            name='english_education'
+            onClick={() => setStagedParams({ ...stagedParams, english_education: !stagedParams?.english_education })}
+            value={stagedParams?.english_education?.toString() || 'false'}
             style={defaultCheckboxStyle}
           />
         </fieldset>

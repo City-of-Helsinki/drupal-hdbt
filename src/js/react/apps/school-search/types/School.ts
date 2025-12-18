@@ -5,6 +5,7 @@ type AdditionalFilters = {
   grades_7_9: boolean;
   finnish_education: boolean;
   swedish_education: boolean;
+  english_education: boolean;
 };
 
 export type School = {
