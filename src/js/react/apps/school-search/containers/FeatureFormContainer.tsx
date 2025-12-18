@@ -86,8 +86,6 @@ const FeatureFormContainer = () => {
     setParams(params);
   };
 
-  console.log('stagedParams', stagedParams);
-
   const keys: Array<
     keyof Omit<
       SearchParams,
@@ -374,7 +372,6 @@ const FeatureFormContainer = () => {
           noTags
           onChange={(selectedOptions) => {
             setBilingualFilter(selectedOptions);
-            console.log('selectedOptions', selectedOptions);
           }}
           options={bilingualOptions}
           texts={{
