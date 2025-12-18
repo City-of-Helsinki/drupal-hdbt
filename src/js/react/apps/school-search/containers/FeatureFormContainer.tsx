@@ -30,7 +30,7 @@ type SubmitFormType = HTMLFormElement & {
   keyword: HTMLInputElement;
   finnish_education: HTMLInputElement;
   swedish_education: HTMLInputElement;
-  enlish_education: HTMLInputElement;
+  english_education: HTMLInputElement;
   grades_1_6: HTMLInputElement;
   grades_7_9: HTMLInputElement;
 };
@@ -85,6 +85,8 @@ const FeatureFormContainer = () => {
 
     setParams(params);
   };
+
+  console.log('stagedParams', stagedParams);
 
   const keys: Array<
     keyof Omit<
@@ -372,6 +374,7 @@ const FeatureFormContainer = () => {
           noTags
           onChange={(selectedOptions) => {
             setBilingualFilter(selectedOptions);
+            console.log('selectedOptions', selectedOptions);
           }}
           options={bilingualOptions}
           texts={{

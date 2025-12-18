@@ -100,6 +100,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
   const showClearButton =
     searchParams.finnish_education ||
     searchParams.swedish_education ||
+    searchParams.english_education ||
     searchParams.grades_1_6 ||
     searchParams.grades_1_9 ||
     searchParams.grades_7_9 ||
