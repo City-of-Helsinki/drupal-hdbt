@@ -5,27 +5,37 @@ import {
   ButtonPresetTheme,
   ButtonVariant,
   Checkbox,
+  Dialog,
   IconAngleDown,
   IconAngleUp,
+  IconBell,
   Notification,
   NotificationSize,
   TextInput,
 } from 'hds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import React, { type CSSProperties, createRef, useEffect } from 'react';
+import React, { type CSSProperties, createRef, useEffect, useRef } from 'react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useQueryString from '../hooks/useQueryString';
 import { monitorSubmittedAtom, urlAtom } from '../store';
 import type URLParams from '../types/URLParams';
+import { useSelectionButtons } from '../hooks/useSelectionButtons';
+import { useVisibleSelections } from '../hooks/useVisibleSelections';
+import { useSelectionTags } from '../hooks/useSelectionTags';
+import Tags from '@/react/common/Tags';
 
 // Define new atom for scroll state
 const shouldScrollAtom = atom(false);
 
 const SearchMonitorContainer = () => {
+  const dialogTargetRef = useRef(null);
+  const openDialogButtonRef = useRef(null);
   const urlParams: URLParams = useAtomValue(urlAtom);
   const query = useQueryString(urlParams);
+  const selections = useVisibleSelections();
+  const selectionTags = useSelectionTags(selections);
 
   // Form validation states
   const [termsAgreed, setTermsAgreed] = useAtom(receiveNewsletterAtom);
@@ -190,11 +200,6 @@ const SearchMonitorContainer = () => {
     {},
     { context: 'Search monitor header' },
   );
-  const openLabel: string = Drupal.t(
-    'Open the order form',
-    {},
-    { context: 'Search monitor open label' },
-  );
   const closeLabel: string = Drupal.t(
     'Close the order form',
     {},
@@ -206,12 +211,12 @@ const SearchMonitorContainer = () => {
     { context: 'Search monitor content title' },
   );
   const descriptionFirstPart: string = Drupal.t(
-    'To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches.',
+    'To receive job alerts, carry out the search desired and then save your search.',
     {},
     { context: 'Search monitor content' },
   );
   const descriptionSecondPart: string = Drupal.t(
-    'You can save as many searches as you like. You can delete the saved search via the link in the email messages.',
+    'You can save as many searches as you like. You can delete the saved search via the link in the email messages. ',
     {},
     { context: 'Search monitor content' },
   );
@@ -224,16 +229,6 @@ const SearchMonitorContainer = () => {
     'Save your search',
     {},
     { context: 'Search monitor submit button label' },
-  );
-  const thankYouHeader: string = Drupal.t(
-    'Your search has been saved',
-    {},
-    { context: 'Search monitor thank you header' },
-  );
-  const thankYouMessage: string = Drupal.t(
-    'You will receive a confirmation link by email. You can activate the saved search via the link.',
-    {},
-    { context: 'Search monitor thank you message' },
   );
   const errorLabel: string = Drupal.t(
     'Please check these selections',
@@ -255,45 +250,40 @@ const SearchMonitorContainer = () => {
     },
   );
 
-  return (
-    <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
-      {!submitted && (
-        <>
-          <h3 className='job-search-form__search-monitor__heading'>
-            {formHeader}
-          </h3>
-          <Button
-            aria-controls='job-search-form__search-monitor__content'
-            aria-expanded={isFormVisible}
-            iconStart={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
-            onClick={(event: React.MouseEvent) => {
-              event.preventDefault();
-              setIsFormVisible(!isFormVisible);
-            }}
-            style={
-              {
-                '--border-color-focus': 'var(--hdbt-color-black)',
-                '--background-color': 'transparent',
-                '--background-color-hover': 'trasparent',
-                '--outline-color-focus': 'var(--hdbt-color-black)',
-                marginTop: 'var(--spacing-2-xs)',
-              } as CSSProperties
-            }
-            theme={ButtonPresetTheme.Black}
-            type='button'
-            variant={ButtonVariant.Supplementary}
-          >
-            {isFormVisible ? closeLabel : openLabel}
-          </Button>
+  const idTitle = 'job-search-form__search-monitor__header';
 
-          <div
-            id='job-search-form__search-monitor__content'
-            className='job-search-form__search-monitor__content'
-            aria-hidden={!isFormVisible}
-          >
-            <h4 className='job-search-form__search-monitor__content__heading'>
-              {descriptionHeader}
-            </h4>
+  return (
+    <>
+      <div ref={dialogTargetRef} />
+      <Button
+        aria-controls='job-search-form__search-monitor__content'
+        aria-expanded={isFormVisible}
+        iconStart={<IconBell />}
+        onClick={(event: React.MouseEvent) => {
+          event.preventDefault();
+          setIsFormVisible(!isFormVisible);
+        }}
+        theme={ButtonPresetTheme.Black}
+        type='button'
+        variant={ButtonVariant.Supplementary}
+      >
+        123
+      </Button>
+
+      <Dialog
+        aria-labelledby={idTitle}
+        aria-describedby={descriptionHeader}
+        className='job-search-form__search-monitor__content'
+        close={() => setIsFormVisible(false)}
+        closeButtonLabelText={closeLabel}
+        id='job-search-form__search-monitor__content'
+        isOpen={isFormVisible}
+        focusAfterCloseRef={openDialogButtonRef}
+        targetElement={dialogTargetRef.current || undefined}
+      >
+        <Dialog.Header id={idTitle} title={formHeader} />
+        <Dialog.Content>
+          <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
             <p>{descriptionFirstPart}</p>
             <p>{descriptionSecondPart}</p>
 
@@ -316,6 +306,8 @@ const SearchMonitorContainer = () => {
                 {errorMessage}
               </Notification>
             )}
+
+            <Tags insideCard={false} tags={selectionTags} />
 
             <TextInput
               className='job-search-form__search-monitor__email'
@@ -361,22 +353,10 @@ const SearchMonitorContainer = () => {
             >
               {buttonLabel}
             </Button>
-          </div>
-        </>
-      )}
-
-      {submitted && (
-        <>
-          <h3
-            className='job-search-form__search-monitor__heading'
-            ref={scrollTarget}
-          >
-            {thankYouHeader}
-          </h3>
-          <p>{thankYouMessage}</p>
-        </>
-      )}
-    </form>
+          </form>
+        </Dialog.Content>
+      </Dialog>
+    </>
   );
 };
 

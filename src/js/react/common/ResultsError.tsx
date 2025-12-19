@@ -3,7 +3,7 @@ import { type ForwardedRef, forwardRef } from 'react';
 
 type ResultsErrorProps = {
   className?: string;
-  error: string | Error;
+  error?: string | Error;
   errorMessage?: string;
   headingLevel?: number;
 };

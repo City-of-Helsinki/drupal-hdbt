@@ -43,6 +43,20 @@
   }
 }
 
+.hdbt-search--react__result-top-area.hdbt-search--react__result-top-area--with-left-actions {
+  @include breakpoint($breakpoint-l) {
+    display: block;
+  }
+}
+
+.hdbt-search--react__actions-container {
+  @include breakpoint($breakpoint-l) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 .hdbt-search--react__results--title {
   align-items: center;
   display: flex;
