@@ -1427,8 +1427,8 @@ msgid "Saved search"
 msgstr "Sökvakten"
 
 msgctxt "Search monitor content"
-msgid "To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches."
-msgstr "Gör en sökning enligt dina egna önskemål och spara den som sökvakt. Du kommer att få information om nya träffar i din e-post."
+msgid "Carry out a search according to your specifications and then save your search to receive email alerts of new search results up to once per day. You can save as many searches as you want."
+msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt. Du kan skapa så många sökvakter du vill. Du får information om nya träffar till din e-post högst en gång per dag."
 
 msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."

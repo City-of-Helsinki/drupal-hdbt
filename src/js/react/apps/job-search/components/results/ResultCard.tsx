@@ -3,8 +3,10 @@ import { useAtomValue } from 'jotai';
 import CardItem from '@/react/common/Card';
 import type Result from '@/types/Result';
 import { currentLanguage } from '../../query/queries';
-import { urlAtom } from '../../store';
 import type Job from '../../types/Job';
+import { submittedStateAtom } from '../../store';
+import SearchComponents from '../../enum/SearchComponents';
+import { OptionType } from '../../types/OptionType';
 
 const getResultCard = ({
   title,
@@ -101,14 +103,15 @@ const getResultCard = ({
 type ResultCardProps = { job: Job; innerHits: Result<Job>[] };
 
 const ResultCard = ({ job, innerHits }: ResultCardProps) => {
+  const submittedState = useAtomValue(submittedStateAtom);
   const { _language, title } = job;
 
   if (!title || !title.length) {
     return null;
   }
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
-  const languageFilterActive = useAtomValue(urlAtom)?.language;
+  const languageFilterActive =
+    (submittedState[SearchComponents.LANGUAGE] as OptionType[])?.length > 0;
   // If no filtering by language, prefer showing current language translation
   if (
     !languageFilterActive &&

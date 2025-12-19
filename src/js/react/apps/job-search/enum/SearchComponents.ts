@@ -1,16 +1,16 @@
 const SearchComponents = {
   AREA_FILTER: 'area_filter',
-  EMPLOYMENT: 'employment',
-  KEYWORD: 'keyword',
-  TASK_AREAS: 'task_areas',
-  EMPLOYMENT_RELATIONSHIP: 'employment_relationship',
   CONTINUOUS: 'continuous',
+  EMPLOYMENT_RELATIONSHIP: 'employment_relationship',
+  EMPLOYMENT: 'employment',
   INTERNSHIPS: 'internship',
+  KEYWORD: 'keyword',
   LANGUAGE: 'language',
-  SUMMER_JOBS: 'summer_jobs',
-  YOUTH_SUMMER_JOBS: 'youth_summer_jobs',
-  RESULTS: 'page',
   ORDER: 'order',
+  PAGE: 'page',
+  SUMMER_JOBS: 'summer_jobs',
+  TASK_AREAS: 'task_areas',
+  YOUTH_SUMMER_JOBS: 'youth_summer_jobs',
 };
 
 export default SearchComponents;

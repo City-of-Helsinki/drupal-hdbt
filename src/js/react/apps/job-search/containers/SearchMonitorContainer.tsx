@@ -1,38 +1,53 @@
-// biome-ignore lint/style/useNodejsImportProtocol: @todo UHF-12501
 import { Buffer } from 'buffer';
 import {
   Button,
   ButtonPresetTheme,
   ButtonVariant,
   Checkbox,
-  IconAngleDown,
-  IconAngleUp,
+  Dialog,
+  IconBell,
   Notification,
   NotificationSize,
   TextInput,
 } from 'hds-react';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import React, { type CSSProperties, createRef, useEffect } from 'react';
+import React, { createRef, useEffect, useRef, useState } from 'react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useQueryString from '../hooks/useQueryString';
-import { monitorSubmittedAtom, urlAtom } from '../store';
-import type URLParams from '../types/URLParams';
+import { useVisibleSelections } from '../hooks/useVisibleSelections';
+import { useSelectionTags } from '../hooks/useSelectionTags';
+import Tags from '@/react/common/Tags';
 
 // Define new atom for scroll state
 const shouldScrollAtom = atom(false);
 
-const SearchMonitorContainer = () => {
-  const urlParams: URLParams = useAtomValue(urlAtom);
-  const query = useQueryString(urlParams);
+type FormError = { message: string; visible: boolean };
+
+type FormErrorContainer = {
+  allVisible?: boolean;
+  email?: FormError;
+  termsAgreed?: FormError;
+} | null;
+
+const SearchMonitorContainer = ({
+  dialogTargetRef,
+}: {
+  dialogTargetRef: React.RefObject<HTMLDivElement>;
+}) => {
+  const openDialogButtonRef = useRef(null);
+  const query = useQueryString();
+  const selections = useVisibleSelections();
+  const selectionTags = useSelectionTags(selections);
 
   // Form validation states
-  const [termsAgreed, setTermsAgreed] = useAtom(receiveNewsletterAtom);
-  const [email, setEmail] = useAtom(emailAtom);
-  const [submitted, setSubmitted] = useAtom(monitorSubmittedAtom);
-  const [errorMessage, seterrorMessage] = useAtom(errorAtom);
-  const [isFormVisible, setIsFormVisible] = useAtom(isFormVisibleAtom);
+  const [errors, setErrors] = useState<FormErrorContainer>(null);
+  const [termsAgreed, setTermsAgreed] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [errorMessage, seterrorMessage] = useState<string>('');
+  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   // Scroll state
   const [shouldScroll, setShouldScroll] = useAtom(shouldScrollAtom);
@@ -61,39 +76,16 @@ const SearchMonitorContainer = () => {
   ): Promise<void> => {
     event.preventDefault();
 
-    // Validate stuff to submit form
-    if (!termsAgreed) {
-      seterrorMessage(
-        Drupal.t(
-          'The choice is mandatory: Terms of service',
-          {},
-          { context: 'Search monitor error terms' },
-        ),
-      );
-      return;
-    }
+    if (errors && Object.keys(errors).length > 0) {
+      setErrors({ ...errors, allVisible: true });
 
-    if (!email) {
-      seterrorMessage(
-        Drupal.t(
-          'This field is mandatory: Email address',
-          {},
-          { context: 'Search monitor error email' },
-        ),
-      );
-      return;
-    }
+      const errorString = Object.entries(errors)
+        .filter(([key, error]) => key !== 'allVisible' && error)
+        .map(([, error]) => (error as FormError).message)
+        .join('\n');
+      seterrorMessage(errorString);
+      setShouldScroll(true);
 
-    // Prevent invalid email address
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!regex.test(email)) {
-      seterrorMessage(
-        Drupal.t(
-          'The email address you entered is not in the right format.',
-          {},
-          { context: 'Search monitor error email' },
-        ),
-      );
       return;
     }
 
@@ -183,17 +175,54 @@ const SearchMonitorContainer = () => {
     if (shouldScroll) {
       setShouldScroll(false); // Reset the scroll state after scrolling
     }
-  }, [shouldScroll, setShouldScroll]);
+
+    const formErrors: FormErrorContainer = {};
+    if (!termsAgreed) {
+      formErrors.termsAgreed = {
+        message: Drupal.t(
+          'The choice is mandatory: Terms of service',
+          {},
+          { context: 'Search monitor error terms' },
+        ),
+        visible: errors?.allVisible || errors?.email?.visible || false,
+      };
+    }
+
+    if (!email) {
+      formErrors.email = {
+        message: Drupal.t(
+          'This field is mandatory: Email address',
+          {},
+          { context: 'Search monitor error email' },
+        ),
+        visible: errors?.allVisible || errors?.email?.visible || false,
+      };
+    }
+
+    // Prevent invalid email address
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email && !regex.test(email)) {
+      formErrors.email = {
+        message: Drupal.t(
+          'The email address you entered is not in the right format.',
+          {},
+          { context: 'Search monitor error email' },
+        ),
+        visible: errors?.allVisible || errors?.email?.visible || false,
+      };
+    }
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+    } else {
+      setErrors(null);
+    }
+  }, [email, termsAgreed, shouldScroll, setShouldScroll]);
 
   const formHeader: string = Drupal.t(
     'Receive search results by email',
     {},
     { context: 'Search monitor header' },
-  );
-  const openLabel: string = Drupal.t(
-    'Open the order form',
-    {},
-    { context: 'Search monitor open label' },
   );
   const closeLabel: string = Drupal.t(
     'Close the order form',
@@ -206,12 +235,12 @@ const SearchMonitorContainer = () => {
     { context: 'Search monitor content title' },
   );
   const descriptionFirstPart: string = Drupal.t(
-    'To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches.',
+    'To receive job alerts, carry out the search desired and then save your search.',
     {},
     { context: 'Search monitor content' },
   );
   const descriptionSecondPart: string = Drupal.t(
-    'You can save as many searches as you like. You can delete the saved search via the link in the email messages.',
+    'You can save as many searches as you like. You can delete the saved search via the link in the email messages. ',
     {},
     { context: 'Search monitor content' },
   );
@@ -224,16 +253,6 @@ const SearchMonitorContainer = () => {
     'Save your search',
     {},
     { context: 'Search monitor submit button label' },
-  );
-  const thankYouHeader: string = Drupal.t(
-    'Your search has been saved',
-    {},
-    { context: 'Search monitor thank you header' },
-  );
-  const thankYouMessage: string = Drupal.t(
-    'You will receive a confirmation link by email. You can activate the saved search via the link.',
-    {},
-    { context: 'Search monitor thank you message' },
   );
   const errorLabel: string = Drupal.t(
     'Please check these selections',
@@ -254,46 +273,59 @@ const SearchMonitorContainer = () => {
         'Explanation for users that the link opens in a new tab instead of the expected current tab',
     },
   );
+  const errorAriaLabel = Drupal.t(
+    'Notification',
+    {},
+    { context: 'Search monitor error message type for screen reader' },
+  );
 
+  const idTitle = 'job-search-form__search-monitor__header';
+
+  const emailError =
+    (errors?.allVisible && errors?.email) || errors?.email?.visible
+      ? errors?.email.message
+      : undefined;
+  const termsError =
+    (errors?.allVisible && errors?.termsAgreed) || errors?.termsAgreed?.visible
+      ? errors?.termsAgreed.message
+      : undefined;
   return (
-    <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
-      {!submitted && (
-        <>
-          <h3 className='job-search-form__search-monitor__heading'>
-            {formHeader}
-          </h3>
-          <Button
-            aria-controls='job-search-form__search-monitor__content'
-            aria-expanded={isFormVisible}
-            iconStart={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
-            onClick={(event: React.MouseEvent) => {
-              event.preventDefault();
-              setIsFormVisible(!isFormVisible);
-            }}
-            style={
-              {
-                '--border-color-focus': 'var(--hdbt-color-black)',
-                '--background-color': 'transparent',
-                '--background-color-hover': 'trasparent',
-                '--outline-color-focus': 'var(--hdbt-color-black)',
-                marginTop: 'var(--spacing-2-xs)',
-              } as CSSProperties
-            }
-            theme={ButtonPresetTheme.Black}
-            type='button'
-            variant={ButtonVariant.Supplementary}
-          >
-            {isFormVisible ? closeLabel : openLabel}
-          </Button>
+    <>
+      <Button
+        aria-controls='job-search-form__search-monitor__content'
+        aria-expanded={isFormVisible}
+        className='job-search-form__search-monitor__button'
+        iconStart={<IconBell />}
+        onClick={(event: React.MouseEvent) => {
+          event.preventDefault();
+          setIsFormVisible(!isFormVisible);
+        }}
+        ref={openDialogButtonRef}
+        theme={ButtonPresetTheme.Black}
+        type='button'
+        variant={ButtonVariant.Secondary}
+      >
+        {buttonLabel}
+      </Button>
 
-          <div
-            id='job-search-form__search-monitor__content'
-            className='job-search-form__search-monitor__content'
-            aria-hidden={!isFormVisible}
-          >
-            <h4 className='job-search-form__search-monitor__content__heading'>
-              {descriptionHeader}
-            </h4>
+      <Dialog
+        aria-labelledby={idTitle}
+        aria-describedby={descriptionHeader}
+        className='job-search-form__search-monitor__content'
+        close={() => setIsFormVisible(false)}
+        closeButtonLabelText={closeLabel}
+        id='job-search-form__search-monitor__content'
+        isOpen={isFormVisible}
+        focusAfterCloseRef={openDialogButtonRef}
+        targetElement={dialogTargetRef.current || undefined}
+      >
+        <Dialog.Header
+          className='job-search-form__search-monitor__heading'
+          id={idTitle}
+          title={formHeader}
+        />
+        <Dialog.Content>
+          <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
             <p>{descriptionFirstPart}</p>
             <p>{descriptionSecondPart}</p>
 
@@ -304,21 +336,55 @@ const SearchMonitorContainer = () => {
                 ref={scrollTarget}
                 size={NotificationSize.Medium}
                 type='error'
-                notificationAriaLabel={Drupal.t(
-                  'Notification',
-                  {},
-                  {
-                    context:
-                      'Search monitor error message type for screen reader',
-                  },
-                )}
+                notificationAriaLabel={errorAriaLabel}
               >
                 {errorMessage}
               </Notification>
             )}
 
+            <section
+              aria-labelledby='job-search-form__search-monitor__selections-heading'
+              className='job-search-form__search-monitor__selections'
+            >
+              <h3
+                id='job-search-form__search-monitor__selections-heading'
+                className='job-search-form__search-monitor__selections-heading'
+              >
+                {Drupal.t(
+                  'Your search criteria:',
+                  {},
+                  { context: 'Search monitor selections heading' },
+                )}
+              </h3>
+              <div className='job-search-form__search-monitor__selection-tags'>
+                <Tags insideCard={false} tags={selectionTags} />
+              </div>
+            </section>
+            {selectionTags.length === 0 && (
+              <Notification
+                label={Drupal.t(
+                  'No search criteria selected',
+                  {},
+                  {
+                    context: 'Search monitor no selections notification title',
+                  },
+                )}
+                className='job-search-form__search-monitor__no-selections'
+                notificationAriaLabel={errorAriaLabel}
+                size={NotificationSize.Small}
+                type='info'
+              >
+                {Drupal.t(
+                  'You have not selected any search criteria. You will receive alerts of all new job listings.',
+                  {},
+                  { context: 'Search monitor no selections notification' },
+                )}
+              </Notification>
+            )}
+
             <TextInput
               className='job-search-form__search-monitor__email'
+              errorText={emailError}
               id='job-search-form__search_monitor__email'
               label={emailLabel}
               name='job-search-form__search_monitor__email'
@@ -332,57 +398,50 @@ const SearchMonitorContainer = () => {
               value={email}
             />
 
-            <p>
-              <a
-                href={tosLinkUrl}
-                target='_blank'
-                rel='noreferrer'
-                className='job-search-form__search-monitor__terms-link'
-              >
-                {tosLinkLabel} ({tosLinkSuffix})
-              </a>
-            </p>
+            <a
+              href={tosLinkUrl}
+              target='_blank'
+              rel='noreferrer'
+              className='job-search-form__search-monitor__terms-link'
+            >
+              {tosLinkLabel} ({tosLinkSuffix})
+            </a>
+
             <Checkbox
               checked={termsAgreed}
               className='job-search-form__search-monitor__terms'
+              errorText={termsError}
               id='job-search-form__search_monitor__terms'
-              label={tosCheckboxLabel}
+              label={`${tosCheckboxLabel}  *`}
               name='job-search-form__search_monitor__terms'
               onChange={(event) => setTermsAgreed(event.target.checked)}
               required
-              style={defaultCheckboxStyle}
+              style={{ ...defaultCheckboxStyle, marginTop: 'var(--spacing-m)' }}
             />
 
-            <Button
-              className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
-              id='job-search-form__search-monitor__submit-button'
-              style={{ marginBottom: '0', marginTop: 'var(--spacing-l)' }}
-              type='submit'
-            >
-              {buttonLabel}
-            </Button>
-          </div>
-        </>
-      )}
-
-      {submitted && (
-        <>
-          <h3
-            className='job-search-form__search-monitor__heading'
-            ref={scrollTarget}
-          >
-            {thankYouHeader}
-          </h3>
-          <p>{thankYouMessage}</p>
-        </>
-      )}
-    </form>
+            <div className='job-search-form__search-monitor__buttons-container'>
+              <Button
+                className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
+                id='job-search-form__search-monitor__submit-button'
+                type='submit'
+              >
+                {buttonLabel}
+              </Button>
+              <Button
+                className='job-search-form__search-monitor__cancel-button'
+                onClick={() => setIsFormVisible(false)}
+                theme={ButtonPresetTheme.Black}
+                type='button'
+                variant={ButtonVariant.Secondary}
+              >
+                {Drupal.t('Cancel')}
+              </Button>
+            </div>
+          </form>
+        </Dialog.Content>
+      </Dialog>
+    </>
   );
 };
-
-const emailAtom = atom('');
-const receiveNewsletterAtom = atom(false);
-const isFormVisibleAtom = atom(false);
-const errorAtom = atom('');
 
 export default SearchMonitorContainer;

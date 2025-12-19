@@ -1,8 +1,7 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
 import { useAtomValue } from 'jotai';
 import IndexFields from '../enum/IndexFields';
-import { configurationsAtom } from '../store';
-import type URLParams from '../types/URLParams';
+import { configurationsAtom, submittedStateAtom } from '../store';
 import usePromotedQuery from './usePromotedQuery';
 import useQueryString from './useQueryString';
 
@@ -55,10 +54,11 @@ const handleSimpleResults: HandleQueryResults = (data) => {
   return { results, jobs, total };
 };
 
-const useResultsQuery = (urlParams: URLParams) => {
-  const { promoted } = useAtomValue(configurationsAtom);
-  const query = useQueryString(urlParams);
-  const promotedQuery = usePromotedQuery(query, urlParams);
+const useResultsQuery = () => {
+  const submittedState = useAtomValue(submittedStateAtom);
+  const { promoted } = useAtomValue(configurationsAtom) || {};
+  const query = useQueryString(submittedState);
+  const promotedQuery = usePromotedQuery(query, submittedState);
 
   return {
     promoted: !!promoted,
