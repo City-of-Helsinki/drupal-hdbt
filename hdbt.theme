@@ -326,7 +326,7 @@ function hdbt_preprocess_node(&$variables): void {
   // Do not show modified timestamp if it's less or equal to published_at date.
 
   // UHF-10893: For news_item, use changed_at field instead of getChangedTime()
-  if ($node->bundle() === 'news_item') {
+  if ($node->bundle() === 'news_item' && $node->hasField('changed_at')) {
     $changed_at = (int) $node->get('changed_at')->value;
     if (isset($variables['published_at']) && $variables['published_at'] < $changed_at) {
       $variables['modified_at'] = $changed_at;
