@@ -1,5 +1,1 @@
-export type Street = {
-  id: string[];
-  maintenance_class: number;
-  street_name: string[];
-};
+export type Street = { id: string[]; maintenance_class: number; street_name: string[] };

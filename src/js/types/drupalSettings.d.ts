@@ -17,9 +17,7 @@ declare namespace drupalSettings {
         field_remote_events: boolean;
         field_filter_keywords: { id: string; name: string }[];
         hidePagination: boolean;
-        places: {
-          [key: string]: { id: string; name: { [key: string]: string } };
-        };
+        places: { [key: string]: { id: string; name: { [key: string]: string } } };
         hideHeading: boolean;
         removeBloatingEvents: boolean;
         use_fixtures: boolean;
@@ -33,11 +31,7 @@ declare namespace drupalSettings {
     seeAllNearYouLink: string;
     cardsWithBorders: boolean;
   };
-  const helfi_react_search: {
-    elastic_proxy_url: string;
-    sentry_dsn_react: string;
-    hakuvahti_url_set: boolean;
-  };
+  const helfi_react_search: { elastic_proxy_url: string; sentry_dsn_react: string; hakuvahti_url_set: boolean };
   const helfi_rekry_job_search: {
     results_page_path: string;
     hakuvahti_tos_checkbox_label: string;

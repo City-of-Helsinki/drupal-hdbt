@@ -25,11 +25,7 @@ function TopicsFilter() {
     });
   };
 
-  const selectLabel: string = Drupal.t(
-    'Topic',
-    {},
-    { context: 'React search: topics filter' },
-  );
+  const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
     id: SearchComponents.TOPICS,
@@ -40,11 +36,7 @@ function TopicsFilter() {
     texts: {
       label: selectLabel,
       language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-      placeholder: Drupal.t(
-        'All topics',
-        {},
-        { context: 'React search: topics filter' },
-      ),
+      placeholder: Drupal.t('All topics', {}, { context: 'React search: topics filter' }),
     },
     theme: defaultSelectTheme,
   });
@@ -55,10 +47,7 @@ function TopicsFilter() {
 
   const updateSelections = () => {
     storage.updateAllOptions((option, _group, _groupindex) => {
-      if (
-        option.selected &&
-        !topicSelection.some((selection) => selection.value === option.value)
-      ) {
+      if (option.selected && !topicSelection.some((selection) => selection.value === option.value)) {
         return { ...option, selected: false };
       }
       return option;
@@ -67,17 +56,11 @@ function TopicsFilter() {
   };
 
   useEffect(() => {
-    window.addEventListener(
-      `eventsearch-clear-${SearchComponents.TOPICS}`,
-      updateSelections,
-    );
+    window.addEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
 
     return () => {
       window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(
-        `eventsearch-clear-${SearchComponents.TOPICS}`,
-        updateSelections,
-      );
+      window.removeEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
     };
   });
 

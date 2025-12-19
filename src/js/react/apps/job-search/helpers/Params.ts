@@ -2,12 +2,13 @@ import type OptionType from '../types/OptionType';
 import type URLParams from '../types/URLParams';
 
 const transformDropdownsValues = (
-  paramOptions: string[] | undefined = [],
+  paramOptions: string | string[] | undefined = [],
   availableOptions: OptionType[] = [],
 ) => {
   const transformedOptions: OptionType[] = [];
+  const options = Array.isArray(paramOptions) ? paramOptions : paramOptions ? [paramOptions] : [];
 
-  paramOptions.forEach((selection: string) => {
+  options.forEach((selection: string) => {
     const matchedOption = availableOptions.find((option: OptionType) => {
       // Handle cases for employment options where option.value can be an array
       if (Array.isArray(option.value)) {
@@ -18,10 +19,7 @@ const transformDropdownsValues = (
     });
 
     // If a matching option is found and it's not in the transformed options yet, add it to the transformed options
-    if (
-      matchedOption &&
-      !transformedOptions.some((option) => option.value === matchedOption.value)
-    ) {
+    if (matchedOption && !transformedOptions.some((option) => option.value === matchedOption.value)) {
       transformedOptions.push(matchedOption);
     }
   });

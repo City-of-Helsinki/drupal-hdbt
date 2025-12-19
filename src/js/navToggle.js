@@ -48,8 +48,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
       // Checks if an element has scrollable overflow in either direction.
       const isScrollable = (element) =>
-        element.scrollWidth > element.clientWidth ||
-        element.scrollHeight > element.clientHeight;
+        element.scrollWidth > element.clientWidth || element.scrollHeight > element.clientHeight;
 
       const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
@@ -59,10 +58,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
       // Close all open menus on click outside.
       const closeFromOutside = ({ target }) => {
-        if (
-          target.closest('.desktop-menu, .header-top') ||
-          !target.closest('.header')
-        ) {
+        if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
           // Close all open menus.
           keys.forEach((key) => {
             AllElements[key].simpleClose();
@@ -128,12 +124,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             // until element is focusable.
             if (key === 'SearchDropdown') {
               window.setTimeout(
-                () =>
-                  document
-                    .querySelector(
-                      '.header-search-wrapper input[type="search"]',
-                    )
-                    ?.focus(),
+                () => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(),
                 10,
               );
             }
@@ -147,11 +138,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             }
 
             if (menuWrapper) {
-              closeOnFocusOut(
-                menuWrapper,
-                () => dropdownInstance.simpleClose(),
-                key,
-              );
+              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key);
             }
             context.addEventListener('click', closeFromOutside);
           },
@@ -166,9 +153,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             keys.forEach((key) => {
               AllElements[key].close();
             });
-            const wrapper = document.getElementById(
-              'nav-toggle-dropdown--menu',
-            );
+            const wrapper = document.getElementById('nav-toggle-dropdown--menu');
             if (wrapper) {
               closeOnFocusOut(wrapper, () => globalMenu.close());
             }
@@ -184,18 +169,14 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
       // Check if any menu instance is open.
       const isAnyMenuOpen = () =>
-        keys.some(
-          (key) => AllElements[key].dataset && AllElements[key].isOpen(),
-        ) || globalMenu?.isOpen();
+        keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || globalMenu?.isOpen();
 
       // Prevent body scrolling when menus are open.
       const blockBrandingScroll = (e) => {
         // Ignore touch events.
         if (e.touches?.length > 1) return true;
 
-        const scrolledPanel = e.target.closest(
-          '.mmenu__panel--current, .nav-toggle-dropdown__content',
-        );
+        const scrolledPanel = e.target.closest('.mmenu__panel--current, .nav-toggle-dropdown__content');
 
         // Prevent scrolling when menu is open.
         const preventBodyScrolling =
@@ -219,9 +200,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
       const body = document.querySelector('body');
       body.addEventListener('wheel', blockBrandingScroll, { passive: false });
       body.addEventListener('scroll', blockBrandingScroll, { passive: false });
-      body.addEventListener('touchmove', blockBrandingScroll, {
-        passive: false,
-      });
+      body.addEventListener('touchmove', blockBrandingScroll, { passive: false });
       window.navToggleInitialized = true;
     },
   };

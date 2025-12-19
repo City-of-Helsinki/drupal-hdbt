@@ -6,20 +6,9 @@ import type OptionType from '@/types/OptionType';
 import { stagedParamsAtom } from '../store';
 import type URLParams from '../types/URLParams';
 
-type FilterProps = {
-  label: string;
-  options: OptionType[];
-  placeholder: string;
-  stateKey: keyof URLParams;
-};
+type FilterProps = { label: string; options: OptionType[]; placeholder: string; stateKey: keyof URLParams };
 
-const Filter = ({
-  label,
-  options,
-  placeholder,
-  stateKey,
-  ...rest
-}: FilterProps) => {
+const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps) => {
   const [params, setParams] = useAtom(stagedParamsAtom);
   const valueIds = params?.[stateKey] || [];
 
@@ -28,9 +17,7 @@ const Filter = ({
 
     if (Array.isArray(valueIds)) {
       valueIds.forEach((id: number) => {
-        const option = options.find(
-          (valueOption: OptionType) => id.toString() === valueOption.value,
-        );
+        const option = options.find((valueOption: OptionType) => id.toString() === valueOption.value);
 
         if (option) {
           values.push(option);
@@ -41,16 +28,8 @@ const Filter = ({
     return values;
   };
 
-  const onChange = (
-    selectedOptions: OptionType[],
-    _clickedOption?: OptionType,
-  ) => {
-    setParams({
-      ...params,
-      [stateKey]: selectedOptions.map((option: OptionType) =>
-        Number(option.value),
-      ),
-    });
+  const onChange = (selectedOptions: OptionType[], _clickedOption?: OptionType) => {
+    setParams({ ...params, [stateKey]: selectedOptions.map((option: OptionType) => Number(option.value)) });
   };
 
   return (
@@ -72,9 +51,7 @@ const Filter = ({
           { context: 'React search clear selection label' },
         ),
         label,
-        language: getCurrentLanguage(
-          window.drupalSettings.path.currentLanguage,
-        ),
+        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
         placeholder,
       }}
       theme={defaultMultiSelectTheme}

@@ -43,6 +43,7 @@ const getParams = (searchParams: URLSearchParams) => {
   const params: { [k: string]: any } = {};
   const entries = searchParams.entries();
   let result = entries.next();
+  const arrayParams = [SearchComponents.TASK_AREAS, SearchComponents.EMPLOYMENT, SearchComponents.AREA_FILTER];
 
   while (!result.done) {
     const [key, value] = result.value;
@@ -52,17 +53,17 @@ const getParams = (searchParams: URLSearchParams) => {
       continue;
     }
 
-    const parsedValue =
-      ![SearchComponents.KEYWORD, 'page'].includes(key) &&
-      value.toString().includes(',')
-        ? value.toString().split(',')
-        : value;
+    let parsedValue: string | string[];
+
+    if (arrayParams.includes(key)) {
+      parsedValue = value.toString().includes(',') ? value.toString().split(',') : [value];
+    } else {
+      parsedValue = value;
+    }
     const existing = params[key];
 
     if (Array.isArray(parsedValue)) {
-      const existingValues = Array.isArray(existing)
-        ? existing
-        : (existing ?? []);
+      const existingValues = Array.isArray(existing) ? existing : (existing ?? []);
       params[key] = [...existingValues, ...parsedValue];
 
       result = entries.next();
@@ -82,9 +83,7 @@ const getParams = (searchParams: URLSearchParams) => {
   return params;
 };
 
-export const urlAtom = atom<URLParams>(
-  getParams(new URLSearchParams(window.location.search)),
-);
+export const urlAtom = atom<URLParams>(getParams(new URLSearchParams(window.location.search)));
 
 export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
   // set atom value
@@ -118,73 +117,69 @@ type configurations = {
   promoted: any;
 };
 
-export const configurationsAtom = atom(
-  async (_get): Promise<configurations> => {
-    const proxyUrl = _get(getElasticUrlAtom);
-    const { index } = Global;
-    const url: string | undefined = proxyUrl;
-    const ndjsonHeader = '{}';
+export const configurationsAtom = atom(async (_get): Promise<configurations> => {
+  const proxyUrl = _get(getElasticUrlAtom);
+  const { index } = Global;
+  const url: string | undefined = proxyUrl;
+  const ndjsonHeader = '{}';
 
-    const body = `${ndjsonHeader}\n${JSON.stringify(AGGREGATIONS)}\n${ndjsonHeader}\n${JSON.stringify(
-      TASK_AREA_OPTIONS,
-    )}\n${ndjsonHeader}\n${JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)}\n${ndjsonHeader}\n${JSON.stringify(
-      LANGUAGE_OPTIONS,
-    )}\n${ndjsonHeader}\n${JSON.stringify(PROMOTED_IDS)}\n`;
+  const body = `${ndjsonHeader}\n${JSON.stringify(AGGREGATIONS)}\n${ndjsonHeader}\n${JSON.stringify(
+    TASK_AREA_OPTIONS,
+  )}\n${ndjsonHeader}\n${JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)}\n${ndjsonHeader}\n${JSON.stringify(
+    LANGUAGE_OPTIONS,
+  )}\n${ndjsonHeader}\n${JSON.stringify(PROMOTED_IDS)}\n`;
 
-    return useTimeoutFetch(`${url}/${index}/_msearch`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-ndjson' },
-      body,
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        const responses = json?.responses;
+  return useTimeoutFetch(`${url}/${index}/_msearch`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-ndjson' },
+    body,
+  })
+    .then((res) => res.json())
+    .then((json) => {
+      const responses = json?.responses;
 
-        if (!responses || !Array.isArray(responses)) {
-          return {
-            error: new Error(
-              `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`,
-            ),
-            taskAreaOptions: [],
-            taskAreas: [],
-            employment: [],
-            employmentOptions: [],
-            employmentSearchIds: [],
-            employmentType: [],
-            languages: [],
-            promoted: [],
-          };
-        }
-
-        const [aggs, taskAreas, employmentOptions, languages, promoted] =
-          responses;
-
+      if (!responses || !Array.isArray(responses)) {
         return {
-          error: null,
-          taskAreaOptions: taskAreas?.hits?.hits || [],
-          taskAreas: aggs?.aggregations?.occupations?.buckets || [],
-          employment: aggs?.aggregations?.employment?.buckets || [],
-          employmentOptions: employmentOptions?.hits?.hits || [],
-          employmentSearchIds:
-            aggs?.aggregations?.employment_search_id?.buckets || [],
-          employmentType: aggs?.aggregations?.employment_type?.buckets || [],
-          languages: languages?.aggregations?.languages?.buckets || [],
-          promoted: promoted?.aggregations?.promoted?.buckets || [],
+          error: new Error(
+            `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`,
+          ),
+          taskAreaOptions: [],
+          taskAreas: [],
+          employment: [],
+          employmentOptions: [],
+          employmentSearchIds: [],
+          employmentType: [],
+          languages: [],
+          promoted: [],
         };
-      })
-      .catch((error) => ({
-        error,
-        taskAreaOptions: [],
-        taskAreas: [],
-        employment: [],
-        employmentOptions: [],
-        employmentSearchIds: [],
-        employmentType: [],
-        languages: [],
-        promoted: [],
-      }));
-  },
-);
+      }
+
+      const [aggs, taskAreas, employmentOptions, languages, promoted] = responses;
+
+      return {
+        error: null,
+        taskAreaOptions: taskAreas?.hits?.hits || [],
+        taskAreas: aggs?.aggregations?.occupations?.buckets || [],
+        employment: aggs?.aggregations?.employment?.buckets || [],
+        employmentOptions: employmentOptions?.hits?.hits || [],
+        employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
+        employmentType: aggs?.aggregations?.employment_type?.buckets || [],
+        languages: languages?.aggregations?.languages?.buckets || [],
+        promoted: promoted?.aggregations?.promoted?.buckets || [],
+      };
+    })
+    .catch((error) => ({
+      error,
+      taskAreaOptions: [],
+      taskAreas: [],
+      employment: [],
+      employmentOptions: [],
+      employmentSearchIds: [],
+      employmentType: [],
+      languages: [],
+      promoted: [],
+    }));
+});
 
 export const taskAreasAtom = atom(async (get) => {
   const { error, taskAreaOptions, taskAreas } = await get(configurationsAtom);
@@ -200,20 +195,14 @@ export const taskAreasAtom = atom(async (get) => {
       const count = aggs.get(option._source.field_external_id[0]) || 0;
       const { name } = option._source;
 
-      return {
-        count,
-        label: `${name} (${count})`,
-        simpleLabel: name,
-        value: option._source.field_external_id[0],
-      };
+      return { count, label: `${name} (${count})`, simpleLabel: name, value: option._source.field_external_id[0] };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
 });
 export const taskAreasSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const employmentAtom = atom(async (get) => {
-  const { error, employment, employmentOptions, employmentType } =
-    await get(configurationsAtom);
+  const { error, employment, employmentOptions, employmentType } = await get(configurationsAtom);
 
   if (error) {
     return [];
@@ -224,9 +213,7 @@ export const employmentAtom = atom(async (get) => {
   const visibleOptions = employmentOptions.filter(
     (term: Result<Term>) =>
       term._source?.field_search_id?.[0] &&
-      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(
-        term._source.field_search_id[0],
-      ),
+      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(term._source.field_search_id[0]),
   );
 
   const options = visibleOptions
@@ -246,14 +233,10 @@ export const employmentAtom = atom(async (get) => {
       // Combine results for service / contractual employments
       if (customId.toString() === CustomIds.PERMANENT_CONTRACTUAL) {
         const permanentService = employmentOptions.find(
-          (optionTerm: Result<Term>) =>
-            optionTerm._source?.field_search_id?.[0] ===
-            CustomIds.PERMANENT_SERVICE,
+          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.PERMANENT_SERVICE,
         )?._source.tid[0];
         additionalValue = permanentService;
-        count =
-          (combinedAggs.get(tid) || 0) +
-          (combinedAggs.get(permanentService) || 0);
+        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(permanentService) || 0);
         label = `${Drupal.t('Permanent', {}, { context: 'Employment filter value' })} (${count})`;
         simpleLabel = Drupal.t(
           'Permanent contract and service employment',
@@ -262,13 +245,10 @@ export const employmentAtom = atom(async (get) => {
         );
       } else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
         const fixedService = employmentOptions.find(
-          (optionTerm: Result<Term>) =>
-            optionTerm._source?.field_search_id?.[0] ===
-            CustomIds.FIXED_SERVICE,
+          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.FIXED_SERVICE,
         )?._source.tid[0];
         additionalValue = fixedService;
-        count =
-          (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
+        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
         label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value' })} (${count})`;
         simpleLabel = Drupal.t(
           'Fixed-term contract and service employment',
@@ -289,12 +269,7 @@ export const employmentAtom = atom(async (get) => {
         }
       }
 
-      return {
-        count,
-        label,
-        simpleLabel,
-        value: additionalValue ? [tid, additionalValue] : tid,
-      };
+      return { count, label, simpleLabel, value: additionalValue ? [tid, additionalValue] : tid };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
   return options;
@@ -317,9 +292,7 @@ export const languagesAtom = atom(async (get) => {
     value: langcode,
   }));
 });
-export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(
-  undefined,
-);
+export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(undefined);
 
 export const continuousAtom = atom<boolean>(false);
 export const internshipAtom = atom<boolean>(false);
@@ -339,9 +312,7 @@ export const resetFormAtom = atom(null, (_get, set) => {
   set(languageSelectionAtom, undefined);
 });
 
-export const areaFilterAtom = atom(
-  getAreaInfo.map((item: any) => ({ label: item.label, value: item.key })),
-);
+export const areaFilterAtom = atom(getAreaInfo.map((item: any) => ({ label: item.label, value: item.key })));
 
 export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 

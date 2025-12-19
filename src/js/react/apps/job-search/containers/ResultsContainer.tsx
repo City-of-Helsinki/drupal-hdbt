@@ -25,11 +25,7 @@ const ResultsContainer = () => {
   const scrollTarget = createRef<HTMLDivElement>();
   const { query, promoted, handleResults } = useResultsQuery(urlParams);
 
-  const { data, error, isLoading, isValidating } = useIndexQuery({
-    keepPreviousData: true,
-    query,
-    multi: promoted,
-  });
+  const { data, error, isLoading, isValidating } = useIndexQuery({ keepPreviousData: true, query, multi: promoted });
 
   // Scroll to results when they change.
   const choices = Boolean(Object.keys(urlParams).length);
@@ -42,11 +38,13 @@ const ResultsContainer = () => {
   };
 
   const getResults = () => {
-    if (!data && !error) {
+    // Show the GhostCards when the search is loading its inital state
+    // and when the filters are applied and new results are fetched.
+    if (isLoading || isValidating) {
       return <GhostList count={size} />;
     }
 
-    if (error || initializationError || data.error) {
+    if (error || initializationError || data?.error) {
       return (
         <ResultsError
           error={error || initializationError || data.error}
@@ -56,15 +54,10 @@ const ResultsContainer = () => {
       );
     }
 
-    const { results, jobs, total } = handleResults(data);
+    const { results, jobs, total } = handleResults(data || {});
 
     if (total <= 0) {
-      return (
-        <ResultsEmpty
-          wrapperClass='hdbt-search--react__results--container'
-          ref={scrollTarget}
-        />
-      );
+      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
     }
 
     const pages = Math.ceil(total / size);
@@ -101,25 +94,16 @@ const ResultsContainer = () => {
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
-        <Pagination
-          currentPage={currentPage}
-          pages={5}
-          totalPages={pages}
-          updatePage={updatePage}
-        />
+        {pages > 1 && <Pagination currentPage={currentPage} pages={5} totalPages={pages} updatePage={updatePage} />}
       </>
     );
   };
 
   return (
     <>
-      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && (
-        <SearchMonitorContainer />
-      )}
+      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && <SearchMonitorContainer />}
       <div className='job-search__results'>
-        <ResultWrapper loading={isLoading || isValidating}>
-          {getResults()}
-        </ResultWrapper>
+        <ResultWrapper loading={isLoading || isValidating}>{getResults()}</ResultWrapper>
       </div>
     </>
   );

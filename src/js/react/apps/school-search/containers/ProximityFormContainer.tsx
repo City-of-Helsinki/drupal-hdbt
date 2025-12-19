@@ -4,11 +4,7 @@ import { AddressSearch } from '@/react/common/AddressSearch';
 import { keywordAtom, paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
-const ProximityFormContainer = ({
-  initialAddress,
-}: {
-  initialAddress?: string;
-}) => {
+const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string }) => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
 
@@ -33,18 +29,8 @@ const ProximityFormContainer = ({
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form
-      className='hdbt-search--react__form-container'
-      role='search'
-      onSubmit={onSubmit}
-    >
-      <h3>
-        {Drupal.t(
-          'Search for your local school',
-          {},
-          { context: 'School search: local search title' },
-        )}
-      </h3>
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+      <h3>{Drupal.t('Search for your local school', {}, { context: 'School search: local search title' })}</h3>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
           "Your child's primary comprehensive school, i.e., the local school, is assigned based on the child's home address. You can search for Finnish- and Swedish-language comprehensive schools.",
@@ -54,11 +40,7 @@ const ProximityFormContainer = ({
       </p>
       <AddressSearch
         className='hdbt-search__filter'
-        clearButtonAriaLabel={Drupal.t(
-          'Clear',
-          {},
-          { context: 'React search' },
-        )}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         defaultValue={initialAddress || ''}
         helperText={Drupal.t(
           'Enter the street name and house number',
@@ -66,11 +48,7 @@ const ProximityFormContainer = ({
           { context: 'React search: street input helper' },
         )}
         id='keyword'
-        label={Drupal.t(
-          "The child's home address",
-          {},
-          { context: 'School search: input label' },
-        )}
+        label={Drupal.t("The child's home address", {}, { context: 'School search: input label' })}
         onChange={(value: string) => setKeyword(value)}
         onSubmit={(value: string) => setKeyword(value)}
         placeholder={Drupal.t(
@@ -81,11 +59,7 @@ const ProximityFormContainer = ({
         visibleSuggestions={5}
       />
       <Button className='hdbt-search--react__submit-button' type='submit'>
-        {Drupal.t(
-          'Search',
-          {},
-          { context: 'React search: submit button label' },
-        )}
+        {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>
     </form>
   );

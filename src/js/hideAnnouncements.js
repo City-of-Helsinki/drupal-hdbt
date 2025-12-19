@@ -2,11 +2,7 @@
   const uuidsToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
   const elements = document.querySelectorAll('.js-announcement');
 
-  if (
-    !uuidsToHide ||
-    !('hidden-helfi-announcements' in uuidsToHide) ||
-    !elements
-  ) {
+  if (!uuidsToHide || !('hidden-helfi-announcements' in uuidsToHide) || !elements) {
     return;
   }
 

@@ -35,7 +35,12 @@
       "style": { "noUnusedTemplateLiteral": "warn", "useImportType": "warn" }
     }
   },
-  "formatter": { "enabled": true, "expand": "never", "useEditorconfig": true },
+  "formatter": {
+    "enabled": true,
+    "expand": "auto",
+    "lineWidth": 120,
+    "useEditorconfig": true
+  },
   "javascript": {
     "formatter": {
       "quoteStyle": "single",

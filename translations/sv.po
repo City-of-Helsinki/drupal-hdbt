@@ -835,8 +835,12 @@ msgid "Table of contents requires JavaScript. Your browser doesn't support JavaS
 msgstr "Innehållsförteckning använder JavaScript. Din webbläsare stöder inte JavaScript eller det är inaktiverad. Kontrollera webbläsarens inställningar och försök igen."
 
 msgctxt "HELfi Rekry job search keyword placeholder"
-msgid "Eg. title, location, department"
-msgstr "T.ex. titel, verksamhetsställe, enhet"
+msgid "E.g. psychologist or sports services"
+msgstr "Till exempel psykolog eller idrottstjänster"
+
+msgctxt "HELfi Rekry job search keyword input helper"
+msgid "Enter a title or location, for example"
+msgstr "Skriv exempelvis en titel eller ett verksamhetsställe"
 
 msgctxt "Job search results statline"
 msgid "1 open position"
@@ -895,7 +899,7 @@ msgid "Fixed-term contract and service employment"
 msgstr "Visstidsanställning och tjänsteförhållande"
 
 msgctxt "Employment filter placeholder"
-msgid "All types of employment"
+msgid "All employment types"
 msgstr "Alla typer av anställningsförhållande"
 
 msgctxt "Language filter label"

@@ -1,12 +1,7 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
-import {
-  getAddresses,
-  getAddressUrls,
-  getLocationsUrl,
-  parseCoordinates,
-} from '@/react/common/helpers/SubQueries';
+import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/ProximityQuery';
 import { configurationsAtom } from '../store';
@@ -32,10 +27,7 @@ const UseProximityQuery = (params: SearchParams) => {
       addresses = addresses.filter((address) => address.results.length);
 
       if (addresses.length) {
-        resolvedName = getNameTranslation(
-          addresses[0].results[0].name,
-          drupalSettings.path.currentLanguage,
-        );
+        resolvedName = getNameTranslation(addresses[0].results[0].name, drupalSettings.path.currentLanguage);
         coordinates = parseCoordinates(addresses);
       }
     }
@@ -46,18 +38,14 @@ const UseProximityQuery = (params: SearchParams) => {
 
     if (coordinates?.length) {
       const [lat, lon] = coordinates;
-      const locationsResponse = await fetch(
-        getLocationsUrl(locationsBaseUrl, lat, lon),
-      );
+      const locationsResponse = await fetch(getLocationsUrl(locationsBaseUrl, lat, lon));
       const locationsData = await locationsResponse.json();
 
       if (!locationsData || !locationsData.results) {
         return null;
       }
 
-      ids = locationsData.results.flatMap(
-        (result: Result) => result.units ?? [],
-      );
+      ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
     const result = await fetch(`${baseUrl}/${index}/_search`, {

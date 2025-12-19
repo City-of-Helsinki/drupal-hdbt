@@ -21,18 +21,10 @@ const ExternalLink = ({
   };
 
   return (
-    <a
-      href={href}
-      className={className}
-      data-is-external='true'
-      {...dataAttributes}
-      rel={rel}
-    >
+    <a href={href} className={className} data-is-external='true' {...dataAttributes} rel={rel}>
       {title}
 
-      {!dataHdsComponent && (
-        <span className='link__type link__type--external'></span>
-      )}
+      {!dataHdsComponent && <span className='link__type link__type--external'></span>}
       <span className='visually-hidden'>
         {Drupal.t(
           'Link leads to external service',

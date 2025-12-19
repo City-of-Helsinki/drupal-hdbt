@@ -1,11 +1,7 @@
 import { type ForwardedRef, forwardRef } from 'react';
 import ResultsHeader from '@/react/common/ResultsHeader';
 
-type ResultsEmptyProps = {
-  title?: string;
-  content?: string;
-  wrapperClass?: string;
-};
+type ResultsEmptyProps = { title?: string; content?: string; wrapperClass?: string };
 
 const ResultsEmpty = forwardRef(
   (
@@ -22,13 +18,7 @@ const ResultsEmpty = forwardRef(
       <ResultsHeader
         resultText={
           // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-          <>
-            {Drupal.t(
-              'No results',
-              {},
-              { context: 'Unit search no results title' },
-            )}
-          </>
+          <>{Drupal.t('No results', {}, { context: 'Unit search no results title' })}</>
         }
         ref={ref}
       />

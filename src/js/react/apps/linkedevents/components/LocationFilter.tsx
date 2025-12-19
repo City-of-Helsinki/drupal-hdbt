@@ -4,11 +4,7 @@ import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import {
-  locationAtom,
-  locationSelectionAtom,
-  updateParamsAtom,
-} from '../store';
+import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
 function LocationFilter() {
@@ -26,11 +22,7 @@ function LocationFilter() {
     });
   };
 
-  const selectVenueLabel: string = Drupal.t(
-    'Venue',
-    {},
-    { context: 'Events search' },
-  );
+  const selectVenueLabel: string = Drupal.t('Venue', {}, { context: 'Events search' });
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
@@ -43,14 +35,8 @@ function LocationFilter() {
         options={locationOptions}
         texts={{
           label: selectVenueLabel,
-          language: getCurrentLanguage(
-            window.drupalSettings.path.currentLanguage,
-          ),
-          placeholder: Drupal.t(
-            'All venues',
-            {},
-            { context: 'React search: all available options' },
-          ),
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+          placeholder: Drupal.t('All venues', {}, { context: 'React search: all available options' }),
         }}
         theme={defaultMultiSelectTheme}
         value={locationSelection}
