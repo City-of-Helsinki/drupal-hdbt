@@ -5,6 +5,7 @@ type SearchParams = {
   grades_1_9?: boolean;
   grades_7_9?: boolean;
   swedish_education?: boolean;
+  english_education?: boolean;
   a1?: string[];
   a2?: string[];
   b1?: string[];

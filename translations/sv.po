@@ -431,6 +431,10 @@ msgctxt "School search: language option"
 msgid "Swedish"
 msgstr "Svenska"
 
+msgctxt "School search: language option"
+msgid "English"
+msgstr "Engelska"
+
 msgctxt "School search: language placeholder"
 msgid "All languages"
 msgstr "Alla språk"

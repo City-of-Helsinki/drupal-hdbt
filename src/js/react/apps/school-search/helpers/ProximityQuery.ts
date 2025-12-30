@@ -20,9 +20,11 @@ const getQueryString = (ids: number[] | null, coordinates: number[] | null, page
               boost: 1,
               filter: {
                 term: {
-                  [lang === 'sv' ? 'additional_filters.swedish_education' : 'additional_filters.finnish_education']: {
-                    value: true,
-                  },
+                  [lang === 'sv'
+                    ? 'additional_filters.swedish_education'
+                    : lang === 'en'
+                      ? 'additional_filters.english_education'
+                      : 'additional_filters.finnish_education']: { value: true },
                 },
               },
             },

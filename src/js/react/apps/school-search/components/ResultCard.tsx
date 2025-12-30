@@ -47,6 +47,11 @@ const ResultCard = ({
     language = language?.length ? `${language}, ${swedish.toLowerCase()}` : swedish;
   }
 
+  if (additionalFilters.english_education) {
+    const english = Drupal.t('English', {}, { context: 'School search: language option' });
+    language = language?.length ? `${language}, ${english.toLowerCase()}` : english;
+  }
+
   let languageEducation = ontologyword_ids?.reduce(
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     (acc: any, currentItem: any) => {
@@ -63,7 +68,7 @@ const ResultCard = ({
   // Remove duplicates.
   languageEducation = [...new Set(languageEducation)];
 
-  const bilingualEducation = ontologyword_ids?.reduce(
+  let bilingualEducation = ontologyword_ids?.reduce(
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     (acc: any, currentItem: any) => {
       if (ontologyDetailsIdsToLang.bilingualEducation[currentItem]) {
@@ -73,6 +78,9 @@ const ResultCard = ({
     },
     [],
   );
+
+  // Remove duplicates.
+  bilingualEducation = [...new Set(bilingualEducation)];
 
   return (
     <CardItem
