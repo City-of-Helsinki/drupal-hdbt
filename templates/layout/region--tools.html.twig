@@ -20,7 +20,7 @@
   ]
 %}
 
-{% if content|render|striptags|trim is not empty %}
+{% if content|render %}
   <div{{ attributes.addClass(classes) }}>
     {{ content }}
   </div>
