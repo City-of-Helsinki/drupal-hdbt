@@ -15,7 +15,11 @@
   %}
     {% block component_content %}
       <div id="helfi-etusivu-news-search">
-        {{ drupal_view('news_archive', 'news_archive_block') }}
+        <noscript>
+          <div class="news-archive__javascript-disabled">
+            {{ 'You must enable JavaScript in your browser for news list to work'|t }}
+          </div>
+        </noscript>
       </div>
     {% endblock component_content %}
   {% endembed %}
