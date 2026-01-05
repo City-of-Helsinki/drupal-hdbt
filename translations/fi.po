@@ -1619,6 +1619,3 @@ msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esi
 msgctxt "React search"
 msgid "Distance"
 msgstr "Etäisyys"
-
-msgid "You must enable JavaScript in your browser for news list to work"
-msgstr "Ominaisuus vaatii javascriptin toimiakseen"

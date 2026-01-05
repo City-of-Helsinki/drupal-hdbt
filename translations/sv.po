@@ -1621,6 +1621,3 @@ msgstr "Se till att adressen är skriven korrekt. Du kan också söka med ett n�
 msgctxt "React search"
 msgid "Distance"
 msgstr "Avstånd"
-
-msgid "You must enable JavaScript in your browser for news list to work"
-msgstr "Du måste aktivera JavaScript i din webbläsare för att nyhetslistan ska fungera"
