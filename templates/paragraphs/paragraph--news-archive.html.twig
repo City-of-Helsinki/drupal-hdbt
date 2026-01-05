@@ -16,9 +16,9 @@
     {% block component_content %}
       <div id="helfi-etusivu-news-search">
         <noscript>
-          <div class="news-archive__javascript-disabled">
-            {{ 'You must enable JavaScript in your browser for news list to work'|t }}
-          </div>
+          {% trans with {'context': 'Generic javascript required message'} %}
+            This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
+          {% endtrans %}
         </noscript>
       </div>
     {% endblock component_content %}
