@@ -9,11 +9,13 @@
     }
   %}
     {% block component_content %}
-      <noscript>
-        {% trans with {'context': 'Generic javascript required message'} %}
-          This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
-        {% endtrans %}
-      </noscript>
+      <div id="helfi-rekry-job-search">
+        <noscript>
+          {% trans with {'context': 'Generic javascript required message'} %}
+            This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
+          {% endtrans %}
+        </noscript>
+      </div>
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}
