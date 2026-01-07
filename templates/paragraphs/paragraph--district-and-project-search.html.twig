@@ -14,7 +14,11 @@
   %}
     {% block component_content %}
       <div id="helfi-kymp-district-project-search">
-        {{ drupal_view('district_and_project_search', 'district_and_project_search') }}
+        <noscript>
+          {% trans with {'context': 'Generic javascript required message'} %}
+            This content requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again.
+          {% endtrans %}
+        </noscript>
       </div>
     {% endblock component_content %}
   {% endembed %}
