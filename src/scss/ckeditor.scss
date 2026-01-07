@@ -223,8 +223,7 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon], [data-is-extern
 
   &:hover::after,
   &:focus-visible::after {
-    /* stylelint-disable-next-line number-max-precision -- @todo UHF-12501 */
-    $mask-move: 0.166666666em;
+    $mask-move: 0.1667em;
     mask-position: center, $mask-move (-1 * $mask-move);
   }
 }
