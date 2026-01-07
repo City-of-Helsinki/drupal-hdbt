@@ -396,7 +396,8 @@ $koro-height: 50px;
   color: inherit;
 }
 
-.hero--with-helsinki-near-you {
+.hero--with-helsinki-near-you,
+.hero--with-search-form {
   .hero__container {
     @include breakpoint($breakpoint-l) {
       padding-top: $spacing-triple;
