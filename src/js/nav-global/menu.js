@@ -299,6 +299,7 @@ const MobilePanel = {
       hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
+      // If global navigation is disabled, prevent helfi-etusivu -link from rendering.
       back:
         i > 0 ? (this.content.at(i - 1)?.name ?? (window.no_global_navigation ? false : frontpageTranslation)) : false,
       openSubMenuTranslation,
