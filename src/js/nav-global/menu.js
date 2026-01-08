@@ -259,7 +259,7 @@ const MobilePanel = {
 
     while (parentIndex) {
       const found = allItems.findRecursive(
-        // sub_tree is api  data key.
+        // sub_tree is api data key.
         ({ id, url, name, sub_tree, parentId, inPath, active }) => {
           if (id === parentIndex) {
             panels.push({ sub_tree, name, url, parentId, inPath, active });
@@ -299,11 +299,12 @@ const MobilePanel = {
       hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
-      back: i > 0 ? (this.content.at(i - 1)?.name ?? frontpageTranslation) : false,
+      back:
+        i > 0 ? (this.content.at(i - 1)?.name ?? (window.no_global_navigation ? false : frontpageTranslation)) : false,
       openSubMenuTranslation,
       openParentMenuTranslation,
-      /** *
-       * Define correct starting positions for each panel, depeding on traversal direction
+      /**
+       * Define correct starting positions for each panel, depending on traversal direction
        * At start, first item is on stage and anything else must be on right.
        * When going forward in the menu, current -1  item must be on stage and current item starts from right
        * When going backward in the menu, current +1 item must be on stage and current item starts from left
@@ -415,6 +416,7 @@ const MobilePanel = {
     const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
 
     if (currentItem) {
+      window.no_global_navigation = currentItem.no_global_navigation;
       currentItem.active = true;
       currentItem.inPath = true;
     }
