@@ -35,7 +35,7 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
   }
 
   // If there is 1,2 or 3 items inside the list of links:
-  @include content_count(1, 2, 3) {
+  @include content-count(1, 2, 3) {
     @include breakpoint($breakpoint-s) {
       width: calc(50% - #{$-item-spacing});
     }
@@ -148,7 +148,7 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
     }
 
     // If there is 1,2 or 3 items inside the list of links:
-    @include content_count(1, 2) {
+    @include content-count(1, 2) {
       @include breakpoint($breakpoint-m) {
         width: calc(50% - #{$-item-spacing});
       }

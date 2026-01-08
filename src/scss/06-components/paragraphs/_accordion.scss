@@ -74,7 +74,7 @@
 
   &::after {
     @include rotating-icon-transition(var(--js-accordion-open-time));
-    background-image: icon_url('angle-down');
+    background-image: icon-url('angle-down');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;

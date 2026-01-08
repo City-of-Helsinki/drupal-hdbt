@@ -60,7 +60,7 @@ $koro-height: 50px;
   bottom: -90px;
   height: 100px;
   inset-inline-start: $spacing-and-half;
-  mask-image: icon_url('hero-arrow-mobile');
+  mask-image: icon-url('hero-arrow-mobile');
   mask-position: center;
   mask-repeat: no-repeat;
   position: absolute;
@@ -71,7 +71,7 @@ $koro-height: 50px;
     bottom: -100px;
     height: 110px;
     left: $spacing-double;
-    mask-image: icon_url('hero-arrow-desktop');
+    mask-image: icon-url('hero-arrow-desktop');
     width: 94px;
   }
 }

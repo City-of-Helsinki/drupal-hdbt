@@ -21,7 +21,7 @@ $-current-border-size: 3px;
 }
 
 .language-link {
-  @include navigation_link_defaults;
+  @include navigation-link-defaults;
   @include font($-language-link-font);
   color: $color-black-90;
   display: inline-block;
