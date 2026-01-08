@@ -2,7 +2,6 @@ $-branding-icon-size-desktop: $spacing-double;
 
 .header-branding {
   --header-branding-padding: #{$spacing};
-  background-color: $color-white;
   display: grid;
   grid-template-areas:
     '. logo . search toggle profile .'
@@ -18,6 +17,7 @@ $-branding-icon-size-desktop: $spacing-double;
 
   @include breakpoint($breakpoint-m) {
     --header-branding-padding: #{$spacing-and-half};
+    background-color: $color-white;
     grid-template-areas:
       '. logo . lang search toggle profile .'
       'langmenu langmenu langmenu langmenu langmenu langmenu langmenu langmenu'

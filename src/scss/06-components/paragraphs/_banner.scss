@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .banner__title {
   @include font('h3');
   margin-top: 0;
@@ -77,18 +76,16 @@
     }
   }
 
-  &.component--banner-has-icon {
-    a {
-      @include breakpoint($breakpoint-l) {
-        margin-left: auto;
-        margin-right: 0;
-      }
+  &.component--banner-has-icon a {
+    @include breakpoint($breakpoint-l) {
+      margin-left: auto;
+      margin-right: 0;
+    }
 
-      &[data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
-      &.hds-button--supplementary {
-        // Fix for supplementary button alignment.
-        margin-left: calc(-#{$spacing-half} + (-2px));
-      }
+    &[data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
+    &.hds-button--supplementary {
+      // Fix for supplementary button alignment.
+      margin-left: calc(-#{$spacing-half} + (-2px));
     }
   }
 }

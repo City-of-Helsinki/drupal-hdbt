@@ -1,5 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
-/* stylelint-disable plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
 $-main-nav-spacing: 20px;
 $-main-nav-dropdown-padding: $-main-nav-spacing;
 
@@ -114,13 +112,15 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
       margin: 0 auto;
       position: absolute;
       right: 0;
-      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-      width: 0;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: transform;
     }
 
     &[aria-current='page']::before {
       height: 4px;
-      width: 100%;
+      transform: scaleX(1);
     }
 
     &:focus {
@@ -197,7 +197,10 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
       margin: 0;
       right: auto;
       top: 0;
-      transition: width 100ms ease-in;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 100ms ease-in;
+      width: 4px;
     }
 
     &:focus {
@@ -214,13 +217,10 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
       font-weight: $font-weight-bold;
     }
 
-    &:hover,
-    &[aria-current='page'],
-    &.menu__link--active-trail {
-      &::before {
-        height: 100%;
-        width: 4px;
-      }
+    &:hover::before,
+    &[aria-current='page']::before,
+    &.menu__link--active-trail::before {
+      transform: scaleX(1);
     }
   }
 

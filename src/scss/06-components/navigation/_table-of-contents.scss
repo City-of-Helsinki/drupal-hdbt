@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .table-of-contents {
   @include components-container-max-width;
 
@@ -91,13 +90,13 @@
     @include breakpoint($breakpoint-m) {
       margin-inline-end: $spacing-and-half;
     }
+  }
 
-    .hel-icon {
-      --icon-size: #{$spacing-quadruple};
+  .nojs__icon .hel-icon {
+    --icon-size: #{$spacing-quadruple};
 
-      @include breakpoint($breakpoint-m) {
-        --icon-size: #{remify(100px)};
-      }
+    @include breakpoint($breakpoint-m) {
+      --icon-size: #{remify(100px)};
     }
   }
 

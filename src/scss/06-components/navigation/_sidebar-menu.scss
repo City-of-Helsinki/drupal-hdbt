@@ -22,7 +22,7 @@ $-menu-item-margin: (2 * $-inner-item-spacing - $-menu-item-padding); // Adjust 
   margin-top: 0;
 
   .sidebar-navigation__title-link {
-    @include navigation_link_defaults;
+    @include navigation-link-defaults;
     align-items: center;
     display: flex;
     margin-block: $spacing-half;

@@ -1,13 +1,11 @@
-/* stylelint-disable-next-line scss/at-mixin-pattern -- @todo UHF-12501 */
-@mixin form_submit_defaults() {
+@mixin form-submit-defaults() {
   margin-bottom: $spacing-double;
   margin-top: $spacing;
   max-width: 280px;
   width: 100%;
 }
 
-/* stylelint-disable-next-line scss/at-mixin-pattern -- @todo UHF-12501 */
-@mixin form_container_defaults() {
+@mixin form-container-defaults() {
   margin-bottom: $spacing-double;
   max-width: $content-width-max;
 }

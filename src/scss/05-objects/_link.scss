@@ -23,8 +23,7 @@ a:hover .link__type {
 
 a:focus .link__type--external,
 a:hover .link__type--external {
-  /* stylelint-disable-next-line number-max-precision -- @todo UHF-12501 */
-  $mask-move: 0.166666666em;
+  $mask-move: 0.1667em;
   mask-position: center, $mask-move (-1 * $mask-move);
 }
 

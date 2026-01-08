@@ -45,7 +45,7 @@ $-header-top-height: calc(#{2 * $-header-top-padding} + #{$-header-top-line-heig
   }
 
   .link-to-site-frontpage {
-    @include navigation_link_defaults;
+    @include navigation-link-defaults;
   }
 
   .menu__link__text::after {

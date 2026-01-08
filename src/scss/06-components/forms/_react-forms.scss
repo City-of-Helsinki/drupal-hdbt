@@ -61,7 +61,7 @@
 }
 
 .hdbt-search--react__submit-button {
-  @include form_submit_defaults;
+  @include form-submit-defaults;
 }
 
 // Need specific selector here to override HDS styles
@@ -149,7 +149,7 @@
 }
 
 .hdbt-search--react__form-container {
-  @include form_container_defaults;
+  @include form-container-defaults;
 }
 
 .hdbt-search--react__text-field {

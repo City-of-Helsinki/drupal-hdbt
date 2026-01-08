@@ -1,5 +1,3 @@
-/* stylelint-disable no-invalid-position-at-import-rule -- @todo UHF-12501 */
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 // This file includes styling for WYSIWYG editor.
 
 @import 'hds';
@@ -9,6 +7,8 @@
 @import '02-mixins/_index';
 
 .ck-content {
+  // Imports inside this class should be scoped to ck-content only to avoid conflicts with other styles.
+  /* stylelint-disable no-invalid-position-at-import-rule */
   @import '03-generic/_index';
 
   // Text paragraph styles as written in 03_generic/_base.scss and '06_components/paragraphs/text'.
@@ -27,6 +27,7 @@
   @import '05-objects/quote';
   @import '05-objects/button';
   @include hds-button-colors-on-light-bg;
+  /* stylelint-enable no-invalid-position-at-import-rule */
 }
 
 // Additional styling for links.
@@ -87,7 +88,10 @@
 
 // 04_elements/_table.scss
 .ck-editor .ck-content {
+  // Imports inside this class should be scoped to ck-content inside ck-editor only to avoid conflicts with other styles.
+  /* stylelint-disable no-invalid-position-at-import-rule */
   @import '04-elements/table';
+  /* stylelint-enable no-invalid-position-at-import-rule */
 
   // CKEditor and Gin styling overrides. These are quite nasty but so are the styles automatically set by
   // the Gin-theme and CKEditor-module.
@@ -135,10 +139,10 @@
       background: $color-black-10;
       font-size: remify(18px);
       font-weight: $font-weight-bold;
+    }
 
-      strong {
-        font-weight: $font-weight-bold;
-      }
+    th strong {
+      font-weight: $font-weight-bold;
     }
 
     // CKEditor adds paddings and borders for td- and th-elements so changing them to correct here.
@@ -223,8 +227,7 @@ a.hds-button.hds-button--supplementary:not([data-selected-icon], [data-is-extern
 
   &:hover::after,
   &:focus-visible::after {
-    /* stylelint-disable-next-line number-max-precision -- @todo UHF-12501 */
-    $mask-move: 0.166666666em;
+    $mask-move: 0.1667em;
     mask-position: center, $mask-move (-1 * $mask-move);
   }
 }

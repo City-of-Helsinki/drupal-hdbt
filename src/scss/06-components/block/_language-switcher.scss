@@ -1,4 +1,3 @@
-/* stylelint-disable plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
 .language-wrapper {
   align-content: stretch;
   align-items: center;
@@ -12,7 +11,7 @@
   min-height: var(--language-block-height);
   padding: 0 $spacing;
   position: relative;
-  transition: margin-top 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
+  transition: transform 0.3s ease 1s; // The transition delay here combats a bit for the accidental scroll ups during scrolling
   width: 100vw;
   z-index: 0;
 
@@ -23,12 +22,13 @@
     margin-left: auto;
     order: 2;
     padding: 0;
+    transition: none;
     width: auto;
     z-index: 10; // floats over main menu dropdowns.
   }
 
   &.scroll-up {
-    margin-top: calc(-1 * var(--language-block-height));
+    transform: translateY(calc(-1 * var(--language-block-height)));
     transition-delay: 0s; // Transition delay should be 0 when hiding the switcher
 
     @include breakpoint($breakpoint-m) {
