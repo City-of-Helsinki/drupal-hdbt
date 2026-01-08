@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 @use 'sass:math';
 
 $-item-spacing: $spacing-triple;
@@ -44,134 +43,132 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
       width: calc(33.3333% - #{$-item-spacing});
     }
   }
+}
 
-  .list-of-links__item__title {
-    @include heading-hyphens;
-    @include font('h4');
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    margin-block: 0;
-    margin-inline-start: (100px + $spacing);
+.list-of-links__item__title {
+  @include heading-hyphens;
+  @include font('h4');
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-block: 0;
+  margin-inline-start: (100px + $spacing);
 
-    // There should be minimal height for the links with images on small screens so that the item is always at least
-    // the height of the image. The image is 90px tall.
-    min-height: 90px;
+  // There should be minimal height for the links with images on small screens so that the item is always at least
+  // the height of the image. The image is 90px tall.
+  min-height: 90px;
 
-    @include breakpoint($breakpoint-s) {
-      margin-inline-start: 0;
-      min-height: auto;
-    }
+  @include breakpoint($breakpoint-s) {
+    margin-inline-start: 0;
+    min-height: auto;
+  }
+}
+
+.list-of-links__item__link {
+  box-sizing: border-box;
+  display: inline-block;
+  overflow-wrap: anywhere;
+
+  // Make the clickable area conform with WCAG AAA standard.
+  // Also adjust the text inside the link slightly higher than the center to make it look balanced by adding 2/3 of
+  // the padding to the bottom and 1/3 of it to the top.
+  padding-bottom: ($-item-link-padding * 2) * math.div(2, 3);
+  padding-top: ($-item-link-padding * 2) * math.div(1, 3);
+
+  @include breakpoint($breakpoint-s) {
+    display: block;
+
+    // In the layouts the list of links item with image is designed so that there is minimal height for it. This
+    // min-height is defined so that the link text is followed by 48px (spacing-quadruple) of empty space unless
+    // the text goes to multiple lines.
+    min-height: get-line-height('h4.breakpoint_l', $unremify: true) + $spacing-quadruple;
+
+    // The paddings are no longer needed to conform with the WCAG AAA standard since the link has now min-height
+    // that is higher than the 44px defined as the minimum clickable area.
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
-  .list-of-links__item__link {
-    box-sizing: border-box;
-    display: inline-block;
-    overflow-wrap: anywhere;
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
 
-    // Make the clickable area conform with WCAG AAA standard.
-    // Also adjust the text inside the link slightly higher than the center to make it look balanced by adding 2/3 of
-    // the padding to the bottom and 1/3 of it to the top.
-    padding-bottom: ($-item-link-padding * 2) * math.div(2, 3);
-    padding-top: ($-item-link-padding * 2) * math.div(1, 3);
+    &::after {
+      transform: scaleX(var(--lang-direction, 1)) translateX($spacing-half);
 
-    @include breakpoint($breakpoint-s) {
-      display: block;
-
-      // In the layouts the list of links item with image is designed so that there is minimal height for it. This
-      // min-height is defined so that the link text is followed by 48px (spacing-quadruple) of empty space unless
-      // the text goes to multiple lines.
-      min-height: get-line-height('h4.breakpoint_l', $unremify: true) + $spacing-quadruple;
-
-      // The paddings are no longer needed to conform with the WCAG AAA standard since the link has now min-height
-      // that is higher than the 44px defined as the minimum clickable area.
-      padding-bottom: 0;
-      padding-top: 0;
-    }
-
-    &:focus,
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: remify(2px);
-
-      &::after {
-        transform: scaleX(var(--lang-direction, 1)) translateX($spacing-half);
-
-        @media (prefers-reduced-motion) {
-          transform: scaleX(var(--lang-direction, 1));
-        }
+      @media (prefers-reduced-motion) {
+        transform: scaleX(var(--lang-direction, 1));
       }
     }
-
-    &::before {
-      content: '';
-      display: block;
-      inset: 0;
-      position: absolute;
-    }
   }
 
-  .list-of-links__item__image {
-    inset-block-start: 0;
-    inset-inline-start: 0;
+  &::before {
+    content: '';
+    display: block;
+    inset: 0;
     position: absolute;
+  }
+}
 
-    // Size of thumbnails on mobile
-    width: 90px;
+.list-of-links__item__image {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  position: absolute;
 
-    @include breakpoint($breakpoint-s) {
-      margin-bottom: $spacing;
-      position: static;
-      width: 100%;
-    }
+  // Size of thumbnails on mobile
+  width: 90px;
 
-    img {
-      @include image-defaults($width: 100%, $max-width: null);
-      @include loading-image-background;
-    }
+  @include breakpoint($breakpoint-s) {
+    margin-bottom: $spacing;
+    position: static;
+    width: 100%;
+  }
 
-    .image-placeholder {
-      padding-bottom: 100%;
-    }
+  img {
+    @include image-defaults($width: 100%, $max-width: null);
+    @include loading-image-background;
+  }
+
+  .image-placeholder {
+    padding-bottom: 100%;
   }
 }
 
 // Without image variants
-.component--list-of-links-without-image {
-  .list-of-links__item {
-    align-self: flex-start;
-    min-height: 2rem; // Min-height is the same as the icon height.
-    padding-bottom: 0;
+.component--list-of-links-without-image .list-of-links__item {
+  align-self: flex-start;
+  min-height: 2rem; // Min-height is the same as the icon height.
+  padding-bottom: 0;
 
+  @include breakpoint($breakpoint-m) {
+    width: calc(33.3333% - #{$-item-spacing});
+  }
+
+  // If there is 1,2 or 3 items inside the list of links:
+  @include content-count(1, 2) {
     @include breakpoint($breakpoint-m) {
-      width: calc(33.3333% - #{$-item-spacing});
-    }
-
-    // If there is 1,2 or 3 items inside the list of links:
-    @include content-count(1, 2) {
-      @include breakpoint($breakpoint-m) {
-        width: calc(50% - #{$-item-spacing});
-      }
-    }
-
-    .list-of-links__item__link {
-      min-height: auto;
-
-      // Make the clickable area conform with WCAG AAA standard.
-      padding-block: $-item-link-padding;
-    }
-
-    .list-of-links__item__title {
-      margin-inline: 0;
-      min-height: auto;
+      width: calc(50% - #{$-item-spacing});
     }
   }
 
-  // Without image but with description variant
-  .list-of-links__item__desc {
-    @include font('body');
-    color: $color-black-60;
+  .list-of-links__item__link {
+    min-height: auto;
+
+    // Make the clickable area conform with WCAG AAA standard.
+    padding-block: $-item-link-padding;
   }
+
+  .list-of-links__item__title {
+    margin-inline: 0;
+    min-height: auto;
+  }
+}
+
+// Without image but with description variant
+.component--list-of-links-without-image .list-of-links__item__desc {
+  @include font('body');
+  color: $color-black-60;
 }
 
 // Sidebar layout.

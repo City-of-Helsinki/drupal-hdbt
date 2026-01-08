@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .page-type--news-item .sidebar-first {
   display: block;
 }
@@ -167,31 +166,31 @@
 
 .news-listing--sidebar {
   margin-bottom: $spacing-quadruple;
+}
 
-  .link__read-more-news {
-    align-items: center;
-    display: flex;
-    text-decoration: none;
+.news-listing--sidebar .link__read-more-news {
+  align-items: center;
+  display: flex;
+  text-decoration: none;
 
-    .hel-icon--arrow-right {
-      @include hover-link-arrow-transition;
-      height: $spacing-and-half;
-      margin-inline-start: $spacing-quarter;
-      transform: scaleX(var(--lang-direction, 1));
-      width: $spacing-and-half;
-    }
+  .hel-icon--arrow-right {
+    @include hover-link-arrow-transition;
+    height: $spacing-and-half;
+    margin-inline-start: $spacing-quarter;
+    transform: scaleX(var(--lang-direction, 1));
+    width: $spacing-and-half;
+  }
 
-    &:focus,
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: remify(2px);
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: remify(2px);
 
-      .hel-icon {
-        transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
+    .hel-icon {
+      transform: scaleX(var(--lang-direction, 1)) translateX($spacing-quarter);
 
-        @media (prefers-reduced-motion) {
-          transform: none;
-        }
+      @media (prefers-reduced-motion) {
+        transform: none;
       }
     }
   }
