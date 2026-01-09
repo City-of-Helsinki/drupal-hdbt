@@ -118,7 +118,7 @@ const FormContainer = () => {
   const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+    // biome-ignore lint/a11y/useSemanticElements: The semantic element <search> doesn't exist in 'JSX.IntrinsicElements' so we can't use it at this point. If updates allow it later, remove the role and wrap the form in a <search> element.
     <form onSubmit={handleSubmit} role='search'>
       <div className='district-project-search-form__filters-container'>
         <div className='district-project-search-form__filters'>
