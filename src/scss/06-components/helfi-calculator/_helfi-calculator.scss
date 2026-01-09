@@ -323,6 +323,7 @@
     .helfi-calculator__receipt-subtotal-sum {
       @include font('h4');
       grid-area: sum;
+      white-space: nowrap;
     }
 
     @include breakpoint($breakpoint-s) {
