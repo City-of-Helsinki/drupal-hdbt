@@ -66,13 +66,16 @@ const ResultCard = ({
   };
 
   const getTimeItem = (dateStrings: string[]) =>
-    dateStrings.map((dateString: string, i: number) => (
-      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
-      <time dateTime={getHtmlTime(dateString)} key={`${dateString}-${i}`}>
-        {' '}
-        {i !== 0 && '-'} {getVisibleTime(dateString)}
-      </time>
-    ));
+    dateStrings.map((dateString: string, i: number) => {
+      const timestamp = new Date(dateString).getTime();
+      const uniqueId = `${timestamp}-${i}-${Math.random().toString(36).substring(2, 11)}`;
+      return (
+        <time dateTime={getHtmlTime(dateString)} key={uniqueId}>
+          {' '}
+          {i !== 0 && '-'} {getVisibleTime(dateString)}
+        </time>
+      );
+    });
 
   let schedule: JSX.Element | undefined;
   if (project_plan_schedule || project_execution_schedule) {
