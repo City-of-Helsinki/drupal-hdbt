@@ -1502,6 +1502,10 @@ msgctxt "Search monitor error message type for screen reader"
 msgid "Notification"
 msgstr "Avisering"
 
+msgctxt "Search monitor submitted header"
+msgid "You are almost done saving your search"
+msgstr "Beställningen av sökvakten är nästan klar"
+
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Delta i enkäten"

@@ -85,9 +85,9 @@ const SearchMonitorContainer = ({
             (key === 'email' && !email)
           ) {
             return `${Drupal.t(
-              'The choice is mandatory: Terms of service',
+              'The choice is mandatory',
               {},
-              { context: 'Search monitor error terms' },
+              { context: 'Search monitor error' },
             )}: ${
               key === 'email'
                 ? emailLabel

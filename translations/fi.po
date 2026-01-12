@@ -1496,6 +1496,10 @@ msgctxt "Search monitor error message type for screen reader"
 msgid "Notification"
 msgstr "Ilmoitus"
 
+msgctxt "Search monitor submitted header"
+msgid "You are almost done saving your search"
+msgstr "Hakuvahdin tilaus melkein valmis"
+
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Vastaa kyselyyn"
