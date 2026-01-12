@@ -36,35 +36,35 @@ const ResultCard = ({
     cardImage = undefined; // No image to display
   }
 
-  let language: string | undefined;
-  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
+  let languages: string | undefined;
+  const currentInterfaceLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
-  // In Finnish and Swedish languages are written in lowercase. This helper function formats
-  // the language string to match the current language.
-  const formatLanguage = (existingLang: string | undefined, newLang: string): string => {
-    // In case there is only one language given to the function, just print that language.
-    if (!existingLang) {
-      return currentLanguage !== 'en' ? newLang.toLowerCase() : newLang;
+  // In Finnish and Swedis all languages are written in lowercase. This helper function formats
+  // the language names case to match the current interface language.
+  const formatLanguages = (existingLanguages: string | undefined, newLanguage: string): string => {
+    // In case there is only one language given to the function, just print that language in correct case.
+    if (!existingLanguages) {
+      return currentInterfaceLanguage !== 'en' ? newLanguage.toLowerCase() : newLanguage;
     }
-    // In case there are multiple languages given to the function, separate them by comma.
-    const formattedExisting = currentLanguage !== 'en' ? existingLang.toLowerCase() : existingLang;
-    const formattedNew = currentLanguage !== 'en' ? newLang.toLowerCase() : newLang;
+    // In case there are multiple languages given to the function, separate them by comma and print them in the correct case.
+    const formattedExisting = currentInterfaceLanguage !== 'en' ? existingLanguages.toLowerCase() : existingLanguages;
+    const formattedNew = currentInterfaceLanguage !== 'en' ? newLanguage.toLowerCase() : newLanguage;
     return `${formattedExisting}, ${formattedNew}`;
   };
 
   if (additionalFilters.finnish_education) {
     const translatedFinnish = Drupal.t('Finnish', {}, { context: 'School search: language option' });
-    language = formatLanguage('', translatedFinnish);
+    languages = formatLanguages('', translatedFinnish);
   }
 
   if (additionalFilters.swedish_education) {
     const translatedSwedish = Drupal.t('Swedish', {}, { context: 'School search: language option' });
-    language = formatLanguage(language, translatedSwedish);
+    languages = formatLanguages(languages, translatedSwedish);
   }
 
   if (additionalFilters.english_education) {
     const translatedEnglish = Drupal.t('English', {}, { context: 'School search: language option' });
-    language = formatLanguage(language, translatedEnglish);
+    languages = formatLanguages(languages, translatedEnglish);
   }
 
   let languageEducation = ontologyword_ids?.reduce(
@@ -104,7 +104,7 @@ const ResultCard = ({
       cardImage={cardImage}
       cardTitle={title}
       cardUrl={url?.[0] || ''}
-      language={bilingualEducation?.length ? formatLanguage(language, bilingualEducation.join(', ')) : language}
+      language={bilingualEducation?.length ? formatLanguages(languages, bilingualEducation.join(', ')) : languages}
       languageLabel={Drupal.t('Language of instruction', {}, { context: 'School search: language options' })}
       location={address?.[0]}
       locationLabel={Drupal.t('Address', {}, { context: 'React search: location label' })}
