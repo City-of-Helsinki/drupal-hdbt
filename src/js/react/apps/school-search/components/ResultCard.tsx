@@ -42,18 +42,19 @@ const ResultCard = ({
   // In Finnish and Swedish languages are written in lowercase. This helper function formats
   // the language string to match the current language.
   const formatLanguage = (existingLang: string | undefined, newLang: string): string => {
+    // In case there is only one language given to the function, just print that language.
     if (!existingLang) {
-      return currentLanguage === 'fi' || currentLanguage === 'sv' ? newLang.toLowerCase() : newLang;
+      return currentLanguage !== 'en' ? newLang.toLowerCase() : newLang;
     }
-    const formattedExisting =
-      currentLanguage === 'fi' || currentLanguage === 'sv' ? existingLang.toLowerCase() : existingLang;
-    const formattedNew = currentLanguage === 'fi' || currentLanguage === 'sv' ? newLang.toLowerCase() : newLang;
+    // In case there are multiple languages given to the function, separate them by comma.
+    const formattedExisting = currentLanguage !== 'en' ? existingLang.toLowerCase() : existingLang;
+    const formattedNew = currentLanguage !== 'en' ? newLang.toLowerCase() : newLang;
     return `${formattedExisting}, ${formattedNew}`;
   };
 
   if (additionalFilters.finnish_education) {
     const translatedFinnish = Drupal.t('Finnish', {}, { context: 'School search: language option' });
-    language = formatLanguage(language, translatedFinnish);
+    language = formatLanguage('', translatedFinnish);
   }
 
   if (additionalFilters.swedish_education) {
