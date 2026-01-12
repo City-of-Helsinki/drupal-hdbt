@@ -68,7 +68,7 @@
     }
   }
 
-  [data-hds-component='button']:not([class*='hds-button']):where(
+  a[href][data-hds-component='button']:not([class*='hds-button']):where(
     :not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
     [data-hds-variant='primary'],
     [data-hds-variant='secondary']
