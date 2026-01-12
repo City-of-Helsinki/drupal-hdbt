@@ -1,7 +1,7 @@
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
-import { SearchStateType } from '../store';
+import type { SearchStateType } from '../store';
 
 const usePromotedQuery = (
   baseQuery: string,

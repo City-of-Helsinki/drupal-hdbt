@@ -1,4 +1,4 @@
-import OptionType from '@/types/OptionType';
+import type OptionType from '@/types/OptionType';
 
 export const stateToURLParams = (
   state: Record<
@@ -36,7 +36,9 @@ export const stateToURLParams = (
 
   Object.entries({ ...state }).forEach(([key, value]) => {
     if (Array.isArray(value) && value.length) {
-      value.forEach((item) => serializeOptionValue(key, item));
+      value.forEach((item) => {
+        serializeOptionValue(key, item);
+      });
     } else if (
       (typeof value === 'string' || typeof value === 'number') &&
       value.toString().length

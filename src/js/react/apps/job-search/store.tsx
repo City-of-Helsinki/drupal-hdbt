@@ -124,8 +124,8 @@ export const submitStateAtom = atom(
       : searchState;
     const newState: SearchStateType = { ...stateToUse };
 
-    if (directState && directState[SearchComponents.PAGE]) {
-      newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE]!;
+    if (directState?.[SearchComponents.PAGE]) {
+      newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE];
     } else {
       newState[SearchComponents.PAGE] = '1';
     }

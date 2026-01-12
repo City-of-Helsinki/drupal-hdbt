@@ -6,7 +6,7 @@ import { currentLanguage } from '../../query/queries';
 import type Job from '../../types/Job';
 import { submittedStateAtom } from '../../store';
 import SearchComponents from '../../enum/SearchComponents';
-import { OptionType } from '../../types/OptionType';
+import type { OptionType } from '../../types/OptionType';
 
 const getResultCard = ({
   title,

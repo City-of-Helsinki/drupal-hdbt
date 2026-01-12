@@ -1,5 +1,5 @@
 import type OptionType from '../types/OptionType';
-import URLParams from '../types/URLParams';
+import type URLParams from '../types/URLParams';
 
 const transformDropdownsValues = (
   paramOptions: string | string[] | undefined = [],

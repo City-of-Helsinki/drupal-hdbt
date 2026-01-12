@@ -14,7 +14,6 @@ import { EmploymentFilter } from '../components/EmploymentFilter';
 import { LanguageFilter } from '../components/LanguageFilter';
 import { AreaFilter } from '../components/AreaFilter';
 import { CheckBoxFilters } from '../components/CheckBoxFilters';
-import { paramsFromSelections } from '../helpers/Params';
 import { useCallback } from 'react';
 import { useAtomCallback } from 'jotai/utils';
 import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';

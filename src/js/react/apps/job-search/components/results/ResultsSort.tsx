@@ -1,6 +1,5 @@
 import { Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect, useState } from 'react';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import Global from '../../enum/Global';

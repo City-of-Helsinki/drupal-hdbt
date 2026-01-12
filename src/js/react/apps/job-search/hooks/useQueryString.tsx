@@ -7,7 +7,7 @@ import { getAreaInfo } from '../helpers/Areas';
 import { nodeFilter } from '../query/queries';
 import { configurationsAtom, submittedStateAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
-import { OptionType } from '../types/OptionType';
+import type { OptionType } from '../types/OptionType';
 
 const getArrayValues = (optionArray: OptionType[]): string[] => {
   const result: string[] = [];
