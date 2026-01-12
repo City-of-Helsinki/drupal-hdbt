@@ -1,6 +1,7 @@
 import CardItem from '@/react/common/Card';
 import CardImage from '@/react/common/CardImage';
 import CardPicture from '@/react/common/CardPicture';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import ontologyDetailsIdsToLang from '../enum/LanguageEducationMap';
 import type { School } from '../types/School';
 
@@ -35,21 +36,34 @@ const ResultCard = ({
     cardImage = undefined; // No image to display
   }
 
-  // biome-ignore lint/suspicious/noImplicitAnyLet: @todo UHF-12501
-  let language;
+  let language: string | undefined;
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
+
+  // In Finnish and Swedish languages are written in lowercase. This helper function formats
+  // the language string to match the current language.
+  const formatLanguage = (existingLang: string | undefined, newLang: string): string => {
+    if (!existingLang) {
+      return currentLanguage === 'fi' || currentLanguage === 'sv' ? newLang.toLowerCase() : newLang;
+    }
+    const formattedExisting =
+      currentLanguage === 'fi' || currentLanguage === 'sv' ? existingLang.toLowerCase() : existingLang;
+    const formattedNew = currentLanguage === 'fi' || currentLanguage === 'sv' ? newLang.toLowerCase() : newLang;
+    return `${formattedExisting}, ${formattedNew}`;
+  };
 
   if (additionalFilters.finnish_education) {
-    language = Drupal.t('Finnish', {}, { context: 'School search: language option' });
+    const translatedFinnish = Drupal.t('Finnish', {}, { context: 'School search: language option' });
+    language = formatLanguage(language, translatedFinnish);
   }
 
   if (additionalFilters.swedish_education) {
-    const swedish = Drupal.t('Swedish', {}, { context: 'School search: language option' });
-    language = language?.length ? `${language}, ${swedish.toLowerCase()}` : swedish;
+    const translatedSwedish = Drupal.t('Swedish', {}, { context: 'School search: language option' });
+    language = formatLanguage(language, translatedSwedish);
   }
 
   if (additionalFilters.english_education) {
-    const english = Drupal.t('English', {}, { context: 'School search: language option' });
-    language = language?.length ? `${language}, ${english.toLowerCase()}` : english;
+    const translatedEnglish = Drupal.t('English', {}, { context: 'School search: language option' });
+    language = formatLanguage(language, translatedEnglish);
   }
 
   let languageEducation = ontologyword_ids?.reduce(
@@ -89,7 +103,7 @@ const ResultCard = ({
       cardImage={cardImage}
       cardTitle={title}
       cardUrl={url?.[0] || ''}
-      language={bilingualEducation?.length ? `${language}, ${bilingualEducation.join(', ')}` : language}
+      language={bilingualEducation?.length ? formatLanguage(language, bilingualEducation.join(', ')) : language}
       languageLabel={Drupal.t('Language of instruction', {}, { context: 'School search: language options' })}
       location={address?.[0]}
       locationLabel={Drupal.t('Address', {}, { context: 'React search: location label' })}
