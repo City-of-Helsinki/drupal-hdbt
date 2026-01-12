@@ -39,7 +39,7 @@ const ResultCard = ({
   let languages: string | undefined;
   const currentInterfaceLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
-  // In Finnish and Swedis all languages are written in lowercase. This helper function formats
+  // In Finnish and Swedish all languages are written in lowercase. This helper function formats
   // the language names case to match the current interface language.
   const formatLanguages = (existingLanguages: string | undefined, newLanguage: string): string => {
     // In case there is only one language given to the function, just print that language in correct case.
