@@ -82,7 +82,7 @@
     }
   }
 
-  [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
+  a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
   .hds-button--supplementary {
     &:first-child {
       margin-left: 0;
