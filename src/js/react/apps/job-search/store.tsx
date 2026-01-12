@@ -36,6 +36,13 @@ const arrayParams = [
   SearchComponents.LANGUAGE,
 ];
 
+const booleanParams = [
+  SearchComponents.CONTINUOUS,
+  SearchComponents.INTERNSHIPS,
+  SearchComponents.SUMMER_JOBS,
+  SearchComponents.YOUTH_SUMMER_JOBS,
+];
+
 const getParams = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const params: { [k: string]: any } = {};
@@ -442,7 +449,12 @@ export const initializeSearchAtom = atom(
         handleArrayParam(key, initialParams[key]);
         return;
       } else if (initialParams[key]) {
-        initialState[key as keyof SearchStateType] = initialParams[key];
+        if (booleanParams.includes(key)) {
+          initialState[key as keyof SearchStateType] =
+            initialParams[key] === 'true';
+        } else {
+          initialState[key as keyof SearchStateType] = initialParams[key];
+        }
       }
     });
     set(searchStateAtom, initialState);
