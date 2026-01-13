@@ -35,7 +35,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
   const [termsAgreed, setTermsAgreed] = useState<boolean>(false);
   const [email, setEmail] = useState<string>('');
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   // ElasticSearch query base64 encoded
@@ -63,7 +63,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
     if (errors && Object.keys(errors).length > 0) {
       setErrors({ ...errors, allVisible: true });
 
-      const errorString = Object.entries(errors)
+      const errorList = Object.entries(errors)
         .filter(([key, error]) => key !== 'allVisible' && error)
         .map(([key, error]) => {
           if ((key === 'termsAgreed' && !termsAgreed) || (key === 'email' && !email)) {
@@ -73,9 +73,8 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
           }
 
           return (error as FormError).message;
-        })
-        .join('\n');
-      setErrorMessage(errorString);
+        });
+      setErrorMessages(errorList);
 
       return;
     }
@@ -92,7 +91,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
       const response = await fetch('/session/token', { method: 'GET' });
 
       if (!response.ok) {
-        setErrorMessage(`Error getting session token: ${response.statusText}`);
+        setErrorMessages([`Error getting session token: ${response.statusText}`]);
         if (submitButton) {
           submitButton.removeAttribute('disabled');
         }
@@ -101,7 +100,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
 
       sessionToken = await response.text();
     } catch (error) {
-      setErrorMessage(`Error getting session token: ${error}`);
+      setErrorMessages([`Error getting session token: ${error}`]);
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
@@ -129,9 +128,9 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
     // Oops, error from backend
     if (!response.ok) {
       console.warn(response.statusText);
-      setErrorMessage(
+      setErrorMessages([
         Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor error submitting' }),
-      );
+      ]);
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
@@ -140,7 +139,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
 
     // Release submit locks and show success page
     setSubmitted(true);
-    setErrorMessage('');
+    setErrorMessages([]);
 
     if (submitButton) {
       submitButton.removeAttribute('disabled');
@@ -277,7 +276,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
           <>
             <Dialog.Header className='job-search-form__search-monitor__heading' id={idTitle} title={formHeader} />
             <Dialog.Content>
-              <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
+              <form noValidate onSubmit={onSubmit} className='job-search-form__search-monitor'>
                 <p>
                   {Drupal.t(
                     'Carry out a search according to your specifications and then save your search.',
@@ -294,7 +293,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                   )}
                 `}</p>
 
-                {errorMessage && (
+                {errorMessages.length > 0 && (
                   <Notification
                     className='job-search-form__search-monitor__error'
                     label={errorLabel}
@@ -302,7 +301,11 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                     type='error'
                     notificationAriaLabel={errorAriaLabel}
                   >
-                    {errorMessage}
+                    <ul>
+                      {errorMessages.map((msg) => (
+                        <li key={msg}>{msg}</li>
+                      ))}
+                    </ul>
                   </Notification>
                 )}
 
