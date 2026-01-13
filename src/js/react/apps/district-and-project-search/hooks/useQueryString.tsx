@@ -7,9 +7,7 @@ import type URLParams from '../types/URLParams';
 
 const useQueryString = (urlParams: URLParams): string => {
   const { size } = Global;
-  const page = Number.isNaN(Number(urlParams.page))
-    ? 1
-    : Number(urlParams.page);
+  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
   const weight: number = 2;
 
   const query: BooleanQuery = {
@@ -17,21 +15,8 @@ const useQueryString = (urlParams: URLParams): string => {
       query: {
         bool: {
           should: [
-            {
-              bool: {
-                _name: 'Match district',
-                should: [],
-                filter: { term: { _index: 'districts' } },
-              },
-            },
-            {
-              bool: {
-                _name: 'Match Project',
-                should: [],
-                must: [],
-                filter: { term: { _index: 'projects' } },
-              },
-            },
+            { bool: { _name: 'Match district', should: [], filter: { term: { _index: 'districts' } } } },
+            { bool: { _name: 'Match Project', should: [], must: [], filter: { term: { _index: 'projects' } } } },
           ],
           filter: [languageFilter, nodeFilter],
         },
@@ -45,26 +30,17 @@ const useQueryString = (urlParams: URLParams): string => {
 
   if (
     Object.keys(urlParams).find(
-      (param) =>
-        Object.keys(ComponentMap).includes(param) &&
-        urlParams?.[param as keyof URLParams]?.length,
+      (param) => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length,
     )
   ) {
     const isProjectFilterSet = Object.keys(ComponentMap)
-      .filter(
-        (item: string) =>
-          item !== 'title' &&
-          item !== 'districts' &&
-          item !== 'page' &&
-          item !== 'sort',
-      )
+      .filter((item: string) => item !== 'title' && item !== 'districts' && item !== 'page' && item !== 'sort')
       .find((key: string) => urlParams?.[key as keyof URLParams]?.length);
     const isDistrictFilterSet = urlParams?.districts?.length;
     const isTitleFilterSet = urlParams?.title?.length;
 
     query.function_score.min_score =
-      (isProjectFilterSet && isDistrictFilterSet) ||
-      (isProjectFilterSet && isTitleFilterSet)
+      (isProjectFilterSet && isDistrictFilterSet) || (isProjectFilterSet && isTitleFilterSet)
         ? Number(300)
         : Number(weight + 1);
 
@@ -73,55 +49,27 @@ const useQueryString = (urlParams: URLParams): string => {
       const districtWildcards: object[] = [];
       const projectWildcards: object[] = [];
 
+      districtWildcards.push({ wildcard: { [IndexFields.TITLE]: { value: `*${title}*`, boost: 300 } } });
       districtWildcards.push({
-        wildcard: { [IndexFields.TITLE]: { value: `*${title}*`, boost: 300 } },
+        wildcard: { [IndexFields.FIELD_DISTRICT_SUBDISTRICTS_TITLE]: { value: `*${title}*`, boost: 200 } },
       });
       districtWildcards.push({
-        wildcard: {
-          [IndexFields.FIELD_DISTRICT_SUBDISTRICTS_TITLE]: {
-            value: `*${title}*`,
-            boost: 200,
-          },
-        },
-      });
-      districtWildcards.push({
-        wildcard: {
-          [IndexFields.FIELD_DISTRICT_SEARCH_METATAGS]: {
-            value: `*${title}*`,
-            boost: 150,
-          },
-        },
+        wildcard: { [IndexFields.FIELD_DISTRICT_SEARCH_METATAGS]: { value: `*${title}*`, boost: 150 } },
       });
 
-      projectWildcards.push({
-        wildcard: {
-          [`${IndexFields.TITLE}`]: { value: `*${title}*`, boost: 150 },
-        },
-      });
+      projectWildcards.push({ wildcard: { [`${IndexFields.TITLE}`]: { value: `*${title}*`, boost: 150 } } });
       // if project filter is also set, boost projects.
       projectWildcards.push({
         wildcard: {
-          [IndexFields.FIELD_PROJECT_DISTRICT_TITLE]: {
-            value: `*${title}*`,
-            boost: isProjectFilterSet ? 3000 : 150,
-          },
+          [IndexFields.FIELD_PROJECT_DISTRICT_TITLE]: { value: `*${title}*`, boost: isProjectFilterSet ? 3000 : 150 },
         },
       });
       projectWildcards.push({
-        wildcard: {
-          [IndexFields.FIELD_PROJECT_SEARCH_METATAGS]: {
-            value: `*${title}*`,
-            boost: 150,
-          },
-        },
+        wildcard: { [IndexFields.FIELD_PROJECT_SEARCH_METATAGS]: { value: `*${title}*`, boost: 150 } },
       });
 
-      query.function_score.query.bool.should[0].bool.should.push(
-        ...districtWildcards,
-      );
-      query.function_score.query.bool.should[1].bool.should.push(
-        ...projectWildcards,
-      );
+      query.function_score.query.bool.should[0].bool.should.push(...districtWildcards);
+      query.function_score.query.bool.should[1].bool.should.push(...projectWildcards);
     }
 
     if (urlParams?.districts?.length) {
@@ -133,10 +81,7 @@ const useQueryString = (urlParams: URLParams): string => {
       Object.keys(districts).forEach((key: any) => {
         districtTerms.push({
           term: {
-            [IndexFields.TITLE]: {
-              value: districts[key].toLowerCase(),
-              boost: isProjectFilterSet ? 150 : 1000,
-            },
+            [IndexFields.TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 150 : 1000 },
           },
         });
         // if project filter is also set, don't boost districts with subdistricts.
@@ -151,10 +96,7 @@ const useQueryString = (urlParams: URLParams): string => {
 
         projectTerms.push({
           term: {
-            [IndexFields.TITLE]: {
-              value: districts[key].toLowerCase(),
-              boost: isProjectFilterSet ? 3000 : 150,
-            },
+            [IndexFields.TITLE]: { value: districts[key].toLowerCase(), boost: isProjectFilterSet ? 3000 : 150 },
           },
         });
         // if project filter is also set, boost projects.
@@ -168,12 +110,8 @@ const useQueryString = (urlParams: URLParams): string => {
         });
       });
 
-      query.function_score.query.bool.should[0].bool.should.push(
-        ...districtTerms,
-      );
-      query.function_score.query.bool.should[1].bool.should.push(
-        ...projectTerms,
-      );
+      query.function_score.query.bool.should[0].bool.should.push(...districtTerms);
+      query.function_score.query.bool.should[1].bool.should.push(...projectTerms);
     }
 
     if (urlParams?.project_theme?.length) {
@@ -181,12 +119,7 @@ const useQueryString = (urlParams: URLParams): string => {
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(project_theme).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
-          term: {
-            [IndexFields.FIELD_PROJECT_THEME_NAME]: {
-              value: project_theme[key].toLowerCase(),
-              boost: 10,
-            },
-          },
+          term: { [IndexFields.FIELD_PROJECT_THEME_NAME]: { value: project_theme[key].toLowerCase(), boost: 10 } },
         });
       });
     }
@@ -196,12 +129,7 @@ const useQueryString = (urlParams: URLParams): string => {
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(project_phase).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
-          term: {
-            [IndexFields.FIELD_PROJECT_PHASE_NAME]: {
-              value: project_phase[key].toLowerCase(),
-              boost: 10,
-            },
-          },
+          term: { [IndexFields.FIELD_PROJECT_PHASE_NAME]: { value: project_phase[key].toLowerCase(), boost: 10 } },
         });
       });
     }
@@ -212,20 +140,13 @@ const useQueryString = (urlParams: URLParams): string => {
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       Object.keys(project_type).forEach((key: any) => {
         query.function_score.query.bool.should[1].bool.must?.push({
-          term: {
-            [IndexFields.FIELD_PROJECT_TYPE_NAME]: {
-              value: project_type[key].toLowerCase(),
-              boost: 10,
-            },
-          },
+          term: { [IndexFields.FIELD_PROJECT_TYPE_NAME]: { value: project_type[key].toLowerCase(), boost: 10 } },
         });
       });
     }
   }
 
-  const sort = urlParams?.sort?.length
-    ? sortOptions[urlParams?.sort]
-    : sortOptions.most_relevant;
+  const sort = urlParams?.sort?.length ? sortOptions[urlParams?.sort] : sortOptions.most_relevant;
 
   return JSON.stringify({ sort: [sort], size, from: size * (page - 1), query });
 };

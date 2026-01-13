@@ -11,9 +11,7 @@ import type OptionType from '../types/OptionType';
 export const LanguageFilter = () => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-  const languageOptions = Object.entries(LanguageOptions).map(
-    ([key, value]) => ({ label: value, value: key }),
-  );
+  const languageOptions = Object.entries(LanguageOptions).map(([key, value]) => ({ label: value, value: key }));
   const onChange = (selectedOptions: OptionType[]) => {
     setLanguage(selectedOptions);
     updateParams({
@@ -24,11 +22,7 @@ export const LanguageFilter = () => {
     });
   };
 
-  const selectLanguageLabel: string = Drupal.t(
-    'Language',
-    {},
-    { context: 'React search' },
-  );
+  const selectLanguageLabel: string = Drupal.t('Language', {}, { context: 'React search' });
 
   return (
     <div className='hdbt-search__filter'>
@@ -51,14 +45,8 @@ export const LanguageFilter = () => {
             { context: 'React search clear selection label' },
           ),
           label: selectLanguageLabel,
-          language: getCurrentLanguage(
-            window.drupalSettings.path.currentLanguage,
-          ),
-          placeholder: Drupal.t(
-            'All languages',
-            {},
-            { context: 'Language placeholder' },
-          ),
+          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
+          placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
         }}
         theme={defaultMultiSelectTheme}
         value={languageSelection}

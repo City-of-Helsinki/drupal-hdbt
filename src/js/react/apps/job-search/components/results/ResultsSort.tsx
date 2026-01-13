@@ -8,14 +8,8 @@ import { setSortAtom, submittedStateAtom } from '../../store';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
-  {
-    label: Drupal.t('Newest first', {}, { context: 'Job search' }),
-    value: sortOptions.newestFirst,
-  },
-  {
-    label: Drupal.t('Closing date first', {}, { context: 'Job search' }),
-    value: sortOptions.closing,
-  },
+  { label: Drupal.t('Newest first', {}, { context: 'Job search' }), value: sortOptions.newestFirst },
+  { label: Drupal.t('Closing date first', {}, { context: 'Job search' }), value: sortOptions.closing },
 ];
 
 const ResultsSort = () => {
@@ -31,19 +25,10 @@ const ResultsSort = () => {
       }}
       options={options}
       texts={{
-        label: Drupal.t(
-          'Sort search results',
-          {},
-          { context: 'HELfi Rekry job search' },
-        ),
-        language: getCurrentLanguage(
-          window.drupalSettings.path.currentLanguage,
-        ),
+        label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
+        language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       }}
-      value={[
-        options.find((option) => option.value === submittedState.sort) ||
-          options[0],
-      ]}
+      value={[options.find((option) => option.value === submittedState.sort) || options[0]]}
       theme={defaultSelectTheme}
     />
   );

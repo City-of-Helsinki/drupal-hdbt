@@ -3,14 +3,9 @@ import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import type { SearchStateType } from '../store';
 
-const usePromotedQuery = (
-  baseQuery: string,
-  state: SearchStateType,
-): string => {
+const usePromotedQuery = (baseQuery: string, state: SearchStateType): string => {
   const { size } = Global;
-  const page = Number.isNaN(Number(state[SearchComponents.PAGE]))
-    ? 1
-    : Number(state[SearchComponents.PAGE]);
+  const page = Number.isNaN(Number(state[SearchComponents.PAGE])) ? 1 : Number(state[SearchComponents.PAGE]);
   const promotedQuery = JSON.parse(baseQuery);
 
   const promotedClause = { term: { [IndexFields.PROMOTED]: true } };

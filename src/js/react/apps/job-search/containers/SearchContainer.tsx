@@ -5,11 +5,7 @@ import ResultsContainer from './ResultsContainer';
 import { GhostList } from '@/react/common/GhostList';
 import GlobalSettings from '../enum/Global';
 import { useAtomValue, useSetAtom } from 'jotai';
-import {
-  configurationsAtom,
-  getElasticUrlAtom,
-  initializeSearchAtom,
-} from '../store';
+import { configurationsAtom, getElasticUrlAtom, initializeSearchAtom } from '../store';
 import Global from '../enum/Global';
 import {
   AGGREGATIONS,
@@ -67,18 +63,14 @@ const SearchContainer = () => {
       taskAreas: aggs?.aggregations?.occupations?.buckets || [],
       employment: aggs?.aggregations?.employment?.buckets || [],
       employmentOptions: employmentOptions?.hits?.hits || [],
-      employmentSearchIds:
-        aggs?.aggregations?.employment_search_id?.buckets || [],
+      employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
       employmentType: aggs?.aggregations?.employment_type?.buckets || [],
       languages: languages?.aggregations?.languages?.buckets || [],
       promoted: promoted?.aggregations?.promoted?.buckets || [],
     };
   };
 
-  const { data, error, isLoading, isValidating } = useSWRImmutable(
-    aggsQuery,
-    fetcher,
-  );
+  const { data, error, isLoading, isValidating } = useSWRImmutable(aggsQuery, fetcher);
 
   if (!isLoading && !isValidating && error) {
     throw error;
@@ -97,9 +89,7 @@ const SearchContainer = () => {
       {/* For async atoms that need to load option values from elastic */}
       <Suspense fallback={<GhostList count={GlobalSettings.size} />}>
         <FormContainer />
-        {!drupalSettings?.helfi_rekry_job_search?.results_page_path && (
-          <ResultsContainer />
-        )}
+        {!drupalSettings?.helfi_rekry_job_search?.results_page_path && <ResultsContainer />}
       </Suspense>
     </div>
   );

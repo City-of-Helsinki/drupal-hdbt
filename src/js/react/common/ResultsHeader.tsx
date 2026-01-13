@@ -10,13 +10,7 @@ type ResultsHeaderProps = {
 
 const ResultsHeader = forwardRef(
   (
-    {
-      actions,
-      actionsClass,
-      leftActions,
-      optionalResultsText,
-      resultText,
-    }: ResultsHeaderProps,
+    { actions, actionsClass, leftActions, optionalResultsText, resultText }: ResultsHeaderProps,
     ref: ForwardedRef<HTMLHeadingElement>,
   ) => {
     const headerElement = (
@@ -30,9 +24,7 @@ const ResultsHeader = forwardRef(
         <div className='hdbt-search--react__result-top-area hdbt-search--react__result-top-area--with-left-actions'>
           {headerElement}
           <div className='hdbt-search--react__actions-container'>
-            <div className='hdbt-search--react__result-top-area-item'>
-              {leftActions}
-            </div>
+            <div className='hdbt-search--react__result-top-area-item'>{leftActions}</div>
             <div className='hdbt-search--react__result-top-area-item'>
               {actions && <div className={actionsClass}>{actions}</div>}
             </div>

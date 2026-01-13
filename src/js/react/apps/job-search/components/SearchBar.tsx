@@ -9,10 +9,7 @@ export const SearchBar = () => {
   const setStateValue = useSetAtom(setStateValueAtom);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStateValue({
-      key: SearchComponents.KEYWORD,
-      value: event.target.value.replace(/\s+/g, ' '),
-    });
+    setStateValue({ key: SearchComponents.KEYWORD, value: event.target.value.replace(/\s+/g, ' ') });
   };
 
   return (

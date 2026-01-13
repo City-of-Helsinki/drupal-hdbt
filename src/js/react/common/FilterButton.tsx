@@ -1,16 +1,10 @@
 import { Tag, TagSize } from 'hds-react';
 import type { CSSProperties, MouseEventHandler } from 'react';
 
-type FilterButtonProps = {
-  value: string;
-  clearSelection: MouseEventHandler<HTMLButtonElement>;
-};
+type FilterButtonProps = { value: string; clearSelection: MouseEventHandler<HTMLButtonElement> };
 
 const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
-  <li
-    className='content-tags__tags__tag content-tags__tags--interactive'
-    key={`${value.toString()}`}
-  >
+  <li className='content-tags__tags__tag content-tags__tags--interactive' key={`${value.toString()}`}>
     <Tag
       className='hdbt-search__remove-selection-button'
       /* @todo UHF-11117 Check if this works after react is updated */

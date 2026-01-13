@@ -1,12 +1,4 @@
-import {
-  Accordion,
-  AccordionSize,
-  Button,
-  defaultFilter,
-  IconLocation,
-  Select,
-  TextInput,
-} from 'hds-react';
+import { Accordion, AccordionSize, Button, defaultFilter, IconLocation, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
@@ -50,18 +42,10 @@ const FormContainer = () => {
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     setTitle(urlParams?.title?.toString() || '');
-    setDistrictFilter(
-      transformDropdownsValues(urlParams?.districts, districtOptions),
-    );
-    setThemeFilter(
-      transformDropdownsValues(urlParams?.project_theme, themeOptions),
-    );
-    setPhaseFilter(
-      transformDropdownsValues(urlParams?.project_phase, phaseOptions),
-    );
-    setTypeFilter(
-      transformDropdownsValues(urlParams?.project_type, typeOptions),
-    );
+    setDistrictFilter(transformDropdownsValues(urlParams?.districts, districtOptions));
+    setThemeFilter(transformDropdownsValues(urlParams?.project_theme, themeOptions));
+    setPhaseFilter(transformDropdownsValues(urlParams?.project_phase, phaseOptions));
+    setTypeFilter(transformDropdownsValues(urlParams?.project_type, typeOptions));
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -69,30 +53,16 @@ const FormContainer = () => {
 
     setUrlParams({
       title,
-      districts: districtSelection.map(
-        (selection: OptionType) => selection.value,
-      ),
-      project_theme: themeSelection.map(
-        (selection: OptionType) => selection.value,
-      ),
-      project_phase: phaseSelection.map(
-        (selection: OptionType) => selection.value,
-      ),
-      project_type: typeSelection.map(
-        (selection: OptionType) => selection.value,
-      ),
+      districts: districtSelection.map((selection: OptionType) => selection.value),
+      project_theme: themeSelection.map((selection: OptionType) => selection.value),
+      project_phase: phaseSelection.map((selection: OptionType) => selection.value),
+      project_type: typeSelection.map((selection: OptionType) => selection.value),
     });
   };
 
-  const handleTitleChange = ({
-    target: { value },
-  }: {
-    target: { value: string };
-  }) => setTitle(value);
+  const handleTitleChange = ({ target: { value } }: { target: { value: string } }) => setTitle(value);
   const accordionInitiallyOpen = !!Object.keys(urlParams).find(
-    (param) =>
-      Object.keys(ComponentMap).includes(param) &&
-      urlParams?.[param as keyof URLParams]?.length,
+    (param) => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length,
   );
   const residentialAreaLabel: string = Drupal.t(
     'Residential area',
@@ -109,14 +79,8 @@ const FormContainer = () => {
     {},
     { context: 'District and project search form label' },
   );
-  const projectTypeLabel: string = Drupal.t(
-    'Project type',
-    {},
-    { context: 'District and project search form label' },
-  );
-  const currentLanguage = getCurrentLanguage(
-    window.drupalSettings.path.currentLanguage,
-  );
+  const projectTypeLabel: string = Drupal.t('Project type', {}, { context: 'District and project search form label' });
+  const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
@@ -131,18 +95,10 @@ const FormContainer = () => {
               { context: 'District and project search form label' },
             )}
             onChange={handleTitleChange}
-            placeholder={Drupal.t(
-              'For example, Pasila',
-              {},
-              { context: 'District and project search form label' },
-            )}
+            placeholder={Drupal.t('For example, Pasila', {}, { context: 'District and project search form label' })}
             type='search'
             value={title}
-            clearButtonAriaLabel={Drupal.t(
-              'Clear',
-              {},
-              { context: 'React search' },
-            )}
+            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
             style={defaultTextInputStyle}
           />
           <Select
@@ -169,11 +125,7 @@ const FormContainer = () => {
               ),
               label: residentialAreaLabel,
               language: currentLanguage,
-              placeholder: Drupal.t(
-                'All areas',
-                {},
-                { context: 'District and project search form label' },
-              ),
+              placeholder: Drupal.t('All areas', {}, { context: 'District and project search form label' }),
             }}
             theme={defaultMultiSelectTheme}
             value={districtSelection}
@@ -181,19 +133,12 @@ const FormContainer = () => {
         </div>
         <Accordion
           className='district-project-search-form__additional-filters'
-          heading={Drupal.t(
-            'Refine the project search',
-            {},
-            { context: 'District and project search' },
-          )}
+          heading={Drupal.t('Refine the project search', {}, { context: 'District and project search' })}
           headingLevel={3}
           initiallyOpen={accordionInitiallyOpen}
           language={window.drupalSettings.path.currentLanguage || 'fi'}
           size={AccordionSize.Small}
-          theme={{
-            '--header-font-size': 'var(--fontsize-heading-xxs)',
-            '--header-line-height': 'var(--lineheight-s)',
-          }}
+          theme={{ '--header-font-size': 'var(--fontsize-heading-xxs)', '--header-line-height': 'var(--lineheight-s)' }}
         >
           <div className='district-project-search-form__filters'>
             <Select
@@ -218,11 +163,7 @@ const FormContainer = () => {
                 ),
                 label: projectThemeLabel,
                 language: currentLanguage,
-                placeholder: Drupal.t(
-                  'All themes',
-                  {},
-                  { context: 'District and project search form label' },
-                ),
+                placeholder: Drupal.t('All themes', {}, { context: 'District and project search form label' }),
               }}
               theme={defaultMultiSelectTheme}
               value={themeSelection}
@@ -249,11 +190,7 @@ const FormContainer = () => {
                 ),
                 label: projectStageLabel,
                 language: currentLanguage,
-                placeholder: Drupal.t(
-                  'All stages',
-                  {},
-                  { context: 'District and project search form label' },
-                ),
+                placeholder: Drupal.t('All stages', {}, { context: 'District and project search form label' }),
               }}
               theme={defaultMultiSelectTheme}
               value={phaseSelection}
@@ -280,11 +217,7 @@ const FormContainer = () => {
                 ),
                 label: projectTypeLabel,
                 language: currentLanguage,
-                placeholder: Drupal.t(
-                  'All types',
-                  {},
-                  { context: 'District and project search form label' },
-                ),
+                placeholder: Drupal.t('All types', {}, { context: 'District and project search form label' }),
               }}
               theme={defaultMultiSelectTheme}
               value={typeSelection}
@@ -296,11 +229,7 @@ const FormContainer = () => {
             className='hdbt-search--react__submit-button district-project-search-form__submit-button'
             type='submit'
           >
-            {Drupal.t(
-              'Search',
-              {},
-              { context: 'React search: submit button label' },
-            )}
+            {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
           </Button>
         </div>
         <SelectionsContainer />

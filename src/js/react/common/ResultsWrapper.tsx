@@ -43,13 +43,7 @@ export const ResultsWrapper = ({
   }
 
   if (error) {
-    return (
-      <ResultsError
-        error={error}
-        className='react-search__results'
-        ref={scrollTarget}
-      />
-    );
+    return <ResultsError error={error} className='react-search__results' ref={scrollTarget} />;
   }
 
   if (!data?.hits?.hits.length) {

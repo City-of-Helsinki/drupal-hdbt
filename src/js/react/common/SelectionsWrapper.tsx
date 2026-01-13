@@ -8,18 +8,12 @@ type SelectionsWrapperProps = {
   children: ReactNode;
 };
 
-const SelectionsWrapper = ({
-  showClearButton,
-  resetForm,
-  children,
-}: SelectionsWrapperProps) => {
+const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsWrapperProps) => {
   // hasContent checks for string and react children if there would be any content to render and does not render the ul container if there is none
   const hasContent =
     typeof children === 'string'
       ? children.trim().length > 0
-      : Children.toArray(children).some(
-          (child) => child !== false && child !== undefined,
-        );
+      : Children.toArray(children).some((child) => child !== false && child !== undefined);
 
   if (!hasContent) {
     return null;
@@ -38,11 +32,7 @@ const SelectionsWrapper = ({
             style={showClearButton ? {} : { visibility: 'hidden' }}
             variant={ButtonVariant.Supplementary}
           >
-            {Drupal.t(
-              'Clear selections',
-              {},
-              { context: 'React search: clear selections' },
-            )}
+            {Drupal.t('Clear selections', {}, { context: 'React search: clear selections' })}
           </Button>
         </li>
       </ul>

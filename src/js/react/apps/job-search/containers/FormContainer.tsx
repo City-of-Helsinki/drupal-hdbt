@@ -2,11 +2,7 @@ import { Button } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import type React from 'react';
 import CustomIds from '../enum/CustomTermIds';
-import {
-  getEmploymentSearchIdMap,
-  searchStateAtom,
-  submitStateAtom,
-} from '../store';
+import { getEmploymentSearchIdMap, searchStateAtom, submitStateAtom } from '../store';
 import SelectionsContainer from './SelectionsContainer';
 import { SearchBar } from '../components/SearchBar';
 import { TaskAreaFilter } from '../components/TaskAreaFilter';
@@ -21,11 +17,8 @@ import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 const FormContainer = () => {
   const employmentSearchIdMap = useAtomValue(getEmploymentSearchIdMap);
   const submitState = useSetAtom(submitStateAtom);
-  const readState = useAtomCallback(
-    useCallback((get) => get(searchStateAtom), []),
-  );
-  const formAction =
-    drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
+  const readState = useAtomCallback(useCallback((get) => get(searchStateAtom), []));
+  const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,27 +34,14 @@ const FormContainer = () => {
     submitState();
   };
 
-  const isFullSearch =
-    !drupalSettings?.helfi_rekry_job_search?.results_page_path;
+  const isFullSearch = !drupalSettings?.helfi_rekry_job_search?.results_page_path;
 
-  const checkBoxKeys = [
-    CustomIds.CONTINUOUS,
-    CustomIds.TRAINING,
-    CustomIds.SUMMER_JOBS,
-    CustomIds.YOUTH_SUMMER_JOBS,
-  ];
-  const showCheckboxes = checkBoxKeys.some((key) =>
-    employmentSearchIdMap.get(key),
-  );
+  const checkBoxKeys = [CustomIds.CONTINUOUS, CustomIds.TRAINING, CustomIds.SUMMER_JOBS, CustomIds.YOUTH_SUMMER_JOBS];
+  const showCheckboxes = checkBoxKeys.some((key) => employmentSearchIdMap.get(key));
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form
-      className='job-search-form'
-      role='search'
-      onSubmit={handleSubmit}
-      action={formAction}
-    >
+    <form className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
       <SearchBar />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>
@@ -86,15 +66,8 @@ const FormContainer = () => {
         </div>
       )}
       {isFullSearch && showCheckboxes && <CheckBoxFilters />}
-      <Button
-        className='hdbt-search--react__submit-button job-search-form__submit-button'
-        type='submit'
-      >
-        {Drupal.t(
-          'Search',
-          {},
-          { context: 'React search: submit button label' },
-        )}
+      <Button className='hdbt-search--react__submit-button job-search-form__submit-button' type='submit'>
+        {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>
       <SelectionsContainer />
     </form>

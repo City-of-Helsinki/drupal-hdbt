@@ -1,8 +1,4 @@
-export default async function timeoutFetch(
-  url: RequestInfo | string,
-  options?: RequestInit,
-  timeout: number = 8000,
-) {
+export default async function timeoutFetch(url: RequestInfo | string, options?: RequestInit, timeout: number = 8000) {
   const controller = new AbortController();
   const enforceTimeout = setTimeout(() => controller.abort(), timeout);
 

@@ -32,24 +32,14 @@ function Collapsible({
 }: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const helperIds = [helper ? `${id}-helper` : undefined, `${id}-title`].filter(
-    Boolean,
-  );
+  const helperIds = [helper ? `${id}-helper` : undefined, `${id}-title`].filter(Boolean);
 
   const getHandle = () => {
     if (showHandle !== false) {
       return isActive ? (
-        <Icon
-          icon='angle-up'
-          className='collapsible__handle'
-          onClick={() => setActive(!isActive)}
-        />
+        <Icon icon='angle-up' className='collapsible__handle' onClick={() => setActive(!isActive)} />
       ) : (
-        <Icon
-          icon='angle-down'
-          className='collapsible__handle'
-          onClick={() => setActive(!isActive)}
-        />
+        <Icon icon='angle-down' className='collapsible__handle' onClick={() => setActive(!isActive)} />
       );
     }
   };
@@ -60,18 +50,12 @@ function Collapsible({
 
   const titleElement = React.createElement(
     'span',
-    {
-      id: `${id}-title`,
-      className: `collapsible__title${isPlaceholder ? ' collapsible__title--placeholder' : ''}`,
-    },
+    { id: `${id}-title`, className: `collapsible__title${isPlaceholder ? ' collapsible__title--placeholder' : ''}` },
     title,
   );
 
   return (
-    <div
-      className={`collapsible-wrapper${className ? ` ${className}` : ''}`}
-      ref={ref}
-    >
+    <div className={`collapsible-wrapper${className ? ` ${className}` : ''}`} ref={ref}>
       <label className='collapsible__label' htmlFor={id}>
         {label}
       </label>
@@ -89,11 +73,7 @@ function Collapsible({
         {getHandle()}
       </button>
       {isActive && (
-        <div
-          className='collapsible__element collapsible__children'
-          role='dialog'
-          aria-label={dialogLabel}
-        >
+        <div className='collapsible__element collapsible__children' role='dialog' aria-label={dialogLabel}>
           {children}
         </div>
       )}

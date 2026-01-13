@@ -39,11 +39,7 @@ function DateSelect() {
       endDate={endDate?.toFormat(HDS_DATE_FORMAT)}
       endDisabled={endDisabled}
       id={SearchComponents.DATE}
-      label={Drupal.t(
-        'Date',
-        {},
-        { context: 'React search: date selection label' },
-      )}
+      label={Drupal.t('Date', {}, { context: 'React search: date selection label' })}
       setEnd={(d) => setDate(d, 'end')}
       setEndDisabled={setEndDisabled}
       setStart={(d) => setDate(d, 'start')}

@@ -10,17 +10,10 @@ type Configurations = {
   baseUrl: string;
 };
 
-export const configurationsAtom = atom<Configurations>({
-  error: null,
-  aggs: {},
-  baseUrl: '',
+export const configurationsAtom = atom<Configurations>({ error: null, aggs: {}, baseUrl: '' });
+export const setConfigurationsAtom = atom(null, (_get, set, configurations: Configurations) => {
+  set(configurationsAtom, configurations);
 });
-export const setConfigurationsAtom = atom(
-  null,
-  (_get, set, configurations: Configurations) => {
-    set(configurationsAtom, configurations);
-  },
-);
 
 export const a1Atom = atom(async (get) => {
   const {
@@ -36,10 +29,7 @@ export const a1Atom = atom(async (get) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.a1[currentItem.key]) {
-      acc.push({
-        label: ontologyDetailsIdsToLang.a1[currentItem.key],
-        value: currentItem.key,
-      });
+      acc.push({ label: ontologyDetailsIdsToLang.a1[currentItem.key], value: currentItem.key });
     }
 
     return acc;
@@ -61,10 +51,7 @@ export const a2Atom = atom(async (get) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.a2[currentItem.key]) {
-      acc.push({
-        label: ontologyDetailsIdsToLang.a2[currentItem.key],
-        value: currentItem.key,
-      });
+      acc.push({ label: ontologyDetailsIdsToLang.a2[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -85,10 +72,7 @@ export const b1Atom = atom(async (get) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.b1[currentItem.key]) {
-      acc.push({
-        label: ontologyDetailsIdsToLang.b1[currentItem.key],
-        value: currentItem.key,
-      });
+      acc.push({ label: ontologyDetailsIdsToLang.b1[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -109,10 +93,7 @@ export const b2Atom = atom(async (get) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.b2[currentItem.key]) {
-      acc.push({
-        label: ontologyDetailsIdsToLang.b2[currentItem.key],
-        value: currentItem.key,
-      });
+      acc.push({ label: ontologyDetailsIdsToLang.b2[currentItem.key], value: currentItem.key });
     }
     return acc;
   }, []);
@@ -139,9 +120,7 @@ export const weightedEducationAtom = atom(async (get) => {
     [],
   );
 });
-export const weightedEducationSelectionAtom = atom<OptionType[]>(
-  [] as OptionType[],
-);
+export const weightedEducationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const bilingualEducationAtom = atom(async (get) => {
   const {
@@ -157,8 +136,7 @@ export const bilingualEducationAtom = atom(async (get) => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return ontologywordIds?.buckets.reduce((acc: any, currentItem: any) => {
     if (ontologyDetailsIdsToLang.bilingualEducation[currentItem.key]) {
-      const label =
-        ontologyDetailsIdsToLang.bilingualEducation[currentItem.key];
+      const label = ontologyDetailsIdsToLang.bilingualEducation[currentItem.key];
 
       // Deduplicate options.
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
@@ -177,29 +155,22 @@ export const bilingualEducationAtom = atom(async (get) => {
     return acc;
   }, []);
 });
-export const bilingualEducationSelectionAtom = atom<OptionType[]>(
-  [] as OptionType[],
-);
+export const bilingualEducationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const paramsAtom = atom<SearchParams>({});
 export const stagedParamsAtom = atom<SearchParams>({});
-export const updateParamsAtom = atom(
-  null,
-  (_get, set, params: SearchParams) => {
-    const urlSearchParams: { [key: string]: string } = {};
-    Object.keys(params).forEach((key: string) => {
-      if (key === 'query') {
-        return;
-      }
+export const updateParamsAtom = atom(null, (_get, set, params: SearchParams) => {
+  const urlSearchParams: { [key: string]: string } = {};
+  Object.keys(params).forEach((key: string) => {
+    if (key === 'query') {
+      return;
+    }
 
-      urlSearchParams[key as string] = String(
-        params[key as keyof SearchParams],
-      );
-    });
-    const query = new URLSearchParams(urlSearchParams).toString();
-    set(stagedParamsAtom, { ...params, query });
-    set(paramsAtom, { ...params, query });
-  },
-);
+    urlSearchParams[key as string] = String(params[key as keyof SearchParams]);
+  });
+  const query = new URLSearchParams(urlSearchParams).toString();
+  set(stagedParamsAtom, { ...params, query });
+  set(paramsAtom, { ...params, query });
+});
 
 export const keywordAtom = atom<string | undefined>('');

@@ -24,16 +24,10 @@ const ResultsContainer = () => {
   const dialogTargetRef = createRef<HTMLDivElement>();
   const { query, promoted, handleResults } = useResultsQuery();
 
-  const { data, error, isLoading, isValidating } = useIndexQuery({
-    keepPreviousData: true,
-    query,
-    multi: promoted,
-  });
+  const { data, error, isLoading, isValidating } = useIndexQuery({ keepPreviousData: true, query, multi: promoted });
 
   // Scroll to results when they change.
-  const shouldScrollOnRender = Boolean(
-    hasChoices && !isLoading && !isValidating,
-  );
+  const shouldScrollOnRender = Boolean(hasChoices && !isLoading && !isValidating);
   useScrollToResults(scrollTarget, shouldScrollOnRender);
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
@@ -50,24 +44,13 @@ const ResultsContainer = () => {
     }
 
     if (error || data?.error) {
-      return (
-        <ResultsError
-          error={error || data.error}
-          className='react-search__results'
-          ref={scrollTarget}
-        />
-      );
+      return <ResultsError error={error || data.error} className='react-search__results' ref={scrollTarget} />;
     }
 
     const { results, jobs, total } = handleResults(data || {});
 
     if (total <= 0) {
-      return (
-        <ResultsEmpty
-          wrapperClass='hdbt-search--react__results--container'
-          ref={scrollTarget}
-        />
-      );
+      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
     }
 
     const pages = Math.ceil(total / size);
@@ -99,14 +82,7 @@ const ResultsContainer = () => {
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
-        {pages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            pages={5}
-            totalPages={pages}
-            updatePage={updatePage}
-          />
-        )}
+        {pages > 1 && <Pagination currentPage={currentPage} pages={5} totalPages={pages} updatePage={updatePage} />}
       </>
     );
   };
@@ -114,9 +90,7 @@ const ResultsContainer = () => {
   return (
     <div className='job-search__results'>
       <div ref={dialogTargetRef} />
-      <ResultWrapper loading={isLoading || isValidating}>
-        {getResults()}
-      </ResultWrapper>
+      <ResultWrapper loading={isLoading || isValidating}>{getResults()}</ResultWrapper>
     </div>
   );
 };

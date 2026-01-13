@@ -4,11 +4,7 @@ import SearchComponents from '../enum/SearchComponents';
 import { Select } from 'hds-react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
-const areaFilterLabel: string = Drupal.t(
-  'Job location',
-  {},
-  { context: 'Job search: Job location label' },
-);
+const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label' });
 
 export const AreaFilter = () => {
   const areaOptions = useAtomValue(areaFilterAtom);
@@ -23,10 +19,7 @@ export const AreaFilter = () => {
       multiSelect
       noTags
       onChange={(selectedOptions) => {
-        setStateValue({
-          key: SearchComponents.AREA_FILTER,
-          value: selectedOptions,
-        });
+        setStateValue({ key: SearchComponents.AREA_FILTER, value: selectedOptions });
       }}
       options={areaOptions}
       value={value}
@@ -43,11 +36,7 @@ export const AreaFilter = () => {
         ),
         label: areaFilterLabel,
         language: window.drupalSettings.path.currentLanguage,
-        placeholder: Drupal.t(
-          'All areas',
-          {},
-          { context: 'Location placeholder' },
-        ),
+        placeholder: Drupal.t('All areas', {}, { context: 'Location placeholder' }),
       }}
       theme={defaultMultiSelectTheme}
     />

@@ -4,11 +4,7 @@ import { Select } from 'hds-react';
 import SearchComponents from '../enum/SearchComponents';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
-const languageLabel: string = Drupal.t(
-  'Language',
-  {},
-  { context: 'Language filter label' },
-);
+const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 
 export const LanguageFilter = () => {
   const languageOptions = useAtomValue(languagesAtom);
@@ -22,10 +18,7 @@ export const LanguageFilter = () => {
       id={SearchComponents.LANGUAGE}
       noTags
       onChange={(selectedOptions) => {
-        setStateValue({
-          key: SearchComponents.LANGUAGE,
-          value: selectedOptions,
-        });
+        setStateValue({ key: SearchComponents.LANGUAGE, value: selectedOptions });
       }}
       options={languageOptions}
       texts={{
@@ -41,11 +34,7 @@ export const LanguageFilter = () => {
         ),
         label: languageLabel,
         language: window.drupalSettings.path.currentLanguage,
-        placeholder: Drupal.t(
-          'All languages',
-          {},
-          { context: 'Language placeholder' },
-        ),
+        placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
       }}
       value={value}
       theme={defaultSelectTheme}

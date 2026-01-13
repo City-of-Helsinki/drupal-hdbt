@@ -5,11 +5,7 @@ import SearchComponents from '../enum/SearchComponents';
 import type { OptionType } from '../types/OptionType';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
-const taskAreasLabel: string = Drupal.t(
-  'Task area',
-  {},
-  { context: 'Task areas filter label' },
-);
+const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
 
 export const TaskAreaFilter = () => {
   const taskAreaOptions = useAtomValue(taskAreasAtom);
@@ -24,10 +20,7 @@ export const TaskAreaFilter = () => {
       multiSelect
       noTags
       onChange={(selectedOptions) => {
-        setStateValue({
-          key: SearchComponents.TASK_AREAS,
-          value: selectedOptions as OptionType[],
-        });
+        setStateValue({ key: SearchComponents.TASK_AREAS, value: selectedOptions as OptionType[] });
       }}
       options={taskAreaOptions}
       texts={{
@@ -43,11 +36,7 @@ export const TaskAreaFilter = () => {
         ),
         label: taskAreasLabel,
         language: window.drupalSettings.path.currentLanguage,
-        placeholder: Drupal.t(
-          'All fields',
-          {},
-          { context: 'Task areas filter placeholder' },
-        ),
+        placeholder: Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' }),
       }}
       value={value}
       theme={defaultMultiSelectTheme}

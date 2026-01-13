@@ -23,15 +23,11 @@ const ResultsContainer = ({
 }: ResultsContainerProps): JSX.Element => {
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
   const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
-  const cardsWithBorders =
-    drupalSettings?.helfi_news_archive?.cardsWithBorders ?? false;
+  const cardsWithBorders = drupalSettings?.helfi_news_archive?.cardsWithBorders ?? false;
   const urlParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);
   const setPage = useSetAtom(setPageAtom);
-  const { data, error } = useIndexQuery({
-    keepPreviousData: true,
-    query: queryString,
-  });
+  const { data, error } = useIndexQuery({ keepPreviousData: true, query: queryString });
   const scrollTarget = createRef<HTMLDivElement>();
   const choices =
     Boolean(urlParams.groups?.length) ||
@@ -53,23 +49,14 @@ const ResultsContainer = ({
   }
 
   if (error) {
-    return (
-      <ResultsError
-        error={error}
-        className='react-search__results'
-        ref={!hideForm ? scrollTarget : undefined}
-      />
-    );
+    return <ResultsError error={error} className='react-search__results' ref={!hideForm ? scrollTarget : undefined} />;
   }
 
   if (!results?.length) {
     return <ResultsEmpty ref={scrollTarget} />;
   }
 
-  const updatePage = (
-    e: SyntheticEvent<HTMLButtonElement>,
-    newPage: number,
-  ) => {
+  const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
     setPage(newPage);
   };

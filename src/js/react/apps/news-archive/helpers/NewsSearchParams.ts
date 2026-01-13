@@ -37,11 +37,7 @@ class NewsSearchParams extends URLSearchParams {
   }
 
   toInitialValue(): URLParams {
-    const initialParams: URLParams = {
-      groups: [],
-      neighbourhoods: [],
-      topic: [],
-    };
+    const initialParams: URLParams = { groups: [], neighbourhoods: [], topic: [] };
 
     const keys = Object.keys(initialParams);
     const entries = this.entries();
@@ -52,8 +48,7 @@ class NewsSearchParams extends URLSearchParams {
 
       if (matchedKey) {
         const arrayValue = value.split(',');
-        initialParams[matchedKey as keyof Omit<URLParams, 'page' | 'keyword'>] =
-          arrayValue.map((id) => Number(id));
+        initialParams[matchedKey as keyof Omit<URLParams, 'page' | 'keyword'>] = arrayValue.map((id) => Number(id));
       }
 
       result = entries.next();

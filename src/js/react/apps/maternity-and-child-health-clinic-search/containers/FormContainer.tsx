@@ -7,11 +7,7 @@ import type SearchParams from '../types/SearchParams';
 
 type SubmitFormType = HTMLFormElement & { sv_only: HTMLInputElement };
 
-const ProximityFormContainer = ({
-  initialParams,
-}: {
-  initialParams: SearchParams | null;
-}) => {
+const ProximityFormContainer = ({ initialParams }: { initialParams: SearchParams | null }) => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
@@ -33,18 +29,10 @@ const ProximityFormContainer = ({
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form
-      className='hdbt-search--react__form-container'
-      role='search'
-      onSubmit={onSubmit}
-    >
+    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
       <AddressSearch
         className='hdbt-search__filter hdbt-search--react__text-field'
-        clearButtonAriaLabel={Drupal.t(
-          'Clear',
-          {},
-          { context: 'React search' },
-        )}
+        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         defaultValue={initialParams?.address || ''}
         helperText={Drupal.t(
           'Enter the street name and house number',
@@ -52,11 +40,7 @@ const ProximityFormContainer = ({
           { context: 'React search: street input helper' },
         )}
         id='address'
-        label={Drupal.t(
-          'Home address',
-          {},
-          { context: 'React search: home address' },
-        )}
+        label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}
         onSubmit={(address: string) => setKeyword(address)}
         placeholder={Drupal.t(
@@ -73,12 +57,7 @@ const ProximityFormContainer = ({
             id='sv_only'
             name='sv_only'
             value='sv_only'
-            onClick={() =>
-              setStagedParams({
-                ...stagedParams,
-                sv_only: !stagedParams?.sv_only,
-              })
-            }
+            onClick={() => setStagedParams({ ...stagedParams, sv_only: !stagedParams?.sv_only })}
             label={Drupal.t(
               'Show the nearest service location where service is available in Swedish.',
               {},
@@ -89,11 +68,7 @@ const ProximityFormContainer = ({
         </fieldset>
       </div>
       <Button className='hdbt-search--react__submit-button' type='submit'>
-        {Drupal.t(
-          'Search',
-          {},
-          { context: 'React search: submit button label' },
-        )}
+        {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>
     </form>
   );

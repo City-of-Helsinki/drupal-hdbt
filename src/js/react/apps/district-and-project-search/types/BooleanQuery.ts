@@ -4,12 +4,7 @@ type TermQuery = {
 };
 
 type contentTypeQuery = {
-  bool: {
-    _name: string;
-    should: TermQuery[];
-    must?: TermQuery[];
-    filter: { term: { _index: string } };
-  };
+  bool: { _name: string; should: TermQuery[]; must?: TermQuery[]; filter: { term: { _index: string } } };
 };
 
 type BooleanQuery = {
@@ -17,10 +12,7 @@ type BooleanQuery = {
     query: {
       bool: {
         should: contentTypeQuery[];
-        filter: {
-          term: { search_api_language: 'fi' | 'en' | 'sv' };
-          terms: { content_type: string[] };
-        }[];
+        filter: { term: { search_api_language: 'fi' | 'en' | 'sv' }; terms: { content_type: string[] } }[];
       };
     };
     functions: [{ filter: { term: { content_type: string } }; weight: number }];

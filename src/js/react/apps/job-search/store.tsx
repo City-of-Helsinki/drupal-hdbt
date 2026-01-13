@@ -60,18 +60,14 @@ const getParams = () => {
     let parsedValue: string | string[];
 
     if (arrayParams.includes(key)) {
-      parsedValue = value.toString().includes(',')
-        ? value.toString().split(',')
-        : [value];
+      parsedValue = value.toString().includes(',') ? value.toString().split(',') : [value];
     } else {
       parsedValue = value;
     }
     const existing = params[key];
 
     if (Array.isArray(parsedValue)) {
-      const existingValues = Array.isArray(existing)
-        ? existing
-        : (existing ?? []);
+      const existingValues = Array.isArray(existing) ? existing : (existing ?? []);
       params[key] = [...existingValues, ...parsedValue];
 
       result = entries.next();
@@ -109,47 +105,33 @@ const defaultSearchState = {
 
 export type SearchStateType = typeof defaultSearchState;
 
-export const searchStateAtom =
-  atom<typeof defaultSearchState>(defaultSearchState);
-export const submittedStateAtom =
-  atom<typeof defaultSearchState>(defaultSearchState);
+export const searchStateAtom = atom<typeof defaultSearchState>(defaultSearchState);
+export const submittedStateAtom = atom<typeof defaultSearchState>(defaultSearchState);
 
-export const submitStateAtom = atom(
-  null,
-  (get, set, directState: Partial<SearchStateType> | null = null) => {
-    const searchState = get(searchStateAtom);
-    const submittedState = get(submittedStateAtom);
-    const stateToUse = directState
-      ? ({ ...submittedState, ...directState } as SearchStateType)
-      : searchState;
-    const newState: SearchStateType = { ...stateToUse };
+export const submitStateAtom = atom(null, (get, set, directState: Partial<SearchStateType> | null = null) => {
+  const searchState = get(searchStateAtom);
+  const submittedState = get(submittedStateAtom);
+  const stateToUse = directState ? ({ ...submittedState, ...directState } as SearchStateType) : searchState;
+  const newState: SearchStateType = { ...stateToUse };
 
-    if (directState?.[SearchComponents.PAGE]) {
-      newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE];
-    } else {
-      newState[SearchComponents.PAGE] = '1';
-    }
+  if (directState?.[SearchComponents.PAGE]) {
+    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE];
+  } else {
+    newState[SearchComponents.PAGE] = '1';
+  }
 
-    if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
-      set(submittedStateAtom, newState);
-      const params = stateToURLParams(newState);
-      const url = new URL(window.location.href);
-      url.search = params.toString();
-      window.history.pushState({}, '', url);
-    }
-  },
-);
+  if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
+    set(submittedStateAtom, newState);
+    const params = stateToURLParams(newState);
+    const url = new URL(window.location.href);
+    url.search = params.toString();
+    window.history.pushState({}, '', url);
+  }
+});
 
 export const setStateValueAtom = atom(
   null,
-  (
-    get,
-    set,
-    payload: {
-      key: keyof typeof defaultSearchState;
-      value: string | OptionType[] | boolean;
-    },
-  ) => {
+  (get, set, payload: { key: keyof typeof defaultSearchState; value: string | OptionType[] | boolean }) => {
     const searchState = get(searchStateAtom) || defaultSearchState;
     const newState = { ...searchState, [payload.key]: payload.value };
 
@@ -164,16 +146,12 @@ export const getKeywordAtom = atom((get) => {
 
 export const getTaskAreasAtom = atom((get) => {
   const searchState = get(searchStateAtom);
-  return searchState
-    ? (searchState[SearchComponents.TASK_AREAS] as OptionType[])
-    : [];
+  return searchState ? (searchState[SearchComponents.TASK_AREAS] as OptionType[]) : [];
 });
 
 export const getEmploymentAtom = atom((get) => {
   const searchState = get(searchStateAtom);
-  return searchState
-    ? (searchState[SearchComponents.EMPLOYMENT] as OptionType[])
-    : [];
+  return searchState ? (searchState[SearchComponents.EMPLOYMENT] as OptionType[]) : [];
 });
 
 export const getLanguageAtom = atom((get) => {
@@ -183,24 +161,16 @@ export const getLanguageAtom = atom((get) => {
 
 export const getAreaAtom = atom((get) => {
   const searchState = get(searchStateAtom);
-  return searchState
-    ? (searchState[SearchComponents.AREA_FILTER] as OptionType[])
-    : [];
+  return searchState ? (searchState[SearchComponents.AREA_FILTER] as OptionType[]) : [];
 });
 
 export const getCheckBoxValuesAtom = atom((get) => {
   const searchState = get(searchStateAtom);
   return [
     searchState ? (searchState[SearchComponents.CONTINUOUS] as boolean) : false,
-    searchState
-      ? (searchState[SearchComponents.INTERNSHIPS] as boolean)
-      : false,
-    searchState
-      ? (searchState[SearchComponents.SUMMER_JOBS] as boolean)
-      : false,
-    searchState
-      ? (searchState[SearchComponents.YOUTH_SUMMER_JOBS] as boolean)
-      : false,
+    searchState ? (searchState[SearchComponents.INTERNSHIPS] as boolean) : false,
+    searchState ? (searchState[SearchComponents.SUMMER_JOBS] as boolean) : false,
+    searchState ? (searchState[SearchComponents.YOUTH_SUMMER_JOBS] as boolean) : false,
   ];
 });
 
@@ -212,10 +182,7 @@ export const getPageAtom = atom((get) => {
 
 export const setPageAtom = atom(null, (get, set, page: string) => {
   const intermediateState = get(searchStateAtom) || defaultSearchState;
-  const newSearchState = {
-    ...intermediateState,
-    [SearchComponents.PAGE]: page,
-  };
+  const newSearchState = { ...intermediateState, [SearchComponents.PAGE]: page };
   set(searchStateAtom, newSearchState);
 
   set(submitStateAtom, { [SearchComponents.PAGE]: page });
@@ -272,12 +239,7 @@ const transformTaskAreas = (taskAreas, taskAreaOptions) => {
       const count = aggs.get(option._source.field_external_id[0]) || 0;
       const { name } = option._source;
 
-      return {
-        count,
-        label: `${name} (${count})`,
-        simpleLabel: name,
-        value: option._source.field_external_id[0],
-      };
+      return { count, label: `${name} (${count})`, simpleLabel: name, value: option._source.field_external_id[0] };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
 };
@@ -288,9 +250,7 @@ const transformEmployment = (employment, employmentOptions, employmentType) => {
   const visibleOptions = employmentOptions.filter(
     (term: Result<Term>) =>
       term._source?.field_search_id?.[0] &&
-      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(
-        term._source.field_search_id[0],
-      ),
+      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(term._source.field_search_id[0]),
   );
 
   const options = visibleOptions
@@ -310,14 +270,10 @@ const transformEmployment = (employment, employmentOptions, employmentType) => {
       // Combine results for service / contractual employments
       if (customId.toString() === CustomIds.PERMANENT_CONTRACTUAL) {
         const permanentService = employmentOptions.find(
-          (optionTerm: Result<Term>) =>
-            optionTerm._source?.field_search_id?.[0] ===
-            CustomIds.PERMANENT_SERVICE,
+          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.PERMANENT_SERVICE,
         )?._source.tid[0];
         additionalValue = permanentService;
-        count =
-          (combinedAggs.get(tid) || 0) +
-          (combinedAggs.get(permanentService) || 0);
+        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(permanentService) || 0);
         label = `${Drupal.t('Permanent', {}, { context: 'Employment filter value' })} (${count})`;
         simpleLabel = Drupal.t(
           'Permanent contract and service employment',
@@ -326,13 +282,10 @@ const transformEmployment = (employment, employmentOptions, employmentType) => {
         );
       } else if (customId.toString() === CustomIds.FIXED_CONTRACTUAL) {
         const fixedService = employmentOptions.find(
-          (optionTerm: Result<Term>) =>
-            optionTerm._source?.field_search_id?.[0] ===
-            CustomIds.FIXED_SERVICE,
+          (optionTerm: Result<Term>) => optionTerm._source?.field_search_id?.[0] === CustomIds.FIXED_SERVICE,
         )?._source.tid[0];
         additionalValue = fixedService;
-        count =
-          (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
+        count = (combinedAggs.get(tid) || 0) + (combinedAggs.get(fixedService) || 0);
         label = `${Drupal.t('Fixed-term', {}, { context: 'Employment filter value' })} (${count})`;
         simpleLabel = Drupal.t(
           'Fixed-term contract and service employment',
@@ -353,12 +306,7 @@ const transformEmployment = (employment, employmentOptions, employmentType) => {
         }
       }
 
-      return {
-        count,
-        label,
-        simpleLabel,
-        value: additionalValue ? [tid, additionalValue] : tid,
-      };
+      return { count, label, simpleLabel, value: additionalValue ? [tid, additionalValue] : tid };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
   return options;
@@ -380,88 +328,72 @@ export const employmentAtom = atom<OptionType[]>([]);
 export const languagesAtom = atom<OptionType[]>([]);
 export const taskAreasAtom = atom<OptionType[]>([]);
 
-export const initializeSearchAtom = atom(
-  null,
-  (get, set, config: configurations) => {
-    const initialState: SearchStateType = { ...defaultSearchState };
-    const configurations = get(configurationsAtom);
+export const initializeSearchAtom = atom(null, (get, set, config: configurations) => {
+  const initialState: SearchStateType = { ...defaultSearchState };
+  const configurations = get(configurationsAtom);
 
-    if (configurations) {
-      return;
+  if (configurations) {
+    return;
+  }
+
+  const taskAreas = transformTaskAreas(config.taskAreas, config.taskAreaOptions);
+  set(taskAreasAtom, taskAreas);
+  const employment = transformEmployment(config.employment, config.employmentOptions, config.employmentType);
+  set(employmentAtom, employment);
+  const languages = transformLanguages(config.languages);
+  set(languagesAtom, languages);
+  const areas = getAreaInfo.map((item: any) => ({ label: item.label, value: item.key }));
+  set(areaFilterAtom, areas);
+
+  const keysMap = new Map(
+    Object.entries({
+      [SearchComponents.AREA_FILTER]: areas,
+      [SearchComponents.EMPLOYMENT]: employment,
+      [SearchComponents.LANGUAGE]: languages,
+      [SearchComponents.TASK_AREAS]: taskAreas,
+    }),
+  );
+  const initialParams = getParams();
+
+  const handleArrayParam = (key: string, value: string[]) => {
+    const values = new Set<OptionType>();
+
+    if (!keysMap.has(key)) {
+      return values;
     }
 
-    const taskAreas = transformTaskAreas(
-      config.taskAreas,
-      config.taskAreaOptions,
-    );
-    set(taskAreasAtom, taskAreas);
-    const employment = transformEmployment(
-      config.employment,
-      config.employmentOptions,
-      config.employmentType,
-    );
-    set(employmentAtom, employment);
-    const languages = transformLanguages(config.languages);
-    set(languagesAtom, languages);
-    const areas = getAreaInfo.map((item: any) => ({
-      label: item.label,
-      value: item.key,
-    }));
-    set(areaFilterAtom, areas);
+    value.forEach((val: string) => {
+      const options = keysMap.get(key) as OptionType[];
+      const matchedOption = options.find((option: OptionType) =>
+        Array.isArray(option.value)
+          ? option.value.map((optionValue) => optionValue.toString()).includes(val)
+          : option.value.toString() === val,
+      );
 
-    const keysMap = new Map(
-      Object.entries({
-        [SearchComponents.AREA_FILTER]: areas,
-        [SearchComponents.EMPLOYMENT]: employment,
-        [SearchComponents.LANGUAGE]: languages,
-        [SearchComponents.TASK_AREAS]: taskAreas,
-      }),
-    );
-    const initialParams = getParams();
-
-    const handleArrayParam = (key: string, value: string[]) => {
-      const values = new Set<OptionType>();
-
-      if (!keysMap.has(key)) {
-        return values;
-      }
-
-      value.forEach((val: string) => {
-        const options = keysMap.get(key) as OptionType[];
-        const matchedOption = options.find((option: OptionType) =>
-          Array.isArray(option.value)
-            ? option.value
-                .map((optionValue) => optionValue.toString())
-                .includes(val)
-            : option.value.toString() === val,
-        );
-
-        if (matchedOption) {
-          values.add(matchedOption);
-        }
-      });
-
-      initialState[key as keyof SearchStateType] = Array.from(values);
-    };
-
-    Object.keys(initialState).forEach((key) => {
-      if (initialParams[key] && Array.isArray(initialParams[key])) {
-        handleArrayParam(key, initialParams[key]);
-        return;
-      } else if (initialParams[key]) {
-        if (booleanParams.includes(key)) {
-          initialState[key as keyof SearchStateType] =
-            initialParams[key] === 'true';
-        } else {
-          initialState[key as keyof SearchStateType] = initialParams[key];
-        }
+      if (matchedOption) {
+        values.add(matchedOption);
       }
     });
-    set(searchStateAtom, initialState);
-    set(submittedStateAtom, initialState);
-    set(configurationsAtom, config);
-  },
-);
+
+    initialState[key as keyof SearchStateType] = Array.from(values);
+  };
+
+  Object.keys(initialState).forEach((key) => {
+    if (initialParams[key] && Array.isArray(initialParams[key])) {
+      handleArrayParam(key, initialParams[key]);
+      return;
+    } else if (initialParams[key]) {
+      if (booleanParams.includes(key)) {
+        initialState[key as keyof SearchStateType] = initialParams[key] === 'true';
+      } else {
+        initialState[key as keyof SearchStateType] = initialParams[key];
+      }
+    }
+  });
+  set(searchStateAtom, initialState);
+  set(submittedStateAtom, initialState);
+  set(configurationsAtom, config);
+});
 
 export const getEmploymentSearchIdMap = atom((get) => {
   const configurations = get(configurationsAtom);

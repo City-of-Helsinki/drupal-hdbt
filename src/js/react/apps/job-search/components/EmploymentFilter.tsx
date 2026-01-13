@@ -4,11 +4,7 @@ import { Select } from 'hds-react';
 import SearchComponents from '../enum/SearchComponents';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 
-const employmentRelationshipLabel: string = Drupal.t(
-  'Employment type',
-  {},
-  { context: 'Employment filter label' },
-);
+const employmentRelationshipLabel: string = Drupal.t('Employment type', {}, { context: 'Employment filter label' });
 
 export const EmploymentFilter = () => {
   const employmentOptions = useAtomValue(employmentAtom);
@@ -22,12 +18,7 @@ export const EmploymentFilter = () => {
       id={SearchComponents.EMPLOYMENT}
       multiSelect
       noTags
-      onChange={(selectedOptions) =>
-        setStateValue({
-          key: SearchComponents.EMPLOYMENT,
-          value: selectedOptions,
-        })
-      }
+      onChange={(selectedOptions) => setStateValue({ key: SearchComponents.EMPLOYMENT, value: selectedOptions })}
       options={employmentOptions}
       texts={{
         clearButtonAriaLabel_one: Drupal.t(
@@ -42,11 +33,7 @@ export const EmploymentFilter = () => {
         ),
         label: employmentRelationshipLabel,
         language: window.drupalSettings.path.currentLanguage,
-        placeholder: Drupal.t(
-          'All types of employment',
-          {},
-          { context: 'Employment filter placeholder' },
-        ),
+        placeholder: Drupal.t('All types of employment', {}, { context: 'Employment filter placeholder' }),
       }}
       value={value}
       theme={defaultMultiSelectTheme}

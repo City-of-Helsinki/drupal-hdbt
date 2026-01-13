@@ -4,24 +4,13 @@ import type URLParams from '../types/URLParams';
 import FilterButton from '@/react/common/FilterButton';
 import type { OptionType } from '../types/OptionType';
 import SearchComponents from '../enum/SearchComponents';
-import {
-  getCheckBoxFilterLabel,
-  stripQuantityFromLabel,
-} from '../helpers/Options';
+import { getCheckBoxFilterLabel, stripQuantityFromLabel } from '../helpers/Options';
 
-type arraySelectionKey = keyof Pick<
-  URLParams,
-  'task_areas' | 'employment' | 'area_filter'
->;
+type arraySelectionKey = keyof Pick<URLParams, 'task_areas' | 'employment' | 'area_filter'>;
 type stringSelectionKey = keyof Pick<URLParams, 'language' | 'keyword'>;
-type booleanSelectionKey = keyof Pick<
-  URLParams,
-  'continuous' | 'internship' | 'summer_jobs' | 'youth_summer_jobs'
->;
+type booleanSelectionKey = keyof Pick<URLParams, 'continuous' | 'internship' | 'summer_jobs' | 'youth_summer_jobs'>;
 
-export const useSelectionButtons = (
-  selections: [string, OptionType[] | boolean | string][],
-) => {
+export const useSelectionButtons = (selections: [string, OptionType[] | boolean | string][]) => {
   const submittedState = useAtomValue(submittedStateAtom);
   const setState = useSetAtom(searchStateAtom);
   const submitState = useSetAtom(submitStateAtom);
@@ -59,15 +48,9 @@ export const useSelectionButtons = (
         selectionButtons.push(
           <FilterButton
             key={`${key}-${option.value}`}
-            clearSelection={() =>
-              removeArrayItem(key as arraySelectionKey, option.value)
-            }
+            clearSelection={() => removeArrayItem(key as arraySelectionKey, option.value)}
             value={
-              [
-                SearchComponents.EMPLOYMENT,
-                SearchComponents.LANGUAGE,
-                SearchComponents.TASK_AREAS,
-              ].includes(key)
+              [SearchComponents.EMPLOYMENT, SearchComponents.LANGUAGE, SearchComponents.TASK_AREAS].includes(key)
                 ? stripQuantityFromLabel(option.label)
                 : option.label
             }
