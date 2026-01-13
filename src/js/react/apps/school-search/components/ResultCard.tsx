@@ -1,6 +1,7 @@
 import CardItem from '@/react/common/Card';
 import CardImage from '@/react/common/CardImage';
 import CardPicture from '@/react/common/CardPicture';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import ontologyDetailsIdsToLang from '../enum/LanguageEducationMap';
 import type { School } from '../types/School';
 
@@ -35,16 +36,35 @@ const ResultCard = ({
     cardImage = undefined; // No image to display
   }
 
-  // biome-ignore lint/suspicious/noImplicitAnyLet: @todo UHF-12501
-  let language;
+  let languages: string | undefined;
+  const currentInterfaceLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
+
+  // In Finnish and Swedish all languages are written in lowercase. This helper function formats
+  // the language names case to match the current interface language.
+  const formatLanguages = (existingLanguages: string | undefined, newLanguage: string): string => {
+    // In case there is only one language given to the function, just print that language in correct case.
+    if (!existingLanguages) {
+      return currentInterfaceLanguage !== 'en' ? newLanguage.toLowerCase() : newLanguage;
+    }
+    // In case there are multiple languages given to the function, separate them by comma and print them in the correct case.
+    const formattedExisting = currentInterfaceLanguage !== 'en' ? existingLanguages.toLowerCase() : existingLanguages;
+    const formattedNew = currentInterfaceLanguage !== 'en' ? newLanguage.toLowerCase() : newLanguage;
+    return `${formattedExisting}, ${formattedNew}`;
+  };
 
   if (additionalFilters.finnish_education) {
-    language = Drupal.t('Finnish', {}, { context: 'School search: language option' });
+    const translatedFinnish = Drupal.t('Finnish', {}, { context: 'School search: language option' });
+    languages = formatLanguages('', translatedFinnish);
   }
 
   if (additionalFilters.swedish_education) {
-    const swedish = Drupal.t('Swedish', {}, { context: 'School search: language option' });
-    language = language?.length ? `${language}, ${swedish.toLowerCase()}` : swedish;
+    const translatedSwedish = Drupal.t('Swedish', {}, { context: 'School search: language option' });
+    languages = formatLanguages(languages, translatedSwedish);
+  }
+
+  if (additionalFilters.english_education) {
+    const translatedEnglish = Drupal.t('English', {}, { context: 'School search: language option' });
+    languages = formatLanguages(languages, translatedEnglish);
   }
 
   let languageEducation = ontologyword_ids?.reduce(
@@ -63,7 +83,7 @@ const ResultCard = ({
   // Remove duplicates.
   languageEducation = [...new Set(languageEducation)];
 
-  const bilingualEducation = ontologyword_ids?.reduce(
+  let bilingualEducation = ontologyword_ids?.reduce(
     // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     (acc: any, currentItem: any) => {
       if (ontologyDetailsIdsToLang.bilingualEducation[currentItem]) {
@@ -74,6 +94,9 @@ const ResultCard = ({
     [],
   );
 
+  // Remove duplicates.
+  bilingualEducation = [...new Set(bilingualEducation)];
+
   return (
     <CardItem
       cardDescription={summary_processed?.[0]}
@@ -81,7 +104,7 @@ const ResultCard = ({
       cardImage={cardImage}
       cardTitle={title}
       cardUrl={url?.[0] || ''}
-      language={bilingualEducation?.length ? `${language}, ${bilingualEducation.join(', ')}` : language}
+      language={bilingualEducation?.length ? formatLanguages(languages, bilingualEducation.join(', ')) : languages}
       languageLabel={Drupal.t('Language of instruction', {}, { context: 'School search: language options' })}
       location={address?.[0]}
       locationLabel={Drupal.t('Address', {}, { context: 'React search: location label' })}

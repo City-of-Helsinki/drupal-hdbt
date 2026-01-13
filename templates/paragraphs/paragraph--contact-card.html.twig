@@ -1,64 +1,10 @@
-{#
-/**
- * TODO: UHF-12510 Refactor contact card paragraph to use contact card component.
- */
-#}
-{% set heading_level = paragraph.getHeadingLevel()|default('h2') %}
-
-{%
-  set classes = [
-    'contact-card'
-  ]
-%}
-
-
-{% block paragraph %}
-  <div{{ attributes.addClass(classes) }}>
-    <div class="{% if content.field_contact_image_reference|render%}contact-card__image-container{% else %}contact-card__color-line{% endif %}">
-      {% if content.field_contact_image_reference|render %}
-        {{ content.field_contact_image_reference }}
-      {% endif %}
-    </div>
-    <div class="contact-card__information-container">
-    {% if content.field_contact_name|render|striptags|trim %}
-      <{{ heading_level }} class="contact-card__person-name" translate="no">
-        <div class="label visually-hidden" translate="yes">{{ 'Name'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
-        {{ content.field_contact_name }}
-      </{{ heading_level }}>
-    {% endif %}
-    {% if content.field_contact_title|render|striptags|trim %}
-      <div class="contact-card__person-title">
-        <div class="label visually-hidden">{{ 'Title'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
-        {{ content.field_contact_title }}
-      </div>
-    {% endif %}
-    {% if content.field_phone_number|render|striptags|trim or content.field_email|render|striptags|trim or content.field_contact_social_media_link|render|striptags|trim %}
-      <div class="contact-card__person-links">
-        {% if content.field_phone_number|render|striptags|trim %}
-          <div class="contact-card__person-link contact-card__person-link--phone">
-            <div class="label visually-hidden">{{ 'Phone number'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
-            {{ content.field_phone_number }}
-          </div>
-        {% endif %}
-        {% if content.field_email|render|striptags|trim %}
-          <div class="contact-card__person-link contact-card__person-link--email">
-            <div class="label visually-hidden">{{ 'Email'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
-            {{ content.field_email }}
-          </div>
-        {% endif %}
-        {% if content.field_contact_social_media_link|render|striptags|trim %}
-          <div class="contact-card__person-link contact-card__person-link--social-media">
-            {{ content.field_contact_social_media_link }}
-          </div>
-        {% endif %}
-      </div>
-    {% endif %}
-    {% if content.field_contact_description|render|striptags|trim %}
-      <div class="contact-card__person-description">
-        <div class="label visually-hidden">{{ 'Description'|t({}, {'context': 'Contact card paragraph field labels'}) }}</div>
-        {{ content.field_contact_description }}
-      </div>
-    {% endif %}
-    </div>
-  </div>
-{% endblock paragraph %}
+{% embed '@hdbt/component/contact-card.twig' with {
+  heading_level: paragraph.getHeadingLevel()|default('h2'),
+  contact_image_reference: content.field_contact_image_reference,
+  contact_name: content.field_contact_name,
+  contact_title: content.field_contact_title,
+  phone_number: content.field_phone_number,
+  email: content.field_email,
+  social_media: content.field_contact_social_media_link,
+  contact_description: content.field_contact_description,
+} %}{% endembed %}

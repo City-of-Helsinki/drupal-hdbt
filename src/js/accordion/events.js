@@ -25,7 +25,7 @@ export default class Events {
 
       // If not found, look inside accordions for anchor links.
       if (!accordionItemFound) {
-        const anchorElement = document.querySelector(`${hash}`);
+        const anchorElement = document.querySelector(`#${CSS.escape(hash.slice(1))}`);
         if (!anchorElement) {
           return;
         }
