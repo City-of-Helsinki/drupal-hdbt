@@ -46,8 +46,6 @@ export const DateRangeSelect = ({
   startDateHelperText = dateHelperText,
   startDateId = 'start-date',
   startDateLabel = Drupal.t('First day of the time period', {}, { context: 'React search: date range select' }),
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
-  title,
 }: {
   dialogLabel?: string;
   endDate?: string;
@@ -66,7 +64,6 @@ export const DateRangeSelect = ({
   startDateHelperText?: string;
   startDateId?: string;
   startDateLabel?: string;
-  title: string;
 }) => {
   const [errors, setErrors] = useState<{ start?: string; end?: string }>({});
 
