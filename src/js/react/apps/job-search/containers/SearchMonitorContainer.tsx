@@ -1,4 +1,4 @@
-// biome-ignore lint/style/useNodejsImportProtocol: @todo UHF-12501/pdfpreventDefault
+// biome-ignore lint/style/useNodejsImportProtocol: @todo UHF-12501
 import { Buffer } from 'buffer';
 import {
   Button,

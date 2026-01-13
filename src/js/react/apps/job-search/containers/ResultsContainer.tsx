@@ -32,7 +32,6 @@ const ResultsContainer = () => {
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
-    e.stopPropagation();
     setPage(index.toString());
   };
 

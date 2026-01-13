@@ -45,7 +45,7 @@ const handleSimpleResults: HandleQueryResults = (data) => {
 const useResultsQuery = () => {
   const submittedState = useAtomValue(submittedStateAtom);
   const { promoted } = useAtomValue(configurationsAtom) || {};
-  const query = useQueryString(submittedState);
+  const query = useQueryString();
   const promotedQuery = usePromotedQuery(query, submittedState);
 
   return {
