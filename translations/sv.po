@@ -1492,7 +1492,7 @@ msgstr "Fältet är obligatoriskt"
 
 msgctxt "Search monitor email"
 msgid "Email address"
-msgstr "Sähköpostiosoite"
+msgstr "E-postadress"
 
 msgctxt "Search monitor terms"
 msgid "Terms of service"
