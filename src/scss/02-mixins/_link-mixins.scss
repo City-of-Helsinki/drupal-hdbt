@@ -1,5 +1,4 @@
-/* stylelint-disable-next-line scss/at-mixin-pattern -- @todo UHF-12501 */
-@mixin navigation_link_defaults() {
+@mixin navigation-link-defaults() {
   text-decoration: none;
 
   &:focus,

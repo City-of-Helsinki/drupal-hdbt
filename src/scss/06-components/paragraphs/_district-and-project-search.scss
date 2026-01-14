@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .district-and-project-search {
   ul[role='listbox'] {
     background-color: var(--color-white);
@@ -7,55 +6,53 @@
 
 .district-project-search-form__filters-container {
   margin-bottom: $spacing-double;
+}
 
-  .district-project-search-form__filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $spacing-and-half;
-    justify-content: space-between;
-    width: 100%;
+.district-project-search-form__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-and-half;
+  justify-content: space-between;
+  width: 100%;
 
-    > div {
-      flex-basis: 100%;
+  > div {
+    flex-basis: 100%;
 
-      // HDS has 420px max-width set for selects. This is OK when the form is limited to 860px width but not here.
-      max-width: unset;
-    }
+    // HDS has 420px max-width set for selects. This is OK when the form is limited to 860px width but not here.
+    max-width: unset;
 
     @include breakpoint($breakpoint-m) {
-      > div {
-        flex-basis: 48%;
-      }
+      flex-basis: 48%;
+    }
+  }
+}
+
+.district-project-search-form__additional-filters {
+  border-bottom: none !important;
+  border-top: 1px solid var(--color-black-20);
+  margin-top: $spacing-and-half;
+
+  div[role='heading'] {
+    flex: 0 1 auto;
+    font-weight: 500;
+  }
+
+  button {
+    padding-block: $spacing-half; // This sets the link clickable area to be big enough for a11y.
+
+    &:focus,
+    &:active {
+      outline: solid var(--color-black) 3px;
     }
   }
 
-  .district-project-search-form__additional-filters {
-    border-bottom: none !important;
-    border-top: 1px solid var(--color-black-20);
-    margin-top: $spacing-and-half;
-
-    div[role='heading'] {
-      flex: 0 1 auto;
-      font-weight: 500;
-    }
-
-    button {
-      padding-block: $spacing-half; // This sets the link clickable area to be big enough for a11y.
-
-      &:focus,
-      &:active {
-        outline: solid var(--color-black) 3px;
-      }
-    }
-
-    > div:last-child {
-      margin-bottom: $spacing;
-    }
+  > div:last-child {
+    margin-bottom: $spacing;
   }
+}
 
-  .district-project-search-form__submit-button {
-    margin-block: $spacing-double;
-    max-width: 280px;
-    width: 100%;
-  }
+.district-project-search-form__submit-button {
+  margin-block: $spacing-double;
+  max-width: 280px;
+  width: 100%;
 }
