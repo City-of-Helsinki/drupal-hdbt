@@ -1416,10 +1416,6 @@ msgctxt "Label for tiny news card content type"
 msgid "News"
 msgstr "Uutinen"
 
-msgctxt "Search monitor header"
-msgid "Receive search results by email"
-msgstr "Tilaa hakuvahti sähköpostiisi"
-
 msgctxt "Search monitor open label"
 msgid "Open the order form"
 msgstr "Avaa hakuvahti"
@@ -1433,8 +1429,28 @@ msgid "Saved search"
 msgstr "Hakuvahti"
 
 msgctxt "Search monitor content"
-msgid "To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches."
-msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi. Saat sähköpostiisi tiedon uusista osumista."
+msgid "Carry out a search according to your specifications and then save your search."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
+
+msgctxt "Search monitor content"
+msgid "You can save as many searches as you want."
+msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
+
+msgctxt "Search monitor content"
+msgid "You will receive email alerts about new search results up to once a day"
+msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."
+
+msgctxt "Search monitor selections heading"
+msgid "Your search criteria:"
+msgstr "Hakuehtosi:"
+
+msgctxt "Search monitor no selections notification title"
+msgid "No search criteria selected"
+msgstr "Hakuehtoja ei ole valittu"
+
+msgctxt "Search monitor no selections notification"
+msgid "You have not selected any search criteria. You will receive alerts of all new job listings."
+msgstr "Et ole valinnut yhtään hakuehtoja. Saat ilmoituksen kaikista uusista työpaikkailmoituksista."
 
 msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
@@ -1452,25 +1468,29 @@ msgctxt "Search monitor submit button label"
 msgid "Save your search"
 msgstr "Tilaa hakuvahti"
 
-msgctxt "Search monitor thank you header"
-msgid "Your search has been saved"
-msgstr "Hakuvahti on luotu"
-
-msgctxt "Search monitor thank you message"
-msgid "You will receive a confirmation link by email. You can activate the saved search via the link."
-msgstr "Saat vielä sähköpostiisi vahvistuslinkin, jolla voit aktivoida hakuvahdin."
+msgctxt "Search monitor submitted content"
+msgid "Please confirm your saved search with the confirmation link sent to your email address."
+msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat sähköpostiisi."
 
 msgctxt "Search monitor error label"
 msgid "Please check these selections"
 msgstr "Tarkistathan vielä nämä kohdat"
 
-msgctxt "Search monitor error terms"
-msgid "The choice is mandatory: Terms of service"
-msgstr "Valinta on pakollinen: Käyttöehdot"
+msgctxt "Search monitor error"
+msgid "The choice is mandatory"
+msgstr "Valinta on pakollinen"
 
-msgctxt "Search monitor error email"
-msgid "This field is mandatory: Email address"
-msgstr "Kenttä on pakollinen: Sähköpostiosoite"
+msgctxt "Search monitor error"
+msgid "This field is mandatory"
+msgstr "Kenttä on pakollinen"
+
+msgctxt "Search monitor email"
+msgid "Email address"
+msgstr "Sähköpostiosoite"
+
+msgctxt "Search monitor terms"
+msgid "Terms of service"
+msgstr "Käyttöehdot"
 
 msgctxt "Search monitor error email"
 msgid "The email address you entered is not in the right format."
@@ -1483,6 +1503,10 @@ msgstr "Hakuvahdin tilaus epäonnistui. Yritä uudestaan."
 msgctxt "Search monitor error message type for screen reader"
 msgid "Notification"
 msgstr "Ilmoitus"
+
+msgctxt "Search monitor submitted header"
+msgid "You are almost done saving your search"
+msgstr "Hakuvahdin tilaus melkein valmis"
 
 msgctxt "Survey"
 msgid "Respond to the survey"
