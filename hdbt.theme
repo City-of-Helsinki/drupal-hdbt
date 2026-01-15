@@ -1593,7 +1593,7 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
   $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
 
-  // Hakuvahti TOS settings.
+  // Hakuvahti instructions and TOS settings.
   if (!empty($hakuvahtiUrl)) {
     $exposed_settings = [
       'hakuvahti_tos_checkbox_label',
