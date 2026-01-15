@@ -1650,5 +1650,6 @@ msgctxt "React search"
 msgid "Distance"
 msgstr "Avstånd"
 
+msgctxt "Search monitor instructions link"
 msgid "More detailed instructions on how to use saved searches"
 msgstr "Närmare anvisningar för hur du använder sökvakten"

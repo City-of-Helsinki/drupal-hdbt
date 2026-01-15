@@ -311,7 +311,11 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                       target='_blank'
                       rel='noreferrer'
                     >
-                      {Drupal.t('More detailed instructions on how to use saved searches')}
+                      {Drupal.t(
+                        'More detailed instructions on how to use saved searches',
+                        {},
+                        { context: 'Search monitor instructions link' },
+                      )}
                     </a>
                   </p>
                 )}
