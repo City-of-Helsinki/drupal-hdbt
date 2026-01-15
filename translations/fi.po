@@ -1643,3 +1643,6 @@ msgstr "Varmista, että osoite on kirjoitettu oikein. Voit tehdä haun myös esi
 msgctxt "React search"
 msgid "Distance"
 msgstr "Etäisyys"
+
+msgid "More detailed instructions on how to use saved searches"
+msgstr "Tarkemmat ohjeet hakuvahdin käyttöön"

@@ -37,6 +37,7 @@ declare namespace drupalSettings {
     hakuvahti_tos_checkbox_label: string;
     hakuvahti_tos_link_text: string;
     hakuvahti_tos_link_url: string;
+    hakuvahti_instructions_link_url: string;
   };
   const helfi_news_archive: {
     elastic_proxy_url: string;

@@ -304,6 +304,18 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                   )}
                 `}</p>
 
+                {drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url && (
+                  <p>
+                    <a
+                      href={drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {Drupal.t('More detailed instructions on how to use saved searches')}
+                    </a>
+                  </p>
+                )}
+
                 {errorMessages.length > 0 && (
                   <Notification
                     className='job-search-form__search-monitor__error'

@@ -1649,3 +1649,6 @@ msgstr "Se till att adressen är skriven korrekt. Du kan också söka med ett n�
 msgctxt "React search"
 msgid "Distance"
 msgstr "Avstånd"
+
+msgid "More detailed instructions on how to use saved searches"
+msgstr "Närmare anvisningar för hur du använder sökvakten"
