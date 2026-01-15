@@ -19,6 +19,7 @@ import useQueryString from '../hooks/useQueryString';
 import { useVisibleSelections } from '../hooks/useVisibleSelections';
 import { useSelectionTags } from '../hooks/useSelectionTags';
 import Tags from '@/react/common/Tags';
+import SearchComponents from '../enum/SearchComponents';
 
 type FormError = { message: string; visible: boolean };
 
@@ -27,8 +28,18 @@ type FormErrorContainer = { allVisible?: boolean; email?: FormError; termsAgreed
 const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement> }) => {
   const openDialogButtonRef = useRef(null);
   const query = useQueryString();
-  const selections = useVisibleSelections();
-  const selectionTags = useSelectionTags(selections);
+  const selections = useVisibleSelections(true);
+  const selectionTags = useSelectionTags(
+    selections.map((selection) => {
+      const [key, value] = selection;
+
+      if (key === SearchComponents.KEYWORD) {
+        return [key, `"${value.toString().trim()}"`];
+      }
+
+      return selection;
+    }),
+  );
 
   // Form validation states
   const [errors, setErrors] = useState<FormErrorContainer>(null);
