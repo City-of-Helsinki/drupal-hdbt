@@ -255,6 +255,12 @@ $label-font: 'special.navigation.icon_label';
 @include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
 @include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
 
+html:has(noscript) .nav-toggle--menu {
+  @include breakpoint($breakpoint-l) {
+    display: none;
+  }
+}
+
 @each $lang in fi, sv, en {
   $suffix: 'language-toast--#{$lang}';
 
