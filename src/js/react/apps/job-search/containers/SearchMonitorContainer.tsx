@@ -2,7 +2,6 @@
 import { Buffer } from 'buffer';
 import {
   Button,
-  ButtonPresetTheme,
   ButtonVariant,
   Checkbox,
   Dialog,
