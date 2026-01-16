@@ -1593,12 +1593,13 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
   $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
 
-  // Hakuvahti TOS settings.
+  // Hakuvahti instructions and TOS settings.
   if (!empty($hakuvahtiUrl)) {
-    $tos_variables = [
+    $exposed_settings = [
       'hakuvahti_tos_checkbox_label',
       'hakuvahti_tos_link_text',
       'hakuvahti_tos_link_url',
+      'hakuvahti_instructions_link_url',
     ];
 
     // Attempt to get the translated configuration.
@@ -1607,8 +1608,8 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     $language_manager->setConfigOverrideLanguage($language);
     $config = \Drupal::config('helfi_rekry_content.job_listings');
 
-    foreach ($tos_variables as $tos_variable) {
-      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$tos_variable] = $config->get($tos_variable) ?: 'undefined';
+    foreach ($exposed_settings as $exposed_setting) {
+      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$exposed_setting] = $config->get($exposed_setting) ?: 'undefined';
     }
 
     // Set the config back to the original language.
