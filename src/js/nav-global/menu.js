@@ -450,8 +450,7 @@ const MobilePanel = {
     try {
       await this.load();
     } catch (e) {
-      console.error('Unable to load menu API, using fallback menu instead', e);
-      this.enableFallback();
+      console.error('Unable to load menu API', e);
       return;
     }
     /**
@@ -485,15 +484,6 @@ const MobilePanel = {
   isOpen() {
     return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
-  disableFallback() {
-    this.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-  },
-  enableFallback() {
-    this.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
-    this.getRoot().innerHTML = ''; // Remove rotator
-    delete this.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
-    window.location.hash = '#menu'; // Open menu with the css way
-  },
   close() {
     this.dropdownInstance.classList.add('nav-toggle-dropdown--closed');
     this.toggleButton.setAttribute('aria-expanded', 'false');
@@ -525,7 +515,7 @@ const MobilePanel = {
      * Compiled templates need to have reliable access to header and menu elements cloned from Server DOM.
      */
     if (this.running) {
-      console.warn('MobilePanel already initiated. Is it include more than once?');
+      console.warn('MobilePanel already initiated. Is it included more than once?');
       return;
     }
     this.onOpen = onOpen;
@@ -548,8 +538,6 @@ const MobilePanel = {
       console.error('Panel not present in DOM. Cannot start JS mobile menu');
       return;
     }
-
-    this.disableFallback();
 
     /**
      * Close menu on Escape button click if it is open.
