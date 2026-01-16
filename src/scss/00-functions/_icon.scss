@@ -1,5 +1,4 @@
-/* stylelint-disable-next-line scss/at-function-pattern -- @todo UHF-12501 */
-@function icon_url($icon) {
+@function icon-url($icon) {
   @if not $icon {
     @return null;
   }

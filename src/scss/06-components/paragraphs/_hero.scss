@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 $koro-height: 50px;
 
 .hero {
@@ -60,7 +59,7 @@ $koro-height: 50px;
   bottom: -90px;
   height: 100px;
   inset-inline-start: $spacing-and-half;
-  mask-image: icon_url('hero-arrow-mobile');
+  mask-image: icon-url('hero-arrow-mobile');
   mask-position: center;
   mask-repeat: no-repeat;
   position: absolute;
@@ -71,7 +70,7 @@ $koro-height: 50px;
     bottom: -100px;
     height: 110px;
     left: $spacing-double;
-    mask-image: icon_url('hero-arrow-desktop');
+    mask-image: icon-url('hero-arrow-desktop');
     width: 94px;
   }
 }
@@ -187,6 +186,10 @@ $koro-height: 50px;
   }
 }
 
+// These hero-variants are nested deeper than the max-nesting-depth but it is
+// acceptable in this case because the nesting is logical and necessary for
+// readability.
+/* stylelint-disable max-nesting-depth */
 .hero--with-image-right,
 .hero--with-image-left {
   @include breakpoint($breakpoint-m) {
@@ -258,6 +261,7 @@ $koro-height: 50px;
     }
   }
 }
+/* stylelint-enable max-nesting-depth */
 
 .hero--with-image-left {
   @include breakpoint($breakpoint-m) {
@@ -345,36 +349,36 @@ $koro-height: 50px;
       top: 0;
       z-index: 1;
     }
+  }
 
-    .hds-koros {
-      display: block;
-      position: absolute;
-      top: auto;
-      z-index: 1;
+  .hero__image-container img {
+    @include image-defaults($height: 100%, $width: 100%, $max-width: null);
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
 
-      @include breakpoint($breakpoint-l) {
-        bottom: 0;
-        height: 1500px;
-        right: 54%;
-        transform: scaleX(var(--lang-direction, 1)) rotate(135deg);
-        transform-origin: center;
-        width: 1000px;
-      }
+    @include breakpoint($breakpoint-l) {
+      margin-inline-start: 30%;
+      position: static;
+      transform: none;
     }
+  }
 
-    img {
-      @include image-defaults($height: 100%, $width: 100%, $max-width: null);
-      object-fit: cover;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 0;
+  .hero__image-container .hds-koros {
+    display: block;
+    position: absolute;
+    top: auto;
+    z-index: 1;
 
-      @include breakpoint($breakpoint-l) {
-        margin-inline-start: 30%;
-        position: static;
-        transform: none;
-      }
+    @include breakpoint($breakpoint-l) {
+      bottom: 0;
+      height: 1500px;
+      right: 54%;
+      transform: scaleX(var(--lang-direction, 1)) rotate(135deg);
+      transform-origin: center;
+      width: 1000px;
     }
   }
 

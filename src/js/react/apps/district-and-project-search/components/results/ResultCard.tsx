@@ -7,6 +7,7 @@ import type TagType from '../../types/TagType';
 type ImageUrls = { [key: string]: string };
 
 const ResultCard = ({
+  _id,
   content_type,
   title_for_ui,
   url,
@@ -65,14 +66,17 @@ const ResultCard = ({
     return `${d.toLocaleString('fi-FI', { year: 'numeric' })}-${d.toLocaleString('fi-FI', { month: '2-digit' })}-${d.toLocaleString('fi-FI', { day: '2-digit' })}T${d.toLocaleString('fi-FI', { hour: '2-digit' })}:${d.toLocaleString('fi-FI', { minute: '2-digit' })}Z`;
   };
 
-  const getTimeItem = (dateStrings: string[]) =>
-    dateStrings.map((dateString: string, i: number) => (
-      // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
-      <time dateTime={getHtmlTime(dateString)} key={`${dateString}-${i}`}>
-        {' '}
-        {i !== 0 && '-'} {getVisibleTime(dateString)}
-      </time>
-    ));
+  const getTimeItem = (dateStrings: string[], idPrefix: string = '') =>
+    dateStrings.map((dateString: string, i: number) => {
+      const timestamp = new Date(dateString).getTime();
+      const uniqueId = `${idPrefix}-${timestamp}`;
+      return (
+        <time dateTime={getHtmlTime(dateString)} key={uniqueId}>
+          {' '}
+          {i !== 0 && '-'} {getVisibleTime(dateString)}
+        </time>
+      );
+    });
 
   let schedule: JSX.Element | undefined;
   if (project_plan_schedule || project_execution_schedule) {
@@ -81,14 +85,14 @@ const ResultCard = ({
         {project_plan_schedule && (
           <span className='metadata__item--schedule metadata__item--schedule--plan-schedule'>
             {Drupal.t('planning', {}, { context: 'District and project search' })}
-            {getTimeItem(project_plan_schedule)}
+            {getTimeItem(project_plan_schedule, _id)}
           </span>
         )}
         {project_plan_schedule && project_execution_schedule && ' '}
         {project_execution_schedule && (
           <span className='metadata__item--schedule'>
             {Drupal.t('execution', {}, { context: 'District and project search' })}
-            {getTimeItem(project_execution_schedule)}
+            {getTimeItem(project_execution_schedule, _id)}
           </span>
         )}
       </>

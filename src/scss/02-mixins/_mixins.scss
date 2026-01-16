@@ -12,13 +12,12 @@
 // .wrapper .item {
 //   width: 20%;
 
-//   @include content_count(1, 2, 3) {
+//   @include content-count(1, 2, 3) {
 //     width: 30%;
 //   }
 // }
 ////
-/* stylelint-disable-next-line scss/at-mixin-pattern -- @todo UHF-12501 */
-@mixin content_count($number_of_items...) {
+@mixin content-count($number_of_items...) {
   @each $item in $number_of_items {
     @if meta.type-of($item) == number {
       @for $i from 1 through $item {
@@ -36,7 +35,7 @@
 // @include pseudo-icon-replace('email');
 ////
 @mixin pseudo-icon-replace( $icon ) {
-  mask-image: icon_url($icon);
+  mask-image: icon-url($icon);
 }
 
 ////
@@ -60,11 +59,11 @@
     $mask-images: ();
 
     @each $item in $icon {
-      $mask-images: list.append($mask-images, icon_url($item), comma);
+      $mask-images: list.append($mask-images, icon-url($item), comma);
     }
     mask-image: $mask-images;
   } @else {
-    mask-image: icon_url($icon);
+    mask-image: icon-url($icon);
   }
 }
 

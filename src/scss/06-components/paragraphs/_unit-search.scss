@@ -25,43 +25,41 @@
 
 .unit-search__content {
   margin-top: $spacing-double;
+}
 
-  .form-actions {
-    width: 100%;
-  }
+.unit-search__content .form-actions {
+  width: 100%;
 
   // When variant is not defined, we fallback to primary styles
-  .form-actions [data-hds-component='button']:not([class*='hds-button']):where(:not([data-hds-variant]), [data-hds-variant='primary']),
-  .form-actions .hds-button--primary {
+  [data-hds-component='button']:not([class*='hds-button']):where(:not([data-hds-variant]), [data-hds-variant='primary']),
+  .hds-button--primary {
     margin-top: $spacing;
     max-width: 280px; // Max-width for button from hds/designs.
     min-width: 44px; // Min-width for button from hds/designs.
     width: 100%;
   }
+}
 
-  .views-exposed-form {
+.unit-search__content .views-exposed-form {
+  @include breakpoint($breakpoint-m) {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: $content-width-max;
+  }
+
+  .form-item {
     @include breakpoint($breakpoint-m) {
-      align-items: flex-end;
-      display: flex;
-      flex-wrap: wrap;
-      max-width: $content-width-max;
+      width: 100%;
     }
+  }
 
-    /* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
-    .form-item {
-      @include breakpoint($breakpoint-m) {
-        width: 100%;
-      }
-    }
-    /* stylelint-enable max-nesting-depth -- @todo UHF-12501 */
+  .description {
+    white-space: normal;
+  }
 
-    .description {
-      white-space: normal;
-    }
-
-    [data-drupal-selector='edit-provided-languages-value'] {
-      margin-top: $spacing-and-half;
-    }
+  [data-drupal-selector='edit-provided-languages-value'] {
+    margin-top: $spacing-and-half;
   }
 }
 

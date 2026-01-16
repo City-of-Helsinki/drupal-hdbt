@@ -2,19 +2,17 @@ import type { ImgHTMLAttributes } from 'react';
 
 type ImageUrls = { [key: string]: string };
 
-type ImageOverride = { alt?: string; photographer?: string; title?: string; variants: { [key: string]: string } };
+type ImageOverride = { photographer?: string; title?: string; variants: { [key: string]: string } };
 
 type CardPictureProps = {
   photographer?: string;
-  alt?: string;
   imageUrls?: ImageUrls;
   imageOverride?: ImageOverride;
   sources?: { srcSet: string; media: string; type?: string }[];
 } & ImgHTMLAttributes<HTMLImageElement>;
 
 const CardPicture = (props: CardPictureProps) => {
-  // biome-ignore lint/correctness/noUnusedVariables: @todo UHF-12501
-  const { alt, photographer, imageUrls, imageOverride, src, ...rest } = props;
+  const { photographer, imageUrls, imageOverride, src, ...rest } = props;
 
   // Determine which source of images to use
   const sourceImages = imageOverride ? imageOverride.variants : imageUrls;
