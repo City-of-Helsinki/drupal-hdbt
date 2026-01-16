@@ -3,7 +3,6 @@ import { createRef, type SyntheticEvent } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
-import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultWrapper from '@/react/common/ResultWrapper';
@@ -48,8 +47,29 @@ const ResultsContainer = () => {
 
     const { results, jobs, total } = handleResults(data || {});
 
+    const searcMonitor =
+      (drupalSettings?.helfi_react_search?.hakuvahti_url_set && (
+        <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />
+      )) ||
+      undefined;
+
     if (total <= 0) {
-      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
+      return (
+        <div className='job-search__results'>
+          <ResultsHeader
+            resultText={Drupal.t('No results', {}, { context: 'Unit search no results title' })}
+            leftActions={searcMonitor}
+            ref={scrollTarget}
+          />
+          <p>
+            {Drupal.t(
+              'No results were found for the criteria you entered. Try changing your search criteria.',
+              {},
+              { context: 'React search: no search results' },
+            )}
+          </p>
+        </div>
+      );
     }
 
     const pages = Math.ceil(total / size);
@@ -66,11 +86,7 @@ const ResultsContainer = () => {
             {},
             { context: 'Job search results statline' },
           )}
-          leftActions={
-            drupalSettings?.helfi_react_search?.hakuvahti_url_set ? (
-              <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />
-            ) : undefined
-          }
+          leftActions={searcMonitor}
           resultText={Drupal.formatPlural(
             jobs,
             '1 open position',
