@@ -200,6 +200,10 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
   const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_label;
   const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_text;
   const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
+  const instructionsLinkUrl: string | undefined =
+    window.drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url !== 'undefined'
+      ? window.drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url
+      : undefined;
   const tosLinkSuffix: string = Drupal.t(
     'The link opens in a new tab',
     {},
@@ -304,13 +308,9 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                   )}
                 `}</p>
 
-                {drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url && (
+                {instructionsLinkUrl && (
                   <p>
-                    <a
-                      href={drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url}
-                      target='_blank'
-                      rel='noreferrer'
-                    >
+                    <a href={instructionsLinkUrl} target='_blank' rel='noreferrer'>
                       {Drupal.t(
                         'More detailed instructions on how to use saved searches',
                         {},
