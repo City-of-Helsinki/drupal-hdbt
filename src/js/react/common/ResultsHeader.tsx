@@ -1,24 +1,45 @@
 import { type ForwardedRef, forwardRef, type ReactElement } from 'react';
 
 type ResultsHeaderProps = {
-  resultText: ReactElement;
-  optionalResultsText?: ReactElement;
   actions?: ReactElement;
   actionsClass?: string;
+  leftActions?: ReactElement;
+  optionalResultsText?: ReactElement | string;
+  resultText: ReactElement | string;
 };
 
 const ResultsHeader = forwardRef(
   (
-    { resultText, optionalResultsText, actions, actionsClass }: ResultsHeaderProps,
+    { actions, actionsClass, leftActions, optionalResultsText, resultText }: ResultsHeaderProps,
     ref: ForwardedRef<HTMLHeadingElement>,
-  ) => (
-    <div className='hdbt-search--react__result-top-area'>
+  ) => {
+    const headerElement = (
       <h3 className='hdbt-search--react__results--title' ref={ref}>
         {resultText} {optionalResultsText && <>({optionalResultsText})</>}
       </h3>
-      {actions && <div className={actionsClass}>{actions}</div>}
-    </div>
-  ),
+    );
+
+    if (leftActions) {
+      return (
+        <div className='hdbt-search--react__result-top-area hdbt-search--react__result-top-area--with-left-actions'>
+          {headerElement}
+          <div className='hdbt-search--react__actions-container'>
+            <div className='hdbt-search--react__result-top-area-item'>{leftActions}</div>
+            <div className='hdbt-search--react__result-top-area-item'>
+              {actions && <div className={actionsClass}>{actions}</div>}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className='hdbt-search--react__result-top-area'>
+        {headerElement}
+        {actions && <div className={actionsClass}>{actions}</div>}
+      </div>
+    );
+  },
 );
 
 export default ResultsHeader;

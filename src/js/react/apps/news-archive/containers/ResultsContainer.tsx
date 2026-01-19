@@ -65,18 +65,13 @@ const ResultsContainer = ({
     <div className='react-search__results'>
       {hideForm || (
         <ResultsHeader
-          resultText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-            <>
-              {Drupal.formatPlural(
-                total,
-                '@count search result',
-                '@count search results',
-                {},
-                { context: 'News archive' },
-              )}
-            </>
-          }
+          resultText={Drupal.formatPlural(
+            total,
+            '@count search result',
+            '@count search results',
+            {},
+            { context: 'News archive' },
+          )}
           ref={scrollTarget}
         />
       )}

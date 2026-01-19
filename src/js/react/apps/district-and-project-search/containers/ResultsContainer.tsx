@@ -87,7 +87,7 @@ const ResultsContainer = (): JSX.Element => {
 
       <div className='hdbt-search--react__results--container'>
         {results.map((hit: Result) => (
-          <ResultCard key={hit._id} {...hit._source} />
+          <ResultCard key={hit._id} _id={hit._id} {...hit._source} />
         ))}
         <Pagination
           currentPage={currentPage}

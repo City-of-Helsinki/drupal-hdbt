@@ -1,6 +1,6 @@
 import { Accordion, AccordionSize, Button, defaultFilter, IconLocation, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -39,28 +39,63 @@ const FormContainer = () => {
 
   // Set form control values from url parameters on load
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
-  useEffect(() => {
+  // Memoize the transform function
+  const getTransformedValues = useCallback(
+    (paramValue: string[] | undefined, options: OptionType[] | undefined): OptionType[] => {
+      return transformDropdownsValues(paramValue, options);
+    },
+    [],
+  );
+
+  // Memoize the initialization effect
+  const initializeForm = useCallback(() => {
     setTitle(urlParams?.title?.toString() || '');
-    setDistrictFilter(transformDropdownsValues(urlParams?.districts, districtOptions));
-    setThemeFilter(transformDropdownsValues(urlParams?.project_theme, themeOptions));
-    setPhaseFilter(transformDropdownsValues(urlParams?.project_phase, phaseOptions));
-    setTypeFilter(transformDropdownsValues(urlParams?.project_type, typeOptions));
-  }, []);
+    setDistrictFilter(getTransformedValues(urlParams?.districts, districtOptions));
+    setThemeFilter(getTransformedValues(urlParams?.project_theme, themeOptions));
+    setPhaseFilter(getTransformedValues(urlParams?.project_phase, phaseOptions));
+    setTypeFilter(getTransformedValues(urlParams?.project_type, typeOptions));
+  }, [
+    urlParams,
+    districtOptions,
+    themeOptions,
+    phaseOptions,
+    typeOptions,
+    getTransformedValues,
+    setTitle,
+    setDistrictFilter,
+    setThemeFilter,
+    setPhaseFilter,
+    setTypeFilter,
+  ]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  // Use the memoized function in useEffect
+  useEffect(() => {
+    initializeForm();
+  }, [initializeForm]);
 
-    setUrlParams({
-      title,
-      districts: districtSelection.map((selection: OptionType) => selection.value),
-      project_theme: themeSelection.map((selection: OptionType) => selection.value),
-      project_phase: phaseSelection.map((selection: OptionType) => selection.value),
-      project_type: typeSelection.map((selection: OptionType) => selection.value),
-    });
-  };
+  // Memoize the submit handler
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      setUrlParams({
+        title,
+        districts: districtSelection.map((selection: OptionType) => selection.value),
+        project_theme: themeSelection.map((selection: OptionType) => selection.value),
+        project_phase: phaseSelection.map((selection: OptionType) => selection.value),
+        project_type: typeSelection.map((selection: OptionType) => selection.value),
+      });
+    },
+    [title, districtSelection, themeSelection, phaseSelection, typeSelection, setUrlParams],
+  );
 
-  const handleTitleChange = ({ target: { value } }: { target: { value: string } }) => setTitle(value);
+  // Memoize the title change handler
+  const handleTitleChange = useCallback(
+    ({ target: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+      setTitle(value);
+    },
+    [setTitle],
+  );
+
   const accordionInitiallyOpen = !!Object.keys(urlParams).find(
     (param) => Object.keys(ComponentMap).includes(param) && urlParams?.[param as keyof URLParams]?.length,
   );
@@ -83,6 +118,7 @@ const FormContainer = () => {
   const currentLanguage = getCurrentLanguage(window.drupalSettings.path.currentLanguage);
 
   return (
+    // Our typings are lagging behind since our react version is locked. If we want to wrap all search forms in search, we should do so and use ts-ignore instead.
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
     <form onSubmit={handleSubmit} role='search'>
       <div className='district-project-search-form__filters-container'>
