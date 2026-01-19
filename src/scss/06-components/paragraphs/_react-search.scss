@@ -57,7 +57,7 @@
   }
 }
 
-.hdbt-search--react__result-top-area-item {  
+.hdbt-search--react__result-top-area-item {
   margin-top: $spacing-and-half;
 
   @include breakpoint($breakpoint-l) {
@@ -67,7 +67,7 @@
 
 .hdbt-search--react__results--title {
   align-items: center;
-  display: flex;
+  display: inline-flex;
   margin-bottom: $spacing-three-quarters;
   margin-top: 0;
 

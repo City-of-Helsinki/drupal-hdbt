@@ -2,7 +2,6 @@
 import { Buffer } from 'buffer';
 import {
   Button,
-  ButtonPresetTheme,
   ButtonVariant,
   Checkbox,
   Dialog,
@@ -15,10 +14,12 @@ import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
+import { primaryButtonTheme, secondaryButtonTheme } from '@/react/common/constants/buttonTheme';
 import useQueryString from '../hooks/useQueryString';
 import { useVisibleSelections } from '../hooks/useVisibleSelections';
 import { useSelectionTags } from '../hooks/useSelectionTags';
 import Tags from '@/react/common/Tags';
+import SearchComponents from '../enum/SearchComponents';
 
 type FormError = { message: string; visible: boolean };
 
@@ -27,8 +28,18 @@ type FormErrorContainer = { allVisible?: boolean; email?: FormError; termsAgreed
 const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement> }) => {
   const openDialogButtonRef = useRef(null);
   const query = useQueryString();
-  const selections = useVisibleSelections();
-  const selectionTags = useSelectionTags(selections);
+  const selections = useVisibleSelections(true);
+  const selectionTags = useSelectionTags(
+    selections.map((selection) => {
+      const [key, value] = selection;
+
+      if (key === SearchComponents.KEYWORD) {
+        return [key, `"${value.toString().trim()}"`];
+      }
+
+      return selection;
+    }),
+  );
 
   // Form validation states
   const [errors, setErrors] = useState<FormErrorContainer>(null);
@@ -221,7 +232,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
           setIsFormVisible(!isFormVisible);
         }}
         ref={openDialogButtonRef}
-        theme={ButtonPresetTheme.Black}
+        theme={secondaryButtonTheme}
         type='button'
         variant={ButtonVariant.Secondary}
       >
@@ -262,7 +273,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                 <div className='job-search-form__search-monitor__buttons-container'>
                   <Button
                     className='job-search-form__search-monitor__cancel-button'
-                    theme={ButtonPresetTheme.Black}
+                    theme={primaryButtonTheme}
                     type='submit'
                     variant={ButtonVariant.Primary}
                   >
@@ -285,13 +296,29 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                   )}
                 </p>
                 <p>{`
-                  ${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })} 
+                  ${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })}
                   ${Drupal.t(
                     'You will receive email alerts about new search results up to once a day',
                     {},
                     { context: 'Search monitor content' },
                   )}
                 `}</p>
+
+                {drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url && (
+                  <p>
+                    <a
+                      href={drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {Drupal.t(
+                        'More detailed instructions on how to use saved searches',
+                        {},
+                        { context: 'Search monitor instructions link' },
+                      )}
+                    </a>
+                  </p>
+                )}
 
                 {errorMessages.length > 0 && (
                   <Notification
@@ -351,7 +378,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                   name='job-search-form__search_monitor__email'
                   onChange={(event) => setEmail(event.target.value)}
                   required
-                  style={{ ...defaultTextInputStyle, marginTop: 'var(--spacing-m)' }}
+                  style={{ ...defaultTextInputStyle }}
                   type='email'
                   value={email}
                 />
@@ -388,7 +415,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
                   <Button
                     className='job-search-form__search-monitor__cancel-button'
                     onClick={() => setIsFormVisible(false)}
-                    theme={ButtonPresetTheme.Black}
+                    theme={secondaryButtonTheme}
                     type='button'
                     variant={ButtonVariant.Secondary}
                   >
