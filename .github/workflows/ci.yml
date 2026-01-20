@@ -51,12 +51,13 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: 'public/themes/contrib/$THEME_NAME/.nvmrc'
 
       - name: Run tests
         run: |
+          cd public/themes/contrib/$THEME_NAME
           npm ci
           npm run lint
 
       - name: NPM Audit
-        run: npm audit --audit-level high
+        run: public/themes/contrib/$THEME_NAME && npm audit --audit-level high
