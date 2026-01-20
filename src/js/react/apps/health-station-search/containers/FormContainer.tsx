@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Button, Checkbox } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { AddressSearch } from '@/react/common/AddressSearch';
@@ -12,6 +13,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,9 +29,36 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
     setParams(params);
   };
 
+  // When pressing enter the form should be submitted.
+  // If the input has suggestions, the selected suggestion should be selected instead.
+  // Also there is a close button over the input, that should clear the input if pressed.
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLFormElement>) => {
+    if (event.key === 'Enter') {
+      const target = event.target as HTMLElement;
+      if (
+        target.tagName === 'INPUT' &&
+        target.getAttribute('aria-activedescendant') === null &&
+        target.getAttribute('role') === 'combobox'
+      ) {
+        event.preventDefault();
+        formRef.current?.requestSubmit();
+      }
+    }
+  };
+
+  const handleAddressSubmit = (address: string) => {
+    setKeyword(address);
+  };
+
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+    <form
+      ref={formRef}
+      className='hdbt-search--react__form-container'
+      role='search'
+      onSubmit={onSubmit}
+      onKeyDown={handleKeyDown}
+    >
       <AddressSearch
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         defaultValue={initialParams?.address || ''}
@@ -41,7 +70,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
         id='address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}
-        onSubmit={(address: string) => setKeyword(address)}
+        onSubmit={handleAddressSubmit}
         placeholder={Drupal.t(
           'For example, Kotikatu 1',
           {},

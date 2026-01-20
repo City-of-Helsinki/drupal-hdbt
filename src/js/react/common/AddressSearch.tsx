@@ -94,6 +94,7 @@ export const AddressSearch = ({
         onSubmit={handleSubmit}
         suggestionLabelField='label'
         style={defaultSearchInputStyle}
+        hideSearchButton={true}
       />
     ),
     // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
