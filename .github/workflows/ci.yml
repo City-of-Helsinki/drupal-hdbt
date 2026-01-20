@@ -56,7 +56,7 @@ jobs:
       - name: Run tests
         run: |
           npm ci
-          npm run lint:js
+          npm run lint
 
       - name: NPM Audit
         run: npm audit --audit-level high
