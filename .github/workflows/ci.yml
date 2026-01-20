@@ -22,6 +22,10 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+
       - name: Set variables
         run: echo "DRUPAL_ROOT=$HOME/drupal" >> $GITHUB_ENV
 
@@ -48,10 +52,6 @@ jobs:
       - name: Run phpstan
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: 'public/themes/contrib/$THEME_NAME/.nvmrc'
 
       - name: Run tests
         run: |
