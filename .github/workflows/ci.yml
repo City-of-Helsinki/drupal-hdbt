@@ -48,3 +48,21 @@ jobs:
       - name: Run phpstan
         working-directory: ${{ env.DRUPAL_ROOT }}
         run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
+
+
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Run tests
+        run: |
+          npm ci
+          npm run lint
+
+      - name: NPM Audit
+        run: npm audit --audit-level high
