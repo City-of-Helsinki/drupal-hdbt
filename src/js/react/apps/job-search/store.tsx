@@ -100,7 +100,7 @@ const defaultSearchState = {
   [SearchComponents.SUMMER_JOBS]: false,
   [SearchComponents.TASK_AREAS]: [] as OptionType[],
   [SearchComponents.YOUTH_SUMMER_JOBS]: false,
-  sort: selectableSortOptions.newestFirst,
+  [SearchComponents.ORDER]: selectableSortOptions.newestFirst,
 };
 
 export type SearchStateType = typeof defaultSearchState;
@@ -114,8 +114,8 @@ export const submitStateAtom = atom(null, (get, set, directState: Partial<Search
   const stateToUse = directState ? ({ ...submittedState, ...directState } as SearchStateType) : searchState;
   const newState: SearchStateType = { ...stateToUse };
 
-  if (directState?.[SearchComponents.PAGE]) {
-    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE];
+  if (directState?.[SearchComponents.PAGE] !== undefined) {
+    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE] as string;
   } else {
     newState[SearchComponents.PAGE] = '1';
   }
@@ -190,15 +190,18 @@ export const setPageAtom = atom(null, (get, set, page: string) => {
 
 export const setSortAtom = atom(null, (get, set, sort: string) => {
   const intermediateState = get(searchStateAtom) || defaultSearchState;
-  const newSearchState = { ...intermediateState, sort };
+  const newSearchState = { ...intermediateState, [SearchComponents.ORDER]: sort };
   set(searchStateAtom, newSearchState);
 
-  set(submitStateAtom, { page: '1', sort: sort });
+  set(submitStateAtom, {
+    [SearchComponents.PAGE]: '1',
+    [SearchComponents.ORDER]: sort,
+  });
 });
 
 export const resetFormAtom = atom(null, (_get, set) => {
   set(searchStateAtom, defaultSearchState);
-  set(submitStateAtom);
+  set(submitStateAtom, defaultSearchState);
 });
 
 export const hasChoicesAtom = atom((get) => {
@@ -218,33 +221,37 @@ export const hasChoicesAtom = atom((get) => {
   );
 });
 
-type configurations = {
-  taskAreaOptions: any;
-  taskAreas: any;
-  employment: any;
-  employmentOptions: any;
-  employmentSearchIds: any;
-  employmentType: any;
-  languages: any;
-  promoted: any;
+type Configurations = {
+  taskAreaOptions: Result<Term>[];
+  taskAreas: AggregationItem[];
+  employment: AggregationItem[];
+  employmentOptions: Result<Term>[];
+  employmentSearchIds: AggregationItem[];
+  employmentType: AggregationItem[];
+  languages: AggregationItem[];
+  promoted: AggregationItem[];
 };
 
-export const configurationsAtom = atom<configurations | undefined>(undefined);
+export const configurationsAtom = atom<Configurations | undefined>(undefined);
 
-const transformTaskAreas = (taskAreas, taskAreaOptions) => {
+const transformTaskAreas = (taskAreas: AggregationItem[], taskAreaOptions: Result<Term>[]) => {
   const aggs = bucketToMap(taskAreas);
 
   return taskAreaOptions
     .map((option: Result<Term>) => {
       const count = aggs.get(option._source.field_external_id[0]) || 0;
-      const { name } = option._source;
+      const name = option._source.name[0];
 
       return { count, label: `${name} (${count})`, simpleLabel: name, value: option._source.field_external_id[0] };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
 };
 
-const transformEmployment = (employment, employmentOptions, employmentType) => {
+const transformEmployment = (
+  employment: AggregationItem[],
+  employmentOptions: Result<Term>[],
+  employmentType: AggregationItem[],
+) => {
   const combinedAggs = bucketToMap(employment.concat(employmentType));
 
   const visibleOptions = employmentOptions.filter(
@@ -261,7 +268,7 @@ const transformEmployment = (employment, employmentOptions, employmentType) => {
       let count = 0;
       let additionalValue = null;
       let label = '';
-      let simpleLabel = term._source.name;
+      let simpleLabel: string = term._source.name[0];
 
       if (!customId) {
         return;
@@ -302,17 +309,18 @@ const transformEmployment = (employment, employmentOptions, employmentType) => {
             { context: 'Employment filter value' },
           );
         } else {
-          label = `${term._source.name} (${count})`;
+          label = `${term._source.name[0]} (${count})`;
         }
       }
 
-      return { count, label, simpleLabel, value: additionalValue ? [tid, additionalValue] : tid };
+      return { count, label, simpleLabel, value: additionalValue ? [tid, additionalValue] : tid } as OptionType;
     })
-    .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
+    .filter((option): option is OptionType => option !== undefined)
+    .sort((a, b) => sortOptions(a, b));
   return options;
 };
 
-const transformLanguages = (languages) => {
+const transformLanguages = (languages: AggregationItem[]) => {
   const languageMap = bucketToMap(languages);
   const languageOptions = ['fi', 'sv', 'en'];
 
@@ -328,7 +336,7 @@ export const employmentAtom = atom<OptionType[]>([]);
 export const languagesAtom = atom<OptionType[]>([]);
 export const taskAreasAtom = atom<OptionType[]>([]);
 
-export const initializeSearchAtom = atom(null, (get, set, config: configurations) => {
+export const initializeSearchAtom = atom(null, (get, set, config: Configurations) => {
   const initialState: SearchStateType = { ...defaultSearchState };
   const configurations = get(configurationsAtom);
 

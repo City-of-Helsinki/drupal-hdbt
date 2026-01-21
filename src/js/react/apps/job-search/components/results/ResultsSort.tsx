@@ -5,6 +5,7 @@ import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import Global from '../../enum/Global';
 import type OptionType from '../../types/OptionType';
 import { setSortAtom, submittedStateAtom } from '../../store';
+import SearchComponents from '../../enum/SearchComponents';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
@@ -28,7 +29,7 @@ const ResultsSort = () => {
         label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
         language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       }}
-      value={[options.find((option) => option.value === submittedState.sort) || options[0]]}
+      value={[options.find((option) => option.value === submittedState[SearchComponents.ORDER]) || options[0]]}
       theme={defaultSelectTheme}
     />
   );

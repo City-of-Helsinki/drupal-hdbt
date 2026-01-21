@@ -139,10 +139,10 @@ const useQueryString = (): string => {
   const newest = { [IndexFields.PUBLICATION_STARTS]: { order: 'desc' } };
 
   const getSort = () => {
-    if (state?.sort === sortOptions.closing) {
+    if (state?.[SearchComponents.ORDER] === sortOptions.closing) {
       return closing;
     }
-    if (state?.sort === sortOptions.newestFirst) {
+    if (state?.[SearchComponents.ORDER] === sortOptions.newestFirst) {
       return newest;
     }
 
