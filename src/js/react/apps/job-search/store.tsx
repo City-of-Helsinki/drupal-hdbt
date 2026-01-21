@@ -100,7 +100,7 @@ const defaultSearchState = {
   [SearchComponents.SUMMER_JOBS]: false,
   [SearchComponents.TASK_AREAS]: [] as OptionType[],
   [SearchComponents.YOUTH_SUMMER_JOBS]: false,
-  sort: selectableSortOptions.newestFirst,
+  [SearchComponents.ORDER]: selectableSortOptions.newestFirst,
 };
 
 export type SearchStateType = typeof defaultSearchState;
@@ -114,8 +114,8 @@ export const submitStateAtom = atom(null, (get, set, directState: Partial<Search
   const stateToUse = directState ? ({ ...submittedState, ...directState } as SearchStateType) : searchState;
   const newState: SearchStateType = { ...stateToUse };
 
-  if (directState?.[SearchComponents.PAGE]) {
-    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE];
+  if (directState?.[SearchComponents.PAGE] !== undefined) {
+    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE] as string;
   } else {
     newState[SearchComponents.PAGE] = '1';
   }
@@ -193,12 +193,15 @@ export const setSortAtom = atom(null, (get, set, sort: string) => {
   const newSearchState = { ...intermediateState, sort };
   set(searchStateAtom, newSearchState);
 
-  set(submitStateAtom, { page: '1', sort: sort });
+  set(submitStateAtom, {
+    [SearchComponents.PAGE]: '1',
+    [SearchComponents.ORDER]: sort,
+  });
 });
 
 export const resetFormAtom = atom(null, (_get, set) => {
   set(searchStateAtom, defaultSearchState);
-  set(submitStateAtom);
+  set(submitStateAtom, defaultSearchState);
 });
 
 export const hasChoicesAtom = atom((get) => {
