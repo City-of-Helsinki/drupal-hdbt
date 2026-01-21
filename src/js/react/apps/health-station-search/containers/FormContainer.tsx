@@ -1,8 +1,8 @@
-import { useRef } from 'react';
 import { Button, Checkbox } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { AddressSearch } from '@/react/common/AddressSearch';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
 import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
@@ -13,7 +13,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
-  const formRef = useRef<HTMLFormElement>(null);
+  const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,27 +27,6 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
     params.sv_only = sv_only.checked;
 
     setParams(params);
-  };
-
-  // When pressing enter the form should be submitted.
-  // If the input has suggestions, the selected suggestion should be selected instead.
-  // Also there is a close button over the input, that should clear the input if pressed.
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLFormElement>) => {
-    if (event.key === 'Enter') {
-      const target = event.target as HTMLElement;
-      if (
-        target.tagName === 'INPUT' &&
-        target.getAttribute('aria-activedescendant') === null &&
-        target.getAttribute('role') === 'combobox'
-      ) {
-        event.preventDefault();
-        formRef.current?.requestSubmit();
-      }
-    }
-  };
-
-  const handleAddressSubmit = (address: string) => {
-    setKeyword(address);
   };
 
   return (
@@ -70,7 +49,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
         id='address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}
-        onSubmit={handleAddressSubmit}
+        onSubmit={(address: string) => handleAddressSubmit(address, setKeyword)}
         placeholder={Drupal.t(
           'For example, Kotikatu 1',
           {},
