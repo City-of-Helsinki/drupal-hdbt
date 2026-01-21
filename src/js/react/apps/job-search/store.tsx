@@ -190,7 +190,7 @@ export const setPageAtom = atom(null, (get, set, page: string) => {
 
 export const setSortAtom = atom(null, (get, set, sort: string) => {
   const intermediateState = get(searchStateAtom) || defaultSearchState;
-  const newSearchState = { ...intermediateState, sort };
+  const newSearchState = { ...intermediateState, [SearchComponents.ORDER]: sort };
   set(searchStateAtom, newSearchState);
 
   set(submitStateAtom, {
