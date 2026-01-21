@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import type { FormEvent } from 'react';
 import { AddressSearch } from '@/react/common/AddressSearch';
+import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
 import CheckboxFilter from '../components/CheckboxFilter';
 import DateSelect from '../components/DateSelect';
 import { EventTypeFilter } from '../components/EventTypeFilter';
@@ -43,6 +44,7 @@ function FormContainer() {
     useLocationSearch,
     useTargetGroupFilter,
   } = filterSettings;
+  const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
 
   const onSubmit = () => {
     updateUrl();
@@ -91,7 +93,13 @@ function FormContainer() {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={handleSubmit}>
+    <form
+      ref={formRef}
+      className='hdbt-search--react__form-container'
+      role='search'
+      onSubmit={handleSubmit}
+      onKeyDown={handleKeyDown}
+    >
       {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
       <div className='event-form__filters-container'>
         {useLocationSearch && (
@@ -101,7 +109,7 @@ function FormContainer() {
             id='location'
             label={Drupal.t('Address', {}, { context: 'React search: location label' })}
             onChange={(value: string) => updateAddress(value)}
-            onSubmit={(value: string) => updateAddress(value)}
+            onSubmit={(value: string) => handleAddressSubmit(value, updateAddress)}
             placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Helsinki near you events search' })}
             value={address || ''}
             visibleSuggestions={5}

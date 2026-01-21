@@ -2,6 +2,7 @@ import { Button, Checkbox } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { AddressSearch } from '@/react/common/AddressSearch';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
 import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
@@ -12,6 +13,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
+  const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,7 +31,13 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+    <form
+      ref={formRef}
+      className='hdbt-search--react__form-container'
+      role='search'
+      onSubmit={onSubmit}
+      onKeyDown={handleKeyDown}
+    >
       <AddressSearch
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         defaultValue={initialParams?.address || ''}
@@ -41,7 +49,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
         id='address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}
-        onSubmit={(address: string) => setKeyword(address)}
+        onSubmit={(address: string) => handleAddressSubmit(address, setKeyword)}
         placeholder={Drupal.t(
           'For example, Kotikatu 1',
           {},

@@ -75,13 +75,14 @@ function ResultsContainer({
     if (loading && !events.length) {
       return <GhostList bordered={cardsWithBorders} count={size} />;
     }
-    if (addressRequired) {
+    if (addressRequired && !address) {
       return (
         <ResultsHeader
-          resultText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-            <>{Drupal.t('Start by searching with your address.', {}, { context: 'Helsinki near you events search' })}</>
-          }
+          resultText={Drupal.t(
+            'Start by searching with your address.',
+            {},
+            { context: 'Helsinki near you events search' },
+          )}
           ref={scrollTarget}
         />
       );
