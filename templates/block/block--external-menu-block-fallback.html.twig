@@ -38,12 +38,6 @@
   {% endset %}
 {% endif %}
 
-{% set block_content %}
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-{% endset %}
-
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
 
@@ -52,7 +46,6 @@
   {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
     modifier_class: 'nav-toggle--menu',
     controls: dropdown_id,
-    anchor_target: '#menu',
     js_target: 'js-menu-toggle-button',
     open_label: 'Menu'|t({}, {'context': 'Mobile navigation menu open button text'}),
     close_label: 'Close'|t({}, {'context': 'Mobile navigation menu close button text'}),
@@ -70,9 +63,6 @@
 
         {# Render external mega menu block. #}
         {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
-
-        {# The block content will render menu--external-menu--fallback.html.twig #}
-        {{ block_content }}
 
         <div class="mmenu__footer js-mmenu__footer">
 

@@ -7,29 +7,20 @@ $label-font: 'special.navigation.icon_label';
   display: flex;
 }
 
-.nav-toggle__anchor {
-  display: grid;
-}
-
-.nav-toggle__anchor,
-.nav-toggle__button {
-  grid-template-areas: 'link';
-  z-index: 2;
-}
-
 .nav-toggle__button {
   background-color: transparent; // Reset button styles
   border: 0 none; // Reset button styles
   cursor: pointer;
   display: none;
+  grid-template-areas: 'link';
   padding: 0;
+  z-index: 2;
 
   &:focus {
     outline: 0 none;
   }
 }
 
-.mega-and-mobilemenu .mobile-menu-fallback,
 .mega-and-mobilemenu .mmenu__footer {
   padding-top: $spacing;
 
@@ -170,7 +161,6 @@ $label-font: 'special.navigation.icon_label';
 }
 
 // When any nav-toggle is active in mobile size, lets hide page content to avoid tabbing behind the dropdown
-.nav-toggle-target:target:not(.nav-toggle-target--toast),
 .nav-toggle-target[data-target='true']:not(.nav-toggle-target--toast) {
   & ~ .wrapper > *:not(.header), // All wrapper content except .header
   & ~ .footer {
@@ -186,21 +176,6 @@ $label-font: 'special.navigation.icon_label';
 }
 
 @mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
-  // When menu is opened with anchor instead of JS, this forces the page to scroll to top
-  #{$id}:not([data-js]) {
-    scroll-margin-top: 100vh;
-  }
-
-  #{$id}:not([data-js]) ~ * {
-    // Chrome browser has a bug that renders initial menu state as open on page load and then animates it close.
-    // For this reason I had to remove the closing animation when there is no js available :(
-    .nav-toggle-dropdown__wrapper,
-    .nav-toggle-dropdown__content {
-      transition: none;
-    }
-  }
-
-  #{$id}:target,
   #{$id}[data-target='true'] {
     & ~ * #{$nav-toggle-modifier} {
       .nav-toggle__label--open {
@@ -230,14 +205,8 @@ $label-font: 'special.navigation.icon_label';
     }
   }
 
-  // When JS is enabled, switch to use button instead of anchor
-  #{$id}[data-js] ~ * #{$nav-toggle-modifier},
-  #{$id}[data-js] ~ * #{$nav-toggle-dropdown-modifier} {
-    .nav-toggle__anchor {
-      display: none;
-    }
-
-    // On desktop sizes with js, button should open dropdowns with js
+  #{$nav-toggle-modifier},
+  #{$nav-toggle-dropdown-modifier} {
     .nav-toggle__button {
       display: grid;
     }

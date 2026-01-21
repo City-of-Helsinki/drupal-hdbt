@@ -35,14 +35,10 @@
 
 {# Do we want to render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
-  {#
-  Anchor targets for global navi and other-langs nojs fallbacks.
-  Also works as a CSS data-attr selector reference point for JS version.
-  These must be on top and at root.
-  #}
+  {# CSS data-attr selector reference point for JS navigation toggle. Must be on top and at root. #}
   <div id="menu" class="nav-toggle-target"></div>
 {% else %}
-  {# This checkbox handles opening and closing mobile menu #}
+  {# CSS data-attr selector reference point for JS navigation toggle. #}
   <div id="cssmenu" class="nav-toggle-target"></div>
 {% endif %}
 
