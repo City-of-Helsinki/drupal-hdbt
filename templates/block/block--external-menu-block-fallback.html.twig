@@ -60,15 +60,15 @@
   } %}
     {% block content %}
       <div class="mega-and-mobilemenu">
-
         {# Render external mega menu block. #}
         {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
+      </div>
 
+      <div id="mmenu" class="mmenu">
+        <div id="mmenu__panels" class="mmenu__panels"></div>
         <div class="mmenu__footer js-mmenu__footer">
-
           {% set inside_cssmenu = true %}
           {{ header_top_navigation_content }}
-
           <div class="mmenu__logo">
             {% set link_label %}
               {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
@@ -81,10 +81,6 @@
             {{ link(link_label, site_front_url, link_attributes) }}
           </div>
         </div>
-      </div>
-
-      <div id="mmenu" class="mmenu">
-        <div id="mmenu__panels" class="mmenu__panels" />
       </div>
     {% endblock %}
   {% endembed %}

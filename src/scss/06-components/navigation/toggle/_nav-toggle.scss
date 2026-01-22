@@ -11,7 +11,7 @@ $label-font: 'special.navigation.icon_label';
   background-color: transparent; // Reset button styles
   border: 0 none; // Reset button styles
   cursor: pointer;
-  display: none;
+  display: grid;
   grid-template-areas: 'link';
   padding: 0;
   z-index: 2;
@@ -21,7 +21,7 @@ $label-font: 'special.navigation.icon_label';
   }
 }
 
-.mega-and-mobilemenu .mmenu__footer {
+.mmenu > .mmenu__footer {
   padding-top: $spacing;
 
   @include breakpoint($breakpoint-l) {
@@ -205,12 +205,7 @@ $label-font: 'special.navigation.icon_label';
     }
   }
 
-  #{$nav-toggle-modifier},
   #{$nav-toggle-dropdown-modifier} {
-    .nav-toggle__button {
-      display: grid;
-    }
-
     .nav-toggle-dropdown__content {
       overflow-y: hidden;
     }
