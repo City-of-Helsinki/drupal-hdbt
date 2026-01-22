@@ -1,0 +1,5 @@
+{% set content %}
+  {% include '@helfi_hakuvahti/form.twig' with { action_url: action_url, button_text: button_text } %}
+{% endset %}
+
+{% include "@hdbt/module/helfi_hakuvahti/hakuvahti-action-wrapper.twig" with { content: content } %}
