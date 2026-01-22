@@ -38,7 +38,7 @@ closable-announcements:
     - core/drupalSettings
 
 closable-surveys:
-  version: 1.2.2
+  version: 1.2.3
   js:
     dist/js/closableSurveys.min.js: {
       minified: true
@@ -144,6 +144,14 @@ health-station-search:
   dependencies:
     - core/drupalSettings
     - core/drupal
+
+hide-announcements:
+  version: 1.0.1
+  header: true
+  js:
+    dist/js/hideAnnouncements.min.js: { 
+      minified: true
+    }
 
 hyphenopoly:
   version: HELFI_DEPLOYMENT_IDENTIFIER
@@ -366,8 +374,3 @@ throbber:
   dependencies:
     - core/jquery
     - core/drupal
-
-hide-announcements:
-  version: 1.0.0
-  js:
-    dist/js/hideAnnouncements.min.js: {}
