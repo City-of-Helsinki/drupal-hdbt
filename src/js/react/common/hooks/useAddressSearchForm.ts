@@ -16,7 +16,8 @@ export const useAddressSearchForm = () => {
     }
   };
   const handleAddressSubmit = (address: string, setKeyword: (address: string) => void) => {
-    setKeyword(address);
+    // Palvelukarttaa address search only allows specific characters.
+    setKeyword(address.replace(/[^a-zA-Z0-9.,+&'|\-\s]*/g, ''));
   };
   return {
     formRef,
