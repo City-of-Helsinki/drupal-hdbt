@@ -33,6 +33,8 @@ export const AddressSearch = ({
     if (!searchTerm || searchTerm === '') {
       return [];
     }
+    // Palvelukarttaa address search only allows specific characters.
+    searchTerm = searchTerm.replace(/[^a-zA-Z0-9.,+&'|\-\s]*/g, '');
 
     const fetchSuggestions = (param: URLSearchParams) => {
       const url = new URL(ServiceMap.EVENTS_URL);
