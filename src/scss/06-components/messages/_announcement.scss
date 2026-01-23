@@ -127,3 +127,8 @@ $-announcement-link-padding: $spacing-three-quarters;
     transition: none;
   }
 }
+
+// Add padding when announcement is present on front page without breadcrumb
+.is-front:not(:has(.hds-breadcrumb)) .announcement {
+  padding-block-start: $spacing;
+}
