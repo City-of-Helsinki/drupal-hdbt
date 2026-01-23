@@ -145,8 +145,11 @@ health-station-search:
     - core/drupalSettings
     - core/drupal
 
+# Attached in:
+# - templates/block/block--announcements.html.twig
 hide-announcements:
   version: 1.0.1
+  # Needs to load early for mutation observers to work properly.
   header: true
   js:
     dist/js/hideAnnouncements.min.js: { 
