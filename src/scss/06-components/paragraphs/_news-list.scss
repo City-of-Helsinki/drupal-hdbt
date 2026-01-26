@@ -1,23 +1,20 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
-.component--news-list {
-  // Remove the uneven spacing on the news list caused by the
-  // always present $spacing-half on bottom of each tag.
-  .component__tags + .component__content {
-    margin-top: calc(#{$component-desc-spacing-mobile} - #{$spacing-half});
+// Remove the uneven spacing on the news list caused by the
+// always present $spacing-half on bottom of each tag.
+.component--news-list .component__tags + .component__content {
+  margin-top: calc(#{$component-desc-spacing-mobile} - #{$spacing-half});
 
-    @if $component-desc-spacing-mobile != $component-desc-spacing-desktop {
-      @include breakpoint($component-spacing-breakpoint) {
-        margin-top: calc(#{$component-desc-spacing-desktop} - #{$spacing-half});;
-      }
+  @if $component-desc-spacing-mobile != $component-desc-spacing-desktop {
+    @include breakpoint($component-spacing-breakpoint) {
+      margin-top: calc(#{$component-desc-spacing-desktop} - #{$spacing-half});;
     }
   }
+}
 
-  .news-listing {
-    margin-bottom: $spacing-triple;
+.component--news-list .news-listing {
+  margin-bottom: $spacing-triple;
 
-    .no-results {
-      @include font(body);
-      list-style: none;
-    }
+  .no-results {
+    @include font(body);
+    list-style: none;
   }
 }

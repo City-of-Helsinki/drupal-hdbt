@@ -1,3 +1,4 @@
+{{ attach_library('hdbt/hide-announcements') }}
 <div{{ attributes }}>
   {{ title_prefix }}
   {% if label %}
@@ -7,13 +8,4 @@
   {% block content %}
     {{ content }}
   {% endblock %}
-
-{#
-  This script is inlined from hide-announcements library
-  js-asset dist/js/hideAnnouncements.min.js, which is a minified
-  version of the source js file src/js/hideAnnouncements.js.
-  @see hdbt.libraries.yml
-  @see _hdbt_get_inline_javascript()
-#}
-{{ js_hide_announcements }}
 </div>

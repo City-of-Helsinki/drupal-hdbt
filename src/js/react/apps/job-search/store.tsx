@@ -1,28 +1,18 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501 */
-import type { Option } from 'hds-react';
 import { atom } from 'jotai';
 
 declare const ELASTIC_DEV_URL: string | undefined;
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type Result from '@/types/Result';
 import CustomIds from './enum/CustomTermIds';
-import Global from './enum/Global';
 import { getAreaInfo } from './helpers/Areas';
 import { getLanguageLabel } from './helpers/Language';
-import sortOptions from './helpers/Options';
-import { paramsFromSelections } from './helpers/Params';
-import {
-  AGGREGATIONS,
-  EMPLOYMENT_FILTER_OPTIONS,
-  LANGUAGE_OPTIONS,
-  PROMOTED_IDS,
-  TASK_AREA_OPTIONS,
-} from './query/queries';
+import { sortOptions } from './helpers/Options';
 import type AggregationItem from './types/AggregationItem';
 import type OptionType from './types/OptionType';
 import type Term from './types/Term';
-import type URLParams from './types/URLParams';
 import SearchComponents from './enum/SearchComponents';
+import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
+import Global from './enum/Global';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {
@@ -39,11 +29,25 @@ const bucketToMap = (bucket: AggregationItem[]) => {
   return result;
 };
 
-const getParams = (searchParams: URLSearchParams) => {
+const arrayParams = [
+  SearchComponents.TASK_AREAS,
+  SearchComponents.EMPLOYMENT,
+  SearchComponents.AREA_FILTER,
+  SearchComponents.LANGUAGE,
+];
+
+const booleanParams = [
+  SearchComponents.CONTINUOUS,
+  SearchComponents.INTERNSHIPS,
+  SearchComponents.SUMMER_JOBS,
+  SearchComponents.YOUTH_SUMMER_JOBS,
+];
+
+const getParams = () => {
+  const searchParams = new URLSearchParams(window.location.search);
   const params: { [k: string]: any } = {};
   const entries = searchParams.entries();
   let result = entries.next();
-  const arrayParams = [SearchComponents.TASK_AREAS, SearchComponents.EMPLOYMENT, SearchComponents.AREA_FILTER];
 
   while (!result.done) {
     const [key, value] = result.value;
@@ -83,131 +87,171 @@ const getParams = (searchParams: URLSearchParams) => {
   return params;
 };
 
-export const urlAtom = atom<URLParams>(getParams(new URLSearchParams(window.location.search)));
-
-export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
-  // set atom value
-  values.page = values.page || '1';
-  set(urlAtom, values);
-
-  // Set new params to window.location
-  const newUrl = new URL(window.location.toString());
-  newUrl.search = paramsFromSelections(values);
-  window.history.pushState({}, '', newUrl);
-});
-
-export const keywordAtom = atom('');
-
-export const setPageAtom = atom(null, (get, set, page: string) => {
-  const url = get(urlAtom);
-  set(urlUpdateAtom, { ...url, page });
-});
-
-export const pageAtom = atom((get) => Number(get(urlAtom)?.page) || 1);
-
-type configurations = {
-  error: Error | null;
-  taskAreaOptions: any;
-  taskAreas: any;
-  employment: any;
-  employmentOptions: any;
-  employmentSearchIds: any;
-  employmentType: any;
-  languages: any;
-  promoted: any;
+const { sortOptions: selectableSortOptions } = Global;
+const defaultSearchState = {
+  [SearchComponents.AREA_FILTER]: [] as OptionType[],
+  [SearchComponents.CONTINUOUS]: false,
+  [SearchComponents.EMPLOYMENT_RELATIONSHIP]: [] as OptionType[],
+  [SearchComponents.EMPLOYMENT]: [] as OptionType[],
+  [SearchComponents.INTERNSHIPS]: false,
+  [SearchComponents.KEYWORD]: '',
+  [SearchComponents.LANGUAGE]: [] as OptionType[],
+  [SearchComponents.PAGE]: '1',
+  [SearchComponents.SUMMER_JOBS]: false,
+  [SearchComponents.TASK_AREAS]: [] as OptionType[],
+  [SearchComponents.YOUTH_SUMMER_JOBS]: false,
+  [SearchComponents.ORDER]: selectableSortOptions.newestFirst,
 };
 
-export const configurationsAtom = atom(async (_get): Promise<configurations> => {
-  const proxyUrl = _get(getElasticUrlAtom);
-  const { index } = Global;
-  const url: string | undefined = proxyUrl;
-  const ndjsonHeader = '{}';
+export type SearchStateType = typeof defaultSearchState;
 
-  const body = `${ndjsonHeader}\n${JSON.stringify(AGGREGATIONS)}\n${ndjsonHeader}\n${JSON.stringify(
-    TASK_AREA_OPTIONS,
-  )}\n${ndjsonHeader}\n${JSON.stringify(EMPLOYMENT_FILTER_OPTIONS)}\n${ndjsonHeader}\n${JSON.stringify(
-    LANGUAGE_OPTIONS,
-  )}\n${ndjsonHeader}\n${JSON.stringify(PROMOTED_IDS)}\n`;
+export const searchStateAtom = atom<typeof defaultSearchState>(defaultSearchState);
+export const submittedStateAtom = atom<typeof defaultSearchState>(defaultSearchState);
 
-  return useTimeoutFetch(`${url}/${index}/_msearch`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-ndjson' },
-    body,
-  })
-    .then((res) => res.json())
-    .then((json) => {
-      const responses = json?.responses;
+export const submitStateAtom = atom(null, (get, set, directState: Partial<SearchStateType> | null = null) => {
+  const searchState = get(searchStateAtom);
+  const submittedState = get(submittedStateAtom);
+  const stateToUse = directState ? ({ ...submittedState, ...directState } as SearchStateType) : searchState;
+  const newState: SearchStateType = { ...stateToUse };
 
-      if (!responses || !Array.isArray(responses)) {
-        return {
-          error: new Error(
-            `Initialization failed. Expected responses to be an array of data but got ${typeof responses}`,
-          ),
-          taskAreaOptions: [],
-          taskAreas: [],
-          employment: [],
-          employmentOptions: [],
-          employmentSearchIds: [],
-          employmentType: [],
-          languages: [],
-          promoted: [],
-        };
-      }
-
-      const [aggs, taskAreas, employmentOptions, languages, promoted] = responses;
-
-      return {
-        error: null,
-        taskAreaOptions: taskAreas?.hits?.hits || [],
-        taskAreas: aggs?.aggregations?.occupations?.buckets || [],
-        employment: aggs?.aggregations?.employment?.buckets || [],
-        employmentOptions: employmentOptions?.hits?.hits || [],
-        employmentSearchIds: aggs?.aggregations?.employment_search_id?.buckets || [],
-        employmentType: aggs?.aggregations?.employment_type?.buckets || [],
-        languages: languages?.aggregations?.languages?.buckets || [],
-        promoted: promoted?.aggregations?.promoted?.buckets || [],
-      };
-    })
-    .catch((error) => ({
-      error,
-      taskAreaOptions: [],
-      taskAreas: [],
-      employment: [],
-      employmentOptions: [],
-      employmentSearchIds: [],
-      employmentType: [],
-      languages: [],
-      promoted: [],
-    }));
-});
-
-export const taskAreasAtom = atom(async (get) => {
-  const { error, taskAreaOptions, taskAreas } = await get(configurationsAtom);
-
-  if (error) {
-    return [];
+  if (directState?.[SearchComponents.PAGE] !== undefined) {
+    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE] as string;
+  } else {
+    newState[SearchComponents.PAGE] = '1';
   }
 
+  if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
+    set(submittedStateAtom, newState);
+    const params = stateToURLParams(newState);
+    const url = new URL(window.location.href);
+    url.search = params.toString();
+    window.history.pushState({}, '', url);
+  }
+});
+
+export const setStateValueAtom = atom(
+  null,
+  (get, set, payload: { key: keyof typeof defaultSearchState; value: string | OptionType[] | boolean }) => {
+    const searchState = get(searchStateAtom) || defaultSearchState;
+    const newState = { ...searchState, [payload.key]: payload.value };
+
+    set(searchStateAtom, newState);
+  },
+);
+
+export const getKeywordAtom = atom((get) => {
+  const searchState = get(searchStateAtom);
+  return searchState ? (searchState[SearchComponents.KEYWORD] as string) : '';
+});
+
+export const getTaskAreasAtom = atom((get) => {
+  const searchState = get(searchStateAtom);
+  return searchState ? (searchState[SearchComponents.TASK_AREAS] as OptionType[]) : [];
+});
+
+export const getEmploymentAtom = atom((get) => {
+  const searchState = get(searchStateAtom);
+  return searchState ? (searchState[SearchComponents.EMPLOYMENT] as OptionType[]) : [];
+});
+
+export const getLanguageAtom = atom((get) => {
+  const searchState = get(searchStateAtom);
+  return searchState[SearchComponents.LANGUAGE];
+});
+
+export const getAreaAtom = atom((get) => {
+  const searchState = get(searchStateAtom);
+  return searchState ? (searchState[SearchComponents.AREA_FILTER] as OptionType[]) : [];
+});
+
+export const getCheckBoxValuesAtom = atom((get) => {
+  const searchState = get(searchStateAtom);
+  return [
+    searchState ? (searchState[SearchComponents.CONTINUOUS] as boolean) : false,
+    searchState ? (searchState[SearchComponents.INTERNSHIPS] as boolean) : false,
+    searchState ? (searchState[SearchComponents.SUMMER_JOBS] as boolean) : false,
+    searchState ? (searchState[SearchComponents.YOUTH_SUMMER_JOBS] as boolean) : false,
+  ];
+});
+
+export const getPageAtom = atom((get) => {
+  const submittedState = get(submittedStateAtom);
+
+  return submittedState ? Number(submittedState[SearchComponents.PAGE]) : 1;
+});
+
+export const setPageAtom = atom(null, (get, set, page: string) => {
+  const intermediateState = get(searchStateAtom) || defaultSearchState;
+  const newSearchState = { ...intermediateState, [SearchComponents.PAGE]: page };
+  set(searchStateAtom, newSearchState);
+
+  set(submitStateAtom, { [SearchComponents.PAGE]: page });
+});
+
+export const setSortAtom = atom(null, (get, set, sort: string) => {
+  const intermediateState = get(searchStateAtom) || defaultSearchState;
+  const newSearchState = { ...intermediateState, [SearchComponents.ORDER]: sort };
+  set(searchStateAtom, newSearchState);
+
+  set(submitStateAtom, {
+    [SearchComponents.PAGE]: '1',
+    [SearchComponents.ORDER]: sort,
+  });
+});
+
+export const resetFormAtom = atom(null, (_get, set) => {
+  set(searchStateAtom, defaultSearchState);
+  set(submitStateAtom, defaultSearchState);
+});
+
+export const hasChoicesAtom = atom((get) => {
+  const submittedState = get(submittedStateAtom);
+
+  if (!submittedState) {
+    return false;
+  }
+
+  return Object.entries(submittedState).some(
+    ([key, value]) =>
+      key !== SearchComponents.PAGE &&
+      key !== SearchComponents.ORDER &&
+      ((Array.isArray(value) && value.length > 0) ||
+        (typeof value === 'string' && value.trim() !== '') ||
+        (typeof value === 'boolean' && value === true)),
+  );
+});
+
+type Configurations = {
+  taskAreaOptions: Result<Term>[];
+  taskAreas: AggregationItem[];
+  employment: AggregationItem[];
+  employmentOptions: Result<Term>[];
+  employmentSearchIds: AggregationItem[];
+  employmentType: AggregationItem[];
+  languages: AggregationItem[];
+  promoted: AggregationItem[];
+};
+
+export const configurationsAtom = atom<Configurations | undefined>(undefined);
+
+const transformTaskAreas = (taskAreas: AggregationItem[], taskAreaOptions: Result<Term>[]) => {
   const aggs = bucketToMap(taskAreas);
 
   return taskAreaOptions
     .map((option: Result<Term>) => {
       const count = aggs.get(option._source.field_external_id[0]) || 0;
-      const { name } = option._source;
+      const name = option._source.name[0];
 
       return { count, label: `${name} (${count})`, simpleLabel: name, value: option._source.field_external_id[0] };
     })
     .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
-});
-export const taskAreasSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+};
 
-export const employmentAtom = atom(async (get) => {
-  const { error, employment, employmentOptions, employmentType } = await get(configurationsAtom);
-
-  if (error) {
-    return [];
-  }
-
+const transformEmployment = (
+  employment: AggregationItem[],
+  employmentOptions: Result<Term>[],
+  employmentType: AggregationItem[],
+) => {
   const combinedAggs = bucketToMap(employment.concat(employmentType));
 
   const visibleOptions = employmentOptions.filter(
@@ -224,7 +268,7 @@ export const employmentAtom = atom(async (get) => {
       let count = 0;
       let additionalValue = null;
       let label = '';
-      let simpleLabel = term._source.name;
+      let simpleLabel: string = term._source.name[0];
 
       if (!customId) {
         return;
@@ -265,24 +309,18 @@ export const employmentAtom = atom(async (get) => {
             { context: 'Employment filter value' },
           );
         } else {
-          label = `${term._source.name} (${count})`;
+          label = `${term._source.name[0]} (${count})`;
         }
       }
 
-      return { count, label, simpleLabel, value: additionalValue ? [tid, additionalValue] : tid };
+      return { count, label, simpleLabel, value: additionalValue ? [tid, additionalValue] : tid } as OptionType;
     })
-    .sort((a: OptionType, b: OptionType) => sortOptions(a, b));
+    .filter((option): option is OptionType => option !== undefined)
+    .sort((a, b) => sortOptions(a, b));
   return options;
-});
-export const employmentSelectionAtom = atom<OptionType[]>([] as OptionType[]);
+};
 
-export const languagesAtom = atom(async (get) => {
-  const { error, languages } = await get(configurationsAtom);
-
-  if (error) {
-    return [];
-  }
-
+const transformLanguages = (languages: AggregationItem[]) => {
   const languageMap = bucketToMap(languages);
   const languageOptions = ['fi', 'sv', 'en'];
 
@@ -291,30 +329,90 @@ export const languagesAtom = atom(async (get) => {
     simpleLabel: langcode,
     value: langcode,
   }));
+};
+
+export const areaFilterAtom = atom<OptionType[]>([]);
+export const employmentAtom = atom<OptionType[]>([]);
+export const languagesAtom = atom<OptionType[]>([]);
+export const taskAreasAtom = atom<OptionType[]>([]);
+
+export const initializeSearchAtom = atom(null, (get, set, config: Configurations) => {
+  const initialState: SearchStateType = { ...defaultSearchState };
+  const configurations = get(configurationsAtom);
+
+  if (configurations) {
+    return;
+  }
+
+  const taskAreas = transformTaskAreas(config.taskAreas, config.taskAreaOptions);
+  set(taskAreasAtom, taskAreas);
+  const employment = transformEmployment(config.employment, config.employmentOptions, config.employmentType);
+  set(employmentAtom, employment);
+  const languages = transformLanguages(config.languages);
+  set(languagesAtom, languages);
+  const areas = getAreaInfo.map((item: any) => ({ label: item.label, value: item.key }));
+  set(areaFilterAtom, areas);
+
+  const keysMap = new Map(
+    Object.entries({
+      [SearchComponents.AREA_FILTER]: areas,
+      [SearchComponents.EMPLOYMENT]: employment,
+      [SearchComponents.LANGUAGE]: languages,
+      [SearchComponents.TASK_AREAS]: taskAreas,
+    }),
+  );
+  const initialParams = getParams();
+
+  const handleArrayParam = (key: string, value: string[]) => {
+    const values = new Set<OptionType>();
+
+    if (!keysMap.has(key)) {
+      return values;
+    }
+
+    value.forEach((val: string) => {
+      const options = keysMap.get(key) as OptionType[];
+      const matchedOption = options.find((option: OptionType) =>
+        Array.isArray(option.value)
+          ? option.value.map((optionValue) => optionValue.toString()).includes(val)
+          : option.value.toString() === val,
+      );
+
+      if (matchedOption) {
+        values.add(matchedOption);
+      }
+    });
+
+    initialState[key as keyof SearchStateType] = Array.from(values);
+  };
+
+  Object.keys(initialState).forEach((key) => {
+    if (initialParams[key] && Array.isArray(initialParams[key])) {
+      handleArrayParam(key, initialParams[key]);
+      return;
+    } else if (initialParams[key]) {
+      if (booleanParams.includes(key)) {
+        initialState[key as keyof SearchStateType] = initialParams[key] === 'true';
+      } else {
+        initialState[key as keyof SearchStateType] = initialParams[key];
+      }
+    }
+  });
+  set(searchStateAtom, initialState);
+  set(submittedStateAtom, initialState);
+  set(configurationsAtom, config);
 });
-export const languageSelectionAtom = atom<OptionType[] | Option[] | undefined>(undefined);
 
-export const continuousAtom = atom<boolean>(false);
-export const internshipAtom = atom<boolean>(false);
-export const summerJobsAtom = atom<boolean>(false);
-export const youthSummerJobsAtom = atom<boolean>(false);
+export const getEmploymentSearchIdMap = atom((get) => {
+  const configurations = get(configurationsAtom);
 
-export const resetFormAtom = atom(null, (_get, set) => {
-  set(areaFilterSelectionAtom, []);
-  set(taskAreasSelectionAtom, []);
-  set(keywordAtom, '');
-  set(continuousAtom, false);
-  set(internshipAtom, false);
-  set(summerJobsAtom, false);
-  set(youthSummerJobsAtom, false);
-  set(employmentSelectionAtom, []);
-  set(urlUpdateAtom, {});
-  set(languageSelectionAtom, undefined);
+  if (!configurations?.employmentSearchIds) {
+    return new Map();
+  }
+
+  const { employmentSearchIds } = configurations;
+  return bucketToMap(employmentSearchIds);
 });
-
-export const areaFilterAtom = atom(getAreaInfo.map((item: any) => ({ label: item.label, value: item.key })));
-
-export const areaFilterSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const monitorSubmittedAtom = atom(false);
 

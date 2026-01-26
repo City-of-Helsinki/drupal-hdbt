@@ -5,13 +5,29 @@ import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import { getAreaInfo } from '../helpers/Areas';
 import { nodeFilter } from '../query/queries';
-import { configurationsAtom } from '../store';
-import type URLParams from '../types/URLParams';
+import { configurationsAtom, submittedStateAtom } from '../store';
+import SearchComponents from '../enum/SearchComponents';
+import type { OptionType } from '../types/OptionType';
 
-const useQueryString = (urlParams: URLParams): string => {
+const getArrayValues = (optionArray: OptionType[]): string[] => {
+  const result: string[] = [];
+
+  optionArray.forEach((option) => {
+    if (Array.isArray(option.value)) {
+      result.push(...option.value);
+    } else {
+      result.push(option.value.toString());
+    }
+  });
+
+  return result;
+};
+
+const useQueryString = (): string => {
+  const state = useAtomValue(submittedStateAtom);
   const { size: globalSize, sortOptions } = Global;
-  const { promoted } = useAtomValue(configurationsAtom);
-  const page = Number.isNaN(Number(urlParams.page)) ? 1 : Number(urlParams.page);
+  const { promoted } = useAtomValue(configurationsAtom) || {};
+  const page = Number.isNaN(Number(state[SearchComponents.PAGE])) ? 1 : Number(state[SearchComponents.PAGE]);
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const must: any[] = [
     {
@@ -21,14 +37,14 @@ const useQueryString = (urlParams: URLParams): string => {
   ];
   const should = [];
 
-  if (urlParams.keyword && urlParams.keyword.length > 0) {
+  if (state[SearchComponents.KEYWORD] && state[SearchComponents.KEYWORD].toString().length > 0) {
     must.push({
       bool: {
         should: [
-          { match_phrase_prefix: { [IndexFields.RECRUITMENT_ID]: urlParams.keyword.toString() } },
+          { match_phrase_prefix: { [IndexFields.RECRUITMENT_ID]: state[SearchComponents.KEYWORD].toString() } },
           {
             combined_fields: {
-              query: urlParams.keyword.toString().toLowerCase(),
+              query: state[SearchComponents.KEYWORD].toString().toLowerCase(),
               fields: [
                 `${IndexFields.TITLE}^2`,
                 `${IndexFields.ORGANIZATION}^1.5`,
@@ -37,43 +53,57 @@ const useQueryString = (urlParams: URLParams): string => {
               ],
             },
           },
-          { wildcard: { [`${IndexFields.TITLE}.keyword`]: `*${urlParams.keyword.toString().toLowerCase()}*` } },
-          { wildcard: { [IndexFields.TITLE]: `*${urlParams.keyword.toString().toLowerCase()}*` } },
+          {
+            wildcard: {
+              [`${IndexFields.TITLE}.keyword`]: `*${state[SearchComponents.KEYWORD].toString().toLowerCase()}*`,
+            },
+          },
+          { wildcard: { [IndexFields.TITLE]: `*${state[SearchComponents.KEYWORD].toString().toLowerCase()}*` } },
         ],
       },
     });
   }
 
-  if (urlParams?.task_areas?.length) {
-    must.push({ terms: { [IndexFields.TASK_AREA_EXTERNAL_ID]: urlParams.task_areas } });
+  if ((state[SearchComponents.TASK_AREAS] as OptionType[])?.length) {
+    must.push({
+      terms: {
+        [IndexFields.TASK_AREA_EXTERNAL_ID]: getArrayValues(state[SearchComponents.TASK_AREAS] as OptionType[]),
+      },
+    });
   }
 
   // These values can match either employment or employment_type IDs
-  if (urlParams?.employment?.length) {
+  if ((state[SearchComponents.EMPLOYMENT] as OptionType[])?.length) {
     must.push({
       bool: {
         should: [
-          { terms: { [IndexFields.EMPLOYMENT_ID]: urlParams.employment } },
-          { terms: { [IndexFields.EMPLOYMENT_TYPE_ID]: urlParams.employment } },
+          {
+            terms: { [IndexFields.EMPLOYMENT_ID]: getArrayValues(state[SearchComponents.EMPLOYMENT] as OptionType[]) },
+          },
+          {
+            terms: {
+              [IndexFields.EMPLOYMENT_TYPE_ID]: getArrayValues(state[SearchComponents.EMPLOYMENT] as OptionType[]),
+            },
+          },
         ],
         minimum_should_match: 1,
       },
     });
   }
 
-  if (urlParams.continuous) {
+  if (state[SearchComponents.CONTINUOUS]) {
     should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.CONTINUOUS } });
   }
 
-  if (urlParams.internship) {
+  if (state[SearchComponents.INTERNSHIPS]) {
     should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.TRAINING } });
   }
 
-  if (urlParams.summer_jobs) {
+  if (state[SearchComponents.SUMMER_JOBS]) {
     should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SUMMER_JOBS } });
   }
 
-  if (urlParams.youth_summer_jobs) {
+  if (state[SearchComponents.YOUTH_SUMMER_JOBS]) {
     should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.YOUTH_SUMMER_JOBS } });
     should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.COOL_SUMMER_PROJECT } });
   }
@@ -81,14 +111,16 @@ const useQueryString = (urlParams: URLParams): string => {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const query: any = { bool: { filter: [nodeFilter] } };
 
-  if (urlParams.language) {
-    query.bool.filter.push({ term: { [IndexFields.LANGUAGE]: urlParams.language.toString() } });
+  if ((state[SearchComponents.LANGUAGE] as OptionType[]).length) {
+    query.bool.filter.push({
+      term: { [IndexFields.LANGUAGE]: (state[SearchComponents.LANGUAGE] as OptionType[])[0].value },
+    });
   }
 
-  if (urlParams?.area_filter?.length) {
+  if ((state[SearchComponents.AREA_FILTER] as OptionType[])?.length) {
     const postalCodes: string[] = [];
-    urlParams.area_filter.forEach((areaCode) => {
-      postalCodes.push(...(getAreaInfo.find((area) => area.key === areaCode)?.postalCodes || []));
+    (state[SearchComponents.AREA_FILTER] as OptionType[]).forEach((areaCode) => {
+      postalCodes.push(...(getAreaInfo.find((area) => area.key === areaCode.value)?.postalCodes || []));
     });
 
     query.bool.filter.push({ terms: { [IndexFields.POSTAL_CODE]: postalCodes } });
@@ -107,10 +139,10 @@ const useQueryString = (urlParams: URLParams): string => {
   const newest = { [IndexFields.PUBLICATION_STARTS]: { order: 'desc' } };
 
   const getSort = () => {
-    if (urlParams?.sort === sortOptions.closing) {
+    if (state?.[SearchComponents.ORDER] === sortOptions.closing) {
       return closing;
     }
-    if (urlParams?.sort === sortOptions.newestFirst) {
+    if (state?.[SearchComponents.ORDER] === sortOptions.newestFirst) {
       return newest;
     }
 

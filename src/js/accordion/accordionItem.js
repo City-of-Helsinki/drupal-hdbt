@@ -86,10 +86,11 @@ export default class AccordionItem {
       // Force a reflow to ensure the style change takes effect
       void document.body.offsetHeight;
 
-      this.isOpen
-        ? accordionItemContent.removeAttribute('hidden')
-        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
-          (accordionItemContent.hidden = 'until-found');
+      if (this.isOpen) {
+        accordionItemContent.removeAttribute('hidden');
+      } else {
+        accordionItemContent.hidden = 'until-found';
+      }
 
       // Remove the css-property to enable animations again.
       setTimeout(() => {

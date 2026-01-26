@@ -1,11 +1,11 @@
 import { Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect, useState } from 'react';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import Global from '../../enum/Global';
-import { urlAtom, urlUpdateAtom } from '../../store';
 import type OptionType from '../../types/OptionType';
+import { setSortAtom, submittedStateAtom } from '../../store';
+import SearchComponents from '../../enum/SearchComponents';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [
@@ -14,34 +14,22 @@ const options: OptionType[] = [
 ];
 
 const ResultsSort = () => {
-  const urlParams = useAtomValue(urlAtom);
-  const setUrlParams = useSetAtom(urlUpdateAtom);
-  const [sort, setSort] = useState<OptionType>(options[0]);
+  const submittedState = useAtomValue(submittedStateAtom);
+  const setSort = useSetAtom(setSortAtom);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
-  useEffect(() => {
-    if (urlParams.sort) {
-      const matchedSort = options.find((option: OptionType) => option.value === urlParams.sort);
-
-      if (matchedSort) {
-        setSort(matchedSort);
-      }
-    }
-  }, []);
   return (
     <Select
       className='job-listing-search__sort'
       clearable={false}
       onChange={(_selectedOptions, clickedOption) => {
-        setSort(clickedOption);
-        setUrlParams({ ...urlParams, sort: clickedOption.value });
+        setSort(clickedOption?.value || sortOptions.newestFirst);
       }}
       options={options}
       texts={{
         label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
         language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       }}
-      value={[sort]}
+      value={[options.find((option) => option.value === submittedState[SearchComponents.ORDER]) || options[0]]}
       theme={defaultSelectTheme}
     />
   );

@@ -2,40 +2,52 @@
 import { Buffer } from 'buffer';
 import {
   Button,
-  ButtonPresetTheme,
   ButtonVariant,
   Checkbox,
-  IconAngleDown,
-  IconAngleUp,
+  Dialog,
+  IconBell,
   Notification,
   NotificationSize,
   TextInput,
 } from 'hds-react';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import React, { type CSSProperties, createRef, useEffect } from 'react';
+import type React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import { primaryButtonTheme, secondaryButtonTheme } from '@/react/common/constants/buttonTheme';
 import useQueryString from '../hooks/useQueryString';
-import { monitorSubmittedAtom, urlAtom } from '../store';
-import type URLParams from '../types/URLParams';
+import { useVisibleSelections } from '../hooks/useVisibleSelections';
+import { useSelectionTags } from '../hooks/useSelectionTags';
+import Tags from '@/react/common/Tags';
+import SearchComponents from '../enum/SearchComponents';
 
-// Define new atom for scroll state
-const shouldScrollAtom = atom(false);
+type FormError = { message: string; visible: boolean };
 
-const SearchMonitorContainer = () => {
-  const urlParams: URLParams = useAtomValue(urlAtom);
-  const query = useQueryString(urlParams);
+type FormErrorContainer = { allVisible?: boolean; email?: FormError; termsAgreed?: FormError } | null;
+
+const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement> }) => {
+  const openDialogButtonRef = useRef(null);
+  const query = useQueryString();
+  const selections = useVisibleSelections(true);
+  const selectionTags = useSelectionTags(
+    selections.map((selection) => {
+      const [key, value] = selection;
+
+      if (key === SearchComponents.KEYWORD) {
+        return [key, `"${value.toString().trim()}"`];
+      }
+
+      return selection;
+    }),
+  );
 
   // Form validation states
-  const [termsAgreed, setTermsAgreed] = useAtom(receiveNewsletterAtom);
-  const [email, setEmail] = useAtom(emailAtom);
-  const [submitted, setSubmitted] = useAtom(monitorSubmittedAtom);
-  const [errorMessage, seterrorMessage] = useAtom(errorAtom);
-  const [isFormVisible, setIsFormVisible] = useAtom(isFormVisibleAtom);
-
-  // Scroll state
-  const [shouldScroll, setShouldScroll] = useAtom(shouldScrollAtom);
+  const [errors, setErrors] = useState<FormErrorContainer>(null);
+  const [termsAgreed, setTermsAgreed] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
+  const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   // ElasticSearch query base64 encoded
   const queryEncoded = Buffer.from(query).toString('base64');
@@ -46,8 +58,6 @@ const SearchMonitorContainer = () => {
   const currentParams = window.location.search;
   const currentRelativeUrl = currentPath + currentParams;
 
-  const scrollTarget = createRef<HTMLDivElement>();
-
   const requestBody = {
     elastic_query: queryEncoded,
     query: currentRelativeUrl,
@@ -56,34 +66,27 @@ const SearchMonitorContainer = () => {
     lang: window.drupalSettings.path.currentLanguage || 'fi',
   };
 
+  const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
-    // Validate stuff to submit form
-    if (!termsAgreed) {
-      seterrorMessage(
-        Drupal.t('The choice is mandatory: Terms of service', {}, { context: 'Search monitor error terms' }),
-      );
-      return;
-    }
+    if (errors && Object.keys(errors).length > 0) {
+      setErrors({ ...errors, allVisible: true });
 
-    if (!email) {
-      seterrorMessage(
-        Drupal.t('This field is mandatory: Email address', {}, { context: 'Search monitor error email' }),
-      );
-      return;
-    }
+      const errorList = Object.entries(errors)
+        .filter(([key, error]) => key !== 'allVisible' && error)
+        .map(([key, error]) => {
+          if ((key === 'termsAgreed' && !termsAgreed) || (key === 'email' && !email)) {
+            return `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor error' })}: ${
+              key === 'email' ? emailLabel : Drupal.t('Terms of service', {}, { context: 'Search monitor terms' })
+            }`;
+          }
 
-    // Prevent invalid email address
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!regex.test(email)) {
-      seterrorMessage(
-        Drupal.t(
-          'The email address you entered is not in the right format.',
-          {},
-          { context: 'Search monitor error email' },
-        ),
-      );
+          return (error as FormError).message;
+        });
+      setErrorMessages(errorList);
+
       return;
     }
 
@@ -99,7 +102,7 @@ const SearchMonitorContainer = () => {
       const response = await fetch('/session/token', { method: 'GET' });
 
       if (!response.ok) {
-        seterrorMessage(`Error getting session token: ${response.statusText}`);
+        setErrorMessages([`Error getting session token: ${response.statusText}`]);
         if (submitButton) {
           submitButton.removeAttribute('disabled');
         }
@@ -108,7 +111,7 @@ const SearchMonitorContainer = () => {
 
       sessionToken = await response.text();
     } catch (error) {
-      seterrorMessage(`Error getting session token: ${error}`);
+      setErrorMessages([`Error getting session token: ${error}`]);
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
@@ -136,190 +139,296 @@ const SearchMonitorContainer = () => {
     // Oops, error from backend
     if (!response.ok) {
       console.warn(response.statusText);
-      seterrorMessage(
+      setErrorMessages([
         Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor error submitting' }),
-      );
+      ]);
       if (submitButton) {
         submitButton.removeAttribute('disabled');
       }
-      // Move focus to error message.
-      setShouldScroll(true);
       return;
     }
 
     // Release submit locks and show success page
     setSubmitted(true);
-    seterrorMessage('');
-
-    // Move focus to successful message.
-    setShouldScroll(true);
+    setErrorMessages([]);
 
     if (submitButton) {
       submitButton.removeAttribute('disabled');
     }
   };
 
-  // Scroll to results when they change.
-  useScrollToResults(scrollTarget, shouldScroll);
-
   // This tackles the issue that focus moves constantly to the error message for example.
   useEffect(() => {
-    if (shouldScroll) {
-      setShouldScroll(false); // Reset the scroll state after scrolling
-    }
-  }, [shouldScroll, setShouldScroll]);
+    setErrors((prevErrors) => {
+      const formErrors: FormErrorContainer = {};
+      if (!termsAgreed) {
+        formErrors.termsAgreed = {
+          message: `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor error' })}.`,
+          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
+        };
+      }
+
+      if (!email) {
+        formErrors.email = {
+          message: `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor error' })}.`,
+          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
+        };
+      }
+
+      // Prevent invalid email address
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (email && !regex.test(email)) {
+        formErrors.email = {
+          message: Drupal.t(
+            'The email address you entered is not in the right format.',
+            {},
+            { context: 'Search monitor error email' },
+          ),
+          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
+        };
+      }
+
+      return Object.keys(formErrors).length > 0 ? formErrors : null;
+    });
+  }, [email, termsAgreed]);
 
   const formHeader: string = Drupal.t('Receive search results by email', {}, { context: 'Search monitor header' });
-  const openLabel: string = Drupal.t('Open the order form', {}, { context: 'Search monitor open label' });
   const closeLabel: string = Drupal.t('Close the order form', {}, { context: 'Search monitor close label' });
   const descriptionHeader: string = Drupal.t('Saved search', {}, { context: 'Search monitor content title' });
-  const descriptionFirstPart: string = Drupal.t(
-    'To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches.',
-    {},
-    { context: 'Search monitor content' },
-  );
-  const descriptionSecondPart: string = Drupal.t(
-    'You can save as many searches as you like. You can delete the saved search via the link in the email messages.',
-    {},
-    { context: 'Search monitor content' },
-  );
-  const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor email label' });
   const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor submit button label' });
-  const thankYouHeader: string = Drupal.t(
-    'Your search has been saved',
-    {},
-    { context: 'Search monitor thank you header' },
-  );
-  const thankYouMessage: string = Drupal.t(
-    'You will receive a confirmation link by email. You can activate the saved search via the link.',
-    {},
-    { context: 'Search monitor thank you message' },
-  );
   const errorLabel: string = Drupal.t('Please check these selections', {}, { context: 'Search monitor error label' });
   const tosCheckboxLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_checkbox_label;
   const tosLinkLabel: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_text;
   const tosLinkUrl: string = window.drupalSettings.helfi_rekry_job_search.hakuvahti_tos_link_url;
+  const instructionsLinkUrl: string | undefined =
+    window.drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url !== 'undefined'
+      ? window.drupalSettings.helfi_rekry_job_search.hakuvahti_instructions_link_url
+      : undefined;
   const tosLinkSuffix: string = Drupal.t(
     'The link opens in a new tab',
     {},
     { context: 'Explanation for users that the link opens in a new tab instead of the expected current tab' },
   );
+  const errorAriaLabel = Drupal.t(
+    'Notification',
+    {},
+    { context: 'Search monitor error message type for screen reader' },
+  );
+
+  const idTitle = 'job-search-form__search-monitor__header';
+
+  const emailError =
+    (errors?.allVisible && errors?.email) || errors?.email?.visible ? errors?.email.message : undefined;
+  const termsError =
+    (errors?.allVisible && errors?.termsAgreed) || errors?.termsAgreed?.visible
+      ? errors?.termsAgreed.message
+      : undefined;
 
   return (
-    <form onSubmit={onSubmit} className='job-search-form__search-monitor'>
-      {!submitted && (
-        <>
-          <h3 className='job-search-form__search-monitor__heading'>{formHeader}</h3>
-          <Button
-            aria-controls='job-search-form__search-monitor__content'
-            aria-expanded={isFormVisible}
-            iconStart={isFormVisible ? <IconAngleUp /> : <IconAngleDown />}
-            onClick={(event: React.MouseEvent) => {
-              event.preventDefault();
-              setIsFormVisible(!isFormVisible);
-            }}
-            style={
-              {
-                '--border-color-focus': 'var(--hdbt-color-black)',
-                '--background-color': 'transparent',
-                '--background-color-hover': 'trasparent',
-                '--outline-color-focus': 'var(--hdbt-color-black)',
-                marginTop: 'var(--spacing-2-xs)',
-              } as CSSProperties
-            }
-            theme={ButtonPresetTheme.Black}
-            type='button'
-            variant={ButtonVariant.Supplementary}
-          >
-            {isFormVisible ? closeLabel : openLabel}
-          </Button>
+    <>
+      <Button
+        aria-controls='job-search-form__search-monitor__content'
+        aria-expanded={isFormVisible}
+        className='job-search-form__search-monitor__button'
+        iconStart={<IconBell />}
+        onClick={(event: React.MouseEvent) => {
+          event.preventDefault();
+          setIsFormVisible(!isFormVisible);
+        }}
+        ref={openDialogButtonRef}
+        theme={secondaryButtonTheme}
+        type='button'
+        variant={ButtonVariant.Secondary}
+      >
+        {buttonLabel}
+      </Button>
 
-          <div
-            id='job-search-form__search-monitor__content'
-            className='job-search-form__search-monitor__content'
-            aria-hidden={!isFormVisible}
-          >
-            <h4 className='job-search-form__search-monitor__content__heading'>{descriptionHeader}</h4>
-            <p>{descriptionFirstPart}</p>
-            <p>{descriptionSecondPart}</p>
+      <Dialog
+        aria-labelledby={idTitle}
+        aria-describedby={descriptionHeader}
+        className='job-search-form__search-monitor__content'
+        close={() => setIsFormVisible(false)}
+        closeButtonLabelText={closeLabel}
+        id='job-search-form__search-monitor__content'
+        isOpen={isFormVisible}
+        focusAfterCloseRef={openDialogButtonRef}
+        targetElement={dialogTargetRef.current || undefined}
+      >
+        {submitted ? (
+          <>
+            <Dialog.Header
+              className='job-search-form__search-monitor__heading'
+              id={idTitle}
+              title={Drupal.t(
+                'You are almost done saving your search',
+                {},
+                { context: 'Search monitor submitted header' },
+              )}
+            />
+            <Dialog.Content>
+              <form className='job-search-form__search-monitor' onSubmit={() => setIsFormVisible(false)}>
+                <p>
+                  {Drupal.t(
+                    'Please confirm your saved search with the confirmation link sent to your email address.',
+                    {},
+                    { context: 'Search monitor submitted content' },
+                  )}
+                </p>
+                <div className='job-search-form__search-monitor__buttons-container'>
+                  <Button
+                    className='job-search-form__search-monitor__cancel-button'
+                    theme={primaryButtonTheme}
+                    type='submit'
+                    variant={ButtonVariant.Primary}
+                  >
+                    {Drupal.t('Close')}
+                  </Button>
+                </div>
+              </form>
+            </Dialog.Content>
+          </>
+        ) : (
+          <>
+            <Dialog.Header className='job-search-form__search-monitor__heading' id={idTitle} title={formHeader} />
+            <Dialog.Content>
+              <form noValidate onSubmit={onSubmit} className='job-search-form__search-monitor'>
+                <p>
+                  {Drupal.t(
+                    'Carry out a search according to your specifications and then save your search.',
+                    {},
+                    { context: 'Search monitor content' },
+                  )}
+                </p>
+                <p>{`
+                  ${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })}
+                  ${Drupal.t(
+                    'You will receive email alerts about new search results up to once a day',
+                    {},
+                    { context: 'Search monitor content' },
+                  )}
+                `}</p>
 
-            {errorMessage && (
-              <Notification
-                className='job-search-form__search-monitor__error'
-                label={errorLabel}
-                ref={scrollTarget}
-                size={NotificationSize.Medium}
-                type='error'
-                notificationAriaLabel={Drupal.t(
-                  'Notification',
-                  {},
-                  { context: 'Search monitor error message type for screen reader' },
+                {instructionsLinkUrl && (
+                  <p>
+                    <a href={instructionsLinkUrl} target='_blank' rel='noreferrer'>
+                      {Drupal.t(
+                        'More detailed instructions on how to use saved searches',
+                        {},
+                        { context: 'Search monitor instructions link' },
+                      )}
+                    </a>
+                  </p>
                 )}
-              >
-                {errorMessage}
-              </Notification>
-            )}
 
-            <TextInput
-              className='job-search-form__search-monitor__email'
-              id='job-search-form__search_monitor__email'
-              label={emailLabel}
-              name='job-search-form__search_monitor__email'
-              onChange={(event) => setEmail(event.target.value)}
-              required
-              style={{ ...defaultTextInputStyle, marginTop: 'var(--spacing-m)' }}
-              type='email'
-              value={email}
-            />
+                {errorMessages.length > 0 && (
+                  <Notification
+                    className='job-search-form__search-monitor__error'
+                    label={errorLabel}
+                    size={NotificationSize.Medium}
+                    type='error'
+                    notificationAriaLabel={errorAriaLabel}
+                  >
+                    <ul>
+                      {errorMessages.map((msg) => (
+                        <li key={msg}>{msg}</li>
+                      ))}
+                    </ul>
+                  </Notification>
+                )}
 
-            <p>
-              <a
-                href={tosLinkUrl}
-                target='_blank'
-                rel='noreferrer'
-                className='job-search-form__search-monitor__terms-link'
-              >
-                {tosLinkLabel} ({tosLinkSuffix})
-              </a>
-            </p>
-            <Checkbox
-              checked={termsAgreed}
-              className='job-search-form__search-monitor__terms'
-              id='job-search-form__search_monitor__terms'
-              label={tosCheckboxLabel}
-              name='job-search-form__search_monitor__terms'
-              onChange={(event) => setTermsAgreed(event.target.checked)}
-              required
-              style={defaultCheckboxStyle}
-            />
+                <section
+                  aria-labelledby='job-search-form__search-monitor__selections-heading'
+                  className='job-search-form__search-monitor__selections'
+                >
+                  <h3
+                    id='job-search-form__search-monitor__selections-heading'
+                    className='job-search-form__search-monitor__selections-heading'
+                  >
+                    {Drupal.t('Your search criteria:', {}, { context: 'Search monitor selections heading' })}
+                  </h3>
+                  <div className='job-search-form__search-monitor__selection-tags'>
+                    <Tags insideCard={false} tags={selectionTags} />
+                  </div>
+                </section>
+                {selectionTags.length === 0 && (
+                  <Notification
+                    label={Drupal.t(
+                      'No search criteria selected',
+                      {},
+                      { context: 'Search monitor no selections notification title' },
+                    )}
+                    className='job-search-form__search-monitor__no-selections'
+                    notificationAriaLabel={errorAriaLabel}
+                    size={NotificationSize.Small}
+                    type='info'
+                  >
+                    {Drupal.t(
+                      'You have not selected any search criteria. You will receive alerts of all new job listings.',
+                      {},
+                      { context: 'Search monitor no selections notification' },
+                    )}
+                  </Notification>
+                )}
 
-            <Button
-              className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
-              id='job-search-form__search-monitor__submit-button'
-              style={{ marginBottom: '0', marginTop: 'var(--spacing-l)' }}
-              type='submit'
-            >
-              {buttonLabel}
-            </Button>
-          </div>
-        </>
-      )}
+                <TextInput
+                  className='job-search-form__search-monitor__email'
+                  errorText={emailError}
+                  id='job-search-form__search_monitor__email'
+                  label={emailLabel}
+                  name='job-search-form__search_monitor__email'
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                  style={{ ...defaultTextInputStyle }}
+                  type='email'
+                  value={email}
+                />
 
-      {submitted && (
-        <>
-          <h3 className='job-search-form__search-monitor__heading' ref={scrollTarget}>
-            {thankYouHeader}
-          </h3>
-          <p>{thankYouMessage}</p>
-        </>
-      )}
-    </form>
+                <a
+                  href={tosLinkUrl}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='job-search-form__search-monitor__terms-link'
+                >
+                  {tosLinkLabel} ({tosLinkSuffix})
+                </a>
+
+                <Checkbox
+                  checked={termsAgreed}
+                  className='job-search-form__search-monitor__terms'
+                  errorText={termsError}
+                  id='job-search-form__search_monitor__terms'
+                  label={`${tosCheckboxLabel}  *`}
+                  name='job-search-form__search_monitor__terms'
+                  onChange={(event) => setTermsAgreed(event.target.checked)}
+                  required
+                  style={{ ...defaultCheckboxStyle, marginTop: 'var(--spacing-m)' }}
+                />
+
+                <div className='job-search-form__search-monitor__buttons-container'>
+                  <Button
+                    className='hdbt-search--react__submit-button job-search-form__search-monitor__submit-button'
+                    id='job-search-form__search-monitor__submit-button'
+                    type='submit'
+                  >
+                    {buttonLabel}
+                  </Button>
+                  <Button
+                    className='job-search-form__search-monitor__cancel-button'
+                    onClick={() => setIsFormVisible(false)}
+                    theme={secondaryButtonTheme}
+                    type='button'
+                    variant={ButtonVariant.Secondary}
+                  >
+                    {Drupal.t('Cancel')}
+                  </Button>
+                </div>
+              </form>
+            </Dialog.Content>
+          </>
+        )}
+      </Dialog>
+    </>
   );
 };
-
-const emailAtom = atom('');
-const receiveNewsletterAtom = atom(false);
-const isFormVisibleAtom = atom(false);
-const errorAtom = atom('');
 
 export default SearchMonitorContainer;

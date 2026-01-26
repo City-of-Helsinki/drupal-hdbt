@@ -1,0 +1,23 @@
+.hakuvahti-confirmation {
+  .page-divider + .components {
+    @include breakpoint($breakpoint-l) {
+      margin-top: $spacing-quadruple;
+    }
+  }
+
+  p {
+    @include font('body');
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  .form-submit {
+    margin-top: $spacing-double;
+
+    @include breakpoint($breakpoint-m) {
+      margin-top: $spacing-quadruple;
+    }
+  }
+}

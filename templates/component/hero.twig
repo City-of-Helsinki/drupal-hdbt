@@ -26,6 +26,8 @@
   {% set design_class = "hero--with-search" %}
 {% elseif design == "with-helsinki-near-you" %}
   {% set design_class = "hero--with-helsinki-near-you" %}
+{% elseif design == "with-search-form" %}
+  {% set design_class = "hero--with-search-form" %}
 {% endif %}
 
 
@@ -66,7 +68,8 @@
             design == "with-image-left" or
             design == "with-image-bottom" or
             design == "diagonal" or
-            design == "with-helsinki-near-you"
+            design == "with-helsinki-near-you" or
+            design == "with-search-form"
           %}
             <div class="hero__description user-edited-content">
               {{ description }}

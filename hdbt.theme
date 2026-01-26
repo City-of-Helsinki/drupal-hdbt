@@ -11,11 +11,9 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
 use Drupal\helfi_api_base\Environment\Project;
-use Drupal\helfi_platform_config\JsInliner;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\ErrandService;
@@ -77,19 +75,6 @@ function hdbt_csp_policy_alter(Csp $policy): void {
   ];
   $policy->fallbackAwareAppendIfEnabled('connect-src', $matomo_urls);
   $policy->fallbackAwareAppendIfEnabled('script-src', $matomo_urls);
-
-  // Rules needed for inline javascript; generate and add hashes to script-src
-  // directive.
-  $inline_javascript = _hdbt_get_inline_javascript();
-  $cspHelper = \Drupal::service('csp.policy_helper');
-  foreach ($inline_javascript as $script) {
-    if (!$script) {
-      continue;
-    }
-
-    $hash = Csp::calculateHash($script);
-    $cspHelper->appendHash($policy, 'script', 'elem', ['unsafe-inline'], $hash);
-  }
 }
 
 /**
@@ -315,7 +300,14 @@ function hdbt_preprocess_node(&$variables): void {
 
   // Set "modified_at" variable for the node template.
   // Do not show modified timestamp if it's less or equal to published_at date.
-  if (
+  // UHF-10893: For news_item, use changed_at field instead of getChangedTime()
+  if ($node->bundle() === 'news_item' && $node->hasField('changed_at')) {
+    $changed_at = (int) $node->get('changed_at')->value;
+    if (isset($variables['published_at']) && $variables['published_at'] < $changed_at) {
+      $variables['modified_at'] = $changed_at;
+    }
+  }
+  elseif (
     !empty($node->getChangedTime()) &&
     isset($variables['published_at']) &&
     $variables['published_at'] < $node->getChangedTime()
@@ -729,21 +721,6 @@ function hdbt_preprocess_block(&$variables): void {
   if (in_array($variables['plugin_id'], $chat_blocks)) {
     $variables['#attached']['library'][] = 'hdbt/chat-trigger';
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_block__announcements(&$variables): void {
-  // Inline javascript for hiding announcements.
-  $variables['js_hide_announcements'] = [
-    '#type' => 'html_tag',
-    '#tag' => 'script',
-    '#attributes' => [
-      'type' => 'text/javascript',
-    ],
-    '#value' => Markup::create(_hdbt_get_inline_javascript('hide-announcements') ?? ''),
-  ];
 }
 
 /**
@@ -1577,12 +1554,13 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
   $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
   $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
 
-  // Hakuvahti TOS settings.
+  // Hakuvahti instructions and TOS settings.
   if (!empty($hakuvahtiUrl)) {
-    $tos_variables = [
+    $exposed_settings = [
       'hakuvahti_tos_checkbox_label',
       'hakuvahti_tos_link_text',
       'hakuvahti_tos_link_url',
+      'hakuvahti_instructions_link_url',
     ];
 
     // Attempt to get the translated configuration.
@@ -1591,8 +1569,8 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     $language_manager->setConfigOverrideLanguage($language);
     $config = \Drupal::config('helfi_rekry_content.job_listings');
 
-    foreach ($tos_variables as $tos_variable) {
-      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$tos_variable] = $config->get($tos_variable) ?: 'undefined';
+    foreach ($exposed_settings as $exposed_setting) {
+      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$exposed_setting] = $config->get($exposed_setting) ?: 'undefined';
     }
 
     // Set the config back to the original language.
@@ -1661,38 +1639,4 @@ function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void 
 
   }
 
-}
-
-/**
- * Helper function for inline javascript.
- *
- * All scripts announced here will have a CSP hash generated and added to the
- * script-src CSP directive.
- *
- * @param string|null $script_id
- *   The ID of the script. If not provided, all scripts will be returned.
- *
- * @return string|array|null
- *   The inline javascript. If a script ID is provided, the script will be
- *   returned as a string. If no script ID is provided, all scripts will be
- *   returned as an array. If the script ID is not found, NULL will be returned.
- *
- * @see hdbt_csp_policy_alter()
- */
-function _hdbt_get_inline_javascript(?string $script_id = NULL): string|array|null {
-  if (!class_exists(JsInliner::class)) {
-    return NULL;
-  }
-
-  $inliner = \Drupal::service(JsInliner::class);
-
-  $js = [
-    'hide-announcements' => $inliner->getInline('hdbt', 'hide-announcements'),
-  ];
-
-  if (!$script_id) {
-    return $js;
-  }
-
-  return $js[$script_id] ?? NULL;
 }

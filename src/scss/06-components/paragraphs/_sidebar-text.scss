@@ -1,4 +1,3 @@
-/* stylelint-disable max-nesting-depth -- @todo UHF-12501 */
 .sidebar-text {
   @include font('body');
 
@@ -6,117 +5,116 @@
     margin-top: $spacing-double;
   }
 
-  .sidebar-text__title {
-    @include font('h4');
-    color: $color-black;
-    margin-top: 0;
-
-    & + .sidebar-text__text-content {
-      margin-top: $spacing-and-half;
-    }
-  }
-
-  .sidebar-text__text-content {
-    @include font('small');
-    color: var(--hdbt-color-palette-text--secondary);
-
-    > *:first-child {
-      margin-top: 0;
-    }
-
-    > p:first-child {
-      margin-top: 0;
-    }
-
-    > *:last-child {
-      margin-bottom: 0;
-    }
-
-    > p {
-      background-color: var(--color-black-5);
-      padding: $spacing-and-half $spacing;
-    }
-
-    .hds-button--primary,
-    .hds-button--secondary {
-      display: inline-flex;
-
-      &:only-child {
-        margin-top: 0;
-      }
-
-      @include breakpoint($breakpoint-l) {
-        display: flex;
-      }
-    }
-
-    [data-hds-component='button']:not([class*='hds-button']):where(
-      :not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
-      [data-hds-variant='primary'],
-      [data-hds-variant='secondary']
-    ) {
-      @include breakpoint($breakpoint-l) {
-        display: block;
-
-        &:not(:first-child) {
-          margin-top: $spacing-half;
-        }
-      }
-    }
-
-    [data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
-    .hds-button--supplementary {
-      &:first-child {
-        margin-left: 0;
-      }
-    }
-  }
-
   ul, ol {
     background-color: var(--color-black-5);
     padding: $spacing;
 
-    li {
-      margin-inline-start: $spacing-double;
-      padding-inline-start: $spacing-half;
-    }
-
     ul, ol {
       margin-top: 0;
+    }
+  }
 
-      li {
-        margin-inline-start: $spacing-half;
-      }
+  li {
+    margin-inline-start: $spacing-double;
+    padding-inline-start: $spacing-half;
+
+    li {
+      margin-inline-start: $spacing-half;
     }
   }
 }
 
-.sidebar-text--service-links {
-  .sidebar-text__text-content {
-    > a {
-      background-color: var(--color-black-5);
-      display: grid;
-      grid-template-columns: 1fr calc(#{$spacing-and-half} + #{$spacing-half});
-      margin-top: $spacing;
-      padding: $spacing-and-half $spacing;
-      text-decoration: none;
+.sidebar-text__title {
+  @include font('h4');
+  color: $color-black;
+  margin-top: 0;
 
-      &::after {
-        @include pseudo-icon('arrow-right', $spacing-and-half, $color-black, inline-block);
-        align-self: center;
-        justify-self: end;
-        order: 3;
-      }
+  & + .sidebar-text__text-content {
+    margin-top: $spacing-and-half;
+  }
+}
 
-      &[data-is-external]::after {
-        display: none; // external links have their own icon already
-      }
+.sidebar-text__text-content {
+  @include font('small');
+  color: var(--hdbt-color-palette-text--secondary);
 
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-        text-decoration-thickness: remify(2px);
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > p:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  > p {
+    background-color: var(--color-black-5);
+    padding: $spacing-and-half $spacing;
+  }
+
+  .hds-button--primary,
+  .hds-button--secondary {
+    display: inline-flex;
+
+    &:only-child {
+      margin-top: 0;
+    }
+
+    @include breakpoint($breakpoint-l) {
+      display: flex;
+    }
+  }
+
+  a[href][data-hds-component='button']:not([class*='hds-button']):where(
+    :not([data-hds-variant]), // When variant is not defined, we fallback to primary styles
+    [data-hds-variant='primary'],
+    [data-hds-variant='secondary']
+  ) {
+    @include breakpoint($breakpoint-l) {
+      display: block;
+
+      &:not(:first-child) {
+        margin-top: $spacing-half;
       }
+    }
+  }
+
+  a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='supplementary'],
+  .hds-button--supplementary {
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+
+.sidebar-text--service-links .sidebar-text__text-content {
+  > a {
+    background-color: var(--color-black-5);
+    display: grid;
+    grid-template-columns: 1fr calc(#{$spacing-and-half} + #{$spacing-half});
+    margin-top: $spacing;
+    padding: $spacing-and-half $spacing;
+    text-decoration: none;
+
+    &::after {
+      @include pseudo-icon('arrow-right', $spacing-and-half, $color-black, inline-block);
+      align-self: center;
+      justify-self: end;
+      order: 3;
+    }
+
+    &[data-is-external]::after {
+      display: none; // external links have their own icon already
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      text-decoration-thickness: remify(2px);
     }
   }
 }

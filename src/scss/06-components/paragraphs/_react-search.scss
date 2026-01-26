@@ -43,9 +43,31 @@
   }
 }
 
+.hdbt-search--react__result-top-area.hdbt-search--react__result-top-area--with-left-actions {
+  @include breakpoint($breakpoint-l) {
+    display: block;
+  }
+}
+
+.hdbt-search--react__actions-container {
+  @include breakpoint($breakpoint-l) {
+    align-items: end;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.hdbt-search--react__result-top-area-item {
+  margin-top: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: 0;
+  }
+}
+
 .hdbt-search--react__results--title {
   align-items: center;
-  display: flex;
+  display: inline-flex;
   margin-bottom: $spacing-three-quarters;
   margin-top: 0;
 

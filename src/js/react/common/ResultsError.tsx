@@ -1,7 +1,7 @@
 import { Notification } from 'hds-react';
 import { type ForwardedRef, forwardRef } from 'react';
 
-type ResultsErrorProps = { className?: string; error: string | Error; errorMessage?: string; headingLevel?: number };
+type ResultsErrorProps = { className?: string; error?: string | Error; errorMessage?: string; headingLevel?: number };
 
 const ResultsError = forwardRef(
   ({ className, error, errorMessage, headingLevel = 3 }: ResultsErrorProps, ref: ForwardedRef<HTMLDivElement>) => {

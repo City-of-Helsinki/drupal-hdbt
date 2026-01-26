@@ -1435,8 +1435,28 @@ msgid "Saved search"
 msgstr "Sökvakten"
 
 msgctxt "Search monitor content"
-msgid "To receive job alerts, carry out the search desired and then save your search. This will allow you to receive email notifications about any new matches."
-msgstr "Gör en sökning enligt dina egna önskemål och spara den som sökvakt. Du kommer att få information om nya träffar i din e-post."
+msgid "Carry out a search according to your specifications and then save your search."
+msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
+
+msgctxt "Search monitor content"
+msgid "You can save as many searches as you want."
+msgstr "Du kan skapa så många sökvakter du vill."
+
+msgctxt "Search monitor content"
+msgid "You will receive email alerts about new search results up to once a day"
+msgstr "Du får information om nya träffar till din e-post högst en gång per dag."
+
+msgctxt "Search monitor selections heading"
+msgid "Your search criteria:"
+msgstr "Dina sökkriterier:"
+
+msgctxt "Search monitor no selections notification title"
+msgid "No search criteria selected"
+msgstr "Inga sökkriterier valda"
+
+msgctxt "Search monitor no selections notification"
+msgid "You have not selected any search criteria. You will receive alerts of all new job listings."
+msgstr "Du har inte valt några sökkriterier. Du kommer att få aviseringar om alla nya jobbannonser."
 
 msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
@@ -1454,25 +1474,29 @@ msgctxt "Search monitor submit button label"
 msgid "Save your search"
 msgstr "Beställ sökvakten"
 
-msgctxt "Search monitor thank you header"
-msgid "Your search has been saved"
-msgstr "Sökvakten har skapats"
-
-msgctxt "Search monitor thank you message"
-msgid "You will receive a confirmation link by email. You can activate the saved search via the link."
-msgstr "Du får ännu en bekräftelselänk till din e-post genom vilken du kan aktivera sökvakten."
+msgctxt "Search monitor submitted content"
+msgid "Please confirm your saved search with the confirmation link sent to your email address."
+msgstr "Bekräfta ännu beställningen via bekräftelselänken som du får per e-post."
 
 msgctxt "Search monitor error label"
 msgid "Please check these selections"
 msgstr "Kontrollera ännu dessa punkter"
 
-msgctxt "Search monitor error terms"
-msgid "The choice is mandatory: Terms of service"
-msgstr "Valet är obligatoriskt: Användningsvillkor"
+msgctxt "Search monitor error"
+msgid "The choice is mandatory"
+msgstr "Valet är obligatoriskt"
 
-msgctxt "Search monitor error email"
-msgid "This field is mandatory: Email address"
-msgstr "Fältet är obligatoriskt: E-postadress"
+msgctxt "Search monitor error"
+msgid "This field is mandatory"
+msgstr "Fältet är obligatoriskt"
+
+msgctxt "Search monitor email"
+msgid "Email address"
+msgstr "E-postadress"
+
+msgctxt "Search monitor terms"
+msgid "Terms of service"
+msgstr "Användarvillkoren"
 
 msgctxt "Search monitor error email"
 msgid "The email address you entered is not in the right format."
@@ -1485,6 +1509,10 @@ msgstr "Sparad sökning misslyckades. Var god att försök igen."
 msgctxt "Search monitor error message type for screen reader"
 msgid "Notification"
 msgstr "Avisering"
+
+msgctxt "Search monitor submitted header"
+msgid "You are almost done saving your search"
+msgstr "Beställningen av sökvakten är nästan klar"
 
 msgctxt "Survey"
 msgid "Respond to the survey"
@@ -1621,3 +1649,7 @@ msgstr "Se till att adressen är skriven korrekt. Du kan också söka med ett n�
 msgctxt "React search"
 msgid "Distance"
 msgstr "Avstånd"
+
+msgctxt "Search monitor instructions link"
+msgid "More detailed instructions on how to use saved searches"
+msgstr "Närmare anvisningar för hur du använder sökvakten"

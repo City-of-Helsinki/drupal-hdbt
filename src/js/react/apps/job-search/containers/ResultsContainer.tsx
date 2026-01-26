@@ -3,7 +3,6 @@ import { createRef, type SyntheticEvent } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
-import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultWrapper from '@/react/common/ResultWrapper';
@@ -12,24 +11,22 @@ import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
 import useIndexQuery from '../hooks/useIndexQuery';
 import useResultsQuery from '../hooks/useResultsQuery';
-import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
-import type URLParams from '../types/URLParams';
+import { getPageAtom, hasChoicesAtom, setPageAtom } from '../store';
 import SearchMonitorContainer from './SearchMonitorContainer';
 
 const ResultsContainer = () => {
+  const hasChoices = useAtomValue(hasChoicesAtom);
   const { size } = Global;
-  const urlParams: URLParams = useAtomValue(urlAtom);
-  const currentPage = useAtomValue(pageAtom);
+  const currentPage = useAtomValue(getPageAtom);
   const setPage = useSetAtom(setPageAtom);
-  const { error: initializationError } = useAtomValue(configurationsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
-  const { query, promoted, handleResults } = useResultsQuery(urlParams);
+  const dialogTargetRef = createRef<HTMLDivElement>();
+  const { query, promoted, handleResults } = useResultsQuery();
 
   const { data, error, isLoading, isValidating } = useIndexQuery({ keepPreviousData: true, query, multi: promoted });
 
   // Scroll to results when they change.
-  const choices = Boolean(Object.keys(urlParams).length);
-  const shouldScrollOnRender = Boolean(choices && !isLoading && !isValidating);
+  const shouldScrollOnRender = Boolean(hasChoices && !isLoading && !isValidating);
   useScrollToResults(scrollTarget, shouldScrollOnRender);
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
@@ -44,20 +41,35 @@ const ResultsContainer = () => {
       return <GhostList count={size} />;
     }
 
-    if (error || initializationError || data?.error) {
-      return (
-        <ResultsError
-          error={error || initializationError || data.error}
-          className='react-search__results'
-          ref={scrollTarget}
-        />
-      );
+    if (error || data?.error) {
+      return <ResultsError error={error || data.error} className='react-search__results' ref={scrollTarget} />;
     }
 
     const { results, jobs, total } = handleResults(data || {});
 
+    const searcMonitor =
+      (drupalSettings?.helfi_react_search?.hakuvahti_url_set && (
+        <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />
+      )) ||
+      undefined;
+
     if (total <= 0) {
-      return <ResultsEmpty wrapperClass='hdbt-search--react__results--container' ref={scrollTarget} />;
+      return (
+        <div className='job-search__results'>
+          <ResultsHeader
+            resultText={Drupal.t('No results', {}, { context: 'Unit search no results title' })}
+            leftActions={searcMonitor}
+            ref={scrollTarget}
+          />
+          <p>
+            {Drupal.t(
+              'No results were found for the criteria you entered. Try changing your search criteria.',
+              {},
+              { context: 'React search: no search results' },
+            )}
+          </p>
+        </div>
+      );
     }
 
     const pages = Math.ceil(total / size);
@@ -65,32 +77,23 @@ const ResultsContainer = () => {
     return (
       <>
         <ResultsHeader
-          resultText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-            <>
-              {Drupal.formatPlural(
-                jobs,
-                '1 open position',
-                '@count open positions',
-                {},
-                { context: 'Job search results statline' },
-              )}
-            </>
-          }
-          optionalResultsText={
-            // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-            <>
-              {Drupal.formatPlural(
-                total,
-                '1 job listing',
-                '@count job listings',
-                {},
-                { context: 'Job search results statline' },
-              )}
-            </>
-          }
           actions={<ResultsSort />}
           actionsClass='hdbt-search--react__results--sort'
+          optionalResultsText={Drupal.formatPlural(
+            total,
+            '1 job listing',
+            '@count job listings',
+            {},
+            { context: 'Job search results statline' },
+          )}
+          leftActions={searcMonitor}
+          resultText={Drupal.formatPlural(
+            jobs,
+            '1 open position',
+            '@count open positions',
+            {},
+            { context: 'Job search results statline' },
+          )}
           ref={scrollTarget}
         />
         <ResultsList hits={results} />
@@ -100,12 +103,10 @@ const ResultsContainer = () => {
   };
 
   return (
-    <>
-      {drupalSettings?.helfi_react_search?.hakuvahti_url_set && <SearchMonitorContainer />}
-      <div className='job-search__results'>
-        <ResultWrapper loading={isLoading || isValidating}>{getResults()}</ResultWrapper>
-      </div>
-    </>
+    <div className='job-search__results'>
+      <div ref={dialogTargetRef} />
+      <ResultWrapper loading={isLoading || isValidating}>{getResults()}</ResultWrapper>
+    </div>
   );
 };
 
