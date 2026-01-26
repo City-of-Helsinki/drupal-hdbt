@@ -33,17 +33,22 @@
   }
 }
 
+.component__content.remote-video {
+  margin-top: 0;
+}
+
 .remote-video__video-title {
-  @include font('h4');
-  margin-top: $spacing;
+  @include font('h3');
+  margin-block: $spacing-double $spacing;
 
   @include breakpoint($breakpoint-l) {
-    margin-top: $spacing-and-half;
+    margin-block: $spacing-triple $spacing-and-half;
   }
 }
 
 .remote-video__video-desc {
-  margin-top: $spacing-half;
+  @include font('body');
+  margin-top: $spacing;
 
   > p:first-child {
     margin-top: 0;
