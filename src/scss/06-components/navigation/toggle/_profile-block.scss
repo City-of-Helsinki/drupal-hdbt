@@ -191,7 +191,6 @@
   }
 }
 
-#profile:target,
 #profile[data-target='true'] {
   & ~ * .nav-toggle-dropdown--profile .nav-toggle-dropdown__content {
     @include breakpoint($breakpoint-l) {

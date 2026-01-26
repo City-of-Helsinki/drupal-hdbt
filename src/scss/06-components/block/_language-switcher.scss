@@ -38,10 +38,6 @@
   }
 }
 
-#menu:not([data-js]) ~ * .mega-and-mobilemenu .block--language-switcher + * {
-  margin-top: $spacing;
-}
-
 .language-links {
   display: flex; // disables wrapping to multiple lines for now
 }
@@ -52,7 +48,6 @@
 // on the pages when the language switcher is close to the right
 // end of the page.
 @mixin language-switcher-overflow-prevention($id, $wrapper-modifier) {
-  #{$id}:target,
   #{$id}[data-target='true'] {
     & ~ * #{$wrapper-modifier} {
       overflow: visible;

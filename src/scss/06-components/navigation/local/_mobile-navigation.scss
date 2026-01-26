@@ -35,7 +35,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 }
 
 // What should happen when menu is opened
-#cssmenu:target,
 #cssmenu[data-target='true'] {
   & ~ * .header-branding {
     @include breakpoint(max-width $breakpoint-l) {
@@ -48,12 +47,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
       display: flex;
     }
   }
-}
-
-// When js is enabled, hide fallback menu and mobile menu footer
-#cssmenu[data-js] ~ * .mega-and-mobilemenu .mobile-menu-fallback,
-#cssmenu[data-js] ~ * .mega-and-mobilemenu .mmenu__footer {
-  display: none;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
