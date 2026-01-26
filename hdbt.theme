@@ -123,6 +123,7 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['use_global_navigation'] = $navigation_enabled;
   $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = $navigation_enabled;
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
@@ -699,10 +700,6 @@ function hdbt_preprocess_block(&$variables): void {
   // Attach "closable-surveys" library to "surveys" block.
   if ($variables['plugin_id'] == 'surveys') {
     $variables['#attached']['library'][] = 'hdbt/closable-surveys';
-  }
-
-  if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
-    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = TRUE;
   }
 
   // Attach "nav_toggle" library to "profile" block.
