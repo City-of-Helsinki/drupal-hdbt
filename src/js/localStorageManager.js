@@ -44,7 +44,13 @@ export default class LocalStorageManager {
     let data = null;
 
     try {
-      data = localStorage.getItem(this.storageKey);
+      // Use globalThis to ensure compatibility with different environments.
+      const storage = globalThis?.localStorage;
+      if (!storage) {
+        this.data = {};
+        return;
+      }
+      data = storage.getItem(this.storageKey);
     } catch (error) {
       LocalStorageManager.handleError(error);
     }
@@ -59,7 +65,10 @@ export default class LocalStorageManager {
    */
   saveData = () => {
     try {
-      localStorage.setItem(this.storageKey, JSON.stringify(this.data));
+      // Use globalThis to ensure compatibility with different environments.
+      const storage = globalThis?.localStorage;
+      if (!storage) return;
+      storage.setItem(this.storageKey, JSON.stringify(this.data));
       this.triggerSaveEvent();
     } catch (error) {
       LocalStorageManager.handleError(error);
