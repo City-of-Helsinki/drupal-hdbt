@@ -12,6 +12,10 @@
 .component--remote-video + .component--remote-video.component--no-header {
   margin-top: 0;
   padding-top: 0;
+
+  .remote-video__video-title {
+    margin-top: 0;
+  }
 }
 
 .remote-video__video {
