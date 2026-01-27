@@ -16,12 +16,12 @@
     }
   %}
   {% block component_content %}
-    <div class="remote-video__video">
-      {{ video }}
-    </div>
     {% if video_title|render %}
       <{{ video_title_level }} class="remote-video__video-title">{{ video_title }}</{{ video_title_level }}>
     {% endif %}
+    <div class="remote-video__video">
+      {{ video }}
+    </div>
     <div class="remote-video__video-desc user-edited-content">{{ video_desc }}</div>
   {% endblock component_content %}
 {% endembed %}
