@@ -3,7 +3,11 @@ import LocalStorageManager from './localStorageManager';
 
 ((Drupal) => {
   Drupal.behaviors.closableSurveys = {
-    attach: function attach() {
+    attach: function attach(context) {
+      if (context !== document || window.closableSurveysInitialized) {
+        return;
+      }
+
       // Move the DOM element with id 'block-surveys' right after the dialog-off-canvas-main-canvas if it is present.
       // If not move it as last element inside the body element so that the header (h1, h2, etc.) structure will be
       // correct.
@@ -25,19 +29,11 @@ import LocalStorageManager from './localStorageManager';
       const surveyButtons = document.querySelectorAll('.dialog__actions .dialog__action-button');
       const surveyKey = 'hidden-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
-      let surveysToHide = null;
       let surveyFocusTrap = null;
 
       // Check if there is helfi_no_survey cookie set. This check is for Siteimprove so that
       // surveys are not set when the crawler is checking the site to avoid bug reports that are real issues.
       const siteimproveCrawler = ClientHelpers.isCookieSet('helfi_no_survey');
-
-      try {
-        // @todo Use the storageManager instead.
-        surveysToHide = JSON.parse(window.localStorage.getItem('helfi-settings'));
-      } catch (e) {
-        console.error('Error parsing local storage data:', e);
-      }
 
       function addToSurveyStorage() {
         const { uuid } = survey.dataset;
@@ -103,7 +99,7 @@ import LocalStorageManager from './localStorageManager';
 
       function showSurvey() {
         const { uuid } = survey.dataset;
-        const hiddenSurveys = surveysToHide?.[surveyKey] || [];
+        const hiddenSurveys = storageManager.getValue(surveyKey) || [];
         const shouldShowSurvey = !uuid || !hiddenSurveys.includes(uuid);
 
         if (shouldShowSurvey) {
@@ -149,6 +145,8 @@ import LocalStorageManager from './localStorageManager';
         // Set a timeout to show the survey after the defined delay.
         setTimeout(showSurvey, surveyDelay);
       }
+
+      window.closableSurveysInitialized = true;
     },
   };
 })(Drupal);

@@ -259,7 +259,7 @@ const MobilePanel = {
 
     while (parentIndex) {
       const found = allItems.findRecursive(
-        // sub_tree is api  data key.
+        // sub_tree is api data key.
         ({ id, url, name, sub_tree, parentId, inPath, active }) => {
           if (id === parentIndex) {
             panels.push({ sub_tree, name, url, parentId, inPath, active });
@@ -299,11 +299,13 @@ const MobilePanel = {
       hasLang,
       externalLinkIcon,
       // Show title of previously clicked item in Back-button (or Frontpage)
-      back: i > 0 ? (this.content.at(i - 1)?.name ?? frontpageTranslation) : false,
+      // If global navigation is disabled, prevent helfi-etusivu -link from rendering.
+      back:
+        i > 0 ? (this.content.at(i - 1)?.name ?? (window.no_global_navigation ? false : frontpageTranslation)) : false,
       openSubMenuTranslation,
       openParentMenuTranslation,
-      /** *
-       * Define correct starting positions for each panel, depeding on traversal direction
+      /**
+       * Define correct starting positions for each panel, depending on traversal direction
        * At start, first item is on stage and anything else must be on right.
        * When going forward in the menu, current -1  item must be on stage and current item starts from right
        * When going backward in the menu, current +1 item must be on stage and current item starts from left
@@ -415,6 +417,7 @@ const MobilePanel = {
     const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
 
     if (currentItem) {
+      window.no_global_navigation = currentItem?.no_global_navigation ?? false;
       currentItem.active = true;
       currentItem.inPath = true;
     }
@@ -450,8 +453,7 @@ const MobilePanel = {
     try {
       await this.load();
     } catch (e) {
-      console.error('Unable to load menu API, using fallback menu instead', e);
-      this.enableFallback();
+      console.error('Unable to load menu API', e);
       return;
     }
     /**
@@ -483,16 +485,7 @@ const MobilePanel = {
     });
   },
   isOpen() {
-    return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
-  },
-  disableFallback() {
-    this.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-  },
-  enableFallback() {
-    this.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
-    this.getRoot().innerHTML = ''; // Remove rotator
-    delete this.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
-    window.location.hash = '#menu'; // Open menu with the css way
+    return this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
   close() {
     this.dropdownInstance.classList.add('nav-toggle-dropdown--closed');
@@ -549,8 +542,6 @@ const MobilePanel = {
       return;
     }
 
-    this.disableFallback();
-
     /**
      * Close menu on Escape button click if it is open.
      */
@@ -582,14 +573,6 @@ const MobilePanel = {
     this.toggleButton.addEventListener('click', start);
     this.toggleButton.addEventListener('click', () => this.toggle());
 
-    /**
-     * Open menu if it is required in the hash, then clear hash.
-     */
-    if (this.isOpen()) {
-      window.location.hash = '';
-      start();
-      this.open();
-    }
     this.running = true;
   },
 };

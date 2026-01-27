@@ -1,7 +1,7 @@
 import Icon from '@/react/common/Icon';
 
 type PaginationProps = {
-  // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
+  // biome-ignore lint/complexity/noBannedTypes: This will be fixed when we refactor the pagination component to use the hds-version.
   updatePage: Function;
   currentPage: number;
   pages: number;
@@ -45,7 +45,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
         data-next={Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
       >
         {prevPageExists ? (
-          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+          // biome-ignore lint/a11y/useSemanticElements: This will be fixed when we refactor the pagination component to use the hds-version.
           <a
             aria-label={`${Drupal.t('Go to previous page number', {}, { context: 'Pagination previous page link title' })} ${currentPage - 1}`}
             className='hds-button hds-pagination__button-prev'
@@ -106,7 +106,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
             </>
           )}
           {prevPages.map((pageIndex, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
+            // biome-ignore lint/suspicious/noArrayIndexKey: This will be fixed when we refactor the pagination component to use the hds-version.
             <li className='pager__item' key={i}>
               <a
                 aria-label={Drupal.t('Go to page @key', { '@key': pageIndex }, { context: 'React search pager' })}
@@ -125,7 +125,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
             </a>
           </li>
           {nextPages.map((pageIndex, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: @todo UHF-12501
+            // biome-ignore lint/suspicious/noArrayIndexKey: This will be fixed when we refactor the pagination component to use the hds-version.
             <li className='pager__item' key={i}>
               <a
                 aria-label={Drupal.t('Go to page @key', { '@key': pageIndex }, { context: 'React search pager' })}
@@ -158,7 +158,7 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
           )}
         </ul>
         {nextPageExists ? (
-          // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+          // biome-ignore lint/a11y/useSemanticElements: This will be fixed when we refactor the pagination component to use the hds-version.
           <a
             aria-label={`${Drupal.t('Go to next page number', {}, { context: 'Pagination next page link title' })} ${currentPage + 1}`}
             className='hds-button hds-pagination__button-next'

@@ -42,10 +42,8 @@
           <span class="language-link__wrapper language-link__wrapper--{{ lang }}">
             {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
               modifier_class: button_wrapper_classes,
-              anchor_modified: anchor_button_classes,
               button_modified: anchor_button_classes,
               controls: dropdown_id,
-              anchor_target: '#language-toast--' ~ lang,
               js_target: 'js-language-toast--' ~ lang ~ '-button',
               open_label: item.text|capitalize,
               close_label: item.text|capitalize,
@@ -61,9 +59,6 @@
                 <section class="language-toast" id="language-toast--{{ lang }}" aria-label="{{ item.text|capitalize }}" lang="{{ lang }}">
                   {% set language_toast_close_labelled_by = "language-toast__close__aria-label--" ~ random() %}
                   <div class="language-toast__close-wrapper">
-                    <a href="#" class="nav-toggle__anchor language-toast__close">
-                      <span class="is-hidden">{{ toast_languages[lang].toast_close_button }}</span>
-                    </a>
                     <button class="nav-toggle__button language-toast__close js-language-toast--{{ lang }}-button" aria-labelledby="{{ language_toast_close_labelled_by }}" aria-expanded="false" aria-controls="{{ dropdown_id }}">
                       <span id="{{language_toast_close_labelled_by}}" class="is-hidden">{{ toast_languages[lang].toast_close_button }}</span>
                     </button>

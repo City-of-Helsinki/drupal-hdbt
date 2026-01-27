@@ -60,7 +60,7 @@ export default class AccordionItem {
 
   handleLinkAnchor = (urlHash) => {
     if (!urlHash || urlHash.length === 0) return;
-    const item = this.element.querySelector(urlHash);
+    const item = this.element.querySelector(`#${CSS.escape(urlHash.slice(1))}`);
     if (item) {
       this.open();
       item.scrollIntoView();
@@ -86,10 +86,11 @@ export default class AccordionItem {
       // Force a reflow to ensure the style change takes effect
       void document.body.offsetHeight;
 
-      this.isOpen
-        ? accordionItemContent.removeAttribute('hidden')
-        : // biome-ignore lint/suspicious/noAssignInExpressions: @todo UHF-12501
-          (accordionItemContent.hidden = 'until-found');
+      if (this.isOpen) {
+        accordionItemContent.removeAttribute('hidden');
+      } else {
+        accordionItemContent.hidden = 'until-found';
+      }
 
       // Remove the css-property to enable animations again.
       setTimeout(() => {

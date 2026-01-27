@@ -35,7 +35,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 }
 
 // What should happen when menu is opened
-#cssmenu:target,
 #cssmenu[data-target='true'] {
   & ~ * .header-branding {
     @include breakpoint(max-width $breakpoint-l) {
@@ -48,12 +47,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
       display: flex;
     }
   }
-}
-
-// When js is enabled, hide fallback menu and mobile menu footer
-#cssmenu[data-js] ~ * .mega-and-mobilemenu .mobile-menu-fallback,
-#cssmenu[data-js] ~ * .mega-and-mobilemenu .mmenu__footer {
-  display: none;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,20 +140,35 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
 }
 
 .cssnav__link {
-  box-shadow: inset 0 0 0 0 var(--cssnav-fg);
   color: var(--cssnav-fg);
+  position: relative;
   text-decoration: none;
-  /* stylelint-disable-next-line plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
-  transition: box-shadow ease-in 0.1s;
+  z-index: 1;
+
+  &::before {
+    background-color: var(--cssnav-fg);
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.1s ease-in;
+    width: 3px;
+    z-index: -1;
+  }
+
+  &:hover {
+    &::before {
+      transform: scaleX(1);
+    }
+  }
 
   &:active,
   &:focus {
     outline: 3px solid var(--cssnav-fg);
     outline-offset: -3px;
-  }
-
-  &:hover {
-    box-shadow: inset 3px 0 0 0 var(--cssnav-fg);
   }
 
   &:focus,
@@ -177,7 +185,6 @@ $-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-a
   margin-right: $-cssnav-summary-width;
   position: absolute;
   right: 0;
-  z-index: 1;
 }
 
 .cssnav__text-mirror {

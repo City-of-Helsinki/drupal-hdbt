@@ -53,6 +53,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
     grades_7_9: Drupal.t('School providing grades 7 to 9', {}, { context: 'School search: education level option' }),
     finnish_education: Drupal.t('Finnish', {}, { context: 'School search: language option' }),
     swedish_education: Drupal.t('Swedish', {}, { context: 'School search: language option' }),
+    english_education: Drupal.t('English', {}, { context: 'School search: language option' }),
   };
   const checkBoxKeys = Object.keys(checkBoxFilters);
 
@@ -68,7 +69,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
         <FilterButton
           key={key}
           value={
-            key === 'finnish_education' || key === 'swedish_education'
+            key === 'finnish_education' || key === 'swedish_education' || key === 'english_education'
               ? `${Drupal.t('Language of instruction', {}, { context: 'School search: language options' })}: ${checkBoxFilters[key]}`
               : checkBoxFilters[key]
           }
@@ -99,6 +100,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
   const showClearButton =
     searchParams.finnish_education ||
     searchParams.swedish_education ||
+    searchParams.english_education ||
     searchParams.grades_1_6 ||
     searchParams.grades_1_9 ||
     searchParams.grades_7_9 ||

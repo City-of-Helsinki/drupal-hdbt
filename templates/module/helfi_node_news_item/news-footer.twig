@@ -20,13 +20,17 @@
 {{ drupal_block('helfi_platform_config_social_sharing_block') }}
 
 {# Tags #}
-{% include "@hdbt/module/helfi_node_news_item/news-tags.twig" with
-  {
-    tags: content.field_news_item_tags,
-    neighbourhoods: content.field_news_neighbourhoods,
-    groups: content.field_news_groups,
-  }
-%}
+{% set taxonomy_terms = node.getTaxonomyTermsWithArchiveLinks() %}
+{% if taxonomy_terms is not empty %}
+  {% include "@hdbt/module/helfi_node_news_item/news-tags.twig" with
+    {
+      link: true,
+      topics: taxonomy_terms.field_news_item_tags,
+      neighbourhoods: taxonomy_terms.field_news_neighbourhoods,
+      groups: taxonomy_terms.field_news_groups,
+    }
+  %}
+{% endif %}
 
 {# Radioactivity #}
 {% if content.field_radioactivity|render %}

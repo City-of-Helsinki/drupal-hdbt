@@ -1,6 +1,5 @@
-// biome-ignore lint/complexity/noStaticOnlyClass: @todo UHF-12501
-export default class ClientHelpers {
-  static isCookieSet = (cookieName) => {
+const ClientHelpers = {
+  isCookieSet: (cookieName) => {
     const cookies = document.cookie;
     const cookieArray = cookies.split('; ');
 
@@ -12,7 +11,7 @@ export default class ClientHelpers {
       }
     }
     return false;
-  };
-
-  static getCurrentLanguage = () => window.drupalSettings.path.currentLanguage;
-}
+  },
+  getCurrentLanguage: () => window.drupalSettings.path.currentLanguage,
+};
+export default ClientHelpers;

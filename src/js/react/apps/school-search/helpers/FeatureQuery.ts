@@ -10,7 +10,7 @@ export const languageFilter: any = {
 };
 
 const getCheckBoxFilters = (params: SearchParams) => {
-  const languageKeys = ['finnish_education', 'swedish_education'];
+  const languageKeys = ['finnish_education', 'swedish_education', 'english_education'];
   const gradeKeys = ['grades_1_6', 'grades_1_9', 'grades_7_9'];
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const query: any = [];

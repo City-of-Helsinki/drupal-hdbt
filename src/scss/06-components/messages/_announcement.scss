@@ -1,4 +1,3 @@
-/* stylelint-disable plugin/no-low-performance-animation-properties -- @todo UHF-12501 */
 $-announcement-link-padding: $spacing-three-quarters;
 
 .announcement {
@@ -112,6 +111,11 @@ $-announcement-link-padding: $spacing-three-quarters;
   opacity: 0;
   overflow: hidden;
   padding-bottom: 0;
+
+  // This transition cannot be converted to high performance animation since
+  // the space that the announcement takes needs to be reclaimed and in order
+  // to do that the height and padding-bottom need to be animated.
+  /* stylelint-disable plugin/no-low-performance-animation-properties */
   transition:
     opacity linear $transition-a,
     height linear $transition-b $transition-a,
@@ -122,4 +126,9 @@ $-announcement-link-padding: $spacing-three-quarters;
   @media (prefers-reduced-motion) {
     transition: none;
   }
+}
+
+// Add padding when announcement is present on front page without breadcrumb
+.is-front:not(:has(.hds-breadcrumb)) .announcement {
+  padding-block-start: $spacing;
 }
