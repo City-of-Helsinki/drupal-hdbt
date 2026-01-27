@@ -123,6 +123,7 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['use_global_navigation'] = $navigation_enabled;
   $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = $navigation_enabled;
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
@@ -286,15 +287,6 @@ function hdbt_preprocess_page(&$variables): void {
 function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-
-  // Change news archive teasers to use h4 headers instead of the default h3.
-  if (
-    !empty($variables['view']) &&
-    is_object($variables['view']) &&
-    $variables['view']->current_display === 'news_archive_block'
-  ) {
-    $variables['node_header_level'] = 'h4';
-  }
 
   // Add current node langcode for easy access.
   $variables['node_langcode'] = $node->get('langcode')->value;
@@ -708,10 +700,6 @@ function hdbt_preprocess_block(&$variables): void {
   // Attach "closable-surveys" library to "surveys" block.
   if ($variables['plugin_id'] == 'surveys') {
     $variables['#attached']['library'][] = 'hdbt/closable-surveys';
-  }
-
-  if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
-    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = TRUE;
   }
 
   // Attach "nav_toggle" library to "profile" block.

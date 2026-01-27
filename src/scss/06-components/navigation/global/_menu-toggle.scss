@@ -42,7 +42,6 @@
 }
 
 // What should happen when menu is opened
-#menu:target,
 #menu[data-target='true'] {
   & ~ * .header-branding {
     @include breakpoint(max-width $breakpoint-l) {
@@ -59,12 +58,6 @@
       display: flex;
     } // This breakpoint needs to be in sync with header branding lang button position breakpoint
   }
-}
-
-// When js is enabled, hide fallback menu and mobile menu footer
-#menu[data-js] ~ * .mega-and-mobilemenu .mobile-menu-fallback,
-#menu[data-js] ~ * .mega-and-mobilemenu .mmenu__footer {
-  display: none;
 }
 
 .mobile-menu {
