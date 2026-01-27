@@ -453,8 +453,7 @@ const MobilePanel = {
     try {
       await this.load();
     } catch (e) {
-      console.error('Unable to load menu API, using fallback menu instead', e);
-      this.enableFallback();
+      console.error('Unable to load menu API', e);
       return;
     }
     /**
@@ -486,16 +485,7 @@ const MobilePanel = {
     });
   },
   isOpen() {
-    return window.location.hash === '#menu' || this.toggleButton.getAttribute('aria-expanded') === 'true';
-  },
-  disableFallback() {
-    this.menu.dataset.js = true; // Switch to use js-enhanced version instead of pure css version
-  },
-  enableFallback() {
-    this.menu.dataset.target = 'false'; // Close the menu with js so that we can use css version instead
-    this.getRoot().innerHTML = ''; // Remove rotator
-    delete this.menu.dataset.js; // Switch to use pure css version instead of js-enhanced version
-    window.location.hash = '#menu'; // Open menu with the css way
+    return this.toggleButton.getAttribute('aria-expanded') === 'true';
   },
   close() {
     this.dropdownInstance.classList.add('nav-toggle-dropdown--closed');
@@ -552,8 +542,6 @@ const MobilePanel = {
       return;
     }
 
-    this.disableFallback();
-
     /**
      * Close menu on Escape button click if it is open.
      */
@@ -585,14 +573,6 @@ const MobilePanel = {
     this.toggleButton.addEventListener('click', start);
     this.toggleButton.addEventListener('click', () => this.toggle());
 
-    /**
-     * Open menu if it is required in the hash, then clear hash.
-     */
-    if (this.isOpen()) {
-      window.location.hash = '';
-      start();
-      this.open();
-    }
     this.running = true;
   },
 };
