@@ -18,8 +18,12 @@
 }
 
 .block--askem {
-  @include component-margin-top;
+  margin-top: $spacing-quadruple;
   width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-sextuple;
+  }
 
   &:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
   &:last-child {
