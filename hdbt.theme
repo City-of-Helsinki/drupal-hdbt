@@ -11,11 +11,9 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
 use Drupal\helfi_api_base\Environment\Project;
-use Drupal\helfi_platform_config\JsInliner;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\ErrandService;
@@ -77,19 +75,6 @@ function hdbt_csp_policy_alter(Csp $policy): void {
   ];
   $policy->fallbackAwareAppendIfEnabled('connect-src', $matomo_urls);
   $policy->fallbackAwareAppendIfEnabled('script-src', $matomo_urls);
-
-  // Rules needed for inline javascript; generate and add hashes to script-src
-  // directive.
-  $inline_javascript = _hdbt_get_inline_javascript();
-  $cspHelper = \Drupal::service('csp.policy_helper');
-  foreach ($inline_javascript as $script) {
-    if (!$script) {
-      continue;
-    }
-
-    $hash = Csp::calculateHash($script);
-    $cspHelper->appendHash($policy, 'script', 'elem', ['unsafe-inline'], $hash);
-  }
 }
 
 /**
@@ -138,6 +123,7 @@ function hdbt_preprocess_html(&$variables): void {
   $variables['use_global_navigation'] = $navigation_enabled;
   $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
   $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
+  $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = $navigation_enabled;
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
@@ -301,15 +287,6 @@ function hdbt_preprocess_page(&$variables): void {
 function hdbt_preprocess_node(&$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-
-  // Change news archive teasers to use h4 headers instead of the default h3.
-  if (
-    !empty($variables['view']) &&
-    is_object($variables['view']) &&
-    $variables['view']->current_display === 'news_archive_block'
-  ) {
-    $variables['node_header_level'] = 'h4';
-  }
 
   // Add current node langcode for easy access.
   $variables['node_langcode'] = $node->get('langcode')->value;
@@ -725,10 +702,6 @@ function hdbt_preprocess_block(&$variables): void {
     $variables['#attached']['library'][] = 'hdbt/closable-surveys';
   }
 
-  if ($variables['plugin_id'] == 'external_menu_block:header-language-links') {
-    $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = TRUE;
-  }
-
   // Attach "nav_toggle" library to "profile" block.
   if ($variables['plugin_id'] == 'profile_block') {
     $variables['#attached']['drupalSettings']['hdbt']['profile_dropdown'] = TRUE;
@@ -745,21 +718,6 @@ function hdbt_preprocess_block(&$variables): void {
   if (in_array($variables['plugin_id'], $chat_blocks)) {
     $variables['#attached']['library'][] = 'hdbt/chat-trigger';
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_block__announcements(&$variables): void {
-  // Inline javascript for hiding announcements.
-  $variables['js_hide_announcements'] = [
-    '#type' => 'html_tag',
-    '#tag' => 'script',
-    '#attributes' => [
-      'type' => 'text/javascript',
-    ],
-    '#value' => Markup::create(_hdbt_get_inline_javascript('hide-announcements') ?? ''),
-  ];
 }
 
 /**
@@ -958,6 +916,12 @@ function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void 
   if (!($unit instanceof Unit && $unit->hasTranslation($langcode))) {
     return;
   }
+
+  // Collect cache tags from tpr_unit entity.
+  $variables['#cache']['tags'] = Cache::mergeTags(
+    $unit->getCacheTags(),
+    $variables['#cache']['tags'] ?? []
+  );
 
   $unit_translation = $unit->getTranslation($langcode);
   $variables['unit_contact_card'] = [];
@@ -1678,38 +1642,4 @@ function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void 
 
   }
 
-}
-
-/**
- * Helper function for inline javascript.
- *
- * All scripts announced here will have a CSP hash generated and added to the
- * script-src CSP directive.
- *
- * @param string|null $script_id
- *   The ID of the script. If not provided, all scripts will be returned.
- *
- * @return string|array|null
- *   The inline javascript. If a script ID is provided, the script will be
- *   returned as a string. If no script ID is provided, all scripts will be
- *   returned as an array. If the script ID is not found, NULL will be returned.
- *
- * @see hdbt_csp_policy_alter()
- */
-function _hdbt_get_inline_javascript(?string $script_id = NULL): string|array|null {
-  if (!class_exists(JsInliner::class)) {
-    return NULL;
-  }
-
-  $inliner = \Drupal::service(JsInliner::class);
-
-  $js = [
-    'hide-announcements' => $inliner->getInline('hdbt', 'hide-announcements'),
-  ];
-
-  if (!$script_id) {
-    return $js;
-  }
-
-  return $js[$script_id] ?? NULL;
 }
