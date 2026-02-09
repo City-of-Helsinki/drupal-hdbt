@@ -8,4 +8,5 @@ export const defaultStepperTheme: CSSWithVars = {
   '--hds-stepper-background-color': 'var(--color-white)',
   '--hds-stepper-color': 'var(--color-black-90)',
   '--hds-stepper-focus-border-color': 'var(--color-coat-of-arms)',
+  '--hds-step-width': '128px',
 };
