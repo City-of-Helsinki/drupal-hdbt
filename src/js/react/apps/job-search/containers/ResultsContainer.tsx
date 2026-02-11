@@ -47,11 +47,7 @@ const ResultsContainer = () => {
 
     const { results, jobs, total } = handleResults(data || {});
 
-    const searcMonitor =
-      (drupalSettings?.helfi_react_search?.hakuvahti_url_set && (
-        <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />
-      )) ||
-      undefined;
+    const searcMonitor = drupalSettings?.hakuvahti && <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />;
 
     if (total <= 0) {
       return (

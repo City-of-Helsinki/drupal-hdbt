@@ -30,6 +30,9 @@ libraries:
   - hdbt/hyphenopoly
   - hdbt/local-storage-cleanup
 
+libraries-override:
+  helfi_kymp_content/vehicle-removal-search: hdbt/vehicle-removal-search
+
 # Libraries extend
 libraries-extend:
   core/drupal.ajax:

@@ -14,6 +14,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
 use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_hakuvahti\DrupalSettings;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\ErrandService;
@@ -1547,32 +1548,7 @@ function hdbt_preprocess_paragraph__job_search(array &$variables) {
     }
   }
 
-  // Hakuvahti server url, expose to react if it's enabled or not.
-  $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
-  $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
-
-  // Hakuvahti instructions and TOS settings.
-  if (!empty($hakuvahtiUrl)) {
-    $exposed_settings = [
-      'hakuvahti_tos_checkbox_label',
-      'hakuvahti_tos_link_text',
-      'hakuvahti_tos_link_url',
-      'hakuvahti_instructions_link_url',
-    ];
-
-    // Attempt to get the translated configuration.
-    $language = $language_manager->getLanguage($langcode);
-    $original_language = $language_manager->getConfigOverrideLanguage();
-    $language_manager->setConfigOverrideLanguage($language);
-    $config = \Drupal::config('helfi_rekry_content.job_listings');
-
-    foreach ($exposed_settings as $exposed_setting) {
-      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$exposed_setting] = $config->get($exposed_setting) ?: 'undefined';
-    }
-
-    // Set the config back to the original language.
-    $language_manager->setConfigOverrideLanguage($original_language);
-  }
+  \Drupal::service(DrupalSettings::class)->applyTo($variables);
 }
 
 /**

@@ -77,6 +77,17 @@ district-and-project-search:
     - core/drupalSettings
     - core/drupal
 
+vehicle-removal-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/vehicle-removal-search.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
+    - core/drupal
+
 embedded-content-cookie-compliance:
   version: 1.2.2
   js:
@@ -152,7 +163,7 @@ hide-announcements:
   # Needs to load early for mutation observers to work properly.
   header: true
   js:
-    dist/js/hideAnnouncements.min.js: { 
+    dist/js/hideAnnouncements.min.js: {
       minified: true
     }
 

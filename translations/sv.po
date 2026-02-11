@@ -1418,7 +1418,7 @@ msgctxt "Label for tiny news card content type"
 msgid "News"
 msgstr "Nyhet"
 
-msgctxt "Search monitor header"
+msgctxt "Search monitor"
 msgid "Receive search results by email"
 msgstr "Beställ sökvakten till din e-post"
 
@@ -1426,11 +1426,11 @@ msgctxt "Search monitor open label"
 msgid "Open the order form"
 msgstr "Öppna sökvakten"
 
-msgctxt "Search monitor close label"
+msgctxt "Search monitor"
 msgid "Close the order form"
 msgstr "Stäng sökvakten"
 
-msgctxt "Search monitor content title"
+msgctxt "Search monitor"
 msgid "Saved search"
 msgstr "Sökvakten"
 
@@ -1462,15 +1462,15 @@ msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
 msgstr "Du kan skapa så många sökvakter du vill och ta bort sökvakten via länken som finns i e-postmeddelandena. "
 
-msgctxt "Search monitor email label"
+msgctxt "Search monitor"
 msgid "Email address"
 msgstr "E-postadress"
 
-msgctxt "Search monitor terms label"
+msgctxt "Search monitor"
 msgid "Accept the terms and conditions."
 msgstr "Godkänn användarvillkoren."
 
-msgctxt "Search monitor submit button label"
+msgctxt "Search monitor"
 msgid "Save your search"
 msgstr "Beställ sökvakten"
 
@@ -1478,15 +1478,15 @@ msgctxt "Search monitor submitted content"
 msgid "Please confirm your saved search with the confirmation link sent to your email address."
 msgstr "Bekräfta ännu beställningen via bekräftelselänken som du får per e-post."
 
-msgctxt "Search monitor error label"
+msgctxt "Search monitor"
 msgid "Please check these selections"
 msgstr "Kontrollera ännu dessa punkter"
 
-msgctxt "Search monitor error"
+msgctxt "Search monitor"
 msgid "The choice is mandatory"
 msgstr "Valet är obligatoriskt"
 
-msgctxt "Search monitor error"
+msgctxt "Search monitor"
 msgid "This field is mandatory"
 msgstr "Fältet är obligatoriskt"
 
@@ -1498,15 +1498,15 @@ msgctxt "Search monitor terms"
 msgid "Terms of service"
 msgstr "Användarvillkoren"
 
-msgctxt "Search monitor error email"
+msgctxt "Search monitor"
 msgid "The email address you entered is not in the right format."
 msgstr "Den e-postadress du angav har inte rätt format."
 
-msgctxt "Search monitor error submitting"
+msgctxt "Search monitor"
 msgid "Saving search failed. Please try again."
 msgstr "Sparad sökning misslyckades. Var god att försök igen."
 
-msgctxt "Search monitor error message type for screen reader"
+msgctxt "Search monitor"
 msgid "Notification"
 msgstr "Avisering"
 
