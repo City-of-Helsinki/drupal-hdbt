@@ -918,6 +918,12 @@ function hdbt_preprocess_paragraph__unit_contact_card(array &$variables) : void 
     return;
   }
 
+  // Collect cache tags from tpr_unit entity.
+  $variables['#cache']['tags'] = Cache::mergeTags(
+    $unit->getCacheTags(),
+    $variables['#cache']['tags'] ?? []
+  );
+
   $unit_translation = $unit->getTranslation($langcode);
   $variables['unit_contact_card'] = [];
 
