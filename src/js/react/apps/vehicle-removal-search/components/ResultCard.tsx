@@ -1,13 +1,7 @@
-import { type ForwardedRef, forwardRef } from 'react';
-
 import type VehicleRemoval from '../types/VehicleRemoval';
 
-type CardProps = {
-  item: VehicleRemoval;
-};
-
-const ResultCard = forwardRef(({ item }: CardProps, ref: ForwardedRef<HTMLDivElement>) => (
-  <div className='hdbt-search--vehicle-removal__result-card' ref={ref}>
+const ResultCard = ({ item }: { item: VehicleRemoval }) => (
+  <div className='hdbt-search--vehicle-removal__result-card'>
     <h3 className='hdbt-search--vehicle-removal__result-card--title hdbt-search--title'>{item.address}</h3>
     <div>
       {item.reason && <p>{item.reason}</p>}
@@ -25,6 +19,6 @@ const ResultCard = forwardRef(({ item }: CardProps, ref: ForwardedRef<HTMLDivEle
       {item.additional_text && <p>{item.additional_text}</p>}
     </div>
   </div>
-));
+);
 
 export default ResultCard;
