@@ -18,7 +18,7 @@ const FormContainer = () => {
     <search>
       <form className='vehicle-removal-search-form' onSubmit={handleSubmit}>
         <StreetFilter />
-        <Button className='hdbt-search--react__submit-button job-search-form__submit-button' type='submit'>
+        <Button className='hdbt-search--react__submit-button' type='submit'>
           {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
         </Button>
         <SelectionsContainer />

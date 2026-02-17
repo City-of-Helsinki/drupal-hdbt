@@ -89,10 +89,11 @@ export const StreetFilter = () => {
   return (
     <Select
       className='hdbt-search__dropdown'
-      autoComplete='off'
       texts={{
-        label: Drupal.t('Decision-maker / Division', {}, { context: 'Decisions search' }),
-        placeholder: Drupal.t('All decision-makers and divisions', {}, { context: 'Decisions search' }),
+        label: Drupal.t('Street name', {}, { context: 'Vehicle removal search' }),
+        placeholder: Drupal.t('All', {}, { context: 'Vehicle removal search' }),
+        searchLabel: Drupal.t('Write a street name', {}, { context: 'Vehicle removal search' }),
+        searchPlaceholder: Drupal.t('For example, Kotikatu 1', {}, { context: 'Vehicle removal search' }),
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
           { '@label': 'foobar' },
