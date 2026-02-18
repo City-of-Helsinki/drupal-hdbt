@@ -1,23 +1,23 @@
-import { DateTime } from 'luxon';
+import type { DateTime } from 'luxon';
 import { updateDatesAtom } from '../../../store';
 import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
-import { Option, Select } from 'hds-react';
+import { type Option, Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { startDateAtom } from '../store';
 
 export const StartDateFilter = ({
   dateOptions,
 }: {
-  dateOptions: Map<string, { start?: DateTime; end?: DateTime }>,
+  dateOptions: Map<string, { start?: DateTime; end?: DateTime }>;
 }) => {
   const updateDates = useSetAtom(updateDatesAtom);
   const [value, setValue] = useAtom(startDateAtom);
-   
+
   const handleChange = (selections: Option[]) => {
     if (!selections.length) {
       updateDates({
         end: undefined,
-        start: undefined
+        start: undefined,
       });
       setValue([]);
       return;
@@ -52,7 +52,11 @@ export const StartDateFilter = ({
         noTags
         texts={{
           ...getDefaultSelectTexts(languageLabel),
-          placeholder: Drupal.t('All start times', {}, { context: 'Cross-institutional studies: start time filter placeholder' }),
+          placeholder: Drupal.t(
+            'All start times',
+            {},
+            { context: 'Cross-institutional studies: start time filter placeholder' },
+          ),
         }}
       />
     </div>

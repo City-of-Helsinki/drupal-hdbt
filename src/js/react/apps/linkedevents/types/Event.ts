@@ -2,7 +2,7 @@ type MultilingualString = { fi?: string; en?: string; sv?: string };
 
 export type EventImage = { alt_text: string; id: number; name?: string; photographer_name?: string; url?: string };
 
-type IncludableResource = { id: string; name: MultilingualString } | { '@id': string; };
+type IncludableResource = { id: string; name: MultilingualString } | { '@id': string };
 
 export type EventKeyword = IncludableResource & {
   aggregate: boolean;

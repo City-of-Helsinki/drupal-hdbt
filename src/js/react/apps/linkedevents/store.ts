@@ -123,11 +123,11 @@ if (!initialSettings) {
 // Store all needed data to 'master' atom
 const baseAtom = atom(initialSettings);
 
-declare const LINKED_EVENTS_DEV_URL: string|undefined;
+declare const LINKED_EVENTS_DEV_URL: string | undefined;
 
 // Create derivates for set/get parts of data
 export const baseUrlAtom = atom((get) => {
-  const devUrl = typeof LINKED_EVENTS_DEV_URL !== 'undefined' ? LINKED_EVENTS_DEV_URL : null; 
+  const devUrl = typeof LINKED_EVENTS_DEV_URL !== 'undefined' ? LINKED_EVENTS_DEV_URL : null;
 
   return devUrl || get(baseAtom)?.baseUrl;
 });
@@ -283,7 +283,7 @@ export const resetFormAtom = atom(null, (get, set) => {
 
 export const submittedParamsAtom = atom<URLSearchParams>(new URLSearchParams(initialSettings.initialParams));
 
-export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]|null = null) => {
+export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[] | null = null) => {
   const address = get(addressAtom);
   const stagedParams = new URLSearchParams(get(paramsAtom));
 
@@ -307,7 +307,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
         persistedParams.set(param, value);
       }
     });
-  
+
     const url = new URL(window.location.href);
     url.search = persistedParams.toString();
     window.history.pushState({}, '', url.toString());

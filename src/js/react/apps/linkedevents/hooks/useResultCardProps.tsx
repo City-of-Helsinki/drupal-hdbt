@@ -173,7 +173,8 @@ export const useResultCardProps = ({
         case 'sv':
           courseParam = 'kosstudier';
           break;
-        default: courseParam = 'cross-institutional-studies';
+        default:
+          courseParam = 'cross-institutional-studies';
       }
 
       return `${baseUrl}/${resolvedLanguage}/${courseParam}/${id}`;

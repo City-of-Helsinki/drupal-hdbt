@@ -13,22 +13,20 @@ export const LanguageFilter = ({
   placeholderOverride,
   includeLanguages,
 }: {
-  labelOverride?: string,
-  placeholderOverride?: string,
-  includeLanguages?: string[],
+  labelOverride?: string;
+  placeholderOverride?: string;
+  includeLanguages?: string[];
 }) => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const languageOptions = Object.entries(LanguageOptions).map(([key, value]) => ({ label: value, value: key }));
-  const filteredLanguageOptions = includeLanguages ?
-    languageOptions.filter((option) => includeLanguages.includes(option.value)) :
-    languageOptions;
+  const filteredLanguageOptions = includeLanguages
+    ? languageOptions.filter((option) => includeLanguages.includes(option.value))
+    : languageOptions;
   const onChange = (selectedOptions: OptionType[]) => {
     setLanguage(selectedOptions);
     updateParams({
-      [ApiKeys.LANGUAGE]: selectedOptions
-        .map((language) => language.value)
-        .join(','),
+      [ApiKeys.LANGUAGE]: selectedOptions.map((language) => language.value).join(','),
     });
   };
 

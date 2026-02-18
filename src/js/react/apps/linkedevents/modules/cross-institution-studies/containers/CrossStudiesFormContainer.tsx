@@ -26,7 +26,7 @@ const dateBreakpoints = {
     label: Drupal.t('Summer', {}, { context: 'Cross-institutional studies: date filter option' }),
     start: { month: 6, day: 1 },
   },
-}
+};
 
 const seasonOrder: (keyof typeof dateBreakpoints)[] = ['spring', 'summer', 'autumn'];
 
@@ -36,12 +36,20 @@ const generateDateOptions = (dateOverride?: DateTime) => {
 
   const semesters = [0, 1].flatMap((yearOffset) =>
     seasonOrder.map((season) => {
-      const { start, end, label} = dateBreakpoints[season];
+      const { start, end, label } = dateBreakpoints[season];
       return {
-        end: DateTime.fromObject({ year: today.year + yearOffset, month: end.month, day: end.day }),
+        end: DateTime.fromObject({
+          day: end.day,
+          month: end.month,
+          year: today.year + yearOffset,
+        }).endOf('day'),
         label,
         season,
-        start: DateTime.fromObject({ year: today.year + yearOffset, month: start.month, day: start.day }),
+        start: DateTime.fromObject({
+          day: start.day,
+          month: start.month,
+          year: today.year + yearOffset,
+        }).startOf('day'),
       };
     }),
   );
@@ -53,7 +61,7 @@ const generateDateOptions = (dateOverride?: DateTime) => {
 
   while (options.size < 3 && index < semesters.length) {
     const { end, label, start } = semesters[index];
-    
+
     const seasonalLabel = `${label} ${start.year}`;
 
     options.set(seasonalLabel, { start, end });
@@ -61,21 +69,21 @@ const generateDateOptions = (dateOverride?: DateTime) => {
   }
 
   return options;
-}
+};
 
 export const CrossStudiesFormContainer = ({
   initialize,
   initialized,
   dateOverride,
 }: {
-  initialize: () => void
-  initialized: boolean
-  dateOverride?: DateTime,
+  initialize: () => void;
+  initialized: boolean;
+  dateOverride?: DateTime;
 }) => {
   const errors = useAtomValue(formErrorsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const initializeAtom = useSetAtom(initializeStateAtom);
-  const dateOptions = useMemo(() => generateDateOptions(dateOverride), [dateOverride]); 
+  const dateOptions = useMemo(() => generateDateOptions(dateOverride), [dateOverride]);
 
   if (!initialized) {
     initializeAtom(dateOptions);
@@ -88,11 +96,8 @@ export const CrossStudiesFormContainer = ({
   };
 
   return (
-    <form
-      className='hdbt-search--react__form-container'
-      onSubmit={handleSubmit}
-      role='search' 
-    >
+    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+    <form className='hdbt-search--react__form-container' onSubmit={handleSubmit} role='search'>
       <div className='event-form__filters-container'>
         <SearchBar />
         <div className='event-form__filter-section-container'>
@@ -105,4 +110,4 @@ export const CrossStudiesFormContainer = ({
       </div>
     </form>
   );
-}
+};

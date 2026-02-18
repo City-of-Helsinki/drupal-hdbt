@@ -9,13 +9,7 @@ export interface ResultCardProps extends Event {
 function ResultCard({ cardModifierClass, ...event }: ResultCardProps) {
   const props = useResultCardProps(event);
 
-  return (
-    <CardItem
-      {...props}
-      cardModifierClass={cardModifierClass}
-      cardUrlExternal
-    />
-  );
+  return <CardItem {...props} cardModifierClass={cardModifierClass} cardUrlExternal />;
 }
 
 export default ResultCard;

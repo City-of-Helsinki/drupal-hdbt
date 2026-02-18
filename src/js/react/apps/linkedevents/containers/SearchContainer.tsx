@@ -40,7 +40,7 @@ const SearchContainer = () => {
     if (params.get('address')) {
       updateUrl();
     }
-  }, [addressInitializationRun, updateUrl]);
+  }, [updateUrl]);
 
   const setInitialStateInitialized = () => {
     if (initialStateSet.current) return;
@@ -65,7 +65,9 @@ const SearchContainer = () => {
   };
 
   const shouldFetch =
-    !fixtureData && urlData.state === 'hasData' && (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
+    !fixtureData &&
+    urlData.state === 'hasData' &&
+    (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
 
   const { data, error, isLoading, isValidating } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
     ...SWR_REFRESH_OPTIONS,
@@ -94,19 +96,17 @@ const SearchContainer = () => {
       </>
     );
   }
-  
-  const loading = (useCrossInstitutionalStudiesForm && !initialStateSet.current) || isLoading || urlData.state === 'loading';
+
+  const loading =
+    (useCrossInstitutionalStudiesForm && !initialStateSet.current) || isLoading || urlData.state === 'loading';
 
   return (
     <>
-      {
-        useCrossInstitutionalStudiesForm ?
-          <CrossStudiesFormContainer
-            initialized={initialStateSet.current}
-            initialize={setInitialStateInitialized}
-          /> :
-          <FormContainer />
-      }
+      {useCrossInstitutionalStudiesForm ? (
+        <CrossStudiesFormContainer initialized={initialStateSet.current} initialize={setInitialStateInitialized} />
+      ) : (
+        <FormContainer />
+      )}
       <ResultsContainer
         addressRequired={!shouldFetch}
         countNumber={data?.meta?.count || 0}
