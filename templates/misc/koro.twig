@@ -1,5 +1,5 @@
 {{ attach_library('hdbt/koro-helper') }}
-{% set koro = drupal_config('hdbt_admin_tools.site_settings', 'site_settings.koro')|default('basic') %}
+{% set koro = koro_override ?: drupal_config('hdbt_admin_tools.site_settings', 'site_settings.koro')|default('basic') %}
 {% set koros = ['basic', 'beat', 'pulse', 'vibration', 'wave', 'calm'] %}
 {% if koro in koros %}
   {% set koro_class = 'hds-koros--' ~ koro %}
