@@ -8,6 +8,8 @@ import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
 import * as Sentry from '@sentry/react';
 import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
+import { CrossStudiesFormContainer } from '../modules/cross-institution-studies/containers/CrossStudiesFormContainer';
+import { ResultCard } from '../modules/cross-institution-studies/components/ResultCard';
 
 type ResponseType = { data: Event[]; meta: { count: number; next?: string; previous?: string } };
 
@@ -27,6 +29,9 @@ const SearchContainer = () => {
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
   const updateUrl = useSetAtom(updateUrlAtom);
   const addressInitializationRun = useRef(false);
+  const initialStateSet = useRef(false);
+
+  const { useCrossInstitutionalStudiesForm } = settings;
 
   useEffect(() => {
     if (addressInitializationRun.current) return;
@@ -36,6 +41,11 @@ const SearchContainer = () => {
       updateUrl();
     }
   }, [addressInitializationRun, updateUrl]);
+
+  const setInitialStateInitialized = () => {
+    if (initialStateSet.current) return;
+    initialStateSet.current = true;
+  };
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
     const response = await Sentry.startSpan(
@@ -84,17 +94,27 @@ const SearchContainer = () => {
       </>
     );
   }
+  
+  const loading = (useCrossInstitutionalStudiesForm && !initialStateSet.current) || isLoading || urlData.state === 'loading';
 
   return (
     <>
-      <FormContainer />
+      {
+        useCrossInstitutionalStudiesForm ?
+          <CrossStudiesFormContainer
+            initialized={initialStateSet.current}
+            initialize={setInitialStateInitialized}
+          /> :
+          <FormContainer />
+      }
       <ResultsContainer
         addressRequired={!shouldFetch}
-        countNumber={data?.meta.count || 0}
+        countNumber={data?.meta?.count || 0}
         error={error}
         events={data?.data || []}
-        loading={urlData.state === 'loading' || isLoading}
+        loading={loading}
         validating={isValidating}
+        ResultCardComponent={(useCrossInstitutionalStudiesForm && ResultCard) || undefined}
         retriesExhausted={retriesExhausted}
       />
     </>

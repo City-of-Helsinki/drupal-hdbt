@@ -8,6 +8,7 @@ import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
+import type { ResultCardProps } from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
 import { addressAtom, initializedAtom, settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
@@ -18,6 +19,7 @@ type ResultsContainerProps = {
   error?: Error;
   events: Event[];
   loading: boolean;
+  ResultCardComponent?: React.ComponentType<ResultCardProps>;
   retriesExhausted?: boolean;
   validating: boolean;
 };
@@ -28,9 +30,11 @@ function ResultsContainer({
   error,
   events,
   loading,
+  ResultCardComponent,
   retriesExhausted,
   validating,
 }: ResultsContainerProps) {
+  const Card = ResultCardComponent ?? ResultCard;
   const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
@@ -111,7 +115,7 @@ function ResultsContainer({
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
             events.map((event) => (
-              <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+              <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
             ))
           )}
           {!settings.hidePagination && <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />}

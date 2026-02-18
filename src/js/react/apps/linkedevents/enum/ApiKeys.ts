@@ -1,4 +1,5 @@
 export const ApiKeys = {
+  COMBINED_TEXT: 'combined_text',
   COORDINATES: 'dwithin_origin',
   END: 'end',
   EVENT_TYPE: 'event_type',

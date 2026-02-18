@@ -1,23 +1,33 @@
 import { Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
-import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import ApiKeys from '../enum/ApiKeys';
 import { LanguageOptions } from '../enum/LanguageOptions';
 import SearchComponents from '../enum/SearchComponents';
 import { languageAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
+import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 
-export const LanguageFilter = () => {
+export const LanguageFilter = ({
+  labelOverride,
+  placeholderOverride,
+  includeLanguages,
+}: {
+  labelOverride?: string,
+  placeholderOverride?: string,
+  includeLanguages?: string[],
+}) => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const languageOptions = Object.entries(LanguageOptions).map(([key, value]) => ({ label: value, value: key }));
+  const filteredLanguageOptions = includeLanguages ?
+    languageOptions.filter((option) => includeLanguages.includes(option.value)) :
+    languageOptions;
   const onChange = (selectedOptions: OptionType[]) => {
     setLanguage(selectedOptions);
     updateParams({
       [ApiKeys.LANGUAGE]: selectedOptions
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-        .map((language: any) => language.value)
+        .map((language) => language.value)
         .join(','),
     });
   };
@@ -32,21 +42,10 @@ export const LanguageFilter = () => {
         multiSelect
         noTags
         onChange={onChange}
-        options={languageOptions}
+        options={filteredLanguageOptions}
         texts={{
-          clearButtonAriaLabel_one: Drupal.t(
-            'Clear @label selection',
-            { '@label': selectLanguageLabel },
-            { context: 'React search clear selection label' },
-          ),
-          clearButtonAriaLabel_multiple: Drupal.t(
-            'Clear @label selection',
-            { '@label': selectLanguageLabel },
-            { context: 'React search clear selection label' },
-          ),
-          label: selectLanguageLabel,
-          language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-          placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
+          ...getDefaultSelectTexts(labelOverride || selectLanguageLabel),
+          placeholder: placeholderOverride || Drupal.t('All languages', {}, { context: 'Language placeholder' }),
         }}
         theme={defaultMultiSelectTheme}
         value={languageSelection}
