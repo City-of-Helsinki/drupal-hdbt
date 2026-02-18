@@ -1,5 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
+import type React from 'react';
 import { createRef, useCallback, useEffect } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
@@ -21,6 +22,8 @@ type ResultsContainerProps = {
   loading: boolean;
   ResultCardComponent?: React.ComponentType<ResultCardProps>;
   retriesExhausted?: boolean;
+  resultHeaderFunction?: (count: number) => string;
+  sort?: JSX.Element;
   validating: boolean;
 };
 
@@ -32,6 +35,8 @@ function ResultsContainer({
   loading,
   ResultCardComponent,
   retriesExhausted,
+  resultHeaderFunction,
+  sort,
   validating,
 }: ResultsContainerProps) {
   const Card = ResultCardComponent ?? ResultCard;
@@ -95,15 +100,18 @@ function ResultsContainer({
       return (
         <>
           <ResultsHeader
+            actions={sort ? sort : undefined}
             resultText={
               <>
-                {Drupal.formatPlural(
-                  count,
-                  '1 result',
-                  '@count results',
-                  {},
-                  { context: 'Events search: result count' },
-                )}
+                {resultHeaderFunction
+                  ? resultHeaderFunction(countNumber)
+                  : Drupal.formatPlural(
+                      count,
+                      '1 result',
+                      '@count results',
+                      {},
+                      { context: 'Events search: result count' },
+                    )}
                 {settings.useLocationSearch && address
                   ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${address}`
                   : ''}

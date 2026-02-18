@@ -11,6 +11,7 @@ export const ApiKeys = {
   PAGESIZE: 'page_size',
   RADIUS: 'dwithin_metres',
   REMOTE: 'internet_based',
+  SORT: 'sort',
   START: 'start',
 };
 

@@ -5,6 +5,8 @@ import { TeachingModes } from '../enum/TeachingModes';
 import type { DateTime } from 'luxon';
 import ApiKeys from '../../enum/ApiKeys';
 import { languageAtom, pageAtom, paramsAtom, submittedParamsAtom } from '../../store';
+import { sortOptions } from '../enum/SortOptions';
+import { optionDefaults } from '../../enum/OptionDefaults';
 
 export const keywordAtom = atom<string>('');
 
@@ -12,23 +14,17 @@ export const teachingModeAtom = atom<Option[]>([]);
 
 export const startDateAtom = atom<Option[]>([]);
 
+export const sortAtom = atom<Option[]>([sortOptions[0]]);
+
 export const visibleParams = [
   ApiKeys.COMBINED_TEXT,
   ApiKeys.END,
   ApiKeys.LANGUAGE,
+  ApiKeys.SORT,
   ApiKeys.START,
   ApiKeys.KEYWORDS,
   'page',
 ];
-
-const optionDefaults: Option = {
-  disabled: false,
-  isGroupLabel: false,
-  label: '',
-  selected: false,
-  value: '',
-  visible: true,
-};
 
 export const initializeStateAtom = atom(
   null,
@@ -87,6 +83,15 @@ export const initializeStateAtom = atom(
         }));
 
       set(teachingModeAtom, teachingModeKeywords);
+    }
+
+    if (params.has(ApiKeys.SORT)) {
+      const sortValue = params.get(ApiKeys.SORT);
+      const matchingSortOption = sortOptions.find((option) => option.value === sortValue);
+
+      if (matchingSortOption) {
+        set(sortAtom, [matchingSortOption]);
+      }
     }
 
     if (params.has('page')) {

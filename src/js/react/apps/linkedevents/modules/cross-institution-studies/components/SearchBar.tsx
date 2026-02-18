@@ -63,21 +63,13 @@ export const SearchBar = () => {
   return (
     <SearchInput
       className='hdbt-search__filter'
-      clearButtonAriaLabel={Drupal.t(
-        'Clear',
-        {},
-        { context: 'Cross-institutional studies: search input clear button aria label' },
-      )}
+      clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
       getSuggestions={getSuggestions}
       label={Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' })}
       onChange={handleChange}
       onSubmit={handleSubmit}
       placeholder={Drupal.t('E.g. biology', {}, { context: 'Cross-institutional studies: search input placeholder' })}
-      searchButtonAriaLabel={Drupal.t(
-        'Search',
-        {},
-        { context: 'Cross-institutional studies: search button aria label' },
-      )}
+      searchButtonAriaLabel={Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       suggestionLabelField='value'
       value={keyword || ''}
     />

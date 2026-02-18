@@ -1,7 +1,5 @@
 import CardItem from '@/react/common/Card';
 import type { ResultCardProps } from '../../../components/ResultCard';
-import { useAtomValue } from 'jotai';
-import { baseUrlAtom } from '../../../store';
 import { useResultCardProps } from '../../../hooks/useResultCardProps';
 import { TeachingModes } from '../../enum/TeachingModes';
 import { LanguageOptions } from '../../../enum/LanguageOptions';
@@ -9,7 +7,6 @@ import { LanguageOptions } from '../../../enum/LanguageOptions';
 export const ResultCard = (props: ResultCardProps) => {
   const { cardTitle, location, time } = useResultCardProps(props);
   const { id, name, keywords, in_language } = props;
-  const baseUrl = useAtomValue(baseUrlAtom);
   const { currentLanguage } = drupalSettings.path;
 
   const getUrl = () => {
@@ -27,7 +24,7 @@ export const ResultCard = (props: ResultCardProps) => {
         courseParam = 'cross-institutional-studies';
     }
 
-    return `${baseUrl}/${resolvedLanguage}/${courseParam}/${id}`;
+    return `${drupalSettings.helfi_events.baseUrl}/${resolvedLanguage}/${courseParam}/${id}`;
   };
 
   const getTheme = () => {

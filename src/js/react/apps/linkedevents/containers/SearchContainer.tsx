@@ -10,6 +10,7 @@ import * as Sentry from '@sentry/react';
 import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 import { CrossStudiesFormContainer } from '../modules/cross-institution-studies/containers/CrossStudiesFormContainer';
 import { ResultCard } from '../modules/cross-institution-studies/components/ResultCard';
+import { ResultsSort } from '../modules/cross-institution-studies/components/ResultsSort';
 
 type ResponseType = { data: Event[]; meta: { count: number; next?: string; previous?: string } };
 
@@ -100,6 +101,16 @@ const SearchContainer = () => {
   const loading =
     (useCrossInstitutionalStudiesForm && !initialStateSet.current) || isLoading || urlData.state === 'loading';
 
+  const getCrossInstitutionalStudiesHeader = (count: number) => {
+    return Drupal.formatPlural(
+      count,
+      '1 course',
+      '@count courses',
+      {},
+      { context: 'Cross institutional studies search: result count' },
+    );
+  };
+
   return (
     <>
       {useCrossInstitutionalStudiesForm ? (
@@ -113,9 +124,11 @@ const SearchContainer = () => {
         error={error}
         events={data?.data || []}
         loading={loading}
-        validating={isValidating}
         ResultCardComponent={(useCrossInstitutionalStudiesForm && ResultCard) || undefined}
+        resultHeaderFunction={useCrossInstitutionalStudiesForm ? getCrossInstitutionalStudiesHeader : undefined}
         retriesExhausted={retriesExhausted}
+        sort={useCrossInstitutionalStudiesForm ? <ResultsSort /> : undefined}
+        validating={isValidating}
       />
     </>
   );
