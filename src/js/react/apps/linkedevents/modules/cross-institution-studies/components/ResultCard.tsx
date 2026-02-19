@@ -18,7 +18,7 @@ export const ResultCard = (props: ResultCardProps) => {
         courseParam = 'ristiinopiskelu';
         break;
       case 'sv':
-        courseParam = 'kosstudier';
+        courseParam = 'korsstudier';
         break;
       default:
         courseParam = 'cross-institutional-studies';
@@ -57,9 +57,18 @@ export const ResultCard = (props: ResultCardProps) => {
   return (
     <CardItem
       language={getLanguage()}
-      languageLabel={Drupal.t('Language of instruction', {}, { context: 'Cross institutional studies search' })}
+      languageLabel={Drupal.t(
+        'Language of instruction',
+        {},
+        { context: 'Cross-institutional studies: language of instruction filter label' },
+      )}
       theme={getTheme()}
-      themeLabel={Drupal.t('Mode of teaching', {}, { context: 'Cross institutional studies search' })}
+      themeLabel={Drupal.t(
+        'Mode of teaching',
+        {},
+        { context: 'Cross-institutional studies: Teaching mode filter label' },
+      )}
+      timeLabel={Drupal.t('Date and time', {}, { context: 'Cross-institutional studies' })}
       cardUrl={getUrl()}
       {...{
         cardTitle,
