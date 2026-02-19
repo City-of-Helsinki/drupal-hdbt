@@ -1,18 +1,16 @@
-<div class="components components--hard-coded">
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [
-        'component--react-search',
-        'component--vehicle-removal',
-      ],
-      component_title: 'Find vehicle removal requests'|t({}, {'context': 'Vehicle removal search'}),
-      component_description: 'Use street names to search for areas with vehicle removal requests.'|t({}, {'context': 'Vehicle removal search'}),
-    }
-  %}
-    {% block component_content %}
-      {# The React app will load into this div. #}
-      <div id="helfi-vehicle-removal-search"></div>
-    {% endblock component_content %}
-  {% endembed %}
-</div>
-'Recommended for you'|t({}, {'context': 'Recommendations block title'}),
+{% embed "@hdbt/misc/component.twig" with
+  {
+    component_classes: [
+      'component--react-search',
+      'component--full-width',
+      'component--vehicle-removal-search',
+    ],
+    component_title: 'Find vehicle removal requests'|t({}, {'context': 'Vehicle removal search'}),
+    component_description: 'Use street names to search for areas with vehicle removal requests.'|t({}, {'context': 'Vehicle removal search'}),
+  }
+%}
+  {% block component_content %}
+    {# The React app will load into this div. #}
+    <div id="helfi-vehicle-removal-search"></div>
+  {% endblock component_content %}
+{% endembed %}
