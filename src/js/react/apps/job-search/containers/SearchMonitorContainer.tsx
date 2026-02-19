@@ -34,8 +34,12 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
       enabledNotificationMethods={['email']}
       selectionTags={selectionTags}
       texts={{
-        tosCheckboxLabel: Drupal.t('I consent to the processing of my personal data for the purpose of saved searches'),
-        tosLinkText: Drupal.t('Read the recruitment privacy notice'),
+        tosCheckboxLabel: Drupal.t(
+          'I consent to the processing of my personal data for the purpose of saved searches',
+          {},
+          { context: 'Job search monitor' },
+        ),
+        tosLinkText: Drupal.t('Read the recruitment privacy notice', {}, { context: 'Job search monitor' }),
         tosLinkUrl: hakuvahti.texts.hakuvahti_tos_link_url || '',
         instructionsLinkUrl: hakuvahti.texts.hakuvahti_instructions_link_url,
         noSelectionsNotification: Drupal.t(

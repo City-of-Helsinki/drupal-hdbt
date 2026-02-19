@@ -962,6 +962,14 @@ msgctxt "Job search clear selections"
 msgid "Clear selections"
 msgstr "Töm urvalet"
 
+msgctxt "Job search monitor"
+msgid "I consent to the processing of my personal data for the purpose of saved searches"
+msgstr "Jag godkänner behandlingen av mina personuppgifter för sökvakten"
+
+msgctxt "Job search monitor"
+msgid "Read the recruitment privacy notice"
+msgstr "Bekanta dig med dataskyddsbeskrivningen för rekrytering"
+
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
 msgstr "Barngruppernas kontaktuppgifter"
