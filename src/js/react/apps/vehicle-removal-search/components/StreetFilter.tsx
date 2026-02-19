@@ -93,7 +93,7 @@ export const StreetFilter = () => {
         label: Drupal.t('Street name', {}, { context: 'Vehicle removal search' }),
         placeholder: Drupal.t('All', {}, { context: 'Vehicle removal search' }),
         searchLabel: Drupal.t('Write a street name', {}, { context: 'Vehicle removal search' }),
-        searchPlaceholder: Drupal.t('For example, Kotikatu 1', {}, { context: 'Vehicle removal search' }),
+        searchPlaceholder: Drupal.t('For example, Kotikatu', {}, { context: 'Vehicle removal search' }),
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
           { '@label': 'foobar' },

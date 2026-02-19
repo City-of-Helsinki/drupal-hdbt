@@ -354,7 +354,7 @@ const SearchMonitor = ({
                     id='hdbt-search__search-monitor__selections-heading'
                     className='hdbt-search__search-monitor__selections-heading'
                   >
-                    {Drupal.t('Your search criteria:', {}, { context: 'Search monitor selections heading' })}
+                    {Drupal.t('Your search criteria', {}, { context: 'Search monitor selections heading' })}
                   </h3>
                   <div className='hdbt-search__search-monitor__selection-tags'>
                     <Tags insideCard={false} tags={selectionTags} />
@@ -378,6 +378,7 @@ const SearchMonitor = ({
 
                 {showRadioButtons && (
                   <Fieldset
+                    className='hdbt-search__search-monitor__notification-methods'
                     heading={Drupal.t('How do you want to receive notifications?', {}, { context: 'Search monitor' })}
                   >
                     {enabledNotificationMethods.includes('email') && (

@@ -1447,8 +1447,8 @@ msgid "You will receive email alerts about new search results up to once a day"
 msgstr "Du får information om nya träffar till din e-post högst en gång per dag."
 
 msgctxt "Search monitor selections heading"
-msgid "Your search criteria:"
-msgstr "Dina sökkriterier:"
+msgid "Your search criteria"
+msgstr "Dina sökkriterier"
 
 msgctxt "Search monitor no selections notification title"
 msgid "No search criteria selected"
@@ -1655,6 +1655,44 @@ msgid "More detailed instructions on how to use saved searches"
 msgstr "Närmare anvisningar för hur du använder sökvakten"
 
 msgctxt "React search: Generic results text"
+msgid "1 result"
+msgid_plural "@count results"
+msgstr[0] "1 resultat"
+msgstr[1] "@count resultat"
+
+msgctxt "Vehicle removal search"
+msgid "Street name"
+msgstr "Gatunamn"
+
+msgctxt "Vehicle removal search"
+msgid "All"
+msgstr "Alla"
+
+msgctxt "Vehicle removal search"
+msgid "Write a street name"
+msgstr "Skriv ett gatunamn"
+
+msgctxt "Vehicle removal search"
+msgid "For example, Kotikatu"
+msgstr "T.ex. Hemgatan"
+
+msgctxt "Vehicle removal search"
+msgid "Period of validity"
+msgstr "Giltighetstid"
+
+msgctxt "Vehicle removal search"
+msgid "Time"
+msgstr "Klockan"
+
+msgctxt "Vehicle removal search"
+msgid "Find vehicle removal requests"
+msgstr "Sök flyttningsuppmaningar"
+
+msgctxt "Vehicle removal search"
+msgid "Use street names to search for areas with vehicle removal requests."
+msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
+
+msgctxt "Vehicle removal search"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 resultat"

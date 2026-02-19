@@ -88,7 +88,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
       <div ref={dialogTargetRef} />
       <ResultsHeader
         leftActions={searchMonitor}
-        resultText={`${total} ${Drupal.t('results', {}, { context: 'React search: results header' })}`}
+        resultText={`${Drupal.formatPlural(String(total), '1 result', '@count results', {}, { context: 'Vehicle removal search' })}`}
         ref={scrollTarget}
       />
       {results.map((hit) => (

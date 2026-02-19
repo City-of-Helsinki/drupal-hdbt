@@ -1445,8 +1445,8 @@ msgid "You will receive email alerts about new search results up to once a day"
 msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä."
 
 msgctxt "Search monitor selections heading"
-msgid "Your search criteria:"
-msgstr "Hakuehtosi:"
+msgid "Your search criteria"
+msgstr "Hakuehtosi"
 
 msgctxt "Search monitor no selections notification title"
 msgid "No search criteria selected"
@@ -1657,3 +1657,41 @@ msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 hakutulos"
 msgstr[1] "@count hakutulosta"
+
+msgctxt "Vehicle removal search"
+msgid "Street name"
+msgstr "Kadunnimi"
+
+msgctxt "Vehicle removal search"
+msgid "All"
+msgstr "Kaikki"
+
+msgctxt "Vehicle removal search"
+msgid "Write a street name"
+msgstr "Kirjoita kadunnimi"
+
+msgctxt "Vehicle removal search"
+msgid "For example, Kotikatu"
+msgstr "Esim. Kotikatu"
+
+msgctxt "Vehicle removal search"
+msgid "Period of validity"
+msgstr "Voimassaoloaika"
+
+msgctxt "Vehicle removal search"
+msgid "Time"
+msgstr "Kello"
+
+msgctxt "Vehicle removal search"
+msgid "Find vehicle removal requests"
+msgstr "Etsi siirtokehotuksia"
+
+msgctxt "Vehicle removal search"
+msgid "Use street names to search for areas with vehicle removal requests."
+msgstr "Etsi kadunnimillä alueita, joilla on siirtokehotuksia."
+
+msgctxt "Vehicle removal search"
+msgid "1 result"
+msgid_plural "@count results"
+msgstr[0] "1 tulos"
+msgstr[1] "@count tulosta"

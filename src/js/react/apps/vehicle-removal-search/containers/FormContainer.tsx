@@ -15,15 +15,13 @@ const FormContainer = () => {
   };
 
   return (
-    <search>
-      <form className='vehicle-removal-search-form' onSubmit={handleSubmit}>
-        <StreetFilter />
-        <Button className='hdbt-search--react__submit-button' type='submit'>
-          {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
-        </Button>
-        <SelectionsContainer />
-      </form>
-    </search>
+    <form className='hdbt-search--react__form-container vehicle-removal-search-form' onSubmit={handleSubmit}>
+      <StreetFilter />
+      <Button className='hdbt-search--react__submit-button' type='submit'>
+        {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
+      </Button>
+      <SelectionsContainer />
+    </form>
   );
 };
 
