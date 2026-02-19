@@ -48,12 +48,21 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
       selectionTags={selectionTags}
       secureQuery={true}
       texts={{
-        tosCheckboxLabel: hakuvahti.texts.hakuvahti_tos_checkbox_label || '',
-        tosLinkText: hakuvahti.texts.hakuvahti_tos_link_text || '',
+        tosCheckboxLabel: Drupal.t(
+          'I have read the privacy policy and consent to the processing of my personal data for the purposes of the Vehicle Removal Alert Service',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
+        tosLinkText: Drupal.t(
+          'Read the vehicle removal and Vehicle Removal Alert Service (Siirtovahti Service) privacy policy',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
         tosLinkUrl: hakuvahti.texts.hakuvahti_tos_link_url || '',
-        instructionsLinkUrl: hakuvahti.texts.hakuvahti_instructions_link_url,
         noSelectionsNotification: Drupal.t(
-          'You have not selected any search criteria. You will receive alerts of all new results TARKISTA TÄMÄ.',
+          'You have not selected any search criteria. You will be informed of all vehicle removal requests.',
+          {},
+          { context: 'Vehicle removal search' },
         ),
       }}
     />

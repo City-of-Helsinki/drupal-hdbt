@@ -34,7 +34,7 @@ interface SearchMonitorTexts {
   tosCheckboxLabel: string | undefined;
   tosLinkText: string | undefined;
   tosLinkUrl: string | undefined;
-  instructionsLinkUrl: string | undefined;
+  instructionsLinkUrl?: string;
   noSelectionsNotification: string | undefined;
 }
 
@@ -56,11 +56,7 @@ interface SearchMonitorProps {
 const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor' });
 const phoneLabel: string = Drupal.t('Phone number', {}, { context: 'Search monitor' });
 const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor' });
-const tosLinkSuffix: string = Drupal.t(
-  'The link opens in a new tab',
-  {},
-  { context: 'Explanation for users that the link opens in a new tab instead of the expected current tab' },
-);
+const tosLinkSuffix: string = Drupal.t('the link opens in a new tab, pdf', {}, { context: 'Search monitor' });
 const errorAriaLabel = Drupal.t('Notification', {}, { context: 'Search monitor' });
 const idTitle = 'hdbt-search__search-monitor__header';
 

@@ -1488,9 +1488,29 @@ msgctxt "Search monitor"
 msgid "This field is mandatory"
 msgstr "Kenttä on pakollinen"
 
+msgctxt "Search monitor"
+msgid "How do you want to receive notifications?"
+msgstr "Miten haluat ilmoituksen?"
+
+msgctxt "Search monitor notification method"
+msgid "Email"
+msgstr "Sähköpostilla"
+
+msgctxt "Search monitor notification method"
+msgid "SMS"
+msgstr "Tekstiviestillä"
+
+msgctxt "Search monitor notification method"
+msgid "Email and SMS"
+msgstr "Tekstiviestillä ja sähköpostilla"
+
 msgctxt "Search monitor email"
 msgid "Email address"
 msgstr "Sähköpostiosoite"
+
+msgctxt "Search monitor"
+msgid "Phone number"
+msgstr "Puhelinnumero"
 
 msgctxt "Search monitor terms"
 msgid "Terms of service"
@@ -1511,6 +1531,10 @@ msgstr "Ilmoitus"
 msgctxt "Search monitor submitted header"
 msgid "You are almost done saving your search"
 msgstr "Hakuvahdin tilaus melkein valmis"
+
+msgctxt "Search monitor"
+msgid "the link opens in a new tab, pdf"
+msgstr "linkki avautuu uuteen välilehteen, pdf"
 
 msgctxt "Survey"
 msgid "Respond to the survey"
@@ -1695,3 +1719,15 @@ msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 tulos"
 msgstr[1] "@count tulosta"
+
+msgctxt "Vehicle removal search"
+msgid "I have read the privacy policy and consent to the processing of my personal data for the purposes of the Vehicle Removal Alert Service"
+msgstr "Olen tutustunut tietosuojaselosteeseen ja annan suostumuksen henkilötietojeni käsittelyyn hakuvahtia varten"
+
+msgctxt "Vehicle removal search"
+msgid "Read the vehicle removal and Vehicle Removal Alert Service (Siirtovahti Service) privacy policy"
+msgstr "Tutustu ajoneuvojen siirtojen tietosuojaselosteeseen"
+
+msgctxt "Vehicle removal search"
+msgid "You have not selected any search criteria. You will be informed of all vehicle removal requests."
+msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista ajoneuvojen siirtokehotuksista."

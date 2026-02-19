@@ -1490,9 +1490,29 @@ msgctxt "Search monitor"
 msgid "This field is mandatory"
 msgstr "Fältet är obligatoriskt"
 
+msgctxt "Search monitor"
+msgid "How do you want to receive notifications?"
+msgstr "Hur vill du få meddelandet?"
+
+msgctxt "Search monitor notification method"
+msgid "Email"
+msgstr "Via e-post"
+
+msgctxt "Search monitor notification method"
+msgid "SMS"
+msgstr "Via sms"
+
+msgctxt "Search monitor notification method"
+msgid "Email and SMS"
+msgstr "Via sms och e-post"
+
 msgctxt "Search monitor email"
 msgid "Email address"
 msgstr "E-postadress"
+
+msgctxt "Search monitor"
+msgid "Phone number"
+msgstr "Telefonnummer"
 
 msgctxt "Search monitor terms"
 msgid "Terms of service"
@@ -1513,6 +1533,10 @@ msgstr "Avisering"
 msgctxt "Search monitor submitted header"
 msgid "You are almost done saving your search"
 msgstr "Beställningen av sökvakten är nästan klar"
+
+msgctxt "Search monitor"
+msgid "the link opens in a new tab, pdf"
+msgstr "länken öppnas i en ny flik, pdf"
 
 msgctxt "Survey"
 msgid "Respond to the survey"
@@ -1697,3 +1721,15 @@ msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 resultat"
 msgstr[1] "@count resultat"
+
+msgctxt "Vehicle removal search"
+msgid "I have read the privacy policy and consent to the processing of my personal data for the purposes of the Vehicle Removal Alert Service"
+msgstr "Jag har tagit del av dataskyddsbeskrivningen och ger mitt samtycke till behandling av mina personuppgifter för sökvakten."
+
+msgctxt "Vehicle removal search"
+msgid "Read the vehicle removal and Vehicle Removal Alert Service (Siirtovahti Service) privacy policy"
+msgstr "Ta del av dataskyddsbeskrivningen för flyttning av fordon och flyttningsvakten för fordon (tjänsten Flyttvakt)"
+
+msgctxt "Vehicle removal search"
+msgid "You have not selected any search criteria. You will be informed of all vehicle removal requests."
+msgstr "Du har inte valt några sökvillkor. Du får information om alla flyttningsuppmaningar."
