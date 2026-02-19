@@ -8,8 +8,6 @@
 {% if entity.type.value|lower == 'local' or entity.type.value|lower == 'mail' %}
   {% set show_mail = true %}
 {% endif %}
-
-{% set service_channel_eservice_links_new_tab = service_channel_eservice_links_new_tab|default(0) %}
 <div class="service-channel__content">
 
   {% if content.name|render %}
@@ -65,13 +63,10 @@
     <div class="service-channel__address">{{ content.address }}</div>
   {% endif %}
 
-  {% if entity.requires_authentication.value == 1 or (content.links and service_channel_eservice_links_new_tab and entity.type.value|lower == 'eservice') %}
+  {% if entity.requires_authentication.value == 1 or (content.links and entity.type.value|lower == 'eservice') %}
     <div class="service-channel__extra-information">
       {% if entity.requires_authentication.value == 1 %}
         {{ 'Requires authentication'|t }}.
-      {% endif %}
-      {% if content.links and service_channel_eservice_links_new_tab and entity.type.value|lower == 'eservice' %}
-        {{ 'The link opens in a new tab'|t({}, {'context': 'Explanation for users that the link opens in a new tab instead of the expected current tab'}) }}.
       {% endif %}
     </div>
   {% endif %}
@@ -80,24 +75,12 @@
     <div class="service-channel__links">
       {% for link in content.links['#items'] %}
         {% if entity.type.value|lower == 'eservice' %}
-          {% if service_channel_eservice_links_new_tab %}
-            {% set link_attributes = {
-              'class': [
-                'hds-button',
-                'hds-button--primary',
-              ],
-              'target': [
-                '_blank',
-              ]
-            } %}
-          {% else %}
-            {% set link_attributes = {
-              'class': [
-                'hds-button',
-                'hds-button--primary',
-              ],
-            } %}
-          {% endif %}
+          {% set link_attributes = {
+            'class': [
+              'hds-button',
+              'hds-button--primary',
+            ],
+          } %}
           {% set link_title %}
             <span class="hds-button__label">{{ link.title }}</span>
           {% endset %}
