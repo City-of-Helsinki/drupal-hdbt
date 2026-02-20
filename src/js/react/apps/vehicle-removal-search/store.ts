@@ -14,13 +14,14 @@ const defaultState: SearchState = {
 
 const urlParamsToState = (): SearchState => {
   const params = new URLSearchParams(window.location.search);
-  const streetsParam = params.get('streets');
+  const streetsParam = params.getAll('streets');
+  const page = +params.get('page');
 
   if (!streetsParam) {
     return defaultState;
   }
 
-  const streets: Option[] = streetsParam.split(',').map((name) => ({
+  const streets: Option[] = streetsParam.map((name) => ({
     value: name,
     label: name,
     selected: true,
@@ -29,7 +30,7 @@ const urlParamsToState = (): SearchState => {
     disabled: false,
   }));
 
-  return { streets, page: 1 };
+  return { streets, page };
 };
 
 const initialState = urlParamsToState();
