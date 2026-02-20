@@ -1544,6 +1544,18 @@ msgctxt "Search monitor"
 msgid "the link opens in a new tab, pdf"
 msgstr "linkki avautuu uuteen välilehteen, pdf"
 
+msgctxt "Search monitor"
+msgid "Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
+
+msgctxt "Search monitor"
+msgid "You can create as many search alerts as you want."
+msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
+
+msgctxt "Search monitor"
+msgid "Create search alert"
+msgstr "Tilaa hakuvahti"
+
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Vastaa kyselyyn"

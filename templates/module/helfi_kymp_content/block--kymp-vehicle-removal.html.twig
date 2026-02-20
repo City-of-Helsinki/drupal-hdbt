@@ -3,6 +3,21 @@
   'components--hard-coded',
 ] %}
 
+{% set banner_button %}
+  <button aria-controls="hdbt-search__search-monitor__content" class="hdbt-search__search-monitor__button" aria-expanded="false" data-hds-component="button">
+    {{ 'Create search alert'|t({}, {'context': 'Search monitor'}) }}
+  </button>
+{% endset %}
+
+{% set banner_description %}
+  <p>
+    {{ 'Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search.'|t({}, {'context': 'Search monitor'}) }}
+  </p>
+  <p>
+    {{ 'You can create as many search alerts as you want.'|t({}, {'context': 'Search monitor'}) }}
+  </p>
+{% endset %}
+
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
@@ -11,5 +26,19 @@
   {{ title_suffix }}
   {% block content %}
     {{ content }}
+    {% embed "@hdbt/misc/component.twig" with {
+      component_classes: ['component--banner', 'component--banner-align-left'],
+      component_content_class: 'banner',
+    } %}
+      {% block component_content %}
+        {% embed "@hdbt/misc/banner.twig" with {
+          icon_name: 'bell',
+          title: 'Save your search'|t({}, {'context': 'Search monitor'}),
+          description: banner_description,
+          banner_button: banner_button,
+        } %}
+        {% endembed %}
+      {% endblock %}
+    {% endembed %}
   {% endblock %}
 </div>

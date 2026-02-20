@@ -1546,6 +1546,18 @@ msgctxt "Search monitor"
 msgid "the link opens in a new tab, pdf"
 msgstr "länken öppnas i en ny flik, pdf"
 
+msgctxt "Search monitor"
+msgid "Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search."
+msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
+
+msgctxt "Search monitor"
+msgid "You can create as many search alerts as you want."
+msgstr "Du kan skapa så många sökvakter du vill."
+
+msgctxt "Search monitor"
+msgid "Create search alert"
+msgstr "Beställ sökvakten"
+
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Delta i enkäten"

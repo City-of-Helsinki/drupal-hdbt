@@ -1,0 +1,64 @@
+{#
+  Example usage:
+
+  Example 1: with icon name as a simple string and banner button:
+
+  {% set banner_button %}
+    <button aria-controls="element-id" class="button-class" aria-expanded="false" data-hds-component="button">
+      {{ 'Button text'|t({}, {'context': 'Banner'}) }}
+    </button>
+  {% endset %}
+
+  {% embed "@hdbt/misc/banner.twig" with {
+    icon_name: 'bell',
+    title: 'Title for the banner'|t({}, {'context': 'Banner'}),
+    description: 'Description for the banner'|t({}, {'context': 'Banner'}),
+    banner_button: banner_button
+  } %}
+  {% endembed %}
+
+  Example 2: with rendered icon and a link:
+
+  {% embed "@hdbt/misc/banner.twig" with {
+    icon_rendered: icon_rendered,
+    title: 'Title for the banner'|t({}, {'context': 'Banner'}),
+    description: 'Description for the banner'|t({}, {'context': 'Banner'}),
+    banner_desc_class: 'user-edited-content',
+    link: true,
+    link_type: 'primary',
+    link_text: 'Link text'|t({}, {'context': 'Banner'}),
+    link_url: 'https://hel.fi',
+    link_new_window: false
+  } %}
+  {% endembed %}
+#}
+
+{% if icon_name %}
+  <div class="banner__icon">{% include '@hdbt/misc/icon.twig' ignore missing with {icon: icon_name} %}</div>
+{% elseif icon_rendered %}
+  <div class="banner__icon">{{ icon_rendered }}</div>
+{% endif %}
+
+<div class="banner__content-wrapper">
+  <div class="banner__content">
+    {% if title %}
+      <h2 class="banner__title">{{ title }}</h2>
+    {% endif %}
+    {% if description %}
+      <div class="banner__desc{% if banner_desc_class %} {{ banner_desc_class }}{% endif %}">{{ description }}</div>
+    {% endif %}
+  </div>
+  {% if link %}
+    {% include '@hdbt/navigation/link-button.html.twig' with {
+      type: link_type|clean_class,
+      label: link_text,
+      url: link_url,
+      open_in_a_new_window: link_new_window,
+      icon: icon ? true : false,
+      icon_type: icon ? icon|clean_class : ''
+    } %}
+  {% endif %}
+  {% block banner_button %}
+    {{ banner_button }}
+  {% endblock %}
+</div>
