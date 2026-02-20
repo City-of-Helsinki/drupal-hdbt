@@ -39,6 +39,9 @@ const formatValidityRange = (from?: string | number | null, to?: string | number
   const startDate = new Date(fromNum * 1000);
   const endDate = new Date(toNum * 1000);
 
+  // The dates are the same.
+  if (startDate.getTime() === endDate.getTime()) return formatUnixToHumanReadable(fromNum) ?? EMPTY_META_VALUE;
+
   const startDateHumanReadable = formatUnixToHumanReadable(fromNum);
   const endDateHumanReadable = formatUnixToHumanReadable(toNum);
   if (!startDateHumanReadable || !endDateHumanReadable) return EMPTY_META_VALUE;
