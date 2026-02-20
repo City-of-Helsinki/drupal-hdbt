@@ -96,7 +96,9 @@ function CardItem({
 
       <div className='card__text'>
         <HeadingTag className='card__title'>
-          {!cardUrlExternal ? (
+          {!cardUrl ? (
+            cardTitle
+          ) : !cardUrlExternal ? (
             <a href={cardUrl} className='card__link' rel='bookmark'>
               {cardTitle}
             </a>
