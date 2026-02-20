@@ -42,11 +42,14 @@
   }
 }
 
-.component--banner .banner__content-wrapper > a[data-hds-component='button'] {
-  margin: $spacing-and-half auto 0;
+.component--banner .banner__content-wrapper > {
+  a[data-hds-component='button'],
+  button[data-hds-component='button'] {
+    margin: $spacing-and-half auto 0;
 
-  @include breakpoint($breakpoint-l) {
-    margin: $spacing-double auto 0;
+    @include breakpoint($breakpoint-l) {
+      margin: $spacing-double auto 0;
+    }
   }
 }
 

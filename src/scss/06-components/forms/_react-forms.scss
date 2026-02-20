@@ -1,3 +1,9 @@
+// Set explicitly to mirror adjacent dropdown styles (hds-defined).
+$monitor-button-max-width: 420px;
+
+// Monitor button min width on larger screens.
+$monitor-button-min-width: 288px;
+
 .hdbt-search__filter {
   margin-bottom: $spacing-and-half;
 }
@@ -188,3 +194,18 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
     margin-top: 0;
   }
 }
+
+// Override HDS-default style.
+// The button that opens the search monitor dialog.
+.hdbt-search--react__result-top-area-item button.hdbt-search__search-monitor__button {
+  max-width: $monitor-button-max-width;
+  width: 100%;
+
+  @include breakpoint($breakpoint-l) {
+    margin-block: $spacing-and-half $spacing-half;
+    max-width: unset;
+    min-width: $monitor-button-min-width;
+    width: auto;
+  }
+}
+
