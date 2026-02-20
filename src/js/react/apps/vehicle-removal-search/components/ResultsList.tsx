@@ -40,7 +40,11 @@ const Header = ({
     <div ref={dialogTarget} />
     <ResultsHeader
       leftActions={leftActions}
-      resultText={`${Drupal.formatPlural(String(total), '1 result', '@count results', {}, { context: 'Vehicle removal search' })}`}
+      resultText={
+        total > 0
+          ? `${Drupal.formatPlural(String(total), '1 result', '@count results', {}, { context: 'Vehicle removal search' })}`
+          : ''
+      }
       ref={scrollTarget}
     />
     {children}
@@ -105,8 +109,16 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
 
   if (!data?.hits?.hits?.length) {
     return (
-      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
-        <ResultsEmpty ref={scrollTarget} />
+      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget}>
+        <ResultsEmpty
+          ref={scrollTarget}
+          leftActions={searchMonitor}
+          additionalDescription={Drupal.t(
+            'Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests.',
+            {},
+            { context: 'Vehicle removal search' },
+          )}
+        />
       </Header>
     );
   }

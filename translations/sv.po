@@ -1749,3 +1749,7 @@ msgstr "Ta del av dataskyddsbeskrivningen för flyttning av fordon och flyttning
 msgctxt "Vehicle removal search"
 msgid "You have not selected any search criteria. You will be informed of all vehicle removal requests."
 msgstr "Du har inte valt några sökvillkor. Du får information om alla flyttningsuppmaningar."
+
+msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
+msgstr "Beställ en sökvakt så får du information om nya flyttningsuppmaningar."
