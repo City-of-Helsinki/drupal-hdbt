@@ -1,5 +1,5 @@
 import { SearchInput } from 'hds-react';
-import { useMemo } from 'react';
+import { useMemo, useRef } from 'react';
 import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
@@ -27,15 +27,38 @@ export const AddressSearch = ({
   onSubmit: SubmitHandler<typeof includeCoordinates>;
   searchInputClassname?: string;
 } & Omit<React.ComponentProps<typeof SearchInput>, 'suggestionLabelField' | 'getSuggestions' | 'onSubmit'>) => {
-  const addressMap = new Map();
+  const addressMapRef = useRef<Map<string, unknown>>(new Map());
+  const debounceTimeoutRef = useRef<number | null>(null);
+  const requestSequenceRef = useRef<number>(0);
 
   const getSuggestions = async (searchTerm?: string) => {
     if (!searchTerm || searchTerm === '') {
       return [];
     }
-    // Palvelukarttaa address search only allows specific characters.
+    // Palvelukartta address search only allows specific characters.
     searchTerm = searchTerm.replace(/[^a-zA-Z0-9.,+&'|\-\s]*/g, '');
 
+    // Fetch suggestions only if there's a non-empty search term.
+    if (debounceTimeoutRef.current !== null) {
+      window.clearTimeout(debounceTimeoutRef.current);
+    }
+
+    // Increment the request sequence number and remember it.
+    // This is used to identify whether a newer request has started
+    // while we were waiting.
+    const currentRequestSequence = ++requestSequenceRef.current;
+
+    // Fetching suggestions is delayed by 700ms to avoid excessive server load.
+    await new Promise<void>((resolve) => {
+      debounceTimeoutRef.current = window.setTimeout(() => {
+        resolve();
+      }, 700);
+    });
+
+    // If a newer request started while we were waiting, ignore this one.
+    if (currentRequestSequence !== requestSequenceRef.current) {
+      return [];
+    }
     const fetchSuggestions = (param: URLSearchParams) => {
       const url = new URL(ServiceMap.EVENTS_URL);
       url.search = param.toString();
@@ -61,7 +84,7 @@ export const AddressSearch = ({
       result.results.map((addressResult) => {
         const resolvedName: string = getNameTranslation(addressResult.name, langKey) || '';
         if (includeCoordinates) {
-          addressMap.set(resolvedName, addressResult.location?.coordinates);
+          addressMapRef.current.set(resolvedName, addressResult.location?.coordinates);
         }
 
         return { label: resolvedName };
@@ -69,16 +92,20 @@ export const AddressSearch = ({
 
     const [fiResults, svResults] = await results;
 
-    const result = [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
+    // If a newer request completed first, ignore these results.
+    if (currentRequestSequence !== requestSequenceRef.current) {
+      return [];
+    }
 
-    return result;
+    return [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
   };
 
   const handleSubmit = (address: string) => {
     if (includeCoordinates) {
       onSubmit({
         label: address,
-        value: addressMap.has(address) ? [...addressMap.get(address), address] : null,
+        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
+        value: addressMapRef.current.has(address) ? [...(addressMapRef.current.get(address) as any), address] : null,
         // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       } as any);
     } else {
