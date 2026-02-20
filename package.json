@@ -25,12 +25,16 @@
     "The following packages were updated manually.",
     "Remove this section once the dependencies have been updated in their respective upstream packages.",
     {
+      "ajv": ">=8.18.0, dependency of hds-react",
       "tar-fs": ">=3.0.9, dependency of backstopjs",
-      "diff": "^8.0.3, dependency of backstopjs"
+      "diff": "^8.0.3, dependency of backstopjs",
+      "minimatch": ">=10.2.1, dependency of hds-core (eslint)"
     }
   ],
   "overrides": {
-    "diff": "^8.0.3"
+    "diff": "^8.0.3",
+    "ajv": "^8.18.0",
+    "minimatch": "^10.2.1"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
