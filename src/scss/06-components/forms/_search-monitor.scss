@@ -1,0 +1,136 @@
+// Dialog control buttons max width (from sketches).
+$monitor-control-max-width: 200px;
+
+// Fixes a weird issue with hds dialog element. Should be removed if HDS issue is ever fixed.
+html.Dialog-module_dialogVisibleBodyWithHiddenScrollbars__3M__P {
+  overflow: visible !important;
+}
+
+// Override HDS-default style.
+// The header that contains title and closing button shouldn't have padding on the bottom.
+// Also the paddings on the sides are different.
+.hdbt-search__search-monitor__content > div {
+  padding-inline: $spacing;
+  padding-bottom: 0;
+
+  @include breakpoint($breakpoint-l) {
+    padding-inline: $spacing-double;
+  }
+
+  // Override HDS-default style.
+  // The closing button focus is done using box-shadow with blue color,
+  // but we want the focus ring to be black-90.
+  > *:not(.hdbt-search__search-monitor) button:focus {
+    box-shadow: 0 0 0 3px $color-black-90;
+  }
+}
+
+// Override HDS-default dialog style.
+// The dialog header needs to be larger than the HDS-version.
+.hdbt-search__search-monitor__content .hdbt-search__search-monitor__heading {
+  @include font(h3);
+
+  &:focus::after {
+    border-color: $color-black-90;
+  }
+}
+
+.hdbt-search__search-monitor {
+  margin-block-end: $spacing-and-half;
+
+  @include breakpoint($breakpoint-l) {
+    margin-block-end: $spacing-double;
+  }
+
+  > p {
+    @include font('body');
+    margin-block-start: $spacing;
+  }
+
+  a:focus-visible {
+    outline: 3px solid $color-black-90;
+    outline-offset: $spacing-quarter;
+  }
+}
+
+.hdbt-search__search-monitor__selections-heading {
+  @include font(small);
+  font-weight: $font-weight-medium;
+  line-height: $lineheight-l;
+  margin-block-start: $spacing-and-half;
+}
+
+.hdbt-search__search-monitor__no-selections,
+.hdbt-search__search-monitor__selection-tags {
+  margin-block-start: $spacing-quarter;
+}
+
+// Override HDS-default fieldset style.
+// The fieldset doesn't need to have padding on the bottom.
+.hdbt-search__search-monitor__content {
+  legend {
+    @include font(small);
+    font-weight: $font-weight-medium;
+    margin-block-end: 12px; // Fixed value to match the design.
+  }
+
+  .hdbt-search__search-monitor__notification-methods {
+    margin-block-start: $spacing-and-half;
+    padding-block: 0;
+  }
+}
+
+.hdbt-search__search-monitor__phone,
+.hdbt-search__search-monitor__email {
+  margin-block-start: $spacing-and-half;
+}
+
+.hdbt-search__search-monitor__buttons-container {
+  column-gap: $spacing;
+  display: flex;
+  flex-wrap: wrap;
+  margin-block-start: $spacing-half;
+
+  > .hdbt-search__search-monitor__submit-button,
+  > .hdbt-search__search-monitor__cancel-button {
+    margin-block-start: $spacing;
+    margin-bottom: 0;
+    max-width: none;
+    width: 100%;
+
+    @include breakpoint($breakpoint-l) {
+      max-width: $monitor-control-max-width;
+    }
+  }
+
+  > .hdbt-search__search-monitor__cancel-button {
+    width: 100%;
+  }
+}
+
+.hdbt-search__search-monitor__terms-link {
+  @include font('small');
+  display: block;
+  margin-block-start: $spacing-and-half;
+}
+
+.hdbt-search__search-monitor__error {
+  margin-block-start: $spacing-and-half;
+
+  > div:focus-visible {
+    outline: 3px solid $color-black-90;
+    outline-offset: $spacing-half;
+  }
+
+  ul {
+    margin-block: $spacing 0;
+  }
+
+  ul:first-child {
+    margin-block-start: 0;
+  }
+
+  li + li {
+    margin-block-start: 0;
+  }
+}

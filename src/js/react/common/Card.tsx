@@ -26,7 +26,7 @@ export type CardItemProps = {
   cardTags?: Array<TagType>;
   cardTitle: string | JSX.Element;
   cardTitleLevel?: 2 | 3 | 4 | 5 | 6; // Allow only heading levels 2-6, defaults to 4
-  cardUrl: string;
+  cardUrl?: string;
   cardUrlExternal?: boolean;
   customMetaRows?: { bottom?: JSX.Element[]; top?: JSX.Element[] };
   date?: string;
@@ -96,7 +96,9 @@ function CardItem({
 
       <div className='card__text'>
         <HeadingTag className='card__title'>
-          {!cardUrlExternal ? (
+          {!cardUrl ? (
+            cardTitle
+          ) : !cardUrlExternal ? (
             <a href={cardUrl} className='card__link' rel='bookmark'>
               {cardTitle}
             </a>

@@ -1,19 +1,15 @@
-$-tag-gap: $spacing-half;
-
 // Renders styles for tags container
 @mixin tag-container() {
-  @include flex-gap($-tag-gap);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-bottom: 0;
-  margin-top: 0;
+  gap: $spacing-half;
+  margin-block: 0;
   padding-inline-start: 0;
 }
 
 // Renders style for parent li-element for tags
 @mixin tag-parent() {
   list-style: none;
-  margin-bottom: $-tag-gap;
-  margin-top: 0;
+  margin: 0;
 }
