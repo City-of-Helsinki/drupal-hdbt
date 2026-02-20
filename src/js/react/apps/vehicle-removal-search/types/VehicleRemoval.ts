@@ -9,8 +9,8 @@ interface VehicleRemoval {
   phone: string;
   additional_text: string;
   time_range: string;
-  valid_from: string;
-  valid_to: string;
+  valid_from: number[] | number | string[] | string;
+  valid_to: number[] | number | string[] | string;
 }
 
 export default VehicleRemoval;
