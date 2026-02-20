@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { type SyntheticEvent, createRef } from 'react';
+import { type SyntheticEvent, createRef, type ReactElement, type RefObject } from 'react';
 
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
@@ -23,6 +23,29 @@ type ResultsListProps = {
   isLoading: boolean;
   isValidating: boolean;
 };
+
+const Header = ({
+  total,
+  children,
+  scrollTarget,
+  dialogTarget,
+  leftActions,
+}: {
+  total: number;
+  leftActions?: ReactElement;
+  scrollTarget: RefObject<HTMLDivElement>;
+  dialogTarget: RefObject<HTMLDivElement>;
+}) => (
+  <div className='hdbt-search--react__results'>
+    <div ref={dialogTarget} />
+    <ResultsHeader
+      leftActions={leftActions}
+      resultText={`${Drupal.formatPlural(String(total), '1 result', '@count results', {}, { context: 'Vehicle removal search' })}`}
+      ref={scrollTarget}
+    />
+    {children}
+  </div>
+);
 
 const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
@@ -68,16 +91,24 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
     />
   );
 
-  if (isLoading || isValidating) {
-    return <GhostList count={Global.size} />;
-  }
-
   if (error) {
     return <ResultsError error={error} ref={scrollTarget} />;
   }
 
+  if (isLoading || isValidating) {
+    return (
+      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
+        <GhostList count={Global.size} />
+      </Header>
+    );
+  }
+
   if (!data?.hits?.hits?.length) {
-    return <ResultsEmpty ref={scrollTarget} />;
+    return (
+      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
+        <ResultsEmpty ref={scrollTarget} />
+      </Header>
+    );
   }
 
   const results: Result<VehicleRemoval>[] = data.hits.hits;
@@ -93,20 +124,14 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   };
 
   return (
-    <div className='hdbt-search--react__results'>
-      <div ref={dialogTargetRef} />
-      <ResultsHeader
-        leftActions={searchMonitor}
-        resultText={`${Drupal.formatPlural(String(total), '1 result', '@count results', {}, { context: 'Vehicle removal search' })}`}
-        ref={scrollTarget}
-      />
+    <Header total={total} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
       {results.map((hit) => (
         <ResultCard key={hit._id} item={hit._source} />
       ))}
       {showPagination && (
         <Pagination currentPage={page || 1} pages={5} totalPages={totalPages} updatePage={updatePage} />
       )}
-    </div>
+    </Header>
   );
 };
 

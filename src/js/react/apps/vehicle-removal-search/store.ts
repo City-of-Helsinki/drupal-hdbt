@@ -15,7 +15,7 @@ const defaultState: SearchState = {
 const urlParamsToState = (): SearchState => {
   const params = new URLSearchParams(window.location.search);
   const streetsParam = params.getAll('streets');
-  const page = +params.get('page');
+  const page = +params.get('page') || 1;
 
   if (!streetsParam) {
     return defaultState;
