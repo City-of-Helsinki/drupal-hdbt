@@ -2,7 +2,13 @@ type MultilingualString = { fi?: string; en?: string; sv?: string };
 
 export type EventImage = { alt_text: string; id: number; name?: string; photographer_name?: string; url?: string };
 
-export type EventKeyword = { id: string; name: MultilingualString };
+type IncludableResource = { id: string; name: MultilingualString } | { '@id': string };
+
+export type EventKeyword = IncludableResource & {
+  aggregate: boolean;
+  data_source: string;
+  has_user_editable_resources?: boolean;
+};
 
 type EventOffers = { info_url: MultilingualString; is_free: boolean };
 
@@ -13,6 +19,7 @@ export type Event = {
   enrolment_end_time: number;
   enrolment_start_time: number;
   id: string;
+  in_language: IncludableResource[];
   images?: EventImage[];
   keywords?: EventKeyword[];
   location?: EventLocation;

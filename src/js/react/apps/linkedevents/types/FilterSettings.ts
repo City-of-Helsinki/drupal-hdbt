@@ -1,15 +1,16 @@
 type FilterSettings = {
   eventCount: number;
   eventListType: 'hobbies' | 'events' | 'events_and_hobbies';
-  hidePagination: boolean;
-  showFreeFilter: boolean;
   hideHeading: boolean;
+  hidePagination: boolean;
+  removeBloatingEvents: boolean;
+  showFreeFilter: boolean;
   showLanguageFilter: boolean;
   showLocation: boolean;
   showRemoteFilter: boolean;
   showTimeFilter: boolean;
   showTopicsFilter: boolean;
-  removeBloatingEvents: boolean;
+  useCrossInstitutionalStudiesForm: boolean;
   useFullLocationFilter: boolean;
   useFullTopicsFilter: boolean;
   useLocationSearch: boolean;
