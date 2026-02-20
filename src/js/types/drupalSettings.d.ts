@@ -2,6 +2,9 @@ declare namespace drupalSettings {
   const path: { currentLanguage: 'fi' | 'en' | 'sv' };
   const helfi_events: {
     baseUrl: string;
+    baseUrls: {
+      [key in 'fi' | 'en' | 'sv']: string;
+    };
     imagePlaceholder: string;
     data: {
       [key: string]: {
