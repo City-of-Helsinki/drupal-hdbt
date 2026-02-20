@@ -1,8 +1,9 @@
 import esbuild from 'esbuild';
+import { createRequire } from 'module';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createRequire } from 'module';
 import { minify } from 'terser';
+
 
 /**
  * Removes "use strict" directives from a JS file.
@@ -42,7 +43,7 @@ async function stripUseStrict(file) {
 async function revertDrupalGlobal(file, isDev = false) {
   const content = await fs.readFile(file, 'utf8');
   const replaced = content.replace(
-    /\b(Drupal|drupalSettings)\d+\b/g,
+    /\b(Drupal|drupalSettings|once)\d+\b/g,
     '$1'
   );
   const { code } = await minify(replaced, {
@@ -52,7 +53,7 @@ async function revertDrupalGlobal(file, isDev = false) {
       comments: false,
     },
     mangle: {
-      reserved: ['Drupal', 'drupalSettings'],
+      reserved: ['Drupal', 'drupalSettings', 'once'],
     },
   });
   await fs.writeFile(file, isDev ? replaced : code, 'utf8');
