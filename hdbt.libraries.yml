@@ -57,7 +57,7 @@ color-palette:
       }
 
 desktop-menu-toggle:
-  version: 1.0.5
+  version: 1.0.6
   js:
     dist/js/desktopMenuToggle.min.js: {
       minified: true
@@ -152,7 +152,7 @@ hide-announcements:
   # Needs to load early for mutation observers to work properly.
   header: true
   js:
-    dist/js/hideAnnouncements.min.js: { 
+    dist/js/hideAnnouncements.min.js: {
       minified: true
     }
 
