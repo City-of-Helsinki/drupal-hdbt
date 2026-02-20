@@ -1552,10 +1552,6 @@ msgctxt "Search monitor"
 msgid "You can create as many search alerts as you want."
 msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
 
-msgctxt "Search monitor"
-msgid "Create search alert"
-msgstr "Tilaa hakuvahti"
-
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Vastaa kyselyyn"

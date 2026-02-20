@@ -77,17 +77,6 @@ district-and-project-search:
     - core/drupalSettings
     - core/drupal
 
-vehicle-removal-search:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/vehicle-removal-search.min.js: {
-      preprocess: false,
-      minified: true
-    }
-  dependencies:
-    - core/drupalSettings
-    - core/drupal
-
 embedded-content-cookie-compliance:
   version: 1.2.2
   js:
@@ -343,6 +332,15 @@ search-helper:
       minified: true
     }
 
+search-monitor-helper:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/seachMonitorHelper.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+
 sidebar-menu-toggle:
   version: 1.0.3
   js:
@@ -387,4 +385,15 @@ throbber:
     }
   dependencies:
     - core/jquery
+    - core/drupal
+
+vehicle-removal-search:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/vehicle-removal-search.min.js: {
+      preprocess: false,
+      minified: true
+    }
+  dependencies:
+    - core/drupalSettings
     - core/drupal

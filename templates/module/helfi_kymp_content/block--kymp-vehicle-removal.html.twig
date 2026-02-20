@@ -1,3 +1,5 @@
+{{ attach_library('hdbt/search-monitor-helper') }}
+
 {% set classes = [
   'components',
   'components--hard-coded',
@@ -5,7 +7,7 @@
 
 {% set banner_button %}
   <button aria-controls="hdbt-search__search-monitor__content" class="hdbt-search__search-monitor__button" aria-expanded="false" data-hds-component="button">
-    {{ 'Create search alert'|t({}, {'context': 'Search monitor'}) }}
+    {{ 'Save your search'|t({}, {'context': 'Search monitor'}) }}
   </button>
 {% endset %}
 

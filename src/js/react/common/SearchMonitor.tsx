@@ -82,7 +82,7 @@ const SearchMonitor = ({
   texts,
   secureQuery,
 }: SearchMonitorProps) => {
-  const openDialogButtonRef = useRef(null);
+  const openDialogButtonRef = useRef<HTMLElement | null>(null);
 
   // Form validation states
   const [errors, setErrors] = useState<FormErrorContainer>(null);
@@ -226,6 +226,37 @@ const SearchMonitor = ({
       ? errors?.termsAgreed.message
       : undefined;
 
+  const openerButtonRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const open = (event: CustomEvent) => {
+      if (event.detail?.button instanceof HTMLElement) {
+        openerButtonRef.current = event.detail.button;
+      }
+      setIsFormVisible(true);
+    };
+    window.addEventListener('hdbt:search-monitor:open', open as EventListener);
+    return () => window.removeEventListener('hdbt:search-monitor:open', open as EventListener);
+  }, []);
+
+  useEffect(() => {
+    const close = () => {
+      setIsFormVisible(false);
+      document
+        .querySelectorAll('.hdbt-search__search-monitor__button[data-hds-component="button"]')
+        .forEach((button) => {
+          button.setAttribute('aria-expanded', 'false');
+        });
+      // Restore focus to the opener button
+      if (openerButtonRef.current) {
+        openerButtonRef.current.focus();
+        openerButtonRef.current = null;
+      }
+    };
+    window.addEventListener('hdbt:search-monitor:close', close);
+    return () => window.removeEventListener('hdbt:search-monitor:close', close);
+  }, []);
+
   return (
     <>
       <Button
@@ -249,11 +280,14 @@ const SearchMonitor = ({
         aria-labelledby={idTitle}
         aria-describedby={Drupal.t('Saved search', {}, { context: 'Search monitor' })}
         className='hdbt-search__search-monitor__content'
-        close={() => setIsFormVisible(false)}
+        close={() => {
+          setIsFormVisible(false);
+          window.dispatchEvent(new Event('hdbt:search-monitor:close'));
+        }}
         closeButtonLabelText={Drupal.t('Close the order form', {}, { context: 'Search monitor' })}
         id='hdbt-search__search-monitor__content'
         isOpen={isFormVisible}
-        focusAfterCloseRef={openDialogButtonRef}
+        focusAfterCloseRef={openerButtonRef.current || openDialogButtonRef}
         targetElement={dialogTargetRef.current || undefined}
       >
         {submitted ? (
@@ -268,7 +302,13 @@ const SearchMonitor = ({
               )}
             />
             <Dialog.Content>
-              <form className='hdbt-search__search-monitor' onSubmit={() => setIsFormVisible(false)}>
+              <form
+                className='hdbt-search__search-monitor'
+                onSubmit={() => {
+                  setIsFormVisible(false);
+                  window.dispatchEvent(new Event('hdbt:search-monitor:close'));
+                }}
+              >
                 <p>
                   {Drupal.t(
                     'Please confirm your saved search with the confirmation link sent to your email address.',
@@ -474,7 +514,10 @@ const SearchMonitor = ({
                   </Button>
                   <Button
                     className='hdbt-search__search-monitor__cancel-button'
-                    onClick={() => setIsFormVisible(false)}
+                    onClick={() => {
+                      setIsFormVisible(false);
+                      window.dispatchEvent(new Event('hdbt:search-monitor:close'));
+                    }}
                     theme={secondaryButtonTheme}
                     type='button'
                     variant={ButtonVariant.Secondary}

@@ -1554,10 +1554,6 @@ msgctxt "Search monitor"
 msgid "You can create as many search alerts as you want."
 msgstr "Du kan skapa så många sökvakter du vill."
 
-msgctxt "Search monitor"
-msgid "Create search alert"
-msgstr "Beställ sökvakten"
-
 msgctxt "Survey"
 msgid "Respond to the survey"
 msgstr "Delta i enkäten"
