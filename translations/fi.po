@@ -1747,3 +1747,7 @@ msgstr "Tutustu ajoneuvojen siirtojen tietosuojaselosteeseen"
 msgctxt "Vehicle removal search"
 msgid "You have not selected any search criteria. You will be informed of all vehicle removal requests."
 msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista ajoneuvojen siirtokehotuksista."
+
+msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
+msgstr "Tilaa hakuvahti, niin saat tiedon uusista ilmoituksista."
