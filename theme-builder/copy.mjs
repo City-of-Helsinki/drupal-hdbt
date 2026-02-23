@@ -1,6 +1,6 @@
-import fs from "fs";
-import { globSync } from "glob";
-import path from "path";
+import fs from 'fs';
+import { globSync } from 'glob';
+import path from 'path';
 
 export default async function themeBuilderCopy(opts = {}) {
 
@@ -15,9 +15,9 @@ export default async function themeBuilderCopy(opts = {}) {
     fs.mkdirSync(path.dirname(to), { recursive: true });
 
     if (path.extname(from) === '.js' || path.extname(from) === '.mjs') {
-      const content = fs.readFileSync(from, "utf8");
+      const content = fs.readFileSync(from, 'utf8');
       const cleaned = stripSourceMapComment(content);
-      fs.writeFileSync(to, cleaned, "utf8");
+      fs.writeFileSync(to, cleaned, 'utf8');
       return;
     }
     fs.copyFileSync(from, to);
