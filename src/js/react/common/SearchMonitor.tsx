@@ -226,6 +226,11 @@ const SearchMonitor = ({
       ? errors?.termsAgreed.message
       : undefined;
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset submitted state when the query changes
+  useEffect(() => {
+    setSubmitted(false);
+  }, [elasticQuery]);
+
   const openerButtonRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
