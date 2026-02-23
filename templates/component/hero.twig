@@ -107,15 +107,15 @@
     {% if image|render %}
       <div class="hero__image-container">
         {% if design == "diagonal" or design == "with-search" %}
-          {% include '@hdbt/misc/koro.twig' with { flip: true, diagonal: true } %}
+          {% include '@hdbt/misc/koro.twig' with { flip: true, diagonal: true, koro_override: koro_override } %}
         {% else %}
-          {% include '@hdbt/misc/koro.twig' with { flip: true } %}
+          {% include '@hdbt/misc/koro.twig' with { flip: true, koro_override: koro_override } %}
         {% endif %}
         {{ image }}
       </div>
     {% endif %}
   {% endif %}
-  {% include '@hdbt/misc/koro.twig' with { flip: true } %}
+  {% include '@hdbt/misc/koro.twig' with { flip: true, koro_override: koro_override } %}
 </div>
 
 {# Add figcaption image_author is set #}

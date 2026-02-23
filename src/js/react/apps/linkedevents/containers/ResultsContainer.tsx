@@ -1,5 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
+import type React from 'react';
 import { createRef, useCallback, useEffect } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
@@ -8,6 +9,7 @@ import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import Pagination from '../components/Pagination';
 import ResultCard from '../components/ResultCard';
+import type { ResultCardProps } from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
 import { addressAtom, initializedAtom, settingsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
@@ -18,7 +20,10 @@ type ResultsContainerProps = {
   error?: Error;
   events: Event[];
   loading: boolean;
+  ResultCardComponent?: React.ComponentType<ResultCardProps>;
   retriesExhausted?: boolean;
+  resultHeaderFunction?: (count: number) => string;
+  sort?: JSX.Element;
   validating: boolean;
 };
 
@@ -28,9 +33,13 @@ function ResultsContainer({
   error,
   events,
   loading,
+  ResultCardComponent,
   retriesExhausted,
+  resultHeaderFunction,
+  sort,
   validating,
 }: ResultsContainerProps) {
+  const Card = ResultCardComponent ?? ResultCard;
   const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
@@ -91,15 +100,18 @@ function ResultsContainer({
       return (
         <>
           <ResultsHeader
+            actions={sort ? sort : undefined}
             resultText={
               <>
-                {Drupal.formatPlural(
-                  count,
-                  '1 result',
-                  '@count results',
-                  {},
-                  { context: 'Events search: result count' },
-                )}
+                {resultHeaderFunction
+                  ? resultHeaderFunction(countNumber)
+                  : Drupal.formatPlural(
+                      count,
+                      '1 result',
+                      '@count results',
+                      {},
+                      { context: 'Events search: result count' },
+                    )}
                 {settings.useLocationSearch && address
                   ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${address}`
                   : ''}
@@ -111,7 +123,7 @@ function ResultsContainer({
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
             events.map((event) => (
-              <ResultCard key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+              <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
             ))
           )}
           {!settings.hidePagination && <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />}

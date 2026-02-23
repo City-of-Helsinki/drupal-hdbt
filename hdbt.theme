@@ -23,7 +23,6 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
-use Drupal\node\Entity\Node;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -1526,59 +1525,6 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
   );
 
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function hdbt_preprocess_paragraph__job_search(array &$variables) {
-  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
-  $paragraph = $variables['paragraph'];
-  $paragraph_type = $paragraph->getType();
-  $language_manager = \Drupal::languageManager();
-  $langcode = $language_manager
-    ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
-    ->getId();
-
-  if ($paragraph_type == 'job_search') {
-    if ($search_result_page_nid = $paragraph->get('field_job_search_result_page')->getString()) {
-      $entity = Node::load($search_result_page_nid);
-
-      if ($entity->hasTranslation($langcode)) {
-        $entity = $entity->getTranslation($langcode);
-      }
-
-      $url = $entity->toUrl()->toString();
-      $variables['#attached']['drupalSettings']['helfi_rekry_job_search']['results_page_path'] = $url;
-    }
-  }
-
-  // Hakuvahti server url, expose to react if it's enabled or not.
-  $hakuvahtiUrl = getenv('HAKUVAHTI_URL');
-  $variables['#attached']['drupalSettings']['helfi_react_search']['hakuvahti_url_set'] = !empty($hakuvahtiUrl);
-
-  // Hakuvahti instructions and TOS settings.
-  if (!empty($hakuvahtiUrl)) {
-    $exposed_settings = [
-      'hakuvahti_tos_checkbox_label',
-      'hakuvahti_tos_link_text',
-      'hakuvahti_tos_link_url',
-      'hakuvahti_instructions_link_url',
-    ];
-
-    // Attempt to get the translated configuration.
-    $language = $language_manager->getLanguage($langcode);
-    $original_language = $language_manager->getConfigOverrideLanguage();
-    $language_manager->setConfigOverrideLanguage($language);
-    $config = \Drupal::config('helfi_rekry_content.job_listings');
-
-    foreach ($exposed_settings as $exposed_setting) {
-      $variables['#attached']['drupalSettings']['helfi_rekry_job_search'][$exposed_setting] = $config->get($exposed_setting) ?: 'undefined';
-    }
-
-    // Set the config back to the original language.
-    $language_manager->setConfigOverrideLanguage($original_language);
-  }
 }
 
 /**

@@ -10,14 +10,16 @@ const outDir = path.resolve(__dirname, 'dist');
 
 // React apps.
 const reactApps = {
-  'district-and-project-search': './src/js/react/apps/district-and-project-search/index.tsx',
   'health-station-search': './src/js/react/apps/health-station-search/index.tsx',
   'job-search': './src/js/react/apps/job-search/index.tsx',
   'linkedevents': './src/js/react/apps/linkedevents/index.tsx',
   'maternity-and-child-health-clinic-search': './src/js/react/apps/maternity-and-child-health-clinic-search/index.tsx',
   'news-archive': './src/js/react/apps/news-archive/index.tsx',
-  'ploughing-schedule': './src/js/react/apps/ploughing-schedule/index.tsx',
   'school-search': './src/js/react/apps/school-search/index.tsx',
+  // Kymp:
+  'district-and-project-search': './src/js/react/apps/district-and-project-search/index.tsx',
+  'ploughing-schedule': './src/js/react/apps/ploughing-schedule/index.tsx',
+  'vehicle-removal-search': './src/js/react/apps/vehicle-removal-search/index.tsx',
 };
 
 // Vanilla JS files.

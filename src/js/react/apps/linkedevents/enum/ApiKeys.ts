@@ -1,4 +1,5 @@
 export const ApiKeys = {
+  COMBINED_TEXT: 'combined_text',
   COORDINATES: 'dwithin_origin',
   END: 'end',
   EVENT_TYPE: 'event_type',
@@ -10,6 +11,7 @@ export const ApiKeys = {
   PAGESIZE: 'page_size',
   RADIUS: 'dwithin_metres',
   REMOTE: 'internet_based',
+  SORT: 'sort',
   START: 'start',
 };
 

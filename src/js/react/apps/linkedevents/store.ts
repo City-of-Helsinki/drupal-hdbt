@@ -59,15 +59,16 @@ const getInitialSettings = () => {
   const filterSettings: FilterSettings = {
     eventCount: Number(settings?.field_event_count),
     eventListType: settings?.event_list_type,
-    showFreeFilter: settings?.field_free_events,
     hideHeading: settings?.hideHeading,
+    hidePagination: settings?.hidePagination,
+    removeBloatingEvents: settings?.removeBloatingEvents,
+    showFreeFilter: settings?.field_free_events,
     showLanguageFilter: settings?.field_language,
     showLocation: settings?.field_event_location,
     showRemoteFilter: settings?.field_remote_events,
     showTimeFilter: settings?.field_event_time,
     showTopicsFilter: settings?.field_filter_keywords?.length > 0,
-    hidePagination: settings?.hidePagination,
-    removeBloatingEvents: settings?.removeBloatingEvents,
+    useCrossInstitutionalStudiesForm: settings?.useCrossInstitutionalStudiesForm,
     useFullLocationFilter: settings?.useFullLocationFilter,
     useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
@@ -122,15 +123,23 @@ if (!initialSettings) {
 // Store all needed data to 'master' atom
 const baseAtom = atom(initialSettings);
 
+declare const LINKED_EVENTS_DEV_URL: string | undefined;
+
 // Create derivates for set/get parts of data
-export const baseUrlAtom = atom((get) => get(baseAtom)?.baseUrl);
+export const baseUrlAtom = atom((get) => {
+  const devUrl = typeof LINKED_EVENTS_DEV_URL !== 'undefined' ? LINKED_EVENTS_DEV_URL : null;
+
+  return devUrl || get(baseAtom)?.baseUrl;
+});
 
 export const initialUrlAtom = atom((get) => {
-  const baseUrl = get(baseAtom)?.baseUrl;
+  const baseUrl = get(baseUrlAtom);
   const initialParams = new URLSearchParams(get(initialParamsAtom));
 
   return `${baseUrl}?${initialParams.toString()}`;
 });
+
+export const loadableInitialUrlAtom = loadable(initialUrlAtom);
 
 export const initialParamsAtom = atom((get) => get(baseAtom)?.initialParams || new URLSearchParams());
 
@@ -147,16 +156,17 @@ export const settingsAtom = atom(
     get(baseAtom)?.settings || {
       eventCount: 3,
       eventListType: 'events',
-      showFreeFilter: false,
       hideHeading: true,
+      hidePagination: false,
+      removeBloatingEvents: false,
+      showFreeFilter: false,
       showLanguageFilter: false,
       showLocation: false,
       showRemoteFilter: false,
       showTimeFilter: false,
       showTopicsFilter: false,
-      hidePagination: false,
       topics: [],
-      removeBloatingEvents: false,
+      useCrossInstitutionalStudiesForm: false,
       useFullLocationFilter: false,
       useFullTopicsFilter: false,
       useLocationSearch: false,
@@ -188,8 +198,7 @@ const getDateParams = (dates: { start?: DateTime; end?: DateTime }) => {
 
   (['end', 'start'] as const).forEach((key) => {
     if (dates[key]) {
-      // biome-ignore lint/style/noNonNullAssertion: @todo UHF-12501
-      dateParams[key] = getIsoTime(dates[key]!, key);
+      dateParams[key] = getIsoTime(dates[key], key);
     } else {
       dateParams[key] = undefined;
     }
@@ -230,6 +239,14 @@ export const updateDateAtom = atom(null, (get, set, date: DateTime | undefined, 
   set(updateParamsAtom, dateParams);
 });
 
+export const updateDatesAtom = atom(null, (_get, set, dates: { start?: DateTime; end?: DateTime }) => {
+  const dateParams = getDateParams(dates);
+
+  set(startDateAtom, dates.start);
+  set(endDateAtom, dates.end);
+  set(updateParamsAtom, dateParams);
+});
+
 export const formErrorsAtom = atom<FormErrors>({ invalidEndDate: false, invalidStartDate: false });
 
 export const freeFilterAtom = atom<boolean>(false);
@@ -266,7 +283,7 @@ export const resetFormAtom = atom(null, (get, set) => {
 
 export const submittedParamsAtom = atom<URLSearchParams>(new URLSearchParams(initialSettings.initialParams));
 
-export const updateUrlAtom = atom(null, async (get, set) => {
+export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[] | null = null) => {
   const address = get(addressAtom);
   const stagedParams = new URLSearchParams(get(paramsAtom));
 
@@ -281,6 +298,20 @@ export const updateUrlAtom = atom(null, async (get, set) => {
 
   set(pageAtom, 1);
   set(submittedParamsAtom, stagedParams);
+
+  if (visibleParams) {
+    const persistedParams = new URLSearchParams();
+    visibleParams.forEach((param) => {
+      const value = stagedParams.get(param);
+      if (value) {
+        persistedParams.set(param, value);
+      }
+    });
+
+    const url = new URL(window.location.href);
+    url.search = persistedParams.toString();
+    window.history.pushState({}, '', url.toString());
+  }
 });
 
 export const urlAtom = atom(async (get) => {

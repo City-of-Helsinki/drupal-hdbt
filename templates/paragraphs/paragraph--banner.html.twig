@@ -56,30 +56,23 @@
     %}
       {% block component_content %}
 
-        {% if content.field_icon|render and 'align-left' in design %}
-          <div class="banner__icon">{{ content.field_icon }}</div>
-        {% endif %}
+      {% set banner_icon = null %}
+      {% if content.field_icon|render and 'align-left' in design %}
+        {% set banner_icon = content.field_icon %}
+      {% endif %}
 
-        <div class="banner__content-wrapper">
-          <div class="banner__content">
-            {% if has_title %}
-              <h2 class="banner__title">{{ content.field_banner_title }}</h2>
-            {% endif %}
-            {% if has_description %}
-              <div class="banner__desc user-edited-content">{{ content.field_banner_desc }}</div>
-            {% endif %}
-          </div>
-          {% if has_link %}
-            {% include '@hdbt/navigation/link-button.html.twig' with {
-              type: link_type|clean_class,
-              label: text,
-              url: link,
-              open_in_a_new_window: open_in_a_new_window,
-              icon: icon ? true : false,
-              icon_type: icon ? icon|clean_class,
-            } %}
-          {% endif %}
-        </div>
+      {% embed "@hdbt/misc/banner.twig" with {
+        icon_rendered: content.field_icon|render,
+        title: has_title ? content.field_banner_title : null,
+        description: has_description ? content.field_banner_desc : null,
+        banner_desc_class: 'user-edited-content',
+        link: has_link,
+        link_type: link_type,
+        link_text: text,
+        link_url: link,
+        link_new_window: open_in_a_new_window,
+      } %}
+      {% endembed %}
 
       {% endblock component_content %}
     {% endembed %}

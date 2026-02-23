@@ -2,25 +2,29 @@ declare namespace drupalSettings {
   const path: { currentLanguage: 'fi' | 'en' | 'sv' };
   const helfi_events: {
     baseUrl: string;
+    baseUrls: {
+      [key in 'fi' | 'en' | 'sv']: string;
+    };
     imagePlaceholder: string;
     data: {
       [key: string]: {
         event_list_type: 'events' | 'hobbies' | 'events_and_hobbies';
         events_api_url: string;
         events_public_url: string;
+        field_event_count: string;
         field_event_list_title: string;
         field_event_location: boolean;
         field_event_time: boolean;
-        field_event_count: string;
+        field_filter_keywords: { id: string; name: string }[];
         field_free_events: boolean;
         field_language: boolean;
         field_remote_events: boolean;
-        field_filter_keywords: { id: string; name: string }[];
+        hideHeading: boolean;
         hidePagination: boolean;
         places: { [key: string]: { id: string; name: { [key: string]: string } } };
-        hideHeading: boolean;
         removeBloatingEvents: boolean;
         use_fixtures: boolean;
+        useCrossInstitutionalStudiesForm: boolean;
         useFullLocationFilter: boolean;
         useFullTopicsFilter: boolean;
         useLocationSearch: boolean;
@@ -31,14 +35,21 @@ declare namespace drupalSettings {
     seeAllNearYouLink: string;
     cardsWithBorders: boolean;
   };
-  const helfi_react_search: { elastic_proxy_url: string; sentry_dsn_react: string; hakuvahti_url_set: boolean };
+  const helfi_react_search: { elastic_proxy_url: string; sentry_dsn_react: string };
   const helfi_rekry_job_search: {
     results_page_path: string;
-    hakuvahti_tos_checkbox_label: string;
-    hakuvahti_tos_link_text: string;
-    hakuvahti_tos_link_url: string;
-    hakuvahti_instructions_link_url: string;
   };
+  const hakuvahti:
+    | {
+        apiUrl: string;
+        texts: {
+          hakuvahti_tos_checkbox_label?: string;
+          hakuvahti_tos_link_text?: string;
+          hakuvahti_tos_link_url?: string;
+          hakuvahti_instructions_link_url?: string;
+        };
+      }
+    | undefined;
   const helfi_news_archive: {
     elastic_proxy_url: string;
     default_query?: string;
