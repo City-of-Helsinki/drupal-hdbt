@@ -10,7 +10,7 @@ export const ResultCard = (props: ResultCardProps) => {
   const { currentLanguage } = drupalSettings.path;
 
   const getUrl = () => {
-    const resolvedLanguage = name?.[currentLanguage] ? currentLanguage : 'fi';
+    const resolvedLanguage: 'fi' | 'sv' | 'en' = name?.[currentLanguage] ? currentLanguage : 'fi';
 
     let courseParam = '';
     switch (resolvedLanguage) {
@@ -24,7 +24,7 @@ export const ResultCard = (props: ResultCardProps) => {
         courseParam = 'cross-institutional-studies';
     }
 
-    return `${drupalSettings.helfi_events.baseUrl}/${resolvedLanguage}/${courseParam}/${id}`;
+    return `${drupalSettings.helfi_events.baseUrls[resolvedLanguage]}/${courseParam}/${id}`;
   };
 
   const getTheme = () => {
