@@ -1751,3 +1751,81 @@ msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista ajoneuvojen sii
 msgctxt "Vehicle removal search"
 msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
 msgstr "Tilaa hakuvahti, niin saat tiedon uusista ilmoituksista."
+
+msgctxt "Cross-institutional studies: search input label"
+msgid "Search word"
+msgstr "Hakusana"
+
+msgctxt "Cross-institutional studies: search input placeholder"
+msgid "E.g. biology"
+msgstr "Esim. Biologia"
+
+msgctxt "Cross-institutional studies: start time filter label"
+msgid "Start time"
+msgstr "Aloitusajankohta"
+
+msgctxt "Cross-institutional studies: start time filter placeholder"
+msgid "All start times"
+msgstr "Kaikki aloitusajankohdat"
+
+msgctxt "Cross-institutional studies: Teaching mode filter label"
+msgid "Mode of teaching"
+msgstr "Opiskelumuoto"
+
+msgctxt "Cross-institutional studies: Teaching mode filter placeholder"
+msgid "All modes of teaching"
+msgstr "Kaikki opiskelumuodot"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Contact teaching"
+msgstr "Lähiopetus"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Remote teaching"
+msgstr "Etäopetus"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Hybrid teaching"
+msgstr "Monimuoto-opetus"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Online teaching"
+msgstr "Verkko-opetus"
+
+msgctxt "Cross-institutional studies: language of instruction filter label"
+msgid "Language of instruction"
+msgstr "Opetuskieli"
+
+msgctxt "Cross-institutional studies: language of instruction filter placeholder"
+msgid "All languages of instruction"
+msgstr "Kaikki opetuskielet"
+
+msgctxt "Cross institutional studies search: result count"
+msgid "1 course"
+msgid_plural "@count courses"
+msgstr[0] "1 kurssi"
+msgstr[1] "@count kurssia"
+
+msgctxt "Cross-institutional studies: sort label"
+msgid "Sort search results"
+msgstr "Järjestä hakutulokset"
+
+msgctxt "Cross-institutional studies: sort option"
+msgid "Alphabetical order"
+msgstr "Aakkosjärjestys"
+
+msgctxt "Cross-institutional studies"
+msgid "Date and time"
+msgstr "Ajankohta"
+
+msgctxt "Cross-institutional studies: date filter option"
+msgid "Spring"
+msgstr "Kevät"
+
+msgctxt "Cross-institutional studies: date filter option"
+msgid "Summer"
+msgstr "Kesä"
+
+msgctxt "Cross-institutional studies: date filter option"
+msgid "Autumn"
+msgstr "Syksy"
