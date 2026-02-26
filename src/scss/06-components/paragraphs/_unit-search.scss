@@ -23,6 +23,14 @@
   padding-bottom: 55px; // Leave enough room between the last card and footer.
 }
 
+.component--unit-search .hdbt-search--react__fieldset {
+  margin-bottom: $spacing;
+
+  .form-item:only-child {
+    margin-bottom: 0;
+  }
+}
+
 .unit-search__content {
   margin-top: $spacing-double;
 }
@@ -59,7 +67,7 @@
   }
 
   [data-drupal-selector='edit-provided-languages-value'] {
-    margin-top: $spacing-and-half;
+    margin-top: $spacing;
   }
 }
 
