@@ -4,6 +4,7 @@ import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import { type Option, Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { startDateAtom } from '../store';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
 export const StartDateFilter = ({
   dateOptions,
@@ -58,6 +59,7 @@ export const StartDateFilter = ({
             { context: 'Cross-institutional studies: start time filter placeholder' },
           ),
         }}
+        theme={defaultSelectTheme}
       />
     </div>
   );
