@@ -51,7 +51,7 @@ export const ResultCard = (props: ResultCardProps) => {
       }
     }
 
-    return 'finnish';
+    return matched.join(', ');
   };
 
   return (
