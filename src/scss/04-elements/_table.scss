@@ -8,8 +8,10 @@ $table-shadow-width: 14px; // 14px is a nice shadow width agreed with design tea
 $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the ratio of 14px to 40px
 
 // Styles for table markup without figure and figcaption.
-.user-edited-content > table,
-.user-edited-content :not(figure) > table {
+.user-edited-content>table,
+.imported-content>table,
+.user-edited-content :not(figure)>table,
+.imported-content :not(figure)>table {
   display: block;
   max-width: fit-content;
   overflow-x: auto;
@@ -67,11 +69,11 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 }
 
 // wysiwyg editor generates these duplicate figures, so we need to remove the margin from the second figure
-.user-edited-content figure > figure {
+.user-edited-content figure>figure {
   margin-top: 0;
 }
 
-.user-edited-content figure figcaption + table {
+.user-edited-content figure figcaption+table {
   margin-top: 0;
 }
 
@@ -89,7 +91,8 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
   background: $table-color-black-5-alpha;
 }
 
-.user-edited-content table {
+.user-edited-content table,
+.imported-content table {
   @include font('body');
   background: $color-white;
   border: 2px solid $color-black-50;
@@ -122,6 +125,7 @@ $table-shadow-mask-width: $table-shadow-width * 2.857; // 40px, 2.857 is the rat
 }
 
 // Zebra stripes for every other row.
-.user-edited-content table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
+.user-edited-content table:has(tr:nth-child(n+5)) tr:nth-child(even) td,
+.imported-content table:has(tr:nth-child(n+5)) tr:nth-child(even) td {
   background: $color-black-5;
 }
