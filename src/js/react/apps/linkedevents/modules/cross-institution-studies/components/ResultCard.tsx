@@ -1,4 +1,4 @@
-import CardItem from '@/react/common/Card';
+import CardItem, { Metarow } from '@/react/common/Card';
 import type { ResultCardProps } from '../../../components/ResultCard';
 import { useResultCardProps } from '../../../hooks/useResultCardProps';
 import { TeachingModes } from '../../enum/TeachingModes';
@@ -56,6 +56,16 @@ export const ResultCard = (props: ResultCardProps) => {
 
   return (
     <CardItem
+      customMetaRows={{
+        top: [
+          <Metarow
+            key='validity'
+            icon='calendar'
+            label={Drupal.t('Date and time', {}, { context: 'Cross-institutional studies' })}
+            content={time}
+          />,
+        ],
+      }}
       language={getLanguage()}
       languageLabel={Drupal.t(
         'Language of instruction',
@@ -68,12 +78,10 @@ export const ResultCard = (props: ResultCardProps) => {
         {},
         { context: 'Cross-institutional studies: Teaching mode filter label' },
       )}
-      timeLabel={Drupal.t('Date and time', {}, { context: 'Cross-institutional studies' })}
       cardUrl={getUrl()}
       {...{
         cardTitle,
         location,
-        time,
       }}
     />
   );

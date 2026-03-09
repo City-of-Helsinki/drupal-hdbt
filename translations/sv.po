@@ -1753,3 +1753,82 @@ msgstr "Du har inte valt några sökvillkor. Du får information om alla flyttni
 msgctxt "Vehicle removal search"
 msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
 msgstr "Beställ en sökvakt så får du information om nya flyttningsuppmaningar."
+
+
+msgctxt "Cross-institutional studies: search input label"
+msgid "Search word"
+msgstr "Sökord"
+
+msgctxt "Cross-institutional studies: search input placeholder"
+msgid "E.g. biology"
+msgstr "T.ex. biologi"
+
+msgctxt "Cross-institutional studies: start time filter label"
+msgid "Start time"
+msgstr "Starttidpunkt"
+
+msgctxt "Cross-institutional studies: start time filter placeholder"
+msgid "All start times"
+msgstr "Alla starttidpunkter"
+
+msgctxt "Cross-institutional studies: Teaching mode filter label"
+msgid "Mode of teaching"
+msgstr "Studieform"
+
+msgctxt "Cross-institutional studies: Teaching mode filter placeholder"
+msgid "All modes of teaching"
+msgstr "Alla studieformer"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Contact teaching"
+msgstr "Närstudier"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Remote teaching"
+msgstr "Distansstudier"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Hybrid teaching"
+msgstr "Hybridstudier"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Online teaching"
+msgstr "Webbstudier"
+
+msgctxt "Cross-institutional studies: language of instruction filter label"
+msgid "Language of instruction"
+msgstr "Undervisningsspråk"
+
+msgctxt "Cross-institutional studies: language of instruction filter placeholder"
+msgid "All languages of instruction"
+msgstr "Alla undervisningsspråk"
+
+msgctxt "Cross institutional studies search: result count"
+msgid "1 course"
+msgid_plural "@count courses"
+msgstr[0] "1 kurs"
+msgstr[1] "@count kurser"
+
+msgctxt "Cross-institutional studies: sort label"
+msgid "Sort search results"
+msgstr "Ordna sökresultateten"
+
+msgctxt "Cross-institutional studies: sort option"
+msgid "Alphabetical order"
+msgstr "Alfabetisk ordning"
+
+msgctxt "Cross-institutional studies"
+msgid "Date and time"
+msgstr "Starttidpunkt"
+
+msgctxt "Cross-institutional studies: date filter option"
+msgid "Spring"
+msgstr "Vår"
+
+msgctxt "Cross-institutional studies: date filter option"
+msgid "Summer"
+msgstr "Sommar"
+
+msgctxt "Cross-institutional studies: date filter option"
+msgid "Autumn"
+msgstr "Höst"

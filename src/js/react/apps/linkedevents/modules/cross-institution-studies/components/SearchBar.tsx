@@ -65,6 +65,7 @@ export const SearchBar = () => {
       className='hdbt-search__filter'
       clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
       getSuggestions={getSuggestions}
+      hideSearchButton
       label={Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' })}
       onChange={handleChange}
       onSubmit={handleSubmit}
