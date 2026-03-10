@@ -1829,3 +1829,19 @@ msgstr "Kesä"
 msgctxt "Cross-institutional studies: date filter option"
 msgid "Autumn"
 msgstr "Syksy"
+
+msgctxt "Vehicle removal search"
+msgid "Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
+
+msgctxt "Vehicle removal search"
+msgid "You can create as many search alerts as you want. You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgstr "Voit luoda niin monta hakuvahtia kuin haluat. Saat tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "Vehicle removal search"
+msgid "Your Vehicle Removal Alert Service subscription is almost ready"
+msgstr "Hakuvahdin tilaus melkein valmis"
+
+msgctxt "Vehicle removal search"
+msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, we will send you a confirmation link by email."
+msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat valintasi mukaisesti sähköpostilla tai tekstiviestillä. Jos tilasit ilmoitukset molempiin, lähetämme vahvistuslinkin sähköpostiin."

@@ -1832,3 +1832,19 @@ msgstr "Sommar"
 msgctxt "Cross-institutional studies: date filter option"
 msgid "Autumn"
 msgstr "Höst"
+
+msgctxt "Vehicle removal search"
+msgid "Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search."
+msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
+
+msgctxt "Vehicle removal search"
+msgid "You can create as many search alerts as you want. You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgstr "Du kan skapa så många sökvakter du vill. Du får information om nya träffar högst en gång om dagen. Du kan avsluta din beställning via en länk som finns i varje meddelande."
+
+msgctxt "Vehicle removal search"
+msgid "Your Vehicle Removal Alert Service subscription is almost ready"
+msgstr "Beställningen av sökvakten är nästan färdig"
+
+msgctxt "Vehicle removal search"
+msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, we will send you a confirmation link by email."
+msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen via e‑post eller sms, enligt ditt val. Om du har beställt meddelanden till båda, skickar vi bekräftelselänken till e-posten."
