@@ -9,7 +9,7 @@
 {% endif %}
 
 {# Do not try to render any non-public videos. #}
-{% if video[0]['#media'].isHidden() %}
+{% if is_hidden_video %}
   <div class="hidden-private-video"></div>
 {% else %}
   {% block paragraph %}
