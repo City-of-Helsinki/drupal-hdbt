@@ -58,7 +58,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const dialogTargetRef = createRef<HTMLDivElement>();
   useScrollToResults(scrollTarget, Boolean(data));
 
-  const elasticQuery = useVehicleRemovalQuery();
+  const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
 
   const selectionTags: TagType[] = streets.map((street) => ({

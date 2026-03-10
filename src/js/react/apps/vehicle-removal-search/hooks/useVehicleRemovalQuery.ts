@@ -2,12 +2,12 @@ import { useAtomValue } from 'jotai';
 import { submittedStateAtom } from '../store';
 import Global from '../enum/Global';
 
-const useVehicleRemovalQuery = (): string => {
+const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {}): string => {
   const { streets, page } = useAtomValue(submittedStateAtom);
 
   const query: Record<string, unknown> = {
-    size: Global.size,
-    from: (page - 1) * Global.size,
+    size: override.size ?? Global.size,
+    from: override.from ?? (page - 1) * Global.size,
   };
 
   const innerQuery = streets.length
