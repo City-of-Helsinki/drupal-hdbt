@@ -1845,3 +1845,8 @@ msgstr "Hakuvahdin tilaus melkein valmis"
 msgctxt "Vehicle removal search"
 msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, we will send you a confirmation link by email."
 msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat valintasi mukaisesti sähköpostilla tai tekstiviestillä. Jos tilasit ilmoitukset molempiin, lähetämme vahvistuslinkin sähköpostiin."
+
+msgctxt "Search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Et ole valinnut yhtään hakuehtoa."
+
