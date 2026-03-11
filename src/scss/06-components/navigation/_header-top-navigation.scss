@@ -1,4 +1,6 @@
-$-header-top-padding: 10px; // Specific pixel size for top and bottom padding from layout.
+$-header-horizontal-margin: 2px; // This needs to be hard-coded to achieve the designed layout.
+$-header-horizontal-padding: 10px; // Specific pixel size for top and bottom padding from layout.
+$-header-vertical-padding: $spacing-quarter;
 
 .header-top {
   display: none; // Hide on mobile
@@ -13,7 +15,7 @@ $-header-top-padding: 10px; // Specific pixel size for top and bottom padding fr
 
   .menu {
     display: flex;
-    gap: $spacing;
+    gap: calc($spacing - ($-header-vertical-padding * 2)); // Negate the effect of links padding on the sides to the gap that should be 16px.
     list-style: none;
     margin: 0;
     padding: 0;
@@ -21,8 +23,14 @@ $-header-top-padding: 10px; // Specific pixel size for top and bottom padding fr
 
   .menu__link {
     display: inline-block;
-    margin-block: $spacing-quarter;
-    padding-block: $-header-top-padding; // This sets the link clickable area to be big enough for a11y.
+    margin-block: $-header-horizontal-margin;
+    padding-block: $-header-horizontal-padding; // This sets the link clickable area to be big enough for a11y.
+    padding-inline: $-header-vertical-padding;
+
+    &:focus-visible {
+      outline: 3px solid $color-black;
+      outline-offset: -($-header-horizontal-margin);
+    }
   }
 
   .menu__item:last-child .menu__link {
