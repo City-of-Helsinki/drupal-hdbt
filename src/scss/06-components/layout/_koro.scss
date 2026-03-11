@@ -49,7 +49,7 @@
 
   .hds-koros__cover {
     bottom: auto;
-    top: calc(-1 * var(--cover-height));
+    top: calc(-1 * var(--cover-height) + 1px); // The 1px is needed to cover a small gap that appears between the top of the image and the koros when the image is moved down with transform: translateY(-50%).
   }
 }
 
