@@ -44,7 +44,7 @@
 
   .hds-koros__inner {
     // Make the actual koro visible from the wrapper element when using the diagonal structure.
-    margin-top: calc(-1 * var(--mask-height));
+    margin-top: calc(-1 * var(--mask-height) + 1px) ;
   }
 
   .hds-koros__cover {
