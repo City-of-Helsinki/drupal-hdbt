@@ -8,13 +8,17 @@
   {% set header_class = 'component--no-header' %}
 {% endif %}
 
-{% block paragraph %}
-  {% include '@hdbt/component/remote-video.twig' with {
-    paragraph_title: paragraph_title,
-    paragraph_desc: paragraph_desc,
-    video: video,
-    video_title: video_title,
-    video_desc: video_desc
-  }%}
-{% endblock paragraph %}
-
+{# Do not try to render any non-public videos. #}
+{% if is_hidden_video %}
+  <div class="hidden-private-video"></div>
+{% else %}
+  {% block paragraph %}
+    {% include '@hdbt/component/remote-video.twig' with {
+      paragraph_title: paragraph_title,
+      paragraph_desc: paragraph_desc,
+      video: video,
+      video_title: video_title,
+      video_desc: video_desc
+    }%}
+  {% endblock paragraph %}
+{% endif %}
