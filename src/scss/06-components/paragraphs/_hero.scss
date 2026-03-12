@@ -166,7 +166,7 @@ $koro-height: 50px;
     position: relative;
 
     @include breakpoint($breakpoint-xs) {
-      height: 301px;
+      height: 301px; // Fixes a small gap that appears at the bottom of the image when the image is moved down with transform: translateY(-50%).
     }
 
     img {
@@ -332,11 +332,11 @@ $koro-height: 50px;
   }
 
   .hero__image-container {
-    height: 201px;
+    height: 201px; // Fixes a small gap that appears at the bottom of the image when the image is moved down with transform: translateY(-50%).
     position: relative;
 
     @include breakpoint($breakpoint-xs) {
-      height: 301px;
+      height: 301px; // Fixes a small gap that appears at the bottom of the image when the image is moved down with transform: translateY(-50%).
     }
 
     @include breakpoint($breakpoint-l) {
