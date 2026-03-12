@@ -79,6 +79,11 @@ function useNotificationMethod(enabledMethods: NotificationMethod[]) {
   return [notificationMethod, setNotificationMethod, showEmail, showPhone, showRadioButtons] as const;
 }
 
+const toBase64UTF8 = (str: string): string => {
+  const utf8Bytes = new TextEncoder().encode(str);
+  return btoa(String.fromCharCode(...utf8Bytes));
+};
+
 const SearchMonitor = ({
   apiUrl,
   dialogTargetRef,
@@ -128,7 +133,7 @@ const SearchMonitor = ({
     }
 
     const requestBody = {
-      elasticQuery: btoa(elasticQuery),
+      elasticQuery: toBase64UTF8(elasticQuery),
       // Store the query in ATV if it contains user data.
       elasticQueryAtv: !!secureQuery,
       query: window.location.pathname + window.location.search,
