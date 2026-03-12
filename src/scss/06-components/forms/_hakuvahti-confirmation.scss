@@ -13,11 +13,19 @@
     margin-top: 0;
   }
 
-  .form-submit {
+  .hakuvahti-form__field {
     margin-top: $spacing-double;
+  }
 
-    @include breakpoint($breakpoint-m) {
-      margin-top: $spacing-quadruple;
-    }
+  .hakuvahti-form__field + .hakuvahti-form__field {
+    margin-top: $spacing-and-half;
+  }
+
+  .form-actions {
+    margin-top: $spacing-and-half;
+  }
+
+  .form-submit {
+    @include form-submit-defaults;
   }
 }

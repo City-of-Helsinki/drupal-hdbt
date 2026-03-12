@@ -36,6 +36,12 @@ interface SearchMonitorTexts {
   tosLinkUrl: string | undefined;
   instructionsLinkUrl?: string;
   noSelectionsNotification: string | undefined;
+  /** Description paragraphs shown at the top of the form. */
+  formDescription?: string[];
+  /** Title shown after successful submission. */
+  submittedTitle?: string;
+  /** Description shown after successful submission. */
+  submittedDescription?: string;
 }
 
 interface SearchMonitorProps {
@@ -300,11 +306,10 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={Drupal.t(
-                'You are almost done saving your search',
-                {},
-                { context: 'Search monitor submitted header' },
-              )}
+              title={
+                texts.submittedTitle ??
+                Drupal.t('You are almost done saving your search', {}, { context: 'Search monitor submitted header' })
+              }
             />
             <Dialog.Content>
               <form
@@ -315,11 +320,12 @@ const SearchMonitor = ({
                 }}
               >
                 <p>
-                  {Drupal.t(
-                    'Please confirm your saved search with the confirmation link sent to your email address.',
-                    {},
-                    { context: 'Search monitor submitted content' },
-                  )}
+                  {texts.submittedDescription ??
+                    Drupal.t(
+                      'Please confirm your saved search with the confirmation link sent to your email address.',
+                      {},
+                      { context: 'Search monitor submitted content' },
+                    )}
                 </p>
                 <div className='hdbt-search__search-monitor__buttons-container'>
                   <Button
@@ -343,21 +349,22 @@ const SearchMonitor = ({
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>
-                <p>
-                  {Drupal.t(
-                    'Carry out a search according to your specifications and then save your search.',
-                    {},
-                    { context: 'Search monitor content' },
-                  )}
-                </p>
-                <p>{`
-                  ${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })}
-                  ${Drupal.t(
-                    'You will receive email alerts about new search results up to once a day',
-                    {},
-                    { context: 'Search monitor content' },
-                  )}
-                `}</p>
+                {(
+                  texts.formDescription ?? [
+                    Drupal.t(
+                      'Carry out a search according to your specifications and then save your search.',
+                      {},
+                      { context: 'Search monitor content' },
+                    ),
+                    `${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })} ${Drupal.t(
+                      'You will receive email alerts about new search results up to once a day',
+                      {},
+                      { context: 'Search monitor content' },
+                    )}`,
+                  ]
+                ).map((text) => (
+                  <p key={text}>{text}</p>
+                ))}
 
                 {resolvedInstructionsLinkUrl && (
                   <p>
