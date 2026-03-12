@@ -1847,7 +1847,7 @@ msgstr "Beställningen av sökvakten är nästan färdig"
 
 msgctxt "Vehicle removal search"
 msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each."
-msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen via e‑post eller sms, enligt ditt val. Om du har beställt meddelanden till båda, vänligen bekräfta beställningen separat för varje kanal."
+msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen via e‑post eller sms, enligt ditt val. Om du beställt meddelanden både via e-post och SMS, bekräfta beställningen separat i båda."
 
 msgctxt "Search monitor"
 msgid "You have not selected any search criteria."
