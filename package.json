@@ -28,13 +28,15 @@
       "ajv": ">=8.18.0, dependency of hds-react",
       "tar-fs": ">=3.0.9, dependency of backstopjs",
       "diff": "^8.0.3, dependency of backstopjs",
-      "minimatch": ">=10.2.1, dependency of hds-core (eslint)"
+      "minimatch": ">=10.2.1, dependency of hds-core (eslint)",
+      "yauzl": "^3.2.1, dependency of backstopjs"
     }
   ],
   "overrides": {
     "diff": "^8.0.3",
     "ajv": "^8.18.0",
-    "minimatch": "^10.2.1"
+    "minimatch": "^10.2.1",
+    "yauzl": "^3.2.1"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
