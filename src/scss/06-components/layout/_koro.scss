@@ -44,12 +44,12 @@
 
   .hds-koros__inner {
     // Make the actual koro visible from the wrapper element when using the diagonal structure.
-    margin-top: calc(-1 * var(--mask-height));
+    margin-top: calc(-1 * var(--mask-height) + 1px) ;
   }
 
   .hds-koros__cover {
     bottom: auto;
-    top: calc(-1 * var(--cover-height));
+    top: calc(-1 * var(--cover-height) + 1px); // The 1px is needed to cover a small gap that appears between the top of the image and the koros when the image is moved down with transform: translateY(-50%).
   }
 }
 

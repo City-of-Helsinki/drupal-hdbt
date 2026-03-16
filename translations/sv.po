@@ -1852,3 +1852,8 @@ msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen
 msgctxt "Search monitor"
 msgid "You have not selected any search criteria."
 msgstr "Du har inte valt några sökkriterier."
+
+msgctxt "Vehicle removal search"
+msgid "Additional information"
+msgstr "Ytterligare upplysningar"
+

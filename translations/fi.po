@@ -1850,3 +1850,6 @@ msgctxt "Search monitor"
 msgid "You have not selected any search criteria."
 msgstr "Et ole valinnut yhtään hakuehtoa."
 
+msgctxt "Vehicle removal search"
+msgid "Additional information"
+msgstr "Lisätiedot"

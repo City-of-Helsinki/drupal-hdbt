@@ -73,6 +73,16 @@ const ResultCard = ({ item }: { item: VehicleRemoval }) => (
           label={Drupal.t('Time', {}, { context: 'Vehicle removal search' })}
           content={item.time_range}
         />,
+        ...(String(normalizeScalar(item.additional_text) || '').trim()
+          ? [
+              <Metarow
+                key='additional'
+                icon='info-circle'
+                label={Drupal.t('Additional information', {}, { context: 'Vehicle removal search' })}
+                content={String(normalizeScalar(item.additional_text) || '')}
+              />,
+            ]
+          : []),
       ],
     }}
   />
