@@ -1733,6 +1733,10 @@ msgid "Use street names to search for areas with vehicle removal requests."
 msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
 
 msgctxt "Vehicle removal search"
+msgid "Search results will tell you where the vehicle removal request sign is located."
+msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat."
+
+msgctxt "Vehicle removal search"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 resultat"
