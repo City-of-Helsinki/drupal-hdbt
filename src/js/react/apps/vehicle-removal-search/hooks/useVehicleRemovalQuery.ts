@@ -24,10 +24,6 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
       }
     : { match_all: {} };
 
-  // Round to the nearest 10 minutes (in unix seconds) to keep the SWR
-  // query key stable and avoid infinite re-fetches.
-  const nowSeconds = Math.floor(Date.now() / 1000 / 600) * 600;
-
   query.query = {
     function_score: {
       query: innerQuery,
@@ -35,8 +31,8 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
         {
           linear: {
             valid_from: {
-              origin: nowSeconds,
-              scale: 604800, // 7 days in seconds
+              origin: 'now',
+              scale: '7d', // 7 days – ES date field needs time unit
               decay: 0.5,
             },
           },

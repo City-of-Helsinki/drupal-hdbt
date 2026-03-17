@@ -56,36 +56,42 @@ const formatValidityRange = (from?: string | number | null, to?: string | number
   return `${startDateFormatted}-${endDateFormatted}`;
 };
 
-const ResultCard = ({ item }: { item: VehicleRemoval }) => (
-  <CardItem
-    cardTitle={item.address}
-    customMetaRows={{
-      top: [
-        <Metarow
-          key='validity'
-          icon='calendar'
-          label={Drupal.t('Period of validity', {}, { context: 'Vehicle removal search' })}
-          content={formatValidityRange(normalizeScalar(item.valid_from), normalizeScalar(item.valid_to))}
-        />,
-        <Metarow
-          key='time'
-          icon='clock'
-          label={Drupal.t('Time', {}, { context: 'Vehicle removal search' })}
-          content={item.time_range}
-        />,
-        ...(String(normalizeScalar(item.additional_text) || '').trim()
-          ? [
-              <Metarow
-                key='additional'
-                icon='info-circle'
-                label={Drupal.t('Additional information', {}, { context: 'Vehicle removal search' })}
-                content={String(normalizeScalar(item.additional_text) || '')}
-              />,
-            ]
-          : []),
-      ],
-    }}
-  />
-);
+const ResultCard = ({ item }: { item: VehicleRemoval }) => {
+  const mapUrl = String(normalizeScalar(item.map_url) || '').trim();
+
+  return (
+    <CardItem
+      cardTitle={item.address}
+      cardUrl={mapUrl || undefined}
+      cardUrlExternal={!!mapUrl}
+      customMetaRows={{
+        top: [
+          <Metarow
+            key='validity'
+            icon='calendar'
+            label={Drupal.t('Period of validity', {}, { context: 'Vehicle removal search' })}
+            content={formatValidityRange(normalizeScalar(item.valid_from), normalizeScalar(item.valid_to))}
+          />,
+          <Metarow
+            key='time'
+            icon='clock'
+            label={Drupal.t('Time', {}, { context: 'Vehicle removal search' })}
+            content={item.time_range}
+          />,
+          ...(String(normalizeScalar(item.additional_text) || '').trim()
+            ? [
+                <Metarow
+                  key='additional'
+                  icon='info-circle'
+                  label={Drupal.t('Additional information', {}, { context: 'Vehicle removal search' })}
+                  content={String(normalizeScalar(item.additional_text) || '')}
+                />,
+              ]
+            : []),
+        ],
+      }}
+    />
+  );
+};
 
 export default ResultCard;

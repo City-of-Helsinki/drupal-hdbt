@@ -11,6 +11,7 @@ interface VehicleRemoval {
   time_range: string;
   valid_from: number[] | number | string[] | string;
   valid_to: number[] | number | string[] | string;
+  map_url: string;
 }
 
 export default VehicleRemoval;
