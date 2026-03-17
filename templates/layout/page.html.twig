@@ -182,6 +182,12 @@
           {{ page.content|without(page_title_block) }}
         {% endblock page_content %}
 
+        {% if has_deprecated_field_sidebar_content %}
+          <div class="components">
+              {{ page.sidebar_second }}
+          </div>
+        {% endif %}
+
       </div>
 
       {% if has_sidebar_second %}
