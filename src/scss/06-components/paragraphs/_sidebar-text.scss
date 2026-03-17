@@ -1,4 +1,4 @@
-//@todo UHF-13030 Remove this file when deprecated field_sidebar_content is removed
+// @todo UHF-13030 Remove this file when deprecated field_sidebar_content is removed
 
 .layout-sidebar-second {
   @include component-side-padding;
@@ -8,6 +8,10 @@
     max-width: $content-width-max;
   }
 
+}
+
+.sidebar-text__text-content {
+  margin-top: $spacing-and-half;
 }
 
 .sidebar-text {
