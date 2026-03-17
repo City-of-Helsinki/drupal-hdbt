@@ -182,9 +182,10 @@
           {{ page.content|without(page_title_block) }}
         {% endblock page_content %}
 
+        {# @todo UHF-13030 Remove this block when deprecated field_sidebar_content is removed #}
         {% if has_deprecated_field_sidebar_content %}
-          <div class="components">
-              {{ page.sidebar_second }}
+          <div class="components has-deprecated-field-sidebar-content">
+            {{ page.sidebar_second }}
           </div>
         {% endif %}
 
