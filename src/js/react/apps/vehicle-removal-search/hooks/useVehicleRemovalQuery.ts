@@ -32,7 +32,7 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
           linear: {
             valid_from: {
               origin: 'now',
-              scale: '7d', // 7 days – ES date field needs time unit
+              scale: '7d',
               decay: 0.5,
             },
           },
