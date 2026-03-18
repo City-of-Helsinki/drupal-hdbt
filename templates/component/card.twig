@@ -1,5 +1,6 @@
 {#
 {% embed '@hdbt/component/card.twig' with {
+    card_wrapper_element: 'li',
     card_modifier_class: 'card--cardtype',
     card_image: card_image,
     card_title_level: 'h3',
@@ -44,7 +45,7 @@
 
 {% set card_external_class = card_url_external ? 'card--external' : '' %}
 
-<div class="card {{ card_modifier_class }} {{ card_external_class }}">
+<{{ card_wrapper_element|default('div') }} class="card{% if card_modifier_class %} {{ card_modifier_class }}{% endif %}{% if card_external_class %} {{ card_external_class }}{% endif %}">
   {% if card_image %}
     <div class="card__image">
       {{ card_image }}
@@ -108,4 +109,4 @@
       </div>
     {% endif %}
   </div>
-</div>
+</{{ card_wrapper_element|default('div') }}>
