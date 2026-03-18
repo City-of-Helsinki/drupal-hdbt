@@ -179,8 +179,21 @@
           {% if not has_hero %}
             {{ page.content[page_title_block] }}
           {% endif %}
-          {{ page.content|without(page_title_block) }}
+          {# @todo UHF-13030 Remove helfirecommendationsblock #}
+          {{ page.content|without(page_title_block, 'helfirecommendationsblock') }}
         {% endblock page_content %}
+
+        {# @todo UHF-13030 Remove this block when deprecated field_sidebar_content is removed #}
+        {% if has_deprecated_field_sidebar_content %}
+          <div class="has-deprecated-field-sidebar-content">
+            {{ page.sidebar_second }}
+          </div>
+        {% endif %}
+
+        {# @todo UHF-13030 Remove this block when deprecated field_sidebar_content is removed #}
+        {% if page.content.helfirecommendationsblock %}
+          {{ page.content.helfirecommendationsblock }}
+        {% endif %}
 
       </div>
 
