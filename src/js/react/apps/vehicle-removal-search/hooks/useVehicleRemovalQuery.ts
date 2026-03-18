@@ -2,29 +2,45 @@ import { useAtomValue } from 'jotai';
 import { submittedStateAtom } from '../store';
 import Global from '../enum/Global';
 
-const useVehicleRemovalQuery = (): string => {
+const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {}): string => {
   const { streets, page } = useAtomValue(submittedStateAtom);
 
   const query: Record<string, unknown> = {
-    size: Global.size,
-    from: (page - 1) * Global.size,
+    size: override.size ?? Global.size,
+    from: override.from ?? (page - 1) * Global.size,
   };
 
-  if (streets.length) {
-    query.query = {
-      bool: {
-        must: [
-          {
-            terms: {
-              street_names: streets.map((street) => street.value),
+  const innerQuery = streets.length
+    ? {
+        bool: {
+          must: [
+            {
+              terms: {
+                street_names: streets.map((street) => street.value),
+              },
+            },
+          ],
+        },
+      }
+    : { match_all: {} };
+
+  query.query = {
+    function_score: {
+      query: innerQuery,
+      functions: [
+        {
+          linear: {
+            valid_from: {
+              origin: 'now',
+              scale: '7d',
+              decay: 0.5,
             },
           },
-        ],
-      },
-    };
-  } else {
-    query.query = { match_all: {} };
-  }
+        },
+      ],
+      boost_mode: 'replace',
+    },
+  };
 
   return JSON.stringify(query);
 };

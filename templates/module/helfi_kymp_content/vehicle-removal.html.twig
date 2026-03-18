@@ -1,3 +1,7 @@
+{% set vehicle_removal_description %}
+  <p>{{ 'Use street names to search for areas with vehicle removal requests.'|t({}, {'context': 'Vehicle removal search'}) }}</p>
+  <p>{{ 'Search results will tell you where the vehicle removal request sign is located.'|t({}, {'context': 'Vehicle removal search'}) }}</p>
+{% endset %}
 {% embed "@hdbt/misc/component.twig" with
   {
     component_classes: [
@@ -6,7 +10,7 @@
       'component--vehicle-removal-search',
     ],
     component_title: 'Find vehicle removal requests'|t({}, {'context': 'Vehicle removal search'}),
-    component_description: 'Use street names to search for areas with vehicle removal requests.'|t({}, {'context': 'Vehicle removal search'}),
+    component_description: vehicle_removal_description,
   }
 %}
   {% block component_content %}
