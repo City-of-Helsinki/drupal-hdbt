@@ -61,7 +61,7 @@ const ResultCard = ({ item }: { item: VehicleRemoval }) => {
 
   return (
     <CardItem
-      cardTitle={item.address}
+      cardTitle={<span lang='fi'>{item.address}</span>}
       cardUrl={mapUrl || undefined}
       cardUrlExternal={!!mapUrl}
       customMetaRows={{
@@ -84,6 +84,8 @@ const ResultCard = ({ item }: { item: VehicleRemoval }) => {
                   key='additional'
                   icon='info-circle'
                   label={Drupal.t('Additional information', {}, { context: 'Vehicle removal search' })}
+                  // additional_text is not translated.
+                  langAttribute={{ lang: 'fi' }}
                   content={String(normalizeScalar(item.additional_text) || '')}
                 />,
               ]
