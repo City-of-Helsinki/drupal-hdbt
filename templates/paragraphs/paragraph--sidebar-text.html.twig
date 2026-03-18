@@ -41,6 +41,7 @@
 {%
   set classes = [
   'sidebar-text',
+  'component',
   view_mode ? 'sidebar-text--' ~ view_mode|clean_class,
   not paragraph.isPublished() ? 'sidebar-text--unpublished',
   content.field_sidebar_text_title|render ? 'has-title'
