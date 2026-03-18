@@ -1731,6 +1731,10 @@ msgid "Use street names to search for areas with vehicle removal requests."
 msgstr "Etsi kadunnimillä alueita, joilla on siirtokehotuksia."
 
 msgctxt "Vehicle removal search"
+msgid "Search results will tell you where the vehicle removal request sign is located."
+msgstr "Hakutuloksissa kerrotaan siirtokehotusmerkin sijainti."
+
+msgctxt "Vehicle removal search"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 tulos"
@@ -1843,5 +1847,13 @@ msgid "Your Vehicle Removal Alert Service subscription is almost ready"
 msgstr "Hakuvahdin tilaus melkein valmis"
 
 msgctxt "Vehicle removal search"
-msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, we will send you a confirmation link by email."
-msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat valintasi mukaisesti sähköpostilla tai tekstiviestillä. Jos tilasit ilmoitukset molempiin, lähetämme vahvistuslinkin sähköpostiin."
+msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each."
+msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat valintasi mukaisesti sähköpostilla tai tekstiviestillä. Jos tilasit ilmoitukset sekä sähköpostiin että tekstiviestillä, vahvista tilaus erikseen molemmissa."
+
+msgctxt "Search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Et ole valinnut yhtään hakuehtoa."
+
+msgctxt "Vehicle removal search"
+msgid "Additional information"
+msgstr "Lisätiedot"

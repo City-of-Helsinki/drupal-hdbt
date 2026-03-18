@@ -1733,6 +1733,10 @@ msgid "Use street names to search for areas with vehicle removal requests."
 msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
 
 msgctxt "Vehicle removal search"
+msgid "Search results will tell you where the vehicle removal request sign is located."
+msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat."
+
+msgctxt "Vehicle removal search"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 resultat"
@@ -1846,5 +1850,14 @@ msgid "Your Vehicle Removal Alert Service subscription is almost ready"
 msgstr "Beställningen av sökvakten är nästan färdig"
 
 msgctxt "Vehicle removal search"
-msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, we will send you a confirmation link by email."
-msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen via e‑post eller sms, enligt ditt val. Om du har beställt meddelanden till båda, skickar vi bekräftelselänken till e-posten."
+msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each."
+msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen via e‑post eller sms, enligt ditt val. Om du beställt meddelanden både via e-post och SMS, bekräfta beställningen separat i båda."
+
+msgctxt "Search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Du har inte valt några sökkriterier."
+
+msgctxt "Vehicle removal search"
+msgid "Additional information"
+msgstr "Ytterligare upplysningar"
+
