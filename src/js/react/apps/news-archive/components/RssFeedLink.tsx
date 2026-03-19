@@ -18,7 +18,7 @@ const RssFeedLink = () => {
     }
 
     const rssParamString = rssParams.toString();
-    const feedUrlWithParams = rssParamString?.length ? feedBaseUrl + '?' + rssParamString : feedBaseUrl;
+    const feedUrlWithParams = rssParamString?.length ? `${feedBaseUrl}?${rssParamString}` : feedBaseUrl;
 
     document.getElementById('news-feed-url')?.setAttribute('href', feedUrlWithParams);
 
