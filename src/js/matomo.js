@@ -224,13 +224,8 @@ function getBrowserSize() {
       const g = d.createElement('script');
       const s = d.getElementsByTagName('script')[0];
       g.async = true;
-      g.src = `${u}piwik.min.js`;
+      g.src = u;
       s.parentNode.insertBefore(g, s);
-
-      // Testing manual heatmap recording to one heatmap.
-      _paq.push(['HeatmapSessionRecording.addConfig', { heatmap: { id: 864, sample_rate: '100.0' } }]);
-
-      _paq.push(['HeatmapSessionRecording::enableDebugMode']);
     })();
   }
 

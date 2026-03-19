@@ -2,6 +2,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { sortAtom, visibleParams } from '../store';
 import { sortOptions } from '../../enum/SortOptions';
 import { type Option, Select } from 'hds-react';
+import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { updateParamsAtom, updateUrlAtom } from '../../../store';
 import ApiKeys from '../../../enum/ApiKeys';
 
@@ -25,6 +26,7 @@ export const ResultsSort = () => {
       }}
       value={value}
       onChange={handleChange}
+      theme={defaultSelectTheme}
     />
   );
 };

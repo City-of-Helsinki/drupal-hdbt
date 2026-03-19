@@ -58,7 +58,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const dialogTargetRef = createRef<HTMLDivElement>();
   useScrollToResults(scrollTarget, Boolean(data));
 
-  const elasticQuery = useVehicleRemovalQuery();
+  const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
 
   const selectionTags: TagType[] = streets.map((street) => ({
@@ -91,6 +91,28 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
           {},
           { context: 'Vehicle removal search' },
         ),
+        submittedTitle: Drupal.t(
+          'Your Vehicle Removal Alert Service subscription is almost ready',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
+        submittedDescription: Drupal.t(
+          'Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each.',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
+        formDescription: [
+          Drupal.t(
+            'Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search.',
+            {},
+            { context: 'Vehicle removal search' },
+          ),
+          Drupal.t(
+            'You can create as many search alerts as you want. You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+            {},
+            { context: 'Vehicle removal search' },
+          ),
+        ],
       }}
     />
   );

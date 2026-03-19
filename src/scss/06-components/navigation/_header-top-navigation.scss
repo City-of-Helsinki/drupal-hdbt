@@ -1,21 +1,11 @@
-$-header-top-font: 'special.navigation.header_top';
-$-header-top-padding: 14px; // Specific pixel size for top and bottom padding from layout.
-$-header-top-line-height: get-line-height($-header-top-font);
-$-header-top-height: calc(#{2 * $-header-top-padding} + #{$-header-top-line-height});
-
-.header {
-  --header-top-height: 0;
-
-  @include breakpoint($breakpoint-l) {
-    --header-top-height: #{$-header-top-height};
-  }
-}
+$-header-horizontal-margin: 2px; // This needs to be hard-coded to achieve the designed layout.
+$-header-horizontal-padding: 10px; // Specific pixel size for top and bottom padding from layout.
+$-header-vertical-padding: $spacing-quarter;
 
 .header-top {
   display: none; // Hide on mobile
 
   @include breakpoint($breakpoint-l) {
-    @include font($-header-top-font);
     align-items: center;
     background-color: $color-black-5;
     display: flex;
@@ -25,19 +15,22 @@ $-header-top-height: calc(#{2 * $-header-top-padding} + #{$-header-top-line-heig
 
   .menu {
     display: flex;
+    gap: calc($spacing - ($-header-vertical-padding * 2)); // Negate the effect of links padding on the sides to the gap that should be 16px.
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .menu__item + .menu__item {
-    margin-inline-start: $spacing-quarter; // Visual space between menu items is still $spacing, but we want a little of the space to be inside the padding. 6px + $spacing-quarter + 6px = 16px
-  }
-
   .menu__link {
     display: inline-block;
-    padding-block: $-header-top-padding; // This sets the link clickable area to be big enough for a11y.
-    padding-inline: 6px; // Visual space between menu items is still $spacing, but we want a little of the space to be inside the padding. 6px + $spacing-quarter + 6px = 16px
+    margin-block: $-header-horizontal-margin;
+    padding-block: $-header-horizontal-padding; // This sets the link clickable area to be big enough for a11y.
+    padding-inline: $-header-vertical-padding;
+
+    &:focus-visible {
+      outline: 3px solid $color-black;
+      outline-offset: -($-header-horizontal-margin);
+    }
   }
 
   .menu__item:last-child .menu__link {

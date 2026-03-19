@@ -119,3 +119,15 @@ $teaser-icon-size-desktop: 48px;
     }
   }
 }
+
+.service__important-links {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-and-half;
+  margin-top: $spacing-and-half;
+
+  a {
+    @include font('body');
+    width: fit-content;
+  }
+}

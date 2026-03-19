@@ -36,6 +36,12 @@ interface SearchMonitorTexts {
   tosLinkUrl: string | undefined;
   instructionsLinkUrl?: string;
   noSelectionsNotification: string | undefined;
+  /** Description paragraphs shown at the top of the form. */
+  formDescription?: string[];
+  /** Title shown after successful submission. */
+  submittedTitle?: string;
+  /** Description shown after successful submission. */
+  submittedDescription?: string;
 }
 
 interface SearchMonitorProps {
@@ -72,6 +78,11 @@ function useNotificationMethod(enabledMethods: NotificationMethod[]) {
 
   return [notificationMethod, setNotificationMethod, showEmail, showPhone, showRadioButtons] as const;
 }
+
+const toBase64UTF8 = (str: string): string => {
+  const utf8Bytes = new TextEncoder().encode(str);
+  return btoa(String.fromCharCode(...utf8Bytes));
+};
 
 const SearchMonitor = ({
   apiUrl,
@@ -122,13 +133,16 @@ const SearchMonitor = ({
     }
 
     const requestBody = {
-      elasticQuery: btoa(elasticQuery),
+      elasticQuery: toBase64UTF8(elasticQuery),
       // Store the query in ATV if it contains user data.
       elasticQueryAtv: !!secureQuery,
       query: window.location.pathname + window.location.search,
       email: showEmail ? email : null,
       sms: showPhone ? phone : null,
-      searchDescription: selectionTags.map(({ tag }) => tag).join(', '),
+      searchDescription:
+        selectionTags.length > 0
+          ? selectionTags.map(({ tag }) => tag).join(', ')
+          : Drupal.t('You have not selected any search criteria.', {}, { context: 'Search monitor' }),
     };
 
     // Disable the button after submitting to prevent double submits
@@ -300,11 +314,10 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={Drupal.t(
-                'You are almost done saving your search',
-                {},
-                { context: 'Search monitor submitted header' },
-              )}
+              title={
+                texts.submittedTitle ??
+                Drupal.t('You are almost done saving your search', {}, { context: 'Search monitor submitted header' })
+              }
             />
             <Dialog.Content>
               <form
@@ -315,11 +328,12 @@ const SearchMonitor = ({
                 }}
               >
                 <p>
-                  {Drupal.t(
-                    'Please confirm your saved search with the confirmation link sent to your email address.',
-                    {},
-                    { context: 'Search monitor submitted content' },
-                  )}
+                  {texts.submittedDescription ??
+                    Drupal.t(
+                      'Please confirm your saved search with the confirmation link sent to your email address.',
+                      {},
+                      { context: 'Search monitor submitted content' },
+                    )}
                 </p>
                 <div className='hdbt-search__search-monitor__buttons-container'>
                   <Button
@@ -343,21 +357,22 @@ const SearchMonitor = ({
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>
-                <p>
-                  {Drupal.t(
-                    'Carry out a search according to your specifications and then save your search.',
-                    {},
-                    { context: 'Search monitor content' },
-                  )}
-                </p>
-                <p>{`
-                  ${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })}
-                  ${Drupal.t(
-                    'You will receive email alerts about new search results up to once a day',
-                    {},
-                    { context: 'Search monitor content' },
-                  )}
-                `}</p>
+                {(
+                  texts.formDescription ?? [
+                    Drupal.t(
+                      'Carry out a search according to your specifications and then save your search.',
+                      {},
+                      { context: 'Search monitor content' },
+                    ),
+                    `${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })} ${Drupal.t(
+                      'You will receive email alerts about new search results up to once a day',
+                      {},
+                      { context: 'Search monitor content' },
+                    )}`,
+                  ]
+                ).map((text) => (
+                  <p key={text}>{text}</p>
+                ))}
 
                 {resolvedInstructionsLinkUrl && (
                   <p>
