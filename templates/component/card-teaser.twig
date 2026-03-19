@@ -1,5 +1,7 @@
 {#
 {% embed '@hdbt/component/card-teaser.twig' with {
+    card_wrapper_element: 'li',
+    card_modifier_class: 'card--cardtype',
     card_image: card_image,
     card_title: 'Otsikko',
     card_url: 'https://www.hel.fi/fi/',
@@ -13,7 +15,7 @@
 {% endembed %}
 #}
 
-<div class="card-teaser__content card-teaser">
+<{{ card_wrapper_element|default('div') }} class="card-teaser__content card-teaser{% if card_modifier_class %} {{ card_modifier_class }}{% endif %}">
   {# Main image #}
   <div class="card-teaser__img">
     {% if card_image|render %}
@@ -55,4 +57,4 @@
       {% endif %}
     {% endif %}
   </div>
-</div>
+</{{ card_wrapper_element|default('div') }}>

@@ -76,3 +76,36 @@
     margin-bottom: $spacing-half;
   }
 }
+
+// Ghost card is based on the default cards ghost card implementation
+// so the classes are not the same as in card--teaser.
+.card--teaser.card--ghost {
+  display: flex;
+  gap: $-card-spacing-mobile;
+  padding: 0;
+
+  @include breakpoint($breakpoint-s) {
+    flex-direction: row;
+  }
+
+  @include breakpoint($breakpoint-m) {
+    flex-direction: column;
+    gap: 0;
+    margin-block-start: 0;
+  }
+
+  .card__image {
+    flex-basis: 40%;
+    flex-shrink: 0;
+    margin-block-end: 0;
+
+    @include breakpoint($breakpoint-m) {
+      flex-basis: unset;
+      margin-block-end: $section-gap;
+    }
+  }
+
+  .card__text {
+    flex: 1;
+  }
+}
