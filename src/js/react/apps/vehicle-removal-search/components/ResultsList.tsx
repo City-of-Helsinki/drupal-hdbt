@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { type SyntheticEvent, createRef, type ReactElement, type RefObject } from 'react';
+import { type SyntheticEvent, createRef, useEffect, useRef, type ReactElement, type RefObject } from 'react';
 
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
@@ -56,7 +56,19 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const { page } = submittedState;
   const scrollTarget = createRef<HTMLDivElement>();
   const dialogTargetRef = createRef<HTMLDivElement>();
-  useScrollToResults(scrollTarget, Boolean(data));
+  const hasSearched = useRef(false);
+  const isFirstRender = useRef(true);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: submittedState is intentionally used as a trigger
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    hasSearched.current = true;
+  }, [submittedState]);
+
+  useScrollToResults(scrollTarget, Boolean(data) && hasSearched.current);
 
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
