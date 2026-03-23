@@ -6,7 +6,11 @@ const RssFeedLink = () => {
   const feedBaseUrl = drupalSettings?.helfi_news_archive?.feed_base_url ?? '/news/rss';
 
   const getFeedUrl = () => {
-    const feedUrlWithParams = window.location.search ? feedBaseUrl + window.location.search : feedBaseUrl;
+    const rssParams = new URLSearchParams(window.location.search);
+    rssParams.delete('page');
+
+    const rssParamString = rssParams.toString();
+    const feedUrlWithParams = rssParamString?.length ? `${feedBaseUrl}?${rssParamString}` : feedBaseUrl;
 
     document.getElementById('news-feed-url')?.setAttribute('href', feedUrlWithParams);
 
