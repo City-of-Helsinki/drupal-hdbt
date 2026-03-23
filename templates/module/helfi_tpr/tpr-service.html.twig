@@ -28,16 +28,16 @@
       </div>
     {% endif %}
 
-    {% if content.field_content|render is not empty %}
+    {% if content.field_content|render is not empty or content.links|render is not empty %}
       <div class="enriched-content components components--upper components--service">
         {{ content.field_content }}
-        {% if content.links|render %}
-        <div class="component">
-          <h2>{{ 'Important links'|t }}</h2>
-          <div class="service__important-links">
-            {{ content.links }}
+        {% if content.links|render is not empty %}
+          <div class="component">
+            <h2>{{ 'Important links'|t }}</h2>
+            <div class="service__important-links">
+              {{ content.links }}
+            </div>
           </div>
-        </div>
         {% endif %}
       </div>
     {% endif %}
