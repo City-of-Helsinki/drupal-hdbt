@@ -18,6 +18,7 @@ import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import { primaryButtonTheme, secondaryButtonTheme } from '@/react/common/constants/buttonTheme';
 import Tags from '@/react/common/Tags';
 import type TagType from '@/types/TagType';
+import * as Sentry from '@sentry/react';
 
 type FormError = { message: string; visible: boolean };
 
@@ -157,7 +158,10 @@ const SearchMonitor = ({
         body: JSON.stringify(requestBody),
       });
 
-      // Oops, error from backend
+      if (!requestBody.elasticQuery) {
+        Sentry.captureException('Hakuvahti-query with empty elasticQuery-parameter has been submitted.');
+      }
+
       if (!response.ok) {
         setErrorMessages([Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor' })]);
         return;
