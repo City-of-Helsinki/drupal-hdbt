@@ -39,3 +39,24 @@ export const secondaryButtonTheme: CSSWithVars = {
   '--color-hover-focus': 'var(--color-black-90)',
   '--outline-color-focus': 'var(--color-black-90)',
 };
+
+export const supplementaryButtonTheme: CSSWithVars = {
+  '--background-color': 'transparent',
+  '--background-color-hover': 'var(--color-black-20)',
+  '--background-color-focus': 'transparent',
+  '--background-color-hover-focus': 'var(--color-black-90)',
+  '--background-color-disabled': 'transparent',
+  '--border-color': 'transparent',
+  '--border-color-hover': 'transparent',
+  '--border-color-focus': 'transparent',
+  '--border-color-hover-focus': 'transparent',
+  '--border-color-disabled': 'transparent',
+  '--color': 'var(--color-black-90)',
+  '--color-hover': 'var(--color-black-90)',
+  '--color-focus': 'var(--color-black-90)',
+  '--color-hover-focus': 'var(--color-black-90)',
+  '--computed-border-color': 'transparent',
+  '--outline-color-focus': 'var(--color-black-90)',
+  'text-decoration': 'underline',
+  'text-underline-offset': '10%',
+};
