@@ -14,7 +14,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
       const brandingElements = {};
       // Check if global menu is enabled.
-      const globalMenu = settings.hdbt.global_menu ? MenuDropdown : false;
+      const globalMenu = settings.hdbt.global_menu ? MenuDropdown : null;
 
       // Check what features on header branding region are on.
       if (settings.hdbt.profile_dropdown) {
