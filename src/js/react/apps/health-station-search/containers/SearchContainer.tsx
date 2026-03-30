@@ -10,15 +10,15 @@ import ResultsContainer from './ResultsContainer';
 const SearchContainer = () => {
   const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
-  const initialParams = useInitialParams({ address: '' });
+  const initialParams = useInitialParams({ home_address: '' });
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
     if (initialParams) {
       setParams(initialParams);
     }
-    if (initialParams?.address) {
-      setKeyword(initialParams.address);
+    if (initialParams?.home_address) {
+      setKeyword(initialParams.home_address);
     }
   }, []);
 

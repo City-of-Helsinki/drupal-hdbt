@@ -25,7 +25,7 @@ const SearchContainer = () => {
   const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
   const setConfigurations = useSetAtom(setConfigurationsAtom);
-  const initialParams = useInitialParams({ address: '' });
+  const initialParams = useInitialParams({ home_address: '' });
 
   const changeSearchMode = (mode: string) => {
     if (mode === searchMode) {
@@ -38,9 +38,9 @@ const SearchContainer = () => {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {
-    if (initialParams?.address) {
-      setParams({ keyword: initialParams.address });
-      setKeyword(initialParams.address);
+    if (initialParams?.home_address) {
+      setParams({ keyword: initialParams.home_address });
+      setKeyword(initialParams.home_address);
       setSearchMode(MODE_OPTIONS.proximity);
     }
   }, [initialParams]);
@@ -82,7 +82,7 @@ const SearchContainer = () => {
         <Suspense fallback={<GhostList count={AppSettings.size} />}>
           {searchMode === MODE_OPTIONS.proximity ? (
             <div id='school-search-tabpanel-proximity' role='tabpanel' aria-labelledby='school-search-tab-proximity'>
-              <ProximityFormContainer initialAddress={initialParams?.address} />
+              <ProximityFormContainer initialAddress={initialParams?.home_address} />
               <ProximityResultsContainer />
             </div>
           ) : (

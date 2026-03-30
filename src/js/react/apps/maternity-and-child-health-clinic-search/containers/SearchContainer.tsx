@@ -12,14 +12,14 @@ import AppSettings from '../enum/AppSettings';
 const SearchContainer = () => {
   const setKeyword = useSetAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
-  const initialParams = useInitialParams<SearchParams>({ address: '' });
+  const initialParams = useInitialParams<SearchParams>({ home_address: '' });
 
   useEffect(() => {
     if (initialParams) {
       setParams(initialParams);
     }
-    if (initialParams?.address) {
-      setKeyword(initialParams.address);
+    if (initialParams?.home_address) {
+      setKeyword(initialParams.home_address);
     }
   });
 
