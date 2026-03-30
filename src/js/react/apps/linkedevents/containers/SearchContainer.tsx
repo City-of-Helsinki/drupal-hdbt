@@ -38,7 +38,7 @@ const SearchContainer = () => {
     if (addressInitializationRun.current) return;
 
     const params = new URLSearchParams(window.location.search);
-    if (params.get('address')) {
+    if (params.get('home_address')) {
       updateUrl();
       addressInitializationRun.current = true;
     }

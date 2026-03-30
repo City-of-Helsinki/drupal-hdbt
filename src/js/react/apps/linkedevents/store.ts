@@ -355,7 +355,7 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
 });
 
 // Strore address input. Converted to coordinates during form submit.
-export const addressAtom = atom<string | undefined | null>(queryStringParams.get('address'));
+export const addressAtom = atom<string | undefined | null>(queryStringParams.get('home_address'));
 
 export const languageAtom = atom<OptionType[]>([]);
 
