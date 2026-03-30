@@ -8,7 +8,7 @@ import type SearchParams from '../types/SearchParams';
 
 type SubmitFormType = HTMLFormElement & { sv_only: HTMLInputElement };
 
-const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParams | null }) => {
+const ProximityFormContainer = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
@@ -40,7 +40,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams?: SearchParam
     >
       <AddressSearch
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
-        defaultValue={initialParams?.home_address || ''}
+        value={keyword || ''}
         helperText={Drupal.t(
           'Enter the street name and house number',
           {},

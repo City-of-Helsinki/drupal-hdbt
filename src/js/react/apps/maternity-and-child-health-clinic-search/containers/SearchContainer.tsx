@@ -26,7 +26,7 @@ const SearchContainer = () => {
   return (
     <Suspense fallback={<GhostList count={AppSettings.size} />}>
       <div className='hdbt-search--react'>
-        <FormContainer initialParams={initialParams} />
+        <FormContainer />
         <ResultsContainer />
       </div>
     </Suspense>

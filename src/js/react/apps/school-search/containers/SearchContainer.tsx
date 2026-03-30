@@ -82,7 +82,7 @@ const SearchContainer = () => {
         <Suspense fallback={<GhostList count={AppSettings.size} />}>
           {searchMode === MODE_OPTIONS.proximity ? (
             <div id='school-search-tabpanel-proximity' role='tabpanel' aria-labelledby='school-search-tab-proximity'>
-              <ProximityFormContainer initialAddress={initialParams?.home_address} />
+              <ProximityFormContainer />
               <ProximityResultsContainer />
             </div>
           ) : (
