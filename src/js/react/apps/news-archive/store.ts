@@ -39,3 +39,11 @@ export const setPageAtom = atom(null, (get, set, page: number) => {
   const urlParams = get(urlAtom);
   set(urlUpdateAtom, { ...urlParams, page });
 });
+
+declare const ELASTIC_DEV_URL: string | undefined;
+const getElasticUrl = () => {
+  const devUrl = typeof ELASTIC_DEV_URL !== 'undefined' ? ELASTIC_DEV_URL : undefined;
+
+  return devUrl || drupalSettings.helfi_news_archive.elastic_proxy_url;
+};
+export const getElasticUrlAtom = atom(getElasticUrl);
