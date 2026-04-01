@@ -5,7 +5,7 @@ import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm'
 import { keywordAtom, paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
-const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string }) => {
+const ProximityFormContainer = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
@@ -49,7 +49,7 @@ const ProximityFormContainer = ({ initialAddress }: { initialAddress?: string })
       <AddressSearch
         className='hdbt-search__filter'
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
-        defaultValue={initialAddress || ''}
+        value={keyword || ''}
         helperText={Drupal.t(
           'Enter the street name and house number',
           {},
