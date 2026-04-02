@@ -30,7 +30,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
-  const { sv_only, address } = params;
+  const { sv_only, home_address } = params;
   const choices = Boolean(Object.keys(params).length);
   useScrollToResults(scrollTarget, choices);
 
@@ -47,13 +47,13 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   }
 
   const results = data.hits.hits;
-  const total = address && sv_only ? data.hits.hits.length : data.hits.total.value;
+  const total = home_address && sv_only ? data.hits.hits.length : data.hits.total.value;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
   const showPagination = !useMap && (pages > 1 || addLastPage);
   const sv_id = results?.[0]?._source?.id?.[0];
   const mapIds =
-    address && sv_only && sv_id
+    home_address && sv_only && sv_id
       ? data?.aggregations?.ids?.buckets?.filter(
           // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
           (item: any) => item.key === sv_id,

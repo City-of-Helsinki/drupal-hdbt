@@ -1,3 +1,3 @@
-type SearchParams = { address?: string; page?: number; query?: string; sv_only?: boolean };
+type SearchParams = { home_address?: string; page?: number; query?: string; sv_only?: boolean };
 
 export default SearchParams;
