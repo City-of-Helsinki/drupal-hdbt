@@ -7,10 +7,10 @@
    title: service_points_title,
 }%}
   {% block count_container%}
-    {%- if total_rows -%}
+    {% if total_rows > 1 %}
       {{ total_rows }} {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
-    {%- else -%}
+    {% elseif total_rows === 0 %}
       {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
-    {%- endif -%}
+    {% endif %}
   {% endblock count_container %}
 {% endembed %}

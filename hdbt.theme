@@ -1232,6 +1232,11 @@ function hdbt_preprocess_views_view(&$variables): void {
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows ?: 0;
 
+  if ($variables['total_rows'] == 1) {
+    $variables['card_heading_level'] = 'h3';
+    $variables['view']->result[0]->_entity->card_heading_level = 'h3';
+  }
+
   if ($variables['view']->id() == 'service_list') {
     $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
