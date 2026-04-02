@@ -3,47 +3,35 @@ import CardPicture from '@/react/common/CardPicture';
 import { capitalize } from '../../helpers/helpers';
 import type Result from '../../types/Result';
 import type TagType from '../../types/TagType';
-
-type ImageUrls = { [key: string]: string };
+import { useMainImage } from '@/react/common/hooks/useMainImage';
 
 const ResultCard = ({
   _id,
   content_type,
-  title_for_ui,
-  url,
-  project_image_absolute_url,
-  field_project_image_alt,
-  district_image_absolute_url,
   field_district_image_alt,
-  project_execution_schedule,
-  project_plan_schedule,
+  field_district_subdistricts_title_for_ui,
   field_project_district_title_for_ui,
   field_project_external_website,
+  field_project_image_alt,
   field_project_theme_name,
-  field_district_subdistricts_title_for_ui,
+  main_image_url,
+  project_execution_schedule,
+  project_plan_schedule,
+  title_for_ui,
+  url,
 }: Result) => {
   const linkUrl = field_project_external_website ? field_project_external_website[0] : `${url}`;
-  let imageUrl = project_image_absolute_url ? project_image_absolute_url[0] : '';
-  imageUrl = district_image_absolute_url ? district_image_absolute_url[0] : imageUrl;
   let imageAlt = field_project_image_alt && field_project_image_alt?.[0] !== '""' ? field_project_image_alt[0] : '';
   imageAlt =
     field_district_image_alt && field_district_image_alt?.[0] !== '""' ? field_district_image_alt[0] : imageAlt;
+  const { src, keyedStyles } = useMainImage(main_image_url);
 
   const getImage = () => {
-    if (!imageUrl || !imageUrl.length || !imageUrl[0]) {
+    if (!main_image_url?.toString()?.length) {
       return undefined; // No image to display
     }
 
-    let imageUrls: ImageUrls = {};
-
-    try {
-      imageUrls = JSON.parse(imageUrl);
-    } catch (e) {
-      console.error('Failed to parse imageUrl', e);
-      return undefined; // Return undefined if parsing fails
-    }
-
-    return <CardPicture alt={imageAlt} imageUrls={imageUrls} />;
+    return <CardPicture alt={imageAlt} imageUrls={keyedStyles} src={src} />;
   };
 
   const isProject = content_type[0] === 'project';
