@@ -10,12 +10,8 @@ interface ResultCardProps extends NewsItem {
 }
 
 const ResultCard = ({
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
-  alt,
   cardModifierClass,
   cardTitleLevel,
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
-  field_main_image_caption,
   field_photographer,
   main_image_url,
   title,
@@ -38,24 +34,27 @@ const ResultCard = ({
   };
 
   const getImage = () => {
-    if (!main_image_url || !main_image_url.length || !main_image_url[0]) {
+    if (!main_image_url?.toString().length) {
       return undefined; // No image to display
     }
 
-    let imageUrls: ImageUrls = {};
+    const { original, styles } = JSON.parse(main_image_url.toString());
 
-    try {
-      imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
-    } catch (e) {
-      console.error('Failed to parse main_image_url', e);
-      return undefined; // Return undefined if parsing fails
-    }
+    const keyedStyles = Object.keys(styles).reduce(
+      (acc, key) => {
+        const { breakpoint, url } = styles[key];
+        acc[breakpoint] = url;
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
     return (
       <CardPicture
         alt=''
         photographer={field_photographer?.length ? field_photographer[0] : undefined}
-        imageUrls={imageUrls}
+        imageUrls={keyedStyles}
+        src={original?.url || styles?.['1248'] || ''}
       />
     );
   };
