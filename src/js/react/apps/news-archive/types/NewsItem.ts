@@ -13,7 +13,7 @@ type Result = {
   field_photographer?: string[];
   fulltext_title: string[];
   highlight?: string[];
-  main_image_url?: { [key: string]: string };
+  main_image_url?: string[];
   published_at?: number[];
   search_api_language: string;
   title: string[];
