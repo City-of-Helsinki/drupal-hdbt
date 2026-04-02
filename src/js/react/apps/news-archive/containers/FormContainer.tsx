@@ -70,7 +70,7 @@ const FormContainer = () => {
     });
   }
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: options are derived from data
+  // biome-ignore lint/correctness/useExhaustiveDependencies: derived option arrays change reference each render — using `data` alone prevents an infinite update loop
   useEffect(() => {
     setTopicOptions(topicOptions);
     setNeighbourhoodOptions(neighbourhoodOptions);
