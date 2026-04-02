@@ -1,12 +1,19 @@
 import { Button, ButtonVariant } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import type { SyntheticEvent } from 'react';
+import { useEffect } from 'react';
 import Filter from '../components/Filter';
 import { SearchInput } from '../components/SearchInput';
 import IndexFields from '../enum/IndexFields';
 import useIndexQuery from '../hooks/useIndexQuery';
 import useInitialQuery from '../hooks/useInitialQuery';
-import { stagedParamsAtom, urlUpdateAtom } from '../store';
+import {
+  groupOptionsAtom,
+  neighbourhoodOptionsAtom,
+  stagedParamsAtom,
+  topicOptionsAtom,
+  urlUpdateAtom,
+} from '../store';
 import type AggregationItem from '../types/AggregationItem';
 import SelectionsContainer from './SelectionsContainer';
 
@@ -27,6 +34,9 @@ const parseAggData = (data: AggregationItem[]) => {
 const FormContainer = () => {
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(urlUpdateAtom);
+  const setTopicOptions = useSetAtom(topicOptionsAtom);
+  const setNeighbourhoodOptions = useSetAtom(neighbourhoodOptionsAtom);
+  const setGroupOptions = useSetAtom(groupOptionsAtom);
   const initialQuery = useInitialQuery();
   const { data, isLoading, isValidating } = useIndexQuery({ query: initialQuery, multi: true, key: 'initialdata' });
 
@@ -59,6 +69,13 @@ const FormContainer = () => {
       }
     });
   }
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: derived option arrays change reference each render — using `data` alone prevents an infinite update loop
+  useEffect(() => {
+    setTopicOptions(topicOptions);
+    setNeighbourhoodOptions(neighbourhoodOptions);
+    setGroupOptions(groupOptions);
+  }, [data]);
 
   const onSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
