@@ -1,8 +1,7 @@
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
 import type NewsItem from '../../types/NewsItem';
-
-type ImageUrls = { [key: string]: string };
+import { useMainImage } from '@/react/common/hooks/useMainImage';
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;
@@ -18,6 +17,8 @@ const ResultCard = ({
   published_at,
   url,
 }: ResultCardProps) => {
+  const { src, keyedStyles } = useMainImage(main_image_url);
+
   const getDate = () => {
     if (!published_at || !published_at.length) {
       return undefined;
@@ -38,23 +39,12 @@ const ResultCard = ({
       return undefined; // No image to display
     }
 
-    const { original, styles } = JSON.parse(main_image_url.toString());
-
-    const keyedStyles = Object.keys(styles).reduce(
-      (acc, key) => {
-        const { breakpoint, url } = styles[key];
-        acc[breakpoint] = url;
-        return acc;
-      },
-      {} as Record<string, string>,
-    );
-
     return (
       <CardPicture
         alt=''
         photographer={field_photographer?.length ? field_photographer[0] : undefined}
         imageUrls={keyedStyles}
-        src={original?.url || styles?.['1248'] || ''}
+        src={src}
       />
     );
   };
