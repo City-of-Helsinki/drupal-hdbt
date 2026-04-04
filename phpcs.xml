@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ruleset name="Drupal">
+  <arg name="extensions" value="php,module,install,theme,inc"/>
+  <exclude-pattern>*.css</exclude-pattern>
+  <exclude-pattern>*.js</exclude-pattern>
+  <rule ref="Drupal" />
+  <rule ref="DrupalPractice">
+    <exclude name="DrupalPractice.General.OptionsT.TforValue" />
+    <exclude name="DrupalPractice.Objects.UnusedPrivateMethod.UnusedMethod" />
+  </rule>
+  <rule ref="Generic.PHP.RequireStrictTypes" />
+</ruleset>
