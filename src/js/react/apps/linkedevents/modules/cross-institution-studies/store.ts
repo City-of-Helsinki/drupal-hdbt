@@ -2,7 +2,6 @@ import type { Option } from 'hds-react';
 import { atom } from 'jotai';
 import { LanguageOptions } from '../../enum/LanguageOptions';
 import { TeachingModes } from '../enum/TeachingModes';
-import type { DateTime } from 'luxon';
 import ApiKeys from '../../enum/ApiKeys';
 import { languageAtom, pageAtom, paramsAtom, submittedParamsAtom } from '../../store';
 import { sortOptions } from '../enum/SortOptions';
@@ -28,7 +27,7 @@ export const visibleParams = [
 
 export const initializeStateAtom = atom(
   null,
-  (get, set, dateOptions: Map<string, { start?: DateTime; end?: DateTime }>) => {
+  (get, set, dateOptions: Map<string, { start?: Date; end?: Date }>) => {
     const params = new URLSearchParams(window.location.search);
 
     if (params.get(ApiKeys.COMBINED_TEXT)) {
@@ -41,7 +40,7 @@ export const initializeStateAtom = atom(
 
       if (start && end) {
         const matchingOption = Array.from(dateOptions.entries()).find(([_, { start: optionStart, end: optionEnd }]) => {
-          return optionStart?.toISO() === start && optionEnd?.toISO() === end;
+          return optionStart?.toISOString() === start && optionEnd?.toISOString() === end;
         });
 
         if (matchingOption) {

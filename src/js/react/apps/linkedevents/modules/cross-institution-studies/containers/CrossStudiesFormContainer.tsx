@@ -8,7 +8,7 @@ import { InstructionLanguageFilter } from '../components/InstructionLanguageFilt
 import { TeachingModeFilter } from '../components/TeachingModeFilter';
 import { SelectionsContainer } from './SelectionsContainer';
 import { initializeStateAtom, visibleParams } from '../store';
-import { DateTime } from 'luxon';
+import { endOfDay, startOfDay } from '@/react/common/helpers/dateUtils';
 
 const dateBreakpoints = {
   autumn: {
@@ -30,40 +30,30 @@ const dateBreakpoints = {
 
 const seasonOrder: (keyof typeof dateBreakpoints)[] = ['spring', 'summer', 'autumn'];
 
-const generateDateOptions = (dateOverride?: DateTime) => {
-  const today = dateOverride ?? DateTime.now();
-  const options = new Map<string, { start: DateTime; end: DateTime }>();
+const generateDateOptions = (dateOverride?: Date) => {
+  const today = dateOverride ?? new Date();
+  const options = new Map<string, { start: Date; end: Date }>();
 
   const semesters = [0, 1].flatMap((yearOffset) =>
     seasonOrder.map((season) => {
       const { start, end, label } = dateBreakpoints[season];
       return {
-        end: DateTime.fromObject({
-          day: end.day,
-          month: end.month,
-          year: today.year + yearOffset,
-        }).endOf('day'),
+        end: endOfDay(new Date(today.getFullYear() + yearOffset, end.month - 1, end.day)),
         label,
         season,
-        start: DateTime.fromObject({
-          day: start.day,
-          month: start.month,
-          year: today.year + yearOffset,
-        }).startOf('day'),
+        start: startOfDay(new Date(today.getFullYear() + yearOffset, start.month - 1, start.day)),
       };
     }),
   );
 
-  let index = semesters.findIndex(({ end }) => today <= end);
+  let index = semesters.findIndex(({ end }) => today.getTime() <= end.getTime());
   if (index === -1) {
     index = 0;
   }
 
   while (options.size < 3 && index < semesters.length) {
     const { end, label, start } = semesters[index];
-
-    const seasonalLabel = `${label} ${start.year}`;
-
+    const seasonalLabel = `${label} ${start.getFullYear()}`;
     options.set(seasonalLabel, { start, end });
     index++;
   }
@@ -78,7 +68,7 @@ export const CrossStudiesFormContainer = ({
 }: {
   initialize: () => void;
   initialized: boolean;
-  dateOverride?: DateTime;
+  dateOverride?: Date;
 }) => {
   const errors = useAtomValue(formErrorsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);

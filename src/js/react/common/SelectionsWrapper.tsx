@@ -1,9 +1,8 @@
 import { Button, ButtonVariant, IconCross } from 'hds-react';
-import type { DateTime } from 'luxon';
 import { Children, type MouseEventHandler, type ReactNode } from 'react';
 
 type SelectionsWrapperProps = {
-  showClearButton: string | number | boolean | true | DateTime | undefined;
+  showClearButton: string | number | boolean | Date | undefined;
   resetForm: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
 };

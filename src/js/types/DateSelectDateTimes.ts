@@ -1,8 +1,6 @@
-import type { DateTime } from 'luxon';
-
 interface DateSelectDateTimes {
-  startDate: DateTime | undefined;
-  endDate: DateTime | undefined;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   showLabels?: boolean;
 }
 

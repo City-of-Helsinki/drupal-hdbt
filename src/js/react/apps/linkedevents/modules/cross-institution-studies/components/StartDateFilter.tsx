@@ -1,4 +1,3 @@
-import type { DateTime } from 'luxon';
 import { updateDatesAtom } from '../../../store';
 import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import { type Option, Select } from 'hds-react';
@@ -9,7 +8,7 @@ import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 export const StartDateFilter = ({
   dateOptions,
 }: {
-  dateOptions: Map<string, { start?: DateTime; end?: DateTime }>;
+  dateOptions: Map<string, { start?: Date; end?: Date }>;
 }) => {
   const updateDates = useSetAtom(updateDatesAtom);
   const [value, setValue] = useAtom(startDateAtom);

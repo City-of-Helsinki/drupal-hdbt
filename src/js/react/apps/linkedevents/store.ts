@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12501 */
 import { atom } from 'jotai';
 import { loadable } from 'jotai/utils';
-import type { DateTime } from 'luxon';
 import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
+import { endOfDay, startOfDay, toLocalISO } from '@/react/common/helpers/dateUtils';
 import ApiKeys from './enum/ApiKeys';
 import ROOT_ID from './enum/RootId';
 import { BloatingTargetGroups } from './enum/TargetGroups';
@@ -182,18 +182,18 @@ export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
 
 export const topicSelectionAtom = atom<Topic[]>([]);
 
-export const startDateAtom = atom<DateTime | undefined>(undefined);
-export const endDateAtom = atom<DateTime | undefined>(undefined);
+export const startDateAtom = atom<Date | undefined>(undefined);
+export const endDateAtom = atom<Date | undefined>(undefined);
 export const endDisabledAtom = atom<boolean>(false);
 
-const getIsoTime = (date: DateTime, key: string) => {
+const getIsoTime = (date: Date, key: string) => {
   if (!date) {
     return undefined;
   }
-  return key === 'start' ? date.startOf('day').toISO() : date.endOf('day').toISO();
+  return key === 'start' ? toLocalISO(startOfDay(date)) : toLocalISO(endOfDay(date));
 };
 
-const getDateParams = (dates: { start?: DateTime; end?: DateTime }) => {
+const getDateParams = (dates: { start?: Date; end?: Date }) => {
   const dateParams: { start?: string; end?: string } = {};
 
   (['end', 'start'] as const).forEach((key) => {
@@ -211,7 +211,7 @@ export const setEndDisabledAtom = atom(null, (get, set, disabled: boolean) => {
   const start = get(startDateAtom);
   const end = get(endDateAtom);
 
-  const dates: { start?: DateTime; end?: DateTime } = { start };
+  const dates: { start?: Date; end?: Date } = { start };
 
   if (disabled) {
     dates.end = start;
@@ -224,7 +224,7 @@ export const setEndDisabledAtom = atom(null, (get, set, disabled: boolean) => {
   set(endDisabledAtom, disabled);
 });
 
-export const updateDateAtom = atom(null, (get, set, date: DateTime | undefined, key: string) => {
+export const updateDateAtom = atom(null, (get, set, date: Date | undefined, key: string) => {
   const endDisabled = get(endDisabledAtom);
   const dateAtom = key === 'start' ? startDateAtom : endDateAtom;
   const dates = { [key]: date };
@@ -239,7 +239,7 @@ export const updateDateAtom = atom(null, (get, set, date: DateTime | undefined, 
   set(updateParamsAtom, dateParams);
 });
 
-export const updateDatesAtom = atom(null, (_get, set, dates: { start?: DateTime; end?: DateTime }) => {
+export const updateDatesAtom = atom(null, (_get, set, dates: { start?: Date; end?: Date }) => {
   const dateParams = getDateParams(dates);
 
   set(startDateAtom, dates.start);
