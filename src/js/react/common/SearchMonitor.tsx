@@ -60,6 +60,8 @@ interface SearchMonitorProps {
   elasticQuery: string;
   /** Set to true if the query can contain user data. */
   secureQuery?: true;
+  /** URL hash (e.g. '#open-hakuvahti') that auto-opens the dialog on page load. */
+  openHash?: string;
 }
 
 const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor' });
@@ -95,6 +97,7 @@ const SearchMonitor = ({
   selectionTags,
   texts,
   secureQuery,
+  openHash,
 }: SearchMonitorProps) => {
   const openDialogButtonRef = useRef<HTMLElement | null>(null);
 
@@ -108,6 +111,13 @@ const SearchMonitor = ({
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+
+  // Open dialog automatically when the URL hash matches the configured openHash.
+  useEffect(() => {
+    if (openHash && window.location.hash === openHash) {
+      setIsFormVisible(true);
+    }
+  }, [openHash]);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();

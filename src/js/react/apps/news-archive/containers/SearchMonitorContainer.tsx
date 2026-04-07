@@ -43,6 +43,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
       dialogTargetRef={dialogTargetRef}
       elasticQuery={elasticQuery}
       enabledNotificationMethods={['email']}
+      openHash='#open-hakuvahti'
       selectionTags={selectionTags}
       texts={{
         dialogTitle: Drupal.t('Receive news search alerts by email', {}, { context: 'News search monitor' }),
@@ -66,7 +67,6 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
         ),
         tosLinkText: Drupal.t('Read the privacy notice', {}, { context: 'News search monitor' }),
         tosLinkUrl: hakuvahti.texts.hakuvahti_tos_link_url || '',
-        instructionsLinkUrl: hakuvahti.texts.hakuvahti_instructions_link_url,
         noSelectionsNotification: Drupal.t(
           'You have not selected any search criteria.',
           {},
