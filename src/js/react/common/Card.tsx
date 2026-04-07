@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import ExternalLink from '@/react/common/ExternalLink';
 import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
@@ -114,12 +114,12 @@ function CardItem({
 
         {cardDescription && (
           <div className='card__description'>
-            {cardDescriptionHtml ? parse(cardDescription) : <p {...langAttribute}>{cardDescription}</p>}
+            {cardDescriptionHtml ? htmlToReact(cardDescription) : <p {...langAttribute}>{cardDescription}</p>}
           </div>
         )}
 
         {cardHelptext && (
-          <div className='card__helptext'>{cardHelptextHtml ? parse(cardHelptext) : <p>{cardHelptext}</p>}</div>
+          <div className='card__helptext'>{cardHelptextHtml ? htmlToReact(cardHelptext) : <p>{cardHelptext}</p>}</div>
         )}
 
         <div className='card__metas'>

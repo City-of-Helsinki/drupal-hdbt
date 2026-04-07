@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { useAtomValue } from 'jotai';
 import { hobbiesPublicUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
@@ -111,7 +111,7 @@ export const useResultCardProps = ({
       return imageToElement(image);
     }
     if (imagePlaceholder) {
-      return parse(imagePlaceholder);
+      return htmlToReact(imagePlaceholder);
     }
 
     return <div className='image-placeholder'></div>;

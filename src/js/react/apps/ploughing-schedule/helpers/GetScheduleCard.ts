@@ -1,4 +1,4 @@
-import parse from 'html-react-parser';
+import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 
 const getScheduleCard = (maintenanceClass: number, several?: boolean) => {
   if (maintenanceClass > 0) {
@@ -27,7 +27,7 @@ const getScheduleCard = (maintenanceClass: number, several?: boolean) => {
 
     return {
       title: Drupal.t('Estimated ploughing schedule', {}, { context: 'Ploughing schedule: Result title' }),
-      description: parse(schedules[maintenanceClass]),
+      description: htmlToReact(schedules[maintenanceClass]),
       lead: several ? leadText : '',
     };
   }
