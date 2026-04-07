@@ -37,6 +37,8 @@ interface SearchMonitorTexts {
   tosLinkUrl: string | undefined;
   instructionsLinkUrl?: string;
   noSelectionsNotification: string | undefined;
+  /** Title shown in the dialog header. */
+  dialogTitle?: string;
   /** Description paragraphs shown at the top of the form. */
   formDescription?: string[];
   /** Title shown after successful submission. */
@@ -357,7 +359,9 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })}
+              title={
+                texts.dialogTitle ?? Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })
+              }
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>

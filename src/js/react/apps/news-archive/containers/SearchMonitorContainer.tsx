@@ -45,6 +45,20 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
       enabledNotificationMethods={['email']}
       selectionTags={selectionTags}
       texts={{
+        dialogTitle: Drupal.t('Receive news search alerts by email', {}, { context: 'News search monitor' }),
+        formDescription: [
+          Drupal.t(
+            'You can subscribe to news search alerts for the news you want. First, create a search according to your preferences and subscribe to the news alert.',
+            {},
+            { context: 'News search monitor' },
+          ),
+          Drupal.t(
+            'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+            {},
+            { context: 'News search monitor' },
+          ),
+          Drupal.t('Required fields are indicated with an asterisk (*).', {}, { context: 'News search monitor' }),
+        ],
         tosCheckboxLabel: Drupal.t(
           'I consent to the processing of my personal data for the purpose of the news alert service',
           {},
