@@ -41,11 +41,6 @@ const ProximityFormContainer = () => {
       <AddressSearch
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         value={keyword || ''}
-        helperText={Drupal.t(
-          'Enter the street name and house number',
-          {},
-          { context: 'React search: street input helper' },
-        )}
         id='home_address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}

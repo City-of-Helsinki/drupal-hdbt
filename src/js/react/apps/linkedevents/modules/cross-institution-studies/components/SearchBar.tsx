@@ -1,4 +1,4 @@
-import { SearchInput } from 'hds-react';
+import { Search } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { keywordAtom } from '../store';
 import useSWR from 'swr';
@@ -40,14 +40,6 @@ export const SearchBar = () => {
     },
   );
 
-  const getSuggestions = async () => {
-    if (error || !data) {
-      return [];
-    }
-
-    return data.data.map((item: Event) => ({ value: getNameTranslation(item.name, currentLanguage)?.trim() })) || [];
-  };
-
   const handleChange = (value: string) => {
     updateParams({
       [ApiKeys.COMBINED_TEXT]: value,
@@ -55,23 +47,34 @@ export const SearchBar = () => {
     setKeyword(value);
   };
 
-  const handleSubmit = (value: string) => {
+  const handleSend = (value: string) => {
     handleChange(value);
     updateUrl();
   };
 
   return (
-    <SearchInput
+    <Search
       className='hdbt-search__filter'
-      clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
-      getSuggestions={getSuggestions}
-      hideSearchButton
-      label={Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' })}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
+      hideSubmitButton
+      onSearch={async () => {
+        if (error || !data) {
+          return { options: [] };
+        }
+        const options = data.data.map((item: Event) => {
+          const label = getNameTranslation(item.name, currentLanguage)?.trim() || '';
+          return { label, value: label };
+        });
+        return { options };
+      }}
+      onChange={(e) => handleChange(e.target.value)}
+      onSend={handleSend}
       placeholder={Drupal.t('E.g. biology', {}, { context: 'Cross-institutional studies: search input placeholder' })}
-      searchButtonAriaLabel={Drupal.t('Search', {}, { context: 'React search: submit button label' })}
-      suggestionLabelField='value'
+      texts={{
+        clearButtonAriaLabel_one: Drupal.t('Clear', {}, { context: 'React search' }),
+        clearButtonAriaLabel_multiple: Drupal.t('Clear', {}, { context: 'React search' }),
+        searchLabel: Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' }),
+        searchButtonAriaLabel: Drupal.t('Search', {}, { context: 'React search: submit button label' }),
+      }}
       value={keyword || ''}
     />
   );

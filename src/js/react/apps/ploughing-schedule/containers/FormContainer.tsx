@@ -1,4 +1,4 @@
-import { Button, SearchInput } from 'hds-react';
+import { Button, Search } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useState } from 'react';
 import getSuggestionsQuery from '../helpers/GetSuggestionsQuery';
@@ -37,7 +37,6 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
         // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         const streetNames: SuggestionItemType[] = hits.map((hit: any) => ({ value: hit.fields.street_name[0] }));
 
-        // Remove duplicates
         return streetNames.filter(
           (item, itemIndex, self) => itemIndex === self.findIndex((curr) => curr.value === item.value),
         );
@@ -60,16 +59,21 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
           { context: 'Ploughing schedule: Form description' },
         )}
       </p>
-      <SearchInput
+      <Search
         className='hdbt-search__filter'
-        hideSearchButton
-        label={Drupal.t('Street name', {}, { context: 'Ploughing schedule: Input label' })}
-        suggestionLabelField='value'
-        getSuggestions={getSuggestions}
-        onSubmit={(value) => setAddress(value)}
-        onChange={(value) => setAddress(value)}
-        visibleSuggestions={5}
+        hideSubmitButton
+        onSearch={(searchValue) =>
+          getSuggestions(searchValue).then((results) => ({
+            options: results.map((r) => ({ label: r.value, value: r.value })),
+          }))
+        }
+        onSend={(value) => setAddress(value)}
+        onChange={(e) => setAddress(e.target.value)}
+        visibleOptions={5}
         placeholder={Drupal.t('For example, Mannerheimintie', {}, { context: 'Ploughing schedule: Input placeholder' })}
+        texts={{
+          searchLabel: Drupal.t('Street name', {}, { context: 'Ploughing schedule: Input label' }),
+        }}
         value={address}
       />
       <Button

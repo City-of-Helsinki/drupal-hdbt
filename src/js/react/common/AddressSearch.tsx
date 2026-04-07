@@ -1,4 +1,4 @@
-import { SearchInput } from 'hds-react';
+import { Search } from 'hds-react';
 import { useMemo } from 'react';
 import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
@@ -10,36 +10,42 @@ type SubmitHandler<T> = T extends true ? (address: AddressWithCoordinates) => vo
 
 export const AddressSearch = ({
   className,
+  clearButtonAriaLabel,
+  hideSearchButton,
   includeCoordinates = false,
-  loadingSpinnerFinishedText = Drupal.t(
-    'Finished loading suggestions',
-    {},
-    { context: 'Loading finished indicator for suggestive search' },
-  ),
-  loadingSpinnerText = Drupal.t('Loading suggestions...', {}, { context: 'Loading indicator for suggestive search' }),
+  label,
+  onChange,
   onSubmit,
   searchInputClassname,
   value,
+  visibleSuggestions,
+  // helperText has no equivalent in hds-react v5 Search — accepted but unused
+  helperText: _helperText,
   ...rest
 }: {
   className?: string;
+  clearButtonAriaLabel?: string;
+  hideSearchButton?: boolean;
+  helperText?: string;
   includeCoordinates?: boolean;
+  label?: string;
+  onChange?: (value: string) => void;
   onSubmit: SubmitHandler<typeof includeCoordinates>;
   searchInputClassname?: string;
-} & Omit<React.ComponentProps<typeof SearchInput>, 'suggestionLabelField' | 'getSuggestions' | 'onSubmit'>) => {
+  value?: string;
+  visibleSuggestions?: number;
+} & Omit<React.ComponentProps<typeof Search>, 'onSearch' | 'onSend' | 'onChange' | 'value' | 'hideSubmitButton' | 'visibleOptions' | 'texts'>) => {
   const addressMap = new Map();
 
   const getSuggestions = async (searchTerm?: string) => {
     if (!searchTerm || searchTerm === '') {
       return [];
     }
-    // Palvelukarttaa address search only allows specific characters.
     searchTerm = searchTerm.replace(/[^a-zA-Z0-9.,+&'|\-\s]*/g, '');
 
     const fetchSuggestions = (param: URLSearchParams) => {
       const url = new URL(ServiceMap.EVENTS_URL);
       url.search = param.toString();
-
       return fetch(url.toString()).then((response) => response.json());
     };
 
@@ -63,18 +69,14 @@ export const AddressSearch = ({
         if (includeCoordinates) {
           addressMap.set(resolvedName, addressResult.location?.coordinates);
         }
-
-        return { label: resolvedName };
+        return { label: resolvedName, value: resolvedName };
       });
 
     const [fiResults, svResults] = await results;
-
-    const result = [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
-
-    return result;
+    return [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
   };
 
-  const handleSubmit = (address: string) => {
+  const handleSend = (address: string) => {
     if (includeCoordinates) {
       onSubmit({
         label: address,
@@ -90,13 +92,24 @@ export const AddressSearch = ({
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   const searchInput = useMemo(
     () => (
-      <SearchInput
-        {...{ getSuggestions, loadingSpinnerText, loadingSpinnerFinishedText, value, ...rest }}
+      <Search
+        {...rest}
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
-        onSubmit={handleSubmit}
-        suggestionLabelField='label'
+        hideSubmitButton={hideSearchButton ?? true}
+        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+        onSearch={(searchValue) =>
+          getSuggestions(searchValue).then((options) => ({ options }))
+        }
+        onSend={handleSend}
         style={defaultSearchInputStyle}
-        hideSearchButton={true}
+        texts={{
+          ...(label ? { searchLabel: label } : {}),
+          ...(clearButtonAriaLabel
+            ? { clearButtonAriaLabel_one: clearButtonAriaLabel, clearButtonAriaLabel_multiple: clearButtonAriaLabel }
+            : {}),
+        }}
+        value={value}
+        visibleOptions={visibleSuggestions}
       />
     ),
     // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501

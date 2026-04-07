@@ -50,11 +50,6 @@ const ProximityFormContainer = () => {
         className='hdbt-search__filter'
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         value={keyword || ''}
-        helperText={Drupal.t(
-          'Enter the street name and house number',
-          {},
-          { context: 'React search: street input helper' },
-        )}
         id='keyword'
         label={Drupal.t("The child's home address", {}, { context: 'School search: input label' })}
         onChange={(value: string) => setKeyword(value)}
