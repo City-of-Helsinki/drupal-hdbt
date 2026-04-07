@@ -112,11 +112,21 @@ const SearchMonitor = ({
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
-  // Open dialog automatically when the URL hash matches the configured openHash.
+  // Open dialog on openHash link click without modifying the URL.
   useEffect(() => {
-    if (openHash && window.location.hash === openHash) {
-      setIsFormVisible(true);
-    }
+    if (!openHash) return;
+
+    const handleClick = (event: MouseEvent) => {
+      const target = (event.target as HTMLElement).closest(`a[href="${openHash}"]`);
+      if (target) {
+        event.preventDefault();
+        openerButtonRef.current = target as HTMLElement;
+        setIsFormVisible(true);
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, [openHash]);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
