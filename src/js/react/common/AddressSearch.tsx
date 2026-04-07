@@ -34,7 +34,10 @@ export const AddressSearch = ({
   searchInputClassname?: string;
   value?: string;
   visibleSuggestions?: number;
-} & Omit<React.ComponentProps<typeof Search>, 'onSearch' | 'onSend' | 'onChange' | 'value' | 'hideSubmitButton' | 'visibleOptions' | 'texts'>) => {
+} & Omit<
+  React.ComponentProps<typeof Search>,
+  'onSearch' | 'onSend' | 'onChange' | 'value' | 'hideSubmitButton' | 'visibleOptions' | 'texts'
+>) => {
   const addressMap = new Map();
 
   const getSuggestions = async (searchTerm?: string) => {
@@ -97,9 +100,7 @@ export const AddressSearch = ({
         className={searchInputClassname || 'hdbt-search__input hdbt-search__input--address'}
         hideSubmitButton={hideSearchButton ?? true}
         onChange={onChange ? (e) => onChange(e.target.value) : undefined}
-        onSearch={(searchValue) =>
-          getSuggestions(searchValue).then((options) => ({ options }))
-        }
+        onSearch={(searchValue) => getSuggestions(searchValue).then((options) => ({ options }))}
         onSend={handleSend}
         style={defaultSearchInputStyle}
         texts={{

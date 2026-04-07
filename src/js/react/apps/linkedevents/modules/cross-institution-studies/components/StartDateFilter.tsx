@@ -5,11 +5,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { startDateAtom } from '../store';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 
-export const StartDateFilter = ({
-  dateOptions,
-}: {
-  dateOptions: Map<string, { start?: Date; end?: Date }>;
-}) => {
+export const StartDateFilter = ({ dateOptions }: { dateOptions: Map<string, { start?: Date; end?: Date }> }) => {
   const updateDates = useSetAtom(updateDatesAtom);
   const [value, setValue] = useAtom(startDateAtom);
 

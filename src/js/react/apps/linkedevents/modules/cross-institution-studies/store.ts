@@ -25,92 +25,89 @@ export const visibleParams = [
   'page',
 ];
 
-export const initializeStateAtom = atom(
-  null,
-  (get, set, dateOptions: Map<string, { start?: Date; end?: Date }>) => {
-    const params = new URLSearchParams(window.location.search);
+export const initializeStateAtom = atom(null, (get, set, dateOptions: Map<string, { start?: Date; end?: Date }>) => {
+  const params = new URLSearchParams(window.location.search);
 
-    if (params.get(ApiKeys.COMBINED_TEXT)) {
-      set(keywordAtom, params.get(ApiKeys.COMBINED_TEXT)?.trim() || '');
-    }
+  if (params.get(ApiKeys.COMBINED_TEXT)) {
+    set(keywordAtom, params.get(ApiKeys.COMBINED_TEXT)?.trim() || '');
+  }
 
-    if (params.has(ApiKeys.END) && params.has(ApiKeys.START)) {
-      const start = params.get(ApiKeys.START);
-      const end = params.get(ApiKeys.END);
+  if (params.has(ApiKeys.END) && params.has(ApiKeys.START)) {
+    const start = params.get(ApiKeys.START);
+    const end = params.get(ApiKeys.END);
 
-      if (start && end) {
-        const matchingOption = Array.from(dateOptions.entries()).find(([_, { start: optionStart, end: optionEnd }]) => {
-          return optionStart?.toISOString() === start && optionEnd?.toISOString() === end;
-        });
+    if (start && end) {
+      const matchingOption = Array.from(dateOptions.entries()).find(([_, { start: optionStart, end: optionEnd }]) => {
+        return optionStart?.toISOString() === start && optionEnd?.toISOString() === end;
+      });
 
-        if (matchingOption) {
-          set(startDateAtom, [{ ...optionDefaults, label: matchingOption[0], value: matchingOption[0] }]);
-        }
+      if (matchingOption) {
+        set(startDateAtom, [{ ...optionDefaults, label: matchingOption[0], value: matchingOption[0] }]);
       }
     }
+  }
 
-    if (params.has(ApiKeys.LANGUAGE)) {
-      const enabledLanguages = ['fi', 'en', 'sv'];
-      const selectedLanguages =
-        params
-          .get(ApiKeys.LANGUAGE)
-          ?.split(',')
-          .filter((lang) => enabledLanguages.includes(lang))
-          .map((lang) => ({
-            ...optionDefaults,
-            label: LanguageOptions[lang as keyof typeof LanguageOptions] || lang,
-            selected: true,
-            value: lang,
-          })) || [];
-
-      set(languageAtom, selectedLanguages);
-    }
-
-    if (params.has(ApiKeys.KEYWORDS)) {
-      const allKeywords =
-        params
-          .get(ApiKeys.KEYWORDS)
-          ?.split(',')
-          .map((kw) => kw.trim()) || [];
-      const teachingModeKeywords = allKeywords
-        .filter((keyword) => TeachingModes.has(keyword))
-        .map((keyword) => ({
+  if (params.has(ApiKeys.LANGUAGE)) {
+    const enabledLanguages = ['fi', 'en', 'sv'];
+    const selectedLanguages =
+      params
+        .get(ApiKeys.LANGUAGE)
+        ?.split(',')
+        .filter((lang) => enabledLanguages.includes(lang))
+        .map((lang) => ({
           ...optionDefaults,
-          label: TeachingModes.get(keyword) as string,
+          label: LanguageOptions[lang as keyof typeof LanguageOptions] || lang,
           selected: true,
-          value: keyword,
-        }));
+          value: lang,
+        })) || [];
 
-      set(teachingModeAtom, teachingModeKeywords);
+    set(languageAtom, selectedLanguages);
+  }
+
+  if (params.has(ApiKeys.KEYWORDS)) {
+    const allKeywords =
+      params
+        .get(ApiKeys.KEYWORDS)
+        ?.split(',')
+        .map((kw) => kw.trim()) || [];
+    const teachingModeKeywords = allKeywords
+      .filter((keyword) => TeachingModes.has(keyword))
+      .map((keyword) => ({
+        ...optionDefaults,
+        label: TeachingModes.get(keyword) as string,
+        selected: true,
+        value: keyword,
+      }));
+
+    set(teachingModeAtom, teachingModeKeywords);
+  }
+
+  if (params.has(ApiKeys.SORT)) {
+    const sortValue = params.get(ApiKeys.SORT);
+    const matchingSortOption = sortOptions.find((option) => option.value === sortValue);
+
+    if (matchingSortOption) {
+      set(sortAtom, [matchingSortOption]);
     }
+  }
 
-    if (params.has(ApiKeys.SORT)) {
-      const sortValue = params.get(ApiKeys.SORT);
-      const matchingSortOption = sortOptions.find((option) => option.value === sortValue);
+  if (params.has('page')) {
+    set(pageAtom, parseInt(params.get('page') || '1', 10));
+  }
 
-      if (matchingSortOption) {
-        set(sortAtom, [matchingSortOption]);
-      }
+  for (const key of [...params.keys()]) {
+    if (!visibleParams.includes(key)) {
+      params.delete(key);
     }
+  }
 
-    if (params.has('page')) {
-      set(pageAtom, parseInt(params.get('page') || '1', 10));
-    }
+  const initialParams = get(paramsAtom);
+  const mergedParams = new URLSearchParams(initialParams);
 
-    for (const key of [...params.keys()]) {
-      if (!visibleParams.includes(key)) {
-        params.delete(key);
-      }
-    }
+  for (const [key, value] of params.entries()) {
+    mergedParams.set(key, value);
+  }
 
-    const initialParams = get(paramsAtom);
-    const mergedParams = new URLSearchParams(initialParams);
-
-    for (const [key, value] of params.entries()) {
-      mergedParams.set(key, value);
-    }
-
-    set(paramsAtom, mergedParams);
-    set(submittedParamsAtom, mergedParams);
-  },
-);
+  set(paramsAtom, mergedParams);
+  set(submittedParamsAtom, mergedParams);
+});

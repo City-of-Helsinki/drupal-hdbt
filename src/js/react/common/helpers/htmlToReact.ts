@@ -16,11 +16,14 @@ function nodeToReact(node: Node, key: number): ReactNode {
     else if (name === 'for') props.htmlFor = value;
     else if (name === 'style') {
       props.style = Object.fromEntries(
-        value.split(';').filter(Boolean).map((rule) => {
-          const [prop, val] = rule.split(':');
-          const camel = prop.trim().replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
-          return [camel, val.trim()];
-        })
+        value
+          .split(';')
+          .filter(Boolean)
+          .map((rule) => {
+            const [prop, val] = rule.split(':');
+            const camel = prop.trim().replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
+            return [camel, val.trim()];
+          }),
       );
     } else {
       props[name] = value;

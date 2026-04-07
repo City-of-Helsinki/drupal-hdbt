@@ -1,5 +1,5 @@
-import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 import { formatHDSDate } from '@/react/common/helpers/dateUtils';
+import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
 
 const getDateString = ({ startDate, endDate }: DateSelectDateTimes): string => {
   if (!startDate && !endDate) {
@@ -14,7 +14,11 @@ const getDateString = ({ startDate, endDate }: DateSelectDateTimes): string => {
     return `- ${formatHDSDate(endDate)}`;
   }
 
-  return `${formatHDSDate(startDate!)} - ${formatHDSDate(endDate!)}`;
+  if (startDate && endDate) {
+    return `${formatHDSDate(startDate)} - ${formatHDSDate(endDate)}`;
+  }
+
+  return Drupal.t('All dates', {}, { context: 'Events search' });
 };
 
 export default getDateString;

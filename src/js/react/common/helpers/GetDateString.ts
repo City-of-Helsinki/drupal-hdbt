@@ -20,15 +20,18 @@ export const getDateString = ({ startDate, endDate, showLabels }: DateSelectDate
     return `- ${formatHDSDate(endDate)}`;
   }
 
-  if (showLabels) {
-    return Drupal.t(
-      'From @date until @date2',
-      { '@date': formatHDSDate(startDate!), '@date2': formatHDSDate(endDate!) },
-      { context: 'Events search' },
-    );
+  if (startDate && endDate) {
+    if (showLabels) {
+      return Drupal.t(
+        'From @date until @date2',
+        { '@date': formatHDSDate(startDate), '@date2': formatHDSDate(endDate) },
+        { context: 'Events search' },
+      );
+    }
+    return `${formatHDSDate(startDate)} - ${formatHDSDate(endDate)}`;
   }
 
-  return `${formatHDSDate(startDate!)} - ${formatHDSDate(endDate!)}`;
+  return Drupal.t('All dates', {}, { context: 'Events search' });
 };
 
 export default getDateString;

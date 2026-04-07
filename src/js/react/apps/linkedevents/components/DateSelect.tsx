@@ -30,7 +30,7 @@ function DateSelect() {
       updateDate(date, key);
     }
 
-    setErrors({ ...errors, [errorKey]: date ? isNaN(date.getTime()) : false });
+    setErrors({ ...errors, [errorKey]: date ? Number.isNaN(date.getTime()) : false });
   };
 
   return (
