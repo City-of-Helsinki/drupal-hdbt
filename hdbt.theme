@@ -1232,8 +1232,11 @@ function hdbt_preprocess_views_view(&$variables): void {
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows ?: 0;
 
-  if ($variables['total_rows'] == 1) {
-    $variables['card_heading_level'] = 'h3';
+  $views = [
+    'service_units'
+  ];
+
+  if ($variables['total_rows'] == 1 && in_array($variables['view']->id(), $views)) {
     $variables['view']->result[0]->_entity->card_heading_level = 'h3';
   }
 
