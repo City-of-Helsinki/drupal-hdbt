@@ -1,5 +1,5 @@
 import { Search } from 'hds-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
@@ -37,7 +37,22 @@ export const AddressSearch = ({
   visibleSuggestions,
   ...rest
 }: AddressSearchProps) => {
-  const addressMap = new Map();
+  const addressMap = useRef(new Map<string, [number, number, string]>());
+
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+  const isMountedRef = useRef(false);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+  }, []);
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isMountedRef.current) return;
+    onChangeRef.current?.(e.target.value);
+  }, []);
+
+  const onSubmitRef = useRef(onSubmit);
+  onSubmitRef.current = onSubmit;
 
   const getSuggestions = useCallback(
     async (searchTerm?: string) => {
@@ -46,7 +61,7 @@ export const AddressSearch = ({
       }
       searchTerm = searchTerm.replace(/[^a-zA-Z0-9.,+&'|\-\s]*/g, '');
 
-      const fetchSuggestions = (param: URLSearchParams) => {
+      const fetchSuggestions = async (param: URLSearchParams) => {
         const url = new URL(ServiceMap.EVENTS_URL);
         url.search = param.toString();
         return fetch(url.toString()).then((response) => response.json());
@@ -70,7 +85,7 @@ export const AddressSearch = ({
         result.results.map((addressResult) => {
           const resolvedName: string = getNameTranslation(addressResult.name, langKey) || '';
           if (includeCoordinates) {
-            addressMap.set(resolvedName, addressResult.location?.coordinates);
+            addressMap.current.set(resolvedName, addressResult.location?.coordinates);
           }
           return { label: resolvedName, value: resolvedName };
         });
@@ -78,21 +93,24 @@ export const AddressSearch = ({
       const [fiResults, svResults] = await results;
       return [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
     },
-    [includeCoordinates, addressMap.set],
+    [includeCoordinates],
   );
 
-  const handleSend = (address: string) => {
-    if (includeCoordinates) {
-      onSubmit({
-        label: address,
-        value: addressMap.has(address) ? [...addressMap.get(address), address] : null,
+  const handleSend = useCallback(
+    (address: string) => {
+      if (includeCoordinates) {
+        onSubmitRef.current({
+          label: address,
+          value: addressMap.current.has(address) ? [...addressMap.current.get(address), address] : null,
+          // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
+        } as any);
+      } else {
         // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-      } as any);
-    } else {
-      // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-      onSubmit(address as any);
-    }
-  };
+        onSubmitRef.current(address as any);
+      }
+    },
+    [includeCoordinates],
+  );
 
   const [props] = useState({
     ...rest,
@@ -107,12 +125,17 @@ export const AddressSearch = ({
     },
   });
 
+  const handleSearch = useCallback(
+    (searchValue: string) => getSuggestions(searchValue).then((options) => ({ options })),
+    [getSuggestions],
+  );
+
   return (
     <div className={className || 'hdbt-search__filter'}>
       <Search
         {...props}
-        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
-        onSearch={(searchValue) => getSuggestions(searchValue).then((options) => ({ options }))}
+        onChange={handleChange}
+        onSearch={handleSearch}
         onSend={handleSend}
         value={value}
         visibleOptions={visibleSuggestions}
