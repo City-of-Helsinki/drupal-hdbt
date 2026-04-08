@@ -19,7 +19,8 @@
     "full-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full approve",
     "fast-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast reference",
     "fast-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast test",
-    "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve"
+    "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve",
+    "validate-ts": "tsc --noEmit"
   },
   "@comment dependencies": [
     "The following packages were updated manually.",
@@ -61,7 +62,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "2.3.6",
-    "tar-fs": ">=3.0.9"
+    "tar-fs": ">=3.0.9",
+    "typescript": "6.0.2"
   },
   "browserslist": [
     "last 3 major versions",
