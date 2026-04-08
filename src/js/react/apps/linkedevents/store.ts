@@ -227,7 +227,10 @@ export const setEndDisabledAtom = atom(null, (get, set, disabled: boolean) => {
 export const updateDateAtom = atom(null, (get, set, date: Date | undefined, key: string) => {
   const endDisabled = get(endDisabledAtom);
   const dateAtom = key === 'start' ? startDateAtom : endDateAtom;
-  const dates = { [key]: date };
+  const dates: { start?: Date; end?: Date } = {
+    start: key === 'start' ? date : get(startDateAtom),
+    end: key === 'end' ? date : get(endDateAtom),
+  };
 
   if (key === 'start' && endDisabled) {
     dates.end = date;
