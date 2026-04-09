@@ -16,7 +16,9 @@
       {% set hearings_count = content.list[0]['#helfi_hearings'].get('count')[0].value %}
       {% set total_rows = hearings_count %}
       {% set rows = content.list %}
-      {% embed '@hdbt/component/content-list-with-count.twig'%}
+      {% embed '@hdbt/component/content-list-with-count.twig' with {
+        show_count_container: true,
+      }%}
         {% block count_container%}
           {% if total_rows %}
             {{ total_rows }} {% trans with {'context': 'Hearings count'}%}hearing open for commenting{% plural total_rows %}hearings open for commenting{% endtrans %}
