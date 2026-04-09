@@ -209,3 +209,6 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
 }
 
+.hdbt-search--react__form-container .hdbt-search__input--address {
+  max-width: none;
+}
