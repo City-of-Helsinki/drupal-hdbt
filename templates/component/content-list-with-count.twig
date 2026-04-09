@@ -29,9 +29,9 @@
   {{ attachment_before }}
 
   <div class="unit-search__results" data-id-number="{{ dom_id }}">
-    {% if total_rows != 1 %}
+    {% if id != 'service_units' or total_rows != 1 %}
       <h3 class="unit-search__count-container">
-        {% block count_container%}
+        {% block count_container %}
           {%- if total_rows -%}
             {{ total_rows }} {% trans with {'context': 'Unit search count'} %}result{% plural total_rows %}results{% endtrans %}
           {%- else -%}
