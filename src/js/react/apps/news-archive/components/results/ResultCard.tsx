@@ -1,8 +1,7 @@
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
 import type NewsItem from '../../types/NewsItem';
-
-type ImageUrls = { [key: string]: string };
+import { useMainImage } from '@/react/common/hooks/useMainImage';
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;
@@ -10,18 +9,16 @@ interface ResultCardProps extends NewsItem {
 }
 
 const ResultCard = ({
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
-  alt,
   cardModifierClass,
   cardTitleLevel,
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
-  field_main_image_caption,
   field_photographer,
   main_image_url,
   title,
   published_at,
   url,
 }: ResultCardProps) => {
+  const { src, keyedStyles } = useMainImage(main_image_url);
+
   const getDate = () => {
     if (!published_at || !published_at.length) {
       return undefined;
@@ -38,24 +35,16 @@ const ResultCard = ({
   };
 
   const getImage = () => {
-    if (!main_image_url || !main_image_url.length || !main_image_url[0]) {
+    if (!main_image_url?.toString().length) {
       return undefined; // No image to display
-    }
-
-    let imageUrls: ImageUrls = {};
-
-    try {
-      imageUrls = typeof main_image_url?.[0] === 'string' ? JSON.parse(main_image_url?.[0]) : main_image_url?.[0];
-    } catch (e) {
-      console.error('Failed to parse main_image_url', e);
-      return undefined; // Return undefined if parsing fails
     }
 
     return (
       <CardPicture
         alt=''
         photographer={field_photographer?.length ? field_photographer[0] : undefined}
-        imageUrls={imageUrls}
+        imageUrls={keyedStyles}
+        src={src}
       />
     );
   };

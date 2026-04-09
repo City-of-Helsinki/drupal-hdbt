@@ -2,6 +2,8 @@ import useSWR from 'swr';
 import type { PublicConfiguration } from 'swr/_internal';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Global from '../enum/Global';
+import { useAtomValue } from 'jotai';
+import { getElasticUrlAtom } from '../store';
 
 type useIndexQueryProps = {
   // Dev purposes only, use this to debug certain requests
@@ -15,9 +17,10 @@ type useIndexQueryProps = {
 } & Partial<PublicConfiguration>; // Allows passing SWR hook options
 
 const useIndexQuery = ({ debug, query, multi, key, ...rest }: useIndexQueryProps) => {
+  const url = useAtomValue(getElasticUrlAtom);
+
   const fetcher = () => {
     const index = Global.INDEX;
-    const url: string | undefined = drupalSettings?.helfi_news_archive?.elastic_proxy_url;
     const endpoint = multi ? '_msearch' : '_search';
     const contentType = multi ? 'application/x-ndjson' : 'application/json';
 

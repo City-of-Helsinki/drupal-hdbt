@@ -17,14 +17,14 @@ const UseProximityQuery = (params: SearchParams) => {
 
   const fetcher = async () => {
     const { index } = AppSettings;
-    const { address, sv_only } = params;
+    const { home_address, sv_only } = params;
 
     let coordinates = null;
     let resolvedName = null;
     let ids = null;
 
-    if (address) {
-      let addresses = await getAddresses(getAddressUrls(address));
+    if (home_address) {
+      let addresses = await getAddresses(getAddressUrls(home_address));
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       addresses = addresses.filter((_address: any) => _address.results.length);
 
@@ -34,7 +34,7 @@ const UseProximityQuery = (params: SearchParams) => {
       }
     }
 
-    if (address && !coordinates) {
+    if (home_address && !coordinates) {
       return null;
     }
 

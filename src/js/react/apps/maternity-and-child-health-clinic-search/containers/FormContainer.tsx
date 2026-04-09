@@ -8,7 +8,7 @@ import type SearchParams from '../types/SearchParams';
 
 type SubmitFormType = HTMLFormElement & { sv_only: HTMLInputElement };
 
-const ProximityFormContainer = ({ initialParams }: { initialParams: SearchParams | null }) => {
+const ProximityFormContainer = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const stagedParams = useAtomValue(stagedParamsAtom);
   const setParams = useSetAtom(paramsAtom);
@@ -21,7 +21,7 @@ const ProximityFormContainer = ({ initialParams }: { initialParams: SearchParams
     const params: SearchParams = {};
 
     if (keyword?.length) {
-      params.address = keyword;
+      params.home_address = keyword;
     }
 
     params.sv_only = sv_only.checked;
@@ -41,13 +41,13 @@ const ProximityFormContainer = ({ initialParams }: { initialParams: SearchParams
       <AddressSearch
         className='hdbt-search__filter hdbt-search--react__text-field'
         clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
-        defaultValue={initialParams?.address || ''}
+        value={keyword || ''}
         helperText={Drupal.t(
           'Enter the street name and house number',
           {},
           { context: 'React search: street input helper' },
         )}
-        id='address'
+        id='home_address'
         label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}
         onSubmit={(address: string) => handleAddressSubmit(address, setKeyword)}

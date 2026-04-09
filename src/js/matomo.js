@@ -187,6 +187,7 @@ function getBrowserSize() {
       'time',
       'complianz_scan_token',
       'complianz_id',
+      'home_address',
     ];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     _paq.push(['setExcludedQueryParams', excludedParams]);
