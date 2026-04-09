@@ -13,32 +13,30 @@
     }
   %}
     {% block component_content %}
-      <div class="hearings__list">
-        {% set hearings_count = content.list[0]['#helfi_hearings'].get('count')[0].value %}
-        {% set total_rows = hearings_count %}
-        {% set rows = content.list %}
-        {% embed '@hdbt/component/content-list-with-count.twig'%}
-          {% block count_container%}
-            {% if total_rows %}
-              {{ total_rows }} {% trans with {'context': 'Hearings count'}%}hearing open for commenting{% plural total_rows %}hearings open for commenting{% endtrans %}
-            {% else %}
-              {{ 'At the moment there is no open hearings for commenting.'|t }}
-            {% endif %}
-          {% endblock count_container %}
-        {% endembed %}
-        {% if content.list %}
-          {% set all_hearings_label = 'See all hearings'|t({},{'context': 'See all hearings link text'}) %}
-        {% else %}
-          {% set all_hearings_label = 'See all already closed hearings'|t({},{'context': 'See closed hearings link text'}) %}
-        {% endif %}
-        <div class="see-all-button">
-          {% include '@hdbt/navigation/link-button.html.twig' with {
-            type: 'primary',
-            label: all_hearings_label,
-            url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ language.id,
-            link_options: {'class': ['hearings__link']},
-          } %}
-        </div>
+      {% set hearings_count = content.list[0]['#helfi_hearings'].get('count')[0].value %}
+      {% set total_rows = hearings_count %}
+      {% set rows = content.list %}
+      {% embed '@hdbt/component/content-list-with-count.twig'%}
+        {% block count_container%}
+          {% if total_rows %}
+            {{ total_rows }} {% trans with {'context': 'Hearings count'}%}hearing open for commenting{% plural total_rows %}hearings open for commenting{% endtrans %}
+          {% else %}
+            {{ 'At the moment there is no open hearings for commenting.'|t }}
+          {% endif %}
+        {% endblock count_container %}
+      {% endembed %}
+      {% if content.list %}
+        {% set all_hearings_label = 'See all hearings'|t({},{'context': 'See all hearings link text'}) %}
+      {% else %}
+        {% set all_hearings_label = 'See all already closed hearings'|t({},{'context': 'See closed hearings link text'}) %}
+      {% endif %}
+      <div class="see-all-button">
+        {% include '@hdbt/navigation/link-button.html.twig' with {
+          type: 'primary',
+          label: all_hearings_label,
+          url: 'https://kerrokantasi.hel.fi/hearings/list?lang=' ~ language.id,
+          link_options: {'class': ['hearings__link']},
+        } %}
       </div>
     {% endblock component_content %}
   {% endembed %}
