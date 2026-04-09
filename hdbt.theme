@@ -1234,7 +1234,7 @@ function hdbt_preprocess_views_view(&$variables): void {
 
   $variables['show_count_container'] = TRUE;
 
-  // The amount of results is not shown in service units view if 
+  // The amount of results is not shown in service units view if
   // there's only one result. Heading level needs to be adjusted to match
   // accessibility requirements. Doing this via custom view plugin instead
   // of mutating the _entity would be an overkill.
