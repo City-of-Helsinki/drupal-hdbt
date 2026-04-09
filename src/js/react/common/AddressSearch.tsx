@@ -1,6 +1,6 @@
 import { Search } from 'hds-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { defaultSearchInputStyle } from '@/react/common/constants/searchInputStyle';
+import { defaultSearchInputTheme } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
 import getNameTranslation from './helpers/ServiceMap';
@@ -116,7 +116,7 @@ export const AddressSearch = ({
     ...rest,
     className: searchInputClassname || 'hdbt-search__input hdbt-search__input--address',
     hideSubmitButton: hideSearchButton ?? true,
-    style: defaultSearchInputStyle,
+    theme: defaultSearchInputTheme,
     texts: {
       ...(label ? { label: label } : {}),
       ...(clearButtonAriaLabel
