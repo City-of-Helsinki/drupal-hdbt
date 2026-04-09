@@ -29,7 +29,7 @@
   {{ attachment_before }}
 
   <div class="unit-search__results" data-id-number="{{ dom_id }}">
-    {% if id != 'service_units' or total_rows != 1 %}
+    {% if show_count_container %}
       <h3 class="unit-search__count-container">
         {% block count_container %}
           {%- if total_rows -%}
