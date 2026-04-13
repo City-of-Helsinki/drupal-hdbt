@@ -114,7 +114,7 @@ export const AddressSearch = ({
 
   const [props] = useState({
     ...rest,
-    className: searchInputClassname || 'hdbt-search__input hdbt-search__input--address',
+    className: searchInputClassname || 'hdbt-search__input hdbt-search__search-input',
     hideSubmitButton: hideSearchButton ?? true,
     theme: defaultSearchInputTheme,
     texts: {
