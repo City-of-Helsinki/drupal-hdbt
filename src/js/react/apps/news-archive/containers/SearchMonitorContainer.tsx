@@ -68,7 +68,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
         tosLinkText: Drupal.t('Read the privacy notice', {}, { context: 'News search monitor' }),
         tosLinkUrl: hakuvahti.texts.hakuvahti_tos_link_url || '',
         noSelectionsNotification: Drupal.t(
-          'You have not selected any search criteria.',
+          'You have not selected any search criteria. You will be notified of all the latest news.',
           {},
           { context: 'News search monitor' },
         ),
