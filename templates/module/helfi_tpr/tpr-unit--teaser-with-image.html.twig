@@ -16,12 +16,17 @@
   ]
 %}
 
+{% if entity.card_heading_level %}
+  {% set card_heading_level = entity.card_heading_level %}
+{% endif %}
+
 {% embed '@hdbt/component/card.twig' with {
   card_modifier_class: card_tpr_classes|join(' ') ~ teaser_class,
   card_image: card_image,
   card_title: entity.label,
   card_url: unit_url,
   card_tags: card_tags,
+  card_title_level: card_heading_level,
   card_metas: [
     {
       icon: 'location',

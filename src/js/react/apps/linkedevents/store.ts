@@ -294,6 +294,19 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
 
     const [, , addressName] = coordinates;
     set(addressAtom, addressName);
+
+    // Update the Helsinki Near You breadcrumb if present.
+    const breadcrumbLink = document.getElementById('hny-address-breadcrumb');
+    if (breadcrumbLink instanceof HTMLAnchorElement) {
+      const url = new URL(breadcrumbLink.href);
+      url.searchParams.set('home_address', addressName);
+      breadcrumbLink.href = url.toString();
+      breadcrumbLink.textContent = Drupal.t(
+        'Results for @address',
+        { '@address': addressName },
+        { context: 'Helsinki near you' },
+      );
+    }
   }
 
   set(pageAtom, 1);
