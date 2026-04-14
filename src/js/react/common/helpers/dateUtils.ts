@@ -32,3 +32,19 @@ export function addDays(d: Date, n: number): Date {
   result.setDate(result.getDate() + n);
   return result;
 }
+
+export function addMonths(d: Date, n: number): Date {
+  const result = new Date(d);
+  result.setMonth(result.getMonth() + n);
+  return result;
+}
+
+export function addYears(d: Date, n: number): Date {
+  const result = new Date(d);
+  result.setFullYear(result.getFullYear() + n);
+  return result;
+}
+
+export function formatHDSDateUTC(d: Date): string {
+  return `${d.getUTCDate()}.${d.getUTCMonth() + 1}.${d.getUTCFullYear()}`;
+}
