@@ -31,10 +31,6 @@
   }
 }
 
-.unit-search__content {
-  margin-top: $spacing-double;
-}
-
 .unit-search__content .form-actions {
   width: 100%;
 
@@ -49,6 +45,8 @@
 }
 
 .unit-search__content .views-exposed-form {
+  margin-bottom: $spacing-quadruple;
+
   @include breakpoint($breakpoint-m) {
     align-items: flex-end;
     display: flex;
@@ -73,7 +71,6 @@
 
 .unit-search__results {
   display: block;
-  margin-top: $spacing-quadruple;
   width: 100%;
 
   > .card:first-of-type,

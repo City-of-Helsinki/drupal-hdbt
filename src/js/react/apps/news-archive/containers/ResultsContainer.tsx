@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent } from 'react';
+import { useRef, type SyntheticEvent } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
@@ -14,6 +14,7 @@ import useIndexQuery from '../hooks/useIndexQuery';
 import useQueryString from '../hooks/useQueryString';
 import { setPageAtom, urlAtom } from '../store';
 import type NewsItem from '../types/NewsItem';
+import SearchMonitorContainer from './SearchMonitorContainer';
 
 type ResultsContainerProps = { hidePagination?: boolean };
 
@@ -28,7 +29,8 @@ const ResultsContainer = ({
   const queryString = useQueryString(urlParams);
   const setPage = useSetAtom(setPageAtom);
   const { data, error } = useIndexQuery({ keepPreviousData: true, query: queryString });
-  const scrollTarget = createRef<HTMLDivElement>();
+  const scrollTarget = useRef<HTMLDivElement>(null);
+  const dialogTargetRef = useRef<HTMLDivElement>(null);
   const choices =
     Boolean(urlParams.groups?.length) ||
     Boolean(urlParams.neighbourhoods?.length) ||
@@ -52,19 +54,44 @@ const ResultsContainer = ({
     return <ResultsError error={error} className='react-search__results' ref={!hideForm ? scrollTarget : undefined} />;
   }
 
-  if (!results?.length) {
-    return <ResultsEmpty ref={scrollTarget} />;
-  }
+  const searchMonitor = drupalSettings?.hakuvahti && <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />;
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
     setPage(newPage);
   };
 
+  if (!results?.length) {
+    return (
+      <>
+        <div ref={dialogTargetRef} />
+        {hideForm ? (
+          <div className='react-search__results'>
+            <p>
+              {Drupal.t(
+                'No results were found for the criteria you entered. Try changing your search criteria.',
+                {},
+                { context: 'React search: no search results' },
+              )}
+            </p>
+          </div>
+        ) : (
+          <ResultsEmpty
+            leftActions={searchMonitor || undefined}
+            resultText={Drupal.t('No results', {}, { context: 'News archive no results title' })}
+            ref={scrollTarget}
+          />
+        )}
+      </>
+    );
+  }
+
   return (
     <div className='react-search__results'>
+      <div ref={dialogTargetRef} />
       {hideForm || (
         <ResultsHeader
+          leftActions={searchMonitor || undefined}
           resultText={Drupal.formatPlural(
             total,
             '@count search result',
