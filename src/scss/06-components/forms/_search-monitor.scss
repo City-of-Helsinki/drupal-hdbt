@@ -108,6 +108,12 @@ html.Dialog-module_dialogVisibleBodyWithHiddenScrollbars__3M__P {
   }
 }
 
+.hdbt-search__search-monitor .hdbt-search__search-monitor__terms--error {
+  --border-color-unselected: var(--color-error);
+  --border-color-unselected-hover: var(--color-error);
+  --border-color-unselected-focus: var(--color-error);
+}
+
 .hdbt-search__search-monitor__terms-link {
   @include font('small');
   display: block;

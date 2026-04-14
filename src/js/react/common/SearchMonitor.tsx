@@ -116,14 +116,13 @@ const SearchMonitor = ({
       const errorList = Object.entries(errors)
         .filter(([key, error]) => key !== 'allVisible' && error)
         .map(([key, error]) => {
-          if ((key === 'termsAgreed' && !termsAgreed) || (key === 'email' && !email) || (key === 'phone' && !phone)) {
-            const fieldLabel =
-              key === 'email'
-                ? emailLabel
-                : key === 'phone'
-                  ? phoneLabel
-                  : Drupal.t('Terms of service', {}, { context: 'Search monitor' });
-            return `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}: ${fieldLabel}`;
+          if (key === 'termsAgreed' && !termsAgreed) {
+            return `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}: ${Drupal.t('Terms of service', {}, { context: 'Search monitor' })}`;
+          }
+
+          if ((key === 'email' && !email) || (key === 'phone' && !phone)) {
+            const fieldLabel = key === 'email' ? emailLabel : phoneLabel;
+            return `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor' })}: ${fieldLabel}`;
           }
 
           return (error as FormError).message;
@@ -179,13 +178,6 @@ const SearchMonitor = ({
   useEffect(() => {
     setErrors((prevErrors) => {
       const formErrors: FormErrorContainer = {};
-      if (!termsAgreed) {
-        formErrors.termsAgreed = {
-          message: `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}.`,
-          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
-        };
-      }
-
       if (showEmail) {
         if (!email) {
           formErrors.email = {
@@ -227,6 +219,13 @@ const SearchMonitor = ({
             visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
           };
         }
+      }
+
+      if (!termsAgreed) {
+        formErrors.termsAgreed = {
+          message: `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}.`,
+          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
+        };
       }
 
       return Object.keys(formErrors).length > 0 ? formErrors : null;
@@ -482,6 +481,7 @@ const SearchMonitor = ({
                     className='hdbt-search__search-monitor__phone'
                     errorText={phoneError}
                     id='hdbt-search__search-monitor__phone'
+                    invalid={!!phoneError}
                     label={phoneLabel}
                     name='hdbt-search__search-monitor__phone'
                     onChange={(event) => setPhone(event.target.value)}
@@ -497,6 +497,7 @@ const SearchMonitor = ({
                     className='hdbt-search__search-monitor__email'
                     errorText={emailError}
                     id='hdbt-search__search-monitor__email'
+                    invalid={!!emailError}
                     label={emailLabel}
                     name='hdbt-search__search-monitor__email'
                     onChange={(event) => setEmail(event.target.value)}
@@ -518,7 +519,7 @@ const SearchMonitor = ({
 
                 <Checkbox
                   checked={termsAgreed}
-                  className='hdbt-search__search-monitor__terms'
+                  className={`hdbt-search__search-monitor__terms${termsError ? ' hdbt-search__search-monitor__terms--error' : ''}`}
                   errorText={termsError}
                   id='hdbt-search__search-monitor__terms'
                   label={`${texts.tosCheckboxLabel}  *`}
