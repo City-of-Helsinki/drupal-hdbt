@@ -212,3 +212,12 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 .hdbt-search--react__form-container .hdbt-search__search-input {
   max-width: none;
 }
+
+// HDS 5.0 breaks styling for dropdown checkboxes. Override styles with stupid selectors. Remove if it gets fixed.
+.ModularOptionList-module_listContainer__27JYq .ModularOptionList-module_list__1k-XO .ModularOptionList-module_multiSelectListItem__3iZa0 .ModularOptionList-module_checkboxContainer__SXw4b label::after {
+  --background-hover: var(--color-black);
+  --background-selected: var(--hdbt-color-black);
+  --border-color-selected: var(--hdbt-color-black);
+  --border-color-selected-hover: var(--hdbt-color-black);
+  --border-color-selected-focus: var(--hdbt-color-black);
+}
