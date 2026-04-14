@@ -178,6 +178,27 @@ const SearchMonitor = ({
   useEffect(() => {
     setErrors((prevErrors) => {
       const formErrors: FormErrorContainer = {};
+      if (showPhone) {
+        if (!phone) {
+          formErrors.phone = {
+            message: `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor' })}.`,
+            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
+          };
+        }
+
+        const phoneRegex = /^\+?[0-9\s-]{6,}$/;
+        if (phone && !phoneRegex.test(phone)) {
+          formErrors.phone = {
+            message: Drupal.t(
+              'The phone number you entered is not in the right format.',
+              {},
+              { context: 'Search monitor' },
+            ),
+            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
+          };
+        }
+      }
+
       if (showEmail) {
         if (!email) {
           formErrors.email = {
@@ -196,27 +217,6 @@ const SearchMonitor = ({
               { context: 'Search monitor' },
             ),
             visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
-          };
-        }
-      }
-
-      if (showPhone) {
-        if (!phone) {
-          formErrors.phone = {
-            message: `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor' })}.`,
-            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
-          };
-        }
-
-        const phoneRegex = /^\+?[0-9\s-]{6,}$/;
-        if (phone && !phoneRegex.test(phone)) {
-          formErrors.phone = {
-            message: Drupal.t(
-              'The phone number you entered is not in the right format.',
-              {},
-              { context: 'Search monitor' },
-            ),
-            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
           };
         }
       }
