@@ -37,6 +37,8 @@ interface SearchMonitorTexts {
   tosLinkUrl: string | undefined;
   instructionsLinkUrl?: string;
   noSelectionsNotification: string | undefined;
+  /** Title shown in the dialog header. */
+  dialogTitle?: string;
   /** Description paragraphs shown at the top of the form. */
   formDescription?: string[];
   /** Title shown after successful submission. */
@@ -58,6 +60,8 @@ interface SearchMonitorProps {
   elasticQuery: string;
   /** Set to true if the query can contain user data. */
   secureQuery?: true;
+  /** URL hash (e.g. '#open-hakuvahti') that auto-opens the dialog on page load. */
+  openHash?: string;
 }
 
 const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor' });
@@ -93,6 +97,7 @@ const SearchMonitor = ({
   selectionTags,
   texts,
   secureQuery,
+  openHash,
 }: SearchMonitorProps) => {
   const openDialogButtonRef = useRef<HTMLElement | null>(null);
 
@@ -106,6 +111,23 @@ const SearchMonitor = ({
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+
+  // Open dialog on openHash link click without modifying the URL.
+  useEffect(() => {
+    if (!openHash) return;
+
+    const handleClick = (event: MouseEvent) => {
+      const target = (event.target as HTMLElement).closest(`a[href="${openHash}"]`);
+      if (target) {
+        event.preventDefault();
+        openerButtonRef.current = target as HTMLElement;
+        setIsFormVisible(true);
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [openHash]);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
@@ -357,7 +379,9 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })}
+              title={
+                texts.dialogTitle ?? Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })
+              }
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>

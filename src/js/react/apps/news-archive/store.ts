@@ -2,12 +2,18 @@ import { atom } from 'jotai';
 import NewsSearchParams from './helpers/NewsSearchParams';
 import type URLParams from './types/URLParams';
 
+type OptionType = { label: string; value: string };
+
 const initialParamString = drupalSettings.helfi_news_archive.default_query ?? window.location.search;
 const params = new NewsSearchParams(initialParamString);
 
 const initialParams = params.toInitialValue();
 
 export const urlAtom = atom<URLParams>(initialParams);
+
+export const topicOptionsAtom = atom<OptionType[]>([]);
+export const neighbourhoodOptionsAtom = atom<OptionType[]>([]);
+export const groupOptionsAtom = atom<OptionType[]>([]);
 
 export const urlUpdateAtom = atom(null, (_get, set, values: URLParams) => {
   // Set atom value
