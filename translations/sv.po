@@ -970,6 +970,34 @@ msgctxt "Job search monitor"
 msgid "Read the recruitment privacy notice"
 msgstr "Bekanta dig med dataskyddsbeskrivningen för rekrytering"
 
+msgctxt "News search monitor"
+msgid "Receive news search alerts by email"
+msgstr "Beställ sökvakten för nyheter till din e-post"
+
+msgctxt "News search monitor"
+msgid "You can subscribe to news search alerts for the news you want. First, create a search according to your preferences and subscribe to the news alert."
+msgstr "Du kan beställa en sökvakt för nyheter enligt dina önskemål. Gör först en sökning enligt dina önskemål och spara den som sökvakt."
+
+msgctxt "News search monitor"
+msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgstr "Du får information om nya träffar till din e-post högst en gång per dag. Du kan avsluta din beställning via en länk som finns i varje meddelande."
+
+msgctxt "News search monitor"
+msgid "Required fields are indicated with an asterisk (*)."
+msgstr "Obligatoriska fält är markerade med en asterisk (*)."
+
+msgctxt "News search monitor"
+msgid "I consent to the processing of my personal data for the purpose of the news alert service"
+msgstr "Jag godkänner behandlingen av mina personuppgifter för sökvakten"
+
+msgctxt "News search monitor"
+msgid "Read the privacy notice"
+msgstr "Bekanta dig med dataskyddsbeskrivningen"
+
+msgctxt "News search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Du har inte valt några sökkriterier."
+
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
 msgstr "Barngruppernas kontaktuppgifter"

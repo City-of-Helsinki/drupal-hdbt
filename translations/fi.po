@@ -972,6 +972,34 @@ msgctxt "Job search monitor"
 msgid "Read the recruitment privacy notice"
 msgstr "Tutustu rekrytoinnin tietosuojaselosteeseen"
 
+msgctxt "News search monitor"
+msgid "Receive news search alerts by email"
+msgstr "Tilaa uutisten hakuvahti sähköpostiisi"
+
+msgctxt "News search monitor"
+msgid "You can subscribe to news search alerts for the news you want. First, create a search according to your preferences and subscribe to the news alert."
+msgstr "Voit tilata hakuvahdin haluamistasi uutisista. Tee ensin toiveidesi mukainen haku ja tilaa hakuvahti."
+
+msgctxt "News search monitor"
+msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "News search monitor"
+msgid "Required fields are indicated with an asterisk (*)."
+msgstr "Pakolliset kentät on merkitty tähdellä (*)."
+
+msgctxt "News search monitor"
+msgid "I consent to the processing of my personal data for the purpose of the news alert service"
+msgstr "Hyväksyn henkilötietojeni käsittelyn hakuvahtia varten"
+
+msgctxt "News search monitor"
+msgid "Read the privacy notice"
+msgstr "Tutustu tietosuojaselosteeseen"
+
+msgctxt "News search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Et ole valinnut yhtään hakuehtoa."
+
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
 msgstr "Päiväkotiryhmien yhteystiedot"
