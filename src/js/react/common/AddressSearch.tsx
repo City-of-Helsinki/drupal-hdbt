@@ -41,13 +41,14 @@ export const AddressSearch = ({
 
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
-  const isMountedRef = useRef(false);
 
   useEffect(() => {
-    isMountedRef.current = true;
-  }, []);
+    if (value) {
+      onChangeRef.current?.(value);
+    }
+  }, [value]);
+
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isMountedRef.current) return;
     onChangeRef.current?.(e.target.value);
   }, []);
 
