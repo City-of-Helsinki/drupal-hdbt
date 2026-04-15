@@ -48,7 +48,7 @@
 <div{{ create_attribute(hero_wrapper_attributes) }}>
   {% embed "@hdbt/misc/container.twig" with {container_element: 'hero'} %}
     {% block container_content %}
-      <div class="hero__text-content">
+      <div class="hero__text-content" {{ is_search ? 'role="search"' }}>
         {# Hyphenate the visible title, but share to screen readers unhyphenated version as for example NVDA reads hyphenated text poorly #}
         <h1 class="hero__title hyphenate" aria-labelledby="page_title">{{ title }}</h1>
         <span class="is-hidden" id="page_title">{{ title }}</span>
