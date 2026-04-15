@@ -1550,7 +1550,7 @@ msgctxt "Search monitor"
 msgid "Phone number"
 msgstr "Telefonnummer"
 
-msgctxt "Search monitor terms"
+msgctxt "Search monitor"
 msgid "Terms of service"
 msgstr "Användarvillkoren"
 
