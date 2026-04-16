@@ -5,14 +5,14 @@ import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import ApiKeys from '../../../enum/ApiKeys';
 import { loadableInitialUrlAtom, updateParamsAtom, updateUrlAtom } from '../../../store';
 import type Event from '../../../types/Event';
-import { keywordAtom } from '../store';
+import { keywordAtom, visibleParams } from '../store';
 
 export const SearchBar = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
+
   const [urlData] = useAtom(loadableInitialUrlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-
   const { currentLanguage } = drupalSettings.path;
 
   const handleChange = useCallback(
@@ -28,7 +28,7 @@ export const SearchBar = () => {
   const handleSend = useCallback(
     (value: string) => {
       handleChange(value);
-      updateUrl();
+      updateUrl(visibleParams);
     },
     [handleChange, updateUrl],
   );
@@ -76,7 +76,10 @@ export const SearchBar = () => {
     <Search
       {...props}
       onSearch={handleSearch}
-      onChange={(e) => handleChange(e.target.value)}
+      onChange={(e) => {
+        if (!e.target.value && !e.nativeEvent) return;
+        handleChange(e.target.value);
+      }}
       onSend={handleSend}
       value={keyword || ''}
     />

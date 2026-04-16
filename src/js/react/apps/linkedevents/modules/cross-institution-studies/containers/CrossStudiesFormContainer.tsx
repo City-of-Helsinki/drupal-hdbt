@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { type FormEvent, useMemo } from 'react';
+import { type FormEvent, useEffect, useMemo } from 'react';
 import { endOfDay, startOfDay } from '@/react/common/helpers/dateUtils';
 import SubmitButton from '../../../components/SubmitButton';
 import { formErrorsAtom, updateUrlAtom } from '../../../store';
@@ -75,10 +75,12 @@ export const CrossStudiesFormContainer = ({
   const initializeAtom = useSetAtom(initializeStateAtom);
   const dateOptions = useMemo(() => generateDateOptions(dateOverride), [dateOverride]);
 
-  if (!initialized) {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally run once on mount
+  useEffect(() => {
+    if (initialized) return;
     initializeAtom(dateOptions);
     initialize();
-  }
+  }, []);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -86,7 +88,7 @@ export const CrossStudiesFormContainer = ({
   };
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+    // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
     <form className='hdbt-search--react__form-container' onSubmit={handleSubmit} role='search'>
       <div className='event-form__filters-container'>
         <SearchBar />
