@@ -1,12 +1,11 @@
 import { Search } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { keywordAtom } from '../store';
-import useSWR from 'swr';
-import { loadableInitialUrlAtom, updateParamsAtom, updateUrlAtom } from '../../../store';
+import { useCallback, useState } from 'react';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import ApiKeys from '../../../enum/ApiKeys';
+import { loadableInitialUrlAtom, updateParamsAtom, updateUrlAtom } from '../../../store';
 import type Event from '../../../types/Event';
-import { useCallback, useState } from 'react';
+import { keywordAtom } from '../store';
 
 export const SearchBar = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
@@ -15,31 +14,6 @@ export const SearchBar = () => {
   const updateParams = useSetAtom(updateParamsAtom);
 
   const { currentLanguage } = drupalSettings.path;
-
-  const getRequestUrl = () => {
-    if (urlData.state !== 'hasData') {
-      return null;
-    }
-    const url = new URL(urlData.data);
-    url.searchParams.set(ApiKeys.COMBINED_TEXT, keyword);
-    return url.toString();
-  };
-
-  const { data, error } = useSWR(
-    keyword?.length ? getRequestUrl() : null,
-    async (url) => {
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error('Failed to fetch search suggestions');
-      }
-      return res.json();
-    },
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      shouldRetryOnError: false,
-    },
-  );
 
   const handleChange = useCallback(
     (value: string) => {
@@ -73,16 +47,30 @@ export const SearchBar = () => {
     },
   });
 
-  const handleSearch = useCallback(async () => {
-    if (error || !data) {
-      return { options: [] };
-    }
-    const options = data.data.map((item: Event) => {
-      const label = getNameTranslation(item.name, currentLanguage)?.trim() || '';
-      return { label, value: label };
-    });
-    return { options };
-  }, [data, error, currentLanguage]);
+  const handleSearch = useCallback(
+    async (value: string) => {
+      if (!value?.length || urlData.state !== 'hasData') {
+        return { options: [] };
+      }
+      try {
+        const url = new URL(urlData.data);
+        url.searchParams.set(ApiKeys.COMBINED_TEXT, value);
+        const res = await fetch(url.toString());
+        if (!res.ok) {
+          return { options: [] };
+        }
+        const data = await res.json();
+        const options = data.data.map((item: Event) => {
+          const label = getNameTranslation(item.name, currentLanguage)?.trim() || '';
+          return { label, value: label };
+        });
+        return { options };
+      } catch {
+        return { options: [] };
+      }
+    },
+    [urlData, currentLanguage],
+  );
 
   return (
     <Search
