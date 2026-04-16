@@ -6,7 +6,7 @@ type SelectionsWrapperProps = {
   showClearButton: string | number | boolean | true | DateTime | undefined;
   resetForm: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
-  modifierClass: string;
+  modifierClass?: string;
 };
 
 const SelectionsWrapper = ({ modifierClass, showClearButton, resetForm, children }: SelectionsWrapperProps) => {
