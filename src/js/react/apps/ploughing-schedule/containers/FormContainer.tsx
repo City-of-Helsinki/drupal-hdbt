@@ -47,7 +47,7 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
       });
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+    // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
     <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
       <h2 className='hdbt-search--react__form-title'>
         {Drupal.t('See the ploughing schedule', {}, { context: 'Ploughing schedule: Form title / submit' })}
@@ -60,7 +60,7 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
         )}
       </p>
       <Search
-        className='hdbt-search__filter'
+        className='hdbt-search__filter hdbt-search__search-input'
         hideSubmitButton
         onSearch={(searchValue) =>
           getSuggestions(searchValue).then((results) => ({
@@ -70,9 +70,13 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
         onSend={(value) => setAddress(value)}
         onChange={(e) => setAddress(e.target.value)}
         visibleOptions={5}
-        placeholder={Drupal.t('For example, Mannerheimintie', {}, { context: 'Ploughing schedule: Input placeholder' })}
         texts={{
-          searchLabel: Drupal.t('Street name', {}, { context: 'Ploughing schedule: Input label' }),
+          label: Drupal.t('Street name', {}, { context: 'Ploughing schedule: Input label' }),
+          searchPlaceholder: Drupal.t(
+            'For example, Mannerheimintie',
+            {},
+            { context: 'Ploughing schedule: Input placeholder' },
+          ),
         }}
         value={address}
       />

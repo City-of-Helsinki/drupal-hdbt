@@ -10,10 +10,8 @@ type SubmitHandler<T> = T extends true ? (address: AddressWithCoordinates) => vo
 
 type AddressSearchProps = {
   className?: string;
-  clearButtonAriaLabel?: string;
   hideSearchButton?: boolean;
   includeCoordinates?: boolean;
-  label?: string;
   onChange?: (value: string) => void;
   onSubmit: SubmitHandler<boolean>;
   searchInputClassname?: string;
@@ -21,15 +19,13 @@ type AddressSearchProps = {
   visibleSuggestions?: number;
 } & Omit<
   React.ComponentProps<typeof Search>,
-  'onSearch' | 'onSend' | 'onChange' | 'value' | 'hideSubmitButton' | 'visibleOptions' | 'texts'
+  'onSubmit' | 'onSearch' | 'onSend' | 'onChange' | 'value' | 'hideSubmitButton' | 'visibleOptions'
 >;
 
 export const AddressSearch = ({
   className,
-  clearButtonAriaLabel,
   hideSearchButton,
   includeCoordinates = false,
-  label,
   onChange,
   onSubmit,
   searchInputClassname,
@@ -118,12 +114,6 @@ export const AddressSearch = ({
     className: searchInputClassname || 'hdbt-search__input hdbt-search__search-input',
     hideSubmitButton: hideSearchButton ?? true,
     theme: defaultSearchInputTheme,
-    texts: {
-      ...(label ? { label: label } : {}),
-      ...(clearButtonAriaLabel
-        ? { clearButtonAriaLabel_one: clearButtonAriaLabel, clearButtonAriaLabel_multiple: clearButtonAriaLabel }
-        : {}),
-    },
   });
 
   const handleSearch = useCallback(

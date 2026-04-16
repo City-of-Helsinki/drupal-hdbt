@@ -54,7 +54,7 @@ export const SearchBar = () => {
 
   return (
     <Search
-      className='hdbt-search__filter'
+      className='hdbt-search__filter hdbt-search__search-input'
       hideSubmitButton
       onSearch={async () => {
         if (error || !data) {
@@ -68,11 +68,15 @@ export const SearchBar = () => {
       }}
       onChange={(e) => handleChange(e.target.value)}
       onSend={handleSend}
-      placeholder={Drupal.t('E.g. biology', {}, { context: 'Cross-institutional studies: search input placeholder' })}
       texts={{
         clearButtonAriaLabel_one: Drupal.t('Clear', {}, { context: 'React search' }),
         clearButtonAriaLabel_multiple: Drupal.t('Clear', {}, { context: 'React search' }),
-        searchLabel: Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' }),
+        label: Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' }),
+        searchPlaceholder: Drupal.t(
+          'E.g. biology',
+          {},
+          { context: 'Cross-institutional studies: search input placeholder' },
+        ),
         searchButtonAriaLabel: Drupal.t('Search', {}, { context: 'React search: submit button label' }),
       }}
       value={keyword || ''}

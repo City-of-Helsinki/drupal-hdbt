@@ -30,7 +30,7 @@ const ProximityFormContainer = () => {
   };
 
   return (
-    // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
+    // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
     <form
       ref={formRef}
       className='hdbt-search--react__form-container'
@@ -39,17 +39,27 @@ const ProximityFormContainer = () => {
       onKeyDown={handleKeyDown}
     >
       <AddressSearch
-        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         value={keyword || ''}
         id='home_address'
-        label={Drupal.t('Home address', {}, { context: 'React search: home address' })}
         onChange={(address: string) => setKeyword(address)}
-        onSubmit={(address: string) => handleAddressSubmit(address, setKeyword)}
+        onSubmit={(address: string) => {
+          handleAddressSubmit(address, setKeyword);
+        }}
         placeholder={Drupal.t(
           'For example, Kotikatu 1',
           {},
           { context: 'React search: street input helper placeholder' },
         )}
+        texts={{
+          assistive: Drupal.t(
+            'Enter the street name and house number',
+            {},
+            { context: 'React search: street input helper' },
+          ),
+          clearButtonAriaLabel_one: Drupal.t('Clear', {}, { context: 'React search' }),
+          clearButtonAriaLabel_multiple: Drupal.t('Clear', {}, { context: 'React search' }),
+          label: Drupal.t('Home address', {}, { context: 'React search: home address' }),
+        }}
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
