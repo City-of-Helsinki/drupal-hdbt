@@ -1,5 +1,5 @@
-import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import ExternalLink from '@/react/common/ExternalLink';
+import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import type MetadataType from '@/types/MetadataType';
 import type TagType from '@/types/TagType';
 import Icon from './Icon';

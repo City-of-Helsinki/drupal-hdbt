@@ -1,9 +1,9 @@
-import { updateDatesAtom } from '../../../store';
-import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import { type Option, Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { startDateAtom } from '../store';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
+import { updateDatesAtom } from '../../../store';
+import { startDateAtom } from '../store';
 
 export const StartDateFilter = ({ dateOptions }: { dateOptions: Map<string, { start?: Date; end?: Date }> }) => {
   const updateDates = useSetAtom(updateDatesAtom);

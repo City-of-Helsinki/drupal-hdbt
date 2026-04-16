@@ -1,7 +1,7 @@
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
-import type NewsItem from '../../types/NewsItem';
 import { useMainImage } from '@/react/common/hooks/useMainImage';
+import type NewsItem from '../../types/NewsItem';
 
 interface ResultCardProps extends NewsItem {
   cardModifierClass?: string;

@@ -1,5 +1,5 @@
-import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { useAtomValue } from 'jotai';
+import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { hobbiesPublicUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
 

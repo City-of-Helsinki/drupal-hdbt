@@ -2,17 +2,18 @@
 import { atom } from 'jotai';
 
 declare const ELASTIC_DEV_URL: string | undefined;
+
+import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 import type Result from '@/types/Result';
 import CustomIds from './enum/CustomTermIds';
+import Global from './enum/Global';
+import SearchComponents from './enum/SearchComponents';
 import { getAreaInfo } from './helpers/Areas';
 import { getLanguageLabel } from './helpers/Language';
 import { sortOptions } from './helpers/Options';
 import type AggregationItem from './types/AggregationItem';
 import type OptionType from './types/OptionType';
 import type Term from './types/Term';
-import SearchComponents from './enum/SearchComponents';
-import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
-import Global from './enum/Global';
 
 // Make maps out of bucket responses
 const bucketToMap = (bucket: AggregationItem[]) => {

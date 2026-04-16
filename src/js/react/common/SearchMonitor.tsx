@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import {
   Button,
   ButtonVariant,
@@ -12,13 +13,12 @@ import {
 } from 'hds-react';
 import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { primaryButtonTheme, secondaryButtonTheme } from '@/react/common/constants/buttonTheme';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultRadioButtonStyle } from '@/react/common/constants/radioButtonStyle';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
-import { primaryButtonTheme, secondaryButtonTheme } from '@/react/common/constants/buttonTheme';
 import Tags from '@/react/common/Tags';
 import type TagType from '@/types/TagType';
-import * as Sentry from '@sentry/react';
 
 type FormError = { message: string; visible: boolean };
 

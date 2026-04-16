@@ -1,6 +1,6 @@
 import CardItem from '@/react/common/Card';
-import type { Event } from '../types/Event';
 import { useResultCardProps } from '../hooks/useResultCardProps';
+import type { Event } from '../types/Event';
 
 export interface ResultCardProps extends Event {
   cardModifierClass?: string;

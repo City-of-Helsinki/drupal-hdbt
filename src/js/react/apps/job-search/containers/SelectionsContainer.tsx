@@ -1,8 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
-import { resetFormAtom, submittedStateAtom } from '../store';
 import { useSelectionButtons } from '../hooks/useSelectionButtons';
 import { useVisibleSelections } from '../hooks/useVisibleSelections';
+import { resetFormAtom, submittedStateAtom } from '../store';
 
 const SelectionsContainer = () => {
   const submittedState = useAtomValue(submittedStateAtom);

@@ -1,6 +1,6 @@
-import ResultsList from '../components/ResultsList';
-import useSWR from 'swr';
 import { useCallback } from 'react';
+import useSWR from 'swr';
+import ResultsList from '../components/ResultsList';
 import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
 
 const ResultsContainer = () => {

@@ -1,9 +1,9 @@
 import type React from 'react';
 import CommonSearchMonitor from '@/react/common/SearchMonitor';
-import useQueryString from '../hooks/useQueryString';
-import { useVisibleSelections } from '../hooks/useVisibleSelections';
-import { useSelectionTags } from '../hooks/useSelectionTags';
 import SearchComponents from '../enum/SearchComponents';
+import useQueryString from '../hooks/useQueryString';
+import { useSelectionTags } from '../hooks/useSelectionTags';
+import { useVisibleSelections } from '../hooks/useVisibleSelections';
 
 const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement> }) => {
   const elasticQuery = useQueryString();

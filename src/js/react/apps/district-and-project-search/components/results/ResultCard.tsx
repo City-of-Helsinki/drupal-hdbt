@@ -1,9 +1,9 @@
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
+import { useMainImage } from '@/react/common/hooks/useMainImage';
 import { capitalize } from '../../helpers/helpers';
 import type Result from '../../types/Result';
 import type TagType from '../../types/TagType';
-import { useMainImage } from '@/react/common/hooks/useMainImage';
 
 const ResultCard = ({
   _id,

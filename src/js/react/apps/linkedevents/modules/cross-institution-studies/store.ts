@@ -1,11 +1,11 @@
 import type { Option } from 'hds-react';
 import { atom } from 'jotai';
-import { LanguageOptions } from '../../enum/LanguageOptions';
-import { TeachingModes } from '../enum/TeachingModes';
 import ApiKeys from '../../enum/ApiKeys';
+import { LanguageOptions } from '../../enum/LanguageOptions';
+import { optionDefaults } from '../../enum/OptionDefaults';
 import { languageAtom, pageAtom, paramsAtom, submittedParamsAtom } from '../../store';
 import { sortOptions } from '../enum/SortOptions';
-import { optionDefaults } from '../../enum/OptionDefaults';
+import { TeachingModes } from '../enum/TeachingModes';
 
 export const keywordAtom = atom<string>('');
 

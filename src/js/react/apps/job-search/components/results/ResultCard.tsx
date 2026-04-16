@@ -2,10 +2,10 @@ import { useAtomValue } from 'jotai';
 
 import CardItem from '@/react/common/Card';
 import type Result from '@/types/Result';
-import { currentLanguage } from '../../query/queries';
-import type Job from '../../types/Job';
-import { submittedStateAtom } from '../../store';
 import SearchComponents from '../../enum/SearchComponents';
+import { currentLanguage } from '../../query/queries';
+import { submittedStateAtom } from '../../store';
+import type Job from '../../types/Job';
 import type { OptionType } from '../../types/OptionType';
 
 const getResultCard = ({

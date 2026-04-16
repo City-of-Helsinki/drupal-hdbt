@@ -1,8 +1,8 @@
 /** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12501 */
 import { atom } from 'jotai';
 import { loadable } from 'jotai/utils';
-import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
 import { endOfDay, startOfDay, toLocalISO } from '@/react/common/helpers/dateUtils';
+import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
 import ApiKeys from './enum/ApiKeys';
 import ROOT_ID from './enum/RootId';
 import { BloatingTargetGroups } from './enum/TargetGroups';

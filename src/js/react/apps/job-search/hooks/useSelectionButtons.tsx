@@ -1,10 +1,10 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { searchStateAtom, submitStateAtom, submittedStateAtom } from '../store';
-import type URLParams from '../types/URLParams';
 import FilterButton from '@/react/common/FilterButton';
-import type { OptionType } from '../types/OptionType';
 import SearchComponents from '../enum/SearchComponents';
 import { getCheckBoxFilterLabel, stripQuantityFromLabel } from '../helpers/Options';
+import { searchStateAtom, submitStateAtom, submittedStateAtom } from '../store';
+import type { OptionType } from '../types/OptionType';
+import type URLParams from '../types/URLParams';
 
 type arraySelectionKey = keyof Pick<URLParams, 'task_areas' | 'employment' | 'area_filter'>;
 type stringSelectionKey = keyof Pick<URLParams, 'language' | 'keyword'>;

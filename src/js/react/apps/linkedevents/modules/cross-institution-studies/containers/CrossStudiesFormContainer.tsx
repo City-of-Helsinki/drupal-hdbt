@@ -1,14 +1,14 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import { type FormEvent, useMemo } from 'react';
+import { endOfDay, startOfDay } from '@/react/common/helpers/dateUtils';
+import SubmitButton from '../../../components/SubmitButton';
 import { formErrorsAtom, updateUrlAtom } from '../../../store';
+import { InstructionLanguageFilter } from '../components/InstructionLanguageFilter';
 import { SearchBar } from '../components/SearchBar';
 import { StartDateFilter } from '../components/StartDateFilter';
-import SubmitButton from '../../../components/SubmitButton';
-import { useMemo, type FormEvent } from 'react';
-import { InstructionLanguageFilter } from '../components/InstructionLanguageFilter';
 import { TeachingModeFilter } from '../components/TeachingModeFilter';
-import { SelectionsContainer } from './SelectionsContainer';
 import { initializeStateAtom, visibleParams } from '../store';
-import { endOfDay, startOfDay } from '@/react/common/helpers/dateUtils';
+import { SelectionsContainer } from './SelectionsContainer';
 
 const dateBreakpoints = {
   autumn: {

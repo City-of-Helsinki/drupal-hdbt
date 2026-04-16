@@ -1,7 +1,7 @@
 import type TagType from '@/types/TagType';
-import type { OptionType } from '../types/OptionType';
 import SearchComponents from '../enum/SearchComponents';
 import { getCheckBoxFilterLabel, stripQuantityFromLabel } from '../helpers/Options';
+import type { OptionType } from '../types/OptionType';
 
 export const useSelectionTags = (selections: [string, OptionType[] | boolean | string][]): TagType[] => {
   const tags: TagType[] = [];

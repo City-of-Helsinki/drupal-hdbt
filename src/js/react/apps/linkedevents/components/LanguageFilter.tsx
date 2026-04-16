@@ -1,12 +1,12 @@
 import { Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
+import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import ApiKeys from '../enum/ApiKeys';
 import { LanguageOptions } from '../enum/LanguageOptions';
 import SearchComponents from '../enum/SearchComponents';
 import { languageAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
-import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 
 export const LanguageFilter = ({
   labelOverride,

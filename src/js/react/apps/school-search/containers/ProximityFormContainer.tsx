@@ -1,10 +1,10 @@
 import { Button } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { AddressSearch } from '@/react/common/AddressSearch';
+import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
 import { keywordAtom, paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
-import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 
 const ProximityFormContainer = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);

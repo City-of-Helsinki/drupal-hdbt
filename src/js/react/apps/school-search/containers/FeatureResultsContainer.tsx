@@ -1,8 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-
-import { paramsAtom, updateParamsAtom } from '../store';
-import UseFeatureQuery from '../hooks/UseFeatureQuery';
 import ResultsList from '../components/ResultsList';
+import UseFeatureQuery from '../hooks/UseFeatureQuery';
+import { paramsAtom, updateParamsAtom } from '../store';
 
 const FeatureResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
