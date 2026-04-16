@@ -72,6 +72,7 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
         visibleOptions={5}
         texts={{
           label: Drupal.t('Street name', {}, { context: 'Ploughing schedule: Input label' }),
+          language: window.drupalSettings?.path?.currentLanguage || 'fi',
           searchPlaceholder: Drupal.t(
             'For example, Mannerheimintie',
             {},

@@ -5,6 +5,7 @@ import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
 import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
+import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 
 type SubmitFormType = HTMLFormElement & { sv_only: HTMLInputElement };
 
@@ -50,16 +51,7 @@ const ProximityFormContainer = () => {
           {},
           { context: 'React search: street input helper placeholder' },
         )}
-        texts={{
-          assistive: Drupal.t(
-            'Enter the street name and house number',
-            {},
-            { context: 'React search: street input helper' },
-          ),
-          clearButtonAriaLabel_one: Drupal.t('Clear', {}, { context: 'React search' }),
-          clearButtonAriaLabel_multiple: Drupal.t('Clear', {}, { context: 'React search' }),
-          label: Drupal.t('Home address', {}, { context: 'React search: home address' }),
-        }}
+        texts={defaultAddressSearchTexts}
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>

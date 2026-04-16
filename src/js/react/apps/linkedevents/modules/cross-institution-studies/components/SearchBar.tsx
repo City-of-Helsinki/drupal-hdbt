@@ -6,6 +6,7 @@ import { loadableInitialUrlAtom, updateParamsAtom, updateUrlAtom } from '../../.
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import ApiKeys from '../../../enum/ApiKeys';
 import type Event from '../../../types/Event';
+import { useCallback, useState } from 'react';
 
 export const SearchBar = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
@@ -40,45 +41,55 @@ export const SearchBar = () => {
     },
   );
 
-  const handleChange = (value: string) => {
-    updateParams({
-      [ApiKeys.COMBINED_TEXT]: value,
-    });
-    setKeyword(value);
-  };
+  const handleChange = useCallback(
+    (value: string) => {
+      updateParams({
+        [ApiKeys.COMBINED_TEXT]: value,
+      });
+      setKeyword(value);
+    },
+    [setKeyword, updateParams],
+  );
 
-  const handleSend = (value: string) => {
-    handleChange(value);
-    updateUrl();
-  };
+  const handleSend = useCallback(
+    (value: string) => {
+      handleChange(value);
+      updateUrl();
+    },
+    [handleChange, updateUrl],
+  );
+
+  const [props] = useState({
+    className: 'hdbt-search__filter hdbt-search__search-input',
+    hideSubmitButton: true,
+    texts: {
+      label: Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' }),
+      searchPlaceholder: Drupal.t(
+        'E.g. biology',
+        {},
+        { context: 'Cross-institutional studies: search input placeholder' },
+      ),
+      searchButtonAriaLabel: Drupal.t('Search', {}, { context: 'React search: submit button label' }),
+    },
+  });
+
+  const handleSearch = useCallback(async () => {
+    if (error || !data) {
+      return { options: [] };
+    }
+    const options = data.data.map((item: Event) => {
+      const label = getNameTranslation(item.name, currentLanguage)?.trim() || '';
+      return { label, value: label };
+    });
+    return { options };
+  }, [data, error, currentLanguage]);
 
   return (
     <Search
-      className='hdbt-search__filter hdbt-search__search-input'
-      hideSubmitButton
-      onSearch={async () => {
-        if (error || !data) {
-          return { options: [] };
-        }
-        const options = data.data.map((item: Event) => {
-          const label = getNameTranslation(item.name, currentLanguage)?.trim() || '';
-          return { label, value: label };
-        });
-        return { options };
-      }}
+      {...props}
+      onSearch={handleSearch}
       onChange={(e) => handleChange(e.target.value)}
       onSend={handleSend}
-      texts={{
-        clearButtonAriaLabel_one: Drupal.t('Clear', {}, { context: 'React search' }),
-        clearButtonAriaLabel_multiple: Drupal.t('Clear', {}, { context: 'React search' }),
-        label: Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' }),
-        searchPlaceholder: Drupal.t(
-          'E.g. biology',
-          {},
-          { context: 'Cross-institutional studies: search input placeholder' },
-        ),
-        searchButtonAriaLabel: Drupal.t('Search', {}, { context: 'React search: submit button label' }),
-      }}
       value={keyword || ''}
     />
   );
