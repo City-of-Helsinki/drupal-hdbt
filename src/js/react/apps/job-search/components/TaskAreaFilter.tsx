@@ -1,9 +1,9 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { getTaskAreasAtom, setStateValueAtom, taskAreasAtom } from '../store';
 import { Select } from 'hds-react';
-import SearchComponents from '../enum/SearchComponents';
-import type { OptionType } from '../types/OptionType';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
+import SearchComponents from '../enum/SearchComponents';
+import { getTaskAreasAtom, setStateValueAtom, taskAreasAtom } from '../store';
+import type { OptionType } from '../types/OptionType';
 
 const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
 

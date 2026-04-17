@@ -1,10 +1,9 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-
-import initSentry from '@/react/common/helpers/Sentry';
-import ResultsContainer from './containers/ResultsContainer';
-import FormContainer from './containers/FormContainer';
 import { GhostList } from '@/react/common/GhostList';
+import initSentry from '@/react/common/helpers/Sentry';
+import FormContainer from './containers/FormContainer';
+import ResultsContainer from './containers/ResultsContainer';
 import GlobalSettings from './enum/Global';
 
 initSentry();

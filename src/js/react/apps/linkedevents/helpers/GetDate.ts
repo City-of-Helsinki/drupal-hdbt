@@ -1,19 +1,24 @@
+import { formatHDSDate } from '@/react/common/helpers/dateUtils';
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 
 const getDateString = ({ startDate, endDate }: DateSelectDateTimes): string => {
-  if ((!startDate || !startDate.isValid) && (!endDate || !endDate.isValid)) {
+  if (!startDate && !endDate) {
     return Drupal.t('All dates', {}, { context: 'Events search' });
   }
 
-  if (startDate?.isValid && (!endDate || !endDate.isValid)) {
-    return startDate.toFormat(HDS_DATE_FORMAT);
+  if (startDate && !endDate) {
+    return formatHDSDate(startDate);
   }
 
-  if ((!startDate || !startDate.isValid) && endDate?.isValid) {
-    return `- ${endDate.toFormat(HDS_DATE_FORMAT)}`;
+  if (!startDate && endDate) {
+    return `- ${formatHDSDate(endDate)}`;
   }
-  return `${startDate?.toFormat(HDS_DATE_FORMAT) || 'unset?'} - ${endDate?.toFormat(HDS_DATE_FORMAT)}`;
+
+  if (startDate && endDate) {
+    return `${formatHDSDate(startDate)} - ${formatHDSDate(endDate)}`;
+  }
+
+  return Drupal.t('All dates', {}, { context: 'Events search' });
 };
 
 export default getDateString;

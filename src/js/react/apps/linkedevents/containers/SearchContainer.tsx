@@ -1,16 +1,16 @@
+import * as Sentry from '@sentry/react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
+import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 import ApiKeys from '../enum/ApiKeys';
+import { ResultCard } from '../modules/cross-institution-studies/components/ResultCard';
+import { ResultsSort } from '../modules/cross-institution-studies/components/ResultsSort';
+import { CrossStudiesFormContainer } from '../modules/cross-institution-studies/containers/CrossStudiesFormContainer';
 import { loadableUrlAtom, settingsAtom, updateUrlAtom, useFixturesAtom } from '../store';
 import type Event from '../types/Event';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
-import * as Sentry from '@sentry/react';
-import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
-import { CrossStudiesFormContainer } from '../modules/cross-institution-studies/containers/CrossStudiesFormContainer';
-import { ResultCard } from '../modules/cross-institution-studies/components/ResultCard';
-import { ResultsSort } from '../modules/cross-institution-studies/components/ResultsSort';
 
 type ResponseType = { data: Event[]; meta: { count: number; next?: string; previous?: string } };
 

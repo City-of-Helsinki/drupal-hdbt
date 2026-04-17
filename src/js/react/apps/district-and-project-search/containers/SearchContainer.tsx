@@ -1,9 +1,8 @@
 import { Suspense } from 'react';
-
+import { GhostList } from '@/react/common/GhostList';
+import globalSettings from '../enum/Global';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
-import globalSettings from '../enum/Global';
-import { GhostList } from '@/react/common/GhostList';
 
 const SearchContainer = (): JSX.Element => (
   <>

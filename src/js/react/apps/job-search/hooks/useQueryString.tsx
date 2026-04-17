@@ -3,10 +3,10 @@ import { useAtomValue } from 'jotai';
 import CustomIds from '../enum/CustomTermIds';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
+import SearchComponents from '../enum/SearchComponents';
 import { getAreaInfo } from '../helpers/Areas';
 import { nodeFilter } from '../query/queries';
 import { configurationsAtom, submittedStateAtom } from '../store';
-import SearchComponents from '../enum/SearchComponents';
 import type { OptionType } from '../types/OptionType';
 
 const getArrayValues = (optionArray: OptionType[]): string[] => {

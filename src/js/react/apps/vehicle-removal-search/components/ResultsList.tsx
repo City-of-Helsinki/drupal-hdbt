@@ -1,6 +1,6 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { type SyntheticEvent, createRef, useEffect, useRef, type ReactElement, type RefObject } from 'react';
-
+import { createRef, type ReactElement, type RefObject, type SyntheticEvent, useEffect, useRef } from 'react';
+import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -8,13 +8,12 @@ import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import SearchMonitor from '@/react/common/SearchMonitor';
 import type Result from '@/types/Result';
+import type TagType from '@/types/TagType';
 import Global from '../enum/Global';
+import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
 import { submittedStateAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
-import { GhostList } from '@/react/common/GhostList';
-import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
-import type TagType from '@/types/TagType';
 
 type ResultsListProps = {
   /** Elasticsearch results. */

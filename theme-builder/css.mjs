@@ -31,7 +31,7 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
   const postcssConfig = {
     parser: 'postcss-scss',
     plugins: [
-      postcssImport(),
+      postcssImport({ path: ['node_modules', path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')] }),
       postcssPresetEnv({
         stage: 2,
         preserve: true,
@@ -72,7 +72,7 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
 
       const result = sass.compileString(contentWithDebug, {
         style: 'compressed',
-        loadPaths: ['src/scss', 'node_modules'],
+        loadPaths: ['src/scss', 'node_modules', path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')],
         quietDeps: true,
         silenceDeprecations: ['import', 'mixed-decls'],
         sourceMap: isDev,

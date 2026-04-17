@@ -1,18 +1,18 @@
 import { Button } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
+import { useCallback } from 'react';
+import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
+import { AreaFilter } from '../components/AreaFilter';
+import { CheckBoxFilters } from '../components/CheckBoxFilters';
+import { EmploymentFilter } from '../components/EmploymentFilter';
+import { LanguageFilter } from '../components/LanguageFilter';
+import { SearchBar } from '../components/SearchBar';
+import { TaskAreaFilter } from '../components/TaskAreaFilter';
 import CustomIds from '../enum/CustomTermIds';
 import { getEmploymentSearchIdMap, searchStateAtom, submitStateAtom } from '../store';
 import SelectionsContainer from './SelectionsContainer';
-import { SearchBar } from '../components/SearchBar';
-import { TaskAreaFilter } from '../components/TaskAreaFilter';
-import { EmploymentFilter } from '../components/EmploymentFilter';
-import { LanguageFilter } from '../components/LanguageFilter';
-import { AreaFilter } from '../components/AreaFilter';
-import { CheckBoxFilters } from '../components/CheckBoxFilters';
-import { useCallback } from 'react';
-import { useAtomCallback } from 'jotai/utils';
-import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 
 const FormContainer = () => {
   const employmentSearchIdMap = useAtomValue(getEmploymentSearchIdMap);

@@ -1,9 +1,8 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
-
-import { configurationsAtom } from '../store';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/FeatureQuery';
+import { configurationsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
 const UseFeatureQuery = (params: SearchParams) => {

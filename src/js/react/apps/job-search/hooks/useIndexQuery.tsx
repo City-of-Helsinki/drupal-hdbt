@@ -1,8 +1,8 @@
+import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import type { PublicConfiguration } from 'swr/_internal';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Global from '../enum/Global';
-import { useAtomValue } from 'jotai';
 import { getElasticUrlAtom } from '../store';
 
 type UseIndexQueryProps = {

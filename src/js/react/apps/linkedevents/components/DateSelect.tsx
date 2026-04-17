@@ -1,6 +1,6 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { DateTime } from 'luxon';
 import { DateRangeSelect } from '@/react/common/DateRangeSelect';
+import { formatHDSDate, parseHDSDate } from '@/react/common/helpers/dateUtils';
 import SearchComponents from '../enum/SearchComponents';
 import {
   endDateAtom,
@@ -10,7 +10,6 @@ import {
   startDateAtom,
   updateDateAtom,
 } from '../store';
-import HDS_DATE_FORMAT from '../utils/HDS_DATE_FORMAT';
 
 function DateSelect() {
   const startDate = useAtomValue(startDateAtom);
@@ -22,28 +21,28 @@ function DateSelect() {
 
   const setDate = (dateString: string | undefined, key: string) => {
     const errorKey = key === 'start' ? 'invalidStartDate' : 'invalidEndDate';
-    let date: DateTime | undefined;
+    let date: Date | undefined;
 
     if (!dateString) {
       updateDate(undefined, key);
     } else {
-      date = DateTime.fromFormat(dateString, HDS_DATE_FORMAT);
+      date = parseHDSDate(dateString) ?? undefined;
       updateDate(date, key);
     }
 
-    setErrors({ ...errors, [errorKey]: date ? !date.isValid : false });
+    setErrors({ ...errors, [errorKey]: date ? Number.isNaN(date.getTime()) : false });
   };
 
   return (
     <DateRangeSelect
-      endDate={endDate?.toFormat(HDS_DATE_FORMAT)}
+      endDate={endDate ? formatHDSDate(endDate) : undefined}
       endDisabled={endDisabled}
       id={SearchComponents.DATE}
       label={Drupal.t('Date', {}, { context: 'React search: date selection label' })}
       setEnd={(d) => setDate(d, 'end')}
       setEndDisabled={setEndDisabled}
       setStart={(d) => setDate(d, 'start')}
-      startDate={startDate?.toFormat(HDS_DATE_FORMAT)}
+      startDate={startDate ? formatHDSDate(startDate) : undefined}
       title={Drupal.t('Date', {}, { context: 'Events search' })}
     />
   );

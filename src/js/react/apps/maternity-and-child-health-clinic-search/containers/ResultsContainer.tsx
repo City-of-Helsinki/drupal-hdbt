@@ -1,8 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-
-import { paramsAtom, updateParamsAtom } from '../store';
-import UseProximityQuery from '../hooks/UseProximityQuery';
 import ResultsList from '../components/ResultsList';
+import UseProximityQuery from '../hooks/UseProximityQuery';
+import { paramsAtom, updateParamsAtom } from '../store';
 
 const ProximityResultsContainer = () => {
   const params = useAtomValue(paramsAtom);

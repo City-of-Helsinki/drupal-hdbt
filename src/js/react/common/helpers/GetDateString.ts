@@ -1,34 +1,37 @@
 import type DateSelectDateTimes from '@/types/DateSelectDateTimes';
-import { HDS_DATE_FORMAT } from '../enum/HDSDateFormat';
+import { formatHDSDate } from './dateUtils';
 
 export const getDateString = ({ startDate, endDate, showLabels }: DateSelectDateTimes): string => {
-  if ((!startDate || !startDate.isValid) && (!endDate || !endDate.isValid)) {
+  if (!startDate && !endDate) {
     return Drupal.t('All dates', {}, { context: 'Events search' });
   }
 
-  if (startDate?.isValid && (!endDate || !endDate.isValid)) {
+  if (startDate && !endDate) {
     if (showLabels) {
-      return Drupal.t('From @date', { '@date': startDate.toFormat(HDS_DATE_FORMAT) }, { context: 'Events search' });
+      return Drupal.t('From @date', { '@date': formatHDSDate(startDate) }, { context: 'Events search' });
     }
-    return startDate.toFormat(HDS_DATE_FORMAT);
+    return formatHDSDate(startDate);
   }
 
-  if ((!startDate || !startDate.isValid) && endDate?.isValid) {
+  if (!startDate && endDate) {
     if (showLabels) {
-      return Drupal.t('Until @date', { '@date': endDate.toFormat(HDS_DATE_FORMAT) }, { context: 'Events search' });
+      return Drupal.t('Until @date', { '@date': formatHDSDate(endDate) }, { context: 'Events search' });
     }
-    return `- ${endDate.toFormat(HDS_DATE_FORMAT)}`;
+    return `- ${formatHDSDate(endDate)}`;
   }
 
-  if (showLabels) {
-    return Drupal.t(
-      'From @date until @date2',
-      { '@date': startDate?.toFormat(HDS_DATE_FORMAT), '@date2': endDate?.toFormat(HDS_DATE_FORMAT) },
-      { context: 'Events search' },
-    );
+  if (startDate && endDate) {
+    if (showLabels) {
+      return Drupal.t(
+        'From @date until @date2',
+        { '@date': formatHDSDate(startDate), '@date2': formatHDSDate(endDate) },
+        { context: 'Events search' },
+      );
+    }
+    return `${formatHDSDate(startDate)} - ${formatHDSDate(endDate)}`;
   }
 
-  return `${startDate?.toFormat(HDS_DATE_FORMAT) || 'unset?'} - ${endDate?.toFormat(HDS_DATE_FORMAT)}`;
+  return Drupal.t('All dates', {}, { context: 'Events search' });
 };
 
 export default getDateString;

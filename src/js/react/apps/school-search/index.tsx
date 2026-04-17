@@ -1,11 +1,10 @@
+import { ErrorBoundary } from '@sentry/react';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
-
-import { ErrorBoundary } from '@sentry/react';
-import initSentry from '@/react/common/helpers/Sentry';
-import SearchContainer from './containers/SearchContainer';
-import ResultsError from '@/react/common/ResultsError';
 import { GhostList } from '@/react/common/GhostList';
+import initSentry from '@/react/common/helpers/Sentry';
+import ResultsError from '@/react/common/ResultsError';
+import SearchContainer from './containers/SearchContainer';
 import AppSettings from './enum/AppSettings';
 
 initSentry();

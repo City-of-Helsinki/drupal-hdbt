@@ -1,6 +1,6 @@
-import { Accordion, AccordionSize, Button, defaultFilter, IconLocation, Select, TextInput } from 'hds-react';
+import { Accordion, AccordionSize, Button, IconLocation, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useEffect, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -138,7 +138,6 @@ const FormContainer = () => {
             style={defaultTextInputStyle}
           />
           <Select
-            filter={defaultFilter}
             clearable
             icon={<IconLocation />}
             id={SearchComponents.DISTRICTS}

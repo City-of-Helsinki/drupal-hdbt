@@ -1,5 +1,9 @@
-import SelectionsWrapper from '@/react/common/SelectionsWrapper';
+import type { Option } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { memo } from 'react';
+import FilterButton from '@/react/common/FilterButton';
+import SelectionsWrapper from '@/react/common/SelectionsWrapper';
+import ApiKeys from '../../../enum/ApiKeys';
 import {
   languageAtom,
   resetFormAtom,
@@ -9,10 +13,6 @@ import {
   updateUrlAtom,
 } from '../../../store';
 import { keywordAtom, startDateAtom, teachingModeAtom, visibleParams } from '../store';
-import ApiKeys from '../../../enum/ApiKeys';
-import FilterButton from '@/react/common/FilterButton';
-import { memo } from 'react';
-import type { Option } from 'hds-react';
 
 type InnerProps = {
   submittedParams: URLSearchParams;

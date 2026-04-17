@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
-import { submittedStateAtom } from '../store';
 import Global from '../enum/Global';
+import { submittedStateAtom } from '../store';
 
 const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {}): string => {
   const { streets, page } = useAtomValue(submittedStateAtom);

@@ -1,11 +1,9 @@
-import { Suspense } from 'react';
-
-import FormContainer from './FormContainer';
-import ResultsContainer from './ResultsContainer';
-import { GhostList } from '@/react/common/GhostList';
-import GlobalSettings from '../enum/Global';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { configurationsAtom, getElasticUrlAtom, initializeSearchAtom } from '../store';
+import { Suspense } from 'react';
+import useSWRImmutable from 'swr/immutable';
+import { GhostList } from '@/react/common/GhostList';
+import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
+import GlobalSettings from '../enum/Global';
 import Global from '../enum/Global';
 import {
   AGGREGATIONS,
@@ -14,8 +12,9 @@ import {
   PROMOTED_IDS,
   TASK_AREA_OPTIONS,
 } from '../query/queries';
-import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
-import useSWRImmutable from 'swr/immutable';
+import { configurationsAtom, getElasticUrlAtom, initializeSearchAtom } from '../store';
+import FormContainer from './FormContainer';
+import ResultsContainer from './ResultsContainer';
 
 const aggsQuery = [
   {},

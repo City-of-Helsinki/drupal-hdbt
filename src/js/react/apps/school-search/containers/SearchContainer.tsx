@@ -36,14 +36,14 @@ const SearchContainer = () => {
     setSearchMode(mode);
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
+  // biome-ignore lint/correctness/useExhaustiveDependencies: runs once on mount; URL params do not change
   useEffect(() => {
     if (initialParams?.home_address) {
       setParams({ keyword: initialParams.home_address });
       setKeyword(initialParams.home_address);
       setSearchMode(MODE_OPTIONS.proximity);
     }
-  }, [initialParams]);
+  }, []);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: @todo UHF-12501
   useEffect(() => {

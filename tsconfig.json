@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/react/common/*": ["src/js/react/common/*"],
-      "@/types/*": ["src/js/types/*"]
+      "@/react/common/*": ["./src/js/react/common/*"],
+      "@/types/*": ["./src/js/types/*"]
     },
     "target": "es6",
     "lib": [
@@ -13,13 +12,11 @@
     ],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "module": "esnext",
-    "moduleResolution": "node",
     "noEmit": false,
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,

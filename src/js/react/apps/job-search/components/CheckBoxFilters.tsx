@@ -1,9 +1,9 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { getCheckBoxValuesAtom, getEmploymentSearchIdMap, setStateValueAtom } from '../store';
-import CustomIds from '../enum/CustomTermIds';
 import { Checkbox } from 'hds-react';
-import SearchComponents from '../enum/SearchComponents';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
+import CustomIds from '../enum/CustomTermIds';
+import SearchComponents from '../enum/SearchComponents';
+import { getCheckBoxValuesAtom, getEmploymentSearchIdMap, setStateValueAtom } from '../store';
 
 export const CheckBoxFilters = () => {
   const [continuous, internship, summerJobs, youthSummerJobs] = useAtomValue(getCheckBoxValuesAtom);

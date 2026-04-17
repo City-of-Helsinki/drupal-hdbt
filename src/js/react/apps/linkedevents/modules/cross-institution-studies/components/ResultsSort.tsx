@@ -1,10 +1,10 @@
-import { useAtom, useSetAtom } from 'jotai';
-import { sortAtom, visibleParams } from '../store';
-import { sortOptions } from '../../enum/SortOptions';
 import { type Option, Select } from 'hds-react';
+import { useAtom, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
-import { updateParamsAtom, updateUrlAtom } from '../../../store';
 import ApiKeys from '../../../enum/ApiKeys';
+import { updateParamsAtom, updateUrlAtom } from '../../../store';
+import { sortOptions } from '../../enum/SortOptions';
+import { sortAtom, visibleParams } from '../store';
 
 export const ResultsSort = () => {
   const [value, setValue] = useAtom(sortAtom);

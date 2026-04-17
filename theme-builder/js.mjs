@@ -82,16 +82,16 @@ export async function buildVanillaJs(config = {}) {
           define: {
             'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
           },
-          external: ['@playwright/test'],
           entryPoints: [entry],
+          external: ['@playwright/test'],
           format: 'iife',
-          // outfile,
-          outfile: `${outDir}/js/${name}.min.js`,
-          sourcemap: isDev,
-          target: 'es2020',
           keepNames: true,
           legalComments: 'none',
           logLevel: 'silent',
+          nodePaths: [path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')],
+          outfile: `${outDir}/js/${name}.min.js`,
+          sourcemap: isDev,
+          target: 'es2020',
         });
 
         await stripUseStrict(outfile);
@@ -153,6 +153,7 @@ export async function buildReactApps(config = {}) {
           minify: !isDev,
           legalComments: 'none',
           logLevel: 'silent',
+          nodePaths: [path.resolve(projectRoot, '../../contrib/hdbt/node_modules')],
           tsconfig: path.resolve(projectRoot, 'tsconfig.json'),
           outfile,
           sourcemap: isDev,

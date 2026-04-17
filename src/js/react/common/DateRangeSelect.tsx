@@ -1,31 +1,19 @@
 import { Checkbox, DateInput } from 'hds-react';
-import { DateTime } from 'luxon';
 import { useState } from 'react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultDatePickerStyle } from '@/react/common/constants/datePickerStyle';
 import Collapsible from './Collapsible';
-import { HDS_DATE_FORMAT } from './enum/HDSDateFormat';
+import { addDays, formatHDSDate, parseHDSDate } from './helpers/dateUtils';
 import getDateString from './helpers/GetDateString';
 
 const dateHelperText = Drupal.t('Use the format D.M.YYYY', {}, { context: 'React search: date range select' });
-const getDateTimeFromHDSFormat = (d: string): DateTime => DateTime.fromFormat(d, HDS_DATE_FORMAT, { locale: 'fi' });
 
-// End date must be after start date. But only if both are defined.
-const isOutOfRange = ({ endDate, startDate }: DateSelectDateTimes): boolean =>
-  !!(startDate && endDate && startDate.startOf('day') >= endDate.endOf('day'));
+const isOutOfRange = ({ endDate, startDate }: { startDate: Date | undefined; endDate: Date | undefined }): boolean =>
+  !!(startDate && endDate && startDate.getTime() >= endDate.getTime());
 
-type DateSelectDateTimes = { startDate: DateTime | undefined; endDate: DateTime | undefined };
-
-// Date must be in within the next 1000 years or so....
-// This also validates that the string is not too long even though it might be valid.
-const INVALID_DATE = (dt: DateTime | undefined): boolean => {
-  if (!dt) {
-    return false;
-  }
-  if (dt.year > 9999) {
-    return true;
-  }
-  return !dt.isValid;
+const INVALID_DATE = (dt: Date | null | undefined): boolean => {
+  if (!dt) return false;
+  return Number.isNaN(dt.getTime()) || dt.getFullYear() > 9999;
 };
 
 export const DateRangeSelect = ({
@@ -68,12 +56,12 @@ export const DateRangeSelect = ({
   const [errors, setErrors] = useState<{ start?: string; end?: string }>({});
 
   const collapsibleTitleText = getDateString({
-    endDate: endDate ? DateTime.fromFormat(endDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
-    startDate: startDate ? DateTime.fromFormat(startDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
+    endDate: endDate ? (parseHDSDate(endDate) ?? undefined) : undefined,
+    startDate: startDate ? (parseHDSDate(startDate) ?? undefined) : undefined,
   });
   const collapsibleTitleSRText = getDateString({
-    endDate: endDate ? DateTime.fromFormat(endDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
-    startDate: startDate ? DateTime.fromFormat(startDate, HDS_DATE_FORMAT, { locale: 'fi' }) : undefined,
+    endDate: endDate ? (parseHDSDate(endDate) ?? undefined) : undefined,
+    startDate: startDate ? (parseHDSDate(startDate) ?? undefined) : undefined,
     showLabels: true,
   });
   const collapsibleTitleSRLabel = Drupal.t(
@@ -92,50 +80,46 @@ export const DateRangeSelect = ({
   const endDateErrorText = Drupal.t('Invalid end date', {}, { context: 'React search: date range select' });
 
   const onStartChange = (d: string) => {
-    const end = endDate ? getDateTimeFromHDSFormat(endDate) : undefined;
-    const start = getDateTimeFromHDSFormat(d);
-
-    if (INVALID_DATE(start)) {
-      console.warn('invalid start date', { start, end });
-      if (d.length === 0) {
-        setStart(undefined);
-        setErrors({ ...errors, start: undefined });
-      } else {
-        setErrors({ ...errors, start: startDateErrorText });
-      }
-    } else {
-      if (isOutOfRange({ startDate: start, endDate: end }) && end) {
-        console.warn(
-          'Selected start date is out of range with end date, setting end date to next day after start date.',
-        );
-        setEnd(start.plus({ days: 1 }).toFormat(HDS_DATE_FORMAT));
-      }
-      setStart(start.toFormat(HDS_DATE_FORMAT));
+    if (d.length === 0) {
+      setStart(undefined);
       setErrors({ ...errors, start: undefined });
+      return;
     }
+    const start = parseHDSDate(d);
+    if (!start || INVALID_DATE(start)) {
+      console.warn('invalid start date', { d });
+      setErrors({ ...errors, start: startDateErrorText });
+      return;
+    }
+    const end = endDate ? parseHDSDate(endDate) : undefined;
+    if (isOutOfRange({ startDate: start, endDate: end ?? undefined }) && end) {
+      console.warn('Selected start date is out of range with end date, setting end date to next day after start date.');
+      setEnd(formatHDSDate(addDays(start, 1)));
+    }
+    setStart(formatHDSDate(start));
+    setErrors({ ...errors, start: undefined });
   };
 
   const onEndChange = (d: string) => {
-    const start = startDate ? getDateTimeFromHDSFormat(startDate) : undefined;
-    const end = getDateTimeFromHDSFormat(d);
-
-    if (INVALID_DATE(end)) {
-      console.warn('invalid end date', { end, d });
-      if (d.length === 0) {
-        setErrors({ ...errors, end: undefined });
-        setEnd(undefined);
-      } else {
-        setErrors({ ...errors, end: endDateErrorText });
-      }
-    } else {
-      if (isOutOfRange({ startDate: start, endDate: end }) && start) {
-        console.warn('Selected end date is out of range, setting end date to next day after start date.');
-        setEnd(start.toFormat(HDS_DATE_FORMAT));
-      } else {
-        setEnd(end.toFormat(HDS_DATE_FORMAT));
-      }
+    if (d.length === 0) {
+      setEnd(undefined);
       setErrors({ ...errors, end: undefined });
+      return;
     }
+    const end = parseHDSDate(d);
+    if (!end || INVALID_DATE(end)) {
+      console.warn('invalid end date', { d });
+      setErrors({ ...errors, end: endDateErrorText });
+      return;
+    }
+    const start = startDate ? parseHDSDate(startDate) : undefined;
+    if (isOutOfRange({ startDate: start ?? undefined, endDate: end }) && start) {
+      console.warn('Selected end date is out of range, setting end date to next day after start date.');
+      setEnd(formatHDSDate(start));
+    } else {
+      setEnd(formatHDSDate(end));
+    }
+    setErrors({ ...errors, end: undefined });
   };
 
   return (
