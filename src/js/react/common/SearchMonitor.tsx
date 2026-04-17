@@ -37,6 +37,8 @@ interface SearchMonitorTexts {
   tosLinkUrl: string | undefined;
   instructionsLinkUrl?: string;
   noSelectionsNotification: string | undefined;
+  /** Title shown in the dialog header. */
+  dialogTitle?: string;
   /** Description paragraphs shown at the top of the form. */
   formDescription?: string[];
   /** Title shown after successful submission. */
@@ -58,6 +60,8 @@ interface SearchMonitorProps {
   elasticQuery: string;
   /** Set to true if the query can contain user data. */
   secureQuery?: true;
+  /** URL hash (e.g. '#open-hakuvahti') that auto-opens the dialog on page load. */
+  openHash?: string;
 }
 
 const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor' });
@@ -93,6 +97,7 @@ const SearchMonitor = ({
   selectionTags,
   texts,
   secureQuery,
+  openHash,
 }: SearchMonitorProps) => {
   const openDialogButtonRef = useRef<HTMLElement | null>(null);
 
@@ -107,6 +112,23 @@ const SearchMonitor = ({
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
+  // Open dialog on openHash link click without modifying the URL.
+  useEffect(() => {
+    if (!openHash) return;
+
+    const handleClick = (event: MouseEvent) => {
+      const target = (event.target as HTMLElement).closest(`a[href="${openHash}"]`);
+      if (target) {
+        event.preventDefault();
+        openerButtonRef.current = target as HTMLElement;
+        setIsFormVisible(true);
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [openHash]);
+
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
@@ -116,14 +138,13 @@ const SearchMonitor = ({
       const errorList = Object.entries(errors)
         .filter(([key, error]) => key !== 'allVisible' && error)
         .map(([key, error]) => {
-          if ((key === 'termsAgreed' && !termsAgreed) || (key === 'email' && !email) || (key === 'phone' && !phone)) {
-            const fieldLabel =
-              key === 'email'
-                ? emailLabel
-                : key === 'phone'
-                  ? phoneLabel
-                  : Drupal.t('Terms of service', {}, { context: 'Search monitor' });
-            return `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}: ${fieldLabel}`;
+          if (key === 'termsAgreed' && !termsAgreed) {
+            return `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}: ${Drupal.t('Terms of service', {}, { context: 'Search monitor' })}`;
+          }
+
+          if ((key === 'email' && !email) || (key === 'phone' && !phone)) {
+            const fieldLabel = key === 'email' ? emailLabel : phoneLabel;
+            return `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor' })}: ${fieldLabel}`;
           }
 
           return (error as FormError).message;
@@ -179,11 +200,25 @@ const SearchMonitor = ({
   useEffect(() => {
     setErrors((prevErrors) => {
       const formErrors: FormErrorContainer = {};
-      if (!termsAgreed) {
-        formErrors.termsAgreed = {
-          message: `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}.`,
-          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
-        };
+      if (showPhone) {
+        if (!phone) {
+          formErrors.phone = {
+            message: `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor' })}.`,
+            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
+          };
+        }
+
+        const phoneRegex = /^\+?[0-9\s-]{6,}$/;
+        if (phone && !phoneRegex.test(phone)) {
+          formErrors.phone = {
+            message: Drupal.t(
+              'The phone number you entered is not in the right format.',
+              {},
+              { context: 'Search monitor' },
+            ),
+            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
+          };
+        }
       }
 
       if (showEmail) {
@@ -208,25 +243,11 @@ const SearchMonitor = ({
         }
       }
 
-      if (showPhone) {
-        if (!phone) {
-          formErrors.phone = {
-            message: `${Drupal.t('This field is mandatory', {}, { context: 'Search monitor' })}.`,
-            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
-          };
-        }
-
-        const phoneRegex = /^\+?[0-9\s-]{6,}$/;
-        if (phone && !phoneRegex.test(phone)) {
-          formErrors.phone = {
-            message: Drupal.t(
-              'The phone number you entered is not in the right format.',
-              {},
-              { context: 'Search monitor' },
-            ),
-            visible: prevErrors?.allVisible || prevErrors?.phone?.visible || false,
-          };
-        }
+      if (!termsAgreed) {
+        formErrors.termsAgreed = {
+          message: `${Drupal.t('The choice is mandatory', {}, { context: 'Search monitor' })}.`,
+          visible: prevErrors?.allVisible || prevErrors?.email?.visible || false,
+        };
       }
 
       return Object.keys(formErrors).length > 0 ? formErrors : null;
@@ -357,7 +378,9 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })}
+              title={
+                texts.dialogTitle ?? Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })
+              }
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>
@@ -482,6 +505,7 @@ const SearchMonitor = ({
                     className='hdbt-search__search-monitor__phone'
                     errorText={phoneError}
                     id='hdbt-search__search-monitor__phone'
+                    invalid={!!phoneError}
                     label={phoneLabel}
                     name='hdbt-search__search-monitor__phone'
                     onChange={(event) => setPhone(event.target.value)}
@@ -497,6 +521,7 @@ const SearchMonitor = ({
                     className='hdbt-search__search-monitor__email'
                     errorText={emailError}
                     id='hdbt-search__search-monitor__email'
+                    invalid={!!emailError}
                     label={emailLabel}
                     name='hdbt-search__search-monitor__email'
                     onChange={(event) => setEmail(event.target.value)}
@@ -518,7 +543,7 @@ const SearchMonitor = ({
 
                 <Checkbox
                   checked={termsAgreed}
-                  className='hdbt-search__search-monitor__terms'
+                  className={`hdbt-search__search-monitor__terms${termsError ? ' hdbt-search__search-monitor__terms--error' : ''}`}
                   errorText={termsError}
                   id='hdbt-search__search-monitor__terms'
                   label={`${texts.tosCheckboxLabel}  *`}

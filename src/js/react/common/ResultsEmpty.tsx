@@ -1,20 +1,28 @@
-import { type ForwardedRef, forwardRef, type ReactElement } from 'react';
+import { type ForwardedRef, forwardRef, type ReactElement, type ReactNode } from 'react';
 import ResultsHeader from '@/react/common/ResultsHeader';
 
 type ResultsEmptyProps = {
   wrapperClass?: string;
   leftActions?: ReactElement;
   additionalDescription?: string;
+  resultText?: string;
+  children?: ReactNode;
 };
 
 const ResultsEmpty = forwardRef(
   (
-    { wrapperClass = 'react-search__results', leftActions, additionalDescription }: ResultsEmptyProps,
+    {
+      wrapperClass = 'react-search__results',
+      leftActions,
+      additionalDescription,
+      resultText,
+      children,
+    }: ResultsEmptyProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => (
     <div className={wrapperClass}>
       <ResultsHeader
-        resultText={Drupal.t('No results', {}, { context: 'Unit search no results title' })}
+        resultText={resultText ?? Drupal.t('No results', {}, { context: 'Unit search no results title' })}
         ref={ref}
         leftActions={leftActions}
       />
@@ -26,6 +34,7 @@ const ResultsEmpty = forwardRef(
         )}
       </p>
       {additionalDescription && <p>{additionalDescription}</p>}
+      {children}
     </div>
   ),
 );
