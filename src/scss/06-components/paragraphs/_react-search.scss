@@ -3,6 +3,10 @@
   position: relative;
 }
 
+.component--react-search--no-bg {
+  background-color: transparent;
+}
+
 .component--react-search.component--coordinates-based-list {
   background-color: $color-white;
 }

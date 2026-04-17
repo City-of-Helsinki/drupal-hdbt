@@ -90,6 +90,23 @@ function CardItem({
   `;
   const HeadingTag = cardTitleLevel ? (`h${cardTitleLevel}` as keyof JSX.IntrinsicElements) : 'h4';
 
+  const hasMetas =
+    Boolean(customMetaRows?.top?.length) ||
+    Boolean(customMetaRows?.bottom?.length) ||
+    !!(
+      location ||
+      distance ||
+      date ||
+      daterange ||
+      theme ||
+      weightedEducation ||
+      languageEducation ||
+      language ||
+      time ||
+      signUp ||
+      registrationRequired
+    );
+
   return (
     <div className={cardClass}>
       {cardImage && <div className='card__image'>{cardImage}</div>}
@@ -122,89 +139,91 @@ function CardItem({
           <div className='card__helptext'>{cardHelptextHtml ? htmlToReact(cardHelptext) : <p>{cardHelptext}</p>}</div>
         )}
 
-        <div className='card__metas'>
-          {customMetaRows?.top && customMetaRows.top.length > 0 && customMetaRows.top}
-          {location && (
-            <Metarow
-              icon='location'
-              label={locationLabel || Drupal.t('Location', {}, { context: 'React search' })}
-              content={location}
-            />
-          )}
-          {distance && (
-            <Metarow icon='map' label={Drupal.t('Distance', {}, { context: 'React search' })} content={distance} />
-          )}
-          {date && (
-            <Metarow
-              icon='clock'
-              label={dateLabel || Drupal.t('Date', {}, { context: 'React search' })}
-              content={date}
-            />
-          )}
-          {daterange && (
-            <Metarow
-              icon='calendar'
-              label={dateRangeLabel || Drupal.t('Estimated schedule', {}, { context: 'React search' })}
-              content={daterange}
-              langAttribute={langAttribute}
-            />
-          )}
-          {theme && (
-            <Metarow
-              icon='locate'
-              label={themeLabel || Drupal.t('Theme', {}, { context: 'React search' })}
-              content={theme}
-            />
-          )}
-          {weightedEducation && (
-            <Metarow
-              icon='layers'
-              label={Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' })}
-              content={weightedEducation}
-            />
-          )}
-          {languageEducation && (
-            <Metarow
-              icon='group'
-              label={Drupal.t('Language offering', {}, { context: 'TPR Ontologyword details schools' })}
-              content={languageEducation}
-            />
-          )}
-          {language && (
-            <Metarow
-              icon='globe'
-              label={languageLabel || Drupal.t('Language', {}, { context: 'React search' })}
-              content={language}
-            />
-          )}
-          {time && (
-            <Metarow
-              icon='calendar'
-              label={timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })}
-              content={time}
-            />
-          )}
-          {signUp && (
-            <Metarow
-              icon='bell'
-              label={Drupal.t('Registration time', {}, { context: 'Event signup period' })}
-              content={signUp}
-              langAttribute={langAttribute}
-            />
-          )}
-          {registrationRequired && (
-            <Metarow
-              icon='info-circle'
-              label={Drupal.t('Additional information', {}, { context: 'Event additional information label' })}
-              content={Drupal.t(
-                'The event requires registration or a ticket.',
-                {},
-                { context: 'Event additional information value' },
-              )}
-            />
-          )}
-          {customMetaRows?.bottom && customMetaRows.bottom.length > 0 && customMetaRows.bottom}
-        </div>
+        {hasMetas && (
+          <div className='card__metas'>
+            {customMetaRows?.top && customMetaRows.top.length > 0 && customMetaRows.top}
+            {location && (
+              <Metarow
+                icon='location'
+                label={locationLabel || Drupal.t('Location', {}, { context: 'React search' })}
+                content={location}
+              />
+            )}
+            {distance && (
+              <Metarow icon='map' label={Drupal.t('Distance', {}, { context: 'React search' })} content={distance} />
+            )}
+            {date && (
+              <Metarow
+                icon='clock'
+                label={dateLabel || Drupal.t('Date', {}, { context: 'React search' })}
+                content={date}
+              />
+            )}
+            {daterange && (
+              <Metarow
+                icon='calendar'
+                label={dateRangeLabel || Drupal.t('Estimated schedule', {}, { context: 'React search' })}
+                content={daterange}
+                langAttribute={langAttribute}
+              />
+            )}
+            {theme && (
+              <Metarow
+                icon='locate'
+                label={themeLabel || Drupal.t('Theme', {}, { context: 'React search' })}
+                content={theme}
+              />
+            )}
+            {weightedEducation && (
+              <Metarow
+                icon='layers'
+                label={Drupal.t('Weighted curriculum education', {}, { context: 'TPR Ontologyword details schools' })}
+                content={weightedEducation}
+              />
+            )}
+            {languageEducation && (
+              <Metarow
+                icon='group'
+                label={Drupal.t('Language offering', {}, { context: 'TPR Ontologyword details schools' })}
+                content={languageEducation}
+              />
+            )}
+            {language && (
+              <Metarow
+                icon='globe'
+                label={languageLabel || Drupal.t('Language', {}, { context: 'React search' })}
+                content={language}
+              />
+            )}
+            {time && (
+              <Metarow
+                icon='calendar'
+                label={timeLabel || Drupal.t('Time', {}, { context: 'Time of event' })}
+                content={time}
+              />
+            )}
+            {signUp && (
+              <Metarow
+                icon='bell'
+                label={Drupal.t('Registration time', {}, { context: 'Event signup period' })}
+                content={signUp}
+                langAttribute={langAttribute}
+              />
+            )}
+            {registrationRequired && (
+              <Metarow
+                icon='info-circle'
+                label={Drupal.t('Additional information', {}, { context: 'Event additional information label' })}
+                content={Drupal.t(
+                  'The event requires registration or a ticket.',
+                  {},
+                  { context: 'Event additional information value' },
+                )}
+              />
+            )}
+            {customMetaRows?.bottom && customMetaRows.bottom.length > 0 && customMetaRows.bottom}
+          </div>
+        )}
 
         {cardTags && cardTags.length > 0 && (
           <div className='card__tags'>
