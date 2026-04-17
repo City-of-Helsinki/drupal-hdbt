@@ -103,7 +103,7 @@
           <div class="language-wrapper">
             {{ drupal_entity('block', block__language_switcher) }} {# Change language-menu and content in other languages-menu #}
 
-            {% if use_global_navigation %}
+            {% if use_otherlangs_block %}
               {# Other languages button #}
               {% include "@hdbt/component/otherlanguages.twig" with {
                 renderButton: true,
@@ -111,10 +111,12 @@
             {% endif %}
           </div>
 
-          {% if use_global_navigation %}
+          {% if use_otherlangs_block %}
             {# Other languages menu content #}
             {{ drupal_entity('block', block__external_header_language_links) }}
+          {% endif %}
 
+          {% if use_search_block %}
             {# Header search button and menu #}
             {% include "@hdbt/component/header-search.twig" %}
           {% endif %}
