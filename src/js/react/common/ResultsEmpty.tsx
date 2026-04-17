@@ -1,4 +1,4 @@
-import { type ForwardedRef, forwardRef, type ReactElement } from 'react';
+import { type ForwardedRef, forwardRef, type ReactElement, type ReactNode } from 'react';
 import ResultsHeader from '@/react/common/ResultsHeader';
 
 type ResultsEmptyProps = {
@@ -6,11 +6,18 @@ type ResultsEmptyProps = {
   leftActions?: ReactElement;
   additionalDescription?: string;
   resultText?: string;
+  children?: ReactNode;
 };
 
 const ResultsEmpty = forwardRef(
   (
-    { wrapperClass = 'react-search__results', leftActions, additionalDescription, resultText }: ResultsEmptyProps,
+    {
+      wrapperClass = 'react-search__results',
+      leftActions,
+      additionalDescription,
+      resultText,
+      children,
+    }: ResultsEmptyProps,
     ref: ForwardedRef<HTMLDivElement>,
   ) => (
     <div className={wrapperClass}>
@@ -27,6 +34,7 @@ const ResultsEmpty = forwardRef(
         )}
       </p>
       {additionalDescription && <p>{additionalDescription}</p>}
+      {children}
     </div>
   ),
 );
