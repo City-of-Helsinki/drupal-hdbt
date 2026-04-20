@@ -16,7 +16,7 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
           must: [
             {
               terms: {
-                street_names: streets.map((street) => street.value),
+                street_names: streets.flatMap((street) => street.value),
               },
             },
           ],
