@@ -2,7 +2,14 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import ApiKeys from '../enum/ApiKeys';
-import { formErrorsAtom, loadableUrlAtom, settingsAtom, updateUrlAtom, useFixturesAtom } from '../store';
+import {
+  formErrorsAtom,
+  loadableUrlAtom,
+  settingsAtom,
+  updateUrlAtom,
+  useFixturesAtom,
+  addressInitializationRunAtom,
+} from '../store';
 import type Event from '../types/Event';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
@@ -29,20 +36,20 @@ const SearchContainer = () => {
   const [urlData] = useAtom(loadableUrlAtom);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
   const updateUrl = useSetAtom(updateUrlAtom);
-  const addressInitializationRun = useRef(false);
+  const [addressInitializationRun, setAddressInitializationRun] = useAtom(addressInitializationRunAtom);
   const initialStateSet = useRef(false);
 
   const { useCrossInstitutionalStudiesForm } = settings;
 
   useEffect(() => {
-    if (addressInitializationRun.current) return;
+    if (addressInitializationRun) return;
 
     const params = new URLSearchParams(window.location.search);
     if (params.get('home_address')) {
       updateUrl();
-      addressInitializationRun.current = true;
+      setAddressInitializationRun(true);
     }
-  }, [updateUrl]);
+  }, [updateUrl, addressInitializationRun, setAddressInitializationRun]);
 
   const setInitialStateInitialized = () => {
     if (initialStateSet.current) return;

@@ -255,6 +255,7 @@ export const formErrorsAtom = atom<FormErrors>({
 
 export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
+export const addressInitializationRunAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);
@@ -292,6 +293,18 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
   const address = get(addressAtom);
   const stagedParams = new URLSearchParams(get(paramsAtom));
   const currentErrors = get(formErrorsAtom);
+  const addressInitializationRun = get(addressInitializationRunAtom);
+
+  // If user does an empty search, clear out url params
+  if (addressInitializationRun) {
+    const urlAddress = queryStringParams.get('home_address');
+    if (urlAddress && address?.trim() === '') {
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.delete('home_address');
+      window.history.pushState({}, '', currentUrl.toString());
+      set(addressInitializationRunAtom, false);
+    }
+  }
 
   const coordinates = await useAddressToCoordsQuery(address);
   if (coordinates?.length) {
@@ -300,6 +313,17 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
 
     const [, , addressName] = coordinates;
     set(addressAtom, addressName);
+
+    // If user searched a different address than the one from URL params, clean up the URL
+    if (addressInitializationRun) {
+      const urlAddress = queryStringParams.get('home_address');
+      if (urlAddress !== addressName) {
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.delete('home_address');
+        window.history.pushState({}, '', currentUrl.toString());
+        set(addressInitializationRunAtom, false);
+      }
+    }
 
     // Clear address error if it was previously set
     if (currentErrors.invalidAddress) {
