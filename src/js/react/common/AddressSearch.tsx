@@ -20,12 +20,14 @@ export const AddressSearch = ({
   onSubmit,
   searchInputClassname,
   value,
+  error,
   ...rest
 }: {
   className?: string;
   includeCoordinates?: boolean;
   onSubmit: SubmitHandler<typeof includeCoordinates>;
   searchInputClassname?: string;
+  error?: boolean;
 } & Omit<React.ComponentProps<typeof SearchInput>, 'suggestionLabelField' | 'getSuggestions' | 'onSubmit'>) => {
   const addressMap = new Map();
 
@@ -103,5 +105,18 @@ export const AddressSearch = ({
     [value, getSuggestions],
   );
 
-  return <div className={className || 'hdbt-search__filter'}>{searchInput}</div>;
+  return (
+    <div className={className || 'hdbt-search__filter'}>
+      {searchInput}
+      {error && (
+        <div className='hds-text-input hds-text-input__error-text'>
+          {Drupal.t(
+            'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
+            {},
+            { context: 'Address search error message' },
+          )}
+        </div>
+      )}
+    </div>
+  );
 };

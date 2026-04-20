@@ -113,6 +113,7 @@ function FormContainer() {
             placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Helsinki near you events search' })}
             value={address || ''}
             visibleSuggestions={5}
+            error={errors.invalidAddress}
           />
         )}
         <div className='event-form__filter-section-container'>

@@ -247,7 +247,11 @@ export const updateDatesAtom = atom(null, (_get, set, dates: { start?: DateTime;
   set(updateParamsAtom, dateParams);
 });
 
-export const formErrorsAtom = atom<FormErrors>({ invalidEndDate: false, invalidStartDate: false });
+export const formErrorsAtom = atom<FormErrors>({
+  invalidEndDate: false,
+  invalidStartDate: false,
+  invalidAddress: false,
+});
 
 export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
@@ -263,6 +267,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(targetGroupsAtom, []);
   set(eventTypeAtom, []);
   set(pageAtom, 1);
+  set(formErrorsAtom, { invalidEndDate: false, invalidStartDate: false, invalidAddress: false });
 
   const newParams = new URLSearchParams(get(initialParamsAtom));
   const currentParams = new URLSearchParams(get(submittedParamsAtom));
@@ -286,6 +291,7 @@ export const submittedParamsAtom = atom<URLSearchParams>(new URLSearchParams(ini
 export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[] | null = null) => {
   const address = get(addressAtom);
   const stagedParams = new URLSearchParams(get(paramsAtom));
+  const currentErrors = get(formErrorsAtom);
 
   const coordinates = await useAddressToCoordsQuery(address);
   if (coordinates?.length) {
@@ -294,6 +300,11 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
 
     const [, , addressName] = coordinates;
     set(addressAtom, addressName);
+
+    // Clear address error if it was previously set
+    if (currentErrors.invalidAddress) {
+      set(formErrorsAtom, { ...currentErrors, invalidAddress: false });
+    }
 
     // Update the Helsinki Near You breadcrumb if present.
     const breadcrumbLink = document.getElementById('hny-address-breadcrumb');
@@ -307,6 +318,11 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
         { context: 'Helsinki near you' },
       );
     }
+  } else if (address && address.trim() !== '') {
+    set(formErrorsAtom, { ...currentErrors, invalidAddress: true });
+    const clearedParams = new URLSearchParams(get(initialParamsAtom));
+    set(submittedParamsAtom, clearedParams);
+    return;
   }
 
   set(pageAtom, 1);
