@@ -6,9 +6,10 @@ type SelectionsWrapperProps = {
   showClearButton: string | number | boolean | true | DateTime | undefined;
   resetForm: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
+  modifierClass?: string;
 };
 
-const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsWrapperProps) => {
+const SelectionsWrapper = ({ modifierClass, showClearButton, resetForm, children }: SelectionsWrapperProps) => {
   // hasContent checks for string and react children if there would be any content to render and does not render the ul container if there is none
   const hasContent =
     typeof children === 'string'
@@ -20,7 +21,7 @@ const SelectionsWrapper = ({ showClearButton, resetForm, children }: SelectionsW
   }
 
   return (
-    <div className='hdbt-search__selections-wrapper'>
+    <div className={`hdbt-search__selections-wrapper${modifierClass ? ` ${modifierClass}` : ''}`}>
       <ul className='hdbt-search__selections-container content-tags__tags'>
         {children}
         <li className='hdbt-search__clear-all'>

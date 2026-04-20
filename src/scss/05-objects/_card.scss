@@ -267,3 +267,12 @@ $-card-border-width: 2px;
     background-color: transparent;
   }
 }
+
+.card--ghost--simple {
+  border-top: 1px solid $color-black-20;
+  padding-inline: 0;
+
+  &:last-child {
+    border-bottom: 1px solid $color-black-20;
+  }
+}
