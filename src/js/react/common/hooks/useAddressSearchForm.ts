@@ -7,8 +7,8 @@ export const useAddressSearchForm = () => {
       const target = event.target as HTMLElement;
       if (
         target.tagName === 'INPUT' &&
-        target.getAttribute('aria-activedescendant') === null &&
-        target.getAttribute('role') === 'combobox'
+        target.getAttribute('role') === 'combobox' &&
+        target.getAttribute('aria-expanded') !== 'true'
       ) {
         event.preventDefault();
         formRef.current?.requestSubmit();
