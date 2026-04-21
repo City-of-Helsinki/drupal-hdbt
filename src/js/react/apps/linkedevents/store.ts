@@ -295,13 +295,17 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
   const currentErrors = get(formErrorsAtom);
   const addressInitializationRun = get(addressInitializationRunAtom);
 
+  const removeHomeAddressParam = () => {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.delete('home_address');
+    window.history.pushState({}, '', currentUrl.toString());
+  };
+
   // If user does an empty search, clear out url params
   if (addressInitializationRun) {
     const urlAddress = queryStringParams.get('home_address');
     if (urlAddress && address?.trim() === '') {
-      const currentUrl = new URL(window.location.href);
-      currentUrl.searchParams.delete('home_address');
-      window.history.pushState({}, '', currentUrl.toString());
+      removeHomeAddressParam();
       set(addressInitializationRunAtom, false);
     }
   }
@@ -318,9 +322,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
     if (addressInitializationRun) {
       const urlAddress = queryStringParams.get('home_address');
       if (urlAddress !== addressName) {
-        const currentUrl = new URL(window.location.href);
-        currentUrl.searchParams.delete('home_address');
-        window.history.pushState({}, '', currentUrl.toString());
+        removeHomeAddressParam();
         set(addressInitializationRunAtom, false);
       }
     }
