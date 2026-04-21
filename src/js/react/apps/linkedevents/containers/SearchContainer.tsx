@@ -2,7 +2,14 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import ApiKeys from '../enum/ApiKeys';
-import { loadableUrlAtom, settingsAtom, updateUrlAtom, useFixturesAtom } from '../store';
+import {
+  formErrorsAtom,
+  loadableUrlAtom,
+  settingsAtom,
+  updateUrlAtom,
+  useFixturesAtom,
+  addressInitializationRunAtom,
+} from '../store';
 import type Event from '../types/Event';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
@@ -29,20 +36,20 @@ const SearchContainer = () => {
   const [urlData] = useAtom(loadableUrlAtom);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
   const updateUrl = useSetAtom(updateUrlAtom);
-  const addressInitializationRun = useRef(false);
+  const [addressInitializationRun, setAddressInitializationRun] = useAtom(addressInitializationRunAtom);
   const initialStateSet = useRef(false);
 
   const { useCrossInstitutionalStudiesForm } = settings;
 
   useEffect(() => {
-    if (addressInitializationRun.current) return;
+    if (addressInitializationRun) return;
 
     const params = new URLSearchParams(window.location.search);
     if (params.get('home_address')) {
       updateUrl();
-      addressInitializationRun.current = true;
+      setAddressInitializationRun(true);
     }
-  }, [updateUrl]);
+  }, [updateUrl, addressInitializationRun, setAddressInitializationRun]);
 
   const setInitialStateInitialized = () => {
     if (initialStateSet.current) return;
@@ -84,6 +91,11 @@ const SearchContainer = () => {
     keepPreviousData: true,
   });
 
+  const errors = useAtomValue(formErrorsAtom);
+
+  const events = errors.invalidAddress ? [] : data?.data || [];
+  const count = errors.invalidAddress ? 0 : data?.meta?.count || 0;
+
   // If we have fixture data set, return that instead of an API call.
   if (fixtureData) {
     return (
@@ -121,9 +133,9 @@ const SearchContainer = () => {
       )}
       <ResultsContainer
         addressRequired={!shouldFetch}
-        countNumber={data?.meta?.count || 0}
+        countNumber={count}
         error={error}
-        events={data?.data || []}
+        events={events}
         loading={loading}
         ResultCardComponent={(useCrossInstitutionalStudiesForm && ResultCard) || undefined}
         resultHeaderFunction={useCrossInstitutionalStudiesForm ? getCrossInstitutionalStudiesHeader : undefined}
