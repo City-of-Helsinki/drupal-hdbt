@@ -214,6 +214,7 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 // HDS 5.0 breaks styling for dropdown checkboxes. Override styles with stupid selectors. Remove if it gets fixed.
+// @todo fix https://helsinkisolutionoffice.atlassian.net/browse/UHF-13187 
 .ModularOptionList-module_listContainer__27JYq .ModularOptionList-module_list__1k-XO .ModularOptionList-module_multiSelectListItem__3iZa0 .ModularOptionList-module_checkboxContainer__SXw4b label::after {
   --background-hover: var(--color-black);
   --background-selected: var(--hdbt-color-black);
