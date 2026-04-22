@@ -29,6 +29,7 @@
         {% if is_active %}
           <span class="language-link__wrapper">
             <a
+              href="{{ item.link['#url'].toString() }}"
               {{ create_attribute({'class': classes}) }}
               {{ create_attribute({'href': path('<current>', {}, {'language': item.link['#options']['language']})}) }}
               {{ create_attribute({'lang': lang}) }}
