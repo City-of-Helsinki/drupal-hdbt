@@ -56,7 +56,7 @@ export const AddressSearch = ({
       if (!searchTerm || searchTerm === '') {
         return [];
       }
-      searchTerm = searchTerm.replace(/[^a-zA-Z0-9.,+&'|\-\s]*/g, '');
+      searchTerm = searchTerm.replace(/[^a-zA-ZäöåÄÖÅ0-9.,+&'|\-\s]*/g, '');
 
       const fetchSuggestions = async (param: URLSearchParams) => {
         const url = new URL(ServiceMap.EVENTS_URL);
