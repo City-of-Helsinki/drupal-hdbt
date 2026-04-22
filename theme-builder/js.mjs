@@ -1,6 +1,7 @@
 import esbuild from 'esbuild';
 import { createRequire } from 'module';
 import fs from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { minify } from 'terser';
 
@@ -117,6 +118,11 @@ export async function buildReactApps(config = {}) {
   const projectRoot = process.cwd();
   const require = createRequire(import.meta.url);
 
+  // Absolute paths for plugin resolvers — computed once per build.
+  const hdsIndexPath = path.resolve(projectRoot, '../../contrib/hdbt/node_modules/hds-react/index.js');
+  const lodashEsPath = path.resolve(projectRoot, 'node_modules/lodash-es/lodash.js');
+  const lodashEsEntry = existsSync(lodashEsPath) ? lodashEsPath : null;
+
   await Promise.all(
     Object.entries(reactApps).map(async ([name, entry]) => {
       const outfile = `${outDir}/js/${name}.min.js`;
@@ -135,6 +141,37 @@ export async function buildReactApps(config = {}) {
                   path: require.resolve(args.path),
                 }));
               }
+            },
+            {
+              name: 'strip-hds-barrel-side-effects',
+              setup(build) {
+                // hds-react's barrel has bare side-effect imports (apollo, graphql, oidc, postcss...)
+                // that pull in ~300 KB even when those components aren't used. Strip them before
+                // esbuild sees the file — packages genuinely needed by used components are still
+                // bundled through their own chunk imports. Real file path (not a virtual alias)
+                // keeps the package.json sideEffects context intact for chunk-level tree-shaking.
+                build.onResolve({ filter: /^hds-react$/ }, () => ({
+                  path: hdsIndexPath,
+                  namespace: 'hds-barrel',
+                }));
+                build.onLoad({ filter: /.*/, namespace: 'hds-barrel' }, async () => {
+                  const source = await fs.readFile(hdsIndexPath, 'utf8');
+                  const contents = source.replace(/\bimport"(?!\.)[^"]+";/g, '');
+                  return { contents, loader: 'js', resolveDir: path.dirname(hdsIndexPath) };
+                });
+              },
+            },
+            {
+              name: 'lodash-to-lodash-es',
+              setup(build) {
+                // lodash is CJS and not tree-shakeable; lodash-es is the ESM equivalent.
+                // All hds-react internals use named imports (e.g. { debounce, uniqueId })
+                // which are compatible with lodash-es, so we can redirect safely.
+                // Only applied when lodash-es is available in the project's own node_modules.
+                if (lodashEsEntry) {
+                  build.onResolve({ filter: /^lodash$/ }, () => ({ path: lodashEsEntry }));
+                }
+              },
             },
           ],
           bundle: true,
