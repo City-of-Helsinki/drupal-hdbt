@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
-import { submittedStateAtom } from '../store';
 import SearchComponents from '../enum/SearchComponents';
+import { submittedStateAtom } from '../store';
 
 export const useVisibleSelections = (includeKeyword = false) => {
   const submittedState = useAtomValue(submittedStateAtom);

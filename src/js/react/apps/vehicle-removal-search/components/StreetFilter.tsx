@@ -1,11 +1,11 @@
-import { useCallback, useEffect } from 'react';
+import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { streetsAtom } from '../store';
-import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
+import { useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
+import { streetsAtom } from '../store';
 
 /**
  * Query street name suggestions from Elasticsearch.

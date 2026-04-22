@@ -1,6 +1,7 @@
 import { Button } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { AddressSearch } from '@/react/common/AddressSearch';
+import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
 import { keywordAtom, paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
@@ -48,22 +49,14 @@ const ProximityFormContainer = () => {
       </p>
       <AddressSearch
         className='hdbt-search__filter'
-        clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
         value={keyword || ''}
-        helperText={Drupal.t(
-          'Enter the street name and house number',
-          {},
-          { context: 'React search: street input helper' },
-        )}
         id='keyword'
-        label={Drupal.t("The child's home address", {}, { context: 'School search: input label' })}
         onChange={(value: string) => setKeyword(value)}
         onSubmit={(value: string) => handleAddressSubmit(value, setKeyword)}
-        placeholder={Drupal.t(
-          'For example, Kotikatu 1',
-          {},
-          { context: 'React search: street input helper placeholder' },
-        )}
+        texts={{
+          ...defaultAddressSearchTexts,
+          label: Drupal.t("The child's home address", {}, { context: 'School search: input label' }),
+        }}
         visibleSuggestions={5}
       />
       <Button className='hdbt-search--react__submit-button' type='submit'>

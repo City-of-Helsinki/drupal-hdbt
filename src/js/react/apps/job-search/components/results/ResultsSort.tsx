@@ -3,9 +3,9 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import Global from '../../enum/Global';
-import type OptionType from '../../types/OptionType';
-import { setSortAtom, submittedStateAtom } from '../../store';
 import SearchComponents from '../../enum/SearchComponents';
+import { setSortAtom, submittedStateAtom } from '../../store';
+import type OptionType from '../../types/OptionType';
 
 const { sortOptions } = Global;
 const options: OptionType[] = [

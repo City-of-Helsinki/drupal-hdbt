@@ -1,8 +1,8 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { getKeywordAtom, setStateValueAtom } from '../store';
 import { TextInput } from 'hds-react';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import SearchComponents from '../enum/SearchComponents';
+import { getKeywordAtom, setStateValueAtom } from '../store';
 
 export const SearchBar = () => {
   const keyword = useAtomValue(getKeywordAtom);

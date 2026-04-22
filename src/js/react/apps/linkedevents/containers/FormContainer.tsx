@@ -104,13 +104,19 @@ function FormContainer() {
       <div className='event-form__filters-container'>
         {useLocationSearch && (
           <AddressSearch
-            clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
             hideSearchButton
             id='location'
-            label={Drupal.t('Address', {}, { context: 'React search: location label' })}
             onChange={(value: string) => updateAddress(value)}
             onSubmit={(value: string) => handleAddressSubmit(value, updateAddress)}
-            placeholder={Drupal.t('For example, Kotikatu 1', {}, { context: 'Helsinki near you events search' })}
+            texts={{
+              label: Drupal.t('Address', {}, { context: 'React search: location label' }),
+              language: window.drupalSettings?.path?.currentLanguage || 'fi',
+              searchPlaceholder: Drupal.t(
+                'For example, Kotikatu 1',
+                {},
+                { context: 'Helsinki near you events search' },
+              ),
+            }}
             value={address || ''}
             visibleSuggestions={5}
             error={errors.invalidAddress}

@@ -1320,19 +1320,19 @@ msgctxt "Events search: remote filter label"
 msgid "Remote participation"
 msgstr "Etäosallistuttavat"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "All dates"
 msgstr "Kaikki ajankohdat"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "From @date"
 msgstr "@date alkaen"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "Until @date"
 msgstr "@date asti"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "From @date until @date2"
 msgstr "@date alkaen, @date2 asti"
 

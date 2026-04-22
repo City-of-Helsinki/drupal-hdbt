@@ -1,8 +1,8 @@
 import CardItem, { Metarow } from '@/react/common/Card';
 import type { ResultCardProps } from '../../../components/ResultCard';
+import { LanguageOptions } from '../../../enum/LanguageOptions';
 import { useResultCardProps } from '../../../hooks/useResultCardProps';
 import { TeachingModes } from '../../enum/TeachingModes';
-import { LanguageOptions } from '../../../enum/LanguageOptions';
 
 export const ResultCard = (props: ResultCardProps) => {
   const { cardTitle, location, time } = useResultCardProps(props);

@@ -1,8 +1,8 @@
 import { TextInput } from 'hds-react';
 import { useAtom } from 'jotai';
-import { stagedParamsAtom } from '../store';
-import SearchComponents from '../enum/SearchComponents';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
+import SearchComponents from '../enum/SearchComponents';
+import { stagedParamsAtom } from '../store';
 
 export const SearchInput = () => {
   const [params, setParams] = useAtom(stagedParamsAtom);

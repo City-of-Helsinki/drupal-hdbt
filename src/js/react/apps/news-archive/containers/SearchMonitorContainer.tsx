@@ -1,5 +1,5 @@
-import type React from 'react';
 import { useAtomValue } from 'jotai';
+import type React from 'react';
 import CommonSearchMonitor from '@/react/common/SearchMonitor';
 import type TagType from '@/types/TagType';
 import useQueryString from '../hooks/useQueryString';

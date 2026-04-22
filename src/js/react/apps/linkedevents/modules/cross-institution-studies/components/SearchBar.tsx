@@ -1,77 +1,86 @@
-import { SearchInput } from 'hds-react';
+import { Search } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { keywordAtom } from '../store';
-import useSWR from 'swr';
-import { loadableInitialUrlAtom, updateParamsAtom, updateUrlAtom } from '../../../store';
+import { useCallback, useState } from 'react';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import ApiKeys from '../../../enum/ApiKeys';
+import { loadableInitialUrlAtom, updateParamsAtom, updateUrlAtom } from '../../../store';
 import type Event from '../../../types/Event';
+import { keywordAtom, visibleParams } from '../store';
 
 export const SearchBar = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
+
   const [urlData] = useAtom(loadableInitialUrlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-
   const { currentLanguage } = drupalSettings.path;
 
-  const getRequestUrl = () => {
-    if (urlData.state !== 'hasData') {
-      return null;
-    }
-    const url = new URL(urlData.data);
-    url.searchParams.set(ApiKeys.COMBINED_TEXT, keyword);
-    return url.toString();
-  };
-
-  const { data, error } = useSWR(
-    keyword?.length ? getRequestUrl() : null,
-    async (url) => {
-      const res = await fetch(url);
-      if (!res.ok) {
-        throw new Error('Failed to fetch search suggestions');
-      }
-      return res.json();
+  const handleChange = useCallback(
+    (value: string) => {
+      updateParams({
+        [ApiKeys.COMBINED_TEXT]: value,
+      });
+      setKeyword(value);
     },
-    {
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-      shouldRetryOnError: false,
-    },
+    [setKeyword, updateParams],
   );
 
-  const getSuggestions = async () => {
-    if (error || !data) {
-      return [];
-    }
+  const handleSend = useCallback(
+    (value: string) => {
+      handleChange(value);
+      updateUrl(visibleParams);
+    },
+    [handleChange, updateUrl],
+  );
 
-    return data.data.map((item: Event) => ({ value: getNameTranslation(item.name, currentLanguage)?.trim() })) || [];
-  };
+  const [props] = useState({
+    className: 'hdbt-search__filter hdbt-search__search-input',
+    hideSubmitButton: true,
+    texts: {
+      label: Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' }),
+      searchPlaceholder: Drupal.t(
+        'E.g. biology',
+        {},
+        { context: 'Cross-institutional studies: search input placeholder' },
+      ),
+      searchButtonAriaLabel: Drupal.t('Search', {}, { context: 'React search: submit button label' }),
+    },
+  });
 
-  const handleChange = (value: string) => {
-    updateParams({
-      [ApiKeys.COMBINED_TEXT]: value,
-    });
-    setKeyword(value);
-  };
-
-  const handleSubmit = (value: string) => {
-    handleChange(value);
-    updateUrl();
-  };
+  const handleSearch = useCallback(
+    async (value: string) => {
+      if (!value?.length || urlData.state !== 'hasData') {
+        return { options: [] };
+      }
+      try {
+        const url = new URL(urlData.data);
+        url.searchParams.set(ApiKeys.COMBINED_TEXT, value);
+        const res = await fetch(url.toString());
+        if (!res.ok) {
+          return { options: [] };
+        }
+        const data = await res.json();
+        const options = data.data.map((item: Event) => {
+          const label = getNameTranslation(item.name, currentLanguage)?.trim() || '';
+          return { label, value: label };
+        });
+        return { options };
+      } catch {
+        return { options: [] };
+      }
+    },
+    [urlData, currentLanguage],
+  );
 
   return (
-    <SearchInput
-      className='hdbt-search__filter'
-      clearButtonAriaLabel={Drupal.t('Clear', {}, { context: 'React search' })}
-      getSuggestions={getSuggestions}
-      hideSearchButton
-      label={Drupal.t('Search word', {}, { context: 'Cross-institutional studies: search input label' })}
-      onChange={handleChange}
-      onSubmit={handleSubmit}
-      placeholder={Drupal.t('E.g. biology', {}, { context: 'Cross-institutional studies: search input placeholder' })}
-      searchButtonAriaLabel={Drupal.t('Search', {}, { context: 'React search: submit button label' })}
-      suggestionLabelField='value'
+    <Search
+      {...props}
+      onSearch={handleSearch}
+      onChange={(e) => {
+        if (!e.target.value && !e.nativeEvent) return;
+        handleChange(e.target.value);
+      }}
+      onSend={handleSend}
       value={keyword || ''}
     />
   );

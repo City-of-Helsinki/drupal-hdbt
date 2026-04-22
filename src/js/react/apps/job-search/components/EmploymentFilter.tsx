@@ -1,8 +1,8 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { employmentAtom, getEmploymentAtom, setStateValueAtom } from '../store';
 import { Select } from 'hds-react';
-import SearchComponents from '../enum/SearchComponents';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
+import SearchComponents from '../enum/SearchComponents';
+import { employmentAtom, getEmploymentAtom, setStateValueAtom } from '../store';
 
 const employmentRelationshipLabel: string = Drupal.t('Employment type', {}, { context: 'Employment filter label' });
 

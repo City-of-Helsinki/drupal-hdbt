@@ -1,8 +1,8 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { areaFilterAtom, getAreaAtom, setStateValueAtom } from '../store';
-import SearchComponents from '../enum/SearchComponents';
 import { Select } from 'hds-react';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
+import SearchComponents from '../enum/SearchComponents';
+import { areaFilterAtom, getAreaAtom, setStateValueAtom } from '../store';
 
 const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label' });
 

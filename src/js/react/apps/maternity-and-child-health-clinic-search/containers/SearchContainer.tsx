@@ -1,13 +1,12 @@
-import { Suspense, useEffect } from 'react';
-
 import { useSetAtom } from 'jotai';
+import { Suspense, useEffect } from 'react';
+import { GhostList } from '@/react/common/GhostList';
+import useInitialParams from '@/react/common/hooks/useInitialParams';
+import AppSettings from '../enum/AppSettings';
+import { keywordAtom, paramsAtom } from '../store';
+import type SearchParams from '../types/SearchParams';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
-import type SearchParams from '../types/SearchParams';
-import useInitialParams from '@/react/common/hooks/useInitialParams';
-import { keywordAtom, paramsAtom } from '../store';
-import { GhostList } from '@/react/common/GhostList';
-import AppSettings from '../enum/AppSettings';
 
 const SearchContainer = () => {
   const setKeyword = useSetAtom(keywordAtom);

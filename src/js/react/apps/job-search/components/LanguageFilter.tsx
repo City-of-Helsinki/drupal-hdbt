@@ -1,8 +1,8 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { getLanguageAtom, languagesAtom, setStateValueAtom } from '../store';
 import { Select } from 'hds-react';
-import SearchComponents from '../enum/SearchComponents';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
+import SearchComponents from '../enum/SearchComponents';
+import { getLanguageAtom, languagesAtom, setStateValueAtom } from '../store';
 
 const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 

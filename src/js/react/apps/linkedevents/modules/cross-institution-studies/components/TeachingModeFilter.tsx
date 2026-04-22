@@ -1,11 +1,11 @@
 import { type Option, Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
-import { updateParamsAtom } from '../../../store';
-import ApiKeys from '../../../enum/ApiKeys';
-import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
-import { teachingModeAtom } from '../store';
+import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
+import ApiKeys from '../../../enum/ApiKeys';
+import { updateParamsAtom } from '../../../store';
 import { TeachingModes } from '../../enum/TeachingModes';
+import { teachingModeAtom } from '../store';
 
 export const TeachingModeFilter = () => {
   const [value, setValue] = useAtom(teachingModeAtom);

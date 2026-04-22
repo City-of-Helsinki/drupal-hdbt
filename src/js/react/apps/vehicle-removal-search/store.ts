@@ -1,5 +1,5 @@
-import { atom } from 'jotai';
 import type { Option } from 'hds-react';
+import { atom } from 'jotai';
 import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 
 export interface SearchState {

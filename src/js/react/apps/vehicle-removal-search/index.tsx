@@ -1,8 +1,7 @@
+import { ErrorBoundary } from '@sentry/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import initSentry from '@/react/common/helpers/Sentry';
-import { ErrorBoundary } from '@sentry/react';
 import ResultsError from '@/react/common/ResultsError';
 import SearchContainer from './containers/SearchContainer';
 

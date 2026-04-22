@@ -1,6 +1,6 @@
 import { Button } from 'hds-react';
-import type React from 'react';
 import { useAtomValue, useSetAtom } from 'jotai';
+import type React from 'react';
 import { StreetFilter } from '../components/StreetFilter';
 import { streetsAtom, submittedStateAtom } from '../store';
 import SelectionsContainer from './SelectionsContainer';

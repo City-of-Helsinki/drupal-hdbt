@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
-import { eventsPublicUrl, hobbiesPublicUrl, settingsAtom } from '../store';
 import ExternalLink from '../../../common/ExternalLink';
+import { eventsPublicUrl, hobbiesPublicUrl, settingsAtom } from '../store';
 
 function SeeAllButton() {
   const filterSettings = useAtomValue(settingsAtom);

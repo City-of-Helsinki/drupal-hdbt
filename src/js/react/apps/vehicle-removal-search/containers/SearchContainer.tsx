@@ -1,9 +1,8 @@
 import { Suspense } from 'react';
-
-import FormContainer from './FormContainer';
-import ResultsContainer from './ResultsContainer';
 import { GhostList } from '@/react/common/GhostList';
 import Global from '../enum/Global';
+import FormContainer from './FormContainer';
+import ResultsContainer from './ResultsContainer';
 
 const SearchContainer = () => (
   <div className='vehicle-removal-search'>

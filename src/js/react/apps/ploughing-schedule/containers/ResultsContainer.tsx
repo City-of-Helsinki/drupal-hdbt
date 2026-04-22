@@ -1,8 +1,7 @@
 import { useAtomValue } from 'jotai';
-
-import { paramsAtom } from '../store';
-import UseQuery from '../hooks/UseQuery';
 import ResultsList from '../components/ResultsList';
+import UseQuery from '../hooks/UseQuery';
+import { paramsAtom } from '../store';
 
 const ResultsContainer = () => {
   const params = useAtomValue(paramsAtom);

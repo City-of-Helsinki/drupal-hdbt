@@ -1,11 +1,10 @@
 // biome-ignore-all lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import type { DateTime } from 'luxon';
 import { type MouseEventHandler, memo, type ReactNode } from 'react';
 import FilterButton from '@/react/common/FilterButton';
+import getDateString from '@/react/common/helpers/GetDateString';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import ApiKeys from '../enum/ApiKeys';
-import getDateString from '../helpers/GetDate';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 import {
@@ -98,7 +97,7 @@ const SelectionsContainer = () => {
 };
 
 type FilterBulletsProps = {
-  showClearButton: string | number | boolean | true | DateTime | undefined;
+  showClearButton: string | number | boolean | Date | undefined;
   resetForm: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
   url: string | null;
@@ -190,7 +189,7 @@ const CheckboxFilterBullet = ({ atom, valueKey, label, url, value }: CheckboxFil
   );
 };
 
-type DateFilterBulletProps = { startDate: DateTime | undefined; endDate: DateTime | undefined; url: string | null };
+type DateFilterBulletProps = { startDate: Date | undefined; endDate: Date | undefined; url: string | null };
 
 const TypeFilterBullets = ({
   eventTypeSelection,
