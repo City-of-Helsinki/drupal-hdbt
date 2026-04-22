@@ -35,7 +35,7 @@ export const AddressSearch = ({
   visibleSuggestions,
   ...rest
 }: AddressSearchProps) => {
-  const addressMap = useRef(new Map<string, [number, number, string]>());
+  const addressMap = useRef(new Map<string, [number, number]>());
 
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
@@ -98,9 +98,10 @@ export const AddressSearch = ({
   const handleSend = useCallback(
     (address: string) => {
       if (includeCoordinates) {
+        const coords = addressMap.current.get(address);
         onSubmitRef.current({
           label: address,
-          value: addressMap.current.has(address) ? [...addressMap.current.get(address), address] : null,
+          value: coords ? [...coords, address] : null,
           // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
         } as any);
       } else {
