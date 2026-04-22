@@ -1,6 +1,6 @@
-import { createElement, type ReactNode } from 'react';
+import { createElement, Fragment, type ReactNode } from 'react';
 
-function nodeToReact(node: Node, key: number): ReactNode {
+function nodeToReact(node: Node, key: number, allowedTags?: Set<string>): ReactNode {
   if (node.nodeType === Node.TEXT_NODE) {
     return node.textContent;
   }
@@ -9,6 +9,15 @@ function nodeToReact(node: Node, key: number): ReactNode {
   }
 
   const el = node as Element;
+  const tag = el.tagName.toLowerCase();
+  const children = Array.from(el.childNodes)
+    .map((child, i) => nodeToReact(child, i, allowedTags))
+    .filter((c) => c !== null);
+
+  if (allowedTags && !allowedTags.has(tag)) {
+    return createElement(Fragment, { key }, ...children);
+  }
+
   const props: Record<string, unknown> = { key };
 
   for (const { name, value } of Array.from(el.attributes)) {
@@ -30,17 +39,14 @@ function nodeToReact(node: Node, key: number): ReactNode {
     }
   }
 
-  const children = Array.from(el.childNodes)
-    .map((child, i) => nodeToReact(child, i))
-    .filter((c) => c !== null);
-
-  return createElement(el.tagName.toLowerCase(), props, ...children);
+  return createElement(tag, props, ...children);
 }
 
-export function htmlToReact(html: string): ReactNode {
+export function htmlToReact(html: string, allowedTags?: string[]): ReactNode {
+  const allowed = allowedTags ? new Set(allowedTags) : undefined;
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const nodes = Array.from(doc.body.childNodes)
-    .map((node, i) => nodeToReact(node, i))
+    .map((node, i) => nodeToReact(node, i, allowed))
     .filter((node) => node !== null);
   return nodes.length === 1 ? nodes[0] : nodes;
 }
