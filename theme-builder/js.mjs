@@ -147,25 +147,7 @@ export async function buildReactApps(config = {}) {
             } : {}),
           },
           entryPoints: [entry],
-          external: [
-            // Drupal globals
-            'Drupal',
-            'drupalSettings',
-
-            // hds-react's barrel (index.js) has bare side-effect imports for
-            // packages only used by the HDS login/SSO and animation subsystems.
-            // esbuild can't drop them once the file is loaded for its named
-            // exports, so we exclude them here instead.
-            '@apollo/client',
-            'graphql',
-            'oidc-client-ts',
-            'jwt-decode',
-            '@react-spring/web',
-            'react-popper',
-            'date-fns',
-            'lodash',
-            'postcss',
-          ],
+          external: ['Drupal','drupalSettings'],
           format: 'iife',
           keepNames: true,
           minify: !isDev,
