@@ -6,27 +6,27 @@
         {% set lang = item.link['#options']['#abbreviation'] %}
         {% set untranslated = item.link['#options']['#untranslated'] %}
         {% set nolink = item.link['#options']['#nolink'] %}
-        {% set alternative_language = not item.link['#options']['#primary_language'] %}
+        {% set is_alternative_language = not item.link['#options']['#primary_language'] %}
         {% set classes = ['language-link'] %}
         {% set ariaCurrent = null %}
-        {% set is_active = false %}
+        {% set exists = false %}
 
         {# Check if link is part of alternative menu and set class accordingly. #}
-        {% set classes = classes|merge([alternative_language ? 'is-alternative' : '']) %}
+        {% set classes = classes|merge([is_alternative_language ? 'is-alternative' : '']) %}
 
-        {% if not untranslated and not alternative_language and lang != language.id %}
-          {% set is_active = true %}
+        {% if not untranslated and not is_alternative_language and lang != language.id %}
+          {% set exists = true %}
         {% elseif lang == language.id and not nolink %}
-          {% set is_active = true %}
+          {% set exists = true %}
           {% set ariaCurrent = create_attribute({'aria-current': 'true'}) %}
           {% set classes = classes|merge(['is-disabled']) %}
         {% else %}
           {% set button_wrapper_classes = ['nav-toggle--language-toast', 'nav-toggle--language-toast--' ~ lang] %}
-          {% set anchor_button_classes = ['is-disabled', 'has-toast', alternative_language ? 'is-alternative' : ''] %}
+          {% set anchor_button_classes = ['is-disabled', 'has-toast', is_alternative_language ? 'is-alternative' : ''] %}
           {% set dropdown_wrapper_classes = ['nav-toggle-dropdown--language-toast', 'nav-toggle-dropdown--language-toast--' ~ lang] %}
         {% endif %}
 
-        {% if is_active %}
+        {% if exists %}
           <span class="language-link__wrapper">
             <a
               href="{{ item.link['#url'].toString() }}"
@@ -38,7 +38,7 @@
             </a>
           </span>
         {# Hide the alterative languages from the html structure since they cause all sorts of trouble in the layout. #}
-        {% elseif not alternative_language %}
+        {% elseif not is_alternative_language %}
           {% set dropdown_id = 'language-toast--' ~ lang ~ '-dropdown' %}
           <span class="language-link__wrapper language-link__wrapper--{{ lang }}">
             {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
