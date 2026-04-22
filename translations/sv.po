@@ -1322,19 +1322,19 @@ msgctxt "Events search: remote filter label"
 msgid "Remote participation"
 msgstr "Distansdeltagande"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "All dates"
 msgstr "Alla tidpunkter"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "From @date"
 msgstr "Från @date"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "Until @date"
 msgstr "Till @date"
 
-msgctxt "Events search"
+msgctxt "Date select"
 msgid "From @date until @date2"
 msgstr "Från @date till @date2"
 

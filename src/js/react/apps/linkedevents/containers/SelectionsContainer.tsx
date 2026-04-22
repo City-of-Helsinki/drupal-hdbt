@@ -2,9 +2,9 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { type MouseEventHandler, memo, type ReactNode } from 'react';
 import FilterButton from '@/react/common/FilterButton';
+import getDateString from '@/react/common/helpers/GetDateString';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import ApiKeys from '../enum/ApiKeys';
-import getDateString from '../helpers/GetDate';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 import {
