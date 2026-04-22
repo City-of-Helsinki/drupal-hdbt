@@ -250,10 +250,15 @@ export const updateDatesAtom = atom(null, (_get, set, dates: { start?: Date; end
   set(updateParamsAtom, dateParams);
 });
 
-export const formErrorsAtom = atom<FormErrors>({ invalidEndDate: false, invalidStartDate: false });
+export const formErrorsAtom = atom<FormErrors>({
+  invalidEndDate: false,
+  invalidStartDate: false,
+  invalidAddress: false,
+});
 
 export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
+export const addressInitializationRunAtom = atom<boolean>(false);
 
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);
@@ -266,6 +271,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(targetGroupsAtom, []);
   set(eventTypeAtom, []);
   set(pageAtom, 1);
+  set(formErrorsAtom, { invalidEndDate: false, invalidStartDate: false, invalidAddress: false });
 
   const newParams = new URLSearchParams(get(initialParamsAtom));
   const currentParams = new URLSearchParams(get(submittedParamsAtom));
@@ -289,6 +295,23 @@ export const submittedParamsAtom = atom<URLSearchParams>(new URLSearchParams(ini
 export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[] | null = null) => {
   const address = get(addressAtom);
   const stagedParams = new URLSearchParams(get(paramsAtom));
+  const currentErrors = get(formErrorsAtom);
+  const addressInitializationRun = get(addressInitializationRunAtom);
+
+  const removeHomeAddressParam = () => {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.delete('home_address');
+    window.history.pushState({}, '', currentUrl.toString());
+  };
+
+  // If user does an empty search, clear out url params
+  if (addressInitializationRun) {
+    const urlAddress = queryStringParams.get('home_address');
+    if (urlAddress && address?.trim() === '') {
+      removeHomeAddressParam();
+      set(addressInitializationRunAtom, false);
+    }
+  }
 
   const coordinates = await useAddressToCoordsQuery(address);
   if (coordinates?.length) {
@@ -297,6 +320,20 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
 
     const [, , addressName] = coordinates;
     set(addressAtom, addressName);
+
+    // If user searched a different address than the one from URL params, clean up the URL
+    if (addressInitializationRun) {
+      const urlAddress = queryStringParams.get('home_address');
+      if (urlAddress !== addressName) {
+        removeHomeAddressParam();
+        set(addressInitializationRunAtom, false);
+      }
+    }
+
+    // Clear address error if it was previously set
+    if (currentErrors.invalidAddress) {
+      set(formErrorsAtom, { ...currentErrors, invalidAddress: false });
+    }
 
     // Update the Helsinki Near You breadcrumb if present.
     const breadcrumbLink = document.getElementById('hny-address-breadcrumb');
@@ -310,6 +347,11 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
         { context: 'Helsinki near you' },
       );
     }
+  } else if (address && address.trim() !== '') {
+    set(formErrorsAtom, { ...currentErrors, invalidAddress: true });
+    const clearedParams = new URLSearchParams(get(initialParamsAtom));
+    set(submittedParamsAtom, clearedParams);
+    return;
   }
 
   set(pageAtom, 1);

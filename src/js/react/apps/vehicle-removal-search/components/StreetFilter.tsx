@@ -8,44 +8,59 @@ import { Events } from '../enum/Event';
 import { streetsAtom } from '../store';
 
 /**
- * Query suggestions from service map API.
+ * Query street name suggestions from Elasticsearch.
  */
-const useServiceMapSuggestions = (currentLanguage: string) => {
-  // Languages supported by the service map API.
-  const supportedLanguages = ['fi', 'sv'];
-
-  currentLanguage = supportedLanguages.includes(currentLanguage) ? currentLanguage : 'fi';
+const useStreetSuggestions = (currentLanguage: string) => {
+  const url = drupalSettings?.helfi_react_search?.elastic_proxy_url;
+  const supportedLanguages = ['fi', 'sv', 'en'];
+  const lang = supportedLanguages.includes(currentLanguage) ? currentLanguage : 'fi';
 
   return useCallback<SearchFunction>(
     async (searchTerm, _selectedOptions, _data) => {
-      const query = new URLSearchParams({
-        input: searchTerm,
-        municipality: 'Helsinki',
-        page_size: 50,
-      });
-
-      const response = await fetch(`https://api.hel.fi/servicemap/v2/street/?${query}`, {
-        method: 'GET',
-      });
-
-      const json = await response.json();
-
-      return {
-        options:
-          json.results?.map((result) => ({
-            value: result.name[currentLanguage],
-            label: result.name[currentLanguage],
-          })) ?? [],
+      const query = {
+        size: 50,
+        query: {
+          bool: {
+            must: [
+              { match_phrase_prefix: { street_name: { query: searchTerm } } },
+              { term: { search_api_language: lang } },
+            ],
+          },
+        },
+        _source: ['street_name'],
       };
+
+      const response = await fetch(`${url}/paikkatieto_street_names/_search`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(query),
+      });
+
+      const data = await response.json();
+      const hits = data?.hits?.hits ?? [];
+
+      const seen = new Set<string>();
+      const options: Array<{ value: string; label: string }> = [];
+
+      for (const hit of hits) {
+        const raw = hit._source?.street_name;
+        const name = Array.isArray(raw) ? raw[0] : raw;
+        if (name && !seen.has(name)) {
+          seen.add(name);
+          options.push({ value: name, label: name });
+        }
+      }
+
+      return { options };
     },
-    [currentLanguage],
+    [url, lang],
   );
 };
 
 export const StreetFilter = () => {
   const setStreets = useSetAtom(streetsAtom);
   const getStreetsValue = useAtomCallback(useCallback((get) => get(streetsAtom), []));
-  const onSearch = useServiceMapSuggestions(drupalSettings.path.currentLanguage);
+  const onSearch = useStreetSuggestions(drupalSettings.path.currentLanguage);
 
   const onChange = (selectedOptions: Array<Required<Option>>) => {
     setStreets(selectedOptions);

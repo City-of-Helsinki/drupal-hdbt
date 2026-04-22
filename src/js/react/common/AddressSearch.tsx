@@ -10,6 +10,7 @@ type SubmitHandler<T> = T extends true ? (address: AddressWithCoordinates) => vo
 
 type AddressSearchProps = {
   className?: string;
+  error?: boolean;
   hideSearchButton?: boolean;
   includeCoordinates?: boolean;
   onChange?: (value: string) => void;
@@ -24,6 +25,7 @@ type AddressSearchProps = {
 
 export const AddressSearch = ({
   className,
+  error,
   hideSearchButton,
   includeCoordinates = false,
   onChange,
@@ -131,6 +133,15 @@ export const AddressSearch = ({
         value={value}
         visibleOptions={visibleSuggestions}
       />
+      {error && (
+        <div className='hds-text-input hds-text-input__error-text'>
+          {Drupal.t(
+            'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
+            {},
+            { context: 'Address search error message' },
+          )}
+        </div>
+      )}
     </div>
   );
 };

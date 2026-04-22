@@ -119,6 +119,7 @@ function FormContainer() {
             }}
             value={address || ''}
             visibleSuggestions={5}
+            error={errors.invalidAddress}
           />
         )}
         <div className='event-form__filter-section-container'>
