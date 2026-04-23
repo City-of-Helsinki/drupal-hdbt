@@ -10,9 +10,13 @@ function getBrowserSize() {
 
     if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && drupalSettings.matomo_site_id)) {
       // #UHF-13051 Allow catching referrer-header from visitors who accept cookies for the first time.
-      document.addEventListener('hds-cookie-consent-changed', () => {
-        Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
-      }, {once: true});
+      document.addEventListener(
+        'hds-cookie-consent-changed',
+        () => {
+          Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
+        },
+        { once: true },
+      );
       return;
     }
     const getViewportWidth = () => window.innerWidth;
