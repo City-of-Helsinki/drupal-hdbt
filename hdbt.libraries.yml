@@ -220,7 +220,7 @@ maternity-and-child-health-clinic-search:
     - core/drupal
 
 matomo:
-  version: 1.0.2
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   header: true
   js:
     dist/js/matomo.min.js: {
