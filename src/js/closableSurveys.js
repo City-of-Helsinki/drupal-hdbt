@@ -133,7 +133,7 @@ import LocalStorageManager from './localStorageManager';
       }
 
       function handleEscapeKey(event) {
-        if (event.key === 'Escape') {
+        if (event.key === 'Escape' && survey.checkVisibility()) {
           removeSurvey();
         }
       }

@@ -1,6 +1,6 @@
 {
   "name": "@hdbt/theme-builder",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "exports": {
@@ -12,6 +12,7 @@
     "./js": "./js.mjs"
   },
   "dependencies": {
+    "@xmldom/xmldom": "^0.9.10",
     "@biomejs/biome": "^2.2.4",
     "breakpoint-sass": "^3.0.0",
     "chokidar": "^4.0.3",

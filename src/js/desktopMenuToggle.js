@@ -92,6 +92,11 @@ const getSiblings = (n) => getChildren(n.parentNode.firstChild, n);
 const handleEscKey = (event) => {
   if (event.key === 'Escape') {
     closeOpenItems();
+    const parentItem = event.target.closest('.menu__item--item-below');
+
+    if (parentItem) {
+      parentItem.querySelector('.menu__link-wrapper .menu__link')?.focus();
+    }
   }
 };
 
@@ -113,7 +118,9 @@ const closeOnFocusOut = (item) => {
 ((Drupal, once) => {
   Drupal.behaviors.toggleDesktopNavigation = {
     attach(context) {
-      document.addEventListener('keydown', handleEscKey);
+      document.querySelectorAll('.desktop-menu .menu__item--item-below .menu--level-1').forEach((submenu) => {
+        submenu.addEventListener('keydown', handleEscKey);
+      });
 
       window.addEventListener('click', (event) => {
         const mainNav = document.querySelector('[data-hdbt-selector="main-navigation"]');
