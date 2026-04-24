@@ -138,7 +138,7 @@
     </header>
   {% endif %}
 
-  <main role="main" class="layout-main-wrapper">
+  <main role="main" class="layout-main-wrapper" id="main-content">
     {% if page.breadcrumb %}
       {{ page.breadcrumb }}
     {% endif %}
@@ -146,8 +146,6 @@
     {% if page.tools %}
       {{ page.tools }}
     {% endif %}
-
-    <a id="main-content" tabindex="-1"></a>
 
     {% if page.messages %}
       {{ page.messages }}
