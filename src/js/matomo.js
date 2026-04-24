@@ -10,7 +10,7 @@ function getBrowserSize() {
 
     if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && drupalSettings.matomo_site_id)) {
       // #UHF-13051 Allow catching referrer-header from visitors who accept cookies for the first time.
-      document.addEventListener(
+      window.addEventListener(
         'hds-cookie-consent-changed',
         () => {
           Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
