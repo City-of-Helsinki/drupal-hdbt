@@ -13,7 +13,10 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
+use Drupal\helfi_api_base\Environment\ActiveProjectRoles;
+use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_api_base\Environment\Project;
+use Drupal\helfi_api_base\Environment\ProjectRoleEnum;
 use Drupal\helfi_react_search\DTO\LinkedEventsItem;
 use Drupal\helfi_react_search\LinkedEvents;
 use Drupal\helfi_tpr\Entity\ErrandService;
@@ -115,33 +118,38 @@ function hdbt_preprocess_html(&$variables): void {
   }
 
   // Toggle between global and local navigation libraries for CSS and JS.
-  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
-  $variables['#attached']['library'][] = $navigation_enabled ? 'hdbt/nav-global' : 'hdbt/nav-local';
+  $variables['#attached']['library'][] = _hdbt_use_global_navigation() ? 'hdbt/nav-global' : 'hdbt/nav-local';
+
+  $instance_name = NULL;
+  $environment_name = NULL;
+  $environment_resolver = \Drupal::hasService('helfi_api_base.environment_resolver') ? \Drupal::service('helfi_api_base.environment_resolver') : NULL;
+  if ($environment_resolver instanceof EnvironmentResolverInterface) {
+    try {
+      $project = $environment_resolver->getActiveProject();
+      assert($project instanceof Project);
+
+      $instance_name = $project->getName();
+      $environment_name = $environment_resolver->getActiveEnvironmentName();
+    }
+    catch (\InvalidArgumentException) {
+    }
+  }
 
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = $navigation_enabled;
-  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = $navigation_enabled;
-  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = $navigation_enabled;
-  $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = $navigation_enabled;
+  $variables['use_global_navigation'] = _hdbt_use_global_navigation();
+  $variables['#attached']['drupalSettings']['hdbt']['global_menu'] = _hdbt_use_global_navigation();
+  $variables['#attached']['drupalSettings']['hdbt']['search_dropdown'] = _hdbt_use_global_navigation(TRUE);
+  $variables['#attached']['drupalSettings']['hdbt']['otherlangs_dropdown'] = _hdbt_use_global_navigation(TRUE);
 
   // Set theme path variable.
   $variables['theme_path'] = _hdbt_get_theme_path();
 
   // Add helfi-environment as a JS variable.
-  if (\Drupal::hasService('helfi_api_base.environment_resolver')) {
-    try {
-      /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $service */
-      $service = \Drupal::service('helfi_api_base.environment_resolver');
-
-      $variables['#attached']['drupalSettings']['helfi_instance_name'] = $service->getActiveProject()
-        ->getName();
-
-      if ($add_matomo) {
-        $variables['#attached']['drupalSettings']['helfi_environment'] = $service->getActiveEnvironmentName();
-      }
-    }
-    catch (\InvalidArgumentException) {
-    }
+  if ($instance_name) {
+    $variables['#attached']['drupalSettings']['helfi_instance_name'] = $instance_name;
+  }
+  if ($environment_name) {
+    $variables['#attached']['drupalSettings']['helfi_environment'] = $environment_name;
   }
 
   // Apply override for the theme color.
@@ -234,13 +242,12 @@ function hdbt_preprocess_page(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
-  $variables['use_global_navigation'] = $navigation_enabled;
+  $variables['use_global_navigation'] = _hdbt_use_global_navigation();
 
   // Check if the search block is added to header branding.
   // This is currently tied to global navigation since you can't have search
   // without global navigation being enabled.
-  $variables['use_search_block'] = $navigation_enabled;
+  $variables['use_search_block'] = _hdbt_use_global_navigation(TRUE);
 
   // Check that language switcher is added to the header branding.
   if (isset($variables['page']['header_branding'])) {
@@ -512,8 +519,7 @@ function hdbt_preprocess_input__submit(&$variables): void {
  */
 function hdbt_preprocess_menu(&$variables): void {
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = _hdbt_use_global_navigation();
 
   // Menu, mobile menu, fallback menu and sidebar menu tree depth.
   // Counting from "instance", "main level", "level 3", "level 4", "level 5"...
@@ -615,8 +621,8 @@ function hdbt_preprocess_block(&$variables): void {
   }
 
   // Toggle between global and local navigation in twig templates.
-  $variables['use_global_navigation'] = \Drupal::moduleHandler()
-    ->moduleExists('helfi_navigation');
+  $variables['use_global_navigation'] = _hdbt_use_global_navigation();
+  $variables['use_global_main_menu_desktop'] = _hdbt_use_global_navigation(TRUE);
 
   // Handle Sidebar menu block.
   if (
@@ -1602,6 +1608,41 @@ function hdbt_preprocess_paragraph__image_gallery_item(array &$variables): void 
       );
     }
 
+  }
+
+}
+
+/**
+ * Check conditions to enable global navigation.
+ *
+ * @param bool $check_core_role
+ *   If TRUE, also check if the core role is active.
+ *
+ * @return bool
+ *   TRUE if global navigation should be used, FALSE otherwise.
+ */
+function _hdbt_use_global_navigation($check_core_role = FALSE): bool {
+  $navigation_enabled = \Drupal::moduleHandler()->moduleExists('helfi_navigation');
+  if (!$navigation_enabled) {
+    return FALSE;
+  }
+
+  if (!$check_core_role) {
+    return TRUE;
+  }
+
+  if (!\Drupal::hasService(ActiveProjectRoles::class)) {
+    return FALSE;
+  }
+
+  try {
+    $activeProjectRoles = \Drupal::service(ActiveProjectRoles::class);
+    assert($activeProjectRoles instanceof ActiveProjectRoles);
+
+    return $activeProjectRoles->hasRole(ProjectRoleEnum::Core);
+  }
+  catch (\InvalidArgumentException) {
+    return FALSE;
   }
 
 }

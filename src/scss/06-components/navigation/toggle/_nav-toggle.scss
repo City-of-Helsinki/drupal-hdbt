@@ -5,6 +5,12 @@ $label-font: 'special.navigation.icon_label';
 .nav-toggle {
   align-items: center;
   display: flex;
+
+  &.nav-toggle--mobile-only {
+    @include breakpoint($breakpoint-l) {
+      display: none;
+    }
+  }
 }
 
 .nav-toggle__button {
@@ -105,6 +111,12 @@ $label-font: 'special.navigation.icon_label';
 
   @media (prefers-reduced-motion) {
     transition: none !important;
+  }
+
+  &.nav-toggle-dropdown--mobile-only {
+    @include breakpoint($breakpoint-l) {
+      display: none;
+    }
   }
 }
 

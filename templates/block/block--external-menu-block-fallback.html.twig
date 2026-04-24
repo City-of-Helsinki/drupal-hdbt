@@ -44,7 +44,7 @@
   {% set dropdown_id = 'nav-toggle-dropdown--menu' %}
 
   {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
-    modifier_class: 'nav-toggle--menu',
+    modifier_class: 'nav-toggle--menu' ~ (use_global_main_menu_desktop ? '' : ' nav-toggle--mobile-only'),
     controls: dropdown_id,
     js_target: 'js-menu-toggle-button',
     open_label: 'Menu'|t({}, {'context': 'Mobile navigation menu open button text'}),
@@ -55,14 +55,16 @@
 
   {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
     id: dropdown_id,
-    modifier_class: 'nav-toggle-dropdown--menu js-menu-dropdown',
+    modifier_class: 'nav-toggle-dropdown--menu js-menu-dropdown' ~ (use_global_main_menu_desktop ? '' : ' nav-toggle-dropdown--mobile-only'),
     description: 'Navigation menu'|t({}, {'context': 'Mobile navigation menu description for screen readers'})
   } %}
     {% block content %}
+      {% if use_global_main_menu_desktop %}
       <div class="mega-and-mobilemenu">
-        {# Render external mega menu block. #}
-        {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
-      </div>
+          {# Render external mega menu block. #}
+          {{ drupal_entity('block', 'external_menu_mega_menu', check_access=false) }}
+        </div>
+      {% endif %}
 
       <div id="mmenu" class="mmenu">
         <div id="mmenu__panels" class="mmenu__panels"></div>
