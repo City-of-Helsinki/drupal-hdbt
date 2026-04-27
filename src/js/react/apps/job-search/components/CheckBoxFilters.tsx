@@ -11,7 +11,8 @@ export const CheckBoxFilters = () => {
   const employmentSearchIdMap = useAtomValue(getEmploymentSearchIdMap);
   const showContinuous = employmentSearchIdMap.get(CustomIds.CONTINUOUS);
   const showInternships = employmentSearchIdMap.get(CustomIds.TRAINING);
-  const showSummerJobs = employmentSearchIdMap.get(CustomIds.SUMMER_JOBS);
+  const showSummerJobs =
+    employmentSearchIdMap.get(CustomIds.SUMMER_JOBS) || employmentSearchIdMap.get(CustomIds.SEASONAL_JOB);
   const showYouthSummerJobs =
     employmentSearchIdMap.get(CustomIds.YOUTH_SUMMER_JOBS) || employmentSearchIdMap.get(CustomIds.COOL_SUMMER_PROJECT);
 
@@ -49,7 +50,7 @@ export const CheckBoxFilters = () => {
           checked={summerJobs}
           className='job-search-form__checkbox'
           id={SearchComponents.SUMMER_JOBS}
-          label={Drupal.t('Summer jobs', {}, { context: 'Job search' })}
+          label={Drupal.t('Summer and seasonal jobs', {}, { context: 'Job search' })}
           name={SearchComponents.SUMMER_JOBS}
           onClick={() => setStateValue({ key: SearchComponents.SUMMER_JOBS, value: !summerJobs })}
           value={summerJobs.toString()}

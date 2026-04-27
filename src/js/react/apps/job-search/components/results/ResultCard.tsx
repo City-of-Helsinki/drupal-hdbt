@@ -4,22 +4,25 @@ import CardItem from '@/react/common/Card';
 import type Result from '@/types/Result';
 import SearchComponents from '../../enum/SearchComponents';
 import { currentLanguage } from '../../query/queries';
-import { submittedStateAtom } from '../../store';
+import { employmentTagColorAtom, submittedStateAtom } from '../../store';
 import type Job from '../../types/Job';
 import type { OptionType } from '../../types/OptionType';
 
-const getResultCard = ({
-  title,
-  field_employment,
-  field_employment_type,
-  field_job_duration,
-  field_jobs,
-  field_organization_name,
-  field_recruitment_id,
-  unpublish_on,
-  url,
-  _language,
-}: Job) => {
+const getResultCard = (job: Job, tagColorMap: Map<string, string>) => {
+  const {
+    title,
+    employment_search_id,
+    field_employment,
+    field_employment_type,
+    field_job_duration,
+    field_jobs,
+    field_organization_name,
+    field_recruitment_id,
+    unpublish_on,
+    url,
+    _language,
+  } = job;
+
   const langAttribute = { lang: _language === currentLanguage ? undefined : _language };
 
   const heading = title[0];
@@ -57,15 +60,18 @@ const getResultCard = ({
   };
 
   const orgName = (field_organization_name && field_organization_name.length > 0 && field_organization_name[0]) || '';
-  const employmentTags = Array.isArray(field_employment) ? field_employment : [];
+  const searchIds = Array.isArray(employment_search_id) ? employment_search_id : [];
+  const employmentNames = Array.isArray(field_employment) ? field_employment : [];
   const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-  const tags: any = employmentTags.concat(typeTags).map((tag) => ({ tag }));
+  const tags: any = employmentNames
+    .map((tag, index) => ({ tag, color: tagColorMap.get(searchIds[index]) }))
+    .concat(typeTags.map((tag) => ({ tag, color: undefined })));
 
   return (
     <CardItem
       cardDescription={orgName}
-      cardModifierClass='node--type-job-listing node--view-mode-teaser'
+      cardModifierClass={'node--type-job-listing node--view-mode-teaser'}
       cardTags={tags}
       cardTitle={cardTitle}
       cardUrl={url?.[0]}
@@ -82,6 +88,7 @@ type ResultCardProps = { job: Job; innerHits: Result<Job>[] };
 
 const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   const submittedState = useAtomValue(submittedStateAtom);
+  const tagColorMap = useAtomValue(employmentTagColorAtom);
   const { _language, title } = job;
 
   if (!title || !title.length) {
@@ -93,12 +100,12 @@ const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   if (!languageFilterActive && innerHits.length > 1 && !_language.includes(currentLanguage)) {
     for (const hit of innerHits) {
       if (hit._source._language.includes(currentLanguage)) {
-        return getResultCard(hit._source);
+        return getResultCard(hit._source, tagColorMap);
       }
     }
   }
 
-  return getResultCard(job);
+  return getResultCard(job, tagColorMap);
 };
 
 export default ResultCard;

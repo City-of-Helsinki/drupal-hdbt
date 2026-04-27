@@ -1,5 +1,6 @@
 type Job = {
   _language: string;
+  employment_search_id: string[];
   field_employment: string[];
   field_employment_type: string[];
   field_job_duration: string[];
