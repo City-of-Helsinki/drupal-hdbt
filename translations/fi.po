@@ -945,8 +945,8 @@ msgid "Practical training"
 msgstr "Harjoittelut"
 
 msgctxt "Job search"
-msgid "Summer jobs"
-msgstr "Kesätyöt ja kesäsijaisuudet"
+msgid "Summer and seasonal jobs"
+msgstr "Kesätyöt ja kausityöt"
 
 msgctxt "Job search"
 msgid "Summer jobs for young people"

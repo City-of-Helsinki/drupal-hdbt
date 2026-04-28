@@ -31,7 +31,7 @@ export const getCheckBoxFilterLabel = (value: string) => {
     case 'internship':
       return Drupal.t('Practical training', {}, { context: 'Job search' });
     case 'summer_jobs':
-      return Drupal.t('Summer jobs', {}, { context: 'Job search' });
+      return Drupal.t('Summer and seasonal jobs', {}, { context: 'Job search' });
     case 'youth_summer_jobs':
       return Drupal.t('Summer jobs for young people', {}, { context: 'Job search' });
     default:

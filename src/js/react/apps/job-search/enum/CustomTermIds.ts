@@ -13,6 +13,7 @@ const CustomIds = {
   PROJECT: 'project',
   APPRENTICESHIP: 'apprenticeship',
   TRAINING: 'training',
+  SEASONAL_JOB: 'seasonal_job',
 };
 
 export default CustomIds;

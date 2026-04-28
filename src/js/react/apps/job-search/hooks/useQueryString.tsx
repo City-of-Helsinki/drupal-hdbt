@@ -101,6 +101,7 @@ const useQueryString = (): string => {
 
   if (state[SearchComponents.SUMMER_JOBS]) {
     should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SUMMER_JOBS } });
+    should.push({ term: { [IndexFields.EMPLOYMENT_SEARCH_ID]: CustomIds.SEASONAL_JOB } });
   }
 
   if (state[SearchComponents.YOUTH_SUMMER_JOBS]) {

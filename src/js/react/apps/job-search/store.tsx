@@ -255,10 +255,18 @@ const transformEmployment = (
 ) => {
   const combinedAggs = bucketToMap(employment.concat(employmentType));
 
+  const DROPDOWN_EXCLUDED_IDS = [
+    CustomIds.PERMANENT_SERVICE,
+    CustomIds.FIXED_SERVICE,
+    CustomIds.SUMMER_JOBS,
+    CustomIds.YOUTH_SUMMER_JOBS,
+    CustomIds.COOL_SUMMER_PROJECT,
+    CustomIds.SEASONAL_JOB,
+  ];
+
   const visibleOptions = employmentOptions.filter(
     (term: Result<Term>) =>
-      term._source?.field_search_id?.[0] &&
-      ![CustomIds.PERMANENT_SERVICE, CustomIds.FIXED_SERVICE].includes(term._source.field_search_id[0]),
+      term._source?.field_search_id?.[0] && !DROPDOWN_EXCLUDED_IDS.includes(term._source.field_search_id[0]),
   );
 
   const options = visibleOptions
@@ -402,6 +410,30 @@ export const initializeSearchAtom = atom(null, (get, set, config: Configurations
   set(searchStateAtom, initialState);
   set(submittedStateAtom, initialState);
   set(configurationsAtom, config);
+});
+
+export const employmentTagColorAtom = atom((get) => {
+  const configurations = get(configurationsAtom);
+  const colorMap = new Map<string, string>();
+
+  if (!configurations?.employmentOptions) {
+    return colorMap;
+  }
+
+  for (const term of configurations.employmentOptions) {
+    const searchId = term._source.field_search_id?.[0];
+    if (!searchId) continue;
+
+    if (searchId === CustomIds.SUMMER_JOBS) {
+      colorMap.set(searchId, 'copper');
+    } else if (searchId === CustomIds.YOUTH_SUMMER_JOBS || searchId === CustomIds.COOL_SUMMER_PROJECT) {
+      colorMap.set(searchId, 'bus');
+    } else if (searchId === CustomIds.SEASONAL_JOB) {
+      colorMap.set(searchId, 'gold');
+    }
+  }
+
+  return colorMap;
 });
 
 export const getEmploymentSearchIdMap = atom((get) => {
