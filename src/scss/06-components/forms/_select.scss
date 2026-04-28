@@ -1,9 +1,16 @@
+.hdbt--select-wrapper--multiple,
 .hdbt--select-wrapper {
   @include font('body');
 
   --border-width: 2px;
   --input-height: 52px;
   --menu-item-height: 52px;
+  --menu-item-background-color-hover: var(--color-black-5);
+  --menu-item-background-color-selected: var(--hdbt-color-black);
+  --menu-item-background-color-selected-hover: var(--color-black-80);
+  --menu-item-color-hover: var(--hdbt-color-black);
+  --menu-item-color-selected: var(--color-white);
+  --menu-item-color-selected-hover: var(--color-white);
   --icon-size: var(--spacing-layout-s);
   --icon-spacing: calc(((var(--spacing-s) - var(--border-width) * 2) * 2) + var(--icon-size));
   --helper-color-default: #{$color-black-60};
@@ -32,6 +39,7 @@
   cursor: pointer;
   display: block;
   grid-template-areas: 'select';
+  max-width: 420px; // Same maximum width as for the HDS select elements.
   min-width: 15ch;
   padding: 0;
   position: relative;
@@ -42,7 +50,9 @@
     grid-area: select;
   }
 
-  select {
+  select,
+  // tom-select control, see helfi_platform_config.
+  .ts-control {
     @include font('body');
     align-items: center;
     appearance: none;
@@ -73,7 +83,7 @@
     }
   }
 
-  .hel-icon {
+  > .hel-icon {
     --icon-size: var(--spacing-m);
     pointer-events: none;
     position: absolute;
@@ -103,5 +113,92 @@
   select:disabled {
     color: var(--input-color-disabled);
     opacity: 1;
+  }
+}
+
+// Adapted from HDS, see dropdown.helpers.scss.
+.ts-wrapper {
+  --computed-border-width: var(--border-width, 2px);
+  --computed-dropdown-background-default: var(--dropdown-background-default,var(--color-white));
+  --computed-dropdown-background-disabled: var(--dropdown-background-disabled,var(--color-black-10));
+  --computed-dropdown-border-color-default: var(--dropdown-border-color-default,var(--color-black-50));
+  --computed-dropdown-border-color-disabled: var(--dropdown-border-color-disabled,var(--color-black-10));
+  --computed-dropdown-border-color-focus: var(--dropdown-border-color-focus,var(--color-black-90));
+  --computed-dropdown-border-color-hover: var(--dropdown-border-color-hover,var(--color-black-90));
+  --computed-dropdown-border-color-hover-invalid: var(--dropdown-border-color-hover-invalid,var(--color-error));
+  --computed-dropdown-border-color-invalid: var(--dropdown-border-color-invalid,var(--color-error));
+  --computed-dropdown-color-default: var(--dropdown-color-default,var(--color-black-90));
+  --computed-dropdown-color-disabled: var(--dropdown-color-disabled,var(--color-black-40));
+  --computed-dropdown-height: var(--spacing-3-xl);
+  --computed-dropdown-icon-color: var(--dropdown-icon-color,var(--color-black-90));
+  --computed-menu-divider-color: var(--menu-divider-color,var(--color-black-20));
+  --computed-menu-item-background-color-hover: var(--menu-item-background-color-hover, var(--color-bus-light));
+  --computed-menu-item-background-color-selected: var(--menu-item-background-color-selected, transparent);
+  --computed-menu-item-background-color-selected-hover: var(--menu-item-background-color-selected-hover, var(--color-bus-light));
+  --computed-menu-item-border-color-focus: var(--menu-item-border-color-focus, var(--color-coat-of-arms));
+  --computed-menu-item-color-selected: var(--menu-item-color-selected, var(--color-black-90));
+  --computed-menu-item-color-selected-hover: var(--menu-item-color-selected-hover, var(--color-black-90));
+  --computed-menu-item-color-hover: var(--menu-item-color-hover, var(--color-black-90));
+  --computed-menu-item-height: var(--menu-item-height, var(--default-menu-item-height));
+  --computed-menu-z-index: var(--menu-z-index, 10);
+  --default-menu-item-height: calc(var(--computed-dropdown-height) - var(--computed-border-width) * 2);
+
+  // Rotate icon when select is active
+  &.dropdown-active ~ .hel-icon {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+// tom-select dropdown, see helfi_platform_config.
+.ts-dropdown {
+  background: var(--input-background-default);
+  border: solid var(--computed-dropdown-border-color-focus);
+  border-top-color: var(--computed-menu-divider-color);
+  border-width: var(--computed-divider-width) var(--computed-border-width) var(--computed-border-width);
+  outline: none;
+  overflow-y: auto;
+
+  // transform: translate(calc(var(--computed-border-width) * -1),100%);
+  z-index: var(--computed-menu-z-index);
+
+  .ts-dropdown-content {
+    max-height: calc(var(--computed-menu-item-height) * 5);
+  }
+
+  .option {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    line-height: var(--lineheight-m);
+    min-height: var(--computed-menu-item-height);
+    padding: var(--spacing-xs) var(--spacing-s);
+
+    &:hover {
+      background-color: var(--computed-menu-item-background-color-hover);
+      color: var(--computed-menu-item-color-hover);
+    }
+
+    &.active {
+      box-shadow: 0 0 0 2px var(--computed-menu-item-border-color-focus) inset;
+      outline: none;
+    }
+
+    &.selected {
+      background-color: var(--computed-menu-item-background-color-selected);
+      color: var(--computed-menu-item-color-selected);
+
+      &:hover {
+        background-color: var(--computed-menu-item-background-color-selected-hover);
+        color: var(--computed-menu-item-color-selected-hover);
+      }
+    }
+
+    // tom-select does not allow addings icons to selected items only.
+    // All items have selected icon and we hide icons if item is not
+    // selected.
+    &:not(.selected) .hel-icon {
+      display: none;
+    }
   }
 }
