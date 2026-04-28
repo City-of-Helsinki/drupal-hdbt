@@ -14,8 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Run npm audit
         id: npm_audit
@@ -40,7 +39,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.npm_audit.outputs.CREATE_PR == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           committer: GitHub <noreply@github.com>
           author: actions-bot <actions-bot@users.noreply.github.com>
@@ -49,20 +48,20 @@ jobs:
           labels: auto-update
           body: |
             # Npm audit
-            
+
             ${{ env.BC_BREAK }}
 
             ## How to install
-  
+
             * Update the HDBT theme
                * `git fetch --all`
                * `git checkout automation/npm-audit`
                * `git pull origin automation/npm-audit`
             * In theme folder, run `nvm use && npm i && npm run build`
-  
+
             ## How to test
             Run `npm audit`
-  
+
             * [ ] Check that the `npm audit` prints `found 0 vulnerabilities`
             * [ ] Check that the changes for distributed files are sensible
 
