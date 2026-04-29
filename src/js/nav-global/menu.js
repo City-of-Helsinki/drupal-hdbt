@@ -414,10 +414,11 @@ const MobilePanel = {
       return item;
     });
 
+    window.no_global_navigation = allItems[0]?.no_global_navigation ?? false;
+
     const currentItem = allItems.findRecursive((item) => isCurrentPath.call(item), 'sub_tree');
 
     if (currentItem) {
-      window.no_global_navigation = currentItem?.no_global_navigation ?? false;
       currentItem.active = true;
       currentItem.inPath = true;
     }
