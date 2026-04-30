@@ -5,13 +5,19 @@
 {% endif %}
 
 {% if rows is not empty %}
+  {% set component_description = 'Recommendations are generated automatically based on content.'|t({}, {'context': 'Recommendations block description'}) %}
+{% else %}
+  {% set component_description = no_results_message %}
+{% endif %}
+
+{% if rows is not empty %}
   <div class="components components--computed components--recommendations">
     {% block paragraph %}
       {% embed "@hdbt/misc/component.twig" with
         {
           component_classes: [ 'component', 'component--recommendations', tiny_cards ? 'component--recommendations--tiny-cards' : '', 'component--hardcoded', 'component--full-width', 'hide-from-table-of-contents' ],
           component_title: 'Recommended for you'|t({}, {'context': 'Recommendations block title'}),
-          component_description: 'Recommendations are generated automatically based on content.'|t({}, {'context': 'Recommendations block description'}),
+          component_description: component_description,
           use_component_title_lang_fallback: alternative_language ?? false,
         }
       %}
@@ -64,5 +70,17 @@
         {% endblock component_content %}
       {% endembed %}
     {% endblock paragraph %}
+  </div>
+{% elseif no_results_message is not empty %}
+  <div class="components components--computed components--recommendations">
+    {% embed "@hdbt/misc/component.twig" with
+      {
+        component_classes: [ 'component', 'component--recommendations', tiny_cards ? 'component--recommendations--tiny-cards' : '', 'component--hardcoded', 'component--full-width', 'hide-from-table-of-contents' ],
+        component_title: 'Recommended for you'|t({}, {'context': 'Recommendations block title'}),
+        component_description: component_description,
+        use_component_title_lang_fallback: alternative_language ?? false,
+      }
+    %}
+    {% endembed %}
   </div>
 {% endif %}
