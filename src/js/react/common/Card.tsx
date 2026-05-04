@@ -19,6 +19,7 @@ export type CardItemProps = {
   cardCategoryTag?: TagType;
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
+  cardDescriptionAllowedTags?: string[];
   cardHelptext?: string;
   cardHelptextHtml?: boolean;
   cardImage?: string | JSX.Element | JSX.Element[];
@@ -54,6 +55,7 @@ function CardItem({
   cardCategoryTag,
   cardDescription,
   cardDescriptionHtml,
+  cardDescriptionAllowedTags,
   cardHelptext,
   cardHelptextHtml,
   cardImage,
@@ -131,7 +133,7 @@ function CardItem({
 
         {cardDescription && (
           <div className='card__description'>
-            {cardDescriptionHtml ? htmlToReact(cardDescription) : <p {...langAttribute}>{cardDescription}</p>}
+            {cardDescriptionHtml ? htmlToReact(cardDescription, cardDescriptionAllowedTags) : <p {...langAttribute}>{cardDescription}</p>}
           </div>
         )}
 
