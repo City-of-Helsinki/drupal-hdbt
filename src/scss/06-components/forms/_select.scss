@@ -117,7 +117,8 @@
 }
 
 // Adapted from HDS, see dropdown.helpers.scss.
-.ts-wrapper {
+.hdbt--select-wrapper--multiple .ts-wrapper,
+.hdbt--select-wrapper .ts-wrapper {
   --computed-border-width: var(--border-width, 2px);
   --computed-dropdown-background-default: var(--dropdown-background-default,var(--color-white));
   --computed-dropdown-background-disabled: var(--dropdown-background-disabled,var(--color-black-10));
@@ -149,7 +150,8 @@
 }
 
 // tom-select dropdown, see helfi_platform_config.
-.ts-dropdown {
+.hdbt--select-wrapper--multiple .ts-dropdown,
+.hdbt--select-wrapper .ts-dropdown {
   background: var(--input-background-default);
   border: solid var(--computed-dropdown-border-color-focus);
   border-top-color: transparent;
@@ -159,9 +161,7 @@
 
   // We have 4px offset for outline that looks weird with dropdown border.
   // Overrides default to look better with outline offset.
-  top: calc(100% + 4px) !important;
-
-  // transform: translate(calc(var(--computed-border-width) * -1),100%);
+  top: calc(100% + 4px);
   z-index: var(--computed-menu-z-index);
 
   .ts-dropdown-content {
