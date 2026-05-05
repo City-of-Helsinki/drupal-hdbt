@@ -131,7 +131,6 @@
   --computed-dropdown-color-disabled: var(--dropdown-color-disabled,var(--color-black-40));
   --computed-dropdown-height: var(--spacing-3-xl);
   --computed-dropdown-icon-color: var(--dropdown-icon-color,var(--color-black-90));
-  --computed-menu-divider-color: var(--menu-divider-color,var(--color-black-20));
   --computed-menu-item-background-color-hover: var(--menu-item-background-color-hover, var(--color-bus-light));
   --computed-menu-item-background-color-selected: var(--menu-item-background-color-selected, transparent);
   --computed-menu-item-background-color-selected-hover: var(--menu-item-background-color-selected-hover, var(--color-bus-light));
@@ -153,10 +152,14 @@
 .ts-dropdown {
   background: var(--input-background-default);
   border: solid var(--computed-dropdown-border-color-focus);
-  border-top-color: var(--computed-menu-divider-color);
+  border-top-color: transparent;
   border-width: var(--computed-divider-width) var(--computed-border-width) var(--computed-border-width);
   outline: none;
   overflow-y: auto;
+
+  // We have 4px offset for outline that looks weird with dropdown border.
+  // Overrides default to look better with outline offset.
+  top: calc(100% + 4px) !important;
 
   // transform: translate(calc(var(--computed-border-width) * -1),100%);
   z-index: var(--computed-menu-z-index);
