@@ -1,6 +1,5 @@
 // Base font family and size.
 @use 'sass:math';
-@import 'hds-core/lib/fonts/fonts.min.css';
 
 $base-font-family: HelsinkiGroteskPro, Arial, sans-serif;
 $base-font-size: 16px; // We have to assume that this is the default size in browsers.
