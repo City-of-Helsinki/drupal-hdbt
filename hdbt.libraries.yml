@@ -117,6 +117,12 @@ focus-trap:
   dependencies:
     - hdbt/tabbable
 
+fonts:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    base:
+      'https://hds.hel.fi/fonts/fonts.css': { type: external, minified: true }
+
 global-styling:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   css:

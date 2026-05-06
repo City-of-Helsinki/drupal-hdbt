@@ -29,6 +29,7 @@ libraries:
   - hdbt/global-styling
   - hdbt/hyphenopoly
   - hdbt/local-storage-cleanup
+  - hdbt/fonts
 
 libraries-override:
   helfi_kymp_content/vehicle-removal-search: hdbt/vehicle-removal-search
