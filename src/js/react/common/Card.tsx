@@ -133,11 +133,7 @@ function CardItem({
 
         {cardDescription && (
           <div className='card__description'>
-            {cardDescriptionHtml ? (
-              htmlToReact(cardDescription, cardDescriptionAllowedTags)
-            ) : (
-              <p {...langAttribute}>{cardDescription}</p>
-            )}
+            {cardDescriptionHtml ? htmlToReact(cardDescription, cardDescriptionAllowedTags) : <p {...langAttribute}>{cardDescription}</p>}
           </div>
         )}
 
