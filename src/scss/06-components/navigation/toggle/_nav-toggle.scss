@@ -88,10 +88,6 @@ $label-font: 'special.navigation.icon_label';
   grid-area: link;
 }
 
-.nav-toggle .nav-toggle__label--close {
-  visibility: hidden;
-}
-
 // Outermost dropdown container, always open.
 .nav-toggle-dropdown {
   max-width: 100vw;
@@ -189,16 +185,6 @@ $label-font: 'special.navigation.icon_label';
 
 @mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
   #{$id}[data-target='true'] {
-    & ~ * #{$nav-toggle-modifier} {
-      .nav-toggle__label--open {
-        visibility: hidden; // Menu text and hamburger icon are hidden
-      }
-
-      .nav-toggle__label--close {
-        visibility: visible; // Close text and cross icon are visible
-      }
-    }
-
     & ~ * #{$nav-toggle-dropdown-modifier} {
       .nav-toggle-dropdown__wrapper {
         transform: translateY(0); // Animate wrapper into view from top

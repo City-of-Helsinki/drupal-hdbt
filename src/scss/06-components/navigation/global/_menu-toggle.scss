@@ -14,8 +14,8 @@
   @include pseudo-icon('search', 32px, currentColor, block);
 }
 
-.nav-toggle--menu .nav-toggle__label--close,
-.nav-toggle--search .nav-toggle__label--close {
+.nav-toggle--menu .nav-toggle__button[aria-expanded='true'] .nav-toggle__label--open,
+.nav-toggle--search .nav-toggle__button[aria-expanded='true'] .nav-toggle__label--open {
   &::before {
     @include pseudo-icon-replace('cross');
   }
