@@ -8,7 +8,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
 ((Drupal) => {
   Drupal.behaviors.navToggle = {
     attach(context, settings) {
-      if (window.navToggleInitialized && context === document) {
+      if (context !== document || window.navToggleInitialized) {
         return;
       }
 
@@ -73,11 +73,11 @@ import { close, open } from './nav-toggle/toggleWidgets';
       };
 
       // Function to close dropdown when focus moves outside of it.
-      const closeOnFocusOut = (wrapper, dropdownClose, instance) => {
+      const closeOnFocusOut = (wrapper, dropdownClose, instance, toggleButtons = []) => {
         const handler = () => {
           setTimeout(() => {
             const active = document.activeElement;
-            if (!wrapper.contains(active)) {
+            if (!wrapper.contains(active) && !toggleButtons.includes(active)) {
               dropdownClose();
             }
           }, 10);
@@ -138,7 +138,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             }
 
             if (menuWrapper) {
-              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key);
+              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key, dropdownInstance.buttonInstances);
             }
             context.addEventListener('click', closeFromOutside);
           },
