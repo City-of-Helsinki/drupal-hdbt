@@ -1,5 +1,5 @@
 accordion:
-  version: 1.7.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/accordion.min.js: {
       weight: -50,
@@ -10,7 +10,7 @@ accordion:
     - helfi_platform_config/heading_id_injector
 
 card-helper:
-  version: 1.1.2
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/cardHelper.min.js: {
       minified: true
@@ -20,14 +20,14 @@ card-helper:
     - core/once
 
 chat-trigger:
-  version: 1.0.2
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/chatTrigger.min.js: {
       minified: true
     }
 
 closable-announcements:
-  version: 1.2.2
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/closableAnnouncements.min.js: {
       minified: true
@@ -38,7 +38,7 @@ closable-announcements:
     - core/drupalSettings
 
 closable-surveys:
-  version: 1.2.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/closableSurveys.min.js: {
       minified: true
@@ -49,7 +49,7 @@ closable-surveys:
     - hdbt/focus-trap
 
 color-palette:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/color-palette.min.css: {
@@ -57,7 +57,7 @@ color-palette:
       }
 
 desktop-menu-toggle:
-  version: 1.0.6
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/desktopMenuToggle.min.js: {
       minified: true
@@ -78,7 +78,7 @@ district-and-project-search:
     - core/drupal
 
 embedded-content-cookie-compliance:
-  version: 1.2.2
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/embeddedContentCookieCompliance.min.js: {
       minified: true
@@ -89,7 +89,7 @@ embedded-content-cookie-compliance:
     - core/drupalSettings
 
 environment-indicator:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/environment-indicator.min.css: {
@@ -109,7 +109,7 @@ event-list:
     - core/drupal
 
 focus-trap:
-  version: 7.5.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/focus-trap/focus-trap.min.js: {
       minified: true
@@ -129,7 +129,7 @@ global-styling:
     - hdbt/hdbt-icons
 
 hdbt-icons:
-  version: 1.3.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/hdbt-icons.css: {}
@@ -148,7 +148,7 @@ health-station-search:
 # Attached in:
 # - templates/block/block--announcements.html.twig
 hide-announcements:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   # Needs to load early for mutation observers to work properly.
   header: true
   js:
@@ -192,14 +192,14 @@ job-search:
     - core/drupal
 
 koro-helper:
-  version: 1.0.2
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/koroHelper.min.js: {
       minified: true
     }
 
 language-toast:
-  version: 1.0.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/languageToast.min.js: {
       minified: true
@@ -232,7 +232,7 @@ matomo:
     - core/jquery
 
 mobile-language-switcher:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/mobileLanguageSwitcher.min.js: {
       minified: true
@@ -241,7 +241,7 @@ mobile-language-switcher:
     - core/drupal
 
 nav-global:
-  version: 1.0.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/nav-global.min.css: {
@@ -253,7 +253,7 @@ nav-global:
     - hdbt/nav-toggle
 
 nav-toggle:
-  version: 1.0.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/navToggle.min.js: {
       minified: true,
@@ -269,7 +269,7 @@ nav-toggle:
     - core/drupalSettings
 
 nav-local:
-  version: 1.0.4
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   css:
     theme:
       dist/css/nav-local.min.css: {
@@ -342,7 +342,7 @@ search-monitor-helper:
     - core/drupal
 
 sidebar-menu-toggle:
-  version: 1.0.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/sidebarMenuToggle.min.js: {
       minified: true
@@ -351,14 +351,14 @@ sidebar-menu-toggle:
     - core/drupal
 
 tabbable:
-  version: 6.2.0
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/tabbable/tabbable.min.js: {
       minified: true
     }
 
 tabs:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/tabs.min.js: {
       minified: true
@@ -368,7 +368,7 @@ tabs:
     - core/drupalSettings
 
 table-figcaption:
-  version: 1.0.3
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/handleFigcaptionSourceOrder.min.js: {
       minified: true
@@ -378,7 +378,7 @@ table-figcaption:
     - core/once
 
 throbber:
-  version: 1.0.1
+  version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
     dist/js/throbber.min.js: {
       minified: true
