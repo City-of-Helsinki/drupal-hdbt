@@ -232,11 +232,12 @@ export const AddressSearch = ({
     />
   );
 
+  const wrapperClassName = [className || 'hdbt-search__filter', useLocation && 'hdbt-search__filter--with-location']
+    .filter(Boolean)
+    .join(' ');
+
   return (
-    <div
-      className={className || 'hdbt-search__filter'}
-      aria-busy={useLocation ? geoInProgress || undefined : undefined}
-    >
+    <div className={wrapperClassName} aria-busy={useLocation ? geoInProgress || undefined : undefined}>
       {useLocation ? (
         <>
           <output aria-live='polite' className='visually-hidden'>
