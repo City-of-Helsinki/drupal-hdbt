@@ -25,9 +25,11 @@ import LocalStorageManager from './localStorageManager';
       if (!survey) return;
 
       const root = document.documentElement;
-      const surveyDelay = 2000;
+      const surveyDelay = 15000;
+      const remindLaterDelay = 120000;
       const surveyButtons = document.querySelectorAll('.dialog__actions .dialog__action-button');
       const surveyKey = 'hidden-helfi-surveys';
+      const deferredSurveyKey = 'deferred-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveyFocusTrap = null;
 
