@@ -1587,6 +1587,10 @@ msgid "Respond to the survey"
 msgstr "Delta i enkäten"
 
 msgctxt "Survey"
+msgid "Remind me later"
+msgstr "Påminn mig senare"
+
+msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "Jag deltar inte i enkäten"
 

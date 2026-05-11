@@ -1585,6 +1585,10 @@ msgid "Respond to the survey"
 msgstr "Vastaa kyselyyn"
 
 msgctxt "Survey"
+msgid "Remind me later"
+msgstr "Muistuta minua myöhemmin"
+
+msgctxt "Survey"
 msgid "Skip the survey"
 msgstr "En osallistu kyselyyn"
 
