@@ -23,7 +23,7 @@
 
 .dialog {
   --survey-border-color: var(--color-bus);
-  --survey-width: 558px;
+  --survey-width: 480px;
   border-color: var(--survey-border-color);
   border-width: $spacing-half 0 0 0;
   display: flex;
@@ -71,7 +71,6 @@
 
   @include breakpoint($breakpoint-m) {
     column-gap: $spacing;
-    flex-direction: row;
   }
 }
 
