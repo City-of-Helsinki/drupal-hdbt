@@ -25,9 +25,11 @@ import LocalStorageManager from './localStorageManager';
       if (!survey) return;
 
       const root = document.documentElement;
-      const surveyDelay = 2000;
+      const surveyDelay = 15000;
+      const remindLaterDelay = 120000;
       const surveyButtons = document.querySelectorAll('.dialog__actions .dialog__action-button');
       const surveyKey = 'hidden-helfi-surveys';
+      const deferredSurveyKey = 'deferred-helfi-surveys';
       const storageManager = new LocalStorageManager('helfi-settings');
       let surveyFocusTrap = null;
 
@@ -117,6 +119,7 @@ import LocalStorageManager from './localStorageManager';
 
       // Function to hide the survey and remove noscroll from body.
       function removeSurvey() {
+        storageManager.deleteKey(deferredSurveyKey);
         addToSurveyStorage();
         surveyFocusTrap.deactivate();
         survey.remove();
@@ -126,9 +129,24 @@ import LocalStorageManager from './localStorageManager';
         focusToCookieBanner();
       }
 
+      // Function to postpone the survey.
+      function deferSurvey() {
+        const { uuid } = survey.dataset;
+        storageManager.setValue(deferredSurveyKey, { uuid, deferredAt: Date.now() });
+        surveyFocusTrap.deactivate();
+        survey.style.display = 'none';
+        toggleNoScroll(false);
+        setBodyPaddingRight(false);
+        toggleOtherContentVisibility();
+        setTimeout(() => {
+          storageManager.deleteKey(deferredSurveyKey);
+          showSurvey();
+        }, remindLaterDelay);
+      }
+
       if (surveyButtons) {
         surveyButtons.forEach((button) => {
-          button.addEventListener('click', removeSurvey);
+          button.addEventListener('click', button.id === 'helfi-survey__later-button' ? deferSurvey : removeSurvey);
         });
       }
 
@@ -142,8 +160,24 @@ import LocalStorageManager from './localStorageManager';
 
       // Make sure that it's not Siteimprove Crawler viewing the site.
       if (!siteimproveCrawler) {
-        // Set a timeout to show the survey after the defined delay.
-        setTimeout(showSurvey, surveyDelay);
+        const deferred = storageManager.getValue(deferredSurveyKey);
+        const { uuid } = survey.dataset;
+
+        // If this survey was previously deferred, schedule it to reappear after the remaining delay.
+        if (deferred && deferred.uuid === uuid) {
+          // Figure out the remaining delay if it was set on another page.
+          const remaining = deferred.deferredAt + remindLaterDelay - Date.now();
+          setTimeout(
+            () => {
+              storageManager.deleteKey(deferredSurveyKey);
+              showSurvey();
+            },
+            // Guard against negative values when the delay has already been passed.
+            Math.max(0, remaining),
+          );
+        } else {
+          setTimeout(showSurvey, surveyDelay);
+        }
       }
 
       window.closableSurveysInitialized = true;

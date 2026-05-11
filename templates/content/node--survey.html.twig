@@ -32,8 +32,11 @@
         url: content.field_survey_link.0['#url'],
         link_options: {'class': ['dialog__action-button']},
       } %}
+      <button class="dialog__action-button" data-hds-component="button" data-hds-variant="secondary" id="helfi-survey__later-button">
+        {{ 'Remind me later'|t({}, {'context': 'Survey'}) }}
+      </button>
       <button class="dialog__action-button" data-hds-component="button" data-hds-variant="secondary" id="helfi-survey__close-button">
-        {{ "Skip the survey"|t({}, {'context': 'Survey'}) }}
+        {{ 'Skip the survey'|t({}, {'context': 'Survey'}) }}
       </button>
     </div>
   </dialog>
