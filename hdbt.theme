@@ -1245,15 +1245,6 @@ function hdbt_preprocess_views_view(&$variables): void {
 
   $variables['show_count_container'] = TRUE;
 
-  // The amount of results is not shown in service units view if
-  // there's only one result. Heading level needs to be adjusted to match
-  // accessibility requirements. Doing this via custom view plugin instead
-  // of mutating the _entity would be an overkill.
-  if ($variables['total_rows'] == 1 && $variables['view']->id() == 'service_units') {
-    $variables['show_count_container'] = FALSE;
-    $variables['view']->result[0]->_entity->card_heading_level = 'h3';
-  }
-
   if ($variables['view']->id() == 'service_list') {
     $variables['is_ajax_request'] = \Drupal::request()->isXmlHttpRequest();
   }
