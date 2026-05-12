@@ -7,7 +7,7 @@ import getNameTranslation from './helpers/ServiceMap';
 
 export type AddressWithCoordinates = { label: string; value: [number, number, string] };
 
-const USE_LOCATION_VALUE = Drupal.t('Use current location', {}, { context: 'Location autocomplete' });
+const USE_LOCATION_VALUE = Drupal.t('Use current Location', {}, { context: 'Location autocomplete' });
 
 const useLocationOption = {
   label: USE_LOCATION_VALUE,
@@ -99,7 +99,14 @@ export const AddressSearch = ({
   );
 
   const handleLocationError = useCallback((message?: string) => {
-    setGeoLocationError(message ?? 'Error occurred while retrieving location.');
+    setGeoLocationError(
+      message ??
+        Drupal.t(
+          "We couldn't retrieve your current location. Try entering an address.",
+          {},
+          { context: 'Location autocomplete' },
+        ),
+    );
   }, []);
 
   const handleLocationRequest = useCallback(() => {
@@ -107,7 +114,9 @@ export const AddressSearch = ({
     setGeoLoading(true);
 
     if (!navigator.geolocation) {
-      handleLocationError('Geolocation is not supported by this browser.');
+      handleLocationError(
+        Drupal.t('Geolocation is not supported by this browser.', {}, { context: 'Location autocomplete' }),
+      );
       setGeoLoading(false);
       return;
     }
@@ -130,10 +139,10 @@ export const AddressSearch = ({
             const resolvedName = getNameTranslation(addressResult.full_name, 'fi') || '';
             submitAddress(resolvedName, [latitude, longitude]);
           } else {
-            handleLocationError('No address found for the current location.');
+            handleLocationError();
           }
         } catch (_e) {
-          handleLocationError('Error occurred while fetching address for the current location.');
+          handleLocationError();
         } finally {
           setGeoLoading(false);
         }
@@ -241,9 +250,7 @@ export const AddressSearch = ({
       {useLocation ? (
         <>
           <output aria-live='polite' className='visually-hidden'>
-            {geoInProgress
-              ? Drupal.t('Retrieving current location...', {}, { context: 'Location retrieval status' })
-              : ''}
+            {geoInProgress ? Drupal.t('Retrieving current location...', {}, { context: 'Location autocomplete' }) : ''}
           </output>
           <div style={!geoInProgress ? { display: 'none' } : undefined}>
             <TextInput

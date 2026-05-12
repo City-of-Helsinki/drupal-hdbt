@@ -1893,3 +1893,11 @@ msgstr "Lisätiedot"
 msgctxt "Address search error message"
 msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
 msgstr "Varmista, että osoite on oikein. Voit kokeilla hakea myös läheisellä katuosoitteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
+
+msgctxt "Location autocomplete"
+msgid "Geolocation is not supported by this browser."
+msgstr "Sijainnin haku ei toimi tällä selaimella."
+
+msgctxt "Location autocomplete"
+msgid "Retrieving current location..."
+msgstr "Haetaan sijaintia..."
