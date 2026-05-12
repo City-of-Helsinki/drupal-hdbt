@@ -210,10 +210,6 @@ msgctxt "Mobile navigation menu open button text"
 msgid "Menu"
 msgstr "Valikko"
 
-msgctxt "Mobile navigation menu close button text"
-msgid "Close"
-msgstr "Sulje"
-
 msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Kytke alivalikko:"
@@ -349,10 +345,6 @@ msgctxt "Other languages-menu open button text for screen readers"
 msgid "Open Information in other languages menu"
 msgstr "Avaa tietoa muilla kielillä valikko"
 
-msgctxt "Other languages-menu close button text for screen readers"
-msgid "Close Information in other languages menu"
-msgstr "Sulje tietoa muilla kielillä valikko"
-
 msgctxt "Other languages-navigation"
 msgid "Information in other languages menu"
 msgstr "Tietoa muilla kielillä valikko"
@@ -376,10 +368,6 @@ msgstr "Toimintakieli"
 msgctxt "TPR unit result card"
 msgid "Opening hours"
 msgstr "Aukioloaika"
-
-msgctxt "Profile information-menu close button text for screen readers"
-msgid "Close profile information menu"
-msgstr "Sulje käyttäjä-valikko"
 
 msgctxt "Log out link on profile dropdown"
 msgid "Log out"

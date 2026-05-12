@@ -166,11 +166,10 @@
       --icon-size: 28px;
     }
   }
+}
 
-  &.nav-toggle__label--close::before {
-    @include pseudo-icon-replace('cross');
-    margin-bottom: 0;
-  }
+.nav-toggle__button--profile[aria-expanded='true'] .nav-toggle__label--profile::before {
+  @include pseudo-icon-replace('cross');
 }
 
 .nav-toggle__label--profile:focus,
