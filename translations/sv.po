@@ -208,10 +208,6 @@ msgctxt "Mobile navigation menu open button text"
 msgid "Menu"
 msgstr "Meny"
 
-msgctxt "Mobile navigation menu close button text"
-msgid "Close"
-msgstr "Stäng"
-
 msgctxt "Mobile navigation submenu prefix"
 msgid "Toggle submenu:"
 msgstr "Växla undermeny:"
@@ -347,10 +343,6 @@ msgctxt "Other languages-menu open button text for screen readers"
 msgid "Open Information in other languages menu"
 msgstr "Öppna Information på andra språk meny"
 
-msgctxt "Other languages-menu close button text for screen readers"
-msgid "Close Information in other languages menu"
-msgstr "Stäng Information på andra språk meny"
-
 msgctxt "Other languages-navigation"
 msgid "Information in other languages menu"
 msgstr "Information på andra språk meny"
@@ -374,10 +366,6 @@ msgstr "Verksamhetsspråk"
 msgctxt "TPR unit result card"
 msgid "Opening hours"
 msgstr "Öppettid"
-
-msgctxt "Profile information-menu close button text for screen readers"
-msgid "Close profile information menu"
-msgstr "Stäng profilinformationsmenyn"
 
 msgctxt "Log out link on profile dropdown"
 msgid "Log out"

@@ -7,15 +7,6 @@
   {% endif %}
 {% endset %}
 
-{% set menu_close %}
-  {% if close_screenreader %}
-    <span aria-hidden="true">{{ close_label }}</span>
-    <span class="visually-hidden">{{ close_screenreader }}</span>
-  {% else %}
-    <span>{{ close_label }}</span>
-  {% endif %}
-{% endset %}
-
 {% if modifier_suffix == 'profile' %}
   {% set label_modified = 'nav-toggle__label--profile' %}
   {% set button_modified = 'nav-toggle__button--profile' %}
