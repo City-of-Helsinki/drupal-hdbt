@@ -28,6 +28,7 @@ declare namespace drupalSettings {
         useFullLocationFilter: boolean;
         useFullTopicsFilter: boolean;
         useLocationSearch: boolean;
+        useSearchBar: boolean;
         useTargetGroupFilter: boolean;
       };
     };

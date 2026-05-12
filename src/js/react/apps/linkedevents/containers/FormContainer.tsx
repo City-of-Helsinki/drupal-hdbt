@@ -23,6 +23,7 @@ import {
   updateUrlAtom,
 } from '../store';
 import SelectionsContainer from './SelectionsContainer';
+import { SearchBar } from '../components/SearchBar';
 
 function FormContainer() {
   const [address, updateAddress] = useAtom(addressAtom);
@@ -42,6 +43,7 @@ function FormContainer() {
     useFullLocationFilter,
     useFullTopicsFilter,
     useLocationSearch,
+    useSearchBar,
     useTargetGroupFilter,
   } = filterSettings;
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
@@ -102,6 +104,9 @@ function FormContainer() {
     >
       {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
       <div className='event-form__filters-container'>
+        {useSearchBar && (
+          <SearchBar />
+        )}
         {useLocationSearch && (
           <AddressSearch
             hideSearchButton

@@ -72,6 +72,7 @@ const getInitialSettings = () => {
     useFullLocationFilter: settings?.useFullLocationFilter,
     useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
+    useSearchBar: settings?.useSearchBar,
     useTargetGroupFilter: settings?.useTargetGroupFilter,
   };
   const locations = transformLocations(settings?.places);
@@ -177,10 +178,9 @@ export const settingsAtom = atom(
 export const useFixturesAtom = atom<object | false>((get) => get(baseAtom)?.useFixtures);
 
 export const pageAtom = atom<number>(1);
-
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
-
 export const topicSelectionAtom = atom<Topic[]>([]);
+export const searchKeywordAtom = atom<string>('');
 
 export const startDateAtom = atom<Date | undefined>(undefined);
 export const endDateAtom = atom<Date | undefined>(undefined);
