@@ -1,3 +1,6 @@
-const ServiceMap = { EVENTS_URL: 'https://api.hel.fi/servicemap/v2/search/' };
+const ServiceMap = {
+  ADDRESS_URL: 'https://api.hel.fi/servicemap/v2/address/',
+  EVENTS_URL: 'https://api.hel.fi/servicemap/v2/search/',
+};
 
 export default ServiceMap;
