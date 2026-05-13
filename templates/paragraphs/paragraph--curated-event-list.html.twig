@@ -1,3 +1,8 @@
+{% set title = content.field_title %}
+{# Check if title field is empty, ignore html comments, non-breaking spaces (&nbsp; and character) and whitespace. #}
+{% if not content.field_title|render|striptags|replace({"&nbsp;":" "," ":" "})|trim  %}
+  {% set title = 'Recommended events'|trans({}, {'context': 'Curated event list title'}) %}
+{% endif %}
 {% block paragraph %}
   {% embed "@hdbt/misc/component.twig" with
     {
@@ -6,7 +11,8 @@
       'component--curated-event-list',
       ],
       component_title_level: 'h2',
-      component_title: 'Recommended events'|trans({}, {'context': 'Curated event list title'}),
+      component_title: title,
+      component_description: content.field_description,
     }
   %}
     {% block component_content %}
