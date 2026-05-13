@@ -18,6 +18,7 @@
 .nav-toggle--search .nav-toggle__button[aria-expanded='true'] .nav-toggle__label {
   &::before {
     @include pseudo-icon-replace('cross');
+    transform: translate(0); // Forces Safari to composite and repaint the pseudo-element when aria-expanded changes
   }
 }
 
