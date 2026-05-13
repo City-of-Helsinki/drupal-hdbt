@@ -1,22 +1,21 @@
-import { useAtom, useSetAtom } from "jotai";
-import { searchKeywordAtom, updateParamsAtom } from "../store";
-import { TextInput } from "hds-react";
-import SearchComponents from "../enum/SearchComponents";
+import { TextInput } from 'hds-react';
+import { useAtom, useSetAtom } from 'jotai';
+import ApiKeys from '../enum/ApiKeys';
+import SearchComponents from '../enum/SearchComponents';
+import { searchKeywordAtom, updateParamsAtom } from '../store';
 
 export const SearchBar = () => {
-  const [value, setValue] = useAtom(searchKeywordAtom); 
+  const [value, setValue] = useAtom(searchKeywordAtom);
   const updateParams = useSetAtom(updateParamsAtom);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const next = e.target.value;
+    setValue(next);
     updateParams({
-      [SearchComponents.SEARCH_BAR]: e.target.value,
+      [ApiKeys.FULL_TEXT]: next || undefined,
+      [ApiKeys.FULL_TEXT_LANGUAGE]: next ? 'fi,en,sv' : undefined,
     });
   };
 
-  return <TextInput
-    id={SearchComponents.SEARCH_BAR}
-    value={value}
-    onChange={handleChange}
-  />;
+  return <TextInput id={SearchComponents.SEARCH_BAR} value={value} onChange={handleChange} />;
 };

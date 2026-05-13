@@ -4,6 +4,8 @@ export const ApiKeys = {
   END: 'end',
   EVENT_TYPE: 'event_type',
   FREE: 'is_free',
+  FULL_TEXT: 'full_text',
+  FULL_TEXT_LANGUAGE: 'full_text_language',
   KEYWORDS: 'keyword_OR',
   LANGUAGE: 'in_language',
   LOCATION: 'location',

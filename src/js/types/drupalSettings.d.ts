@@ -19,6 +19,7 @@ declare namespace drupalSettings {
         field_free_events: boolean;
         field_language: boolean;
         field_remote_events: boolean;
+        field_search_term: boolean;
         hideHeading: boolean;
         hidePagination: boolean;
         places: { [key: string]: { id: string; name: { [key: string]: string } } };
@@ -28,7 +29,6 @@ declare namespace drupalSettings {
         useFullLocationFilter: boolean;
         useFullTopicsFilter: boolean;
         useLocationSearch: boolean;
-        useSearchBar: boolean;
         useTargetGroupFilter: boolean;
       };
     };

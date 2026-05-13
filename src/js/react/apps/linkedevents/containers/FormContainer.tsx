@@ -9,6 +9,7 @@ import FullLocationFilter from '../components/FullLocationFilter';
 import FullTopicsFilter from '../components/FullTopicsFilter';
 import { LanguageFilter } from '../components/LanguageFilter';
 import LocationFilter from '../components/LocationFilter';
+import { SearchBar } from '../components/SearchBar';
 import SubmitButton from '../components/SubmitButton';
 import { TargetGroupFilter } from '../components/TargetGroupFilter';
 import TopicsFilter from '../components/TopicsFilter';
@@ -23,7 +24,6 @@ import {
   updateUrlAtom,
 } from '../store';
 import SelectionsContainer from './SelectionsContainer';
-import { SearchBar } from '../components/SearchBar';
 
 function FormContainer() {
   const [address, updateAddress] = useAtom(addressAtom);
@@ -71,6 +71,7 @@ function FormContainer() {
     showTimeFilter ||
     showRemoteFilter ||
     showTopicsFilter ||
+    useSearchBar ||
     eventListType === 'events_and_hobbies';
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
@@ -104,9 +105,7 @@ function FormContainer() {
     >
       {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
       <div className='event-form__filters-container'>
-        {useSearchBar && (
-          <SearchBar />
-        )}
+        {useSearchBar && <SearchBar />}
         {useLocationSearch && (
           <AddressSearch
             hideSearchButton

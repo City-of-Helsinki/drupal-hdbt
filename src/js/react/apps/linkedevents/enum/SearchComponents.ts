@@ -6,7 +6,7 @@ const SearchComponents = {
   LOCATION: 'location',
   REMOTE: 'internet_based',
   RESULTS: 'page',
-  SEARCH_BAR: 'q',
+  SEARCH_BAR: 'full_text',
   TARGET_GROUPS: 'target_groups',
   TOPICS: 'topics',
 };

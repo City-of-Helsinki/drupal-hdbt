@@ -15,7 +15,7 @@ import type Topic from './types/Topic';
 const queryStringParams = new URLSearchParams(window.location.search);
 
 interface Options {
-  [key: string]: string;
+  [key: string]: string | undefined;
 }
 
 // Transform locations from API response to options
@@ -72,7 +72,7 @@ const getInitialSettings = () => {
     useFullLocationFilter: settings?.useFullLocationFilter,
     useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
-    useSearchBar: settings?.useSearchBar,
+    useSearchBar: settings?.field_search_term,
     useTargetGroupFilter: settings?.useTargetGroupFilter,
   };
   const locations = transformLocations(settings?.places);
@@ -171,6 +171,7 @@ export const settingsAtom = atom(
       useFullLocationFilter: false,
       useFullTopicsFilter: false,
       useLocationSearch: false,
+      useSearchBar: false,
       useTargetGroupFilter: false,
     },
 );
