@@ -17,5 +17,12 @@ export const SearchBar = () => {
     });
   };
 
-  return <TextInput id={SearchComponents.SEARCH_BAR} value={value} onChange={handleChange} />;
+  return (
+    <TextInput
+      id={SearchComponents.SEARCH_BAR}
+      label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
+      value={value}
+      onChange={handleChange}
+    />
+  );
 };
