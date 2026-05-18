@@ -1,12 +1,18 @@
 import { TextInput } from 'hds-react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import { searchKeywordAtom, updateParamsAtom } from '../store';
+import { initialParamsAtom, searchKeywordAtom, updateParamsAtom } from '../store';
 
 export const SearchBar = () => {
   const [value, setValue] = useAtom(searchKeywordAtom);
   const updateParams = useSetAtom(updateParamsAtom);
+  const initialParams = useAtomValue(initialParamsAtom);
+
+  // Bail if conflicting paremeter is set.
+  if (initialParams.has(ApiKeys.FULL_TEXT)) {
+    return null;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const next = e.target.value;
