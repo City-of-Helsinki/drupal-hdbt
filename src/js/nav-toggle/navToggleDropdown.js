@@ -21,17 +21,15 @@ class NavToggleDropdown {
   // The simpleClose function is for events such as closing all the
   // other open instances before opening a new one.
   simpleClose() {
-    if (this.running) {
-      this.buttonInstances.forEach((button) => {
-        button.setAttribute('aria-expanded', 'false');
-      });
-      this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
-      this.dropdownInstance?.removeAttribute('style');
-      this.targetNode.dataset.target = 'false';
+    this.buttonInstances.forEach((button) => {
+      button.setAttribute('aria-expanded', 'false');
+    });
+    this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
+    this.dropdownInstance?.removeAttribute('style');
+    this.targetNode.dataset.target = 'false';
 
-      if (this.onClose) {
-        this.onClose();
-      }
+    if (this.onClose) {
+      this.onClose();
     }
   }
 
@@ -43,23 +41,21 @@ class NavToggleDropdown {
     // Then run the part where the button focus is determined.
     // This should be run only once or the button to focus is
     // lost and all kinds of unwanted behaviour will occur.
-    if (this.running) {
-      // Find the correct button to focus
-      let buttonToFocus = this.lastClickedButton;
+    // Find the correct button to focus
+    let buttonToFocus = this.lastClickedButton;
 
-      // If the last clicked button is inside the dropdown, find another button outside of it
-      if (this.dropdownInstance?.contains(buttonToFocus)) {
-        buttonToFocus = this.buttonInstances.find((button) => !this.dropdownInstance.contains(button)) || null;
-      }
+    // If the last clicked button is inside the dropdown, find another button outside of it
+    if (this.dropdownInstance?.contains(buttonToFocus)) {
+      buttonToFocus = this.buttonInstances.find((button) => !this.dropdownInstance.contains(button)) || null;
+    }
 
-      // Move focus if a valid button is found
-      if (buttonToFocus) {
-        buttonToFocus.focus();
-      }
+    // Move focus if a valid button is found
+    if (buttonToFocus) {
+      buttonToFocus.focus();
+    }
 
-      if (this.onClose) {
-        this.onClose();
-      }
+    if (this.onClose) {
+      this.onClose();
     }
   }
 
@@ -96,7 +92,7 @@ class NavToggleDropdown {
     // Toggle element from each button
     this.buttonInstances.forEach((button) => {
       button.addEventListener('click', () => {
-        this.toggle(button); // Pass the clicked button
+        this.toggle(button);
       });
     });
   }
