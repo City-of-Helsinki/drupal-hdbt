@@ -6,6 +6,7 @@ type ResultsEmptyProps = {
   leftActions?: ReactElement;
   additionalDescription?: string;
   resultText?: string;
+  bodyText?: string;
   children?: ReactNode;
 };
 
@@ -16,6 +17,7 @@ const ResultsEmpty = forwardRef(
       leftActions,
       additionalDescription,
       resultText,
+      bodyText,
       children,
     }: ResultsEmptyProps,
     ref: ForwardedRef<HTMLDivElement>,
@@ -27,11 +29,12 @@ const ResultsEmpty = forwardRef(
         leftActions={leftActions}
       />
       <p>
-        {Drupal.t(
-          'No results were found for the criteria you entered. Try changing your search criteria.',
-          {},
-          { context: 'React search: no search results' },
-        )}
+        {bodyText ??
+          Drupal.t(
+            'No results were found for the criteria you entered. Try changing your search criteria.',
+            {},
+            { context: 'React search: no search results' },
+          )}
       </p>
       {additionalDescription && <p>{additionalDescription}</p>}
       {children}
