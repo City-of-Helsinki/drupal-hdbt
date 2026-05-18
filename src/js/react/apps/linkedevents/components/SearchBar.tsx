@@ -26,9 +26,10 @@ export const SearchBar = () => {
   return (
     <TextInput
       id={SearchComponents.SEARCH_BAR}
+      className='hdbt-search__filter'
       label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
-      value={value}
       onChange={handleChange}
+      value={value}
     />
   );
 };
