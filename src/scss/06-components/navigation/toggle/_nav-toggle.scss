@@ -151,8 +151,11 @@ $label-font: 'special.navigation.icon_label';
   max-height: var(--menu-max-height);
   overflow-x: hidden;
   overflow-y: auto;
-  overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
   pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
+
+  @include breakpoint(max-width $breakpoint-l) {
+    overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where supported
+  }
   transform: translateY(100%);
   // stylelint-disable-next-line plugin/no-low-performance-animation-properties
   transition: transform $-menu-transition-duration ease-in, display $-menu-transition-duration;

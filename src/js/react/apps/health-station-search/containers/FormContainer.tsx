@@ -40,7 +40,6 @@ const ProximityFormContainer = () => {
       onKeyDown={handleKeyDown}
     >
       <AddressSearch
-        value={keyword || ''}
         id='home_address'
         onChange={(address: string) => setKeyword(address)}
         onSubmit={(address: string) => {
@@ -52,6 +51,8 @@ const ProximityFormContainer = () => {
           { context: 'React search: street input helper placeholder' },
         )}
         texts={defaultAddressSearchTexts}
+        useLocation
+        value={keyword || ''}
       />
       <div className='react-search__checkbox-filter-container'>
         <fieldset className='hdbt-search--react__fieldset'>
