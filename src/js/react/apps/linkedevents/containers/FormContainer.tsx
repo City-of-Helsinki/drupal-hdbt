@@ -18,6 +18,7 @@ import {
   addressAtom,
   formErrorsAtom,
   freeFilterAtom,
+  initialParamsAtom,
   remoteFilterAtom,
   settingsAtom,
   titleAtom,
@@ -46,7 +47,11 @@ function FormContainer() {
     useSearchBar,
     useTargetGroupFilter,
   } = filterSettings;
+  const initialParams = useAtomValue(initialParamsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
+
+  // Searchbar is hidden if initialParamas has FULL_TEXT option too
+  const showSearchBar = useSearchBar && !initialParams.has(ApiKeys.FULL_TEXT);
 
   const onSubmit = () => {
     updateUrl();
@@ -71,7 +76,7 @@ function FormContainer() {
     showTimeFilter ||
     showRemoteFilter ||
     showTopicsFilter ||
-    useSearchBar ||
+    showSearchBar ||
     eventListType === 'events_and_hobbies';
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
@@ -105,7 +110,7 @@ function FormContainer() {
     >
       {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
       <div className='event-form__filters-container'>
-        {useSearchBar && <SearchBar />}
+        {showSearchBar && <SearchBar />}
         {useLocationSearch && (
           <AddressSearch
             hideSearchButton
