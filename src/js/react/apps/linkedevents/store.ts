@@ -272,6 +272,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(targetGroupsAtom, []);
   set(eventTypeAtom, []);
   set(pageAtom, 1);
+  set(searchKeywordAtom, '');
   set(formErrorsAtom, { invalidEndDate: false, invalidStartDate: false, invalidAddress: false });
 
   const newParams = new URLSearchParams(get(initialParamsAtom));
