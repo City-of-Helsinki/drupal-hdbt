@@ -157,4 +157,7 @@
   } else {
     Drupal.cookieConsent.loadFunction(loadEmbeddedContent);
   }
+
+  // Re-run the loadEmbeddedContent when cookie consent changes.
+  window.addEventListener('hds-cookie-consent-changed', loadEmbeddedContent);
 })(jQuery, Drupal, drupalSettings);

@@ -9,7 +9,7 @@ function getBrowserSize() {
     const { helfi_environment: environment } = drupalSettings;
 
     if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && drupalSettings.matomo_site_id)) {
-      // #UHF-13051 Allow catching referrer-header from visitors who accept cookies for the first time.
+      // Allow catching referrer-header from visitors who accept cookies for the first time.
       window.addEventListener(
         'hds-cookie-consent-changed',
         () => {
