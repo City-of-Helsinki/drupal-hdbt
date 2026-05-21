@@ -15,7 +15,7 @@ import type Topic from './types/Topic';
 const queryStringParams = new URLSearchParams(window.location.search);
 
 interface Options {
-  [key: string]: string;
+  [key: string]: string | undefined;
 }
 
 // Transform locations from API response to options
@@ -72,6 +72,7 @@ const getInitialSettings = () => {
     useFullLocationFilter: settings?.useFullLocationFilter,
     useFullTopicsFilter: settings?.useFullTopicsFilter,
     useLocationSearch: settings?.useLocationSearch,
+    useSearchBar: settings?.field_search_term,
     useTargetGroupFilter: settings?.useTargetGroupFilter,
   };
   const locations = transformLocations(settings?.places);
@@ -170,6 +171,7 @@ export const settingsAtom = atom(
       useFullLocationFilter: false,
       useFullTopicsFilter: false,
       useLocationSearch: false,
+      useSearchBar: false,
       useTargetGroupFilter: false,
     },
 );
@@ -177,10 +179,9 @@ export const settingsAtom = atom(
 export const useFixturesAtom = atom<object | false>((get) => get(baseAtom)?.useFixtures);
 
 export const pageAtom = atom<number>(1);
-
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
-
 export const topicSelectionAtom = atom<Topic[]>([]);
+export const searchKeywordAtom = atom<string>('');
 
 export const startDateAtom = atom<Date | undefined>(undefined);
 export const endDateAtom = atom<Date | undefined>(undefined);
@@ -271,6 +272,7 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(targetGroupsAtom, []);
   set(eventTypeAtom, []);
   set(pageAtom, 1);
+  set(searchKeywordAtom, '');
   set(formErrorsAtom, { invalidEndDate: false, invalidStartDate: false, invalidAddress: false });
 
   const newParams = new URLSearchParams(get(initialParamsAtom));

@@ -9,6 +9,7 @@ import FullLocationFilter from '../components/FullLocationFilter';
 import FullTopicsFilter from '../components/FullTopicsFilter';
 import { LanguageFilter } from '../components/LanguageFilter';
 import LocationFilter from '../components/LocationFilter';
+import { SearchBar } from '../components/SearchBar';
 import SubmitButton from '../components/SubmitButton';
 import { TargetGroupFilter } from '../components/TargetGroupFilter';
 import TopicsFilter from '../components/TopicsFilter';
@@ -17,6 +18,7 @@ import {
   addressAtom,
   formErrorsAtom,
   freeFilterAtom,
+  initialParamsAtom,
   remoteFilterAtom,
   settingsAtom,
   titleAtom,
@@ -42,9 +44,14 @@ function FormContainer() {
     useFullLocationFilter,
     useFullTopicsFilter,
     useLocationSearch,
+    useSearchBar,
     useTargetGroupFilter,
   } = filterSettings;
+  const initialParams = useAtomValue(initialParamsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
+
+  // Searchbar is hidden if initialParamas has FULL_TEXT option too
+  const showSearchBar = useSearchBar && !initialParams.has(ApiKeys.FULL_TEXT);
 
   const onSubmit = () => {
     updateUrl();
@@ -69,6 +76,7 @@ function FormContainer() {
     showTimeFilter ||
     showRemoteFilter ||
     showTopicsFilter ||
+    showSearchBar ||
     eventListType === 'events_and_hobbies';
   const HeadingTag = eventListTitle ? 'h3' : 'h2';
 
@@ -102,6 +110,7 @@ function FormContainer() {
     >
       {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
       <div className='event-form__filters-container'>
+        {showSearchBar && <SearchBar />}
         {useLocationSearch && (
           <AddressSearch
             hideSearchButton
