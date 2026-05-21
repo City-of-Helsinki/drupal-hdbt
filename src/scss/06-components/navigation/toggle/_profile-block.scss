@@ -170,6 +170,7 @@
 
 .nav-toggle__button--profile[aria-expanded='true'] .nav-toggle__label--profile::before {
   @include pseudo-icon-replace('cross');
+  transform: translate(0); // Forces Safari to composite and repaint the pseudo-element when aria-expanded changes
 }
 
 .nav-toggle__label--profile:focus,

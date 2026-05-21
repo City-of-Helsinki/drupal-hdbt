@@ -43,8 +43,8 @@ class NavToggleDropdown {
     // Then run the part where the button focus is determined.
     // This should be run only once or the button to focus is
     // lost and all kinds of unwanted behaviour will occur.
+    // Find the correct button to focus
     if (this.running) {
-      // Find the correct button to focus
       let buttonToFocus = this.lastClickedButton;
 
       // If the last clicked button is inside the dropdown, find another button outside of it
@@ -96,7 +96,7 @@ class NavToggleDropdown {
     // Toggle element from each button
     this.buttonInstances.forEach((button) => {
       button.addEventListener('click', () => {
-        this.toggle(button); // Pass the clicked button
+        this.toggle(button);
       });
     });
   }
