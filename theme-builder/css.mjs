@@ -1,16 +1,15 @@
-import path from 'path';
-import fs from 'fs';
-import * as sass from 'sass';
-import postcss from 'postcss';
-import { cpus } from 'os';
+import fs from 'node:fs';
+import { cpus } from 'node:os';
+import path from 'node:path';
 import cliProgress from 'cli-progress';
-
-import postcssPresetEnv from 'postcss-preset-env';
+import cssnano from 'cssnano';
+import postcss from 'postcss';
+import postcssImport from 'postcss-import';
 import postcssNested from 'postcss-nested';
 import postcssNesting from 'postcss-nesting';
-import postcssImport from 'postcss-import';
-import cssnano from 'cssnano';
-import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins.mjs';
+import postcssPresetEnv from 'postcss-preset-env';
+import * as sass from 'sass';
+import { runWithConcurrency, skipCharsetPlugin, stripInlineComments } from './css.plugins.mjs';
 
 /**
  * Builds all CSS files in parallel using Sass & PostCSS.
@@ -35,23 +34,26 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
       postcssPresetEnv({
         stage: 2,
         preserve: true,
-        features: { 'logical-properties-and-values': false }
+        features: { 'logical-properties-and-values': false },
       }),
       postcssNested(),
       postcssNesting(),
       stripInlineComments(),
       skipCharsetPlugin(),
-      cssnano({ preset: 'default' })
-    ]
+      cssnano({ preset: 'default' }),
+    ],
   };
 
   // Progress bar for visual feedback
-  const progressBar = new cliProgress.SingleBar({
-    format: '⏳ CSS [{bar}] {percentage}% | {value}/{total} files',
-    barCompleteChar: '█',
-    barIncompleteChar: '░',
-    hideCursor: true
-  }, cliProgress.Presets.shades_classic);
+  const progressBar = new cliProgress.SingleBar(
+    {
+      format: '⏳ CSS [{bar}] {percentage}% | {value}/{total} files',
+      barCompleteChar: '█',
+      barIncompleteChar: '░',
+      hideCursor: true,
+    },
+    cliProgress.Presets.shades_classic,
+  );
 
   progressBar.start(queue.length, 0);
 
@@ -76,12 +78,12 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
         quietDeps: true,
         silenceDeprecations: ['import', 'mixed-decls'],
         sourceMap: isDev,
-        charset: false
+        charset: false,
       });
 
       // Process CSS through PostCSS
       const postcssResult = await postcss(postcssConfig.plugins).process(result.css, {
-        from: undefined
+        from: undefined,
       });
 
       // Write final CSS to output
@@ -109,7 +111,5 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
  */
 export async function findStylesForFile({ filePath, styles }) {
   // Filter styles for exact file path match
-  return styles.filter(([input]) =>
-    path.resolve(input) === path.resolve(filePath)
-  );
+  return styles.filter(([input]) => path.resolve(input) === path.resolve(filePath));
 }

@@ -1,6 +1,6 @@
 {
   "name": "hdbt",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Theme builder configuration for HDBT Drupal 10 theme",
   "author": "Druid",
   "license": "MIT",
@@ -55,7 +55,6 @@
     "chokidar": "^4.0.3",
     "classnames": "^2.3.1",
     "focus-trap": "^7.5.4",
-    "glob": "^11.0.0",
     "hds-core": "5.0.0",
     "hds-design-tokens": "5.0.0",
     "hds-react": "5.0.0",

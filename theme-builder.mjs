@@ -1,5 +1,5 @@
-import path from 'path';
-import { globSync } from 'glob';
+import { globSync } from 'node:fs';
+import path from 'node:path';
 import { buildAll, watchAndBuild } from '@hdbt/theme-builder/builder';
 
 const __dirname = path.resolve();
@@ -12,7 +12,7 @@ const outDir = path.resolve(__dirname, 'dist');
 const reactApps = {
   'health-station-search': './src/js/react/apps/health-station-search/index.tsx',
   'job-search': './src/js/react/apps/job-search/index.tsx',
-  'linkedevents': './src/js/react/apps/linkedevents/index.tsx',
+  linkedevents: './src/js/react/apps/linkedevents/index.tsx',
   'maternity-and-child-health-clinic-search': './src/js/react/apps/maternity-and-child-health-clinic-search/index.tsx',
   'news-archive': './src/js/react/apps/news-archive/index.tsx',
   'school-search': './src/js/react/apps/school-search/index.tsx',
@@ -22,19 +22,23 @@ const reactApps = {
   'vehicle-removal-search': './src/js/react/apps/vehicle-removal-search/index.tsx',
 };
 
+// Excluded Vanilla JS files.
+const jsExcluded = new Set([
+  'src/js/accordion/accordion-item.js',
+  'src/js/accordion/events.js',
+  'src/js/helfi-accordion.js',
+  'src/js/accordion/state.js',
+  'src/js/accordion/translations.js',
+  'src/js/localStorageManager.js',
+]);
+
 // Vanilla JS files.
-const jsFiles = globSync('./src/js/**/*.js', {
-  ignore: [
-    'src/js/accordion/accordion-item.js',
-    'src/js/accordion/events.js',
-    'src/js/helfi-accordion.js',
-    'src/js/accordion/state.js',
-    'src/js/accordion/translations.js',
-    'src/js/localStorageManager.js',
-  ],
-}).reduce((acc, file) => ({
-  ...acc, [path.parse(file).name]: file
-}), {});
+const jsFiles = globSync('./src/js/**/*.js')
+  .filter((file) => !jsExcluded.has(file.replace(/^\.\//, '')))
+  .reduce((acc, file) => {
+  acc[path.parse(file).name] = file;
+  return acc;
+}, {});
 
 // SCSS files.
 const styles = [
@@ -62,7 +66,7 @@ const staticFiles = [
 // Builder configurations.
 const reactConfig = { reactApps, isDev, outDir };
 const jsConfig = { jsFiles, isDev, outDir };
-const cssConfig   = { styles, isDev, outDir };
+const cssConfig = { styles, isDev, outDir };
 const iconsConfig = {
   inputPattern: 'src/icons/**/*.svg',
   outDir,

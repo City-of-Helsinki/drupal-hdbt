@@ -1,7 +1,7 @@
+import { rmSync } from 'node:fs';
+import path from 'node:path';
+import { performance } from 'node:perf_hooks';
 import chokidar from 'chokidar';
-import { rmSync } from 'fs';
-import path from 'path';
-import { performance } from 'perf_hooks';
 import themeBuilderCopy from './copy.mjs';
 import { findStylesForFile, themeBuilderCss } from './css.mjs';
 import themeBuilderIcons from './icons.mjs';
@@ -36,14 +36,7 @@ const cleanDist = (outDir) => {
  * @return {Promise<void>}                  Resolves when all tasks finish
  */
 export async function buildAll(config) {
-  const {
-    outDir,
-    iconsConfig = {},
-    staticFiles = {},
-    jsConfig = {},
-    reactConfig = {},
-    cssConfig = {},
-  } = config;
+  const { outDir, iconsConfig = {}, staticFiles = {}, jsConfig = {}, reactConfig = {}, cssConfig = {} } = config;
 
   await withTimer('Everything', async () => {
     cleanDist(outDir);
@@ -78,10 +71,7 @@ export async function buildAll(config) {
 /**
  * Watch src folders and rebuild on change.
  */
-export function watchAndBuild({
-  buildArguments,
-  watchPaths = ['src/js', 'src/scss'],
-}) {
+export function watchAndBuild({ buildArguments, watchPaths = ['src/js', 'src/scss'] }) {
   buildAll(buildArguments)
     .catch((e) => {
       console.error('❌ Build failed:', e);
@@ -104,9 +94,7 @@ export function watchAndBuild({
     const ext = path.extname(filePath);
     if (ext === '.scss') {
       const matched = findStylesForFile({ filePath, styles });
-      const cfg = matched.length
-        ? { ...cssConfig, styles: matched }
-        : { ...cssConfig, styles };
+      const cfg = matched.length ? { ...cssConfig, styles: matched } : { ...cssConfig, styles };
       withTimer('CSS', () => themeBuilderCss(cfg));
     } else if (ext === '.js') {
       buildVanillaJs(jsConfig).then(() => console.warn('✅ Rebuilt JS.'));

@@ -1,10 +1,9 @@
-import esbuild from 'esbuild';
-import { createRequire } from 'module';
-import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import fs from 'node:fs/promises';
+import { createRequire } from 'node:module';
 import path from 'node:path';
+import esbuild from 'esbuild';
 import { minify } from 'terser';
-
 
 /**
  * Removes "use strict" directives from a JS file.
@@ -43,10 +42,7 @@ async function stripUseStrict(file) {
  */
 async function revertDrupalGlobal(file, isDev = false) {
   const content = await fs.readFile(file, 'utf8');
-  const replaced = content.replace(
-    /\b(Drupal|drupalSettings|once)\d+\b/g,
-    '$1'
-  );
+  const replaced = content.replace(/\b(Drupal|drupalSettings|once)\d+\b/g, '$1');
   const { code } = await minify(replaced, {
     compress: false,
     ecma: 2020,
@@ -100,7 +96,7 @@ export async function buildVanillaJs(config = {}) {
       } catch (err) {
         console.error(`❌ Error bundling ${name}:`, err.message);
       }
-    })
+    }),
   );
 }
 
@@ -137,10 +133,10 @@ export async function buildReactApps(config = {}) {
                 // the import name to its actual file path.
                 // This is needed to prevent esbuild from using the 'react'
                 // or 'react-dom' dependency from two different packages.
-                build.onResolve({ filter: /^react(-dom)?$/ }, args => ({
+                build.onResolve({ filter: /^react(-dom)?$/ }, (args) => ({
                   path: require.resolve(args.path),
                 }));
-              }
+              },
             },
             {
               name: 'strip-hds-barrel-side-effects',
@@ -178,13 +174,15 @@ export async function buildReactApps(config = {}) {
           charset: 'utf8',
           define: {
             'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
-            ...(isDev ? {
-              'ELASTIC_DEV_URL': JSON.stringify(process.env.ELASTIC_DEV_URL || ''),
-              'LINKED_EVENTS_DEV_URL': JSON.stringify(process.env.LINKED_EVENTS_DEV_URL || ''),
-            } : {}),
+            ...(isDev
+              ? {
+                  ELASTIC_DEV_URL: JSON.stringify(process.env.ELASTIC_DEV_URL || ''),
+                  LINKED_EVENTS_DEV_URL: JSON.stringify(process.env.LINKED_EVENTS_DEV_URL || ''),
+                }
+              : {}),
           },
           entryPoints: [entry],
-          external: ['Drupal','drupalSettings'],
+          external: ['Drupal', 'drupalSettings'],
           format: 'iife',
           keepNames: true,
           minify: !isDev,
@@ -200,6 +198,6 @@ export async function buildReactApps(config = {}) {
       } catch (err) {
         console.error(`❌ Error bundling React app ${name}:`, err.message);
       }
-    })
+    }),
   );
 }
