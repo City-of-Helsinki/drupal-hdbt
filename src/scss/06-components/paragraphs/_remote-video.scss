@@ -37,10 +37,6 @@
   }
 }
 
-.component__content.remote-video {
-  margin-top: 0;
-}
-
 .remote-video__video-title {
   @include font('h3');
   margin-block: $spacing-double $spacing;
