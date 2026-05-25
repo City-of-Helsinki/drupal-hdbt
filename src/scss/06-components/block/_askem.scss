@@ -169,7 +169,8 @@
         @include pseudo-icon-replace('face-sad');
       }
 
-      .askem-reaction.selected .askem-reaction-button {
+      .askem-reaction.selected .askem-reaction-button,
+      .askem-reaction.selected .askem-reaction-button:not(.new-icon).after-icons {
         background-color: $color-black-90;
         border-color: $color-black-90;
         box-shadow: none;
