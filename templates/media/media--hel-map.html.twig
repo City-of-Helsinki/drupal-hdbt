@@ -74,5 +74,13 @@
   {{ drupal_settings }}
   {{ attach_library(media.getJsLibrary()) }}
 
-  {{ link(iframe_title ~ ' - ' ~ link['#title'], link['#url'], link['#attributes']|merge({'class': 'map__external-link'})) }}
+  {% set link_attributes = {
+    'class': [
+        'map__external-link',
+      ],
+  } %}
+
+  {{ link(iframe_title ~ ' - ' ~ link['#title'], link['#url'], link_attributes) }}
+
+
 {% endif %}
