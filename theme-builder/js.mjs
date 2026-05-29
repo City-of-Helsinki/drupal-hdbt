@@ -82,6 +82,7 @@ export async function buildVanillaJs(config = {}) {
           charset: 'utf8',
           define: {
             'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
+            'DEBUG_MODE': JSON.stringify(process.env.DEBUG_MODE === 'true'),
           },
           entryPoints: [entry],
           external: ['@playwright/test'],
@@ -178,6 +179,7 @@ export async function buildReactApps(config = {}) {
           charset: 'utf8',
           define: {
             'process.env.NODE_ENV': JSON.stringify(isDev ? 'development' : 'production'),
+            'DEBUG_MODE': JSON.stringify(process.env.DEBUG_MODE === 'true'),
             ...(isDev ? {
               'ELASTIC_DEV_URL': JSON.stringify(process.env.ELASTIC_DEV_URL || ''),
               'LINKED_EVENTS_DEV_URL': JSON.stringify(process.env.LINKED_EVENTS_DEV_URL || ''),
