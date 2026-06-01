@@ -47,6 +47,7 @@ import LocalStorageManager from './localStorageManager';
       function addFocusTrap() {
         surveyFocusTrap = window.focusTrap.createFocusTrap('#helfi-survey', {
           initialFocus: () => '#helfi-survey__title',
+          fallbackFocus: '#helfi-survey',
         });
         surveyFocusTrap.activate();
       }
@@ -140,7 +141,9 @@ import LocalStorageManager from './localStorageManager';
         toggleOtherContentVisibility();
         setTimeout(() => {
           storageManager.deleteKey(deferredSurveyKey);
-          showSurvey();
+          if (document.contains(survey)) {
+            showSurvey();
+          }
         }, remindLaterDelay);
       }
 
