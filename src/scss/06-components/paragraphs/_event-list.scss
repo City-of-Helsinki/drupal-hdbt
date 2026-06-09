@@ -44,3 +44,20 @@ $select-max-width: 420px;
 .event-list__filter-title {
   @include font('h3');
 }
+
+// 'Lifts' layout: render the latest events as highlights in a grid instead of
+// the full-width list view. Mirrors the curated event list highlight layout.
+.event-list__lifts {
+  @include breakpoint($breakpoint-m) {
+    column-gap: $spacing-and-half;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  // The 'see all' button spans the full width below the highlight cards.
+  .see-all-button {
+    @include breakpoint($breakpoint-m) {
+      grid-column: 1 / -1;
+    }
+  }
+}

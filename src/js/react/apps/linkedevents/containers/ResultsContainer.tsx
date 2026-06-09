@@ -43,6 +43,7 @@ function ResultsContainer({
   const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
+  const isLifts = settings.layout === 'lifts';
   const scrollTarget = createRef<HTMLDivElement>();
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
@@ -99,26 +100,28 @@ function ResultsContainer({
     if (events.length > 0) {
       return (
         <>
-          <ResultsHeader
-            actions={sort ? sort : undefined}
-            resultText={
-              <>
-                {resultHeaderFunction
-                  ? resultHeaderFunction(countNumber)
-                  : Drupal.formatPlural(
-                      count,
-                      '1 result',
-                      '@count results',
-                      {},
-                      { context: 'Events search: result count' },
-                    )}
-                {settings.useLocationSearch && address
-                  ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${address}`
-                  : ''}
-              </>
-            }
-            ref={scrollTarget}
-          />
+          {!isLifts && (
+            <ResultsHeader
+              actions={sort ? sort : undefined}
+              resultText={
+                <>
+                  {resultHeaderFunction
+                    ? resultHeaderFunction(countNumber)
+                    : Drupal.formatPlural(
+                        count,
+                        '1 result',
+                        '@count results',
+                        {},
+                        { context: 'Events search: result count' },
+                      )}
+                  {settings.useLocationSearch && address
+                    ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${address}`
+                    : ''}
+                </>
+              }
+              ref={scrollTarget}
+            />
+          )}
           {loading ? (
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
@@ -126,7 +129,9 @@ function ResultsContainer({
               <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
             ))
           )}
-          {!settings.hidePagination && <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />}
+          {!isLifts && !settings.hidePagination && (
+            <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+          )}
         </>
       );
     }
@@ -135,8 +140,10 @@ function ResultsContainer({
   };
 
   return (
-    <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
-      {getContent()}
+    <div className={`curated-event-list react-search__list-container${loading ? ' loading' : ''}`}>
+      <ul className='curated-event-list__events'>
+        {getContent()}
+      </ul>
       {seeAllNearYouLink ? (
         <div className='see-all-button see-all-button--near-results'>
           <a data-hds-component='button' href={seeAllNearYouLink}>

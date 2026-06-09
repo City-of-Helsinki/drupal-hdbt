@@ -8,6 +8,7 @@ declare namespace drupalSettings {
     imagePlaceholder: string;
     data: {
       [key: string]: {
+        event_list_layout: 'default' | 'lifts';
         event_list_type: 'events' | 'hobbies' | 'events_and_hobbies';
         events_api_url: string;
         events_public_url: string;
