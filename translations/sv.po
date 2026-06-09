@@ -1819,6 +1819,10 @@ msgctxt "Cross-institutional studies: Teaching mode filter option"
 msgid "Online teaching"
 msgstr "Webbstudier"
 
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Evening studies"
+msgstr "Kvällstudier"
+
 msgctxt "Cross-institutional studies: language of instruction filter label"
 msgid "Language of instruction"
 msgstr "Undervisningsspråk"
