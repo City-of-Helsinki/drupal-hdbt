@@ -1899,8 +1899,12 @@ msgid "Receive search results by email"
 msgstr "Tilaa hakuvahti sähköpostiisi"
 
 msgctxt "Search monitor banner"
-msgid "Carry out a search according to your specifications and then save your search. You can save as many searches as you want."
-msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi. Voit luoda niin monta hakuvahtia kuin haluat."
+msgid "Carry out a search according to your specifications and then save your search."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
+
+msgctxt "Search monitor banner"
+msgid "You can save as many searches as you want."
+msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
 
 msgctxt "Search monitor banner"
 msgid "Save your search"
