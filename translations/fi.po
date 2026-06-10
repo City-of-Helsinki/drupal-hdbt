@@ -1719,6 +1719,10 @@ msgstr[0] "1 hakutulos"
 msgstr[1] "@count hakutulosta"
 
 msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service"
+msgstr "Tilaa Siirtovahti"
+
+msgctxt "Vehicle removal search"
 msgid "Street name"
 msgstr "Kadunnimi"
 
@@ -1751,8 +1755,12 @@ msgid "Use street names to search for areas with vehicle removal requests."
 msgstr "Etsi kadunnimillä alueita, joilla on siirtokehotuksia."
 
 msgctxt "Vehicle removal search"
-msgid "Search results will tell you where the vehicle removal request sign is located."
-msgstr "Hakutuloksissa kerrotaan siirtokehotusmerkin sijainti."
+msgid "The search results will show you the location of vehicle removal request signs on the street that you searched for or a street near it."
+msgstr "Hakutuloksissa kerrotaan siirtokehotusmerkin sijainti hakemallasi kadulla tai sen lähikadulla."
+
+msgctxt "Vehicle removal search"
+msgid "No vehicle removal requests"
+msgstr "Ei siirtokehotuksia"
 
 msgctxt "Vehicle removal search"
 msgid "1 result"

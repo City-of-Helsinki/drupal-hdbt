@@ -112,6 +112,11 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
           {},
           { context: 'Vehicle removal search' },
         ),
+        buttonLabel: Drupal.t(
+          'Subscribe to the Vehicle Removal Alert Service',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
         formDescription: [
           Drupal.t(
             'Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search.',
@@ -146,6 +151,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
         <ResultsEmpty
           ref={scrollTarget}
           leftActions={searchMonitor}
+          resultText={Drupal.t('No vehicle removal requests', {}, { context: 'Vehicle removal search' })}
           additionalDescription={Drupal.t(
             'Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests.',
             {},

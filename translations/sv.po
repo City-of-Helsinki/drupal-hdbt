@@ -1721,6 +1721,10 @@ msgstr[0] "1 resultat"
 msgstr[1] "@count resultat"
 
 msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service"
+msgstr "Beställ Flyttningsvakten"
+
+msgctxt "Vehicle removal search"
 msgid "Street name"
 msgstr "Gatunamn"
 
@@ -1753,8 +1757,12 @@ msgid "Use street names to search for areas with vehicle removal requests."
 msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
 
 msgctxt "Vehicle removal search"
-msgid "Search results will tell you where the vehicle removal request sign is located."
-msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat."
+msgid "The search results will show you the location of vehicle removal request signs on the street that you searched for or a street near it."
+msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat på den gata du sökte efter eller på en närliggande gata."
+
+msgctxt "Vehicle removal search"
+msgid "No vehicle removal requests"
+msgstr "Inga flyttningsuppmaningar"
 
 msgctxt "Vehicle removal search"
 msgid "1 result"
