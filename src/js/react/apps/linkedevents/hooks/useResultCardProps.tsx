@@ -9,7 +9,7 @@ const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.to
 const formatStartDate = (start: Date, end: Date) => {
   if (start.getFullYear() === end.getFullYear()) {
     if (start.getMonth() === end.getMonth()) {
-      return start.getDate();
+      return `${start.getDate()}.`;
     }
 
     // The getMonth function returns a zero-based index, so we need to add 1 to get the correct month.
