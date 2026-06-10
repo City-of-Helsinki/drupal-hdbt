@@ -140,10 +140,8 @@ function ResultsContainer({
   };
 
   return (
-    <div className={`curated-event-list react-search__list-container${loading ? ' loading' : ''}`}>
-      <ul className='curated-event-list__events'>
-        {getContent()}
-      </ul>
+    <div className={`react-search__list-container${loading ? ' loading' : ''}${isLifts ? ' simple-event-list' : ''}`}>
+      {isLifts ? <ul className='simple-event-list__events'>{getContent()}</ul> : getContent()}
       {seeAllNearYouLink ? (
         <div className='see-all-button see-all-button--near-results'>
           <a data-hds-component='button' href={seeAllNearYouLink}>

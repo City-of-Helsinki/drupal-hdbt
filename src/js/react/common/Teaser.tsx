@@ -1,11 +1,11 @@
-import ExternalLink from "./ExternalLink";
+import ExternalLink from './ExternalLink';
 
 export const Teaser = ({
   className,
   image,
   time,
   title,
-  url
+  url,
 }: {
   className?: string;
   time?: string | JSX.Element;
@@ -14,25 +14,14 @@ export const Teaser = ({
   url: string;
 }) => {
   return (
-    <div className={`card-teaser__content card-teaser ${className ? className : ''}`}>
-      <div className='card-teaser__img'>
-        {image}
-      </div>
+    <li className={`card-teaser__content card-teaser${className ? ` ${className}` : ''}`}>
+      <div className='card-teaser__img'>{image}</div>
       <div className='card-teaser__text-container'>
         <h3 className='card-teaser__title'>
-          <ExternalLink
-            className='card-teaser__link'
-            href={url}
-            rel='bookmark'
-            title={title}
-          />
+          <ExternalLink className='card-teaser__link' href={url} rel='bookmark' title={title} />
         </h3>
-        {time && (
-          <div className='card-teaser__datetime'>
-            {time}
-          </div>
-        )}
+        {time && <div className='card-teaser__datetime'>{time}</div>}
       </div>
-    </div>
+    </li>
   );
-}
+};

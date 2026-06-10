@@ -5,5 +5,7 @@ import type { ResultCardProps } from './ResultCard';
 export const LiftCard = (props: ResultCardProps) => {
   const { cardImage, cardTitle, cardUrl, jsxTime } = useResultCardProps(props);
 
-  return <Teaser image={cardImage} time={jsxTime} title={cardTitle} url={cardUrl} />;
+  return (
+    <Teaser className='simple-event-list__event' image={cardImage} time={jsxTime} title={cardTitle} url={cardUrl} />
+  );
 };
