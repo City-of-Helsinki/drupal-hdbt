@@ -40,8 +40,6 @@ jobs:
         if: steps.npm_audit.outputs.CREATE_PR == 'true'
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          committer: GitHub <noreply@github.com>
-          author: actions-bot <actions-bot@users.noreply.github.com>
           commit-message: Updated node modules based on npm audit fix
           title: Automatic npm audit fix
           labels: auto-update
