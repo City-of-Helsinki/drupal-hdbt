@@ -1708,15 +1708,19 @@ msgctxt "React search"
 msgid "Distance"
 msgstr "Etäisyys"
 
-msgctxt "Search monitor instructions link"
-msgid "More detailed instructions on how to use saved searches"
-msgstr "Tarkemmat ohjeet hakuvahdin käyttöön"
-
 msgctxt "React search: Generic results text"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 hakutulos"
 msgstr[1] "@count hakutulosta"
+
+msgctxt "Search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Et ole valinnut yhtään hakuehtoa."
+
+msgctxt "Search monitor instructions link"
+msgid "More detailed instructions on how to use saved searches"
+msgstr "Tarkemmat ohjeet hakuvahdin käyttöön"
 
 msgctxt "Vehicle removal search"
 msgid "Subscribe to the Vehicle Removal Alert Service"
@@ -1763,6 +1767,14 @@ msgid "No vehicle removal requests"
 msgstr "Ei siirtokehotuksia"
 
 msgctxt "Vehicle removal search"
+msgid "No vehicle removal requests were found with your search criteria."
+msgstr "Haullasi ei löytynyt voimassa olevia siirtokehotuksia."
+
+msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
+msgstr "Tilaa Siirtovahti, niin saat tiedon uusista siirtokehotuksista."
+
+msgctxt "Vehicle removal search"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 tulos"
@@ -1781,8 +1793,36 @@ msgid "You have not selected any search criteria. You will be informed of all ve
 msgstr "Et ole valinnut yhtään hakuehtoa. Saat tiedon kaikista ajoneuvojen siirtokehotuksista."
 
 msgctxt "Vehicle removal search"
-msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
-msgstr "Tilaa hakuvahti, niin saat tiedon uusista ilmoituksista."
+msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi."
+
+msgctxt "Vehicle removal search"
+msgid "You can add more than one street to the same Vehicle Removal Alert."
+msgstr "Voit valita useamman kadun samaan Siirtovahtiin."
+
+msgctxt "Vehicle removal search"
+msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert."
+msgstr "TTee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi. Voit valita useamman kadun samaan Siirtovahtiin."
+
+msgctxt "Vehicle removal search"
+msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgstr "Saat tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+
+msgctxt "Vehicle removal search"
+msgid "Required fields are indicated with an asterisk (*)."
+msgstr "Pakolliset kentät on merkitty tähdellä (*)."
+
+msgctxt "Vehicle removal search"
+msgid "Your Vehicle Removal Alert Service subscription is almost ready"
+msgstr "Siirtovahdin tilaus melkein valmis"
+
+msgctxt "Vehicle removal search"
+msgid "Confirm your subscription to the Vehicle Removal Alert Service with a link that you can choose to receive by email, SMS or both. If you subscribed to both email and SMS alerts, please confirm the subscription separately for both."
+msgstr "Vahvista vielä tilaus linkillä, jonka saat valintasi mukaisesti sähköpostilla, tekstiviestillä tai molemmilla. Jos tilasit ilmoitukset sekä sähköpostiin että tekstiviestillä, vahvista tilaus erikseen molemmissa."
+
+msgctxt "Vehicle removal search"
+msgid "Additional information"
+msgstr "Lisätiedot"
 
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
@@ -1865,30 +1905,6 @@ msgstr "Kesä"
 msgctxt "Cross-institutional studies: date filter option"
 msgid "Autumn"
 msgstr "Syksy"
-
-msgctxt "Vehicle removal search"
-msgid "Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search."
-msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
-
-msgctxt "Vehicle removal search"
-msgid "You can create as many search alerts as you want. You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
-msgstr "Voit luoda niin monta hakuvahtia kuin haluat. Saat tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
-
-msgctxt "Vehicle removal search"
-msgid "Your Vehicle Removal Alert Service subscription is almost ready"
-msgstr "Hakuvahdin tilaus melkein valmis"
-
-msgctxt "Vehicle removal search"
-msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each."
-msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat valintasi mukaisesti sähköpostilla tai tekstiviestillä. Jos tilasit ilmoitukset sekä sähköpostiin että tekstiviestillä, vahvista tilaus erikseen molemmissa."
-
-msgctxt "Search monitor"
-msgid "You have not selected any search criteria."
-msgstr "Et ole valinnut yhtään hakuehtoa."
-
-msgctxt "Vehicle removal search"
-msgid "Additional information"
-msgstr "Lisätiedot"
 
 msgctxt "Address search error message"
 msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
