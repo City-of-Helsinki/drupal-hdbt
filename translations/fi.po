@@ -1802,7 +1802,7 @@ msgstr "Voit valita useamman kadun samaan Siirtovahtiin."
 
 msgctxt "Vehicle removal search"
 msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert."
-msgstr "TTee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi. Voit valita useamman kadun samaan Siirtovahtiin."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi. Voit valita useamman kadun samaan Siirtovahtiin."
 
 msgctxt "Vehicle removal search"
 msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
