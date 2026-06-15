@@ -961,6 +961,10 @@ msgid "Read the recruitment privacy notice"
 msgstr "Tutustu rekrytoinnin tietosuojaselosteeseen"
 
 msgctxt "News search monitor"
+msgid "Subscribe to search alert"
+msgstr "Tilaa hakuvahti"
+
+msgctxt "News search monitor"
 msgid "Receive news search alerts by email"
 msgstr "Tilaa uutisten hakuvahti sähköpostiisi"
 
@@ -981,12 +985,20 @@ msgid "I consent to the processing of my personal data for the purpose of the ne
 msgstr "Hyväksyn henkilötietojeni käsittelyn hakuvahtia varten"
 
 msgctxt "News search monitor"
-msgid "Read the privacy notice"
-msgstr "Tutustu tietosuojaselosteeseen"
+msgid "Read the register of communications"
+msgstr "Tutustu viestinnän tietosuojaselosteeseen"
 
 msgctxt "News search monitor"
 msgid "You have not selected any search criteria."
 msgstr "Et ole valinnut yhtään hakuehtoa."
+
+msgctxt "News search monitor"
+msgid "You are almost done subscribing to search alert"
+msgstr "Hakuvahdin tilaus melkein valmis"
+
+msgctxt "News search monitor"
+msgid "Please confirm your subscription by clicking the link sent to your email address."
+msgstr "Vahvista vielä tilaus linkillä, jonka saat sähköpostiisi."
 
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"

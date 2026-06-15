@@ -959,6 +959,10 @@ msgid "Read the recruitment privacy notice"
 msgstr "Bekanta dig med dataskyddsbeskrivningen för rekrytering"
 
 msgctxt "News search monitor"
+msgid "Subscribe to search alert"
+msgstr "Beställ sökvakten"
+
+msgctxt "News search monitor"
 msgid "Receive news search alerts by email"
 msgstr "Beställ sökvakten för nyheter till din e-post"
 
@@ -979,12 +983,20 @@ msgid "I consent to the processing of my personal data for the purpose of the ne
 msgstr "Jag godkänner behandlingen av mina personuppgifter för sökvakten"
 
 msgctxt "News search monitor"
-msgid "Read the privacy notice"
-msgstr "Bekanta dig med dataskyddsbeskrivningen"
+msgid "Read the register of communications"
+msgstr "Bekanta dig med register över kommunikation"
 
 msgctxt "News search monitor"
 msgid "You have not selected any search criteria."
-msgstr "Du har inte valt några sökkriterier."
+msgstr "Du har inte valt några sökvillkor."
+
+msgctxt "News search monitor"
+msgid "You are almost done subscribing to search alert"
+msgstr "Beställningen av sökvakten är nästan klar"
+
+msgctxt "News search monitor"
+msgid "Please confirm your subscription by clicking the link sent to your email address."
+msgstr "Bekräfta ännu beställningen via länken som du får per e-post."
 
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
@@ -1472,15 +1484,15 @@ msgstr "Du får information om nya träffar till din e-post högst en gång per 
 
 msgctxt "Search monitor selections heading"
 msgid "Your search criteria"
-msgstr "Dina sökkriterier"
+msgstr "Dina sökvillkor"
 
 msgctxt "Search monitor no selections notification title"
 msgid "No search criteria selected"
-msgstr "Inga sökkriterier valda"
+msgstr "Inga sökvillkor valda"
 
 msgctxt "Search monitor no selections notification"
 msgid "You have not selected any search criteria. You will receive alerts of all new job listings."
-msgstr "Du har inte valt några sökkriterier. Du kommer att få aviseringar om alla nya jobbannonser."
+msgstr "Du har inte valt några sökvillkor. Du kommer att få aviseringar om alla nya jobbannonser."
 
 msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
@@ -1718,7 +1730,7 @@ msgstr[1] "@count resultat"
 
 msgctxt "Search monitor"
 msgid "You have not selected any search criteria."
-msgstr "Du har inte valt några sökkriterier."
+msgstr "Du har inte valt några sökvillkor."
 
 msgctxt "Search monitor instructions link"
 msgid "More detailed instructions on how to use saved searches"
