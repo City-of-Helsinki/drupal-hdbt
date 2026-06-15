@@ -1896,3 +1896,19 @@ msgstr "Din webbläsare stöder inte geolokalisering."
 msgctxt "Location autocomplete"
 msgid "Retrieving current location..."
 msgstr "Hämtar plats..."
+
+msgctxt "Search monitor banner"
+msgid "Receive search results by email"
+msgstr "Beställ sökvakten till din e-post"
+
+msgctxt "Search monitor banner"
+msgid "Carry out a search according to your specifications and then save your search."
+msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
+
+msgctxt "Search monitor banner"
+msgid "You can save as many searches as you want."
+msgstr "Du kan skapa så många sökvakter du vill."
+
+msgctxt "Search monitor banner"
+msgid "Save your search"
+msgstr "Beställ sökvakten"
