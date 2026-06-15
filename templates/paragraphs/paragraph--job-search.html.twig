@@ -39,26 +39,28 @@
         </noscript>
       </div>
 
-      <div{{ attributes.addClass(classes) }}>
-        {% block content %}
-          {% embed "@hdbt/misc/component.twig" with {
-            component_classes: ['component--banner', 'component--banner-align-left'],
-            component_title: '',
-            component_description: '',
-            component_content_class: 'banner',
-          } %}
-            {% block component_content %}
-              {% embed "@hdbt/misc/banner.twig" with {
-                icon_name: 'bell',
-                title: 'Receive search results by email'|t({}, {'context': 'Search monitor banner'}),
-                description: banner_description,
-                banner_button: banner_button,
-              } %}
-              {% endembed %}
-            {% endblock %}
-          {% endembed %}
-        {% endblock %}
-      </div>
+      {% if paragraph.field_job_search_result_page.isEmpty() %}
+        <div{{ attributes.addClass(classes) }}>
+          {% block content %}
+            {% embed "@hdbt/misc/component.twig" with {
+              component_classes: ['component--banner', 'component--banner-align-left'],
+              component_title: '',
+              component_description: '',
+              component_content_class: 'banner',
+            } %}
+              {% block component_content %}
+                {% embed "@hdbt/misc/banner.twig" with {
+                  icon_name: 'bell',
+                  title: 'Receive search results by email'|t({}, {'context': 'Search monitor banner'}),
+                  description: banner_description,
+                  banner_button: banner_button,
+                } %}
+                {% endembed %}
+              {% endblock %}
+            {% endembed %}
+          {% endblock %}
+        </div>
+      {% endif %}
     {% endblock component_content %}
   {% endembed %}
 {% endblock paragraph %}
