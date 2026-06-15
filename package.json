@@ -54,6 +54,7 @@
     "backstopjs": "^6.2.2",
     "chokidar": "^4.0.3",
     "classnames": "^2.3.1",
+    "esbuild": "^0.28.0",
     "focus-trap": "^7.5.4",
     "glob": "^11.0.0",
     "hds-core": "5.0.0",
