@@ -108,6 +108,10 @@ export const initializeStateAtom = atom(null, (get, set, dateOptions: Map<string
     mergedParams.set(key, value);
   }
 
+  if (!params.has(ApiKeys.SORT)) {
+    mergedParams.set(ApiKeys.SORT, sortOptions[0].value);
+  }
+
   set(paramsAtom, mergedParams);
   set(submittedParamsAtom, mergedParams);
 });

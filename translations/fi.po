@@ -1814,11 +1814,15 @@ msgstr "Etäopetus"
 
 msgctxt "Cross-institutional studies: Teaching mode filter option"
 msgid "Hybrid teaching"
-msgstr "Monimuoto-opetus"
+msgstr "Hybridi"
 
 msgctxt "Cross-institutional studies: Teaching mode filter option"
 msgid "Online teaching"
 msgstr "Verkko-opetus"
+
+msgctxt "Cross-institutional studies: Teaching mode filter option"
+msgid "Evening studies"
+msgstr "Iltaopetus"
 
 msgctxt "Cross-institutional studies: language of instruction filter label"
 msgid "Language of instruction"
