@@ -1328,6 +1328,10 @@ msgctxt "Events search"
 msgid "Search for more events on the Events website"
 msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"
 
+msgctxt "Events search"
+msgid "View all events"
+msgstr "Katso kaikki tapahtumat"
+
 msgctxt "Events search: event type prefix"
 msgid "Show only"
 msgstr "Näytä vain"
