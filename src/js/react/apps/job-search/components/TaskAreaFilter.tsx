@@ -1,4 +1,4 @@
-import { Select } from 'hds-react';
+import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
@@ -22,7 +22,7 @@ export const TaskAreaFilter = () => {
       onChange={(selectedOptions) => {
         setStateValue({ key: SearchComponents.TASK_AREAS, value: selectedOptions as OptionType[] });
       }}
-      options={taskAreaOptions}
+      options={taskAreaOptions as OptionInProps[]}
       texts={{
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
@@ -38,7 +38,7 @@ export const TaskAreaFilter = () => {
         language: window.drupalSettings.path.currentLanguage,
         placeholder: Drupal.t('All fields', {}, { context: 'Task areas filter placeholder' }),
       }}
-      value={value}
+      value={value as OptionInProps[]}
       theme={defaultMultiSelectTheme}
     />
   );

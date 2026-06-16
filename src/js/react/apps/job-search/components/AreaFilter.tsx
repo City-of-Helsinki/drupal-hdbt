@@ -1,4 +1,4 @@
-import { Select } from 'hds-react';
+import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
@@ -21,8 +21,8 @@ export const AreaFilter = () => {
       onChange={(selectedOptions) => {
         setStateValue({ key: SearchComponents.AREA_FILTER, value: selectedOptions });
       }}
-      options={areaOptions}
-      value={value}
+      options={areaOptions as OptionInProps[]}
+      value={value as OptionInProps[]}
       texts={{
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',

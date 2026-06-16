@@ -1,4 +1,4 @@
-import { Select, useSelectStorage } from 'hds-react';
+import { type OptionInProps, Select, useSelectStorage } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
@@ -31,7 +31,7 @@ function TopicsFilter() {
     multiSelect: true,
     noTags: true,
     onChange,
-    options: selectedOptions,
+    options: selectedOptions as OptionInProps[],
     texts: {
       label: selectLabel,
       language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),

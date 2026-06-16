@@ -1,6 +1,6 @@
-import { type ForwardedRef, forwardRef } from 'react';
+import { type ForwardedRef, forwardRef, type ReactNode } from 'react';
 
-type CardProps = { title: string; address?: string; lead?: string; description: string | JSX.Element | JSX.Element[] };
+type CardProps = { title: string; address?: string; lead?: string; description: ReactNode };
 
 const ResultCard = forwardRef(({ description, lead, title, address }: CardProps, ref: ForwardedRef<HTMLDivElement>) => (
   <div className='hdbt-search--ploughing-schedule__result-card' ref={ref}>

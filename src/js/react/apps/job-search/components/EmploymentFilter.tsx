@@ -1,4 +1,4 @@
-import { Select } from 'hds-react';
+import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
@@ -19,7 +19,7 @@ export const EmploymentFilter = () => {
       multiSelect
       noTags
       onChange={(selectedOptions) => setStateValue({ key: SearchComponents.EMPLOYMENT, value: selectedOptions })}
-      options={employmentOptions}
+      options={employmentOptions as OptionInProps[]}
       texts={{
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
@@ -35,7 +35,7 @@ export const EmploymentFilter = () => {
         language: window.drupalSettings.path.currentLanguage,
         placeholder: Drupal.t('All types of employment', {}, { context: 'Employment filter placeholder' }),
       }}
-      value={value}
+      value={value as OptionInProps[]}
       theme={defaultMultiSelectTheme}
     />
   );

@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import type MetadataType from '@/types/MetadataType';
@@ -21,7 +22,7 @@ export type CardItemProps = {
   cardDescriptionHtml?: boolean;
   cardHelptext?: string;
   cardHelptextHtml?: boolean;
-  cardImage?: string | JSX.Element | JSX.Element[];
+  cardImage?: ReactNode;
   cardModifierClass?: string;
   cardTags?: Array<TagType>;
   cardTitle: string | JSX.Element;

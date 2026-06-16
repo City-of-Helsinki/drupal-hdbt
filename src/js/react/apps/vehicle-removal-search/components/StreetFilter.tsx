@@ -1,7 +1,8 @@
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
+import type { SelectProps } from 'hds-react/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback, useEffect } from 'react';
+import { type ReactElement, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
@@ -62,9 +63,9 @@ export const StreetFilter = () => {
   const getStreetsValue = useAtomCallback(useCallback((get) => get(streetsAtom), []));
   const onSearch = useStreetSuggestions(drupalSettings.path.currentLanguage);
 
-  const onChange = (selectedOptions: Array<Required<Option>>) => {
+  const onChange = (selectedOptions: Option[]) => {
     setStreets(selectedOptions);
-    selectStorage.updateAllOptions((option, _group, _groupindex) => ({
+    selectStorage.updateAllOptions((option) => ({
       ...option,
       selected: selectedOptions.some((selection) => selection.value === option.value),
     }));
@@ -121,7 +122,7 @@ export const StreetFilter = () => {
         ),
       }}
       theme={defaultMultiSelectTheme}
-      {...selectStorage.getProps()}
+      {...(selectStorage.getProps() as SelectProps<ReactElement<HTMLOptGroupElement | HTMLOptionElement>>)}
     />
   );
 };

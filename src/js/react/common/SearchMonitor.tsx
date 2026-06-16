@@ -99,7 +99,7 @@ const SearchMonitor = ({
   secureQuery,
   openHash,
 }: SearchMonitorProps) => {
-  const openDialogButtonRef = useRef<HTMLElement | null>(null);
+  const openDialogButtonRef = useRef<HTMLButtonElement | null>(null);
 
   // Form validation states
   const [errors, setErrors] = useState<FormErrorContainer>(null);
@@ -331,7 +331,7 @@ const SearchMonitor = ({
         closeButtonLabelText={Drupal.t('Close the order form', {}, { context: 'Search monitor' })}
         id='hdbt-search__search-monitor__content'
         isOpen={isFormVisible}
-        focusAfterCloseRef={openerButtonRef.current || openDialogButtonRef}
+        focusAfterCloseRef={openerButtonRef.current ? openerButtonRef : openDialogButtonRef}
         targetElement={dialogTargetRef.current || undefined}
       >
         {submitted ? (
