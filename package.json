@@ -20,7 +20,9 @@
     "fast-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast reference",
     "fast-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast test",
     "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve",
-    "validate-ts": "tsc --noEmit"
+    "validate-ts": "tsc --noEmit",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "@comment dependencies": [
     "The following packages were updated manually.",
@@ -75,15 +77,11 @@
     "> 1%",
     "not dead"
   ],
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules",
-      "<rootDir>/src/index.tsx",
-      "<rootDir>/src/enum/*",
-      "<rootDir>/src/types/*"
-    ]
+  "devDependencies": {
+    "@testing-library/react": "^12.1.5",
+    "@vitest/coverage-v8": "^3.0.8",
+    "jsdom": "^26.0.0",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^3.0.8"
   }
 }
