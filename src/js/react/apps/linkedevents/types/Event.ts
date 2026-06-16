@@ -10,7 +10,7 @@ export type EventKeyword = IncludableResource & {
   has_user_editable_resources?: boolean;
 };
 
-type EventOffers = { info_url: MultilingualString; is_free: boolean };
+type EventOffers = { info_url: MultilingualString; is_free: boolean; price?: MultilingualString };
 
 type EventLocation = {
   data_source?: string;
