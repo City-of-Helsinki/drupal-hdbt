@@ -12,14 +12,14 @@
     "./js": "./js.mjs"
   },
   "dependencies": {
-    "@xmldom/xmldom": "^0.9.10",
     "@biomejs/biome": "^2.2.4",
+    "@xmldom/xmldom": "^0.9.10",
     "breakpoint-sass": "^3.0.0",
     "chokidar": "^4.0.3",
     "cli-progress": "^3.12.0",
     "css-declaration-sorter": "^7.2.0",
     "cssnano": "^7.0.7",
-    "esbuild": "^0.25.6",
+    "esbuild": "^0.28.0",
     "glob": "^11.0.0",
     "md5": "^2.3.0",
     "postcss": "^8.5.6",
