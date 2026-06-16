@@ -1233,8 +1233,16 @@ msgid "Age"
 msgstr "Ikä"
 
 msgctxt "Event audience age value"
-msgid "@age years old"
-msgstr "@age-vuotiaat"
+msgid "@min–@max years old"
+msgstr "@min–@max-vuotiaat"
+
+msgctxt "Event audience age value"
+msgid "Over @age years old"
+msgstr "Yli @age-vuotiaat"
+
+msgctxt "Event audience age value"
+msgid "Under @age years old"
+msgstr "Alle @age-vuotiaat"
 
 msgctxt "Accordion open all"
 msgid "Open all"

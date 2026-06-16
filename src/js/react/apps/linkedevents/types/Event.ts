@@ -28,9 +28,9 @@ export type Event = {
   '@context'?: string;
   '@id'?: string;
   '@type'?: string;
-  audience?: IncludableResource[];
   audience_max_age: number | null;
   audience_min_age: number | null;
+  audience?: IncludableResource[];
   created_time?: string;
   custom_data: unknown | null;
   data_source?: string;
@@ -47,19 +47,19 @@ export type Event = {
   has_user_editable_resources?: boolean;
   id: string;
   images?: EventImage[];
-  info_url?: MultilingualString;
   in_language: IncludableResource[];
+  info_url?: MultilingualString;
   keywords?: EventKeyword[];
   last_modified_time?: string;
   local?: boolean;
-  location?: EventLocation;
   location_extra_info?: MultilingualString;
+  location?: EventLocation;
   maximum_attendee_capacity: number | null;
   minimum_attendee_capacity: number | null;
   name: MultilingualString;
   offers?: EventOffers[];
-  provider?: MultilingualString;
   provider_contact_info?: MultilingualString | null;
+  provider?: MultilingualString;
   publisher?: string;
   registration: unknown | null;
   replaced_by: string | null;
@@ -67,8 +67,8 @@ export type Event = {
   start_time: number;
   street_address?: MultilingualString;
   sub_events?: IncludableResource[];
-  super_event: IncludableResource | null;
   super_event_type: 'recurring' | 'umbrella' | null;
+  super_event: IncludableResource | null;
   type_id: 'Course' | 'General' | 'Volunteering';
 };
 

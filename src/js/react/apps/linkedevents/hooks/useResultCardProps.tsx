@@ -217,16 +217,19 @@ export const useResultCardProps = ({
       return;
     }
 
-    let range: string;
     if (audience_min_age != null && audience_max_age != null) {
-      range = `${audience_min_age}–${audience_max_age}`;
-    } else if (audience_min_age != null) {
-      range = `${audience_min_age}+`;
-    } else {
-      range = `${audience_max_age}`;
+      return Drupal.t(
+        '@min–@max years old',
+        { '@min': audience_min_age, '@max': audience_max_age },
+        { context: 'Event audience age value' },
+      );
     }
 
-    return Drupal.t('@age years old', { '@age': range }, { context: 'Event audience age value' });
+    if (audience_min_age != null) {
+      return Drupal.t('Over @age years old', { '@age': audience_min_age }, { context: 'Event audience age value' });
+    }
+
+    return Drupal.t('Under @age years old', { '@age': audience_max_age }, { context: 'Event audience age value' });
   };
 
   const getCustomMetaRows = (): { bottom: JSX.Element[] } => {
