@@ -34,7 +34,8 @@
       "diff": "^8.0.3, dependency of backstopjs",
       "minimatch": ">=10.2.1, dependency of hds-core (eslint)",
       "yauzl": "^3.2.1, dependency of backstopjs",
-      "uuid": "^14.0.0, dependency of hds-react"
+      "uuid": "^14.0.0, dependency of hds-react",
+      "esbuild": "^0.28.1, dependency of vite (vitest); forces the test stack onto the same non-vulnerable esbuild theme-builder already uses (GHSA-gv7w-rqvm-qjhr, GHSA-g7r4-m6w7-qqqr)"
     }
   ],
   "overrides": {
@@ -43,7 +44,8 @@
     "ajv": "^8.18.0",
     "minimatch": "^10.2.1",
     "yauzl": "^3.2.1",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.0",
+    "esbuild": "^0.28.1"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
