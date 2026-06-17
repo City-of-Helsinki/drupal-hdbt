@@ -7,6 +7,11 @@ import type { Event, EventImage } from '../types/Event';
 const INTERNET_EXCEPTION = 'helsinki:internet';
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
 
+const pad = (value: number) => String(value).padStart(2, '0');
+
+const toDatetimeAttr = (date: Date) =>
+  `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+
 const formatStartDate = (start: Date, end: Date) => {
   if (start.getFullYear() === end.getFullYear()) {
     if (start.getMonth() === end.getMonth()) {
@@ -42,7 +47,7 @@ export const useResultCardProps = ({
 
   const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
-  const getDate = () => {
+  const getDateParts = ({ withTimePrefix = true }: { withTimePrefix?: boolean } = {}) => {
     let startDate: Date;
     let endDate: Date;
     let isMultiDate: boolean;
@@ -55,11 +60,33 @@ export const useResultCardProps = ({
       throw new Error(`DATE ERROR ${e}`);
     }
 
-    if (isMultiDate) {
-      return `${formatStartDate(startDate, endDate)} - ${endDate.toLocaleDateString('fi-FI')}`;
-    }
+    const timePrefix = withTimePrefix
+      ? `, ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} `
+      : ' ';
+    const startContent = isMultiDate
+      ? `${formatStartDate(startDate, endDate)}`
+      : `${startDate.toLocaleDateString('fi-FI')}${timePrefix}${formatTime(startDate)}`;
+    const endContent = isMultiDate ? endDate.toLocaleDateString('fi-FI') : formatTime(endDate);
 
-    return `${startDate.toLocaleDateString('fi-FI')}, ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${formatTime(startDate)} - ${formatTime(endDate)}`;
+    return { startDate, endDate, startContent, endContent };
+  };
+
+  const getDate = (): string => {
+    const { startContent, endContent } = getDateParts();
+
+    return `${startContent} - ${endContent}`;
+  };
+
+  const getJsxDate = (): JSX.Element => {
+    const { startDate, endDate, startContent, endContent } = getDateParts({ withTimePrefix: false });
+
+    return (
+      <>
+        <time dateTime={toDatetimeAttr(startDate)}>{startContent}</time>
+        {' - '}
+        <time dateTime={toDatetimeAttr(endDate)}>{endContent}</time>
+      </>
+    );
   };
 
   const getLocation = () => {
@@ -270,5 +297,6 @@ export const useResultCardProps = ({
     registrationRequired: getOffers(),
     signUp: getSignUp(),
     time: getDate(),
+    jsxTime: getJsxDate(),
   };
 };

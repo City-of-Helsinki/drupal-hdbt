@@ -1350,6 +1350,10 @@ msgctxt "Events search"
 msgid "Search for more events on the Events website"
 msgstr "Sök fler evenemang på webbplatsen Evenemang"
 
+msgctxt "Events search"
+msgid "View all events"
+msgstr "Visa alla evenemang"
+
 msgctxt "Events search: event type prefix"
 msgid "Show only"
 msgstr "Visa endast"

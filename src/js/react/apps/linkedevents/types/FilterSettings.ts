@@ -1,6 +1,7 @@
 type FilterSettings = {
   eventCount: number;
   eventListType: 'hobbies' | 'events' | 'events_and_hobbies';
+  layout: 'default' | 'lifts';
   hideHeading: boolean;
   hidePagination: boolean;
   removeBloatingEvents: boolean;
