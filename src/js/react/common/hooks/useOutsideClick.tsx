@@ -14,17 +14,26 @@ const useOutsideClick = (ref: MutableRefObject<any>, callback: Function) => {
 
     const handleClick = (event: MouseEvent) => {
       if (!isChild(event)) {
-        event.stopPropagation();
-        callback();
+        // Defer close so that floating elements opened by inner components like the HDS date
+        // picker calendar can finish processing and return focus inside before closing the dialog.
+        setTimeout(() => {
+          if (ref.current && !ref.current.contains(document.activeElement)) {
+            callback();
+          }
+        }, 0);
       }
     };
 
     const handleFocusin = (event: FocusEvent) => {
-      // If a mousedown just happened inside, focus may have moved to a portal
-      // (e.g. an HDS date picker calendar) — don't close in that case.
+      // If a mousedown just happened inside, focus may have moved to a floating element
+      // like the HDS date picker calendar — don't close in that case.
       if (!isChild(event) && !mouseDownInside.current) {
-        event.stopPropagation();
-        callback();
+        // If focus returns inside, like after the calendar closes we skip it.
+        setTimeout(() => {
+          if (ref.current && !ref.current.contains(document.activeElement)) {
+            callback();
+          }
+        }, 0);
       }
       mouseDownInside.current = false;
     };
