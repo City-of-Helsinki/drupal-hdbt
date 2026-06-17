@@ -8,6 +8,9 @@ npm-debug.log
 dist/**/*.map
 yarn.lock
 
+# Vitest
+coverage
+
 # BackstopJS
 backstop/*/bitmaps_reference
 backstop/*/bitmaps_test

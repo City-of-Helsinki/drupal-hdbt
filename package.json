@@ -7,7 +7,7 @@
   "repository": "github:City-of-Helsinki/drupal-hdbt",
   "scripts": {
     "dev": "node theme-builder.mjs --watch --dev",
-    "build": "npm run format:js --loglevel=silent && npm run lint -s && node theme-builder.mjs",
+    "build": "npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs",
     "preinstall": "npx update-browserslist-db@latest",
     "lint:scss": "npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map && npm run lint:stylelint",
     "lint:stylelint": "npx stylelint \"src/scss/**/*.scss\" --config ./theme-builder/.stylelintrc.yaml --formatter --fix",
@@ -20,7 +20,9 @@
     "fast-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast reference",
     "fast-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast test",
     "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve",
-    "validate-ts": "tsc --noEmit"
+    "validate-ts": "tsc --noEmit",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "@comment dependencies": [
     "The following packages were updated manually.",
@@ -32,7 +34,8 @@
       "diff": "^8.0.3, dependency of backstopjs",
       "minimatch": ">=10.2.1, dependency of hds-core (eslint)",
       "yauzl": "^3.2.1, dependency of backstopjs",
-      "uuid": "^14.0.0, dependency of hds-react"
+      "uuid": "^14.0.0, dependency of hds-react",
+      "esbuild": "^0.28.1, dependency of vite (vitest); forces the test stack onto the same non-vulnerable esbuild theme-builder already uses (GHSA-gv7w-rqvm-qjhr, GHSA-g7r4-m6w7-qqqr)"
     }
   ],
   "overrides": {
@@ -41,7 +44,8 @@
     "ajv": "^8.18.0",
     "minimatch": "^10.2.1",
     "yauzl": "^3.2.1",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.0",
+    "esbuild": "^0.28.1"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
@@ -75,15 +79,10 @@
     "> 1%",
     "not dead"
   ],
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
-    ],
-    "coveragePathIgnorePatterns": [
-      "node_modules",
-      "<rootDir>/src/index.tsx",
-      "<rootDir>/src/enum/*",
-      "<rootDir>/src/types/*"
-    ]
+  "devDependencies": {
+    "@testing-library/react": "^12.1.5",
+    "@vitest/coverage-v8": "^3.0.8",
+    "jsdom": "^26.0.0",
+    "vitest": "^3.0.8"
   }
 }

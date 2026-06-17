@@ -16,7 +16,7 @@ export const useSelectionButtons = (selections: [string, OptionType[] | boolean 
   const submitState = useSetAtom(submitStateAtom);
   const selectionButtons: JSX.Element[] = [];
 
-  const removeArrayItem = (key: arraySelectionKey, value: string) => {
+  const removeArrayItem = (key: arraySelectionKey, value: string | string[]) => {
     const state = { ...submittedState };
     const existing = [...((state[key] as OptionType[]) || [])];
     existing.splice(

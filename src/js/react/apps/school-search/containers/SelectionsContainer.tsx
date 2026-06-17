@@ -201,8 +201,8 @@ const ListFilter = ({ updater, values, valueKey, labelPrefix }: ListFilterProps)
       {values.map((selection: OptionType) => (
         <FilterButton
           value={labelPrefix ? `${labelPrefix}: ${selection.label}` : selection.label}
-          clearSelection={() => removeSelection(selection.value)}
-          key={selection.value}
+          clearSelection={() => removeSelection(String(selection.value))}
+          key={String(selection.value)}
         />
       ))}
     </>

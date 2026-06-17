@@ -1,6 +1,6 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
 // biome-ignore-all lint/complexity/noUselessFragments: @todo UHF-12501
-import type { types } from '@elastic/elasticsearch';
+import type { estypes } from '@elastic/elasticsearch';
 import { createRef, type SyntheticEvent } from 'react';
 
 import { GhostList } from './GhostList';
@@ -24,13 +24,13 @@ export const ResultsWrapper = ({
   size = 10,
 }: {
   currentPage: string | number;
-  data?: types.SearchResponse<any>;
+  data?: estypes.SearchResponse<any>;
   error?: string;
   customTotal?: number;
   getHeaderText: () => string;
   isLoading: boolean;
-  resultItemCallBack: (item: types.SearchHit<any>) => JSX.Element;
-  setPage: (string) => void;
+  resultItemCallBack: (item: estypes.SearchHit<any>) => JSX.Element;
+  setPage: (page: string) => void;
   sortElement?: JSX.Element;
   shouldScroll?: boolean;
   size: number;
@@ -51,7 +51,8 @@ export const ResultsWrapper = ({
   }
 
   const results = data.hits.hits;
-  const total = customTotal || data.hits.total.value;
+  const totalHits = typeof data.hits.total === 'number' ? data.hits.total : (data.hits.total?.value ?? 0);
+  const total = customTotal || totalHits;
   const pages = Math.floor(total / size);
   const addLastPage = total > size && total % size;
 
@@ -69,7 +70,7 @@ export const ResultsWrapper = ({
         resultText={<>{getHeaderText()}</>}
       />
       <div className='hdbt-search--react__results--list'>
-        {results.map((item: types.SearchHit<any>) => resultItemCallBack(item))}
+        {results.map((item: estypes.SearchHit<any>) => resultItemCallBack(item))}
         <Pagination
           currentPage={Number(currentPage)}
           pages={5}

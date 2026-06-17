@@ -1,4 +1,6 @@
-import { Select, type SelectData, useSelectStorage } from 'hds-react';
+import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
+import type { ModularOptionListData } from 'hds-react/components/dropdownComponents/modularOptionList/types';
+import type { SearchResult } from 'hds-react/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';
@@ -12,7 +14,6 @@ import type { ServiceMapPlace } from '@/types/ServiceMap';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
 import { locationSelectionAtom, updateParamsAtom } from '../store';
-import type OptionType from '../types/OptionType';
 
 const FullLocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
@@ -20,7 +21,7 @@ const FullLocationFilter = memo(() => {
 
   const getLocationParamValue = useAtomCallback(useCallback((get) => get(locationSelectionAtom), []));
 
-  const getLocations = async (searchTerm: string, _selectedOptions: OptionType[], _data: SelectData) => {
+  const getLocations: SearchFunction = async (searchTerm) => {
     const url = new URL(LinkedEvents.PLACES_URL);
     const locationParams = new URLSearchParams({
       has_upcoming_events: 'true',
@@ -28,7 +29,7 @@ const FullLocationFilter = memo(() => {
       text: searchTerm,
     });
     url.search = locationParams.toString();
-    const result = { options: [] };
+    const result: SearchResult = { options: [] };
 
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(url.toString());
@@ -50,16 +51,13 @@ const FullLocationFilter = memo(() => {
     return result;
   };
 
-  const onChange = (value: OptionType[], clickedOption: OptionType, _data: SelectData) => {
+  const onChange = (value: Option[], clickedOption: Option, _data: ModularOptionListData) => {
     setLocationFilter(value.map((option) => ({ label: option.label, value: option.value })));
     updateParams({
-      [ApiKeys.LOCATION]: value
-        // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-        .map((location: any) => location.value)
-        .join(','),
+      [ApiKeys.LOCATION]: value.map((location) => location.value).join(','),
     });
 
-    storage.updateAllOptions((option, _group, _groupindex) => ({
+    storage.updateAllOptions((option) => ({
       ...option,
       selected: value.some((selection) => selection.value === option.value),
     }));

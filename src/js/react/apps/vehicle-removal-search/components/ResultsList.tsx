@@ -1,5 +1,13 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { createRef, type ReactElement, type RefObject, type SyntheticEvent, useEffect, useRef } from 'react';
+import {
+  createRef,
+  type ReactElement,
+  type ReactNode,
+  type RefObject,
+  type SyntheticEvent,
+  useEffect,
+  useRef,
+} from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
@@ -15,9 +23,16 @@ import { submittedStateAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
 
+type VehicleRemovalResponse = {
+  hits: {
+    total: { value: number; relation: string };
+    hits: Result<VehicleRemoval>[];
+  };
+};
+
 type ResultsListProps = {
   /** Elasticsearch results. */
-  data: unknown;
+  data?: VehicleRemovalResponse;
   error: string | Error;
   isLoading: boolean;
   isValidating: boolean;
@@ -31,6 +46,7 @@ const Header = ({
   leftActions,
 }: {
   total: number;
+  children?: ReactNode;
   leftActions?: ReactElement;
   scrollTarget: RefObject<HTMLDivElement>;
   dialogTarget: RefObject<HTMLDivElement>;

@@ -208,12 +208,12 @@ export const useResultCardProps = ({
     }
 
     if (type_id && type_id === 'Course') {
-      const type = { fi: 'kurssit', sv: 'kurser' }[currentLanguage] ?? 'courses';
+      const type = ({ fi: 'kurssit', sv: 'kurser' } as Record<string, string>)[currentLanguage] ?? 'courses';
 
       return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
     }
 
-    const type = { fi: 'tapahtumat', sv: 'kurser' }[currentLanguage] ?? 'events';
+    const type = ({ fi: 'tapahtumat', sv: 'kurser' } as Record<string, string>)[currentLanguage] ?? 'events';
 
     return `${baseUrl}/${currentLanguage}/${type}/${id}`;
   };
