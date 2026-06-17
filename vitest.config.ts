@@ -1,8 +1,14 @@
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  plugins: [tsconfigPaths()],
+  resolve: {
+    // Keep these in sync with the "paths" in tsconfig.json.
+    alias: {
+      '@/react/common': resolve(__dirname, 'src/js/react/common'),
+      '@/types': resolve(__dirname, 'src/js/types'),
+    },
+  },
   test: {
     server: {
       deps: {
