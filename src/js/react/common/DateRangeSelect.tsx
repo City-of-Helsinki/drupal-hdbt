@@ -129,6 +129,7 @@ export const DateRangeSelect = ({
         isPlaceholder={!startDate && !endDate}
         helper={helperText}
         title={collapsibleTitle}
+        ariaModal={true}
       >
         <div className='event-form__date-container'>
           <DateInput

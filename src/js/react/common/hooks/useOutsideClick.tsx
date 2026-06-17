@@ -1,26 +1,42 @@
-import { type MutableRefObject, useCallback, useEffect } from 'react';
+import { type MutableRefObject, useCallback, useEffect, useRef } from 'react';
 
 // Make any element listen outside click and focus events.
 // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
 const useOutsideClick = (ref: MutableRefObject<any>, callback: Function) => {
-  const isChild = useCallback((event) => ref.current?.contains(event.target as Node));
+  const isChild = useCallback((event) => ref.current?.contains(event.target as Node), [ref]);
+  const mouseDownInside = useRef(false);
 
   useEffect(() => {
-    const handleClick = (event: MouseEvent | FocusEvent) => {
-      // Is the click or focus outside this component
+    const handleMouseDown = (event: MouseEvent) => {
+      mouseDownInside.current = ref.current?.contains(event.target as Node) ?? false;
+    };
+
+    const handleClick = (event: MouseEvent) => {
       if (!isChild(event)) {
         event.stopPropagation();
         callback();
       }
     };
 
+    const handleFocusin = (event: FocusEvent) => {
+      // If a mousedown just happened inside, focus may have moved to a portal
+      // (e.g. an HDS date picker calendar) — don't close in that case.
+      if (!isChild(event) && !mouseDownInside.current) {
+        event.stopPropagation();
+        callback();
+      }
+      mouseDownInside.current = false;
+    };
+
+    document.addEventListener('mousedown', handleMouseDown);
     document.addEventListener('click', handleClick);
-    document.addEventListener('focusin', handleClick);
+    document.addEventListener('focusin', handleFocusin);
 
     return () => {
+      document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('click', handleClick);
-      document.removeEventListener('focusin', handleClick);
+      document.removeEventListener('focusin', handleFocusin);
     };
   });
 };
