@@ -1,6 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -28,9 +29,11 @@ const ResultsContainer = ({
   const urlParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);
   const setPage = useSetAtom(setPageAtom);
-  const { data, error } = useIndexQuery({ keepPreviousData: true, query: queryString });
+  const { data, error, isValidating } = useIndexQuery({ keepPreviousData: true, query: queryString });
   const scrollTarget = useRef<HTMLDivElement>(null);
   const dialogTargetRef = useRef<HTMLDivElement>(null);
+  const resultsListRef = useRef<HTMLDivElement>(null);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
   const choices =
     Boolean(urlParams.groups?.length) ||
     Boolean(urlParams.neighbourhoods?.length) ||
@@ -59,6 +62,7 @@ const ResultsContainer = ({
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
     setPage(newPage);
+    scrollToFirstItem();
   };
 
   if (!results?.length) {
@@ -102,7 +106,7 @@ const ResultsContainer = ({
           ref={scrollTarget}
         />
       )}
-      <div className='hdbt-search--react__results--container'>
+      <div className='hdbt-search--react__results--container' ref={resultsListRef}>
         {results.map((hit: Result<NewsItem>) => (
           <ResultCard
             key={hit._id}
