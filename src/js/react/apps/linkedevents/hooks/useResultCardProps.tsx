@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import { Metarow } from '@/react/common/Card';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { hobbiesPublicUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
@@ -25,6 +26,8 @@ const formatStartDate = (start: Date, end: Date) => {
 };
 
 export const useResultCardProps = ({
+  audience_max_age,
+  audience_min_age,
   end_time,
   enrolment_end_time,
   enrolment_start_time,
@@ -138,7 +141,7 @@ export const useResultCardProps = ({
       return imageToElement(image);
     }
     if (imagePlaceholder) {
-      return htmlToReact(imagePlaceholder);
+      return <>{htmlToReact(imagePlaceholder)}</>;
     }
 
     return <div className='image-placeholder'></div>;
@@ -208,14 +211,79 @@ export const useResultCardProps = ({
     }
 
     if (type_id && type_id === 'Course') {
-      const type = { fi: 'kurssit', sv: 'kurser' }[currentLanguage] ?? 'courses';
+      const type =
+        ({ fi: 'kurssit', sv: 'kurser' } as Partial<Record<typeof currentLanguage, string>>)[currentLanguage] ??
+        'courses';
 
       return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
     }
 
-    const type = { fi: 'tapahtumat', sv: 'kurser' }[currentLanguage] ?? 'events';
+    const type =
+      ({ fi: 'tapahtumat', sv: 'kurser' } as Partial<Record<typeof currentLanguage, string>>)[currentLanguage] ??
+      'events';
 
     return `${baseUrl}/${currentLanguage}/${type}/${id}`;
+  };
+
+  const getPrice = (): string => {
+    if (isFree || !offers?.length) {
+      return Drupal.t('Free', {}, { context: 'Label for free events' });
+    }
+
+    const priced = offers.find(({ price }) => price?.[currentLanguage] || price?.fi);
+
+    return (
+      priced?.price?.[currentLanguage] ||
+      priced?.price?.fi ||
+      Drupal.t('Free', {}, { context: 'Label for free events' })
+    );
+  };
+
+  const getAge = (): string | undefined => {
+    if (audience_min_age == null && audience_max_age == null) {
+      return;
+    }
+
+    if (audience_min_age != null && audience_max_age != null) {
+      return Drupal.t(
+        '@min–@max years old',
+        { '@min': audience_min_age, '@max': audience_max_age },
+        { context: 'Event audience age value' },
+      );
+    }
+
+    if (audience_min_age != null) {
+      return Drupal.t('Over @age years old', { '@age': audience_min_age }, { context: 'Event audience age value' });
+    }
+
+    return Drupal.t('Under @age years old', { '@age': audience_max_age }, { context: 'Event audience age value' });
+  };
+
+  const getCustomMetaRows = (): { bottom: JSX.Element[] } => {
+    const bottom: JSX.Element[] = [];
+
+    const age = getAge();
+    if (age) {
+      bottom.push(
+        <Metarow
+          key='age'
+          icon='cake'
+          label={Drupal.t('Age', {}, { context: 'Event audience age label' })}
+          content={age}
+        />,
+      );
+    }
+
+    bottom.push(
+      <Metarow
+        key='price'
+        icon='ticket'
+        label={Drupal.t('Price', {}, { context: 'Event price label' })}
+        content={getPrice()}
+      />,
+    );
+
+    return { bottom };
   };
 
   return {
@@ -224,6 +292,7 @@ export const useResultCardProps = ({
     cardTags: getCardTags(),
     cardTitle: resolvedName,
     cardUrl: getUrl(),
+    customMetaRows: getCustomMetaRows(),
     location: isRemote ? 'Internet' : getLocation(),
     registrationRequired: getOffers(),
     signUp: getSignUp(),
