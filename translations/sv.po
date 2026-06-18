@@ -1912,3 +1912,11 @@ msgstr "Du kan skapa så många sökvakter du vill."
 msgctxt "Search monitor banner"
 msgid "Save your search"
 msgstr "Beställ sökvakten"
+
+msgctxt "AI Summary"
+msgid "Page in summary"
+msgstr "Sammanfattning av sidan"
+
+msgctxt "AI Summary"
+msgid "Open more information on the summary"
+msgstr "Visa mer information om sammanfattningen"

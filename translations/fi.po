@@ -1909,3 +1909,11 @@ msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
 msgctxt "Search monitor banner"
 msgid "Save your search"
 msgstr "Tilaa hakuvahti"
+
+msgctxt "AI Summary"
+msgid "Page in summary"
+msgstr "Sivu tiivistettynä"
+
+msgctxt "AI Summary"
+msgid "Open more information on the summary"
+msgstr "Avaa lisätietoa tiivistelmästä"
