@@ -1,7 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent } from 'react';
+import { createRef, type SyntheticEvent, useRef } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Pagination from '@/react/common/Pagination';
@@ -41,7 +42,9 @@ const ResultsContainer = (): JSX.Element => {
     }).then((res) => res.json());
   };
 
-  const { data, error } = useSWR(queryString, fetcher, { revalidateOnFocus: false });
+  const { data, error, isValidating } = useSWR(queryString, fetcher, { revalidateOnFocus: false });
+  const resultsListRef = useRef<HTMLDivElement>(null);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
 
   if (!data && !error) {
     return <GhostList count={size} />;
@@ -63,6 +66,7 @@ const ResultsContainer = (): JSX.Element => {
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
+    scrollToFirstItem();
   };
 
   return (
@@ -86,9 +90,11 @@ const ResultsContainer = (): JSX.Element => {
       />
 
       <div className='hdbt-search--react__results--container'>
-        {results.map((hit: Result) => (
-          <ResultCard key={hit._id} _id={hit._id} {...hit._source} />
-        ))}
+        <div ref={resultsListRef}>
+          {results.map((hit: Result) => (
+            <ResultCard key={hit._id} _id={hit._id} {...hit._source} />
+          ))}
+        </div>
         <Pagination
           currentPage={currentPage}
           pages={5}

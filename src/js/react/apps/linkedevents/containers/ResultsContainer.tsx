@@ -1,8 +1,9 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
-import { createRef, useCallback, useEffect } from 'react';
+import { createRef, useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -45,6 +46,7 @@ function ResultsContainer({
   const size = settings.eventCount;
   const isLifts = settings.layout === 'lifts';
   const scrollTarget = createRef<HTMLDivElement>();
+  const resultsListRef = useRef<HTMLDivElement>(null);
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
@@ -53,6 +55,7 @@ function ResultsContainer({
   const setInitialized = useSetAtom(initializedAtom);
 
   useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, loading || validating);
 
   useEffect(() => {
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
@@ -125,12 +128,14 @@ function ResultsContainer({
           {loading ? (
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
-            events.map((event) => (
-              <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
-            ))
+            <div ref={resultsListRef}>
+              {events.map((event) => (
+                <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+              ))}
+            </div>
           )}
           {!isLifts && !settings.hidePagination && (
-            <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+            <Pagination onPageChange={scrollToFirstItem} pages={5} totalPages={addLastPage ? pages + 1 : pages} />
           )}
         </>
       );

@@ -3,9 +3,13 @@ import type React from 'react';
 import { Pagination as CommonPagination } from '@/react/common/Pagination';
 import { pageAtom, updatePageParamAtom } from '../store';
 
-type PaginationProps = { pages: number; totalPages: number };
+type PaginationProps = {
+  onPageChange?: () => void;
+  pages: number;
+  totalPages: number;
+};
 
-export const Pagination = ({ pages, totalPages }: PaginationProps) => {
+export const Pagination = ({ onPageChange, pages, totalPages }: PaginationProps) => {
   const [page, setPage] = useAtom(pageAtom);
   const updatePageParam = useSetAtom(updatePageParamAtom);
 
@@ -17,6 +21,7 @@ export const Pagination = ({ pages, totalPages }: PaginationProps) => {
     e.preventDefault();
     setPage(index);
     updatePageParam(index);
+    onPageChange?.();
   };
 
   return <CommonPagination updatePage={updatePage} currentPage={page} pages={pages} totalPages={totalPages} />;

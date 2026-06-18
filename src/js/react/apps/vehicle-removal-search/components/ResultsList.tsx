@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { createRef, type ReactElement, type RefObject, type SyntheticEvent, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -55,6 +56,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const { page } = submittedState;
   const scrollTarget = createRef<HTMLDivElement>();
   const dialogTargetRef = createRef<HTMLDivElement>();
+  const resultsListRef = useRef<HTMLDivElement>(null);
   const hasSearched = useRef(false);
   const isFirstRender = useRef(true);
 
@@ -68,6 +70,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   }, [submittedState]);
 
   useScrollToResults(scrollTarget, Boolean(data) && hasSearched.current);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
 
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
@@ -166,13 +169,16 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const updatePage = (e: SyntheticEvent, nextPage: number) => {
     e.preventDefault();
     setSubmittedState({ page: nextPage });
+    scrollToFirstItem();
   };
 
   return (
     <Header total={total} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
-      {results.map((hit) => (
-        <ResultCard key={hit._id} item={hit._source} />
-      ))}
+      <div ref={resultsListRef}>
+        {results.map((hit) => (
+          <ResultCard key={hit._id} item={hit._source} />
+        ))}
+      </div>
       {showPagination && (
         <Pagination currentPage={page || 1} pages={5} totalPages={totalPages} updatePage={updatePage} />
       )}
