@@ -3,6 +3,7 @@ import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
 import { createRef, useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -54,6 +55,7 @@ function ResultsContainer({
   const setInitialized = useSetAtom(initializedAtom);
 
   useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, loading || validating);
 
   useEffect(() => {
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
@@ -133,12 +135,7 @@ function ResultsContainer({
             </div>
           )}
           {!isLifts && !settings.hidePagination && (
-            <Pagination
-              containerRef={resultsListRef}
-              isLoading={loading || validating}
-              pages={5}
-              totalPages={addLastPage ? pages + 1 : pages}
-            />
+            <Pagination onPageChange={scrollToFirstItem} pages={5} totalPages={addLastPage ? pages + 1 : pages} />
           )}
         </>
       );
