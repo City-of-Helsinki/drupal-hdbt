@@ -1,0 +1,25 @@
+.component--ai-summary .component__content {
+  background-color: $color-black-5;
+  padding: $spacing;
+
+  @include breakpoint($breakpoint-l) {
+    padding: $spacing-and-half;
+  }
+}
+
+.ai-summary__header {
+  --icon-size: #{$spacing-and-half};
+  align-items: center;
+  display: flex;
+  
+  @include breakpoint($breakpoint-l) {
+    --icon-size: #{$spacing-double};
+  }
+}
+
+.ai-summary__label {
+  @include font('h3');
+  font-weight: 400;
+  margin-block-start: 0;
+  margin-inline-end: $spacing-half;
+}

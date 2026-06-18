@@ -1,0 +1,21 @@
+{% set content %}
+  {% for item in items %}
+    {{ item.content }}
+  {% endfor %}
+{% endset %}
+
+{% if content|render %}
+  <section class="ai-summary components hide-from-table-of-contents" aria-labelledby="ai-summary__label">
+    {% embed "@hdbt/misc/component.twig" with { component_classes: ['component--ai-summary', 'component--hardcoded']} %}
+      {% block component_content %}
+        <header class="ai-summary__header">
+          <h2 id="ai-summary__label" class="ai-summary__label" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+            {{ 'Page in summary'|t({}, {'context': 'AI summary'}) }}
+          </h2>
+          {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'info-circle', label: 'Open more information on the summary'|t({}, {'context': 'AI summary'}) } %}
+        </header>
+        {{ content }}
+      {% endblock component_content %}
+    {% endembed %}
+  </section>
+{% endif %}
