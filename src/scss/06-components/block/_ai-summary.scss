@@ -23,3 +23,113 @@
   margin-block-start: 0;
   margin-inline-end: $spacing-half;
 }
+
+$ai-summary-collapsed-height: 80px;
+$ai-summary-gradient-height: 80px;
+
+.ai-summary__body {
+  @include font('body');
+  overflow: hidden;
+  position: relative;
+  transition: height 0.3s ease; /* stylelint-disable-line plugin/no-low-performance-animation-properties */
+
+  ul {
+    margin: $spacing-half 0;
+    padding-inline-start: $spacing-and-half;
+  }
+}
+
+.ai-summary__gradient {
+  background: linear-gradient(to bottom, rgba($color-black-5, 0), $color-black-5);
+  bottom: 0;
+  height: $ai-summary-gradient-height;
+  left: 0;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  transition: opacity 0.15s ease;
+
+  .ai-summary__body:not(.ai-summary__body--collapsed) & {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.ai-summary__toggle {
+  @include font('button');
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  gap: $spacing-half;
+  margin-block-start: $spacing-half;
+  padding: 0 $spacing-half 0 0;
+
+  &:focus {
+    outline: 3px solid var(--color-black);
+    outline-offset: 2px;
+  }
+
+  &::before {
+    @include pseudo-icon('angle-down', 32px, currentColor, block);
+    transition: transform .2s ease-in;
+  }
+
+  &[aria-expanded='true']::before {
+    transform: rotate(180deg);
+  }
+}
+
+.ai-summary__info-wrapper {
+  position: relative;
+}
+
+.ai-summary__info-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+
+  &:focus {
+    outline: 3px solid var(--color-black);
+    outline-offset: 0;
+  }
+}
+
+.ai-summary__toast {
+  bottom: calc(100% + #{$toast-arrow-size});
+  left: -#{$spacing};
+  position: absolute;
+  width: 284px;
+  z-index: 10;
+
+  &[hidden] {
+    display: none;
+  }
+
+  // Arrow pointing down toward the trigger button (toast is above by default).
+  &::before {
+    border-left: $toast-arrow-size solid transparent;
+    border-right: $toast-arrow-size solid transparent;
+    border-top: $toast-arrow-size solid var(--color-info);
+    bottom: -#{$toast-arrow-size};
+    content: "";
+    height: 0;
+    left: var(--toast-arrow-left, #{$spacing});
+    position: absolute;
+    top: auto;
+    width: 0;
+  }
+
+  // Arrow pointing up when the toast opens below the trigger button.
+  &.toast-wrapper--opens-below::before {
+    border-bottom: $toast-arrow-size solid var(--color-info);
+    border-top: 0;
+    bottom: auto;
+    top: -#{$toast-arrow-size};
+  }
+}
