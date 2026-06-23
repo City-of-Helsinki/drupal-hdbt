@@ -16,33 +16,28 @@
  *
  * registerOpen(trigger, wrapper, options) / unregisterOpen(wrapper)
  *   Register/unregister a toast for automatic repositioning on window resize.
- *
- * CSS classes set by positionToast:
- *   toast-wrapper--opens-above / toast-wrapper--opens-below  on the wrapper
- *   toast--border-bottom       / toast--border-top           on the inner .toast
- *
- * CSS custom properties set on the wrapper:
- *   --toast-arrow-left / --toast-arrow-right / --toast-arrow-transform
  */
 
 ((Drupal) => {
-  const ARROW_SIZE = 8; // px — matches $spacing-half
-  const GUTTER = 8; // minimum gap between toast edge and viewport edge
-  const DESKTOP_MQ = '(min-width: 993px)';
+  const ARROW_SIZE = 8;
+  const GUTTER = 16; // Minimum gap between toast edge and viewport edge.
+  const DESKTOP_MEDIA_QUERY = '(min-width: 993px)'; // $breakpoint-l: 992px
 
-  const openToasts = new Map(); // wrapper → { trigger, options }
-  const focusOutHandlers = new WeakMap(); // container → focusout handler fn
-  const focusOutResizers = new WeakMap(); // container → resize handler fn
+  // Tracks currently open toasts so the resize listener can reposition them.
+  // Regular Map because we need to iterate over all entries on every resize.
+  const openToasts = new Map();
 
-  // ---------------------------------------------------------------------------
-  // positionToast
-  // ---------------------------------------------------------------------------
+  // Tracks the active focusout/resize listeners per toast container so that
+  // reopening a toast replaces the old listeners instead of stacking new ones.
+  // WeakMap keys are garbage-collected automatically when the element is removed.
+  const focusOutHandlers = new WeakMap();
+  const focusOutResizers = new WeakMap();
 
   function positionToast(trigger, wrapper, options) {
     const { flipVertical = false, defaultAbove = true } = options || {};
     const triggerRect = trigger.getBoundingClientRect();
-    const viewportH = window.innerHeight;
-    const viewportW = document.documentElement.clientWidth;
+    const viewportHeight = window.innerHeight;
+    const viewportWidth = document.documentElement.clientWidth;
 
     // Reset any previously-applied inline styles so we measure from CSS defaults.
     wrapper.style.top = '';
@@ -52,12 +47,12 @@
     wrapper.style.transform = '';
 
     if (flipVertical) {
-      const toastH = wrapper.offsetHeight;
+      const toastHeight = wrapper.offsetHeight;
       const spaceAbove = triggerRect.top;
-      const spaceBelow = viewportH - triggerRect.bottom;
-      const needed = toastH + ARROW_SIZE + GUTTER;
+      const spaceBelow = viewportHeight - triggerRect.bottom;
+      const needed = toastHeight + ARROW_SIZE + GUTTER;
 
-      // Prefer the default direction; switch only when the default does not fit
+      // Prefer the default direction. Switch only when the default does not fit
       // and the other direction has more available space.
       const opensAbove = defaultAbove
         ? spaceAbove >= needed || spaceAbove >= spaceBelow
@@ -74,21 +69,21 @@
       wrapper.classList.toggle('toast-wrapper--opens-above', opensAbove);
       wrapper.classList.toggle('toast-wrapper--opens-below', !opensAbove);
 
-      const toastEl = wrapper.querySelector('.toast');
-      if (toastEl) {
-        toastEl.classList.toggle('toast--border-bottom', opensAbove);
-        toastEl.classList.toggle('toast--border-top', !opensAbove);
+      const toastElement = wrapper.querySelector('.toast');
+      if (toastElement) {
+        toastElement.classList.toggle('toast--border-bottom', opensAbove);
+        toastElement.classList.toggle('toast--border-top', !opensAbove);
       }
     }
 
-    // Horizontal clamping.
+    // Horizontal positioning.
     // Use getBoundingClientRect (not getComputedStyle) as the base because it
     // returns the final visual position after CSS transforms.
     const rect = wrapper.getBoundingClientRect();
-    const parentEl = wrapper.offsetParent || document.documentElement;
-    const parentLeft = parentEl.getBoundingClientRect().left;
+    const parentElement = wrapper.offsetParent || document.documentElement;
+    const parentLeft = parentElement.getBoundingClientRect().left;
 
-    const rightOverflow = rect.right - (viewportW - GUTTER);
+    const rightOverflow = rect.right - (viewportWidth - GUTTER);
     const leftUnderflow = GUTTER - rect.left;
 
     if (rightOverflow > 0) {
@@ -100,10 +95,10 @@
       wrapper.style.transform = 'none';
     }
 
-    // Keep the arrow pseudo-element pointing at the trigger button centre.
-    // The CSS border-triangle has width=0 but its borders span 2×ARROW_SIZE px.
-    // `left` positions the left edge of that span, so subtract ARROW_SIZE to
-    // make the visual tip land on the button centre.
+    // Keep the arrow pointing at the trigger button center.
+    // The border-triangle is 2×ARROW_SIZE wide.
+    // Left position the left edge of that span, so subtract ARROW_SIZE to
+    // make the tip point to the button center.
     const adjustedRect = wrapper.getBoundingClientRect();
     const arrowTip = triggerRect.left - adjustedRect.left + triggerRect.width / 2;
     const arrowLeft = arrowTip - ARROW_SIZE;
@@ -112,10 +107,6 @@
     wrapper.style.setProperty('--toast-arrow-right', 'auto');
     wrapper.style.setProperty('--toast-arrow-transform', '0');
   }
-
-  // ---------------------------------------------------------------------------
-  // attachFocusOut
-  // ---------------------------------------------------------------------------
 
   function attachFocusOut(container, closeCallback, triggerButtons, options) {
     const { onlyDesktop = false } = options || {};
@@ -153,7 +144,7 @@
 
     const attachHandler = () => {
       container.removeEventListener('focusout', handler);
-      if (!onlyDesktop || window.matchMedia(DESKTOP_MQ).matches) {
+      if (!onlyDesktop || window.matchMedia(DESKTOP_MEDIA_QUERY).matches) {
         container.addEventListener('focusout', handler);
       }
     };
@@ -162,10 +153,6 @@
     window.addEventListener('resize', attachHandler);
     focusOutResizers.set(container, attachHandler);
   }
-
-  // ---------------------------------------------------------------------------
-  // registerOpen / unregisterOpen
-  // ---------------------------------------------------------------------------
 
   function registerOpen(trigger, wrapper, options) {
     openToasts.set(wrapper, { trigger, options: options || {} });

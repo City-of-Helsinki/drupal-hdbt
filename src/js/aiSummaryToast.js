@@ -39,11 +39,11 @@
           toastWrapper.style.visibility = 'hidden';
           toastWrapper.removeAttribute('hidden');
           Drupal.toastPositioner.positionToast(button, toastWrapper, POSITION_OPTIONS);
-          
+
           toastWrapper.style.removeProperty('visibility');
           button.setAttribute('aria-expanded', 'true');
           Drupal.toastPositioner.registerOpen(button, toastWrapper, POSITION_OPTIONS);
-          
+
           if (container) {
             Drupal.toastPositioner.attachFocusOut(container, close, [button]);
           }

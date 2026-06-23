@@ -36,10 +36,14 @@
 
         const expand = () => {
           body.style.height = `${body.scrollHeight}px`;
-          body.addEventListener('transitionend', () => {
-            body.classList.remove('ai-summary__body--collapsed');
-            body.style.height = '';
-          }, { once: true });
+          body.addEventListener(
+            'transitionend',
+            () => {
+              body.classList.remove('ai-summary__body--collapsed');
+              body.style.height = '';
+            },
+            { once: true },
+          );
         };
 
         const collapse = () => {
