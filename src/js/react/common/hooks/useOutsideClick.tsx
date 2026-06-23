@@ -1,26 +1,30 @@
-import { type MutableRefObject, useCallback, useEffect } from 'react';
+import { type MutableRefObject, useEffect } from 'react';
 
-// Make any element listen outside click and focus events.
+// Make any element listen for pointer and focus events that land outside it.
 // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
 // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
 const useOutsideClick = (ref: MutableRefObject<any>, callback: Function) => {
-  const isChild = useCallback((event) => ref.current?.contains(event.target as Node));
-
   useEffect(() => {
-    const handleClick = (event: MouseEvent | FocusEvent) => {
-      // Is the click or focus outside this component
-      if (!isChild(event)) {
-        event.stopPropagation();
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) {
         callback();
       }
     };
 
-    document.addEventListener('click', handleClick);
-    document.addEventListener('focusin', handleClick);
+    // Handle keyboard navigation (e.g. tabbing out)
+    const handleFocusOut = (event: FocusEvent) => {
+      const next = event.relatedTarget as Node | null;
+      if (next && ref.current?.contains(event.target as Node) && !ref.current.contains(next)) {
+        callback();
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('focusout', handleFocusOut);
 
     return () => {
-      document.removeEventListener('click', handleClick);
-      document.removeEventListener('focusin', handleClick);
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('focusout', handleFocusOut);
     };
   });
 };

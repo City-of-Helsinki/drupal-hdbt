@@ -53,7 +53,9 @@ $collapsible-height: 56px;
 }
 
 .collapsible__control[aria-expanded='true'] {
-  border-bottom: 1px solid $color-black-20;
+  // Keep the 2px border width so the auto-height control doesn't shrink 1px on expand
+  // (which would reflow adjacent flex items); only the divider colour changes.
+  border-bottom-color: $color-black-20;
 }
 
 // Match the HDS style of outlining handle when control is focused

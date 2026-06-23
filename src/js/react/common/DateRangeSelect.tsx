@@ -81,8 +81,11 @@ export const DateRangeSelect = ({
 
   const onStartChange = (d: string) => {
     if (d.length === 0) {
-      setStart(undefined);
-      setErrors({ ...errors, start: undefined });
+      // HDS DateInput fires onChange with "" on programmatic focus — skip if value hasn't changed.
+      if (startDate !== undefined) {
+        setStart(undefined);
+        setErrors({ ...errors, start: undefined });
+      }
       return;
     }
     const start = parseHDSDate(d);
@@ -91,19 +94,25 @@ export const DateRangeSelect = ({
       setErrors({ ...errors, start: startDateErrorText });
       return;
     }
+    const formatted = formatHDSDate(start);
+    // Skip if value hasn't changed (HDS also fires onChange on programmatic focus).
+    if (formatted === startDate) return;
     const end = endDate ? parseHDSDate(endDate) : undefined;
     if (isOutOfRange({ startDate: start, endDate: end ?? undefined }) && end) {
       console.warn('Selected start date is out of range with end date, setting end date to next day after start date.');
       setEnd(formatHDSDate(addDays(start, 1)));
     }
-    setStart(formatHDSDate(start));
+    setStart(formatted);
     setErrors({ ...errors, start: undefined });
   };
 
   const onEndChange = (d: string) => {
     if (d.length === 0) {
-      setEnd(undefined);
-      setErrors({ ...errors, end: undefined });
+      // HDS DateInput fires onChange with "" on programmatic focus — skip if value hasn't changed.
+      if (endDate !== undefined) {
+        setEnd(undefined);
+        setErrors({ ...errors, end: undefined });
+      }
       return;
     }
     const end = parseHDSDate(d);
@@ -112,12 +121,15 @@ export const DateRangeSelect = ({
       setErrors({ ...errors, end: endDateErrorText });
       return;
     }
+    const formatted = formatHDSDate(end);
+    // Skip if value hasn't changed.
+    if (formatted === endDate) return;
     const start = startDate ? parseHDSDate(startDate) : undefined;
     if (isOutOfRange({ startDate: start ?? undefined, endDate: end }) && start) {
       console.warn('Selected end date is out of range, setting end date to next day after start date.');
       setEnd(formatHDSDate(start));
     } else {
-      setEnd(formatHDSDate(end));
+      setEnd(formatted);
     }
     setErrors({ ...errors, end: undefined });
   };
@@ -129,6 +141,7 @@ export const DateRangeSelect = ({
         isPlaceholder={!startDate && !endDate}
         helper={helperText}
         title={collapsibleTitle}
+        ariaModal={true}
       >
         <div className='event-form__date-container'>
           <DateInput
