@@ -164,7 +164,10 @@ export const DateRangeSelect = ({
               {},
               { context: 'React search: date range select' },
             )}
-            onChange={() => setEndDisabled(!endDisabled)}
+            onChange={() => {
+              if (!endDisabled) setEnd(undefined);
+              setEndDisabled(!endDisabled);
+            }}
             style={defaultCheckboxStyle}
           />
           {!endDisabled && (
