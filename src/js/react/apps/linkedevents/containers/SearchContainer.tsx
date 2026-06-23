@@ -3,6 +3,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
+import { LiftCard } from '../components/LiftCard';
 import ApiKeys from '../enum/ApiKeys';
 import { ResultCard } from '../modules/cross-institution-studies/components/ResultCard';
 import { ResultsSort } from '../modules/cross-institution-studies/components/ResultsSort';
@@ -40,6 +41,7 @@ const SearchContainer = () => {
   const initialStateSet = useRef(false);
 
   const { useCrossInstitutionalStudiesForm } = settings;
+  const isLifts = settings.layout === 'lifts';
 
   useEffect(() => {
     if (addressInitializationRun) return;
@@ -100,7 +102,7 @@ const SearchContainer = () => {
   if (fixtureData) {
     return (
       <>
-        <FormContainer />
+        {!isLifts && <FormContainer />}
         <ResultsContainer
           countNumber={fixtureData?.meta.count || 0}
           loading={false}
@@ -124,12 +126,24 @@ const SearchContainer = () => {
     );
   };
 
+  const getResultCardComponent = () => {
+    if (useCrossInstitutionalStudiesForm) {
+      return ResultCard;
+    }
+
+    if (isLifts) {
+      return LiftCard;
+    }
+
+    return undefined;
+  };
+
   return (
     <>
       {useCrossInstitutionalStudiesForm ? (
         <CrossStudiesFormContainer initialized={initialStateSet.current} initialize={setInitialStateInitialized} />
       ) : (
-        <FormContainer />
+        !isLifts && <FormContainer />
       )}
       <ResultsContainer
         addressRequired={!shouldFetch}
@@ -137,7 +151,7 @@ const SearchContainer = () => {
         error={error}
         events={events}
         loading={loading}
-        ResultCardComponent={(useCrossInstitutionalStudiesForm && ResultCard) || undefined}
+        ResultCardComponent={getResultCardComponent()}
         resultHeaderFunction={useCrossInstitutionalStudiesForm ? getCrossInstitutionalStudiesHeader : undefined}
         retriesExhausted={retriesExhausted}
         sort={useCrossInstitutionalStudiesForm ? <ResultsSort /> : undefined}
