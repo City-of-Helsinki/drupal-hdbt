@@ -29,7 +29,7 @@
           {% endif %}
           {{ optional_login_block_description }}
           <div class="error-page__login-form">
-            {{ drupal_block('user_login_block') }}
+            {{ drupal_block('user_login_block')|with('#cache', {contexts: ['url.path'] }) }}
           </div>
         </div>
         {% embed '@hdbt/misc/special-page-illustration.twig' with {
