@@ -1,7 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
-import { createRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -43,7 +43,8 @@ function ResultsContainer({
   const { seeAllNearYouLink, cardsWithBorders } = drupalSettings.helfi_events;
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
-  const scrollTarget = createRef<HTMLDivElement>();
+  const isLifts = settings.layout === 'lifts';
+  const scrollTarget = useRef<HTMLDivElement>(null);
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
   // Checks when user makes the first search and api url is set.
@@ -57,7 +58,7 @@ function ResultsContainer({
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
       setInitialized(true);
     }
-  }, [loading, readInitialized, scrollTarget, setInitialized, validating]);
+  }, [loading, readInitialized, setInitialized, validating]);
 
   if (error) {
     return retriesExhausted ? (
@@ -99,26 +100,28 @@ function ResultsContainer({
     if (events.length > 0) {
       return (
         <>
-          <ResultsHeader
-            actions={sort ? sort : undefined}
-            resultText={
-              <>
-                {resultHeaderFunction
-                  ? resultHeaderFunction(countNumber)
-                  : Drupal.formatPlural(
-                      count,
-                      '1 result',
-                      '@count results',
-                      {},
-                      { context: 'Events search: result count' },
-                    )}
-                {settings.useLocationSearch && address
-                  ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${address}`
-                  : ''}
-              </>
-            }
-            ref={scrollTarget}
-          />
+          {!isLifts && (
+            <ResultsHeader
+              actions={sort ? sort : undefined}
+              resultText={
+                <>
+                  {resultHeaderFunction
+                    ? resultHeaderFunction(countNumber)
+                    : Drupal.formatPlural(
+                        count,
+                        '1 result',
+                        '@count results',
+                        {},
+                        { context: 'Events search: result count' },
+                      )}
+                  {settings.useLocationSearch && address
+                    ? ` ${Drupal.t('using address', {}, { context: 'React search: Address result display' })} ${address}`
+                    : ''}
+                </>
+              }
+              ref={scrollTarget}
+            />
+          )}
           {loading ? (
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
@@ -126,7 +129,9 @@ function ResultsContainer({
               <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
             ))
           )}
-          {!settings.hidePagination && <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />}
+          {!isLifts && !settings.hidePagination && (
+            <Pagination pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+          )}
         </>
       );
     }
@@ -135,8 +140,8 @@ function ResultsContainer({
   };
 
   return (
-    <div className={`react-search__list-container${loading ? ' loading' : ''}`}>
-      {getContent()}
+    <div className={`react-search__list-container${loading ? ' loading' : ''}${isLifts ? ' simple-event-list' : ''}`}>
+      {isLifts ? <ul className='simple-event-list__events'>{getContent()}</ul> : getContent()}
       {seeAllNearYouLink ? (
         <div className='see-all-button see-all-button--near-results'>
           <a data-hds-component='button' href={seeAllNearYouLink}>

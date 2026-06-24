@@ -8,7 +8,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
 ((Drupal) => {
   Drupal.behaviors.navToggle = {
     attach(context, settings) {
-      if (window.navToggleInitialized && context === document) {
+      if (context !== document || window.navToggleInitialized) {
         return;
       }
 
@@ -72,16 +72,38 @@ import { close, open } from './nav-toggle/toggleWidgets';
         }
       };
 
+      // Track the active focusout handler per wrapper to prevent stacking:
+      // each onOpen call previously added a new handler without removing the old one,
+      // causing multiple simpleClose() calls per focusout event.
+      const focusOutHandlers = new WeakMap();
+
       // Function to close dropdown when focus moves outside of it.
-      const closeOnFocusOut = (wrapper, dropdownClose, instance) => {
-        const handler = () => {
+      const closeOnFocusOut = (wrapper, dropdownClose, instance, toggleButtons = []) => {
+        // Remove the previous handler for this wrapper before attaching a new one.
+        const existing = focusOutHandlers.get(wrapper);
+        if (existing) {
+          wrapper.removeEventListener('focusout', existing);
+        }
+
+        const handler = (e) => {
+          // Chrome/Firefox: relatedTarget is the element receiving focus.
+          // If it's a toggle button, skip — the click handler will manage state.
+          if (e.relatedTarget && toggleButtons.includes(e.relatedTarget)) return;
+
+          // Safari moves focus to body on button clicks instead of the button,
+          // so relatedTarget is null. Use a longer delay so the click event has
+          // time to fire and move focus to the toggle button before we check.
+          const delay = e.relatedTarget ? 10 : 300;
+
           setTimeout(() => {
             const active = document.activeElement;
-            if (!wrapper.contains(active)) {
+            if (!wrapper.contains(active) && !toggleButtons.includes(active)) {
               dropdownClose();
             }
-          }, 10);
+          }, delay);
         };
+
+        focusOutHandlers.set(wrapper, handler);
 
         const attachHandler = () => {
           wrapper.removeEventListener('focusout', handler);
@@ -125,7 +147,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             if (key === 'SearchDropdown') {
               window.setTimeout(
                 () => document.querySelector('.header-search-wrapper input[type="search"]')?.focus(),
-                10,
+                50,
               );
             }
 
@@ -138,7 +160,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             }
 
             if (menuWrapper) {
-              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key);
+              closeOnFocusOut(menuWrapper, () => dropdownInstance.simpleClose(), key, dropdownInstance.buttonInstances);
             }
             context.addEventListener('click', closeFromOutside);
           },

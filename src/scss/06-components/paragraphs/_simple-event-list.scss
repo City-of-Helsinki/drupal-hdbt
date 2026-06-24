@@ -1,0 +1,23 @@
+.simple-event-list__events {
+  display: grid;
+  gap: 0;
+  list-style: none;
+  padding-left: 0;
+
+  @include breakpoint($breakpoint-m) {
+    column-gap: $spacing-and-half;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.simple-event-list__event + .simple-event-list__event {
+  margin-top: $spacing-double;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: 0;
+  }
+}
+
+.simple-event-list__event {
+  position: relative;
+}

@@ -1,0 +1,13 @@
+.hdbt-search__filter--with-location {
+  [class*='singleSelectListItem']:first-child [class*='singleSelectListItemLabel'] {
+    gap: var(--spacing-2-xs);
+
+    // HDS uses super specific selector, need to use !important
+    justify-content: flex-start !important;
+
+    &::before {
+      @include pseudo-icon('locate', var(--spacing-m), currentColor);
+      flex-shrink: 0;
+    }
+  }
+}

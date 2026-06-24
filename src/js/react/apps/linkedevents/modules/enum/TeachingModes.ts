@@ -15,4 +15,8 @@ export const TeachingModes = new Map<string, string>([
     'helsinki:online_learning',
     Drupal.t('Online teaching', {}, { context: 'Cross-institutional studies: Teaching mode filter option' }),
   ],
+  [
+    'helsinki:evening_studies',
+    Drupal.t('Evening studies', {}, { context: 'Cross-institutional studies: Teaching mode filter option' }),
+  ],
 ]);

@@ -88,10 +88,6 @@ $label-font: 'special.navigation.icon_label';
   grid-area: link;
 }
 
-.nav-toggle .nav-toggle__label--close {
-  visibility: hidden;
-}
-
 // Outermost dropdown container, always open.
 .nav-toggle-dropdown {
   max-width: 100vw;
@@ -155,8 +151,11 @@ $label-font: 'special.navigation.icon_label';
   max-height: var(--menu-max-height);
   overflow-x: hidden;
   overflow-y: auto;
-  overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where suppoorted
   pointer-events: all; // This enables interaction with this element that .nav-toggle-dropdown disables
+
+  @include breakpoint(max-width $breakpoint-l) {
+    overscroll-behavior: contain; // This helps stop scrolling the page while trying to scroll this container where supported
+  }
   transform: translateY(100%);
   // stylelint-disable-next-line plugin/no-low-performance-animation-properties
   transition: transform $-menu-transition-duration ease-in, display $-menu-transition-duration;
@@ -189,16 +188,6 @@ $label-font: 'special.navigation.icon_label';
 
 @mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
   #{$id}[data-target='true'] {
-    & ~ * #{$nav-toggle-modifier} {
-      .nav-toggle__label--open {
-        visibility: hidden; // Menu text and hamburger icon are hidden
-      }
-
-      .nav-toggle__label--close {
-        visibility: visible; // Close text and cross icon are visible
-      }
-    }
-
     & ~ * #{$nav-toggle-dropdown-modifier} {
       .nav-toggle-dropdown__wrapper {
         transform: translateY(0); // Animate wrapper into view from top

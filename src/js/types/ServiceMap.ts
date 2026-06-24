@@ -59,4 +59,25 @@ export type AdministrativeDivision = {
   units: number[];
 };
 
+export type ServiceMapLocationResult = {
+  distance: number;
+  full_name: TranslatedString;
+  letter: string | null;
+  number: string | null;
+  number_end: string | null;
+  modified_at: string;
+  municipality: {
+    code: string;
+    name: TranslatedString;
+  };
+  street: {
+    name: TranslatedString;
+  };
+  syllables_fi: string[];
+  location: {
+    type: string;
+    coordinates: [number, number];
+  };
+};
+
 export type ServiceMapResponse<T> = { count: number; next: string | null; previous: string | null; results: T[] };

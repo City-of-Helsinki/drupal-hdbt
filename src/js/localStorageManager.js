@@ -123,6 +123,19 @@ export default class LocalStorageManager {
   getValues = (key) => this.data[key] || null;
 
   /**
+   * Delete a key and its value from localStorage data.
+   *
+   * @param {string} key - The key to delete.
+   * @return {void}
+   */
+  deleteKey = (key) => {
+    if (Object.hasOwn(this.data, key)) {
+      delete this.data[key];
+      this.saveData();
+    }
+  };
+
+  /**
    * Remove a value from an array under the given key.
    *
    * @param {string} key - The key for the array.

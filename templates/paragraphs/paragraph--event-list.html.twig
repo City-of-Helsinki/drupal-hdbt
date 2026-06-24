@@ -1,12 +1,18 @@
 {{ attach_library('hdbt/event-list') }}
 {% block paragraph %}
-  {% embed "@hdbt/misc/component.twig" with
-    {
-      component_classes: [
+  {%
+    set component_classes = [
       'component--full-width',
       'component--react-search',
       'component--event-list',
-      ],
+    ]
+  %}
+  {% if paragraph.field_event_list_layout.value == 'lifts' %}
+    {% set component_classes = component_classes|merge(['component--react-search--no-bg']) %}
+  {% endif %}
+  {% embed "@hdbt/misc/component.twig" with
+    {
+      component_classes: component_classes,
       component_title_level: 'h2',
       component_title: content.field_event_list_title,
       component_description: content.field_event_list_description,

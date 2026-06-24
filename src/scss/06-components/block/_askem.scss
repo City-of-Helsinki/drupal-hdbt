@@ -54,6 +54,10 @@
 
     @media only screen and (width <= 680px) {
       width: 100%;
+
+      &.askem-cookie-compliance__message {
+        padding-block: $spacing 70px;
+      }
     }
 
     .askem-reactions {
@@ -169,7 +173,8 @@
         @include pseudo-icon-replace('face-sad');
       }
 
-      .askem-reaction.selected .askem-reaction-button {
+      .askem-reaction.selected .askem-reaction-button,
+      .askem-reaction.selected .askem-reaction-button:not(.new-icon).after-icons {
         background-color: $color-black-90;
         border-color: $color-black-90;
         box-shadow: none;
