@@ -59,6 +59,7 @@ const getInitialSettings = () => {
   const filterSettings: FilterSettings = {
     eventCount: Number(settings?.field_event_count),
     eventListType: settings?.event_list_type,
+    layout: settings?.event_list_layout || 'default',
     hideHeading: settings?.hideHeading,
     hidePagination: settings?.hidePagination,
     removeBloatingEvents: settings?.removeBloatingEvents,
@@ -157,6 +158,7 @@ export const settingsAtom = atom(
     get(baseAtom)?.settings || {
       eventCount: 3,
       eventListType: 'events',
+      layout: 'default',
       hideHeading: true,
       hidePagination: false,
       removeBloatingEvents: false,

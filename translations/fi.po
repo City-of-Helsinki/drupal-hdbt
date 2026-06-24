@@ -1340,6 +1340,10 @@ msgctxt "Events search"
 msgid "Search for more events on the Events website"
 msgstr "Etsi lisää tapahtumia Tapahtumat-sivustolta"
 
+msgctxt "Events search"
+msgid "View all events"
+msgstr "Katso kaikki tapahtumat"
+
 msgctxt "Events search: event type prefix"
 msgid "Show only"
 msgstr "Näytä vain"
@@ -1929,3 +1933,19 @@ msgstr "Sijainnin haku ei toimi tällä selaimella."
 msgctxt "Location autocomplete"
 msgid "Retrieving current location..."
 msgstr "Haetaan sijaintia..."
+
+msgctxt "Search monitor banner"
+msgid "Receive search results by email"
+msgstr "Tilaa hakuvahti sähköpostiisi"
+
+msgctxt "Search monitor banner"
+msgid "Carry out a search according to your specifications and then save your search."
+msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
+
+msgctxt "Search monitor banner"
+msgid "You can save as many searches as you want."
+msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
+
+msgctxt "Search monitor banner"
+msgid "Save your search"
+msgstr "Tilaa hakuvahti"

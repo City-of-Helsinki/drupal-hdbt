@@ -6,7 +6,20 @@ function SeeAllButton() {
   const filterSettings = useAtomValue(settingsAtom);
   const eventsUrl = useAtomValue(eventsPublicUrl) || '';
   const { seeAllButtonOverride } = drupalSettings?.helfi_events || null;
-  const { eventListType } = filterSettings;
+  const { eventListType, layout } = filterSettings;
+
+  if (layout === 'lifts') {
+    return (
+      <div className='see-all-button see-all-button--near-results'>
+        <ExternalLink
+          data-hds-component='button'
+          data-hds-variant='primary'
+          href={eventListType === 'hobbies' ? hobbiesPublicUrl : eventsUrl}
+          title={Drupal.t('View all events', {}, { context: 'Events search' })}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className='see-all-button__container'>

@@ -1342,6 +1342,10 @@ msgctxt "Events search"
 msgid "Search for more events on the Events website"
 msgstr "Sök fler evenemang på webbplatsen Evenemang"
 
+msgctxt "Events search"
+msgid "View all events"
+msgstr "Visa alla evenemang"
+
 msgctxt "Events search: event type prefix"
 msgid "Show only"
 msgstr "Visa endast"
@@ -1931,3 +1935,19 @@ msgstr "Din webbläsare stöder inte geolokalisering."
 msgctxt "Location autocomplete"
 msgid "Retrieving current location..."
 msgstr "Hämtar plats..."
+
+msgctxt "Search monitor banner"
+msgid "Receive search results by email"
+msgstr "Beställ sökvakten till din e-post"
+
+msgctxt "Search monitor banner"
+msgid "Carry out a search according to your specifications and then save your search."
+msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
+
+msgctxt "Search monitor banner"
+msgid "You can save as many searches as you want."
+msgstr "Du kan skapa så många sökvakter du vill."
+
+msgctxt "Search monitor banner"
+msgid "Save your search"
+msgstr "Beställ sökvakten"
