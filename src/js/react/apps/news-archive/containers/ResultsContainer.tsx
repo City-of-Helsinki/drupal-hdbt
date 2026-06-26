@@ -76,11 +76,7 @@ const ResultsContainer = ({
             </p>
           </div>
         ) : (
-          <ResultsEmpty
-            leftActions={searchMonitor || undefined}
-            resultText={Drupal.t('No results', {}, { context: 'News archive no results title' })}
-            ref={scrollTarget}
-          />
+          <ResultsEmpty leftActions={searchMonitor || undefined} ref={scrollTarget} />
         )}
       </>
     );
