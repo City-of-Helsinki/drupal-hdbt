@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Icon from '@/react/common/Icon';
 import useOutsideClick from './hooks/useOutsideClick';
@@ -6,6 +6,7 @@ import useOutsideClick from './hooks/useOutsideClick';
 type Props = {
   active?: boolean;
   ariaControls?: string;
+  ariaModal?: boolean;
   children: React.ReactElement;
   className?: string;
   dialogLabel?: string;
@@ -20,6 +21,7 @@ type Props = {
 function Collapsible({
   active,
   ariaControls,
+  ariaModal,
   children,
   className,
   dialogLabel,
@@ -32,6 +34,16 @@ function Collapsible({
 }: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (isActive && dialogRef.current) {
+      const focusable = dialogRef.current.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      focusable?.focus();
+    }
+  }, [isActive]);
   const helperIds = [helper ? `${id}-helper` : undefined, `${id}-title`].filter(Boolean);
 
   const getHandle = () => {
@@ -73,7 +85,13 @@ function Collapsible({
         {getHandle()}
       </button>
       {isActive && (
-        <div className='collapsible__element collapsible__children' role='dialog' aria-label={dialogLabel}>
+        <div
+          className='collapsible__element collapsible__children'
+          role='dialog'
+          aria-label={dialogLabel}
+          {...(ariaModal && { 'aria-modal': true })}
+          ref={dialogRef}
+        >
           {children}
         </div>
       )}

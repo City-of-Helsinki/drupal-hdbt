@@ -959,6 +959,10 @@ msgid "Read the recruitment privacy notice"
 msgstr "Bekanta dig med dataskyddsbeskrivningen för rekrytering"
 
 msgctxt "News search monitor"
+msgid "Subscribe to search alert"
+msgstr "Beställ sökvakten"
+
+msgctxt "News search monitor"
 msgid "Receive news search alerts by email"
 msgstr "Beställ sökvakten för nyheter till din e-post"
 
@@ -979,12 +983,20 @@ msgid "I consent to the processing of my personal data for the purpose of the ne
 msgstr "Jag godkänner behandlingen av mina personuppgifter för sökvakten"
 
 msgctxt "News search monitor"
-msgid "Read the privacy notice"
-msgstr "Bekanta dig med dataskyddsbeskrivningen"
+msgid "Read the register of communications"
+msgstr "Bekanta dig med register över kommunikation"
 
 msgctxt "News search monitor"
 msgid "You have not selected any search criteria."
-msgstr "Du har inte valt några sökkriterier."
+msgstr "Du har inte valt några sökvillkor."
+
+msgctxt "News search monitor"
+msgid "You are almost done subscribing to search alert"
+msgstr "Beställningen av sökvakten är nästan klar"
+
+msgctxt "News search monitor"
+msgid "Please confirm your subscription by clicking the link sent to your email address."
+msgstr "Bekräfta ännu beställningen via länken som du får per e-post."
 
 msgctxt "TPR Unit tpr data accordion heading"
 msgid "Contact details of daycare centre groups"
@@ -1476,15 +1488,15 @@ msgstr "Du får information om nya träffar till din e-post högst en gång per 
 
 msgctxt "Search monitor selections heading"
 msgid "Your search criteria"
-msgstr "Dina sökkriterier"
+msgstr "Dina sökvillkor"
 
 msgctxt "Search monitor no selections notification title"
 msgid "No search criteria selected"
-msgstr "Inga sökkriterier valda"
+msgstr "Inga sökvillkor valda"
 
 msgctxt "Search monitor no selections notification"
 msgid "You have not selected any search criteria. You will receive alerts of all new job listings."
-msgstr "Du har inte valt några sökkriterier. Du kommer att få aviseringar om alla nya jobbannonser."
+msgstr "Du har inte valt några sökvillkor. Du kommer att få aviseringar om alla nya jobbannonser."
 
 msgctxt "Search monitor content"
 msgid "You can save as many searches as you like. You can delete the saved search via the link in the email messages."
@@ -1714,15 +1726,23 @@ msgctxt "React search"
 msgid "Distance"
 msgstr "Avstånd"
 
-msgctxt "Search monitor instructions link"
-msgid "More detailed instructions on how to use saved searches"
-msgstr "Närmare anvisningar för hur du använder sökvakten"
-
 msgctxt "React search: Generic results text"
 msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 resultat"
 msgstr[1] "@count resultat"
+
+msgctxt "Search monitor"
+msgid "You have not selected any search criteria."
+msgstr "Du har inte valt några sökvillkor."
+
+msgctxt "Search monitor instructions link"
+msgid "More detailed instructions on how to use saved searches"
+msgstr "Närmare anvisningar för hur du använder sökvakten"
+
+msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service"
+msgstr "Beställ Flyttningsvakten"
 
 msgctxt "Vehicle removal search"
 msgid "Street name"
@@ -1757,8 +1777,20 @@ msgid "Use street names to search for areas with vehicle removal requests."
 msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
 
 msgctxt "Vehicle removal search"
-msgid "Search results will tell you where the vehicle removal request sign is located."
-msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat."
+msgid "The search results will show you the location of vehicle removal request signs on the street that you searched for or a street near it."
+msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat på den gata du sökte efter eller på en närliggande gata."
+
+msgctxt "Vehicle removal search"
+msgid "No vehicle removal requests"
+msgstr "Inga flyttningsuppmaningar"
+
+msgctxt "Vehicle removal search"
+msgid "No vehicle removal requests were found with your search criteria."
+msgstr "Din sökning gav inga gällande flyttningsuppmaningar."
+
+msgctxt "Vehicle removal search"
+msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
+msgstr "Beställ Flyttningsvakten så får du information om nya flyttningsuppmaningar."
 
 msgctxt "Vehicle removal search"
 msgid "1 result"
@@ -1779,9 +1811,36 @@ msgid "You have not selected any search criteria. You will be informed of all ve
 msgstr "Du har inte valt några sökvillkor. Du får information om alla flyttningsuppmaningar."
 
 msgctxt "Vehicle removal search"
-msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
-msgstr "Beställ en sökvakt så får du information om nya flyttningsuppmaningar."
+msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert."
+msgstr "Gör en sökning enligt dina önskemål och spara den som Flyttningsvakt."
 
+msgctxt "Vehicle removal search"
+msgid "You can add more than one street to the same Vehicle Removal Alert."
+msgstr "Du kan välja flera gator till samma Flyttningsvakt."
+
+msgctxt "Vehicle removal search"
+msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert."
+msgstr "Gör en sökning enligt dina önskemål och spara den som Flyttningsvakt. Du kan välja flera gator till samma Flyttningsvakt."
+
+msgctxt "Vehicle removal search"
+msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgstr "Du får information om nya träffar högst en gång om dagen. Du kan avsluta din beställning via en länk som finns i varje meddelande."
+
+msgctxt "Vehicle removal search"
+msgid "Required fields are indicated with an asterisk (*)."
+msgstr "Obligatoriska fält är markerade med en asterisk (*)."
+
+msgctxt "Vehicle removal search"
+msgid "Your Vehicle Removal Alert Service subscription is almost ready"
+msgstr "Beställningen av Flyttningsvakten är nästan färdig"
+
+msgctxt "Vehicle removal search"
+msgid "Confirm your subscription to the Vehicle Removal Alert Service with a link that you can choose to receive by email, SMS or both. If you subscribed to both email and SMS alerts, please confirm the subscription separately for both."
+msgstr "Bekräfta din beställning via länken du får antingen via e‑post eller sms, enligt ditt val. Om du beställt meddelanden både via e-post och SMS, bekräfta beställningen separat i båda."
+
+msgctxt "Vehicle removal search"
+msgid "Additional information"
+msgstr "Ytterligare upplysningar"
 
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
@@ -1864,30 +1923,6 @@ msgstr "Sommar"
 msgctxt "Cross-institutional studies: date filter option"
 msgid "Autumn"
 msgstr "Höst"
-
-msgctxt "Vehicle removal search"
-msgid "Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search."
-msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
-
-msgctxt "Vehicle removal search"
-msgid "You can create as many search alerts as you want. You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
-msgstr "Du kan skapa så många sökvakter du vill. Du får information om nya träffar högst en gång om dagen. Du kan avsluta din beställning via en länk som finns i varje meddelande."
-
-msgctxt "Vehicle removal search"
-msgid "Your Vehicle Removal Alert Service subscription is almost ready"
-msgstr "Beställningen av sökvakten är nästan färdig"
-
-msgctxt "Vehicle removal search"
-msgid "Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each."
-msgstr "Bekräfta din beställning med en bekräftelselänk som du får antingen via e‑post eller sms, enligt ditt val. Om du beställt meddelanden både via e-post och SMS, bekräfta beställningen separat i båda."
-
-msgctxt "Search monitor"
-msgid "You have not selected any search criteria."
-msgstr "Du har inte valt några sökkriterier."
-
-msgctxt "Vehicle removal search"
-msgid "Additional information"
-msgstr "Ytterligare upplysningar"
 
 msgctxt "Address search error message"
 msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
