@@ -1951,3 +1951,39 @@ msgstr "Du kan skapa så många sökvakter du vill."
 msgctxt "Search monitor banner"
 msgid "Save your search"
 msgstr "Beställ sökvakten"
+
+msgctxt "AI Summary"
+msgid "Page in summary"
+msgstr "Sammanfattning av sidan"
+
+msgctxt "AI Summary"
+msgid "Open more information on the summary"
+msgstr "Visa mer information om sammanfattningen"
+
+msgctxt "AI Summary"
+msgid "Close information about AI summary"
+msgstr "Stäng information om AI-sammanfattningen"
+
+msgctxt "AI Summary"
+msgid "The summary has been created with artificial intelligence, but has been checked by a human."
+msgstr "Sammanfattningen har skapats med artificiell intelligens men har granskats av en människa."
+
+msgctxt "AI Summary"
+msgid "Read more about the use of artificial intelligence"
+msgstr "Läs mer om användningen av artificiell intelligens"
+
+msgctxt "AI Summary"
+msgid "Show all"
+msgstr "Visa alla"
+
+msgctxt "AI Summary"
+msgid "Show full summary"
+msgstr "Visa sammanfattningen i sin helhet"
+
+msgctxt "AI Summary"
+msgid "Close"
+msgstr "Stäng"
+
+msgctxt "AI Summary"
+msgid "Close the summary"
+msgstr "Stäng sammanfattningen"

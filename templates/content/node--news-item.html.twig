@@ -59,7 +59,11 @@
       image_caption: main_image_caption
     } %}
   {% endif %}
-  {# End of Main image #}
+
+  {# AI Summary #}
+  {% if content.ai_summary|render %}
+    {{ content.ai_summary }}
+  {% endif %}
 
   {# Content region #}
   {% if content.field_content|render|striptags|trim is not empty %}

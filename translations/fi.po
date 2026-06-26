@@ -1949,3 +1949,39 @@ msgstr "Voit luoda niin monta hakuvahtia kuin haluat."
 msgctxt "Search monitor banner"
 msgid "Save your search"
 msgstr "Tilaa hakuvahti"
+
+msgctxt "AI Summary"
+msgid "Page in summary"
+msgstr "Sivu tiivistettynä"
+
+msgctxt "AI Summary"
+msgid "Open more information on the summary"
+msgstr "Avaa lisätietoa tiivistelmästä"
+
+msgctxt "AI Summary"
+msgid "Close information on the summary"
+msgstr "Sulje tekoälytiivistelmän lisätiedot"
+
+msgctxt "AI Summary"
+msgid "The summary has been created with artificial intelligence, but has been checked by a human."
+msgstr "Tiivistelmä on luotu tekoälyllä, mutta ihminen on tarkistanut sen."
+
+msgctxt "AI Summary"
+msgid "Read more about the use of artificial intelligence"
+msgstr "Lue lisää tekoälyn käytöstä"
+
+msgctxt "AI Summary"
+msgid "Show all"
+msgstr "Näytä kokonaan"
+
+msgctxt "AI Summary"
+msgid "Show full summary"
+msgstr "Näytä tiivistelmä kokonaan"
+
+msgctxt "AI Summary"
+msgid "Close"
+msgstr "Sulje"
+
+msgctxt "AI Summary"
+msgid "Close the summary"
+msgstr "Sulje tiivistelmä"
