@@ -1,0 +1,49 @@
+// Generic toast content block.
+// Used by language-toast and ai-summary-toast. Positioning and arrow
+// styles live in the respective component files.
+
+$toast-arrow-size: $spacing-half;
+
+.toast {
+  background-color: var(--color-info-light);
+  box-shadow: 0 4px 4px rgba($color-black, 0.25);
+  color: var(--color-black-90);
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0;
+  padding: $spacing;
+}
+
+.toast--border-top {
+  border-top: $toast-arrow-size solid var(--color-info);
+}
+
+.toast--border-bottom {
+  border-bottom: $toast-arrow-size solid var(--color-info);
+}
+
+.toast__content {
+  @include font('special.navigation.header_top');
+  display: block;
+}
+
+.toast__text {
+  margin-block-end: $spacing-half;
+}
+
+.toast__link {
+  display: inline-block;
+
+  &:focus,
+  &:active {
+    outline: solid var(--color-black) 3px;
+    outline-offset: 3px;
+  }
+}
+
+.toast__close {
+  @include close-button;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

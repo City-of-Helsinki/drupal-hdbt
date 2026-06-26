@@ -1,0 +1,57 @@
+{% set content %}
+  {% for item in items %}
+    {{ item.content }}
+  {% endfor %}
+{% endset %}
+
+{% if content|render %}
+  {{ attach_library('hdbt/ai-summary-toast') }}
+  {{ attach_library('hdbt/ai-summary-expander') }}
+  <section class="ai-summary components hide-from-table-of-contents" aria-labelledby="ai-summary__label">
+    {% embed "@hdbt/misc/component.twig" with { component_classes: ['component--ai-summary', 'component--hardcoded']} %}
+      {% block component_content %}
+        <header class="ai-summary__header">
+          <h2 id="ai-summary__label" class="ai-summary__label" {{ alternative_language ? create_attribute(({ 'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir })) }}>
+            {{ 'Page in summary'|t({}, {'context': 'AI summary'}) }}
+          </h2>
+          <div class="ai-summary__info-wrapper">
+            <button
+              class="ai-summary__info-button"
+              aria-expanded="false"
+              aria-controls="ai-summary-info-toast"
+              aria-label="{{ 'Open more information on the summary'|t({}, {'context': 'AI summary'}) }}"
+            >
+              {% include '@hdbt/misc/icon.twig' ignore missing with {icon: 'info-circle'} %}
+            </button>
+            <div class="ai-summary__toast" id="ai-summary-info-toast" hidden>
+              <section class="toast toast--border-bottom">
+                <div class="toast__close-wrapper">
+                  <button class="toast__close ai-summary__toast-close" aria-label="{{ 'Close information on the summary'|t({}, {'context': 'AI summary'}) }}">
+                    <span class="visually-hidden">{{ 'Close information on the summary'|t({}, {'context': 'AI summary'}) }}</span>
+                  </button>
+                </div>
+                <div class="toast__content">
+                  <div class="toast__text">{{ 'The summary has been created with artificial intelligence, but has been checked by a human.'|t({}, {'context': 'AI summary'}) }} <a href="https://ai.hel.fi/eettiset-periaatteet" class="toast__link">{{ 'Read more about the use of artificial intelligence'|t({}, {'context': 'AI summary'}) }}</a></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </header>
+        <div class="ai-summary__body">
+          {{ content }}
+          <div class="ai-summary__gradient" aria-hidden="true"></div>
+        </div>
+        <button class="ai-summary__toggle" type="button" aria-expanded="false"
+          aria-describedby="ai-summary__toggle-description"
+          data-label-collapsed="{{ 'Show all'|t({}, {'context': 'AI summary'}) }}"
+          data-label-expanded="{{ 'Close'|t({}, {'context': 'AI summary'}) }}"
+          data-description-collapsed="{{ 'Show full summary'|t({}, {'context': 'AI summary'}) }}"
+          data-description-expanded="{{ 'Close full summary'|t({}, {'context': 'AI summary'}) }}"
+          hidden>
+          <span class="ai-summary__toggle-label">{{ 'Show all'|t({}, {'context': 'AI summary'}) }}</span>
+        </button>
+        <span id="ai-summary__toggle-description" class="ai-summary__toggle-description visually-hidden">{{ 'Show full summary'|t({}, {'context': 'AI summary'}) }}</span>
+      {% endblock component_content %}
+    {% endembed %}
+  </section>
+{% endif %}
