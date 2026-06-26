@@ -7,16 +7,16 @@
 
 {% set banner_button %}
   <button aria-controls="hdbt-search__search-monitor__content" class="hdbt-search__search-monitor__button" aria-expanded="false" data-hds-component="button">
-    {{ 'Save your search'|t({}, {'context': 'Search monitor'}) }}
+    {{ 'Subscribe to the Vehicle Removal Alert Service'|t({}, {'context': 'Vehicle removal search'}) }}
   </button>
 {% endset %}
 
 {% set banner_description %}
   <p>
-    {{ 'Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search.'|t({}, {'context': 'Search monitor'}) }}
+    {{ 'Make a search according to your specifications and save it as a Vehicle Removal Alert.'|t({}, {'context': 'Vehicle removal search'}) }}
   </p>
   <p>
-    {{ 'You can create as many search alerts as you want.'|t({}, {'context': 'Search monitor'}) }}
+    {{ 'You can add more than one street to the same Vehicle Removal Alert.'|t({}, {'context': 'Vehicle removal search'}) }}
   </p>
 {% endset %}
 
@@ -35,7 +35,7 @@
       {% block component_content %}
         {% embed "@hdbt/misc/banner.twig" with {
           icon_name: 'bell',
-          title: 'Save your search'|t({}, {'context': 'Search monitor'}),
+          title: 'Subscribe to the Vehicle Removal Alert Service'|t({}, {'context': 'Vehicle removal search'}),
           description: banner_description,
           banner_button: banner_button,
         } %}
