@@ -1,57 +1,21 @@
+// stylelint-disable scss/at-extend-no-missing-placeholder
 $-announcement-link-padding: $spacing-three-quarters;
 
 .announcement {
   @include font('small');
   height: var(--js-announcement-height, auto); // Allow overriding height for triggering css animation with js
-  padding-bottom: $spacing;
 }
 
 .announcement__container {
-  --announcement-bg-color: #{$color-black-5}; // Defaults to .announcement--notification styles
-  --announcement-bg-size: #{$spacing-double};
-  --announcement-color: #{$color-info}; // Defaults to .announcement--notification styles
-  align-items: flex-start;
-  background: linear-gradient(90deg, var(--announcement-color) 0, var(--announcement-color) var(--announcement-bg-size), var(--announcement-bg-color) var(--announcement-bg-size));
-  background-color: var(--announcement-bg-color);
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  min-height: var(--announcement-bg-size);
-  padding-bottom: $spacing;
-  padding-left: calc(var(--announcement-bg-size) + #{$spacing});
-  padding-right: $spacing;
-  padding-top: $spacing;
-  position: relative;
-
-  &::before {
-    @include pseudo-icon('info-circle-fill', $spacing-and-half, $color-white); // Defaults to .announcement--notification styles
-    left: calc(0.5 * (var(--announcement-bg-size) - #{$spacing-and-half}));
-    margin-top: -$spacing-and-half * 0.5;
-    position: absolute;
-    top: 50%;
-  }
-
-  @include breakpoint($breakpoint-m) {
-    --announcement-bg-size: #{$spacing-triple};
-  }
+  @extend .hds-notification__content;
 }
 
-.announcement--alert .announcement__container {
-  --announcement-bg-color: #{$color-error-light};
-  --announcement-color: #{$color-error};
-
-  &::before {
-    @include pseudo-icon-replace('error-fill');
-  }
+.announcement__title {
+  @extend .hds-notification__label;
 }
 
-.announcement--attention .announcement__container {
-  --announcement-color: #{$color-alert};
-
-  &::before {
-    @include pseudo-icon-replace('alert-circle-fill');
-    background-color: $color-black;
-  }
+.announcement__content {
+  @extend .hds-notification__body;
 }
 
 .announcement__content-body {
@@ -61,7 +25,7 @@ $-announcement-link-padding: $spacing-three-quarters;
 }
 
 .announcement__link {
-  margin-top: $spacing;
+  margin-top: $spacing-half;
 
   &:first-child {
     margin-top: 0;
@@ -70,47 +34,28 @@ $-announcement-link-padding: $spacing-three-quarters;
   a {
     padding-block: $-announcement-link-padding; // This sets the link clickable area to be big enough for a11y.
   }
-
-  a:focus,
-  a:active {
-    outline: solid var(--color-black) 3px;
-  }
-
-  a::after {
-    @include pseudo-icon('arrow-right', calc(var(--line-height) * 1em));
-    @include hover-link-arrow-transition;
-    margin-left: $spacing-quarter;
-  }
-
-  a:focus::after,
-  a:hover::after {
-    transform: translateX($spacing-quarter);
-
-    @media (prefers-reduced-motion) {
-      transform: none;
-    }
-  }
-
-  a[data-is-external]::after {
-    content: none;
-  }
 }
 
 .announcement__close {
   @include close-button;
+  margin: 0;
+  position: absolute;
+  right: $spacing-quarter;
+  top: $spacing-quarter;
 }
 
 .js-announcement__close--disabled {
   visibility: hidden; // Close button should be hidden until we have js enabled
 }
 
-.js-announcement--hide {
+.announcement.js-announcement--hide {
   $transition-a: 0.15s; // Fade out announcement
   $transition-b: 0.2s; // Then scale it out
   height: 0;
+  margin-block: 0;
   opacity: 0;
   overflow: hidden;
-  padding-bottom: 0;
+  padding-block: 0;
 
   // This transition cannot be converted to high performance animation since
   // the space that the announcement takes needs to be reclaimed and in order
@@ -119,7 +64,8 @@ $-announcement-link-padding: $spacing-three-quarters;
   transition:
     opacity linear $transition-a,
     height linear $transition-b $transition-a,
-    padding-bottom linear $transition-b $transition-a,
+    padding linear $transition-b $transition-a,
+    margin linear $transition-b $transition-a,
     visibility linear 0s #{$transition-a + $transition-b};
   visibility: hidden;
 
@@ -129,6 +75,6 @@ $-announcement-link-padding: $spacing-three-quarters;
 }
 
 // Add padding when announcement is present on front page without breadcrumb
-.is-front:not(:has(.hds-breadcrumb)) .announcement {
-  padding-block-start: $spacing;
+.is-front:not(:has(.hds-breadcrumb)) .announcement:not(.js-announcement--hide) {
+  margin-block-start: $spacing;
 }
