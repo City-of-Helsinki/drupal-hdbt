@@ -89,7 +89,7 @@ footer.footer .menu__link {
 
 .footer-top__content {
   @include breakpoint($breakpoint-m) {
-    max-width: $container-width-s;
+    max-width: calc($breakpoint-s - $spacing-double);
   }
 }
 
