@@ -1567,7 +1567,7 @@ msgid "Notification"
 msgstr "Avisering"
 
 msgctxt "Search monitor submitted header"
-msgid "You are almost done saving your search"
+msgid "You are almost done subscribing to search alert"
 msgstr "Beställningen av sökvakten är nästan klar"
 
 msgctxt "Search monitor"

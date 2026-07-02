@@ -1565,7 +1565,7 @@ msgid "Notification"
 msgstr "Ilmoitus"
 
 msgctxt "Search monitor submitted header"
-msgid "You are almost done saving your search"
+msgid "You are almost done subscribing to search alert"
 msgstr "Hakuvahdin tilaus melkein valmis"
 
 msgctxt "Search monitor"

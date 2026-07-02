@@ -345,7 +345,11 @@ const SearchMonitor = ({
               id={idTitle}
               title={
                 texts.submittedTitle ??
-                Drupal.t('You are almost done saving your search', {}, { context: 'Search monitor submitted header' })
+                Drupal.t(
+                  'You are almost done subscribing to search alert',
+                  {},
+                  { context: 'Search monitor submitted header' },
+                )
               }
             />
             <Dialog.Content>
