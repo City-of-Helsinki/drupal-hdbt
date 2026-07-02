@@ -395,11 +395,16 @@ const SearchMonitor = ({
                       {},
                       { context: 'Search monitor content' },
                     ),
-                    `${Drupal.t('You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.', {}, { context: 'Search monitor content' })} ${Drupal.t(
+                    Drupal.t(
+                      'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+                      {},
+                      { context: 'Search monitor content' },
+                    ),
+                    Drupal.t(
                       'Required fields are indicated with an asterisk (*).',
                       {},
                       { context: 'Search monitor content' },
-                    )}`,
+                    ),
                   ]
                 ).map((text) => (
                   <p key={text}>{text}</p>
