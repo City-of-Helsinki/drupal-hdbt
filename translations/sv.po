@@ -1937,7 +1937,7 @@ msgid "Receive search results by email"
 msgstr "Beställ sökvakten till din e-post"
 
 msgctxt "Search monitor banner"
-msgid "Carry out a search according to your specifications and then save your search."
+msgid "Carry out a search according to your preferences and subscribe to search alerts."
 msgstr "Gör en sökning enligt dina önskemål och spara den som sökvakt."
 
 msgctxt "Search monitor banner"
