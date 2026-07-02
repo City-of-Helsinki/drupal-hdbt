@@ -68,7 +68,7 @@ interface SearchMonitorProps {
 
 const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor' });
 const phoneLabel: string = Drupal.t('Phone number', {}, { context: 'Search monitor' });
-const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor' });
+const buttonLabel: string = Drupal.t('Subscribe to search alert', {}, { context: 'Search monitor' });
 const tosLinkSuffix: string = Drupal.t('the link opens in a new tab, pdf', {}, { context: 'Search monitor' });
 const errorAriaLabel = Drupal.t('Notification', {}, { context: 'Search monitor' });
 const idTitle = 'hdbt-search__search-monitor__header';
@@ -186,7 +186,9 @@ const SearchMonitor = ({
       }
 
       if (!response.ok) {
-        setErrorMessages([Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor' })]);
+        setErrorMessages([
+          Drupal.t('Search alert subscription failed. Please try again.', {}, { context: 'Search monitor' }),
+        ]);
         return;
       }
 
@@ -324,7 +326,7 @@ const SearchMonitor = ({
 
       <Dialog
         aria-labelledby={idTitle}
-        aria-describedby={Drupal.t('Saved search', {}, { context: 'Search monitor' })}
+        aria-describedby={Drupal.t('Search alert', {}, { context: 'Search monitor' })}
         className='hdbt-search__search-monitor__content'
         close={() => {
           setIsFormVisible(false);
@@ -357,7 +359,7 @@ const SearchMonitor = ({
                 <p>
                   {texts.submittedDescription ??
                     Drupal.t(
-                      'Please confirm your saved search with the confirmation link sent to your email address.',
+                      'Please confirm your search alert with the confirmation link sent to your email address.',
                       {},
                       { context: 'Search monitor submitted content' },
                     )}
@@ -389,12 +391,12 @@ const SearchMonitor = ({
                 {(
                   texts.formDescription ?? [
                     Drupal.t(
-                      'Carry out a search according to your specifications and then save your search.',
+                      'Carry out a search according to your preferences and subscribe to search alerts.',
                       {},
                       { context: 'Search monitor content' },
                     ),
-                    `${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })} ${Drupal.t(
-                      'You will receive email alerts about new search results up to once a day',
+                    `${Drupal.t('You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.', {}, { context: 'Search monitor content' })} ${Drupal.t(
+                      'Required fields are indicated with an asterisk (*).',
                       {},
                       { context: 'Search monitor content' },
                     )}`,
@@ -407,7 +409,7 @@ const SearchMonitor = ({
                   <p>
                     <a href={resolvedInstructionsLinkUrl} target='_blank' rel='noreferrer'>
                       {Drupal.t(
-                        'More detailed instructions on how to use saved searches',
+                        'More detailed instructions on how to use search alerts',
                         {},
                         { context: 'Search monitor instructions link' },
                       )}
