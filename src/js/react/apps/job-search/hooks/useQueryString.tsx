@@ -5,7 +5,7 @@ import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import { getAreaInfo } from '../helpers/Areas';
-import { nodeFilter } from '../query/queries';
+import { nodeFilter, publishedFilter } from '../query/queries';
 import { configurationsAtom, submittedStateAtom } from '../store';
 import type { OptionType } from '../types/OptionType';
 
@@ -110,7 +110,7 @@ const useQueryString = (): string => {
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-  const query: any = { bool: { filter: [nodeFilter] } };
+  const query: any = { bool: { filter: [nodeFilter, publishedFilter] } };
 
   if ((state[SearchComponents.LANGUAGE] as OptionType[]).length) {
     query.bool.filter.push({
