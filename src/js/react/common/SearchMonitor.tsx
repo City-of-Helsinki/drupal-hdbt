@@ -45,6 +45,8 @@ interface SearchMonitorTexts {
   submittedTitle?: string;
   /** Description shown after successful submission. */
   submittedDescription?: string;
+  /** Label for the button that opens the dialog and the submit button. */
+  buttonLabel?: string;
 }
 
 interface SearchMonitorProps {
@@ -317,7 +319,7 @@ const SearchMonitor = ({
         type='button'
         variant={ButtonVariant.Secondary}
       >
-        {buttonLabel}
+        {texts.buttonLabel ?? buttonLabel}
       </Button>
 
       <Dialog
@@ -559,7 +561,7 @@ const SearchMonitor = ({
                     id='hdbt-search__search-monitor__submit-button'
                     type='submit'
                   >
-                    {buttonLabel}
+                    {texts.buttonLabel ?? buttonLabel}
                   </Button>
                   <Button
                     className='hdbt-search__search-monitor__cancel-button'

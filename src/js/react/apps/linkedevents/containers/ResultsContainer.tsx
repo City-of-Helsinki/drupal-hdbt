@@ -1,7 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
-import { createRef, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
@@ -45,7 +45,7 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
   const isLifts = settings.layout === 'lifts';
-  const scrollTarget = createRef<HTMLDivElement>();
+  const scrollTarget = useRef<HTMLDivElement>(null);
   const resultsListRef = useRef<HTMLDivElement>(null);
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
@@ -61,7 +61,7 @@ function ResultsContainer({
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
       setInitialized(true);
     }
-  }, [loading, readInitialized, scrollTarget, setInitialized, validating]);
+  }, [loading, readInitialized, setInitialized, validating]);
 
   if (error) {
     return retriesExhausted ? (

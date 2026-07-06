@@ -1,3 +1,22 @@
+ai-summary-expander:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/aiSummaryExpander.min.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/once
+
+ai-summary-toast:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/aiSummaryToast.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - core/once
+    - hdbt/toast-positioner
+
 accordion:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
@@ -207,6 +226,16 @@ language-toast:
   dependencies:
     - core/drupal
     - hdbt/nav-toggle
+    - hdbt/toast-positioner
+
+toast-positioner:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/toastPositioner.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
 
 maternity-and-child-health-clinic-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
