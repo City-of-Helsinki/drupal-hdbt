@@ -224,19 +224,19 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 }
 
 // Override right padding to fade out input text overflow.
-.SearchInput-module_searchInput__2TZxR .TextInput-module_inputWrapper__3Rvel {
+.hdbt-search--react__form-container .hdbt-search__search-input {
   input {
     padding: 0 0 0 var(--spacing-s) !important;
   }
 
   button:first-child::before {
     background: linear-gradient(90deg, transparent, $hdbt-color-white);
-    content: "\0020"/"";
+    content: "";
     display: block;
-    height: 52px;
-    left: -32px;
+    height: 100%;
+    left: calc(-1 * var(--spacing-s));
     position: absolute;
-    width: 32px;
+    width: var(--spacing-s);
   }
 }
 
