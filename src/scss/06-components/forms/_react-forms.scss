@@ -212,7 +212,7 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 .hdbt-search--react__form-container .hdbt-search__search-input {
   max-width: none;
 
-  // Override right padding to fade out input text overflow.
+  // Use !important to override right padding from component’s <style>.
   input {
     padding: 0 0 0 $spacing !important;
   }
