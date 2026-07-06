@@ -62,10 +62,10 @@ $-announcement-link-padding: $spacing-three-quarters;
   // to do that the height and padding-bottom need to be animated.
   /* stylelint-disable plugin/no-low-performance-animation-properties */
   transition:
-    opacity linear $transition-a,
     height linear $transition-b $transition-a,
-    padding linear $transition-b $transition-a,
     margin linear $transition-b $transition-a,
+    opacity linear $transition-a,
+    padding linear $transition-b $transition-a,
     visibility linear 0s #{$transition-a + $transition-b};
   visibility: hidden;
 
