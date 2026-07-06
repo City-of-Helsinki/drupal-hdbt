@@ -211,6 +211,21 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 
 .hdbt-search--react__form-container .hdbt-search__search-input {
   max-width: none;
+
+  // Override right padding to fade out input text overflow.
+  input {
+    padding: 0 0 0 $spacing !important;
+  }
+
+  button:first-child::before {
+    background: linear-gradient(90deg, transparent, $hdbt-color-white);
+    content: "";
+    display: block;
+    height: 100%;
+    left: calc(-1 * #{$spacing});
+    position: absolute;
+    width: $spacing;
+  }
 }
 
 // HDS 5.0 breaks styling for dropdown checkboxes. Override styles with stupid selectors. Remove if it gets fixed.
@@ -222,21 +237,3 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   --border-color-selected-hover: var(--hdbt-color-black);
   --border-color-selected-focus: var(--hdbt-color-black);
 }
-
-// Override right padding to fade out input text overflow.
-.hdbt-search--react__form-container .hdbt-search__search-input {
-  input {
-    padding: 0 0 0 var(--spacing-s) !important;
-  }
-
-  button:first-child::before {
-    background: linear-gradient(90deg, transparent, $hdbt-color-white);
-    content: "";
-    display: block;
-    height: 100%;
-    left: calc(-1 * var(--spacing-s));
-    position: absolute;
-    width: var(--spacing-s);
-  }
-}
-
