@@ -1987,3 +1987,7 @@ msgstr "Stäng"
 msgctxt "AI Summary"
 msgid "Close the summary"
 msgstr "Stäng sammanfattningen"
+
+msgctxt "React search: Fetching results title"
+msgid "Searching for results..."
+msgstr "Söker..."

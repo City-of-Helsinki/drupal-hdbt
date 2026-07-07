@@ -117,7 +117,7 @@ const ResultsContainer = ({
     return (
       <div className='react-search__results'>
         <ResultsHeader
-          resultText={Drupal.t('Searching for results...', {}, { context: 'News archive' })}
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
           ref={loadingHeaderRef}
         />
         <GhostList bordered={cardsWithBorders} count={size} />
