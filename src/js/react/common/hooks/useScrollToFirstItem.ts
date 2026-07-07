@@ -9,7 +9,7 @@ const useScrollToFirstItem = (containerRef: RefObject<HTMLElement | null>, isLoa
     const firstLink = containerRef.current?.querySelector<HTMLElement>('a');
     if (firstLink) {
       firstLink.focus({ preventScroll: true });
-      firstLink.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      firstLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [isLoading, containerRef]);
 
