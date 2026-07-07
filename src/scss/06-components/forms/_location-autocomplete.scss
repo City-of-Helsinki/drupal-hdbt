@@ -57,7 +57,7 @@
 .helfi-location-autocomplete [data-autocomplete-item]:hover,
 .helfi-location-autocomplete [data-autocomplete-item]:focus,
 .helfi-location-autocomplete [data-autocomplete-item]:active {
-  background-color: var(--hdbt-color-black);
-  color: var(--color-white);
+  background-color: $color-black-90;
+  color: $color-white;
   outline: none;
 }
