@@ -50,15 +50,6 @@
   h2 {
     @include font('h4');
     margin-top: 0;
-
-    &.footer-top__content__title {
-      margin-top: $spacing-double;
-
-      /* stylelint-disable-next-line max-nesting-depth */
-      @include breakpoint($breakpoint-m) {
-        margin-top: 0;
-      }
-    }
   }
 
   p {
@@ -85,12 +76,6 @@
 footer.footer .menu__link {
   display: inline-block;
   padding-block: max(calc((#{$wcag-touch-target-size-aaa} - var(--line-height) * 1em) / 2) , #{$spacing-half});
-}
-
-.footer-top__content {
-  @include breakpoint($breakpoint-m) {
-    max-width: $container-width-s;
-  }
 }
 
 .footer-bottom__container {

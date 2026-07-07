@@ -1,6 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent } from 'react';
+import { createRef, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
 import ResultsError from '@/react/common/ResultsError';
@@ -29,9 +30,13 @@ const ResultsContainer = () => {
   const shouldScrollOnRender = Boolean(hasChoices && !isLoading && !isValidating);
   useScrollToResults(scrollTarget, shouldScrollOnRender);
 
+  const resultsListRef = useRef<HTMLDivElement>(null);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
+
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
+    scrollToFirstItem();
   };
 
   const getResults = () => {
@@ -92,7 +97,9 @@ const ResultsContainer = () => {
           )}
           ref={scrollTarget}
         />
-        <ResultsList hits={results} />
+        <div ref={resultsListRef}>
+          <ResultsList hits={results} />
+        </div>
         {pages > 1 && <Pagination currentPage={currentPage} pages={5} totalPages={pages} updatePage={updatePage} />}
       </>
     );
