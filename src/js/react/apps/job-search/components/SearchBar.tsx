@@ -1,14 +1,14 @@
 import { Search } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import Global from '../enum/Global';
 import SearchComponents from '../enum/SearchComponents';
-import { getElasticUrlAtom, setStateValueAtom } from '../store';
+import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
 
-export const SearchBar = () => {
-  //const keyword = useAtomValue(getKeywordAtom);
-
+export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement> }) => {
+  const initialKeyword = useAtomValue(getKeywordAtom) ?? '';
+  const ref = useRef();
   const setStateValue = useSetAtom(setStateValueAtom);
 
   const elasticUrl = useAtomValue(getElasticUrlAtom);
@@ -25,8 +25,11 @@ export const SearchBar = () => {
   const handleSubmit = useCallback(
     (value: string) => {
       setStateValue({ key: SearchComponents.KEYWORD, value: value.replace(/\s+/g, ' ') });
+      if (formRef.current) {
+        formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      }
     },
-    [setStateValue],
+    [setStateValue, formRef],
   );
 
   const getSuggestions = useCallback(
@@ -110,9 +113,19 @@ export const SearchBar = () => {
     },
   });
 
+  useEffect(() => {
+    // On pageload, set the query parameter value to search input.
+    if (ref.current) {
+      ref.current.value = initialKeyword;
+    }
+    // Set the initial search keyword.
+    handleChange(initialKeyword);
+  }, [initialKeyword, handleChange]);
+
   return (
     <Search
       {...props}
+      ref={ref}
       hideSubmitButton={true}
       onChange={(e) => {
         handleChange(e.target.value);
