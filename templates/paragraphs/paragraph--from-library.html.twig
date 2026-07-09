@@ -1,2 +1,8 @@
 {# simplified from paragraph.html.twig to avoid wrapping library items in extra divs #}
-{{ content }}
+{% if paragraph.isNotPublished() %}
+ <div class="component from-library--unpublished">
+  {{ content }}
+  </div>
+{% else %}
+  {{ content }}
+{% endif %}
