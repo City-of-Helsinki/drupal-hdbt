@@ -1,6 +1,7 @@
 import { useAtomValue } from 'jotai';
-import { createRef, type SyntheticEvent, useState } from 'react';
+import { createRef, type SyntheticEvent, useRef, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import Pagination from '@/react/common/Pagination';
@@ -30,9 +31,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
   const scrollTarget = createRef<HTMLDivElement>();
+  const resultsListRef = useRef<HTMLDivElement>(null);
   const { sv_only, home_address } = params;
   const choices = Boolean(Object.keys(params).length);
   useScrollToResults(scrollTarget, choices);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
 
   if (isLoading || isValidating) {
     return useMap ? <LoadingOverlay /> : <GhostList count={size} />;
@@ -108,12 +111,11 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
         {useMap ? (
           <ResultsMap ids={mapIds} />
         ) : (
-          // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501
-          <>
+          <div ref={resultsListRef}>
             {results.map((hit: Result<MaternityAndChildHealthClinic>) => (
               <ResultCard key={hit._id} {...hit._source} />
             ))}
-          </>
+          </div>
         )}
         {showPagination && (
           <Pagination
@@ -123,6 +125,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
             updatePage={(e: SyntheticEvent, nextPage: number) => {
               e.preventDefault();
               updatePage(nextPage);
+              scrollToFirstItem();
             }}
           />
         )}

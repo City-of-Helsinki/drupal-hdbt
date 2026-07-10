@@ -35,7 +35,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
       selectionTags={selectionTags}
       texts={{
         tosCheckboxLabel: Drupal.t(
-          'I consent to the processing of my personal data for the purpose of saved searches',
+          'I consent to the processing of my personal data for the purpose of search alert service',
           {},
           { context: 'Job search monitor' },
         ),
