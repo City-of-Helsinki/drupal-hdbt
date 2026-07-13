@@ -5,7 +5,7 @@ $koro-height: 50px;
   color: var(--hdbt-color-palette-text--primary);
 
   > .hds-koros {
-    background-color: $color-white;
+    background-color: var(--color-white);
     color: var(--hdbt-color-palette--primary);
   }
 }

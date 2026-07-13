@@ -9,7 +9,7 @@
  */
 
 @mixin hds-button-colors-on-light-bg(){
-  --theme-fg1: #{$color-white};
+  --theme-fg1: var(--color-white);
   --theme-fg2: var(--color-black);
   --theme-bg1: var(--color-black);
   --theme-bg2: transparent;
@@ -19,10 +19,10 @@
 
 @mixin hds-button-colors-on-dark-bg(){
   --theme-fg1: var(--color-black);
-  --theme-fg2: #{$color-white};
-  --theme-bg1: #{$color-white};
+  --theme-fg2: var(--color-white);
+  --theme-bg1: var(--color-white);
   --theme-bg2: transparent;
-  --theme-focus: #{$color-white};
+  --theme-focus: var(--color-white);
   --theme-focus-gutter-color: transparent; // set this to black if we want double colored focus rings
 }
 
@@ -298,15 +298,15 @@ input[type='submit'].hds-button--small {
   --border-color-disabled: var(--color-black-20);
 
   // Colors
-  --color: var(--theme-fg1, #{$color-white});
-  --color-hover: var(--theme-fg2, #{$color-white});
-  --color-focus: var(--theme-fg1, #{$color-white});
-  --color-hover-focus: var(--theme-fg2, #{$color-white});
-  --color-disabled: #{$color-white};
+  --color: var(--theme-fg1, var(--color-white));
+  --color-hover: var(--theme-fg2, var(--color-white));
+  --color-focus: var(--theme-fg1, var(--color-white));
+  --color-hover-focus: var(--theme-fg2, var(--color-white));
+  --color-disabled: var(--color-white);
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
-  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, #{$color-white});
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
 }
 
 // SECONDARY
@@ -335,7 +335,7 @@ input[type='submit'].hds-button--small {
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
-  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, #{$color-white});
+  --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
 }
 
 // SUPPLEMENTARY
@@ -383,11 +383,11 @@ input[type='submit'].hds-button--small {
   --border-color-disabled: transparent;
 
   // Colors
-  --color: #{$color-black-90};
-  --color-hover: #{$color-black-90};
-  --color-focus: #{$color-black-90};
-  --color-hover-focus: #{$color-black-90};
-  --color-disabled: #{$color-black-90};
+  --color: var(--color-black-90);
+  --color-hover: var(--color-black-90);
+  --color-focus: var(--color-black-90);
+  --color-hover-focus: var(--color-black-90);
+  --color-disabled: var(--color-black-90);
 
   // Cursor
   cursor: wait;
@@ -409,10 +409,10 @@ input[type='submit'].hds-button--small {
   --border-color-hover-focus: var(--color-success-dark);
 
   // Colors
-  --color: #{$color-white};
-  --color-hover: #{$color-white};
-  --color-focus: #{$color-white};
-  --color-hover-focus: #{$color-white};
+  --color: var(--color-white);
+  --color-hover: var(--color-white);
+  --color-focus: var(--color-white);
+  --color-hover-focus: var(--color-white);
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
@@ -433,10 +433,10 @@ input[type='submit'].hds-button--small {
   --border-color-hover-focus: var(--color-error-dark);
 
   // Colors
-  --color: #{$color-white};
-  --color-hover: #{$color-white};
-  --color-focus: #{$color-white};
-  --color-hover-focus: #{$color-white};
+  --color: var(--color-white);
+  --color-hover: var(--color-white);
+  --color-focus: var(--color-white);
+  --color-hover-focus: var(--color-white);
 
   // Focus ring
   --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
@@ -931,15 +931,15 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     --border-color-disabled: var(--color-black-20);
 
     // Colors
-    --color: var(--theme-fg1, #{$color-white});
-    --color-hover: var(--theme-fg2, #{$color-white});
-    --color-focus: var(--theme-fg1, #{$color-white});
-    --color-hover-focus: var(--theme-fg2, #{$color-white});
-    --color-disabled: #{$color-white};
+    --color: var(--theme-fg1, var(--color-white));
+    --color-hover: var(--theme-fg2, var(--color-white));
+    --color-focus: var(--theme-fg1, var(--color-white));
+    --color-hover-focus: var(--theme-fg2, var(--color-white));
+    --color-disabled: var(--color-white);
 
     // Focus ring
     --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
-    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, #{$color-white});
+    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
   }
 
   // SECONDARY
@@ -968,7 +968,7 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
 
     // Focus ring
     --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
-    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, #{$color-white});
+    --submit-input-focus-gutter-color: var(--theme-focus-gutter-color, var(--color-white));
   }
 
   // LOADING
@@ -988,11 +988,11 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     --border-color-disabled: transparent;
 
     // Colors
-    --color: #{$color-black-90};
-    --color-hover: #{$color-black-90};
-    --color-focus: #{$color-black-90};
-    --color-hover-focus: #{$color-black-90};
-    --color-disabled: #{$color-black-90};
+    --color: var(--color-black-90);
+    --color-hover: var(--color-black-90);
+    --color-focus: var(--color-black-90);
+    --color-hover-focus: var(--color-black-90);
+    --color-disabled: var(--color-black-90);
 
     // Cursor
     cursor: wait;
@@ -1014,10 +1014,10 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     --border-color-hover-focus: var(--color-success-dark);
 
     // Colors
-    --color: #{$color-white};
-    --color-hover: #{$color-white};
-    --color-focus: #{$color-white};
-    --color-hover-focus: #{$color-white};
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
 
     // Focus ring
     --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));
@@ -1038,10 +1038,10 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
     --border-color-hover-focus: var(--color-error-dark);
 
     // Colors
-    --color: #{$color-white};
-    --color-hover: #{$color-white};
-    --color-focus: #{$color-white};
-    --color-hover-focus: #{$color-white};
+    --color: var(--color-white);
+    --color-hover: var(--color-white);
+    --color-focus: var(--color-white);
+    --color-hover-focus: var(--color-white);
 
     // Focus ring
     --focus-outline-color: var(--theme-focus, var(--color-coat-of-arms));

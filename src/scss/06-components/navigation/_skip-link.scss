@@ -1,10 +1,10 @@
 .skip-link {
   --border-width: 2px;
-  --border-color: #{$color-white};
+  --border-color: var(--color-white);
   --outline-width: 3px;
-  --background-color: #{$color-black-90};
+  --background-color: var(--color-black-90);
   --color: #($color-white);
-  --focus-outline-color: #{$color-black-90};
+  --focus-outline-color: var(--color-black-90);
   background-color: var(--background-color);
   border: var(--border-width) solid var(--border-color);
   color: var(--color);
