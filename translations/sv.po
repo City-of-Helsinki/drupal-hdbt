@@ -987,10 +987,6 @@ msgid "Read the register of communications"
 msgstr "Bekanta dig med register över kommunikation"
 
 msgctxt "News search monitor"
-msgid "You have not selected any search criteria."
-msgstr "Du har inte valt några sökvillkor."
-
-msgctxt "News search monitor"
 msgid "You are almost done subscribing to search alert"
 msgstr "Beställningen av sökvakten är nästan klar"
 
@@ -1727,10 +1723,6 @@ msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 resultat"
 msgstr[1] "@count resultat"
-
-msgctxt "Search monitor"
-msgid "You have not selected any search criteria."
-msgstr "Du har inte valt några sökvillkor."
 
 msgctxt "Search monitor instructions link"
 msgid "More detailed instructions on how to use search alerts"

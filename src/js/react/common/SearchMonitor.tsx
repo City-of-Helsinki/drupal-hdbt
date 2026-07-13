@@ -163,10 +163,7 @@ const SearchMonitor = ({
       query: window.location.pathname + window.location.search,
       email: showEmail ? email : null,
       sms: showPhone ? phone : null,
-      searchDescription:
-        selectionTags.length > 0
-          ? selectionTags.map(({ tag }) => tag).join(', ')
-          : Drupal.t('You have not selected any search criteria.', {}, { context: 'Search monitor' }),
+      searchDescription: selectionTags.map(({ tag }) => tag).join(', '),
     };
 
     // Disable the button after submitting to prevent double submits
