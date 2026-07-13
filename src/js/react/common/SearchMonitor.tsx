@@ -383,9 +383,7 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={
-                texts.dialogTitle ?? Drupal.t('Receive search alerts by email', {}, { context: 'Search monitor' })
-              }
+              title={texts.dialogTitle ?? Drupal.t('Receive search alerts by email', {}, { context: 'Search monitor' })}
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>
