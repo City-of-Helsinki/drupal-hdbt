@@ -973,7 +973,7 @@ msgid "You can subscribe to news search alerts for the news you want. First, cre
 msgstr "Voit tilata hakuvahdin haluamistasi uutisista. Tee ensin toiveidesi mukainen haku ja tilaa hakuvahti."
 
 msgctxt "News search monitor"
-msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgid "You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link you will receive with each notification."
 msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
 
 msgctxt "News search monitor"
@@ -1457,7 +1457,7 @@ msgid "News"
 msgstr "Uutinen"
 
 msgctxt "Search monitor"
-msgid "Receive search results by email"
+msgid "Receive search alerts by email"
 msgstr "Tilaa hakuvahti sähköpostiisi"
 
 msgctxt "Search monitor open label"
@@ -1477,7 +1477,7 @@ msgid "Carry out a search according to your preferences and subscribe to search 
 msgstr "Tee toiveidesi mukainen haku ja tallenna se hakuvahdiksi."
 
 msgctxt "Search monitor content"
-msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgid "You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link you will receive with each notification."
 msgstr "Saat sähköpostiisi tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
 
 msgctxt "Search monitor content"
@@ -1509,7 +1509,7 @@ msgid "Subscribe to search alert"
 msgstr "Tilaa hakuvahti"
 
 msgctxt "Search monitor submitted content"
-msgid "Please confirm your search alert with the confirmation link sent to your email address."
+msgid "Please confirm your subscription by clicking the link sent to your email address."
 msgstr "Vahvista vielä tilaus vahvistuslinkillä, jonka saat sähköpostiisi."
 
 msgctxt "Search monitor"
@@ -1817,7 +1817,7 @@ msgid "Make a search according to your specifications and save it as a Vehicle R
 msgstr "Tee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi. Voit valita useamman kadun samaan Siirtovahtiin."
 
 msgctxt "Vehicle removal search"
-msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
+msgid "You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
 msgstr "Saat tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
 
 msgctxt "Vehicle removal search"
@@ -1931,7 +1931,7 @@ msgid "Retrieving current location..."
 msgstr "Haetaan sijaintia..."
 
 msgctxt "Search monitor banner"
-msgid "Receive search results by email"
+msgid "Receive search alerts by email"
 msgstr "Tilaa hakuvahti sähköpostiisi"
 
 msgctxt "Search monitor banner"

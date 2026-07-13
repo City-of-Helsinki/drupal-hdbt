@@ -55,7 +55,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
             { context: 'News search monitor' },
           ),
           Drupal.t(
-            'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+            'You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link you will receive with each notification.',
             {},
             { context: 'News search monitor' },
           ),
