@@ -3,7 +3,7 @@
   --border-color: var(--color-white);
   --outline-width: 3px;
   --background-color: var(--color-black-90);
-  --color: #($color-white);
+  --color: var(--color-white);
   --focus-outline-color: var(--color-black-90);
   background-color: var(--background-color);
   border: var(--border-width) solid var(--border-color);
