@@ -989,10 +989,6 @@ msgid "Read the register of communications"
 msgstr "Tutustu viestinnän tietosuojaselosteeseen"
 
 msgctxt "News search monitor"
-msgid "You have not selected any search criteria."
-msgstr "Et ole valinnut yhtään hakuehtoa."
-
-msgctxt "News search monitor"
 msgid "You are almost done subscribing to search alert"
 msgstr "Hakuvahdin tilaus melkein valmis"
 
@@ -1725,10 +1721,6 @@ msgid "1 result"
 msgid_plural "@count results"
 msgstr[0] "1 hakutulos"
 msgstr[1] "@count hakutulosta"
-
-msgctxt "Search monitor"
-msgid "You have not selected any search criteria."
-msgstr "Et ole valinnut yhtään hakuehtoa."
 
 msgctxt "Search monitor instructions link"
 msgid "More detailed instructions on how to use search alerts"
