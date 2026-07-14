@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent, useRef } from 'react';
+import { type SyntheticEvent, useEffect, useRef } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
@@ -25,7 +25,14 @@ const ResultsContainer = (): JSX.Element => {
   const { error: initializationError } = useAtomValue(configurationsAtom);
   const setPage = useSetAtom(setPageAtom);
   const currentPage = useAtomValue(pageAtom);
-  const scrollTarget = createRef<HTMLDivElement>();
+  const scrollTarget = useRef<HTMLDivElement>(null);
+  const resultsListRef = useRef<HTMLDivElement>(null);
+  const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
+  const lastDataKeyRef = useRef<string | null>(null);
+  const wasSearchingRef = useRef(false);
+  const skipResultsFocusRef = useRef(false);
+  const initialLoadDoneRef = useRef(false);
+  const hadGhostCardsRef = useRef(false);
 
   const choices = Boolean(window.location.search?.length);
   useScrollToResults(scrollTarget, choices);
@@ -42,12 +49,81 @@ const ResultsContainer = (): JSX.Element => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isValidating } = useSWR(queryString, fetcher, { revalidateOnFocus: false });
-  const resultsListRef = useRef<HTMLDivElement>(null);
+  const { data, error, isValidating } = useSWR(queryString, fetcher, {
+    revalidateOnFocus: false,
+    keepPreviousData: true,
+  });
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
 
-  if (!data && !error) {
-    return <GhostList count={size} />;
+  const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current;
+  const isSearching = (!data && !error) || isLoadingNewSearch;
+
+  useEffect(() => {
+    if (!isSearching || !initialLoadDoneRef.current) return;
+    hadGhostCardsRef.current = true;
+    const node = loadingHeaderRef.current;
+    if (node) {
+      node.setAttribute('tabindex', '-1');
+      node.focus({ preventScroll: true });
+      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [isSearching]);
+
+  useEffect(() => {
+    if (isValidating) {
+      if (initialLoadDoneRef.current) {
+        wasSearchingRef.current = true;
+      }
+    } else {
+      lastDataKeyRef.current = queryString;
+      initialLoadDoneRef.current = true;
+      if (wasSearchingRef.current) {
+        wasSearchingRef.current = false;
+        if (skipResultsFocusRef.current) {
+          skipResultsFocusRef.current = false;
+          return;
+        }
+        const node = scrollTarget.current;
+        if (node) {
+          node.setAttribute('tabindex', '-1');
+          node.focus({ preventScroll: true });
+          if (!hadGhostCardsRef.current) {
+            node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          hadGhostCardsRef.current = false;
+        }
+      }
+    }
+  }, [isValidating, queryString]);
+
+  // urlAtom always writes a new object on every form submit, so urlParams gets a new
+  // reference even when the search is identical. When queryString matches lastDataKeyRef
+  // the query is unchanged and SWR will not revalidate — focus the results heading directly.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: urlParams is intentionally used as a trigger only
+  useEffect(() => {
+    if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || !data) return;
+    if (skipResultsFocusRef.current) {
+      skipResultsFocusRef.current = false;
+      return;
+    }
+    const node = scrollTarget.current;
+    if (node) {
+      node.setAttribute('tabindex', '-1');
+      node.focus({ preventScroll: true });
+      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [urlParams]);
+
+  if (isSearching) {
+    return (
+      <div className='react-search__results'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
+        <GhostList count={size} />
+      </div>
+    );
   }
 
   if (error || initializationError) {
@@ -67,6 +143,7 @@ const ResultsContainer = (): JSX.Element => {
     e.preventDefault();
     setPage(index.toString());
     scrollToFirstItem();
+    skipResultsFocusRef.current = true;
   };
 
   return (
