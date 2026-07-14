@@ -209,7 +209,8 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
 }
 
-.hdbt-search--react__form-container .hdbt-search__search-input {
+.hdbt-search--react__form-container .hdbt-search__search-input,
+.job-search-form .hdbt-search__search-input {
   max-width: none;
 
   // Use !important to override right padding from component’s <style>.
