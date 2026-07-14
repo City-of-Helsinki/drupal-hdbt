@@ -10,18 +10,18 @@ $monitor-button-min-width: 288px;
 
 .hdbt-search--react__checkbox {
   --background-unselected: transparent;
-  --background-selected: var(--hdbt-color-black);
-  --background-hover: var(--hdbt-color-black);
-  --border-color-selected: var(--hdbt-color-black);
-  --border-color-selected-hover: var(--hdbt-color-black);
-  --border-color-selected-focus: var(--hdbt-color-black);
-  --border-color-unselected: var(--hdbt-color-black);
-  --border-color-unselected-hover: var(--hdbt-color-black);
-  --border-color-unselected-focus: var(--hdbt-color-black);
+  --background-selected: var(--color-black-90);
+  --background-hover: var(--color-black-90);
+  --border-color-selected: var(--color-black-90);
+  --border-color-selected-hover: var(--color-black-90);
+  --border-color-selected-focus: var(--color-black-90);
+  --border-color-unselected: var(--color-black-90);
+  --border-color-unselected-hover: var(--color-black-90);
+  --border-color-unselected-focus: var(--color-black-90);
   --icon-color-unselected: transparent;
   --icon-color-selected: var(--hdbt-text-color);
   --icon-color-disabled: var(--hdbt-text-color);
-  --focus-outline-color: var(--hdbt-color-black);
+  --focus-outline-color: var(--color-black-90);
   margin-bottom: $spacing-half;
 }
 
@@ -72,27 +72,27 @@ $monitor-button-min-width: 288px;
 
 // Need specific selector here to override HDS styles
 .hdbt-search--react__submit-button:not(:disabled) {
-  --background-color: var(--hdbt-color-black);
+  --background-color: var(--color-black-90);
   --background-color-hover: transparent;
-  --background-color-focus: var(--hdbt-color-black);
+  --background-color-focus: var(--color-black-90);
   --background-color-hover-focus: transparent;
-  --border-color: var(--hdbt-color-black);
-  --border-color-hover: var(--hdbt-color-black);
-  --border-color-focus: var(--hdbt-color-black);
-  --border-color-hover-focus: var(--hdbt-color-black);
+  --border-color: var(--color-black-90);
+  --border-color-hover: var(--color-black-90);
+  --border-color-focus: var(--color-black-90);
+  --border-color-hover-focus: var(--color-black-90);
   --color: var(--hdbt-text-color);
-  --color-hover: var(--hdbt-color-black);
+  --color-hover: var(--color-black-90);
   --color-focus: var(--hdbt-text-color);
-  --color-hover-focus: var(--hdbt-color-black);
-  --focus-outline-color: var(--hdbt-color-black);
-  --outline-color-focus: var(--hdbt-color-black);
+  --color-hover-focus: var(--color-black-90);
+  --focus-outline-color: var(--color-black-90);
+  --outline-color-focus: var(--color-black-90);
   margin-bottom: $spacing-double;
   margin-top: $spacing;
 }
 
 // Override HDS styles for date input
 .hdbt-search__filter.hdbt-search__date-input {
-  --focus-outline-color: var(--hdbt-color-black);
+  --focus-outline-color: var(--color-black-90);
 }
 
 // Check this table when work with https://helsinkisolutionoffice.atlassian.net/browse/UHF-3044
@@ -132,15 +132,15 @@ $monitor-button-min-width: 288px;
   --background-color-hover: transparent;
   --background-color-focus: transparent;
   --background-color-hover-focus: transparent;
-  --border-color-hover: var(--hdbt-color-black);
-  --border-color-focus: var(--hdbt-color-black);
-  --border-color-hover-focus: var(--hdbt-color-black);
-  --color: var(--hdbt-color-black);
-  --color-hover: var(--hdbt-color-black);
-  --color-focus: var(--hdbt-color-black);
-  --color-hover-focus: var(--hdbt-color-black);
-  --focus-outline-color: var(--hdbt-color-black);
-  --outline-color-focus: var(--hdbt-color-black);
+  --border-color-hover: var(--color-black-90);
+  --border-color-focus: var(--color-black-90);
+  --border-color-hover-focus: var(--color-black-90);
+  --color: var(--color-black-90);
+  --color-hover: var(--color-black-90);
+  --color-focus: var(--color-black-90);
+  --color-hover-focus: var(--color-black-90);
+  --focus-outline-color: var(--color-black-90);
+  --outline-color-focus: var(--color-black-90);
 }
 
 // Remove margin from pill buttons
@@ -183,7 +183,7 @@ $monitor-button-min-width: 288px;
 
 // Use specific selectors here to override HDS styles
 fieldset .hdbt-search--react__checkbox {
-  --background-selected: var(--hdbt-color-black);
+  --background-selected: var(--color-black-90);
 }
 
 fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
@@ -218,7 +218,7 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
   
   button:first-child::before {
-    background: linear-gradient(90deg, transparent, $hdbt-color-white);
+    background: linear-gradient(90deg, transparent, $color-white);
     content: "";
     display: block;
     height: 100%;
@@ -236,8 +236,8 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 // @todo fix https://helsinkisolutionoffice.atlassian.net/browse/UHF-13187 
 .ModularOptionList-module_listContainer__27JYq .ModularOptionList-module_list__1k-XO .ModularOptionList-module_multiSelectListItem__3iZa0 .ModularOptionList-module_checkboxContainer__SXw4b label::after {
   --background-hover: var(--color-black);
-  --background-selected: var(--hdbt-color-black);
-  --border-color-selected: var(--hdbt-color-black);
-  --border-color-selected-hover: var(--hdbt-color-black);
-  --border-color-selected-focus: var(--hdbt-color-black);
+  --background-selected: var(--color-black-90);
+  --border-color-selected: var(--color-black-90);
+  --border-color-selected-hover: var(--color-black-90);
+  --border-color-selected-focus: var(--color-black-90);
 }
