@@ -1,4 +1,4 @@
-import { Search } from 'hds-react';
+import { Search, type SearchInputHandle } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -9,9 +9,8 @@ import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
 
 export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement> }) => {
   const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
-  const ref = useRef();
+  const ref = useRef<SearchInputHandle>(null);
   const setStateValue = useSetAtom(setStateValueAtom);
-
   const elasticUrl = useAtomValue(getElasticUrlAtom);
   const { index } = Global;
   const url = `${elasticUrl}/${index}/_search`;
