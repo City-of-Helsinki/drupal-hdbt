@@ -1,5 +1,6 @@
 import { Search } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import Global from '../enum/Global';
@@ -7,7 +8,7 @@ import SearchComponents from '../enum/SearchComponents';
 import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
 
 export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement> }) => {
-  const initialKeyword = useAtomValue(getKeywordAtom) ?? '';
+  const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
   const ref = useRef();
   const setStateValue = useSetAtom(setStateValueAtom);
 
@@ -114,13 +115,14 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
   });
 
   useEffect(() => {
+    const initialKeyword = readInitialKeyword() ?? '';
     // On pageload, set the query parameter value to search input.
     if (ref.current) {
       ref.current.value = initialKeyword;
     }
     // Set the initial search keyword.
     handleChange(initialKeyword);
-  }, [initialKeyword, handleChange]);
+  }, [readInitialKeyword, handleChange]);
 
   return (
     <Search
