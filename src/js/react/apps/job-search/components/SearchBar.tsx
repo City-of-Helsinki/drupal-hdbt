@@ -1,3 +1,4 @@
+import type { estypes } from '@elastic/elasticsearch';
 import { Search, type SearchInputHandle } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
@@ -7,6 +8,7 @@ import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
+import type Job from '../types/Job';
 
 export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement> }) => {
   const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
@@ -42,6 +44,9 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
         IndexFields.ORGANIZATION_NAME,
         IndexFields.EMPLOYMENT,
       ];
+      // Escape Elasticsearch wildcard metacharacters so a literal '*' or '?'
+      // in the keyword doesn't turn into a match-everything wildcard query.
+      const wildcardKeyword = changedKeyword.replace(/[\\*?]/g, '\\$&');
       const query = {
         _source: fields,
         fields: fields,
@@ -62,16 +67,16 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
               },
               {
                 wildcard: {
-                  [`${IndexFields.TITLE}.keyword`]: `*${changedKeyword}*`,
+                  [`${IndexFields.TITLE}.keyword`]: `*${wildcardKeyword}*`,
                 },
               },
-              { wildcard: { [IndexFields.TITLE]: `*${changedKeyword}*` } },
+              { wildcard: { [IndexFields.TITLE]: `*${wildcardKeyword}*` } },
             ],
           },
         },
       };
 
-      let data = [];
+      let data: estypes.SearchResponse<Job>;
       try {
         const response = await fetch(url, {
           method: 'POST',
@@ -80,27 +85,23 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
         });
         data = await response.json();
       } catch (_e) {
-        return data;
+        return { options: [] };
       }
-      let results = data?.hits?.hits ?? [];
+      const hits = data?.hits?.hits ?? [];
 
       // Split all titles by comma and take the first part.
-      results = results
-        .map((item: { fields: { title: string[] } }): string => item.fields.title[0])
-        .map((item_1: string): string => item_1.split(',')[0]);
+      const titles = hits
+        .map((item): string | undefined => item.fields?.title?.[0])
+        .filter((title): title is string => Boolean(title))
+        .map((title): string => title.split(',')[0]);
 
-      // Remove duplicates.
-      results = Array.from(new Set(results));
+      // Remove duplicates
+      const options = Array.from(new Set(titles)).map((suggestion) => ({
+        label: suggestion,
+        value: suggestion,
+      }));
 
-      // Turn the title in format accepted by search component.
-      results = results.map((suggestion: string) => {
-        return {
-          label: suggestion,
-          value: suggestion,
-        };
-      });
-
-      return { options: results };
+      return { options };
     },
     [url],
   );
@@ -124,7 +125,6 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
     ),
     texts: {
       label: Drupal.t('Search term', {}, { context: 'Search keyword label' }),
-      name: SearchComponents.KEYWORD,
       language: window.drupalSettings?.path?.currentLanguage || 'fi',
       searchPlaceholder: Drupal.t(
         'Eg. title, location, department',
@@ -155,7 +155,6 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
       }}
       onSearch={handleSearch}
       onSend={handleSubmit}
-      visibleOptions={5}
     />
   );
 };
