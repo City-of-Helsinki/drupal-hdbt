@@ -68,12 +68,11 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
 
       // Remove duplicates.
       results = Array.from(new Set(results));
-      // Only 5 values.
-      results = results.length > 5 ? results.splice(0, 5) : results;
+
       // Turn the title in format accepted by search component.
       results = results.map((suggestion: string) => {
         return {
-          something: suggestion,
+          label: suggestion,
           value: suggestion,
         };
       });
