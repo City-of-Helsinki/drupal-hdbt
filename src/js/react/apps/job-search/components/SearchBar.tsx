@@ -4,6 +4,7 @@ import { useAtomCallback } from 'jotai/utils';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import Global from '../enum/Global';
+import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
 
@@ -34,16 +35,38 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
 
   const getSuggestions = useCallback(
     async (changedKeyword: string): Promise<{ options: { label: string; value: string }[] }> => {
+      // Search logic from the actual search.
+      const fields = [
+        IndexFields.TITLE,
+        IndexFields.ORGANIZATION,
+        IndexFields.ORGANIZATION_NAME,
+        IndexFields.EMPLOYMENT,
+      ];
       const query = {
-        _source: ['title'],
-        fields: ['title'],
+        _source: fields,
+        fields: fields,
         size: 20,
         query: {
-          prefix: {
-            'title.keyword': {
-              value: changedKeyword,
-              case_insensitive: true,
-            },
+          bool: {
+            should: [
+              {
+                combined_fields: {
+                  query: changedKeyword,
+                  fields: [
+                    `${IndexFields.TITLE}^2`,
+                    `${IndexFields.ORGANIZATION}^1.5`,
+                    IndexFields.ORGANIZATION_NAME,
+                    IndexFields.EMPLOYMENT,
+                  ],
+                },
+              },
+              {
+                wildcard: {
+                  [`${IndexFields.TITLE}.keyword`]: `*${changedKeyword}*`,
+                },
+              },
+              { wildcard: { [IndexFields.TITLE]: `*${changedKeyword}*` } },
+            ],
           },
         },
       };
