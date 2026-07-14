@@ -253,10 +253,10 @@ export const useResultCardProps = ({
     }
 
     if (audience_min_age != null) {
-      return Drupal.t('Over @age years old', { '@age': audience_min_age }, { context: 'Event audience age value' });
+      return Drupal.t('@age year-olds and over', { '@age': audience_min_age }, { context: 'Event audience age value' });
     }
 
-    return Drupal.t('Under @age years old', { '@age': audience_max_age }, { context: 'Event audience age value' });
+    return Drupal.t('@age year-olds and under', { '@age': audience_max_age }, { context: 'Event audience age value' });
   };
 
   const getCustomMetaRows = (): { bottom: JSX.Element[] } => {

@@ -1237,12 +1237,12 @@ msgid "@min–@max years old"
 msgstr "@min–@max-vuotiaat"
 
 msgctxt "Event audience age value"
-msgid "Over @age years old"
-msgstr "Yli @age-vuotiaat"
+msgid "@age year-olds and over"
+msgstr "Vähintään @age-vuotiaat"
 
 msgctxt "Event audience age value"
-msgid "Under @age years old"
-msgstr "Alle @age-vuotiaat"
+msgid "@age year-olds and under"
+msgstr "Enintään @age-vuotiaat"
 
 msgctxt "Accordion open all"
 msgid "Open all"
