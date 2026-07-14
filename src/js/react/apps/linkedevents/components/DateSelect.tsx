@@ -43,7 +43,6 @@ function DateSelect() {
       setEndDisabled={setEndDisabled}
       setStart={(d) => setDate(d, 'start')}
       startDate={startDate ? formatHDSDate(startDate) : undefined}
-      title={Drupal.t('Date', {}, { context: 'Events search' })}
     />
   );
 }

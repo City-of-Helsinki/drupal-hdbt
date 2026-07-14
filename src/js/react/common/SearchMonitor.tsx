@@ -45,6 +45,8 @@ interface SearchMonitorTexts {
   submittedTitle?: string;
   /** Description shown after successful submission. */
   submittedDescription?: string;
+  /** Label for the button that opens the dialog and the submit button. */
+  buttonLabel?: string;
 }
 
 interface SearchMonitorProps {
@@ -66,7 +68,7 @@ interface SearchMonitorProps {
 
 const emailLabel: string = Drupal.t('Email address', {}, { context: 'Search monitor' });
 const phoneLabel: string = Drupal.t('Phone number', {}, { context: 'Search monitor' });
-const buttonLabel: string = Drupal.t('Save your search', {}, { context: 'Search monitor' });
+const buttonLabel: string = Drupal.t('Subscribe to search alert', {}, { context: 'Search monitor' });
 const tosLinkSuffix: string = Drupal.t('the link opens in a new tab, pdf', {}, { context: 'Search monitor' });
 const errorAriaLabel = Drupal.t('Notification', {}, { context: 'Search monitor' });
 const idTitle = 'hdbt-search__search-monitor__header';
@@ -161,10 +163,7 @@ const SearchMonitor = ({
       query: window.location.pathname + window.location.search,
       email: showEmail ? email : null,
       sms: showPhone ? phone : null,
-      searchDescription:
-        selectionTags.length > 0
-          ? selectionTags.map(({ tag }) => tag).join(', ')
-          : Drupal.t('You have not selected any search criteria.', {}, { context: 'Search monitor' }),
+      searchDescription: selectionTags.map(({ tag }) => tag).join(', '),
     };
 
     // Disable the button after submitting to prevent double submits
@@ -184,7 +183,9 @@ const SearchMonitor = ({
       }
 
       if (!response.ok) {
-        setErrorMessages([Drupal.t('Saving search failed. Please try again.', {}, { context: 'Search monitor' })]);
+        setErrorMessages([
+          Drupal.t('Search alert subscription failed. Please try again.', {}, { context: 'Search monitor' }),
+        ]);
         return;
       }
 
@@ -317,12 +318,12 @@ const SearchMonitor = ({
         type='button'
         variant={ButtonVariant.Secondary}
       >
-        {buttonLabel}
+        {texts.buttonLabel ?? buttonLabel}
       </Button>
 
       <Dialog
         aria-labelledby={idTitle}
-        aria-describedby={Drupal.t('Saved search', {}, { context: 'Search monitor' })}
+        aria-describedby={Drupal.t('Search alert', {}, { context: 'Search monitor' })}
         className='hdbt-search__search-monitor__content'
         close={() => {
           setIsFormVisible(false);
@@ -341,7 +342,11 @@ const SearchMonitor = ({
               id={idTitle}
               title={
                 texts.submittedTitle ??
-                Drupal.t('You are almost done saving your search', {}, { context: 'Search monitor submitted header' })
+                Drupal.t(
+                  'You are almost done subscribing to search alert',
+                  {},
+                  { context: 'Search monitor submitted header' },
+                )
               }
             />
             <Dialog.Content>
@@ -355,7 +360,7 @@ const SearchMonitor = ({
                 <p>
                   {texts.submittedDescription ??
                     Drupal.t(
-                      'Please confirm your saved search with the confirmation link sent to your email address.',
+                      'Please confirm your subscription by clicking the link sent to your email address.',
                       {},
                       { context: 'Search monitor submitted content' },
                     )}
@@ -378,24 +383,27 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={
-                texts.dialogTitle ?? Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })
-              }
+              title={texts.dialogTitle ?? Drupal.t('Receive search alerts by email', {}, { context: 'Search monitor' })}
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>
                 {(
                   texts.formDescription ?? [
                     Drupal.t(
-                      'Carry out a search according to your specifications and then save your search.',
+                      'Carry out a search according to your preferences and subscribe to search alerts.',
                       {},
                       { context: 'Search monitor content' },
                     ),
-                    `${Drupal.t('You can save as many searches as you want.', {}, { context: 'Search monitor content' })} ${Drupal.t(
-                      'You will receive email alerts about new search results up to once a day',
+                    Drupal.t(
+                      'You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link you will receive with each notification.',
                       {},
                       { context: 'Search monitor content' },
-                    )}`,
+                    ),
+                    Drupal.t(
+                      'Required fields are indicated with an asterisk (*).',
+                      {},
+                      { context: 'Search monitor content' },
+                    ),
                   ]
                 ).map((text) => (
                   <p key={text}>{text}</p>
@@ -405,7 +413,7 @@ const SearchMonitor = ({
                   <p>
                     <a href={resolvedInstructionsLinkUrl} target='_blank' rel='noreferrer'>
                       {Drupal.t(
-                        'More detailed instructions on how to use saved searches',
+                        'More detailed instructions on how to use search alerts',
                         {},
                         { context: 'Search monitor instructions link' },
                       )}
@@ -559,7 +567,7 @@ const SearchMonitor = ({
                     id='hdbt-search__search-monitor__submit-button'
                     type='submit'
                   >
-                    {buttonLabel}
+                    {texts.buttonLabel ?? buttonLabel}
                   </Button>
                   <Button
                     className='hdbt-search__search-monitor__cancel-button'

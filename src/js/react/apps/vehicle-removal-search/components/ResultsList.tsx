@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { createRef, type ReactElement, type RefObject, type SyntheticEvent, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
+import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -55,6 +56,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const { page } = submittedState;
   const scrollTarget = createRef<HTMLDivElement>();
   const dialogTargetRef = createRef<HTMLDivElement>();
+  const resultsListRef = useRef<HTMLDivElement>(null);
   const hasSearched = useRef(false);
   const isFirstRender = useRef(true);
 
@@ -68,6 +70,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   }, [submittedState]);
 
   useScrollToResults(scrollTarget, Boolean(data) && hasSearched.current);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
 
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
@@ -86,6 +89,29 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
       selectionTags={selectionTags}
       secureQuery={true}
       texts={{
+        dialogTitle: Drupal.t(
+          'Subscribe to the Vehicle Removal Alert Service',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
+        formDescription: [
+          Drupal.t(
+            'Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert.',
+            {},
+            { context: 'Vehicle removal search' },
+          ),
+          Drupal.t(
+            'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+            {},
+            { context: 'Vehicle removal search' },
+          ),
+          Drupal.t('Required fields are indicated with an asterisk (*).', {}, { context: 'Vehicle removal search' }),
+        ],
+        noSelectionsNotification: Drupal.t(
+          'You have not selected any search criteria. You will be informed of all vehicle removal requests.',
+          {},
+          { context: 'Vehicle removal search' },
+        ),
         tosCheckboxLabel: Drupal.t(
           'I have read the privacy policy and consent to the processing of my personal data for the purposes of the Vehicle Removal Alert Service',
           {},
@@ -97,8 +123,8 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
           { context: 'Vehicle removal search' },
         ),
         tosLinkUrl: hakuvahti.texts.hakuvahti_tos_link_url || '',
-        noSelectionsNotification: Drupal.t(
-          'You have not selected any search criteria. You will be informed of all vehicle removal requests.',
+        buttonLabel: Drupal.t(
+          'Subscribe to the Vehicle Removal Alert Service',
           {},
           { context: 'Vehicle removal search' },
         ),
@@ -108,22 +134,10 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
           { context: 'Vehicle removal search' },
         ),
         submittedDescription: Drupal.t(
-          'Next, you will need to confirm your subscription with the confirmation link sent to you by email or SMS, depending on your selection. If you subscribed to both notification channels, please confirm the subscription separately for each.',
+          'Confirm your subscription to the Vehicle Removal Alert Service with a link that you can choose to receive by email, SMS or both. If you subscribed to both email and SMS alerts, please confirm the subscription separately for both.',
           {},
           { context: 'Vehicle removal search' },
         ),
-        formDescription: [
-          Drupal.t(
-            'Make a search according to your specifications and save it as a search alert, whereby you will be notified of requests matching your search.',
-            {},
-            { context: 'Vehicle removal search' },
-          ),
-          Drupal.t(
-            'You can create as many search alerts as you want. You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
-            {},
-            { context: 'Vehicle removal search' },
-          ),
-        ],
       }}
     />
   );
@@ -146,6 +160,12 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
         <ResultsEmpty
           ref={scrollTarget}
           leftActions={searchMonitor}
+          resultText={Drupal.t('No vehicle removal requests', {}, { context: 'Vehicle removal search' })}
+          bodyText={Drupal.t(
+            'No vehicle removal requests were found with your search criteria.',
+            {},
+            { context: 'Vehicle removal search' },
+          )}
           additionalDescription={Drupal.t(
             'Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests.',
             {},
@@ -166,13 +186,16 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const updatePage = (e: SyntheticEvent, nextPage: number) => {
     e.preventDefault();
     setSubmittedState({ page: nextPage });
+    scrollToFirstItem();
   };
 
   return (
     <Header total={total} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
-      {results.map((hit) => (
-        <ResultCard key={hit._id} item={hit._source} />
-      ))}
+      <div ref={resultsListRef}>
+        {results.map((hit) => (
+          <ResultCard key={hit._id} item={hit._source} />
+        ))}
+      </div>
       {showPagination && (
         <Pagination currentPage={page || 1} pages={5} totalPages={totalPages} updatePage={updatePage} />
       )}
