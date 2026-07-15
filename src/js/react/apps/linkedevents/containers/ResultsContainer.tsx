@@ -126,7 +126,11 @@ function ResultsContainer({
             />
           )}
           {loading ? (
-            <GhostList bordered={cardsWithBorders} count={size} />
+            <GhostList
+              bordered={cardsWithBorders}
+              count={size}
+              modifierClass={isLifts ? 'simple-event-list__events--ghosts' : undefined}
+            />
           ) : isLifts ? (
             events.map((event) => (
               <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
