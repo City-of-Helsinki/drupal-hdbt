@@ -1,7 +1,8 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useEffect, useRef } from 'react';
+import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -54,79 +55,20 @@ const Header = ({
 const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
   const { page } = submittedState;
-  const scrollTarget = useRef<HTMLDivElement>(null);
   const dialogTargetRef = useRef<HTMLDivElement>(null);
   const resultsListRef = useRef<HTMLDivElement>(null);
-  const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
-  const lastDataKeyRef = useRef<string | null>(null);
-  const wasSearchingRef = useRef(false);
-  const skipResultsFocusRef = useRef(false);
-  const initialLoadDoneRef = useRef(false);
-  const hadGhostCardsRef = useRef(false);
 
   const query = useVehicleRemovalQuery();
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-
-  const isLoadingNewSearch = isValidating && query !== lastDataKeyRef.current;
-  const isSearching = (!data && !error) || isLoadingNewSearch;
-
-  useEffect(() => {
-    if (!isSearching || !initialLoadDoneRef.current) return;
-    hadGhostCardsRef.current = true;
-    const node = loadingHeaderRef.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [isSearching]);
-
-  useEffect(() => {
-    if (isValidating) {
-      if (initialLoadDoneRef.current) {
-        wasSearchingRef.current = true;
-      }
-    } else {
-      lastDataKeyRef.current = query;
-      initialLoadDoneRef.current = true;
-      if (wasSearchingRef.current) {
-        wasSearchingRef.current = false;
-        if (skipResultsFocusRef.current) {
-          skipResultsFocusRef.current = false;
-          return;
-        }
-        const node = scrollTarget.current;
-        if (node) {
-          node.setAttribute('tabindex', '-1');
-          node.focus({ preventScroll: true });
-          if (!hadGhostCardsRef.current) {
-            node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-          hadGhostCardsRef.current = false;
-        }
-      }
-    }
-  }, [isValidating, query]);
-
-  // Moving the focus to the results header even when the search query is unchanged.
-  // To do this we compare the query to the lastDataKeyRef and if they are identical
-  // we just move the focus directly to the results heading.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: submittedState is intentionally used as a trigger only
-  useEffect(() => {
-    if (!initialLoadDoneRef.current || query !== lastDataKeyRef.current || !data) return;
-    if (skipResultsFocusRef.current) {
-      skipResultsFocusRef.current = false;
-      return;
-    }
-    const node = scrollTarget.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [submittedState]);
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    query,
+    data,
+    error,
+    submittedState,
+  );
 
   const selectionTags: TagType[] = streets.map((street) => ({
     tag: street.label,
