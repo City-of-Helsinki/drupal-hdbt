@@ -5,9 +5,9 @@ import { paramsAtom } from '../store';
 
 const ResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
-  const { data, error, isLoading, isValidating } = UseQuery(params);
+  const { data, error, isValidating, queryString } = UseQuery(params);
 
-  return <ResultsList {...{ data, error, isLoading, isValidating }} />;
+  return <ResultsList {...{ data, error, isValidating, queryString }} />;
 };
 
 export default ResultsContainer;

@@ -1,9 +1,10 @@
 import { useAtomValue } from 'jotai';
-import { createRef } from 'react';
 
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
+import ResultsHeader from '@/react/common/ResultsHeader';
 import getScheduleCard from '../helpers/GetScheduleCard';
 import { paramsAtom } from '../store';
 import ResultCard from './ResultCard';
@@ -12,19 +13,29 @@ type ResultsListProps = {
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   data: any;
   error: string | Error;
-  isLoading: boolean;
   isValidating: boolean;
+  queryString: string;
 };
 
-const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps) => {
+const ResultsList = ({ data, error, isValidating, queryString }: ResultsListProps) => {
   const params = useAtomValue(paramsAtom);
-  const scrollTarget = createRef<HTMLDivElement>();
   const choices = Boolean(Object.keys(params).length);
+  const { scrollTarget, loadingHeaderRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    queryString,
+    data,
+    error,
+    params,
+  );
   useScrollToResults(scrollTarget, choices);
 
-  if (isLoading || isValidating) {
+  if (isSearching) {
     return (
       <div className='hdbt__loading-wrapper'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
         <LoadingOverlay />
       </div>
     );
