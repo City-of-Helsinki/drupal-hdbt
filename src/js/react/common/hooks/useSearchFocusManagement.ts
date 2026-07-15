@@ -48,7 +48,9 @@ const useSearchFocusManagement = <Trigger>(
       }
     } else {
       lastDataKeyRef.current = queryString;
-      initialLoadDoneRef.current = true;
+      if (data !== undefined || error) {
+        initialLoadDoneRef.current = true;
+      }
       if (wasSearchingRef.current) {
         wasSearchingRef.current = false;
         if (skipResultsFocusRef.current) {
@@ -66,7 +68,7 @@ const useSearchFocusManagement = <Trigger>(
         }
       }
     }
-  }, [isValidating, queryString]);
+  }, [isValidating, queryString, error, data]);
 
   // `trigger` is whatever atom-backed value gets a new reference on every form
   // submit, even when its values are unchanged. When queryString matches
