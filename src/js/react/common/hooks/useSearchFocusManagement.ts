@@ -20,8 +20,14 @@ const useSearchFocusManagement = <Trigger>(
   const skipResultsFocusRef = useRef(false);
   const initialLoadDoneRef = useRef(false);
   const hadGhostCardsRef = useRef(false);
+  // biome-ignore lint/suspicious/noExplicitAny: data shape varies per search
+  const lastKeyDataRef = useRef<any>(undefined);
 
-  const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current;
+  // With keepPreviousData:true, a cache hit is visible at render time: SWR immediately
+  // replaces `data` with the cached value for the new key, whereas a real fetch keeps
+  // `data` at the previous key's value until the response arrives. Only show ghost cards
+  // when we still have the previous key's data (genuine in-flight fetch).
+  const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current && data === lastKeyDataRef.current;
   const isSearching = (data === undefined && !error) || isLoadingNewSearch;
 
   // When ghost cards appear (user-initiated, not initial load):
@@ -48,6 +54,7 @@ const useSearchFocusManagement = <Trigger>(
       }
     } else {
       lastDataKeyRef.current = queryString;
+      lastKeyDataRef.current = data;
       if (data !== undefined || error) {
         initialLoadDoneRef.current = true;
       }

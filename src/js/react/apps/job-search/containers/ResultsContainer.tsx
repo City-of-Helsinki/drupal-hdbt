@@ -1,8 +1,9 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent, useRef } from 'react';
+import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
@@ -12,40 +13,53 @@ import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
 import useIndexQuery from '../hooks/useIndexQuery';
 import useResultsQuery from '../hooks/useResultsQuery';
-import { getPageAtom, hasChoicesAtom, setPageAtom } from '../store';
+import { getPageAtom, hasChoicesAtom, setPageAtom, submittedStateAtom } from '../store';
 import SearchMonitorContainer from './SearchMonitorContainer';
 
 const ResultsContainer = () => {
   const hasChoices = useAtomValue(hasChoicesAtom);
+  const submittedState = useAtomValue(submittedStateAtom);
   const { size } = Global;
   const currentPage = useAtomValue(getPageAtom);
   const setPage = useSetAtom(setPageAtom);
-  const scrollTarget = createRef<HTMLDivElement>();
-  const dialogTargetRef = createRef<HTMLDivElement>();
+  const dialogTargetRef = useRef<HTMLDivElement>(null);
   const { query, promoted, handleResults } = useResultsQuery();
 
-  const { data, error, isLoading, isValidating } = useIndexQuery({ keepPreviousData: true, query, multi: promoted });
+  const { data, error, isValidating } = useIndexQuery({ keepPreviousData: true, query, multi: promoted });
 
-  // Scroll to results when they change.
-  const shouldScrollOnRender = Boolean(hasChoices && !isLoading && !isValidating);
-  useScrollToResults(scrollTarget, shouldScrollOnRender);
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    query,
+    data,
+    error,
+    submittedState,
+  );
+
+  useScrollToResults(scrollTarget, hasChoices);
 
   const resultsListRef = useRef<HTMLDivElement>(null);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
+  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
     scrollToFirstItem();
+    skipResultsFocusRef.current = true;
   };
 
-  const getResults = () => {
-    // Show the GhostCards when the search is loading its inital state
-    // and when the filters are applied and new results are fetched.
-    if (isLoading || isValidating) {
-      return <GhostList count={size} />;
-    }
+  if (isSearching) {
+    return (
+      <div key='ghost' className='job-search__results'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
+        <GhostList count={size} />
+      </div>
+    );
+  }
 
+  const getResults = () => {
     if (error || data?.error) {
       return <ResultsError error={error || data.error} className='react-search__results' ref={scrollTarget} />;
     }
@@ -108,7 +122,7 @@ const ResultsContainer = () => {
   return (
     <div className='job-search__results'>
       <div ref={dialogTargetRef} />
-      <ResultWrapper loading={isLoading || isValidating}>{getResults()}</ResultWrapper>
+      <ResultWrapper loading={false}>{getResults()}</ResultWrapper>
     </div>
   );
 };
