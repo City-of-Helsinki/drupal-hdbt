@@ -163,10 +163,7 @@ const SearchMonitor = ({
       query: window.location.pathname + window.location.search,
       email: showEmail ? email : null,
       sms: showPhone ? phone : null,
-      searchDescription:
-        selectionTags.length > 0
-          ? selectionTags.map(({ tag }) => tag).join(', ')
-          : Drupal.t('You have not selected any search criteria.', {}, { context: 'Search monitor' }),
+      searchDescription: selectionTags.map(({ tag }) => tag).join(', '),
     };
 
     // Disable the button after submitting to prevent double submits
@@ -363,7 +360,7 @@ const SearchMonitor = ({
                 <p>
                   {texts.submittedDescription ??
                     Drupal.t(
-                      'Please confirm your search alert with the confirmation link sent to your email address.',
+                      'Please confirm your subscription by clicking the link sent to your email address.',
                       {},
                       { context: 'Search monitor submitted content' },
                     )}
@@ -386,9 +383,7 @@ const SearchMonitor = ({
             <Dialog.Header
               className='hdbt-search__search-monitor__heading'
               id={idTitle}
-              title={
-                texts.dialogTitle ?? Drupal.t('Receive search results by email', {}, { context: 'Search monitor' })
-              }
+              title={texts.dialogTitle ?? Drupal.t('Receive search alerts by email', {}, { context: 'Search monitor' })}
             />
             <Dialog.Content>
               <form noValidate onSubmit={onSubmit} className='hdbt-search__search-monitor'>
@@ -400,7 +395,7 @@ const SearchMonitor = ({
                       { context: 'Search monitor content' },
                     ),
                     Drupal.t(
-                      'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+                      'You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link you will receive with each notification.',
                       {},
                       { context: 'Search monitor content' },
                     ),
