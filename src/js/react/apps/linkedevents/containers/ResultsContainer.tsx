@@ -127,6 +127,10 @@ function ResultsContainer({
           )}
           {loading ? (
             <GhostList bordered={cardsWithBorders} count={size} />
+          ) : isLifts ? (
+            events.map((event) => (
+              <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+            ))
           ) : (
             <div ref={resultsListRef}>
               {events.map((event) => (
