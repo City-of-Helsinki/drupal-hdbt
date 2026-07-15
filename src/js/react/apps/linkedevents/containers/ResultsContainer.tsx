@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
@@ -12,7 +13,7 @@ import Pagination from '../components/Pagination';
 import type { ResultCardProps } from '../components/ResultCard';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
-import { addressAtom, initializedAtom, settingsAtom, urlAtom } from '../store';
+import { addressAtom, initializedAtom, settingsAtom, submittedParamsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 
 type ResultsContainerProps = {
@@ -45,18 +46,27 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
   const isLifts = settings.layout === 'lifts';
-  const scrollTarget = useRef<HTMLDivElement>(null);
   const resultsListRef = useRef<HTMLDivElement>(null);
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
+  const submittedParams = useAtomValue(submittedParamsAtom);
   // Checks when user makes the first search and api url is set.
   const choices = Boolean(url);
   const readInitialized = useAtomCallback(useCallback((get) => get(initializedAtom), []));
   const setInitialized = useSetAtom(initializedAtom);
 
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    loading || validating,
+    url,
+    loading ? undefined : events,
+    error,
+    submittedParams,
+  );
+
   useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, loading || validating);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scrollTarget.current is a ref, intentionally read at effect run time
   useEffect(() => {
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
       setInitialized(true);
@@ -85,8 +95,18 @@ function ResultsContainer({
   const count = countNumber.toString();
 
   const getContent = () => {
-    if (loading && !events.length) {
-      return <GhostList bordered={cardsWithBorders} count={size} />;
+    if (isSearching && !events.length) {
+      return (
+        // Different keys force React to fully replace the DOM between ghost and results
+        // instead of patching in place, which prevents a removeChild crash in React version 17.
+        <div key='ghost' className='react-search__results'>
+          <ResultsHeader
+            resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+            ref={loadingHeaderRef}
+          />
+          <GhostList bordered={cardsWithBorders} count={size} />
+        </div>
+      );
     }
     if (addressRequired && !address) {
       return (
@@ -125,7 +145,7 @@ function ResultsContainer({
               ref={scrollTarget}
             />
           )}
-          {loading ? (
+          {isSearching ? (
             <GhostList bordered={cardsWithBorders} count={size} />
           ) : (
             <div ref={resultsListRef}>
@@ -135,7 +155,14 @@ function ResultsContainer({
             </div>
           )}
           {!isLifts && !settings.hidePagination && (
-            <Pagination onPageChange={scrollToFirstItem} pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+            <Pagination
+              onPageChange={() => {
+                scrollToFirstItem();
+                skipResultsFocusRef.current = true;
+              }}
+              pages={5}
+              totalPages={addLastPage ? pages + 1 : pages}
+            />
           )}
         </>
       );
