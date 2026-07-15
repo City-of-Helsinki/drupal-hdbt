@@ -1234,6 +1234,26 @@ msgctxt "Event signup period"
 msgid "Registration time"
 msgstr "Anmälningstid"
 
+msgctxt "Event price label"
+msgid "Price"
+msgstr "Pris"
+
+msgctxt "Event audience age label"
+msgid "Age"
+msgstr "Ålder"
+
+msgctxt "Event audience age value"
+msgid "@min–@max years old"
+msgstr "@min–@max år"
+
+msgctxt "Event audience age value"
+msgid "@age year-olds and over"
+msgstr "Minst @age-åringar"
+
+msgctxt "Event audience age value"
+msgid "@age year-olds and under"
+msgstr "Högst @age-åringar"
+
 msgctxt "Accordion open all"
 msgid "Open all"
 msgstr "Öppna alla"
