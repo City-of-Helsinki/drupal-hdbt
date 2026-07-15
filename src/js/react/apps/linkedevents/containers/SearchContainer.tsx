@@ -59,7 +59,6 @@ const SearchContainer = () => {
   };
 
   const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
     const response = await Sentry.startSpan(
       { name: 'Linkedevents api call', op: 'external.api' },
       async () => await timeoutFetch(reqUrl, undefined, 10000),

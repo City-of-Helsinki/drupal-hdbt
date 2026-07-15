@@ -95,7 +95,7 @@ function ResultsContainer({
   const count = countNumber.toString();
 
   const getContent = () => {
-    if (isSearching && !events.length) {
+    if (isSearching) {
       return (
         // Different keys force React to fully replace the DOM between ghost and results
         // instead of patching in place, which prevents a removeChild crash in React version 17.
@@ -145,15 +145,11 @@ function ResultsContainer({
               ref={scrollTarget}
             />
           )}
-          {isSearching ? (
-            <GhostList bordered={cardsWithBorders} count={size} />
-          ) : (
-            <div ref={resultsListRef}>
-              {events.map((event) => (
-                <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
-              ))}
-            </div>
-          )}
+          <div ref={resultsListRef}>
+            {events.map((event) => (
+              <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+            ))}
+          </div>
           {!isLifts && !settings.hidePagination && (
             <Pagination
               onPageChange={() => {
