@@ -9,6 +9,8 @@ const ResultsContainer = () => {
 
   const fetcher = useCallback(
     async (body: string) => {
+      // Temporary delay for focus behaviour debugging — remove before merging.
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const response = await fetch(`${url}/mobilenote_data/_search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

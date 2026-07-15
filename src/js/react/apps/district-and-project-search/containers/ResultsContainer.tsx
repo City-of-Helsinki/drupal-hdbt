@@ -96,9 +96,9 @@ const ResultsContainer = (): JSX.Element => {
     }
   }, [isValidating, queryString]);
 
-  // urlAtom always writes a new object on every form submit, so urlParams gets a new
-  // reference even when the search is identical. When queryString matches lastDataKeyRef
-  // the query is unchanged and SWR will not revalidate — focus the results heading directly.
+  // Moving the focus to the results header even when the search query is unchanged.
+  // To do this we compare the queryString to the lastDataKeyRef and if they are identical
+  // we just move the focus directly to the results heading.
   // biome-ignore lint/correctness/useExhaustiveDependencies: urlParams is intentionally used as a trigger only
   useEffect(() => {
     if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || !data) return;

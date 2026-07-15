@@ -95,9 +95,9 @@ const ResultsContainer = ({
     }
   }, [isValidating, queryString]);
 
-  // urlUpdateAtom always creates a new urlParams object, so this effect fires on every
-  // form submit. When queryString matches lastDataKeyRef, the search is identical to the
-  // previous one and SWR won't revalidate — focus results directly in that case.
+  // Moving the focus to the results header even when the search query is unchanged.
+  // To do this we compare the queryString to the lastDataKeyRef and if they are identical
+  // we just move the focus directly to the results heading.
   // biome-ignore lint/correctness/useExhaustiveDependencies: urlParams is intentionally used as a trigger only
   useEffect(() => {
     if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || !data) return;
