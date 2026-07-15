@@ -110,10 +110,9 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     }
   }, [isValidating, query]);
 
-  // submittedStateAtom always writes a new object on every form submit, so
-  // submittedState gets a new reference even when the search is identical. When
-  // query matches lastDataKeyRef the query is unchanged and SWR will not
-  // revalidate — focus the results heading directly in that case.
+  // Moving the focus to the results header even when the search query is unchanged.
+  // To do this we compare the query to the lastDataKeyRef and if they are identical
+  // we just move the focus directly to the results heading.
   // biome-ignore lint/correctness/useExhaustiveDependencies: submittedState is intentionally used as a trigger only
   useEffect(() => {
     if (!initialLoadDoneRef.current || query !== lastDataKeyRef.current || !data) return;
