@@ -58,7 +58,9 @@ const ResultsContainer = (): JSX.Element => {
 
   if (isSearching) {
     return (
-      <div className='react-search__results'>
+      // Different keys force React to fully replace the DOM between ghost and results
+      // instead of patching in place, which prevents a removeChild crash in React version 17.
+      <div key='ghost' className='react-search__results'>
         <ResultsHeader
           resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
           ref={loadingHeaderRef}
@@ -89,7 +91,7 @@ const ResultsContainer = (): JSX.Element => {
   };
 
   return (
-    <div className='react-search__results'>
+    <div key='results' className='react-search__results'>
       <ResultsHeader
         resultText={
           // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501

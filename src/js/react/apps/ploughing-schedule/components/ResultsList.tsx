@@ -31,7 +31,9 @@ const ResultsList = ({ data, error, isValidating, queryString }: ResultsListProp
 
   if (isSearching) {
     return (
-      <div className='hdbt__loading-wrapper'>
+      // Different keys force React to fully replace the DOM between ghost and results
+      // instead of patching in place, which prevents a removeChild crash in React version 17.
+      <div key='ghost' className='hdbt__loading-wrapper'>
         <ResultsHeader
           resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
           ref={loadingHeaderRef}
@@ -50,7 +52,7 @@ const ResultsList = ({ data, error, isValidating, queryString }: ResultsListProp
   const address = params.address?.replace(/^(?![A-Za-z]\d+$)(.*?)(\s*\d+\w?)$/, '$1') ?? '';
 
   return (
-    <div className='hdbt-search--react__results'>
+    <div key='results' className='hdbt-search--react__results'>
       {results.length ? (
         <ResultCard
           {...getScheduleCard(results[0]._source.maintenance_class, several)}
