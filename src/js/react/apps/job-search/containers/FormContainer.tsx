@@ -2,7 +2,7 @@ import { Button } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 import { AreaFilter } from '../components/AreaFilter';
 import { CheckBoxFilters } from '../components/CheckBoxFilters';
@@ -19,6 +19,7 @@ const FormContainer = () => {
   const submitState = useSetAtom(submitStateAtom);
   const readState = useAtomCallback(useCallback((get) => get(searchStateAtom), []));
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
+  const formRef = useRef(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,8 +42,8 @@ const FormContainer = () => {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
-      <SearchBar />
+    <form ref={formRef} className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
+      <SearchBar formRef={formRef} />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>
           <div className='job-search-form__filter job-search-form__dropdown--upper'>
