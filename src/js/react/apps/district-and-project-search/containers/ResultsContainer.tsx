@@ -1,9 +1,10 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useEffect, useRef } from 'react';
+import { type SyntheticEvent, useRef } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -25,17 +26,9 @@ const ResultsContainer = (): JSX.Element => {
   const { error: initializationError } = useAtomValue(configurationsAtom);
   const setPage = useSetAtom(setPageAtom);
   const currentPage = useAtomValue(pageAtom);
-  const scrollTarget = useRef<HTMLDivElement>(null);
   const resultsListRef = useRef<HTMLDivElement>(null);
-  const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
-  const lastDataKeyRef = useRef<string | null>(null);
-  const wasSearchingRef = useRef(false);
-  const skipResultsFocusRef = useRef(false);
-  const initialLoadDoneRef = useRef(false);
-  const hadGhostCardsRef = useRef(false);
 
   const choices = Boolean(window.location.search?.length);
-  useScrollToResults(scrollTarget, choices);
 
   const fetcher = async () => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
@@ -54,65 +47,14 @@ const ResultsContainer = (): JSX.Element => {
     keepPreviousData: true,
   });
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-
-  const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current;
-  const isSearching = (!data && !error) || isLoadingNewSearch;
-
-  useEffect(() => {
-    if (!isSearching || !initialLoadDoneRef.current) return;
-    hadGhostCardsRef.current = true;
-    const node = loadingHeaderRef.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [isSearching]);
-
-  useEffect(() => {
-    if (isValidating) {
-      if (initialLoadDoneRef.current) {
-        wasSearchingRef.current = true;
-      }
-    } else {
-      lastDataKeyRef.current = queryString;
-      initialLoadDoneRef.current = true;
-      if (wasSearchingRef.current) {
-        wasSearchingRef.current = false;
-        if (skipResultsFocusRef.current) {
-          skipResultsFocusRef.current = false;
-          return;
-        }
-        const node = scrollTarget.current;
-        if (node) {
-          node.setAttribute('tabindex', '-1');
-          node.focus({ preventScroll: true });
-          if (!hadGhostCardsRef.current) {
-            node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-          hadGhostCardsRef.current = false;
-        }
-      }
-    }
-  }, [isValidating, queryString]);
-
-  // Moving the focus to the results header even when the search query is unchanged.
-  // To do this we compare the queryString to the lastDataKeyRef and if they are identical
-  // we just move the focus directly to the results heading.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: urlParams is intentionally used as a trigger only
-  useEffect(() => {
-    if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || !data) return;
-    if (skipResultsFocusRef.current) {
-      skipResultsFocusRef.current = false;
-      return;
-    }
-    const node = scrollTarget.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [urlParams]);
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    queryString,
+    data,
+    error,
+    urlParams,
+  );
+  useScrollToResults(scrollTarget, choices);
 
   if (isSearching) {
     return (

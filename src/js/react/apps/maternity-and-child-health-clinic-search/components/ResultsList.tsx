@@ -1,8 +1,9 @@
 import { useAtomValue } from 'jotai';
-import { createRef, type SyntheticEvent, useRef, useState } from 'react';
+import { type SyntheticEvent, useRef, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -22,23 +23,38 @@ type ResultsListProps = {
   isLoading: boolean;
   isValidating: boolean;
   page?: number;
+  queryString: string;
   // biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
   updatePage: Function;
 };
 
-const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }: ResultsListProps) => {
+const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, updatePage }: ResultsListProps) => {
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
-  const scrollTarget = createRef<HTMLDivElement>();
   const resultsListRef = useRef<HTMLDivElement>(null);
   const { sv_only, home_address } = params;
   const choices = Boolean(Object.keys(params).length);
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    queryString,
+    data,
+    error,
+    params,
+  );
   useScrollToResults(scrollTarget, choices);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
 
-  if (isLoading || isValidating) {
-    return useMap ? <LoadingOverlay /> : <GhostList count={size} />;
+  if (isSearching) {
+    return (
+      <div className='react-search__results'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
+        {useMap ? <LoadingOverlay /> : <GhostList count={size} />}
+      </div>
+    );
   }
 
   if (error) {
@@ -126,6 +142,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, updatePage }:
               e.preventDefault();
               updatePage(nextPage);
               scrollToFirstItem();
+              skipResultsFocusRef.current = true;
             }}
           />
         )}

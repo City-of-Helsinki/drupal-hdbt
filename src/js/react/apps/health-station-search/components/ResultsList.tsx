@@ -1,8 +1,9 @@
 import { useAtomValue } from 'jotai';
-import { type SyntheticEvent, useEffect, useRef, useState } from 'react';
+import { type SyntheticEvent, useRef, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -31,76 +32,18 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
-  const scrollTarget = useRef<HTMLDivElement>(null);
   const resultsListRef = useRef<HTMLDivElement>(null);
-  const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
-  const lastDataKeyRef = useRef<string | null>(null);
-  const wasSearchingRef = useRef(false);
-  const skipResultsFocusRef = useRef(false);
-  const initialLoadDoneRef = useRef(false);
-  const hadGhostCardsRef = useRef(false);
   const { sv_only, home_address } = params;
   const choices = Boolean(Object.keys(params).length);
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    queryString,
+    data,
+    error,
+    params,
+  );
   useScrollToResults(scrollTarget, choices);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
-  const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current;
-  const isSearching = (data === undefined && !error) || isLoadingNewSearch;
-
-  useEffect(() => {
-    if (!isSearching || !initialLoadDoneRef.current) return;
-    hadGhostCardsRef.current = true;
-    const node = loadingHeaderRef.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [isSearching]);
-
-  useEffect(() => {
-    if (isValidating) {
-      if (initialLoadDoneRef.current) {
-        wasSearchingRef.current = true;
-      }
-    } else {
-      lastDataKeyRef.current = queryString;
-      initialLoadDoneRef.current = true;
-      if (wasSearchingRef.current) {
-        wasSearchingRef.current = false;
-        if (skipResultsFocusRef.current) {
-          skipResultsFocusRef.current = false;
-          return;
-        }
-        const node = scrollTarget.current;
-        if (node) {
-          node.setAttribute('tabindex', '-1');
-          node.focus({ preventScroll: true });
-          if (!hadGhostCardsRef.current) {
-            node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-          hadGhostCardsRef.current = false;
-        }
-      }
-    }
-  }, [isValidating, queryString]);
-
-  // Moving the focus to the results header even when the search query is unchanged.
-  // To do this we compare the queryString to the lastDataKeyRef and if they are identical
-  // we just move the focus directly to the results heading.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: params is intentionally used as a trigger only
-  useEffect(() => {
-    if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || data === undefined) return;
-    if (skipResultsFocusRef.current) {
-      skipResultsFocusRef.current = false;
-      return;
-    }
-    const node = scrollTarget.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  }, [params]);
 
   if (isSearching) {
     return (
