@@ -12,13 +12,17 @@ const useSearchFocusManagement = <Trigger>(
   data: any,
   error: unknown,
   trigger: Trigger,
+  // Set to false when the component has no automatic initial fetch (e.g. the
+  // query starts empty). In that case the first user-triggered search should
+  // also receive focus, so the guard starts already cleared.
+  suppressInitialLoad = true,
 ) => {
   const scrollTarget = useRef<HTMLDivElement>(null);
   const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
   const lastDataKeyRef = useRef<string | null>(null);
   const wasSearchingRef = useRef(false);
   const skipResultsFocusRef = useRef(false);
-  const initialLoadDoneRef = useRef(false);
+  const initialLoadDoneRef = useRef(!suppressInitialLoad);
   const hadGhostCardsRef = useRef(false);
   // biome-ignore lint/suspicious/noExplicitAny: data shape varies per search
   const lastKeyDataRef = useRef<any>(undefined);
@@ -28,7 +32,7 @@ const useSearchFocusManagement = <Trigger>(
   // `data` at the previous key's value until the response arrives. Only show ghost cards
   // when we still have the previous key's data (genuine in-flight fetch).
   const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current && data === lastKeyDataRef.current;
-  const isSearching = (data === undefined && !error) || isLoadingNewSearch;
+  const isSearching = (isValidating && data === undefined && !error) || isLoadingNewSearch;
 
   // When ghost cards appear (user-initiated, not initial load):
   // scroll to and focus the ghost heading, and mark that ghost cards were shown.
