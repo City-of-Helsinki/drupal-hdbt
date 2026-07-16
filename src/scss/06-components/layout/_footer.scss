@@ -146,7 +146,7 @@ footer.footer .menu__link {
 .footer__back-to-top {
   --outline-gutter: 2px;
   --outline-width: 3px;
-  --focus-outline-color: var(--hdbt-color-black);
+  --focus-outline-color: var(--color-black-90);
 
   @include font('h4');
   align-items: center;
@@ -213,11 +213,11 @@ footer.footer .menu__link {
 
 // Footer color-scheme Dark
 .footer--dark {
-  background-color: $hdbt-color-black;
+  background-color: $color-black-90;
   color: $color-white;
 
   .hds-koros {
-    color: $hdbt-color-black;
+    color: $color-black-90;
   }
 
   a {
