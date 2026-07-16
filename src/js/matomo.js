@@ -8,17 +8,10 @@ function getBrowserSize() {
   function loadMatomoAnalytics() {
     const { helfi_environment: environment } = drupalSettings;
 
-    if (!(Drupal.cookieConsent.getConsentStatus(['statistics']) && drupalSettings.matomo_site_id)) {
-      // Allow catching referrer-header from visitors who accept cookies for the first time.
-      window.addEventListener(
-        'hds-cookie-consent-changed',
-        () => {
-          Drupal.cookieConsent.loadFunction(loadMatomoAnalytics);
-        },
-        { once: true },
-      );
+    if (!drupalSettings.matomo_site_id) {
       return;
     }
+
     const getViewportWidth = () => window.innerWidth;
     const getViewportHeight = () => window.innerHeight;
     const getLanguage = () => document.querySelector('html')?.lang || 'unknown';
@@ -198,6 +191,27 @@ function getBrowserSize() {
       'home_address',
     ];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+
+    // Always start in cookieless mode. Visitors are tracked anonymously until
+    // they grant consent, at which point cookies are enabled.
+    _paq.push(['requireCookieConsent']);
+
+    if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+      // Consent was given in a previous session — enable cookies immediately.
+      _paq.push(['rememberCookieConsentGiven']);
+    } else {
+      // Enable cookies the moment the user accepts statistics cookies.
+      window.addEventListener(
+        'hds-cookie-consent-changed',
+        () => {
+          if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+            _paq.push(['rememberCookieConsentGiven']);
+          }
+        },
+        { once: true },
+      );
+    }
+
     _paq.push(['setExcludedQueryParams', excludedParams]);
     _paq.push(['setCustomDimension', 2, getViewportWidth()]);
     _paq.push(['setCustomDimension', 3, getViewportHeight()]);
