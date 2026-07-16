@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-// Focus/scroll behaviour shared by SWR-backed search results lists (keepPreviousData: true).
+// Focus/scroll behaviour shared by search results lists (keepPreviousData: true).
 // - Initial page load: no focus, no scroll.
-// - New search / pager click: ghost cards get focus + scroll to the "searching" heading.
-// - Results arrive after ghost cards: focus results heading, no scroll (already there).
-// - Resubmitting an unchanged query (SWR cache hit, no ghost): focus + scroll to results heading.
+// - New search / pager click: ghost cards "Searching for results..." heading focus, scroll to the heading.
+// - Results arrive after ghost cards: focus to results heading, no scroll.
+// - Resubmitting an unchanged query (hit from cache, no ghosts): focus and scroll to results heading.
 const useSearchFocusManagement = <Trigger>(
   isValidating: boolean,
   queryString: string,
@@ -12,9 +12,8 @@ const useSearchFocusManagement = <Trigger>(
   data: any,
   error: unknown,
   trigger: Trigger,
-  // Set to false when the component has no automatic initial fetch (e.g. the
-  // query starts empty). In that case the first user-triggered search should
-  // also receive focus, so the guard starts already cleared.
+  // Set to false when the component has no automatic initial fetch (for example the
+  // AI assisted site-search).
   suppressInitialLoad = true,
 ) => {
   const scrollTarget = useRef<HTMLDivElement>(null);
@@ -27,14 +26,13 @@ const useSearchFocusManagement = <Trigger>(
   // biome-ignore lint/suspicious/noExplicitAny: data shape varies per search
   const lastKeyDataRef = useRef<any>(undefined);
 
-  // With keepPreviousData:true, a cache hit is visible at render time: SWR immediately
-  // replaces `data` with the cached value for the new key, whereas a real fetch keeps
-  // `data` at the previous key's value until the response arrives. Only show ghost cards
-  // when we still have the previous key's data (genuine in-flight fetch).
+  // Only show ghost cards when the result is not served from cache. A cached result updates
+  // data immediately, so the data changes at the same time as the search key.
+  // A real fetch keeps the old data unchanged until the response arrives.
   const isLoadingNewSearch = isValidating && queryString !== lastDataKeyRef.current && data === lastKeyDataRef.current;
   const isSearching = (isValidating && data === undefined && !error) || isLoadingNewSearch;
 
-  // When ghost cards appear (user-initiated, not initial load):
+  // When ghost cards appear (not initial load):
   // scroll to and focus the ghost heading, and mark that ghost cards were shown.
   useEffect(() => {
     if (!isSearching || !initialLoadDoneRef.current) return;
@@ -49,7 +47,7 @@ const useSearchFocusManagement = <Trigger>(
 
   // When a search completes (isValidating false → true → false cycle):
   // focus the results heading. Skip on initial page load. Skip scroll if ghost
-  // cards already scrolled the page. Yield to useScrollToFirstItem for pager.
+  // cards already scrolled the top. Yield to useScrollToFirstItem for pager.
   // Also keeps lastDataKeyRef in sync for cache-hit detection below.
   useEffect(() => {
     if (isValidating) {
@@ -81,10 +79,9 @@ const useSearchFocusManagement = <Trigger>(
     }
   }, [isValidating, queryString, error, data]);
 
-  // `trigger` is whatever atom-backed value gets a new reference on every form
-  // submit, even when its values are unchanged. When queryString matches
-  // lastDataKeyRef the query itself is unchanged and SWR will not revalidate —
-  // focus the results heading directly in that case.
+  // When the user submits the same search again, the query hasn't changed so no
+  // new network request is made and no ghost cards appear — focus the results
+  // heading directly instead.
   // biome-ignore lint/correctness/useExhaustiveDependencies: trigger is intentionally used only to detect resubmits
   useEffect(() => {
     if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || data === undefined) return;
