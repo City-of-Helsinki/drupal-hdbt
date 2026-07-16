@@ -1,5 +1,4 @@
 :root {
-  --hdbt-color-black: #121212;
   --hdbt-default-link-color: var(--color-black-90);
 
   // Default color variables.
@@ -12,20 +11,20 @@
   --hdbt-text-color--bus: var(--color-white);
   --hdbt-text-color--metro: var(--color-white);
   --hdbt-text-color--tram: var(--color-white);
-  --hdbt-text-color--gold: var(--hdbt-color-black);
-  --hdbt-text-color--silver: var(--hdbt-color-black);
-  --hdbt-text-color--copper: var(--hdbt-color-black);
-  --hdbt-text-color--engel: var(--hdbt-color-black);
-  --hdbt-text-color--fog: var(--hdbt-color-black);
-  --hdbt-text-color--summer: var(--hdbt-color-black);
-  --hdbt-text-color--suomenlinna: var(--hdbt-color-black);
+  --hdbt-text-color--gold: var(--color-black-90);
+  --hdbt-text-color--silver: var(--color-black-90);
+  --hdbt-text-color--copper: var(--color-black-90);
+  --hdbt-text-color--engel: var(--color-black-90);
+  --hdbt-text-color--fog: var(--color-black-90);
+  --hdbt-text-color--summer: var(--color-black-90);
+  --hdbt-text-color--suomenlinna: var(--color-black-90);
 
   // Default button colors based on background colors.
-  --hdbt-button-text-color--coat-of-arms: var(--hdbt-color-black);
-  --hdbt-button-text-color--brick: var(--hdbt-color-black);
-  --hdbt-button-text-color--bus: var(--hdbt-color-black);
-  --hdbt-button-text-color--metro: var(--hdbt-color-black);
-  --hdbt-button-text-color--tram: var(--hdbt-color-black);
+  --hdbt-button-text-color--coat-of-arms: var(--color-black-90);
+  --hdbt-button-text-color--brick: var(--color-black-90);
+  --hdbt-button-text-color--bus: var(--color-black-90);
+  --hdbt-button-text-color--metro: var(--color-black-90);
+  --hdbt-button-text-color--tram: var(--color-black-90);
   --hdbt-button-text-color--gold: var(--color-white);
   --hdbt-button-text-color--silver: var(--color-white);
   --hdbt-button-text-color--copper: var(--color-white);

@@ -46,6 +46,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
       openHash='#open-hakuvahti'
       selectionTags={selectionTags}
       texts={{
+        buttonLabel: Drupal.t('Subscribe to search alert', {}, { context: 'News search monitor' }),
         dialogTitle: Drupal.t('Receive news search alerts by email', {}, { context: 'News search monitor' }),
         formDescription: [
           Drupal.t(
@@ -54,18 +55,28 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
             { context: 'News search monitor' },
           ),
           Drupal.t(
-            'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+            'You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link you will receive with each notification.',
             {},
             { context: 'News search monitor' },
           ),
           Drupal.t('Required fields are indicated with an asterisk (*).', {}, { context: 'News search monitor' }),
         ],
+        submittedTitle: Drupal.t(
+          'You are almost done subscribing to search alert',
+          {},
+          { context: 'News search monitor' },
+        ),
+        submittedDescription: Drupal.t(
+          'Please confirm your subscription by clicking the link sent to your email address.',
+          {},
+          { context: 'News search monitor' },
+        ),
         tosCheckboxLabel: Drupal.t(
           'I consent to the processing of my personal data for the purpose of the news alert service',
           {},
           { context: 'News search monitor' },
         ),
-        tosLinkText: Drupal.t('Read the privacy notice', {}, { context: 'News search monitor' }),
+        tosLinkText: Drupal.t('Read the register of communications', {}, { context: 'News search monitor' }),
         tosLinkUrl: hakuvahti.texts.hakuvahti_tos_link_url || '',
         noSelectionsNotification: Drupal.t(
           'You have not selected any search criteria. You will be notified of all the latest news.',
