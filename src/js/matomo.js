@@ -201,11 +201,14 @@ function getBrowserSize() {
       _paq.push(['rememberCookieConsentGiven']);
     } else {
       // Enable cookies the moment the user accepts statistics cookies.
+      // window._paq must be used here instead of the local _paq variable,
+      // because Matomo swaps out window._paq for its own live command handler
+      // once the tracker script finishes loading.
       window.addEventListener(
         'hds-cookie-consent-changed',
         () => {
           if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
-            _paq.push(['rememberCookieConsentGiven']);
+            window._paq.push(['rememberCookieConsentGiven']);
           }
         },
         { once: true },
