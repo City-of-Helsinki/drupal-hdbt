@@ -129,11 +129,17 @@ function ResultsContainer({
             <GhostList
               bordered={cardsWithBorders}
               count={size}
+              element={isLifts ? 'li' : undefined}
               modifierClass={isLifts ? 'simple-event-list__events--ghosts' : undefined}
             />
           ) : isLifts ? (
             events.map((event) => (
-              <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+              <Card
+                key={event.id}
+                element='li'
+                {...event}
+                {...(cardsWithBorders && { cardModifierClass: 'card--border' })}
+              />
             ))
           ) : (
             <div ref={resultsListRef}>
