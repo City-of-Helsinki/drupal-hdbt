@@ -94,4 +94,53 @@ describe('CardItem', () => {
     expect(tagsSection?.textContent).toContain('Culture');
     expect(tagsSection?.textContent).toContain('Sports');
   });
+
+  test('renders a plain-text helptext', () => {
+    const { container } = render(<CardItem cardTitle='Hello' cardHelptext='A helpful note' />);
+    expect(container.querySelector('.card__helptext p')?.textContent).toBe('A helpful note');
+  });
+
+  test('parses an HTML helptext when cardHelptextHtml is set', () => {
+    const { container } = render(<CardItem cardTitle='Hello' cardHelptext='<em>Note</em>' cardHelptextHtml />);
+    expect(container.querySelector('.card__helptext em')?.textContent).toBe('Note');
+  });
+
+  test('renders each meta row with its label and content', () => {
+    const { container } = render(
+      <CardItem
+        cardTitle='Hello'
+        distance='2 km'
+        date='5.3.2026'
+        daterange='5.3–9.3'
+        theme='Nature'
+        language='Finnish'
+        time='18:00'
+      />,
+    );
+    const text = container.querySelector('.card__metas')?.textContent ?? '';
+    expect(text).toContain('Distance: 2 km');
+    expect(text).toContain('Date: 5.3.2026');
+    expect(text).toContain('Estimated schedule: 5.3–9.3');
+    expect(text).toContain('Theme: Nature');
+    expect(text).toContain('Language: Finnish');
+    expect(text).toContain('Time: 18:00');
+  });
+
+  test('renders the registration-required meta row', () => {
+    const { container } = render(<CardItem cardTitle='Hello' registrationRequired />);
+    expect(container.querySelector('.card__metas')?.textContent).toContain(
+      'The event requires registration or a ticket.',
+    );
+  });
+
+  test('renders custom top and bottom meta rows', () => {
+    const { getByText } = render(
+      <CardItem
+        cardTitle='Hello'
+        customMetaRows={{ top: [<div key='t'>Top row</div>], bottom: [<div key='b'>Bottom row</div>] }}
+      />,
+    );
+    expect(getByText('Top row')).toBeTruthy();
+    expect(getByText('Bottom row')).toBeTruthy();
+  });
 });
