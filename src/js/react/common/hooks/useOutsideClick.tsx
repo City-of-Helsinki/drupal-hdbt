@@ -1,9 +1,7 @@
-import { type MutableRefObject, useEffect } from 'react';
+import { type RefObject, useEffect } from 'react';
 
 // Make any element listen for pointer and focus events that land outside it.
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-// biome-ignore lint/complexity/noBannedTypes: @todo UHF-12501
-const useOutsideClick = (ref: MutableRefObject<any>, callback: Function) => {
+const useOutsideClick = <T extends Node>(ref: RefObject<T | null>, callback: () => void) => {
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
       if (!ref.current?.contains(event.target as Node)) {

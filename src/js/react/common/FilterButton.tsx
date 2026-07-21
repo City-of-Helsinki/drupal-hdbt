@@ -22,8 +22,8 @@ const FilterButton = ({ value, clearSelection }: FilterButtonProps) => (
           '--background-color': 'var(--color-black-10)',
           '--border-color-focus': 'var(--color-black-90)',
           '--border-color-hover': 'var(--color-black-90)',
-          '--color-focus': 'var(--hdbt-color-black)',
-          '--color-hover': 'var(--hdbt-color-black)',
+          '--color-focus': 'var(--color-black-90)',
+          '--color-hover': 'var(--color-black-90)',
           '--outline-color': 'var(--color-black-90)',
           '--outline-color-hover': 'var(--color-black-90)',
         } as CSSProperties
