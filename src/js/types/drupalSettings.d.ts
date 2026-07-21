@@ -5,6 +5,7 @@ declare namespace drupalSettings {
     baseUrls: {
       [key in 'fi' | 'en' | 'sv']: string;
     };
+    etusivuBaseUrl?: string;
     imagePlaceholder: string;
     data: {
       [key: string]: {

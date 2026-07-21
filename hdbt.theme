@@ -14,6 +14,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
 use Drupal\helfi_api_base\Environment\ActiveProjectRoles;
+use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
 use Drupal\helfi_api_base\Environment\Project;
 use Drupal\helfi_api_base\Environment\ProjectRoleEnum;
@@ -1539,6 +1540,25 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
   );
 
   $variables['#attached']['drupalSettings']['helfi_events']['baseUrl'] = LinkedEvents::BASE_URL;
+
+  try {
+    /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolver $environmentResolver */
+    $environmentResolver = \Drupal::service('helfi_api_base.environment_resolver');
+    try {
+      $etusivuEnvironment = $environmentResolver->getEnvironment(
+        Project::ETUSIVU,
+        $environmentResolver->getActiveEnvironmentName(),
+      );
+    }
+    catch (\InvalidArgumentException) {
+      // No matching etusivu environment for the current env — fall back to prod.
+      $etusivuEnvironment = $environmentResolver->getEnvironment(Project::ETUSIVU, EnvironmentEnum::Prod->value);
+    }
+    $variables['#attached']['drupalSettings']['helfi_events']['etusivuBaseUrl'] = $etusivuEnvironment->getBaseUrl();
+  }
+  catch (\Exception) {
+    // Service unavailable — omit etusivuBaseUrl; the frontend falls back to image.url.
+  }
 }
 
 /**
