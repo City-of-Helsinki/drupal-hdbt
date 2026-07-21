@@ -23,5 +23,3 @@ export const EventsGhostList = ({ count, isLifts }: EventsGhostListProps) => {
 
   return isLifts ? <ul className='simple-event-list__events'>{ghosts}</ul> : ghosts;
 };
-
-export default EventsGhostList;

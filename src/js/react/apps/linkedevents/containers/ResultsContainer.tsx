@@ -128,14 +128,11 @@ function ResultsContainer({
           {loading ? (
             <EventsGhostList count={size} isLifts={isLifts} />
           ) : isLifts ? (
-            events.map((event) => (
-              <Card
-                key={event.id}
-                element='li'
-                {...event}
-                {...(cardsWithBorders && { cardModifierClass: 'card--border' })}
-              />
-            ))
+            <ul className='simple-event-list__events'>
+              {events.map((event) => (
+                <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+              ))}
+            </ul>
           ) : (
             <div ref={resultsListRef}>
               {events.map((event) => (
@@ -155,7 +152,7 @@ function ResultsContainer({
 
   return (
     <div className={`react-search__list-container${loading ? ' loading' : ''}${isLifts ? ' simple-event-list' : ''}`}>
-      {isLifts && !loading ? <ul className='simple-event-list__events'>{getContent()}</ul> : getContent()}
+      {getContent()}
       {seeAllNearYouLink ? (
         <div className='see-all-button see-all-button--near-results'>
           <a data-hds-component='button' href={seeAllNearYouLink}>

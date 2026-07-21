@@ -34,7 +34,6 @@ export type CardItemProps = {
   daterange?: string | JSX.Element;
   dateRangeLabel?: string;
   distance?: string;
-  element?: keyof JSX.IntrinsicElements;
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   langAttribute?: any;
   language?: string;
@@ -70,7 +69,6 @@ function CardItem({
   daterange,
   dateRangeLabel,
   distance,
-  element: Element = 'div',
   langAttribute,
   language,
   languageEducation,
@@ -110,7 +108,7 @@ function CardItem({
     );
 
   return (
-    <Element className={cardClass}>
+    <div className={cardClass}>
       {cardImage && <div className='card__image'>{cardImage}</div>}
 
       <div className='card__text'>
@@ -233,7 +231,7 @@ function CardItem({
           </div>
         )}
       </div>
-    </Element>
+    </div>
   );
 }
 
