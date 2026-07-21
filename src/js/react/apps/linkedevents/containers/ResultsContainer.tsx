@@ -2,12 +2,12 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
 import { useCallback, useEffect, useRef } from 'react';
-import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
+import { EventsGhostList } from '../components/EventsGhostList';
 import Pagination from '../components/Pagination';
 import type { ResultCardProps } from '../components/ResultCard';
 import ResultCard from '../components/ResultCard';
@@ -75,7 +75,7 @@ function ResultsContainer({
         ref={scrollTarget}
       />
     ) : (
-      <GhostList bordered={cardsWithBorders} count={size} />
+      <EventsGhostList count={size} isLifts={isLifts} />
     );
   }
 
@@ -86,7 +86,7 @@ function ResultsContainer({
 
   const getContent = () => {
     if (loading && !events.length) {
-      return <GhostList bordered={cardsWithBorders} count={size} />;
+      return <EventsGhostList count={size} isLifts={isLifts} />;
     }
     if (addressRequired && !address) {
       return (
@@ -126,12 +126,7 @@ function ResultsContainer({
             />
           )}
           {loading ? (
-            <GhostList
-              bordered={cardsWithBorders}
-              count={size}
-              element={isLifts ? 'li' : undefined}
-              modifierClass={isLifts ? 'simple-event-list__events--ghosts' : undefined}
-            />
+            <EventsGhostList count={size} isLifts={isLifts} />
           ) : isLifts ? (
             events.map((event) => (
               <Card
@@ -160,7 +155,7 @@ function ResultsContainer({
 
   return (
     <div className={`react-search__list-container${loading ? ' loading' : ''}${isLifts ? ' simple-event-list' : ''}`}>
-      {isLifts ? <ul className='simple-event-list__events'>{getContent()}</ul> : getContent()}
+      {isLifts && !loading ? <ul className='simple-event-list__events'>{getContent()}</ul> : getContent()}
       {seeAllNearYouLink ? (
         <div className='see-all-button see-all-button--near-results'>
           <a data-hds-component='button' href={seeAllNearYouLink}>
