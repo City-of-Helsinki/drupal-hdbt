@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
 import { useMainImage } from '@/react/common/hooks/useMainImage';
@@ -66,7 +67,7 @@ const ResultCard = ({
       );
     });
 
-  let schedule: React.JSX.Element | undefined;
+  let schedule: JSX.Element | undefined;
   if (project_plan_schedule || project_execution_schedule) {
     schedule = (
       <>

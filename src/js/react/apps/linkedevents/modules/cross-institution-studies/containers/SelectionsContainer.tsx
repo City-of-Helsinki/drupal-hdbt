@@ -1,6 +1,6 @@
 import type { Option } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { memo } from 'react';
+import { type JSX, memo } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import ApiKeys from '../../../enum/ApiKeys';
@@ -40,7 +40,7 @@ const SelectionsContent = memo(
     const updateDates = useSetAtom(updateDatesAtom);
     const setKeyword = useSetAtom(keywordAtom);
 
-    const selections: React.JSX.Element[] = [];
+    const selections: JSX.Element[] = [];
 
     if (submittedParams.has(ApiKeys.END) && submittedParams.has(ApiKeys.START)) {
       selections.push(

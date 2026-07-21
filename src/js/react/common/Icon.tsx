@@ -1,13 +1,13 @@
-import type React from 'react';
+import type { JSX, MouseEventHandler } from 'react';
 
 interface IconProps {
   icon: string;
   className?: string;
   label?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export function Icon(props: IconProps): React.JSX.Element {
+export function Icon(props: IconProps): JSX.Element {
   const { icon, className, label, onClick } = props;
 
   const iconLabelledBy = `hdbt-icon--${Math.floor(Math.random() * 99999)}`;

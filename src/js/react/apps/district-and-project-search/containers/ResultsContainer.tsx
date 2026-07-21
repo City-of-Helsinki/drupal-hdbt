@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent, useRef } from 'react';
+import { createRef, type JSX, type SyntheticEvent, useRef } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
@@ -18,7 +18,7 @@ import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import type Result from '../types/Result';
 import type URLParams from '../types/URLParams';
 
-const ResultsContainer = (): React.JSX.Element => {
+const ResultsContainer = (): JSX.Element => {
   const { size } = Global;
   const urlParams: URLParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);

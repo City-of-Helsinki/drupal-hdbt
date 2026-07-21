@@ -1,4 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import type { JSX } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SearchComponents from '../enum/SearchComponents';
 import { getCheckBoxFilterLabel, stripQuantityFromLabel } from '../helpers/Options';
@@ -14,7 +15,7 @@ export const useSelectionButtons = (selections: [string, OptionType[] | boolean 
   const submittedState = useAtomValue(submittedStateAtom);
   const setState = useSetAtom(searchStateAtom);
   const submitState = useSetAtom(submitStateAtom);
-  const selectionButtons: React.JSX.Element[] = [];
+  const selectionButtons: JSX.Element[] = [];
 
   const removeArrayItem = (key: arraySelectionKey, value: string | string[]) => {
     const state = { ...submittedState };

@@ -1,4 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import type { JSX } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import transformDropdownsValues from '@/react/common/helpers/Params';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
@@ -58,7 +59,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
   const checkBoxKeys = Object.keys(checkBoxFilters);
 
   const getPills = () => {
-    const pills: React.JSX.Element[] = [];
+    const pills: JSX.Element[] = [];
 
     keys.forEach((key) => {
       if (!checkBoxKeys.includes(key) || !searchParams[key]) {

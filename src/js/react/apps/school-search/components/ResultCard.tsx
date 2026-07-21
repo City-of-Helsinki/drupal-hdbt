@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import CardItem from '@/react/common/Card';
 import CardImage from '@/react/common/CardImage';
 import CardPicture from '@/react/common/CardPicture';
@@ -25,7 +26,7 @@ const ResultCard = ({
     return null;
   }
 
-  type CardImageType = React.JSX.Element | undefined;
+  type CardImageType = JSX.Element | undefined;
   let cardImage: CardImageType;
 
   if (imageOverride) {

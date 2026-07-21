@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import ExternalLink from './ExternalLink';
 
 export const Teaser = ({
@@ -8,7 +9,7 @@ export const Teaser = ({
   url,
 }: {
   className?: string;
-  time?: string | React.JSX.Element;
+  time?: string | JSX.Element;
   image: React.ReactNode;
   title: string;
   url: string;

@@ -1,7 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import type React from 'react';
-import { useCallback, useEffect, useRef } from 'react';
+
+import { type ComponentType, type JSX, useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
@@ -21,10 +21,10 @@ type ResultsContainerProps = {
   error?: Error;
   events: Event[];
   loading: boolean;
-  ResultCardComponent?: React.ComponentType<ResultCardProps>;
+  ResultCardComponent?: ComponentType<ResultCardProps>;
   retriesExhausted?: boolean;
   resultHeaderFunction?: (count: number) => string;
-  sort?: React.JSX.Element;
+  sort?: JSX.Element;
   validating: boolean;
 };
 

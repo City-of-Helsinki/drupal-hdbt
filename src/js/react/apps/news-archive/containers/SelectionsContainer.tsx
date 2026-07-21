@@ -1,4 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import type { JSX } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import type OptionType from '@/types/OptionType';
@@ -30,7 +31,7 @@ const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContai
   );
 
   const getPills = () => {
-    const pills: React.JSX.Element[] = [];
+    const pills: JSX.Element[] = [];
 
     const keys: ParamsKey[] = ['topic', 'neighbourhoods', 'groups'];
     const passedOptions = { topic, neighbourhoods, groups };

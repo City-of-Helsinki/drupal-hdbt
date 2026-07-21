@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import type { JSX } from 'react';
 import { Metarow } from '@/react/common/Card';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { hobbiesPublicUrl, settingsAtom } from '../store';
@@ -77,7 +78,7 @@ export const useResultCardProps = ({
     return `${startContent} - ${endContent}`;
   };
 
-  const getJsxDate = (): React.JSX.Element => {
+  const getJsxDate = (): JSX.Element => {
     const { startDate, endDate, startContent, endContent } = getDateParts({ withTimePrefix: false });
 
     return (
@@ -120,7 +121,7 @@ export const useResultCardProps = ({
       ({ info_url }) => info_url != null && info_url[currentLanguage] != null && isValidUrl(info_url[currentLanguage]),
     ) ?? false;
 
-  const imageToElement = (image: EventImage): React.JSX.Element => {
+  const imageToElement = (image: EventImage): JSX.Element => {
     const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?: string } = {};
 
     if (image.url) {
@@ -259,8 +260,8 @@ export const useResultCardProps = ({
     return Drupal.t('@age year-olds and under', { '@age': audience_max_age }, { context: 'Event audience age value' });
   };
 
-  const getCustomMetaRows = (): { bottom: React.JSX.Element[] } => {
-    const bottom: React.JSX.Element[] = [];
+  const getCustomMetaRows = (): { bottom: JSX.Element[] } => {
+    const bottom: JSX.Element[] = [];
 
     const age = getAge();
     if (age) {

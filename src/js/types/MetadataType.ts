@@ -1,7 +1,9 @@
+import type { JSX } from 'react';
+
 type MetadataType = {
-  icon: React.JSX.Element | string;
+  icon: JSX.Element | string;
   label: string;
-  content: React.JSX.Element | string | Array<string>;
+  content: JSX.Element | string | Array<string>;
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   langAttribute?: any;
 };

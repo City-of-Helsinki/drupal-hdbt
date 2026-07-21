@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useRef } from 'react';
+import { type JSX, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useScrollToResults from '@/react/common/hooks/useScrollToResults';
@@ -22,7 +22,7 @@ type ResultsContainerProps = { hidePagination?: boolean };
 const ResultsContainer = ({
   // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   hidePagination = false,
-}: ResultsContainerProps): React.JSX.Element => {
+}: ResultsContainerProps): JSX.Element => {
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
   const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
   const cardsWithBorders = drupalSettings?.helfi_news_archive?.cardsWithBorders ?? false;
