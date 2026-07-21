@@ -1,6 +1,6 @@
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
-import type { ModularOptionListData } from 'hds-react/components/dropdownComponents/modularOptionList/types';
-import type { SearchResult } from 'hds-react/components/dropdownComponents/select/types';
+import type { ModularOptionListData } from 'hds-react/lib/components/dropdownComponents/modularOptionList/types';
+import type { SearchResult } from 'hds-react/lib/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';

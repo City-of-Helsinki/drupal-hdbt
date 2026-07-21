@@ -7,7 +7,7 @@ interface IconProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export function Icon(props: IconProps): JSX.Element {
+export function Icon(props: IconProps): React.JSX.Element {
   const { icon, className, label, onClick } = props;
 
   const iconLabelledBy = `hdbt-icon--${Math.floor(Math.random() * 99999)}`;

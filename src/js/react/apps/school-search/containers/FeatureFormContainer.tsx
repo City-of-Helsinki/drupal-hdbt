@@ -65,7 +65,7 @@ const FeatureFormContainer = () => {
     }
 
     [finnish_education, grades_1_6, grades_1_9, grades_7_9, swedish_education, english_education].forEach((element) => {
-      if (!element || !element.checked || !element.name) {
+      if (!element?.checked || !element.name) {
         return;
       }
 

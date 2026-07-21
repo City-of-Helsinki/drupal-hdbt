@@ -40,7 +40,7 @@ const SelectionsContent = memo(
     const updateDates = useSetAtom(updateDatesAtom);
     const setKeyword = useSetAtom(keywordAtom);
 
-    const selections: JSX.Element[] = [];
+    const selections: React.JSX.Element[] = [];
 
     if (submittedParams.has(ApiKeys.END) && submittedParams.has(ApiKeys.START)) {
       selections.push(

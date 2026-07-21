@@ -30,7 +30,7 @@ const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContai
   );
 
   const getPills = () => {
-    const pills: JSX.Element[] = [];
+    const pills: React.JSX.Element[] = [];
 
     const keys: ParamsKey[] = ['topic', 'neighbourhoods', 'groups'];
     const passedOptions = { topic, neighbourhoods, groups };

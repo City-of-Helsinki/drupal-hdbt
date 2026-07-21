@@ -25,7 +25,7 @@ const ResultCard = ({
     return null;
   }
 
-  type CardImageType = JSX.Element | undefined;
+  type CardImageType = React.JSX.Element | undefined;
   let cardImage: CardImageType;
 
   if (imageOverride) {

@@ -58,7 +58,7 @@ const SelectionsContainer = ({ keys }: SelectionsContainerProps) => {
   const checkBoxKeys = Object.keys(checkBoxFilters);
 
   const getPills = () => {
-    const pills: JSX.Element[] = [];
+    const pills: React.JSX.Element[] = [];
 
     keys.forEach((key) => {
       if (!checkBoxKeys.includes(key) || !searchParams[key]) {

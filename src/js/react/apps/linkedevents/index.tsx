@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { GhostList } from '@/react/common/GhostList';
 import initSentry from '@/react/common/helpers/Sentry';
 import SearchContainer from './containers/SearchContainer';
@@ -14,13 +14,12 @@ const start = () => {
     return;
   }
 
-  ReactDOM.render(
+  createRoot(rootElement).render(
     <React.StrictMode>
       <Suspense fallback={<GhostList count={30} />}>
         <SearchContainer />
       </Suspense>
     </React.StrictMode>,
-    rootElement,
   );
 };
 

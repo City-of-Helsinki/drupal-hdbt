@@ -1,6 +1,6 @@
 import { ErrorBoundary } from '@sentry/react';
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { GhostList } from '@/react/common/GhostList';
 import initSentry from '@/react/common/helpers/Sentry';
 import ResultsError from '@/react/common/ResultsError';
@@ -19,7 +19,7 @@ const start = () => {
     return;
   }
 
-  ReactDOM.render(
+  createRoot(rootElement).render(
     <React.StrictMode>
       <div className='component--react-search component--react-search--schools'>
         <ErrorBoundary fallback={<ResultsError error='School search initialization failed' />}>
@@ -29,7 +29,6 @@ const start = () => {
         </ErrorBoundary>
       </div>
     </React.StrictMode>,
-    rootElement,
   );
 };
 

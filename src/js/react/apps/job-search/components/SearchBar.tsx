@@ -10,7 +10,7 @@ import SearchComponents from '../enum/SearchComponents';
 import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
 import type Job from '../types/Job';
 
-export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement> }) => {
+export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement | null> }) => {
   const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
   const ref = useRef<SearchInputHandle>(null);
   const setStateValue = useSetAtom(setStateValueAtom);

@@ -77,7 +77,7 @@ export const useResultCardProps = ({
     return `${startContent} - ${endContent}`;
   };
 
-  const getJsxDate = (): JSX.Element => {
+  const getJsxDate = (): React.JSX.Element => {
     const { startDate, endDate, startContent, endContent } = getDateParts({ withTimePrefix: false });
 
     return (
@@ -120,7 +120,7 @@ export const useResultCardProps = ({
       ({ info_url }) => info_url != null && info_url[currentLanguage] != null && isValidUrl(info_url[currentLanguage]),
     ) ?? false;
 
-  const imageToElement = (image: EventImage): JSX.Element => {
+  const imageToElement = (image: EventImage): React.JSX.Element => {
     const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?: string } = {};
 
     if (image.url) {
@@ -259,8 +259,8 @@ export const useResultCardProps = ({
     return Drupal.t('@age year-olds and under', { '@age': audience_max_age }, { context: 'Event audience age value' });
   };
 
-  const getCustomMetaRows = (): { bottom: JSX.Element[] } => {
-    const bottom: JSX.Element[] = [];
+  const getCustomMetaRows = (): { bottom: React.JSX.Element[] } => {
+    const bottom: React.JSX.Element[] = [];
 
     const age = getAge();
     if (age) {

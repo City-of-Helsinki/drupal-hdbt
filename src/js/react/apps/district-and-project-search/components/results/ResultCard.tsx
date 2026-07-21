@@ -66,7 +66,7 @@ const ResultCard = ({
       );
     });
 
-  let schedule: JSX.Element | undefined;
+  let schedule: React.JSX.Element | undefined;
   if (project_plan_schedule || project_execution_schedule) {
     schedule = (
       <>

@@ -18,7 +18,7 @@ import { configurationsAtom, pageAtom, setPageAtom, urlAtom } from '../store';
 import type Result from '../types/Result';
 import type URLParams from '../types/URLParams';
 
-const ResultsContainer = (): JSX.Element => {
+const ResultsContainer = (): React.JSX.Element => {
   const { size } = Global;
   const urlParams: URLParams = useAtomValue(urlAtom);
   const queryString = useQueryString(urlParams);

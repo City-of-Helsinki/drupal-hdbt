@@ -49,8 +49,8 @@ const Header = ({
   total: number;
   children?: ReactNode;
   leftActions?: ReactElement;
-  scrollTarget: RefObject<HTMLDivElement>;
-  dialogTarget: RefObject<HTMLDivElement>;
+  scrollTarget: RefObject<HTMLDivElement | null>;
+  dialogTarget: RefObject<HTMLDivElement | null>;
 }) => (
   <div className='hdbt-search--react__results'>
     <div ref={dialogTarget} />

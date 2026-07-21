@@ -1,6 +1,6 @@
-import type { SupportedLanguage } from 'hds-react/components/dropdownComponents/modularOptionList/types';
-import type { SelectProps, Texts } from 'hds-react/components/dropdownComponents/select/types';
-import type { OptionIterator } from 'hds-react/components/dropdownComponents/select/utils';
+import type { SupportedLanguage } from 'hds-react/lib/components/dropdownComponents/modularOptionList/types';
+import type { SelectProps, Texts } from 'hds-react/lib/components/dropdownComponents/select/types';
+import type { OptionIterator } from 'hds-react/lib/components/dropdownComponents/select/utils';
 import type OptionType from '@/types/OptionType';
 
 type HDSStorage = {

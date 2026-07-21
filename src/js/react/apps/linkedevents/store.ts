@@ -31,7 +31,7 @@ const transformLocations = (locations: any = null) => {
   const keys = Object.keys(locations);
   keys.forEach((id: string) => {
     const location = locations[id];
-    if (location.id && location.name && location.name[currentLanguage]) {
+    if (location.id && location.name?.[currentLanguage]) {
       locationOptions.push({ value: location.id, label: location.name[currentLanguage] });
     }
   });

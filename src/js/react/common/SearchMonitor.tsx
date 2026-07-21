@@ -52,7 +52,7 @@ interface SearchMonitorTexts {
 interface SearchMonitorProps {
   /** Subscribe endpoint */
   apiUrl: string;
-  dialogTargetRef: React.RefObject<HTMLDivElement>;
+  dialogTargetRef: React.RefObject<HTMLDivElement | null>;
   /** Notification methods the user can choose from. Defaults to ['email']. */
   enabledNotificationMethods?: NotificationMethod[];
   selectionTags: TagType[];
@@ -332,7 +332,9 @@ const SearchMonitor = ({
         closeButtonLabelText={Drupal.t('Close the order form', {}, { context: 'Search monitor' })}
         id='hdbt-search__search-monitor__content'
         isOpen={isFormVisible}
-        focusAfterCloseRef={openerButtonRef.current ? openerButtonRef : openDialogButtonRef}
+        focusAfterCloseRef={
+          (openerButtonRef.current ? openerButtonRef : openDialogButtonRef) as React.RefObject<HTMLElement>
+        }
         targetElement={dialogTargetRef.current || undefined}
       >
         {submitted ? (

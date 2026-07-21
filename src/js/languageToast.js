@@ -15,7 +15,7 @@
           const navToggle = button.parentElement;
           const dropdown = navToggle?.nextElementSibling;
 
-          if (!dropdown || !dropdown.classList.contains('nav-toggle-dropdown--language-toast')) {
+          if (!dropdown?.classList.contains('nav-toggle-dropdown--language-toast')) {
             return;
           }
 

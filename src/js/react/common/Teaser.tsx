@@ -8,7 +8,7 @@ export const Teaser = ({
   url,
 }: {
   className?: string;
-  time?: string | JSX.Element;
+  time?: string | React.JSX.Element;
   image: React.ReactNode;
   title: string;
   url: string;

@@ -1,6 +1,6 @@
 import { ErrorBoundary } from '@sentry/react';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import initSentry from '@/react/common/helpers/Sentry';
 import ResultsError from '@/react/common/ResultsError';
 import SearchContainer from './containers/SearchContainer';
@@ -11,12 +11,11 @@ const rootSelector: string = 'helfi-vehicle-removal-search';
 const rootElement: HTMLElement | null = document.getElementById(rootSelector);
 
 if (rootElement) {
-  ReactDOM.render(
+  createRoot(rootElement).render(
     <React.StrictMode>
       <ErrorBoundary fallback={<ResultsError />}>
         <SearchContainer />
       </ErrorBoundary>
     </React.StrictMode>,
-    rootElement,
   );
 }

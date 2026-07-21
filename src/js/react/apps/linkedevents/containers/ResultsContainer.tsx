@@ -24,7 +24,7 @@ type ResultsContainerProps = {
   ResultCardComponent?: React.ComponentType<ResultCardProps>;
   retriesExhausted?: boolean;
   resultHeaderFunction?: (count: number) => string;
-  sort?: JSX.Element;
+  sort?: React.JSX.Element;
   validating: boolean;
 };
 

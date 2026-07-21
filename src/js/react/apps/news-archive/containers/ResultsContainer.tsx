@@ -22,7 +22,7 @@ type ResultsContainerProps = { hidePagination?: boolean };
 const ResultsContainer = ({
   // biome-ignore lint/correctness/noUnusedFunctionParameters: @todo UHF-12501
   hidePagination = false,
-}: ResultsContainerProps): JSX.Element => {
+}: ResultsContainerProps): React.JSX.Element => {
   const size = drupalSettings?.helfi_news_archive?.max_results ?? Global.SIZE;
   const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
   const cardsWithBorders = drupalSettings?.helfi_news_archive?.cardsWithBorders ?? false;

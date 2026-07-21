@@ -10,7 +10,7 @@ interface TagsProps {
   insideCard?: boolean;
 }
 
-export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsProps): JSX.Element {
+export function Tags({ tags, isInteractive, langAttribute, insideCard }: TagsProps): React.JSX.Element {
   const typeClass = isInteractive ? 'content-tags__tags--interactive' : 'content-tags__tags--static';
 
   // When inside a card, use a div instead of a section to avoid duplicating the aria-label description on each card.

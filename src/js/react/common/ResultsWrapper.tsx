@@ -1,7 +1,7 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
 // biome-ignore-all lint/complexity/noUselessFragments: @todo UHF-12501
 import type { estypes } from '@elastic/elasticsearch';
-import { createRef, type SyntheticEvent } from 'react';
+import { createRef, type JSX, type SyntheticEvent } from 'react';
 
 import { GhostList } from './GhostList';
 import useScrollToResults from './hooks/useScrollToResults';

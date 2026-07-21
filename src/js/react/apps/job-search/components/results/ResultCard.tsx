@@ -91,7 +91,7 @@ const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   const tagColorMap = useAtomValue(employmentTagColorAtom);
   const { _language, title } = job;
 
-  if (!title || !title.length) {
+  if (!title?.length) {
     return null;
   }
 
