@@ -1,4 +1,4 @@
-import { Select } from 'hds-react';
+import { type OptionInProps, Select } from 'hds-react';
 import { useAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -38,7 +38,7 @@ const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps)
       multiSelect
       noTags
       onChange={onChange}
-      options={options}
+      options={options as OptionInProps[]}
       texts={{
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
@@ -55,7 +55,7 @@ const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps)
         placeholder,
       }}
       theme={defaultMultiSelectTheme}
-      value={getValue()}
+      value={getValue() as OptionInProps[]}
       {...rest}
     />
   );

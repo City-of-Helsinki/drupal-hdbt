@@ -12,7 +12,7 @@ const transformDropdownsValues = (
     const matchedOption = availableOptions.find((option: OptionType) => {
       // Handle cases for employment options where option.value can be an array
       if (Array.isArray(option.value)) {
-        return option.value.includes(parseInt(selection, 10));
+        return option.value.includes(parseInt(selection, 10).toString());
       }
       // For other options, compare the string representation
       return option.value.toString() === selection.toString();

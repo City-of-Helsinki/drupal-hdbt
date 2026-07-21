@@ -64,5 +64,8 @@ jobs:
           npm ci
           npm run lint
 
+      - name: Run unit tests
+        run: npm run coverage
+
       - name: NPM Audit
         run: npm audit --audit-level high

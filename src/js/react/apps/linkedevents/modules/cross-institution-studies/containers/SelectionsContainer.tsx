@@ -71,7 +71,7 @@ const SelectionsContent = memo(
               const newLanguages = instructionLanguage.filter((l) => l.value !== lang.value);
               setInstructionLanguage(newLanguages);
               updateParams({
-                [ApiKeys.LANGUAGE]: newLanguages.map((l) => l.value),
+                [ApiKeys.LANGUAGE]: newLanguages.map((l) => l.value).join(','),
               });
               updateUrl(visibleParams);
             }}
@@ -92,7 +92,7 @@ const SelectionsContent = memo(
               const newModes = teachingMode.filter((m) => m.value !== mode.value);
               setTeachingMode(newModes);
               updateParams({
-                [ApiKeys.KEYWORDS]: newModes.map((m) => m.value),
+                [ApiKeys.KEYWORDS]: newModes.map((m) => m.value).join(','),
               });
               updateUrl(visibleParams);
             }}
