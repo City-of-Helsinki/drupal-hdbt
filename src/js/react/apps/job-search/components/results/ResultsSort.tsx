@@ -1,4 +1,4 @@
-import { Select } from 'hds-react';
+import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -24,12 +24,16 @@ const ResultsSort = () => {
       onChange={(_selectedOptions, clickedOption) => {
         setSort(clickedOption?.value || sortOptions.newestFirst);
       }}
-      options={options}
+      options={options as OptionInProps[]}
       texts={{
         label: Drupal.t('Sort search results', {}, { context: 'HELfi Rekry job search' }),
         language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
       }}
-      value={[options.find((option) => option.value === submittedState[SearchComponents.ORDER]) || options[0]]}
+      value={
+        [
+          options.find((option) => option.value === submittedState[SearchComponents.ORDER]) || options[0],
+        ] as OptionInProps[]
+      }
       theme={defaultSelectTheme}
     />
   );

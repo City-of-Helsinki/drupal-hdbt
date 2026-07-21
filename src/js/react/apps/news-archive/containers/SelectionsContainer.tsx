@@ -15,8 +15,8 @@ const SelectionsContainer = ({ topic, neighbourhoods, groups }: SelectionsContai
 
   const generatePill = (option: OptionType, key: ParamsKey) => (
     <FilterButton
-      key={option.value}
-      value={option?.label || option.value}
+      key={String(option.value)}
+      value={option?.label || String(option.value)}
       clearSelection={() => {
         const newParams = { ...params, page: 1 };
         const index = newParams?.[key]?.indexOf(Number(option.value));

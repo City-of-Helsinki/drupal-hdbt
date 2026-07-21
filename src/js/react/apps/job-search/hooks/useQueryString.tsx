@@ -26,7 +26,7 @@ const getArrayValues = (optionArray: OptionType[]): string[] => {
 const useQueryString = (): string => {
   const state = useAtomValue(submittedStateAtom);
   const { size: globalSize, sortOptions } = Global;
-  const { promoted } = useAtomValue(configurationsAtom) || {};
+  const { promoted = [] } = useAtomValue(configurationsAtom) || {};
   const page = Number.isNaN(Number(state[SearchComponents.PAGE])) ? 1 : Number(state[SearchComponents.PAGE]);
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const must: any[] = [
