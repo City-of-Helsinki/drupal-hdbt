@@ -45,7 +45,7 @@ describe('GhostList', () => {
   });
 
   test('forwards the simple flag to the ghost cards and omits the image', () => {
-    const { container } = render(<GhostList count={1} simple />);
+    const { container } = render(<GhostList count={1} variant='simple' />);
     expect(container.querySelectorAll('.card--ghost--simple')).toHaveLength(1);
     expect(container.querySelector('.card__image')).toBeNull();
   });
