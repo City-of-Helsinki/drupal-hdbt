@@ -1551,13 +1551,15 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
       );
     }
     catch (\InvalidArgumentException) {
-      // No matching etusivu environment for the current env — fall back to prod.
+      // If there is no matching etusivu environment for the current
+      // env then fall back to prod.
       $etusivuEnvironment = $environmentResolver->getEnvironment(Project::ETUSIVU, EnvironmentEnum::Prod->value);
     }
     $variables['#attached']['drupalSettings']['helfi_events']['etusivuBaseUrl'] = $etusivuEnvironment->getBaseUrl();
   }
   catch (\Exception) {
-    // Service unavailable — omit etusivuBaseUrl; the frontend falls back to image.url.
+    // Service unavailable — omit etusivuBaseUrl.
+    // Frontend falls back to image.url.
   }
 }
 
