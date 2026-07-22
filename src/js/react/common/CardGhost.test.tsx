@@ -11,7 +11,7 @@ describe('CardGhost', () => {
   });
 
   test('omits the image and adds the simple modifier when simple', () => {
-    const { container } = render(<CardGhost simple />);
+    const { container } = render(<CardGhost variant='simple' />);
     expect(container.querySelector('.card--ghost--simple')).not.toBeNull();
     expect(container.querySelector('.card__image')).toBeNull();
   });
