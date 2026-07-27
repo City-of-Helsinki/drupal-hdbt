@@ -10,7 +10,10 @@ type arraySelectionKey = keyof Pick<URLParams, 'task_areas' | 'employment' | 'ar
 type stringSelectionKey = keyof Pick<URLParams, 'language' | 'keyword'>;
 type booleanSelectionKey = keyof Pick<URLParams, 'continuous' | 'internship' | 'summer_jobs' | 'youth_summer_jobs'>;
 
-export const useSelectionButtons = (selections: [string, OptionType[] | boolean | string][]) => {
+export const useSelectionButtons = (
+  selections: [string, OptionType[] | boolean | string][],
+  labels: Partial<Record<string, string>> = {},
+) => {
   const submittedState = useAtomValue(submittedStateAtom);
   const setState = useSetAtom(searchStateAtom);
   const submitState = useSetAtom(submitStateAtom);
@@ -63,6 +66,7 @@ export const useSelectionButtons = (selections: [string, OptionType[] | boolean 
           key={`${key}-${value}`}
           clearSelection={() => unsetStateItem(key as stringSelectionKey)}
           value={value}
+          label={labels[key]}
         />,
       );
     } else if (typeof value === 'boolean' && value === true) {

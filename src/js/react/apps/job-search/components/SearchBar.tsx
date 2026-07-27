@@ -2,7 +2,7 @@ import type { estypes } from '@elastic/elasticsearch';
 import { Search, type SearchInputHandle } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
@@ -14,6 +14,7 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
   const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
   const ref = useRef<SearchInputHandle>(null);
   const setStateValue = useSetAtom(setStateValueAtom);
+  const keyword = useAtomValue(getKeywordAtom);
   const elasticUrl = useAtomValue(getElasticUrlAtom);
   const { index } = Global;
   const url = `${elasticUrl}/${index}/_search`;
@@ -118,16 +119,16 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
     className: 'hdbt-search__filter hdbt-search__search-input job-search-form__filter',
     visibleOptions: 5,
     style: defaultTextInputStyle,
-    placeholder: Drupal.t(
-      'Eg. title, location, department',
-      {},
-      { context: 'HELfi Rekry job search keyword placeholder' },
-    ),
     texts: {
       label: Drupal.t('Search term', {}, { context: 'Search keyword label' }),
+      assistive: Drupal.t(
+        'Write eg. title, location or service',
+        {},
+        { context: 'HELfi Rekry job search keyword helper text' },
+      ),
       language: window.drupalSettings?.path?.currentLanguage || 'fi',
       searchPlaceholder: Drupal.t(
-        'Eg. title, location, department',
+        'Eg. psychologist or sports services',
         {},
         { context: 'HELfi Rekry job search keyword placeholder' },
       ),
@@ -136,19 +137,28 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
   });
 
   useEffect(() => {
-    const initialKeyword = readInitialKeyword() ?? '';
-    // On pageload, set the query parameter value to search input.
-    if (ref.current) {
-      ref.current.value = initialKeyword;
-    }
-    // Set the initial search keyword.
-    handleChange(initialKeyword);
+    handleChange(readInitialKeyword() ?? '');
   }, [readInitialKeyword, handleChange]);
+
+  // When the keyword pill is removed, the HDS Search component still remembers the old
+  // keyword internally and tries to put it back. Changing the key forces it to
+  // reset to blank. useLayoutEffect makes sure this happens before HDS gets
+  // a chance to restore the old value.
+  const [searchKey, setSearchKey] = useState(0);
+  const prevKeywordRef = useRef(keyword);
+  useLayoutEffect(() => {
+    if (prevKeywordRef.current && !keyword) {
+      setSearchKey((k) => k + 1);
+    }
+    prevKeywordRef.current = keyword;
+  }, [keyword]);
 
   return (
     <Search
+      key={searchKey}
       {...props}
       ref={ref}
+      value={keyword ?? ''}
       hideSubmitButton={true}
       onChange={(e) => {
         handleChange(e.target.value);
