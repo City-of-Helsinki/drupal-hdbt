@@ -19,8 +19,17 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
   const { index } = Global;
   const url = `${elasticUrl}/${index}/_search`;
 
+  // On first render, the HDS Search component tries to clear
+  // the input even if a keyword was loaded from the URL.
+  // Skip that so the keyword stays visible in the field.
+  const skipInitialClearRef = useRef(!!keyword);
+
   const handleChange = useCallback(
     (changedKeyword: string) => {
+      if (!changedKeyword && skipInitialClearRef.current) {
+        skipInitialClearRef.current = false;
+        return;
+      }
       setStateValue({ key: SearchComponents.KEYWORD, value: changedKeyword.replace(/\s+/g, ' ') });
     },
     [setStateValue],
