@@ -143,7 +143,7 @@ export const useResultCardProps = ({
 
   const buildStyledUrl = (image: EventImage, style: string, time: string) => {
     const params = new URLSearchParams({ style, time });
-    return `${etusivuBaseUrl}/linked-events/image/${image.id}?${params.toString()}`;
+    return `${etusivuBaseUrl}/fi/linked-events/image/${image.id}?${params.toString()}`;
   };
 
   const imageToElement = (image: EventImage): JSX.Element => {
