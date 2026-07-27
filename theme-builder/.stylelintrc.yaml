@@ -37,12 +37,12 @@ rules:
     - 2 # we should finetune this to be lower
     # - message: "HELFI: We will not nest css too deeply (currently 2 levels). Try to avoid it as much as possible."
     - ignore:
-      - pseudo-classes
-      # - blockless-at-rules
-    - ignoreAtRules:
-      - /@?supports/
-      - /@?include/
-      - media
+        - pseudo-classes
+        # - blockless-at-rules
+      ignoreAtRules:
+        - /@?supports/
+        - /@?include/
+        - media
   number-max-precision:
     - 4
     - ignoreUnits:
