@@ -1,6 +1,13 @@
 type MultilingualString = { fi?: string; en?: string; sv?: string };
 
-export type EventImage = { alt_text: string; id: number; name?: string; photographer_name?: string; url?: string };
+export type EventImage = {
+  alt_text: string;
+  id: number;
+  last_modified_time?: string;
+  name?: string;
+  photographer_name?: string;
+  url?: string;
+};
 
 type IncludableResource = { id: string; name: MultilingualString } | { '@id': string };
 
