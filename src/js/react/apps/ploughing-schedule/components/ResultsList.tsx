@@ -1,6 +1,5 @@
 import { useAtomValue } from 'jotai';
 
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
@@ -19,7 +18,6 @@ type ResultsListProps = {
 
 const ResultsList = ({ data, error, isValidating, queryString }: ResultsListProps) => {
   const params = useAtomValue(paramsAtom);
-  const choices = Boolean(Object.keys(params).length);
   const { scrollTarget, loadingHeaderRef, isSearching } = useSearchFocusManagement(
     isValidating,
     queryString,
@@ -27,7 +25,6 @@ const ResultsList = ({ data, error, isValidating, queryString }: ResultsListProp
     error,
     params,
   );
-  useScrollToResults(scrollTarget, choices);
 
   if (isSearching) {
     return (

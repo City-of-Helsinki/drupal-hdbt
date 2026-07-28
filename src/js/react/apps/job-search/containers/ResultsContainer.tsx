@@ -2,7 +2,6 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsError from '@/react/common/ResultsError';
@@ -13,11 +12,10 @@ import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
 import useIndexQuery from '../hooks/useIndexQuery';
 import useResultsQuery from '../hooks/useResultsQuery';
-import { getPageAtom, hasChoicesAtom, setPageAtom, submittedStateAtom } from '../store';
+import { getPageAtom, setPageAtom, submittedStateAtom } from '../store';
 import SearchMonitorContainer from './SearchMonitorContainer';
 
 const ResultsContainer = () => {
-  const hasChoices = useAtomValue(hasChoicesAtom);
   const submittedState = useAtomValue(submittedStateAtom);
   const { size } = Global;
   const currentPage = useAtomValue(getPageAtom);
@@ -34,8 +32,6 @@ const ResultsContainer = () => {
     error,
     submittedState,
   );
-
-  useScrollToResults(scrollTarget, hasChoices);
 
   const resultsListRef = useRef<HTMLDivElement>(null);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);

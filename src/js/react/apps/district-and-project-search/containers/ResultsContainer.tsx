@@ -3,7 +3,6 @@ import { type SyntheticEvent, useRef } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Pagination from '@/react/common/Pagination';
@@ -27,8 +26,6 @@ const ResultsContainer = (): JSX.Element => {
   const setPage = useSetAtom(setPageAtom);
   const currentPage = useAtomValue(pageAtom);
   const resultsListRef = useRef<HTMLDivElement>(null);
-
-  const choices = Boolean(window.location.search?.length);
 
   const fetcher = async () => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
@@ -54,8 +51,6 @@ const ResultsContainer = (): JSX.Element => {
     error,
     urlParams,
   );
-  useScrollToResults(scrollTarget, choices);
-
   if (isSearching) {
     return (
       // Different keys force React to fully replace the DOM between ghost and results

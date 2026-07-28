@@ -4,7 +4,6 @@ import type React from 'react';
 import { useCallback, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -50,8 +49,6 @@ function ResultsContainer({
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
   const submittedParams = useAtomValue(submittedParamsAtom);
-  // Checks when user makes the first search and api url is set.
-  const choices = Boolean(url);
   const readInitialized = useAtomCallback(useCallback((get) => get(initializedAtom), []));
   const setInitialized = useSetAtom(initializedAtom);
 
@@ -63,7 +60,6 @@ function ResultsContainer({
     submittedParams,
   );
 
-  useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, loading || validating);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scrollTarget.current is a ref, intentionally read at effect run time

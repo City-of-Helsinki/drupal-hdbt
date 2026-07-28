@@ -1,5 +1,23 @@
 import { useEffect, useRef } from 'react';
 
+// Don't steal focus/scroll while a date range (or other) filter dialog is open.
+// Note: HDS Select/Combobox keeps role="dialog" in the DOM always (toggled via CSS
+// class), so we match the Collapsible-specific class instead.
+const isFilterDialogOpen = () => Boolean(document.querySelector('.collapsible__children[role="dialog"]'));
+
+// Move focus (and optionally scroll) to a results/ghost heading, unless a filter
+// dialog is open — avoids stealing focus out of an open date range filter.
+const focusHeading = (node: HTMLElement | null, scroll: boolean) => {
+  if (!node || isFilterDialogOpen()) {
+    return;
+  }
+  node.setAttribute('tabindex', '-1');
+  node.focus({ preventScroll: true });
+  if (scroll) {
+    node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+};
+
 // Focus/scroll behaviour shared by search results lists (keepPreviousData: true).
 // - Initial page load: no focus, no scroll.
 // - New search / pager click: ghost cards "Searching for results..." heading focus, scroll to the heading.
@@ -37,12 +55,7 @@ const useSearchFocusManagement = <Trigger>(
   useEffect(() => {
     if (!isSearching || !initialLoadDoneRef.current) return;
     hadGhostCardsRef.current = true;
-    const node = loadingHeaderRef.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    focusHeading(loadingHeaderRef.current, true);
   }, [isSearching]);
 
   // When a search completes (isValidating false → true → false cycle):
@@ -66,15 +79,8 @@ const useSearchFocusManagement = <Trigger>(
           skipResultsFocusRef.current = false;
           return;
         }
-        const node = scrollTarget.current;
-        if (node) {
-          node.setAttribute('tabindex', '-1');
-          node.focus({ preventScroll: true });
-          if (!hadGhostCardsRef.current) {
-            node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
-          hadGhostCardsRef.current = false;
-        }
+        focusHeading(scrollTarget.current, !hadGhostCardsRef.current);
+        hadGhostCardsRef.current = false;
       }
     }
   }, [isValidating, queryString, error, data]);
@@ -89,12 +95,7 @@ const useSearchFocusManagement = <Trigger>(
       skipResultsFocusRef.current = false;
       return;
     }
-    const node = scrollTarget.current;
-    if (node) {
-      node.setAttribute('tabindex', '-1');
-      node.focus({ preventScroll: true });
-      node.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    focusHeading(scrollTarget.current, true);
   }, [trigger]);
 
   return { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching };

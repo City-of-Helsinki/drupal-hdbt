@@ -1,26 +1,27 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
 // biome-ignore-all lint/complexity/noUselessFragments: @todo UHF-12501
 import type { types } from '@elastic/elasticsearch';
-import { createRef, type SyntheticEvent } from 'react';
+import type { SyntheticEvent } from 'react';
 
 import { GhostList } from './GhostList';
-import useScrollToResults from './hooks/useScrollToResults';
+import useSearchFocusManagement from './hooks/useSearchFocusManagement';
 import Pagination from './Pagination';
 import ResultsEmpty from './ResultsEmpty';
 import ResultsError from './ResultsError';
 import ResultsHeader from './ResultsHeader';
 
-export const ResultsWrapper = ({
+export const ResultsWrapper = <Trigger,>({
   currentPage,
   data,
   customTotal,
   error,
   getHeaderText,
-  isLoading,
+  isValidating,
+  queryString,
   resultItemCallBack,
   setPage,
   sortElement,
-  shouldScroll = false,
+  trigger,
   size = 10,
 }: {
   currentPage: string | number;
@@ -28,18 +29,40 @@ export const ResultsWrapper = ({
   error?: string;
   customTotal?: number;
   getHeaderText: () => string;
-  isLoading: boolean;
+  // Drives the ghost "Searching for results..." state and focus handling. Pass the
+  // SWR isValidating flag (combined with any app-specific loading, e.g. aggregations
+  // not being ready yet).
+  isValidating: boolean;
+  // The SWR key of the current search. Used to tell a fresh fetch from a cache hit.
+  queryString: string;
   resultItemCallBack: (item: types.SearchHit<any>) => JSX.Element;
-  setPage: (string) => void;
+  setPage: (page: string) => void;
   sortElement?: JSX.Element;
-  shouldScroll?: boolean;
+  // Value that changes whenever the user (re)submits a search, e.g. the submitted
+  // state/params atom. Lets a resubmitted, unchanged query move focus to the results.
+  trigger: Trigger;
   size: number;
 }) => {
-  const scrollTarget = createRef<HTMLHeadingElement>();
-  useScrollToResults(scrollTarget, shouldScroll);
+  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+    isValidating,
+    queryString,
+    data,
+    error,
+    trigger,
+  );
 
-  if (!data && isLoading) {
-    return <GhostList count={size} bordered />;
+  if (isSearching) {
+    return (
+      // Different keys force React to fully replace the DOM between ghost and results
+      // instead of patching in place, which prevents a removeChild crash in React version 17.
+      <div key='ghost' className='react-search__results'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
+        <GhostList count={size} bordered />
+      </div>
+    );
   }
 
   if (error) {
@@ -58,10 +81,11 @@ export const ResultsWrapper = ({
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
+    skipResultsFocusRef.current = true;
   };
 
   return (
-    <div className='react-search__results'>
+    <div key='results' className='react-search__results'>
       <ResultsHeader
         actions={sortElement}
         actionsClass='hdbt-search--react__results--sort'

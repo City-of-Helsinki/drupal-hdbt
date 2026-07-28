@@ -2,7 +2,6 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -34,13 +33,6 @@ const ResultsContainer = ({
   const dialogTargetRef = useRef<HTMLDivElement>(null);
   const resultsListRef = useRef<HTMLDivElement>(null);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-  const choices =
-    Boolean(urlParams.groups?.length) ||
-    Boolean(urlParams.neighbourhoods?.length) ||
-    Boolean(urlParams.page) ||
-    Boolean(urlParams.keyword?.length) ||
-    Boolean(urlParams.topic?.length);
-
   const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
     isValidating,
     queryString,
@@ -48,7 +40,6 @@ const ResultsContainer = ({
     error,
     urlParams,
   );
-  useScrollToResults(scrollTarget, choices);
 
   const results = data?.hits?.hits;
   const total = data?.hits?.total?.value || 0;

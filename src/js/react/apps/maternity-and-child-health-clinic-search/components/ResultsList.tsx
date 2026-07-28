@@ -2,7 +2,6 @@ import { useAtomValue } from 'jotai';
 import { type SyntheticEvent, useRef, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import Pagination from '@/react/common/Pagination';
@@ -34,7 +33,6 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
   const params = useAtomValue(paramsAtom);
   const resultsListRef = useRef<HTMLDivElement>(null);
   const { sv_only, home_address } = params;
-  const choices = Boolean(Object.keys(params).length);
   const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
     isValidating,
     queryString,
@@ -42,7 +40,6 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
     error,
     params,
   );
-  useScrollToResults(scrollTarget, choices);
   const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
 
   if (isSearching) {
