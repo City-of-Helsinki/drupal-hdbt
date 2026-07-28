@@ -101,6 +101,11 @@
 .banner {
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--primary);
+
+    &:focus,
+    &:active {
+      outline-color: var(--hdbt-color-palette-text--primary) !important;
+    }
   }
 
   @include button-palettes('primary');
@@ -114,6 +119,11 @@
 .component--banner-secondary .banner {
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--secondary);
+
+    &:focus,
+    &:active {
+      outline-color: var(--hdbt-color-palette-text--secondary) !important;
+    }
   }
 
   @include button-palettes('secondary');

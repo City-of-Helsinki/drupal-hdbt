@@ -43,7 +43,7 @@ a:hover .link__type--external {
 }
 
 .dialog-off-canvas-main-canvas {
-  a:not([data-hds-component='button'], .hds-button, .menu__link),
+  a:not([data-hds-component='button'], .hds-button, .menu__link, .logo--footer, .footer__back-to-top),
   .block--branding {
     &:focus,
     &:active {
@@ -52,7 +52,22 @@ a:hover .link__type--external {
     }
   }
 
-  p a:not([data-hds-component='button'], .hds-button, .menu__link) {
+  .footer--dark {
+    .menu__link,
+    .logo--footer,
+    .footer__back-to-top {
+      &:focus,
+      &:active {
+        outline: 3px solid $color-white;
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // Fixes links with icons inside of paragraphs
+  p a:not([data-hds-component='button'], .hds-button, .menu__link),
+  .unit-contact-card__info-row__content a,
+  .unit__contact-row--phone a {
     display: inline-block;
   }
 }
