@@ -43,7 +43,7 @@ a:hover .link__type--external {
 }
 
 .dialog-off-canvas-main-canvas {
-  a:not([data-hds-component='button'], .hds-button, .menu__link, .logo--footer, .footer__back-to-top),
+  a:not([data-hds-component='button'], .hds-button, .menu__link, .logo--footer, .footer__back-to-top, .hds-tag--link),
   .block--branding {
     &:focus,
     &:active {
