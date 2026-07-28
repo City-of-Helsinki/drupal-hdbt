@@ -108,6 +108,13 @@
     }
   }
 
+  .banner__title {
+    &:focus,
+    &:active {
+      outline-color: var(--hdbt-color-palette-text--primary) !important;
+    }
+  }
+
   @include button-palettes('primary');
 }
 
@@ -120,6 +127,13 @@
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--secondary);
 
+    &:focus,
+    &:active {
+      outline-color: var(--hdbt-color-palette-text--secondary) !important;
+    }
+  }
+
+  .banner__title {
     &:focus,
     &:active {
       outline-color: var(--hdbt-color-palette-text--secondary) !important;
