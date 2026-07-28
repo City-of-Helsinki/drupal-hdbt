@@ -182,6 +182,7 @@ $breakpoint-design-image-on-left-right: 830px;
   .liftup-with-image__title {
     &:focus,
     &:active {
+      // Overrides default outline color from _link.scss file
       outline-color: var(--hdbt-color-palette-text--primary) !important;
     }
   }
@@ -206,6 +207,7 @@ $breakpoint-design-image-on-left-right: 830px;
 
     &:focus,
     &:active {
+      // Overrides default outline color from _link.scss file
       outline-color: var(--hdbt-color-palette-text--secondary) !important;
     }
   }

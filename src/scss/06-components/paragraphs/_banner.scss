@@ -104,6 +104,7 @@
 
     &:focus,
     &:active {
+      // Overrides default outline color from _link.scss file
       outline-color: var(--hdbt-color-palette-text--primary) !important;
     }
   }
@@ -111,6 +112,7 @@
   .banner__title {
     &:focus,
     &:active {
+      // Overrides default outline color from _link.scss file
       outline-color: var(--hdbt-color-palette-text--primary) !important;
     }
   }
@@ -129,6 +131,7 @@
 
     &:focus,
     &:active {
+      // Overrides default outline color from _link.scss file
       outline-color: var(--hdbt-color-palette-text--secondary) !important;
     }
   }
@@ -136,6 +139,7 @@
   .banner__title {
     &:focus,
     &:active {
+      // Overrides default outline color from _link.scss file
       outline-color: var(--hdbt-color-palette-text--secondary) !important;
     }
   }
