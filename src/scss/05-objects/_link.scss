@@ -42,6 +42,18 @@ a:hover .link__type--external {
   @include pseudo-icon-replace('mailto');
 }
 
+a {
+  color: var(--hdbt-default-link-color);
+  overflow-wrap: break-word;
+  text-decoration-thickness: remify(1px);
+  text-underline-offset: 10%;
+
+  &:hover,
+  &:focus {
+    text-decoration-thickness: remify(2px);
+  }
+}
+
 .dialog-off-canvas-main-canvas {
   a:not([data-hds-component='button'], .hds-button, .menu__link, .logo--footer, .footer__back-to-top, .hds-tag--link),
   .block--branding {
