@@ -35,7 +35,8 @@
       "minimatch": ">=10.2.1, dependency of hds-core (eslint)",
       "yauzl": "^3.2.1, dependency of backstopjs",
       "uuid": "^14.0.0, dependency of hds-react",
-      "esbuild": "^0.28.1, dependency of vite (vitest); forces the test stack onto the same non-vulnerable esbuild theme-builder already uses (GHSA-gv7w-rqvm-qjhr, GHSA-g7r4-m6w7-qqqr)"
+      "esbuild": "^0.28.1, dependency of vite (vitest); forces the test stack onto the same non-vulnerable esbuild theme-builder already uses (GHSA-gv7w-rqvm-qjhr, GHSA-g7r4-m6w7-qqqr)",
+      "svg-sprite > glob": ">=13.0.0, drop vulnerable dependencies of svg-sprite dependency"
     }
   ],
   "overrides": {
@@ -45,7 +46,10 @@
     "minimatch": "^10.2.1",
     "yauzl": "^3.2.1",
     "uuid": "^14.0.0",
-    "esbuild": "^0.28.1"
+    "esbuild": "^0.28.1",
+    "svg-sprite": {
+      "glob": "^13.0.0"
+    }
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
@@ -59,7 +63,7 @@
     "chokidar": "^4.0.3",
     "classnames": "^2.3.1",
     "focus-trap": "^7.5.4",
-    "glob": "^11.0.0",
+    "glob": "^13.0.0",
     "hds-core": "6.0.5",
     "hds-design-tokens": "6.0.5",
     "hds-react": "6.0.5",
