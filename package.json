@@ -36,7 +36,8 @@
       "yauzl": "^3.2.1, dependency of backstopjs",
       "uuid": "^14.0.0, dependency of hds-react",
       "esbuild": "^0.28.1, dependency of vite (vitest); forces the test stack onto the same non-vulnerable esbuild theme-builder already uses (GHSA-gv7w-rqvm-qjhr, GHSA-g7r4-m6w7-qqqr)",
-      "svg-sprite > glob": ">=13.0.0, drop vulnerable dependencies of svg-sprite dependency"
+      "svg-sprite > glob": ">=13.0.0, drop vulnerable dependencies of svg-sprite dependency",
+      "postcss": ">=8.5.18, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)"
     }
   ],
   "overrides": {
@@ -47,6 +48,7 @@
     "yauzl": "^3.2.1",
     "uuid": "^14.0.0",
     "esbuild": "^0.28.1",
+    "postcss": "^8.5.23",
     "svg-sprite": {
       "glob": "^13.0.0"
     }
