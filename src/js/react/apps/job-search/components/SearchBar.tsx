@@ -2,37 +2,45 @@ import type { estypes } from '@elastic/elasticsearch';
 import { Search, type SearchInputHandle } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
-import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
+import { getElasticUrlAtom, getKeywordAtom, keywordResetCountAtom, setStateValueAtom } from '../store';
 import type Job from '../types/Job';
 
 export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement> }) => {
-  const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
+  const readKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
   const ref = useRef<SearchInputHandle>(null);
   const setStateValue = useSetAtom(setStateValueAtom);
   const keyword = useAtomValue(getKeywordAtom);
+  const keywordResetCount = useAtomValue(keywordResetCountAtom);
   const elasticUrl = useAtomValue(getElasticUrlAtom);
   const { index } = Global;
   const url = `${elasticUrl}/${index}/_search`;
 
-  // On first render, the HDS Search component tries to clear
-  // the input even if a keyword was loaded from the URL.
-  // Skip that so the keyword stays visible in the field.
-  const skipInitialClearRef = useRef(!!keyword);
-
   const handleChange = useCallback(
     (changedKeyword: string) => {
-      if (!changedKeyword && skipInitialClearRef.current) {
-        skipInitialClearRef.current = false;
-        return;
-      }
       setStateValue({ key: SearchComponents.KEYWORD, value: changedKeyword.replace(/\s+/g, ' ') });
     },
     [setStateValue],
+  );
+
+  /**
+   * Prevents HDS from clearing prefilled input.
+   */
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const isDomEvent = Boolean(event.nativeEvent);
+
+      if (!isDomEvent && !event.target.value) {
+        return;
+      }
+
+      handleChange(event.target.value);
+    },
+    [handleChange],
   );
 
   const handleSubmit = useCallback(
@@ -146,32 +154,22 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
   });
 
   useEffect(() => {
-    handleChange(readInitialKeyword() ?? '');
-  }, [readInitialKeyword, handleChange]);
+    const initialKeyword = readKeyword();
 
-  // When the keyword pill is removed, the HDS Search component still remembers the old
-  // keyword internally and tries to put it back. Changing the key forces it to
-  // reset to blank. useLayoutEffect makes sure this happens before HDS gets
-  // a chance to restore the old value.
-  const [searchKey, setSearchKey] = useState(0);
-  const prevKeywordRef = useRef(keyword);
-  useLayoutEffect(() => {
-    if (prevKeywordRef.current && !keyword) {
-      setSearchKey((k) => k + 1);
+    if (initialKeyword) {
+      handleChange(initialKeyword);
     }
-    prevKeywordRef.current = keyword;
-  }, [keyword]);
+  }, [readKeyword, handleChange]);
 
   return (
     <Search
-      key={searchKey}
+      // Need to force remount to manipulate HDS internal state
+      key={keywordResetCount}
       {...props}
       ref={ref}
-      value={keyword ?? ''}
+      value={keyword}
       hideSubmitButton={true}
-      onChange={(e) => {
-        handleChange(e.target.value);
-      }}
+      onChange={handleInputChange}
       onSearch={handleSearch}
       onSend={handleSubmit}
     />
