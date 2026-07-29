@@ -9,6 +9,9 @@ const languageFilter = { term: { [`${IndexFields.LANGUAGE}`]: currentLanguage } 
 // Filter out taxonomy terms
 export const nodeFilter = { term: { [IndexFields.ENTITY_TYPE]: 'node' } };
 
+// Filter out unpublished (expired) job listings
+export const publishedFilter = { term: { [IndexFields.STATUS]: true } };
+
 // Alphabetical sort for terms
 const alphabeticallySortTerms = { name: { order: 'asc' } };
 
@@ -16,7 +19,7 @@ const termSubAgg = { unique: { cardinality: { field: `${IndexFields.RECRUITMENT_
 
 export const PROMOTED_IDS = {
   aggs: { promoted: { terms: { field: IndexFields.NID, size: 100 } } },
-  query: { bool: { filter: [nodeFilter], must: [{ term: { [IndexFields.PROMOTED]: true } }] } },
+  query: { bool: { filter: [nodeFilter, publishedFilter], must: [{ term: { [IndexFields.PROMOTED]: true } }] } },
 };
 
 // Base aggregations
@@ -27,7 +30,7 @@ export const AGGREGATIONS = {
     employment_type: { terms: { field: 'employment_type_id', size: 100 }, aggs: termSubAgg },
     employment_search_id: { terms: { field: 'employment_search_id', size: 100 }, aggs: termSubAgg },
   },
-  query: { bool: { filter: [nodeFilter] } },
+  query: { bool: { filter: [nodeFilter, publishedFilter] } },
 };
 
 // Get all employment filter options
@@ -58,7 +61,7 @@ export const EMPLOYMENT_FILTER_OPTIONS = {
 // Get all eligible language options
 export const LANGUAGE_OPTIONS = {
   aggs: { languages: { terms: { field: '_language' } } },
-  query: { bool: { filter: [nodeFilter] } },
+  query: { bool: { filter: [nodeFilter, publishedFilter] } },
 };
 
 // Get all task area options
