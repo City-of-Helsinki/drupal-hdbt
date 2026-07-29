@@ -13,7 +13,7 @@ h6 {
   }
 
   // Target only headings that do not have links inside of them
-  &:not(:has(a)) {
+  &:not(:has(a), .sidebar_block_heading) {
     &:focus,
     &:active {
       outline: 3px solid $color-black;

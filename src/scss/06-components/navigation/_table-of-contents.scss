@@ -52,24 +52,6 @@
 .table-of-contents__link {
   @include font('special.large_link');
   display: inline-block;
-  position: relative;
-
-  // TODO: UHF-643 Unify focuses/hovers and other link styles (https://helsinkisolutionoffice.atlassian.net/browse/UHF-643).
-  &:focus {
-    outline: none;
-
-    &::after {
-      box-shadow: 0 0 0 3px $color-black;
-      content: '';
-      display: block;
-      height: 100%;
-      left: -#{$spacing-quarter};
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: calc(100% + #{$spacing-half});
-    }
-  }
 }
 
 .table-of-contents__nojs {
