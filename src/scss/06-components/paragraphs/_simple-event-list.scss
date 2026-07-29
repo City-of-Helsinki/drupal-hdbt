@@ -1,4 +1,4 @@
-.simple-event-list__events {
+.simple-event-list__events, .simple-event-list__events--ghosts {
   display: grid;
   gap: 0;
   list-style: none;
@@ -7,6 +7,12 @@
   @include breakpoint($breakpoint-m) {
     column-gap: $spacing-and-half;
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.loading .simple-event-list__events {
+  @include breakpoint($breakpoint-m) {
+    grid-template-columns: 1fr;
   }
 }
 

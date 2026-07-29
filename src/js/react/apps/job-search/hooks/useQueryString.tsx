@@ -5,7 +5,7 @@ import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
 import { getAreaInfo } from '../helpers/Areas';
-import { nodeFilter } from '../query/queries';
+import { nodeFilter, publishedFilter } from '../query/queries';
 import { configurationsAtom, submittedStateAtom } from '../store';
 import type { OptionType } from '../types/OptionType';
 
@@ -26,7 +26,7 @@ const getArrayValues = (optionArray: OptionType[]): string[] => {
 const useQueryString = (): string => {
   const state = useAtomValue(submittedStateAtom);
   const { size: globalSize, sortOptions } = Global;
-  const { promoted } = useAtomValue(configurationsAtom) || {};
+  const { promoted = [] } = useAtomValue(configurationsAtom) || {};
   const page = Number.isNaN(Number(state[SearchComponents.PAGE])) ? 1 : Number(state[SearchComponents.PAGE]);
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   const must: any[] = [
@@ -110,7 +110,7 @@ const useQueryString = (): string => {
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-  const query: any = { bool: { filter: [nodeFilter] } };
+  const query: any = { bool: { filter: [nodeFilter, publishedFilter] } };
 
   if ((state[SearchComponents.LANGUAGE] as OptionType[]).length) {
     query.bool.filter.push({

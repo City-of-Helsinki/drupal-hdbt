@@ -1,4 +1,4 @@
-import { Select } from 'hds-react';
+import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
@@ -20,7 +20,7 @@ export const LanguageFilter = () => {
       onChange={(selectedOptions) => {
         setStateValue({ key: SearchComponents.LANGUAGE, value: selectedOptions });
       }}
-      options={languageOptions}
+      options={languageOptions as OptionInProps[]}
       texts={{
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
@@ -36,7 +36,7 @@ export const LanguageFilter = () => {
         language: window.drupalSettings.path.currentLanguage,
         placeholder: Drupal.t('All languages', {}, { context: 'Language placeholder' }),
       }}
-      value={value}
+      value={value as OptionInProps[]}
       theme={defaultSelectTheme}
     />
   );

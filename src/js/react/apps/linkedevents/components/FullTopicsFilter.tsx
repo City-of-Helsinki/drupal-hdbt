@@ -1,4 +1,5 @@
-import { Select, type SelectData, useSelectStorage } from 'hds-react';
+import { Select, useSelectStorage } from 'hds-react';
+import type { SearchFunction, SearchResult } from 'hds-react/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';
@@ -20,11 +21,11 @@ const FullTopicsFilter = memo(() => {
 
   const getTopicsParamValue = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
 
-  const getTopics = async (searchTerm: string, _selectedOptions: OptionType[], _data: SelectData) => {
+  const getTopics: SearchFunction = async (searchTerm) => {
     const url = new URL(LinkedEvents.KEYWORDS_URL);
     const locationParams = new URLSearchParams({ has_upcoming_events: 'true', text: searchTerm });
     url.search = locationParams.toString();
-    const result = { options: [] };
+    const result: SearchResult = { options: [] };
 
     // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
     const response = await useTimeoutFetch(url.toString());

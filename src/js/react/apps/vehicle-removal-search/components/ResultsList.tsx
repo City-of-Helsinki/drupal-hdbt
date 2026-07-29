@@ -16,9 +16,16 @@ import { submittedStateAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
 
+type VehicleRemovalResponse = {
+  hits: {
+    total: { value: number; relation: string };
+    hits: Result<VehicleRemoval>[];
+  };
+};
+
 type ResultsListProps = {
   /** Elasticsearch results. */
-  data: unknown;
+  data?: VehicleRemovalResponse;
   error: string | Error;
   isLoading: boolean;
   isValidating: boolean;
@@ -31,11 +38,11 @@ const Header = ({
   dialogTarget,
   leftActions,
 }: {
-  total: number;
+  children?: ReactNode;
+  dialogTarget: RefObject<HTMLDivElement>;
   leftActions?: ReactElement;
   scrollTarget: RefObject<HTMLDivElement>;
-  dialogTarget: RefObject<HTMLDivElement>;
-  children?: ReactNode;
+  total: number;
 }) => (
   <div className='hdbt-search--react__results'>
     <div ref={dialogTarget} />

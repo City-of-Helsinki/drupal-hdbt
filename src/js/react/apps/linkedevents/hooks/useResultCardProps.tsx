@@ -5,6 +5,27 @@ import { hobbiesPublicUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
+
+// Source sets mirror responsive_image.styles.card and responsive_image.styles.card_teaser.
+// Each style name must be present in helfi_etusivu's LinkedEventsImageController::IMAGE_STYLES_ALLOWED.
+type ImageSource = { media: string; style1x: string; style2x: string };
+
+const CARD_SOURCES: ImageSource[] = [
+  { media: 'all and (min-width: 1248px)', style1x: '1_5_304w_203h', style2x: '1_5_608w_406w_lq' },
+  { media: 'all and (min-width: 992px)', style1x: '1_5_294w_196h', style2x: '1_5_588w_392h_lq' },
+  { media: 'all and (min-width: 768px)', style1x: '1_5_220w_147h', style2x: '1_5_440w_294h_lq' },
+  { media: 'all and (min-width: 576px)', style1x: '1_5_176w_118h', style2x: '1_5_352w_236h_lq' },
+  { media: 'all and (min-width: 320px)', style1x: '1_5_511w_341h', style2x: '1_5_1022w_682h_lq' },
+];
+const CARD_FALLBACK_STYLE = '1_5_304w_203h';
+
+const CARD_TEASER_SOURCES: ImageSource[] = [
+  { media: 'all and (min-width: 1248px)', style1x: '1_5_405w_270h', style2x: '1_5_810w_540h_lq' },
+  { media: 'all and (min-width: 992px)', style1x: '1_5_378w_252h', style2x: '1_5_756w_504h_lq' },
+  { media: 'all and (min-width: 576px)', style1x: '1_5_294w_196h', style2x: '1_5_588w_392h_lq' },
+  { media: 'all and (min-width: 320px)', style1x: '1_5_217w_145h', style2x: '1_5_434w_290h_lq' },
+];
+const CARD_TEASER_FALLBACK_STYLE = '1_5_378w_252h';
 const overDayApart = (start: Date, end: Date) => start.toDateString() !== end.toDateString();
 
 const pad = (value: number) => String(value).padStart(2, '0');
@@ -40,8 +61,8 @@ export const useResultCardProps = ({
   type_id,
 }: Event) => {
   const { currentLanguage } = drupalSettings.path;
-  const { baseUrl, imagePlaceholder } = drupalSettings.helfi_events;
-  const { useCrossInstitutionalStudiesForm } = useAtomValue(settingsAtom);
+  const { baseUrl, etusivuBaseUrl, imagePlaceholder } = drupalSettings.helfi_events;
+  const { layout, useCrossInstitutionalStudiesForm } = useAtomValue(settingsAtom);
 
   const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
 
@@ -120,17 +141,42 @@ export const useResultCardProps = ({
       ({ info_url }) => info_url != null && info_url[currentLanguage] != null && isValidUrl(info_url[currentLanguage]),
     ) ?? false;
 
-  const imageToElement = (image: EventImage): JSX.Element => {
-    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?: string } = {};
+  const buildStyledUrl = (image: EventImage, style: string, time: string) => {
+    const params = new URLSearchParams({ style, time });
+    return `${etusivuBaseUrl}/fi/linked-events/image/${image.id}?${params.toString()}`;
+  };
 
+  const imageToElement = (image: EventImage): JSX.Element => {
+    const { last_modified_time } = image;
+    if (etusivuBaseUrl && last_modified_time) {
+      const sources = layout === 'lifts' ? CARD_TEASER_SOURCES : CARD_SOURCES;
+      const fallback = layout === 'lifts' ? CARD_TEASER_FALLBACK_STYLE : CARD_FALLBACK_STYLE;
+
+      return (
+        <picture>
+          {sources.map(({ media, style1x, style2x }) => (
+            <source
+              key={media}
+              media={media}
+              srcSet={`${buildStyledUrl(image, style1x, last_modified_time)} 1x, ${buildStyledUrl(image, style2x, last_modified_time)} 2x`}
+            />
+          ))}
+          <img
+            alt=''
+            src={buildStyledUrl(image, fallback, last_modified_time)}
+            {...(image.photographer_name ? { 'data-photographer': image.photographer_name } : {})}
+          />
+        </picture>
+      );
+    }
+
+    const imageProps: React.ImgHTMLAttributes<HTMLImageElement> & { 'data-photographer'?: string } = {};
     if (image.url) {
       imageProps.src = image.url;
     }
-
     if (image.photographer_name) {
       imageProps['data-photographer'] = image.photographer_name;
     }
-
     return <img alt='' {...imageProps} />;
   };
 
