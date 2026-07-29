@@ -6,7 +6,6 @@ import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagem
 import Pagination from '@/react/common/Pagination';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
-import ResultWrapper from '@/react/common/ResultWrapper';
 import ResultsList from '../components/results/ResultsList';
 import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
