@@ -118,7 +118,7 @@ const ResultsContainer = () => {
   return (
     <div className='job-search__results'>
       <div ref={dialogTargetRef} />
-      <ResultWrapper loading={false}>{getResults()}</ResultWrapper>
+      {getResults()}
     </div>
   );
 };
