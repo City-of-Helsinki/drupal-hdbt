@@ -1,0 +1,7 @@
+// Button hover colors. Using plaing RGBA since sass:color does not allow adding opacity to CSS variables.
+// These will be available at HDS at some point, but for now as variables imported to color-palette.scss.
+:root {
+  --primary-button-black-hover-fill: rgb(0 0 0 / 80%);
+  --primary-button-white-hover-fill: rgb(255 255 255 / 80%);
+  --secondary-button-hover-fill: rgb(0 0 0 / 5%);
+}
