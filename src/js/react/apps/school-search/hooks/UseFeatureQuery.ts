@@ -20,9 +20,13 @@ const UseFeatureQuery = (params: SearchParams) => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(`_${query || ''}}`, fetcher, { revalidateOnFocus: false });
+  const queryString = `_${query || ''}}`;
+  const { data, error, isLoading, isValidating } = useSWR(queryString, fetcher, {
+    revalidateOnFocus: false,
+    keepPreviousData: true,
+  });
 
-  return { data, error, isLoading, isValidating };
+  return { data, error, isLoading, isValidating, queryString };
 };
 
 export default UseFeatureQuery;

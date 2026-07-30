@@ -121,8 +121,9 @@ export const submitStateAtom = atom(null, (get, set, directState: Partial<Search
     newState[SearchComponents.PAGE] = '1';
   }
 
+  set(submittedStateAtom, newState);
+
   if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
-    set(submittedStateAtom, newState);
     const params = stateToURLParams(newState);
     const url = new URL(window.location.href);
     url.search = params.toString();

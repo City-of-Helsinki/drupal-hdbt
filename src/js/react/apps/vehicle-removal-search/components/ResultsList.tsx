@@ -1,16 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai';
-import {
-  createRef,
-  type ReactElement,
-  type ReactNode,
-  type RefObject,
-  type SyntheticEvent,
-  useEffect,
-  useRef,
-} from 'react';
+import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -46,11 +37,11 @@ const Header = ({
   dialogTarget,
   leftActions,
 }: {
-  total: number;
   children?: ReactNode;
+  dialogTarget: RefObject<HTMLDivElement>;
   leftActions?: ReactElement;
   scrollTarget: RefObject<HTMLDivElement>;
-  dialogTarget: RefObject<HTMLDivElement>;
+  total: number;
 }) => (
   <div className='hdbt-search--react__results'>
     <div ref={dialogTarget} />
@@ -67,29 +58,21 @@ const Header = ({
   </div>
 );
 
-const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps) => {
+const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
   const { page } = submittedState;
-  const scrollTarget = createRef<HTMLDivElement>();
-  const dialogTargetRef = createRef<HTMLDivElement>();
-  const resultsListRef = useRef<HTMLDivElement>(null);
-  const hasSearched = useRef(false);
-  const isFirstRender = useRef(true);
+  const dialogTargetRef = useRef<HTMLDivElement>(null);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: submittedState is intentionally used as a trigger
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    hasSearched.current = true;
-  }, [submittedState]);
-
-  useScrollToResults(scrollTarget, Boolean(data) && hasSearched.current);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
-
+  const query = useVehicleRemovalQuery();
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
+    isValidating,
+    query,
+    data,
+    error,
+    submittedState,
+  );
 
   const selectionTags: TagType[] = streets.map((street) => ({
     tag: street.label,
@@ -158,16 +141,20 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
     />
   );
 
-  if (error) {
-    return <ResultsError error={error} ref={scrollTarget} />;
+  if (isSearching) {
+    return (
+      <div className='hdbt-search--react__results'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
+        <GhostList count={Global.size} />
+      </div>
+    );
   }
 
-  if (isLoading || isValidating) {
-    return (
-      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
-        <GhostList count={Global.size} />
-      </Header>
-    );
+  if (error) {
+    return <ResultsError error={error} ref={scrollTarget} />;
   }
 
   if (!data?.hits?.hits?.length) {
@@ -202,7 +189,7 @@ const ResultsList = ({ data, error, isLoading, isValidating }: ResultsListProps)
   const updatePage = (e: SyntheticEvent, nextPage: number) => {
     e.preventDefault();
     setSubmittedState({ page: nextPage });
-    scrollToFirstItem();
+    onPageChange();
   };
 
   return (

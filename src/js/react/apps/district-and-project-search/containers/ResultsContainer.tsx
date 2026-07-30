@@ -1,9 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { createRef, type SyntheticEvent, useRef } from 'react';
+import type { SyntheticEvent } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -25,10 +24,6 @@ const ResultsContainer = (): JSX.Element => {
   const { error: initializationError } = useAtomValue(configurationsAtom);
   const setPage = useSetAtom(setPageAtom);
   const currentPage = useAtomValue(pageAtom);
-  const scrollTarget = createRef<HTMLDivElement>();
-
-  const choices = Boolean(window.location.search?.length);
-  useScrollToResults(scrollTarget, choices);
 
   const fetcher = async () => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
@@ -42,12 +37,29 @@ const ResultsContainer = (): JSX.Element => {
     }).then((res) => res.json());
   };
 
-  const { data, error, isValidating } = useSWR(queryString, fetcher, { revalidateOnFocus: false });
-  const resultsListRef = useRef<HTMLDivElement>(null);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-
-  if (!data && !error) {
-    return <GhostList count={size} />;
+  const { data, error, isValidating } = useSWR(queryString, fetcher, {
+    revalidateOnFocus: false,
+    keepPreviousData: true,
+  });
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
+    isValidating,
+    queryString,
+    data,
+    error,
+    urlParams,
+  );
+  if (isSearching) {
+    return (
+      // Different keys force React to fully replace the DOM between ghost and results
+      // instead of patching in place, which prevents a removeChild crash in React version 17.
+      <div key='ghost' className='react-search__results'>
+        <ResultsHeader
+          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+          ref={loadingHeaderRef}
+        />
+        <GhostList count={size} />
+      </div>
+    );
   }
 
   if (error || initializationError) {
@@ -66,11 +78,11 @@ const ResultsContainer = (): JSX.Element => {
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
-    scrollToFirstItem();
+    onPageChange();
   };
 
   return (
-    <div className='react-search__results'>
+    <div key='results' className='react-search__results'>
       <ResultsHeader
         resultText={
           // biome-ignore lint/complexity/noUselessFragments: @todo UHF-12501

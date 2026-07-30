@@ -1993,3 +1993,7 @@ msgstr "Sulje"
 msgctxt "AI Summary"
 msgid "Close the summary"
 msgstr "Sulje tiivistelmä"
+
+msgctxt "React search: Fetching results title"
+msgid "Searching for results..."
+msgstr "Tuloksia haetaan..."
