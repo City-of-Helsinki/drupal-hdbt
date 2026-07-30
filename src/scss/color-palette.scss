@@ -4,6 +4,7 @@
 // HELfi / HDBT Color palettes
 
 :root, // The default color palette is set here, that's why it's out of alphabetical order here.
+
 .hdbt-theme--coat-of-arms {
   --hdbt-color-palette--primary: var(--color-coat-of-arms);
   --hdbt-color-palette--secondary: var(--color-fog-light);
@@ -12,9 +13,12 @@
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
   --hdbt-color-palette-button--primary: var(--color-white);
-  --hdbt-color-palette-button-contrast--primary: var(--color-black-90);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-button-contrast--primary: var(--color-black);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-white-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--bus {
@@ -25,9 +29,12 @@
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
   --hdbt-color-palette-button--primary: var(--color-white);
-  --hdbt-color-palette-button-contrast--primary: var(--color-black-90);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-button-contrast--primary: var(--color-black);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-white-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--copper {
@@ -37,10 +44,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--engel {
@@ -50,10 +60,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--gold {
@@ -63,10 +76,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-white);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--metro {
@@ -76,10 +92,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--silver {
@@ -89,10 +108,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--summer {
@@ -102,10 +124,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-white);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--suomenlinna {
@@ -115,10 +140,13 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-white);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--tram {
@@ -129,9 +157,12 @@
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
   --hdbt-color-palette-button--primary: var(--color-white);
-  --hdbt-color-palette-button-contrast--primary: var(--color-black-90);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-button-contrast--primary: var(--color-black);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-white-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }
 
 .hdbt-theme--fog {
@@ -141,8 +172,11 @@
   --hdbt-color-palette-text--primary: var(--color-black-90);
   --hdbt-color-palette-text--secondary: var(--color-black-90);
   --hdbt-color-palette-text--accent: var(--color-black-90);
-  --hdbt-color-palette-button--primary: var(--color-black-90);
+  --hdbt-color-palette-button--primary: var(--color-black);
   --hdbt-color-palette-button-contrast--primary: var(--color-white);
-  --hdbt-color-palette-button--secondary: var(--color-black-90);
+  --hdbt-color-palette-primary-button-hover--primary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-button--secondary: var(--color-black);
   --hdbt-color-palette-button-contrast--secondary: var(--color-white);
+  --hdbt-color-palette-primary-button-hover--secondary: var(--primary-button-black-hover-fill);
+  --hdbt-color-palette-secondary-button-hover: var(--secondary-button-hover-fill);
 }

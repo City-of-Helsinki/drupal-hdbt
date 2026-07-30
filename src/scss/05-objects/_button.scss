@@ -15,6 +15,7 @@
   --theme-bg2: transparent;
   --theme-focus: var(--color-black);
   --theme-focus-gutter-color: transparent; // set this to white if we want double colored focus rings
+  --primary-button-hover-fill: var(--primary-button-black-hover-fill);
 }
 
 @mixin hds-button-colors-on-dark-bg(){
@@ -24,6 +25,7 @@
   --theme-bg2: transparent;
   --theme-focus: var(--color-white);
   --theme-focus-gutter-color: transparent; // set this to black if we want double colored focus rings
+  --primary-button-hover-fill: var(--primary-button-white-hover-fill);
 }
 
 :root {
@@ -285,23 +287,23 @@ input[type='submit'].hds-button--small {
 .hds-button--primary {
   // Backgrounds
   --background-color: var(--theme-bg1, var(--color-bus));
-  --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
+  --background-color-hover: var(--primary-button-hover-fill, var(--color-bus-dark));
   --background-color-focus: var(--theme-bg1, var(--color-bus));
-  --background-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+  --background-color-hover-focus: var(--primary-button-hover-fill, var(--color-bus-dark));
   --background-color-disabled: var(--color-black-20);
 
   // Borders
   --border-color: var(--theme-bg1, var(--color-bus));
-  --border-color-hover: var(--theme-bg1, var(--color-bus-dark));
+  --border-color-hover: transparent;
   --border-color-focus: var(--theme-bg1, var(--color-bus));
-  --border-color-hover-focus: var(--theme-bg1, var(--color-bus-dark));
+  --border-color-hover-focus: transparent;
   --border-color-disabled: var(--color-black-20);
 
   // Colors
   --color: var(--theme-fg1, var(--color-white));
-  --color-hover: var(--theme-fg2, var(--color-white));
+  --color-hover: var(--theme-fg1, var(--color-white));
   --color-focus: var(--theme-fg1, var(--color-white));
-  --color-hover-focus: var(--theme-fg2, var(--color-white));
+  --color-hover-focus: var(--theme-fg1, var(--color-white));
   --color-disabled: var(--color-white);
 
   // Focus ring
@@ -314,23 +316,23 @@ input[type='submit'].hds-button--small {
 .hds-button--secondary {
   // Backgrounds
   --background-color: var(--theme-bg2, transparent);
-  --background-color-hover: var(--theme-bg1, var(--color-bus-light));
+  --background-color-hover: var(--secondary-button-hover-fill, var(--color-bus-light));
   --background-color-focus: var(--theme-bg2, transparent);
-  --background-color-hover-focus: var(--theme-bg1, var(--color-bus-light));
+  --background-color-hover-focus: var(--secondary-button-hover-fill, var(--color-bus-light));
   --background-color-disabled: transparent;
 
   // Borders
-  --border-color: var(--theme-bg1, var(--color-bus));
-  --border-color-hover: var(--theme-bg2, var(--color-bus-dark));
-  --border-color-focus: var(--theme-bg1, var(--color-bus));
-  --border-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+  --border-color: var(--theme-fg2, var(--color-bus));
+  --border-color-hover: var(--theme-fg2, var(--color-bus-dark));
+  --border-color-focus: var(--theme-fg2, var(--color-bus));
+  --border-color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
   --border-color-disabled: var(--color-black-50);
 
   // Colors
   --color: var(--theme-fg2, var(--color-bus));
-  --color-hover: var(--theme-fg1, var(--color-bus-dark));
+  --color-hover: var(--theme-fg2, var(--color-bus-dark));
   --color-focus: var(--theme-fg2, var(--color-bus));
-  --color-hover-focus: var(--theme-fg1, var(--color-bus-dark));
+  --color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
   --color-disabled: var(--color-black-40);
 
   // Focus ring
@@ -918,23 +920,23 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   &[data-hds-variant='primary'] {
     // Backgrounds
     --background-color: var(--theme-bg1, var(--color-bus));
-    --background-color-hover: var(--theme-bg2, var(--color-bus-dark));
+    --background-color-hover: var(--primary-button-hover-fill, var(--color-bus-dark));
     --background-color-focus: var(--theme-bg1, var(--color-bus));
-    --background-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+    --background-color-hover-focus: var(--primary-button-hover-fill, var(--color-bus-dark));
     --background-color-disabled: var(--color-black-20);
 
     // Borders
     --border-color: var(--theme-bg1, var(--color-bus));
-    --border-color-hover: var(--theme-bg1, var(--color-bus-dark));
+    --border-color-hover: transparent; // Same color as be, but trasnparent colors would mix.
     --border-color-focus: var(--theme-bg1, var(--color-bus));
-    --border-color-hover-focus: var(--theme-bg1, var(--color-bus-dark));
+    --border-color-hover-focus: transparent;
     --border-color-disabled: var(--color-black-20);
 
     // Colors
     --color: var(--theme-fg1, var(--color-white));
-    --color-hover: var(--theme-fg2, var(--color-white));
+    --color-hover: var(--theme-fg1, var(--color-white));
     --color-focus: var(--theme-fg1, var(--color-white));
-    --color-hover-focus: var(--theme-fg2, var(--color-white));
+    --color-hover-focus: var(--theme-fg1, var(--color-white));
     --color-disabled: var(--color-white);
 
     // Focus ring
@@ -947,23 +949,23 @@ a[href][data-hds-component='button']:not([class*='hds-button']) {
   &[data-hds-variant='secondary'] {
     // Backgrounds
     --background-color: var(--theme-bg2, transparent);
-    --background-color-hover: var(--theme-bg1, var(--color-bus-light));
+    --background-color-hover: var(--secondary-button-hover-fill, var(--color-bus-light));
     --background-color-focus: var(--theme-bg2, transparent);
-    --background-color-hover-focus: var(--theme-bg1, var(--color-bus-light));
+    --background-color-hover-focus: var(--secondary-button-hover-fill, var(--color-bus-light));
     --background-color-disabled: transparent;
 
     // Borders
-    --border-color: var(--theme-bg1, var(--color-bus));
-    --border-color-hover: var(--theme-bg2, var(--color-bus-dark));
-    --border-color-focus: var(--theme-bg1, var(--color-bus));
-    --border-color-hover-focus: var(--theme-bg2, var(--color-bus-dark));
+    --border-color: var(--theme-fg2, var(--color-bus));
+    --border-color-hover: var(--theme-fg2, var(--color-bus-dark));
+    --border-color-focus: var(--theme-fg2, var(--color-bus));
+    --border-color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
     --border-color-disabled: var(--color-black-50);
 
     // Colors
     --color: var(--theme-fg2, var(--color-bus));
-    --color-hover: var(--theme-fg1, var(--color-bus-dark));
+    --color-hover: var(--theme-fg2, var(--color-bus-dark));
     --color-focus: var(--theme-fg2, var(--color-bus));
-    --color-hover-focus: var(--theme-fg1, var(--color-bus-dark));
+    --color-hover-focus: var(--theme-fg2, var(--color-bus-dark));
     --color-disabled: var(--color-black-40);
 
     // Focus ring
