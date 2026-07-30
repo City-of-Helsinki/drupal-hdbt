@@ -52,7 +52,7 @@ h6 {
   h5,
   h6 {
     &:not(:has(a)):focus,
-    &:not(:has(a)):active{
+    &:not(:has(a)):active {
       outline-color: var(--hdbt-color-palette-text--secondary);
     }
   }
