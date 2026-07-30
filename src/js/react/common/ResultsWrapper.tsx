@@ -42,7 +42,7 @@ export const ResultsWrapper = <Trigger,>({
   trigger: Trigger;
   size: number;
 }) => {
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
     queryString,
     data,
@@ -81,7 +81,7 @@ export const ResultsWrapper = <Trigger,>({
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
-    skipResultsFocusRef.current = true;
+    onPageChange();
   };
 
   return (
@@ -92,7 +92,7 @@ export const ResultsWrapper = <Trigger,>({
         ref={scrollTarget}
         resultText={<>{getHeaderText()}</>}
       />
-      <div className='hdbt-search--react__results--list'>
+      <div className='hdbt-search--react__results--list' ref={resultsListRef}>
         {results.map((item: estypes.SearchHit<any>) => resultItemCallBack(item))}
         <Pagination
           currentPage={Number(currentPage)}

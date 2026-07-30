@@ -1,7 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsError from '@/react/common/ResultsError';
@@ -24,7 +23,7 @@ const ResultsContainer = () => {
 
   const { data, error, isValidating } = useIndexQuery({ keepPreviousData: true, query, multi: promoted });
 
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
     query,
     data,
@@ -32,14 +31,10 @@ const ResultsContainer = () => {
     submittedState,
   );
 
-  const resultsListRef = useRef<HTMLDivElement>(null);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
-    scrollToFirstItem();
-    skipResultsFocusRef.current = true;
+    onPageChange();
   };
 
   if (isSearching) {

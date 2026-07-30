@@ -1,7 +1,6 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -63,13 +62,11 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
   const { page } = submittedState;
   const dialogTargetRef = useRef<HTMLDivElement>(null);
-  const resultsListRef = useRef<HTMLDivElement>(null);
 
   const query = useVehicleRemovalQuery();
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
     query,
     data,
@@ -192,8 +189,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const updatePage = (e: SyntheticEvent, nextPage: number) => {
     e.preventDefault();
     setSubmittedState({ page: nextPage });
-    scrollToFirstItem();
-    skipResultsFocusRef.current = true;
+    onPageChange();
   };
 
   return (

@@ -1,7 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -31,9 +30,7 @@ const ResultsContainer = ({
   const setPage = useSetAtom(setPageAtom);
   const { data, error, isValidating } = useIndexQuery({ keepPreviousData: true, query: queryString });
   const dialogTargetRef = useRef<HTMLDivElement>(null);
-  const resultsListRef = useRef<HTMLDivElement>(null);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
     queryString,
     data,
@@ -70,8 +67,7 @@ const ResultsContainer = ({
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, newPage: number) => {
     e.preventDefault();
     setPage(newPage);
-    scrollToFirstItem();
-    skipResultsFocusRef.current = true;
+    onPageChange();
   };
 
   if (!results?.length) {

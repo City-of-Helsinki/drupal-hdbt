@@ -1,7 +1,6 @@
 import { useAtomValue } from 'jotai';
-import { type SyntheticEvent, useRef, useState } from 'react';
+import { type SyntheticEvent, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import Pagination from '@/react/common/Pagination';
@@ -31,15 +30,13 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
   const [useMap, setUseMap] = useState<boolean>(false);
   const { size } = AppSettings;
   const params = useAtomValue(paramsAtom);
-  const resultsListRef = useRef<HTMLDivElement>(null);
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
-    isValidating,
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
+    isLoading || isValidating,
     queryString,
     data,
     error,
     params,
   );
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isLoading || isValidating);
 
   if (isSearching) {
     return (
@@ -136,8 +133,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
             updatePage={(e: SyntheticEvent, nextPage: number) => {
               e.preventDefault();
               updatePage(nextPage);
-              scrollToFirstItem();
-              skipResultsFocusRef.current = true;
+              onPageChange();
             }}
           />
         )}

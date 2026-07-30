@@ -151,4 +151,28 @@ describe('ResultsWrapper', () => {
     );
     expect(document.activeElement).not.toBe(headerOf(container));
   });
+
+  test('keeps skipping the results focus when the pager lands on a page served from cache', () => {
+    const setPage = vi.fn();
+    const first = dataWith([{ _id: 'a' }], 25) as any;
+    const cached = dataWith([{ _id: 'b' }], 25) as any;
+    const page1 = { ...baseProps, setPage, queryString: 'page=1', trigger: 'page=1' };
+    const page2 = { ...baseProps, setPage, queryString: 'page=2', trigger: 'page=2' };
+
+    // Initial load: the first fetch resolves and must not take focus.
+    const { container, rerender } = render(<ResultsWrapper {...page1} isValidating />);
+    rerender(<ResultsWrapper {...page1} data={first} />);
+    expect(document.activeElement).toBe(document.body);
+
+    fireEvent.click(pageLink(container, '2'));
+
+    // SWR hands over the cached data for the new key while isValidating is still
+    // false — the revalidation only starts after that render.
+    rerender(<ResultsWrapper {...page2} data={cached} />);
+    rerender(<ResultsWrapper {...page2} data={cached} isValidating />);
+    rerender(<ResultsWrapper {...page2} data={cached} />);
+
+    // The caller focuses the first result itself (useScrollToFirstItem).
+    expect(document.activeElement).not.toBe(headerOf(container));
+  });
 });

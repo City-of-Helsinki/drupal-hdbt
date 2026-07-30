@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 // Don't steal focus/scroll while a date range (or other) filter dialog is open.
 // Note: HDS Select/Combobox keeps role="dialog" in the DOM always (toggled via CSS
@@ -23,6 +23,9 @@ const focusHeading = (node: HTMLElement | null, scroll: boolean) => {
 // - New search / pager click: ghost cards "Searching for results..." heading focus, scroll to the heading.
 // - Results arrive after ghost cards: focus to results heading, no scroll.
 // - Resubmitting an unchanged query (hit from cache, no ghosts): focus and scroll to results heading.
+// - Pager click: the first result of the requested page takes focus instead of the
+//   results heading. Put resultsListRef on the result list and call onPageChange
+//   from the pager handler.
 const useSearchFocusManagement = <Trigger>(
   isValidating: boolean,
   queryString: string,
@@ -36,13 +39,20 @@ const useSearchFocusManagement = <Trigger>(
 ) => {
   const scrollTarget = useRef<HTMLDivElement>(null);
   const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
+  const resultsListRef = useRef<HTMLDivElement>(null);
   const lastDataKeyRef = useRef<string | null>(null);
   const wasSearchingRef = useRef(false);
   const skipResultsFocusRef = useRef(false);
+  const pagerFocusPendingRef = useRef(false);
   const initialLoadDoneRef = useRef(!suppressInitialLoad);
   const hadGhostCardsRef = useRef(false);
   // biome-ignore lint/suspicious/noExplicitAny: data shape varies per search
   const lastKeyDataRef = useRef<any>(undefined);
+
+  const onPageChange = useCallback(() => {
+    pagerFocusPendingRef.current = true;
+    skipResultsFocusRef.current = true;
+  }, []);
 
   // Only show ghost cards when the result is not served from cache. A cached result updates
   // data immediately, so the data changes at the same time as the search key.
@@ -91,14 +101,21 @@ const useSearchFocusManagement = <Trigger>(
   // biome-ignore lint/correctness/useExhaustiveDependencies: trigger is intentionally used only to detect resubmits
   useEffect(() => {
     if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || data === undefined) return;
-    if (skipResultsFocusRef.current) {
-      skipResultsFocusRef.current = false;
-      return;
-    }
+    if (skipResultsFocusRef.current) return;
     focusHeading(scrollTarget.current, true);
   }, [trigger]);
 
-  return { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching };
+  useEffect(() => {
+    if (!pagerFocusPendingRef.current || isValidating) return;
+    const firstLink = resultsListRef.current?.querySelector<HTMLElement>('a');
+
+    if (!firstLink || isFilterDialogOpen()) return;
+    pagerFocusPendingRef.current = false;
+    firstLink.focus({ preventScroll: true });
+    firstLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  return { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching };
 };
 
 export default useSearchFocusManagement;

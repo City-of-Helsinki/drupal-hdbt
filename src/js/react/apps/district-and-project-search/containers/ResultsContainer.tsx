@@ -1,8 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useRef } from 'react';
+import type { SyntheticEvent } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import Pagination from '@/react/common/Pagination';
@@ -25,7 +24,6 @@ const ResultsContainer = (): JSX.Element => {
   const { error: initializationError } = useAtomValue(configurationsAtom);
   const setPage = useSetAtom(setPageAtom);
   const currentPage = useAtomValue(pageAtom);
-  const resultsListRef = useRef<HTMLDivElement>(null);
 
   const fetcher = async () => {
     const proxyUrl = drupalSettings?.helfi_react_search?.elastic_proxy_url;
@@ -43,8 +41,7 @@ const ResultsContainer = (): JSX.Element => {
     revalidateOnFocus: false,
     keepPreviousData: true,
   });
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, isValidating);
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
     queryString,
     data,
@@ -81,8 +78,7 @@ const ResultsContainer = (): JSX.Element => {
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
     setPage(index.toString());
-    scrollToFirstItem();
-    skipResultsFocusRef.current = true;
+    onPageChange();
   };
 
   return (

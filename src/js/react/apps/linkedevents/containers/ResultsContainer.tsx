@@ -1,8 +1,7 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
-import { useCallback, useEffect, useRef } from 'react';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
+import { useCallback, useEffect } from 'react';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -45,22 +44,19 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
   const isLifts = settings.layout === 'lifts';
-  const resultsListRef = useRef<HTMLDivElement>(null);
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
   const submittedParams = useAtomValue(submittedParamsAtom);
   const readInitialized = useAtomCallback(useCallback((get) => get(initializedAtom), []));
   const setInitialized = useSetAtom(initializedAtom);
 
-  const { scrollTarget, loadingHeaderRef, skipResultsFocusRef, isSearching } = useSearchFocusManagement(
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     loading || validating,
     url,
     loading ? undefined : events,
     error,
     submittedParams,
   );
-
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, loading || validating);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: scrollTarget.current is a ref, intentionally read at effect run time
   useEffect(() => {
@@ -161,8 +157,7 @@ function ResultsContainer({
           {!isLifts && !settings.hidePagination && (
             <Pagination
               onPageChange={() => {
-                scrollToFirstItem();
-                skipResultsFocusRef.current = true;
+                onPageChange();
               }}
               pages={5}
               totalPages={addLastPage ? pages + 1 : pages}
