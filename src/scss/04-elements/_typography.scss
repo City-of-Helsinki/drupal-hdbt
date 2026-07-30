@@ -23,6 +23,41 @@ h6 {
   }
 }
 
+// Change outline color according to selected color theme for components
+// that have background color
+.hero,
+.banner,
+.liftup-with-image {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:not(:has(a)):focus,
+    &:not(:has(a)):active {
+      outline-color: var(--hdbt-color-palette-text--primary);
+    }
+  }
+}
+
+// Change outline color according to selected color theme for components
+// that have background color
+.component--banner-secondary,
+.component--liftup-with-image-secondary {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:not(:has(a)):focus,
+    &:not(:has(a)):active{
+        outline-color: var(--hdbt-color-palette-text--secondary);
+    }
+  }
+}
+
 // h1 hyphenation is handled separately
 h2,
 h3,
