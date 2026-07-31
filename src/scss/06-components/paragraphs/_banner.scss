@@ -101,12 +101,6 @@
 .banner {
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--primary);
-
-    &:focus,
-    &:active {
-      // Overrides default outline color from _link.scss file
-      outline-color: var(--hdbt-color-palette-text--primary) !important;
-    }
   }
 
   @include button-palettes('primary');
@@ -120,12 +114,6 @@
 .component--banner-secondary .banner {
   a {
     --hdbt-default-link-color: var(--hdbt-color-palette-text--secondary);
-
-    &:focus,
-    &:active {
-      // Overrides default outline color from _link.scss file
-      outline-color: var(--hdbt-color-palette-text--secondary) !important;
-    }
   }
 
   @include button-palettes('secondary');

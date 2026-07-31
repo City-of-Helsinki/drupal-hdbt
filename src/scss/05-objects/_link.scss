@@ -92,3 +92,22 @@ a {
     display: inline-block;
   }
 }
+
+// Change link outline color according to selected color theme for components
+// that have background color
+.hero,
+.banner,
+.liftup-with-image {
+  a {
+    outline-color: var(--hdbt-color-palette-text--primary) !important;
+  }
+}
+
+.component--banner-secondary .banner,
+.component--liftup-with-image-secondary {
+  a {
+    outline-color: var(--hdbt-color-palette-text--secondary) !important;
+  }
+}
+
+
