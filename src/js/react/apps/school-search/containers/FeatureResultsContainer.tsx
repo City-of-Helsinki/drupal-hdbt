@@ -9,10 +9,10 @@ const FeatureResultsContainer = () => {
   const updatePage = (page: number) => {
     setParams({ ...params, page });
   };
-  const { data, error, isLoading, isValidating } = UseFeatureQuery(params);
+  const { data, error, isLoading, isValidating, queryString } = UseFeatureQuery(params);
   const { page } = params;
 
-  return <ResultsList {...{ data, error, isLoading, isValidating, page, updatePage }} />;
+  return <ResultsList {...{ data, error, isLoading, isValidating, page, queryString, updatePage }} />;
 };
 
 export default FeatureResultsContainer;
