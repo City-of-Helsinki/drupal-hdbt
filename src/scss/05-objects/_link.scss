@@ -55,7 +55,7 @@ a {
 }
 
 .dialog-off-canvas-main-canvas {
-  a:not(
+  a:where(:not(
     [data-hds-component='button'],
     .hds-button, .menu__link,
     .logo--footer,
@@ -65,7 +65,7 @@ a {
     .mmenu__title-link,
     .extra-link a,
     .profile__logout-link
-    ),
+    )),
   .block--branding,
   .mmenu__logo-link {
     &:focus,
