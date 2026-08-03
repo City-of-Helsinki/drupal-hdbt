@@ -33,7 +33,9 @@
       return;
     }
 
-    iframeElement.style.width = `${width - 1}px`;
+    // 1px is not always enough for the iframe content window to emit resize;
+    // 2px reliably triggers Leaflet's invalidateSize handler.
+    iframeElement.style.width = `${width - 2}px`;
     // Force layout so the intermediate size is applied before restoring.
     void iframeElement.offsetWidth;
     iframeElement.style.width = '';
