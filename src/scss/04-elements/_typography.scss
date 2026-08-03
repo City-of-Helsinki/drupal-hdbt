@@ -13,7 +13,7 @@ h6 {
   }
 
   // Target only headings that do not have links inside of them
-  &:not(:has(a), .sidebar_block_heading, .webform-section-title, .hdbt-form--section__title) {
+  &:where(:not(:has(a), .sidebar_block_heading, .webform-section-title, .hdbt-form--section__title)) {
     &:focus,
     &:active {
       outline: 3px solid $color-black;
@@ -34,8 +34,8 @@ h6 {
   h4,
   h5,
   h6 {
-    &:not(:has(a)):focus,
-    &:not(:has(a)):active {
+    &:where(:not(:has(a))):focus,
+    &:where(:not(:has(a))):active {
       outline-color: var(--hdbt-color-palette-text--primary);
     }
   }
@@ -51,8 +51,8 @@ h6 {
   h4,
   h5,
   h6 {
-    &:not(:has(a)):focus,
-    &:not(:has(a)):active {
+    &:where(:not(:has(a))):focus,
+    &:where(:not(:has(a))):active {
       outline-color: var(--hdbt-color-palette-text--secondary);
     }
   }
