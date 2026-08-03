@@ -16,6 +16,43 @@
     return Drupal.cookieConsent.getConsentStatus(categories);
   };
 
+  /**
+   * Set iframe src once the sized container has a non-zero layout box.
+   *
+   * Leaflet embeds (e.g. palvelukartta) can initialize before the CSS
+   * aspect-ratio container has a final size, leaving markers misplaced until
+   * the user pans. Observe the container that establishes that size, then
+   * disconnect after the first usable measurement so later resizes do not
+   * reload the iframe.
+   *
+   * @param {HTMLElement} sizedContainer
+   *   Element whose layout size the iframe depends on.
+   * @param {HTMLIFrameElement} iframeElement
+   *   Iframe to load once sizedContainer is ready.
+   * @param {string} src
+   *   Embed URL to assign to iframeElement.src.
+   */
+  const loadIframeWhenSized = (sizedContainer, iframeElement, src) => {
+    const assignSrc = () => {
+      iframeElement.src = src;
+    };
+
+    if (typeof ResizeObserver === 'undefined') {
+      assignSrc();
+      return;
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      const { width, height } = entries[0]?.contentRect || {};
+      if (width > 0 && height > 0) {
+        observer.disconnect();
+        assignSrc();
+      }
+    });
+
+    observer.observe(sizedContainer);
+  };
+
   const loadEmbeddedContent = () => {
     Object.entries(drupalSettings?.embedded_media_attributes || {}).forEach(([id, attributes]) => {
       if (!categoriesAgreed(attributes?.cookieConsentGroups)) {
@@ -28,10 +65,14 @@
       // mediaContainers so we need to iterate through them.
       mediaContainers.each(function processMediaContainer(index) {
         const mediaContainer = $(this);
+        // Defer map iframe src until the aspect-ratio container is laid out.
+        const deferSrcUntilSized = attributes.type === 'map';
 
         const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
-        iframeElement.src = attributes.src;
+        if (!deferSrcUntilSized) {
+          iframeElement.src = attributes.src;
+        }
         iframeElement.title = attributes.title;
 
         if (attributes.allow) {
@@ -140,6 +181,8 @@
               : Drupal.t('Continue below the map', {}, { context: 'Skip links' });
 
             mediaContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
+            // Observe the aspect-ratio container, not the absolute iframe.
+            loadIframeWhenSized(containerElement, iframeElement, attributes.src);
             break;
 
           default:
