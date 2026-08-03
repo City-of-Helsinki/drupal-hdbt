@@ -7,13 +7,15 @@ import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
 import Global from '../enum/Global';
 import IndexFields from '../enum/IndexFields';
 import SearchComponents from '../enum/SearchComponents';
-import { getElasticUrlAtom, getKeywordAtom, setStateValueAtom } from '../store';
+import { getElasticUrlAtom, getKeywordAtom, keywordResetCountAtom, setStateValueAtom } from '../store';
 import type Job from '../types/Job';
 
 export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement | null> }) => {
-  const readInitialKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
+  const readKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
   const ref = useRef<SearchInputHandle>(null);
   const setStateValue = useSetAtom(setStateValueAtom);
+  const keyword = useAtomValue(getKeywordAtom);
+  const keywordResetCount = useAtomValue(keywordResetCountAtom);
   const elasticUrl = useAtomValue(getElasticUrlAtom);
   const { index } = Global;
   const url = `${elasticUrl}/${index}/_search`;
@@ -23,6 +25,22 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
       setStateValue({ key: SearchComponents.KEYWORD, value: changedKeyword.replace(/\s+/g, ' ') });
     },
     [setStateValue],
+  );
+
+  /**
+   * Prevents HDS from clearing prefilled input.
+   */
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const isDomEvent = Boolean(event.nativeEvent);
+
+      if (!isDomEvent && !event.target.value) {
+        return;
+      }
+
+      handleChange(event.target.value);
+    },
+    [handleChange],
   );
 
   const handleSubmit = useCallback(
@@ -118,16 +136,16 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
     className: 'hdbt-search__filter hdbt-search__search-input job-search-form__filter',
     visibleOptions: 5,
     style: defaultTextInputStyle,
-    placeholder: Drupal.t(
-      'Eg. title, location, department',
-      {},
-      { context: 'HELfi Rekry job search keyword placeholder' },
-    ),
     texts: {
       label: Drupal.t('Search term', {}, { context: 'Search keyword label' }),
+      assistive: Drupal.t(
+        'Write eg. title, location or service',
+        {},
+        { context: 'HELfi Rekry job search keyword helper text' },
+      ),
       language: window.drupalSettings?.path?.currentLanguage || 'fi',
       searchPlaceholder: Drupal.t(
-        'Eg. title, location, department',
+        'Eg. psychologist or sports services',
         {},
         { context: 'HELfi Rekry job search keyword placeholder' },
       ),
@@ -136,23 +154,22 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
   });
 
   useEffect(() => {
-    const initialKeyword = readInitialKeyword() ?? '';
-    // On pageload, set the query parameter value to search input.
-    if (ref.current) {
-      ref.current.value = initialKeyword;
+    const initialKeyword = readKeyword();
+
+    if (initialKeyword) {
+      handleChange(initialKeyword);
     }
-    // Set the initial search keyword.
-    handleChange(initialKeyword);
-  }, [readInitialKeyword, handleChange]);
+  }, [readKeyword, handleChange]);
 
   return (
     <Search
+      // Need to force remount to manipulate HDS internal state
+      key={keywordResetCount}
       {...props}
       ref={ref}
+      value={keyword}
       hideSubmitButton={true}
-      onChange={(e) => {
-        handleChange(e.target.value);
-      }}
+      onChange={handleInputChange}
       onSearch={handleSearch}
       onSend={handleSubmit}
     />

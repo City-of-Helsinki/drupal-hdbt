@@ -12,6 +12,24 @@ describe('FilterButton', () => {
     expect(getByText('Culture')).toBeTruthy();
   });
 
+  test('prefixes the value with the label when one is given', () => {
+    const { getByText } = render(
+      <ul>
+        <FilterButton value='psychologist' label='Search term' clearSelection={vi.fn()} />
+      </ul>,
+    );
+    expect(getByText('Search term: psychologist')).toBeTruthy();
+  });
+
+  test('includes the label in the accessible remove label', () => {
+    const { getByLabelText } = render(
+      <ul>
+        <FilterButton value='psychologist' label='Search term' clearSelection={vi.fn()} />
+      </ul>,
+    );
+    expect(getByLabelText('Remove Search term: psychologist from search results')).toBeTruthy();
+  });
+
   test('renders as an interactive tag list item', () => {
     const { container } = render(
       <ul>

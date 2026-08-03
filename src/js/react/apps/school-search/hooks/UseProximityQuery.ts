@@ -63,13 +63,13 @@ const UseProximityQuery = (params: SearchParams) => {
     return { addressName: resolvedName, ...json };
   };
 
-  const { data, error, isLoading, isValidating } = useSWR(
-    baseUrl === '' ? null : `_${Object.values(params).toString()}`,
-    fetcher,
-    { revalidateOnFocus: false },
-  );
+  const queryString = `_${Object.values(params).toString()}`;
+  const { data, error, isLoading, isValidating } = useSWR(baseUrl === '' ? null : queryString, fetcher, {
+    revalidateOnFocus: false,
+    keepPreviousData: true,
+  });
 
-  return { data, error, isLoading, isValidating };
+  return { data, error, isLoading, isValidating, queryString };
 };
 
 export default UseProximityQuery;

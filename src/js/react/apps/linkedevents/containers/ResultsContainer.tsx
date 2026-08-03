@@ -1,8 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { type ComponentType, type JSX, useCallback, useEffect, useRef } from 'react';
-import useScrollToFirstItem from '@/react/common/hooks/useScrollToFirstItem';
-import useScrollToResults from '@/react/common/hooks/useScrollToResults';
+import type { ComponentType, JSX } from 'react';
+import { useCallback, useEffect } from 'react';
+import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
@@ -11,7 +11,7 @@ import Pagination from '../components/Pagination';
 import type { ResultCardProps } from '../components/ResultCard';
 import ResultCard from '../components/ResultCard';
 import SeeAllButton from '../components/SeeAllButton';
-import { addressAtom, initializedAtom, settingsAtom, urlAtom } from '../store';
+import { addressAtom, initializedAtom, settingsAtom, submittedParamsAtom, urlAtom } from '../store';
 import type Event from '../types/Event';
 
 type ResultsContainerProps = {
@@ -44,18 +44,21 @@ function ResultsContainer({
   const settings = useAtomValue(settingsAtom);
   const size = settings.eventCount;
   const isLifts = settings.layout === 'lifts';
-  const scrollTarget = useRef<HTMLDivElement>(null);
-  const resultsListRef = useRef<HTMLDivElement>(null);
   const readAddress = useAtomCallback((get) => get(addressAtom));
   const url = useAtomValue(urlAtom);
-  // Checks when user makes the first search and api url is set.
-  const choices = Boolean(url);
+  const submittedParams = useAtomValue(submittedParamsAtom);
   const readInitialized = useAtomCallback(useCallback((get) => get(initializedAtom), []));
   const setInitialized = useSetAtom(initializedAtom);
 
-  useScrollToResults(scrollTarget, readInitialized() && choices && !loading && !validating);
-  const scrollToFirstItem = useScrollToFirstItem(resultsListRef, loading || validating);
+  const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
+    loading || validating,
+    url,
+    loading ? undefined : events,
+    error,
+    submittedParams,
+  );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: scrollTarget.current is a ref, intentionally read at effect run time
   useEffect(() => {
     if (!readInitialized() && !loading && !validating && scrollTarget.current) {
       setInitialized(true);
@@ -84,8 +87,19 @@ function ResultsContainer({
   const count = countNumber.toString();
 
   const getContent = () => {
-    if (loading && !events.length) {
-      return <EventsGhostList count={size} isLifts={isLifts} />;
+    if (isSearching) {
+      return (
+        // Different keys force React to fully replace the DOM between ghost and results
+        // instead of patching in place, which prevents a removeChild crash in React version 17.
+        <div key='ghost' className='react-search__results'>
+          <ResultsHeader
+            resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+            ref={loadingHeaderRef}
+          />
+
+          <EventsGhostList count={size} isLifts={isLifts} />
+        </div>
+      );
     }
     if (addressRequired && !address) {
       return (
@@ -124,23 +138,30 @@ function ResultsContainer({
               ref={scrollTarget}
             />
           )}
-          {loading ? (
-            <EventsGhostList count={size} isLifts={isLifts} />
-          ) : isLifts ? (
-            <ul className='simple-event-list__events'>
-              {events.map((event) => (
-                <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
-              ))}
-            </ul>
-          ) : (
-            <div ref={resultsListRef}>
-              {events.map((event) => (
-                <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
-              ))}
-            </div>
-          )}
+          <div ref={resultsListRef}>
+            {isLifts ? (
+              <ul className='simple-event-list__events'>
+                {events.map((event) => (
+                  <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+                ))}
+              </ul>
+            ) : (
+              <div>
+                {events.map((event) => (
+                  <Card key={event.id} {...event} {...(cardsWithBorders && { cardModifierClass: 'card--border' })} />
+                ))}
+              </div>
+            )}
+          </div>
+
           {!isLifts && !settings.hidePagination && (
-            <Pagination onPageChange={scrollToFirstItem} pages={5} totalPages={addLastPage ? pages + 1 : pages} />
+            <Pagination
+              onPageChange={() => {
+                onPageChange();
+              }}
+              pages={5}
+              totalPages={addLastPage ? pages + 1 : pages}
+            />
           )}
         </>
       );

@@ -3,7 +3,7 @@ import type { JSX } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SearchComponents from '../enum/SearchComponents';
 import { getCheckBoxFilterLabel, stripQuantityFromLabel } from '../helpers/Options';
-import { searchStateAtom, submitStateAtom, submittedStateAtom } from '../store';
+import { keywordResetCountAtom, searchStateAtom, submitStateAtom, submittedStateAtom } from '../store';
 import type { OptionType } from '../types/OptionType';
 import type URLParams from '../types/URLParams';
 
@@ -11,10 +11,14 @@ type arraySelectionKey = keyof Pick<URLParams, 'task_areas' | 'employment' | 'ar
 type stringSelectionKey = keyof Pick<URLParams, 'language' | 'keyword'>;
 type booleanSelectionKey = keyof Pick<URLParams, 'continuous' | 'internship' | 'summer_jobs' | 'youth_summer_jobs'>;
 
-export const useSelectionButtons = (selections: [string, OptionType[] | boolean | string][]) => {
+export const useSelectionButtons = (
+  selections: [string, OptionType[] | boolean | string][],
+  labels: Partial<Record<string, string>> = {},
+) => {
   const submittedState = useAtomValue(submittedStateAtom);
   const setState = useSetAtom(searchStateAtom);
   const submitState = useSetAtom(submitStateAtom);
+  const setKeywordResetCount = useSetAtom(keywordResetCountAtom);
   const selectionButtons: JSX.Element[] = [];
 
   const removeArrayItem = (key: arraySelectionKey, value: string | string[]) => {
@@ -32,6 +36,12 @@ export const useSelectionButtons = (selections: [string, OptionType[] | boolean 
   const unsetStateItem = (key: stringSelectionKey) => {
     const state = { ...submittedState };
     delete state[key];
+
+    // The keyword input keeps state of its own that has to be reset with it.
+    if (key === SearchComponents.KEYWORD) {
+      setKeywordResetCount((count) => count + 1);
+    }
+
     setState(state);
     submitState();
   };
@@ -64,6 +74,7 @@ export const useSelectionButtons = (selections: [string, OptionType[] | boolean 
           key={`${key}-${value}`}
           clearSelection={() => unsetStateItem(key as stringSelectionKey)}
           value={value}
+          label={labels[key]}
         />,
       );
     } else if (typeof value === 'boolean' && value === true) {
