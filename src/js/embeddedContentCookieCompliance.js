@@ -17,13 +17,31 @@
   };
 
   /**
-   * Set iframe src once the sized container has a non-zero layout box.
+   * Nudge iframe dimensions so a cross-origin Leaflet map gets window.resize.
    *
-   * Leaflet embeds (e.g. palvelukartta) can initialize before the CSS
-   * aspect-ratio container has a final size, leaving markers misplaced until
-   * the user pans. Observe the container that establishes that size, then
-   * disconnect after the first usable measurement so later resizes do not
-   * reload the iframe.
+   * Palvelukartta mounts Leaflet asynchronously after document load. Leaflet
+   * listens to window.resize and calls invalidateSize(); changing the iframe
+   * box from the parent is the reliable way to trigger that without
+   * same-origin access. Delaying src alone is not enough.
+   *
+   * @param {HTMLIFrameElement} iframeElement
+   *   Map iframe whose content window should receive resize.
+   */
+  const nudgeIframeForLeaflet = (iframeElement) => {
+    const width = iframeElement.offsetWidth;
+    if (!width) {
+      return;
+    }
+
+    iframeElement.style.width = `${width - 1}px`;
+    // Force layout so the intermediate size is applied before restoring.
+    void iframeElement.offsetWidth;
+    iframeElement.style.width = '';
+  };
+
+  /**
+   * Set iframe src once the sized container has a non-zero layout box, then
+   * periodically nudge size after load so Leaflet can invalidateSize.
    *
    * @param {HTMLElement} sizedContainer
    *   Element whose layout size the iframe depends on.
@@ -33,6 +51,26 @@
    *   Embed URL to assign to iframeElement.src.
    */
   const loadIframeWhenSized = (sizedContainer, iframeElement, src) => {
+    // SPA map init happens after iframe load; nudge across that window.
+    const leafletNudgeDelaysMs = [100, 500, 1000, 2000, 4000];
+    let nudgeTimeouts = [];
+
+    const clearNudgeTimeouts = () => {
+      nudgeTimeouts.forEach((id) => {
+        clearTimeout(id);
+      });
+      nudgeTimeouts = [];
+    };
+
+    const scheduleLeafletNudges = () => {
+      clearNudgeTimeouts();
+      nudgeTimeouts = leafletNudgeDelaysMs.map((delay) =>
+        setTimeout(() => nudgeIframeForLeaflet(iframeElement), delay),
+      );
+    };
+
+    iframeElement.addEventListener('load', scheduleLeafletNudges);
+
     const assignSrc = () => {
       iframeElement.src = src;
     };
