@@ -46,10 +46,7 @@ const useSearchFocusManagement = <Trigger>(
   const pagerFocusPendingRef = useRef(false);
   const initialLoadDoneRef = useRef(!suppressInitialLoad);
   const hadGhostCardsRef = useRef(false);
-  // Skip the "resubmit same search" focus on the very first render so we don't
-  // steal focus on initial page load. Without this, Effect 2 marks the load as
-  // done before Effect 3 runs in the same commit, making Effect 3 think the
-  // user already performed a search and triggering an unwanted focus call.
+  // Track suppression to prevent early focus hijack.
   const triggerFiredOnceRef = useRef(!suppressInitialLoad);
   // biome-ignore lint/suspicious/noExplicitAny: data shape varies per search
   const lastKeyDataRef = useRef<any>(undefined);
