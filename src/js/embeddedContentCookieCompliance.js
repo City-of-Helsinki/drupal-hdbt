@@ -22,7 +22,7 @@
    * Palvelukartta mounts Leaflet asynchronously after document load. Leaflet
    * listens to window.resize and calls invalidateSize(); changing the iframe
    * box from the parent is the reliable way to trigger that without
-   * same-origin access. Delaying src alone is not enough.
+   * same-origin access.
    *
    * @param {HTMLIFrameElement} iframeElement
    *   Map iframe whose content window should receive resize.
@@ -42,18 +42,15 @@
   };
 
   /**
-   * Set iframe src once the sized container has a non-zero layout box, then
-   * periodically nudge size after load so Leaflet can invalidateSize.
+   * Schedule size nudges after iframe load so Leaflet can invalidateSize.
    *
-   * @param {HTMLElement} sizedContainer
-   *   Element whose layout size the iframe depends on.
+   * SPA map init happens after document load, so a single immediate nudge is
+   * not enough; nudge across that window instead.
+   *
    * @param {HTMLIFrameElement} iframeElement
-   *   Iframe to load once sizedContainer is ready.
-   * @param {string} src
-   *   Embed URL to assign to iframeElement.src.
+   *   Map iframe to nudge after it loads.
    */
-  const loadIframeWhenSized = (sizedContainer, iframeElement, src) => {
-    // SPA map init happens after iframe load; nudge across that window.
+  const scheduleLeafletIframeNudges = (iframeElement) => {
     const leafletNudgeDelaysMs = [100, 500, 1000, 2000, 4000];
     let nudgeTimeouts = [];
 
@@ -64,33 +61,12 @@
       nudgeTimeouts = [];
     };
 
-    const scheduleLeafletNudges = () => {
+    iframeElement.addEventListener('load', () => {
       clearNudgeTimeouts();
       nudgeTimeouts = leafletNudgeDelaysMs.map((delay) =>
         setTimeout(() => nudgeIframeForLeaflet(iframeElement), delay),
       );
-    };
-
-    iframeElement.addEventListener('load', scheduleLeafletNudges);
-
-    const assignSrc = () => {
-      iframeElement.src = src;
-    };
-
-    if (typeof ResizeObserver === 'undefined') {
-      assignSrc();
-      return;
-    }
-
-    const observer = new ResizeObserver((entries) => {
-      const { width, height } = entries[0]?.contentRect || {};
-      if (width > 0 && height > 0) {
-        observer.disconnect();
-        assignSrc();
-      }
     });
-
-    observer.observe(sizedContainer);
   };
 
   const loadEmbeddedContent = () => {
@@ -105,14 +81,9 @@
       // mediaContainers so we need to iterate through them.
       mediaContainers.each(function processMediaContainer(index) {
         const mediaContainer = $(this);
-        // Defer map iframe src until the aspect-ratio container is laid out.
-        const deferSrcUntilSized = attributes.type === 'map';
 
         const iframeElement = document.createElement('iframe');
         iframeElement.classList.add('media-oembed-content');
-        if (!deferSrcUntilSized) {
-          iframeElement.src = attributes.src;
-        }
         iframeElement.title = attributes.title;
 
         if (attributes.allow) {
@@ -125,6 +96,12 @@
         if (attributes.width) {
           iframeElement.width = attributes.width;
         }
+
+        // Register before assigning src so a fast/cached load is not missed.
+        if (attributes.type === 'map') {
+          scheduleLeafletIframeNudges(iframeElement);
+        }
+        iframeElement.src = attributes.src;
 
         const containerElement = document.createElement('div');
         containerElement.appendChild(iframeElement);
@@ -221,8 +198,6 @@
               : Drupal.t('Continue below the map', {}, { context: 'Skip links' });
 
             mediaContainer.replaceWith(skipLinkBefore, containerElement, skipLinkAfter);
-            // Observe the aspect-ratio container, not the absolute iframe.
-            loadIframeWhenSized(containerElement, iframeElement, attributes.src);
             break;
 
           default:
