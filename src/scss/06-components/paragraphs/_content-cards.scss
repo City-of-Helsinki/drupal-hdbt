@@ -59,8 +59,8 @@ $-card-spacing: $spacing-and-half;
 
 .content-card__link {
   display: block;
+  margin-block: $spacing;
   overflow: hidden;
-  padding-block: $spacing;
 
   &::before {
     content: '';

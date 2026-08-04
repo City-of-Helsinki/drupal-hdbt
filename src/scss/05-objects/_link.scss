@@ -41,3 +41,75 @@ a:hover .link__type--external {
 .link__type--mailto {
   @include pseudo-icon-replace('mailto');
 }
+
+a {
+  color: var(--hdbt-default-link-color);
+  overflow-wrap: break-word;
+  text-decoration-thickness: remify(1px);
+  text-underline-offset: 10%;
+
+  &:hover,
+  &:focus {
+    text-decoration-thickness: remify(2px);
+  }
+}
+
+.dialog-off-canvas-main-canvas {
+  a:where(:not(
+    [data-hds-component='button'],
+    .hds-button, .menu__link,
+    .logo--footer,
+    .footer__back-to-top,
+    .hds-tag--link,
+    .mmenu__item-link,
+    .mmenu__title-link,
+    .extra-link a,
+    .profile__logout-link
+    )),
+  .block--branding,
+  .mmenu__logo-link {
+    &:focus,
+    &:active {
+      outline: 3px solid $color-black;
+      outline-offset: 2px;
+    }
+  }
+
+  .footer--dark {
+    .menu__link,
+    .logo--footer,
+    .footer__back-to-top {
+      &:focus,
+      &:active {
+        outline: 3px solid $color-white;
+        outline-offset: 2px;
+      }
+    }
+  }
+
+  // Fixes links with icons inside of paragraphs
+  p a:not([data-hds-component='button'], .hds-button, .menu__link),
+  .unit-contact-card__info-row__content a,
+  .unit__contact-row--phone a {
+    display: inline-block;
+  }
+}
+
+// Change link outline color according to selected color theme for components
+// that have background color
+.hero,
+.banner,
+.liftup-with-image {
+  a {
+    outline-color: var(--hdbt-color-palette-text--primary) !important;
+  }
+}
+
+.component--banner-secondary .banner,
+.component--liftup-with-image-secondary {
+  a {
+    outline-color: var(--hdbt-color-palette-text--secondary) !important;
+  }
+}
+
+

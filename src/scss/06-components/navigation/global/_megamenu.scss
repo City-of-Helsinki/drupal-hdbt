@@ -16,8 +16,6 @@
 .megamenu__link {
   text-decoration: none;
 
-  &:focus,
-  &:active,
   &:hover {
     text-decoration: underline;
     text-decoration-thickness: remify(2px);
@@ -35,7 +33,7 @@
 .megamenu__item--level-3 .megamenu__link {
   @include font('body');
   display: inline-block;
-  padding-left: $spacing;
+  margin-left: $spacing;
 }
 
 .megamenu__link[aria-current='page'] {
