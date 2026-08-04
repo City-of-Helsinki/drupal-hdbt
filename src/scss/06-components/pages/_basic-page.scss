@@ -121,5 +121,22 @@
   border-bottom: 2px solid $color-black;
   margin-top: 0;
   padding-bottom: $spacing-and-half;
+  position: relative;
   width: 100%;
+
+  // Needs own focus styles because generic ones don't work.
+  &:focus {
+    outline: none;
+
+    &::after {
+      box-shadow: 0 0 0 3px $color-black;
+      content: '';
+      display: block;
+      height: calc(100% - #{$spacing-and-half});
+      left: -#{$spacing-quarter};
+      position: absolute;
+      top: 0;
+      width: calc(100% + #{$spacing-half});
+    }
+  }
 }
