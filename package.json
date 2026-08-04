@@ -37,7 +37,8 @@
       "uuid": "^14.0.0, dependency of hds-react",
       "esbuild": "^0.28.1, dependency of vite (vitest); forces the test stack onto the same non-vulnerable esbuild theme-builder already uses (GHSA-gv7w-rqvm-qjhr, GHSA-g7r4-m6w7-qqqr)",
       "svg-sprite > glob": ">=13.0.0, drop vulnerable dependencies of svg-sprite dependency",
-      "postcss": ">=8.5.18, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)"
+      "postcss": ">=8.5.18, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)",
+      "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10"
     }
   ],
   "overrides": {
@@ -51,6 +52,23 @@
     "postcss": "^8.5.23",
     "svg-sprite": {
       "glob": "^13.0.0"
+    },
+    "@react-spring/web": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "@react-spring/animated": {
+      "react": "$react"
+    },
+    "@react-spring/core": {
+      "react": "$react"
+    },
+    "@react-spring/shared": {
+      "react": "$react"
+    },
+    "react-popper": {
+      "react": "$react",
+      "react-dom": "$react-dom"
     }
   },
   "dependencies": {
