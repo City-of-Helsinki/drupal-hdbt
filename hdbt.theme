@@ -192,6 +192,7 @@ function hdbt_get_global_url(string $langcode): array {
       'events_link_url' => 'https://tapahtumat.hel.fi/fi/',
       'decisions_link_url' => 'https://paatokset.hel.fi/fi/asia',
       'helfi_search_form_url' => 'https://www.hel.fi/haku',
+      'helfi_ai_search_form_url' => 'https://helfi-etusivu.docker.so/fi/search/new',
       'error_page_home_link' => 'https://www.hel.fi/fi',
       'error_page_feedback_link' => 'https://palautteet.hel.fi/fi/',
     ];
@@ -201,6 +202,7 @@ function hdbt_get_global_url(string $langcode): array {
       'events_link_url' => 'https://tapahtumat.hel.fi/sv',
       'decisions_link_url' => 'https://paatokset.hel.fi/sv/arende',
       'helfi_search_form_url' => 'https://www.hel.fi/sok',
+      'helfi_ai_search_form_url' => 'https://helfi-etusivu.docker.so/sv/search/new',
       'error_page_home_link' => 'https://www.hel.fi/sv',
       'error_page_feedback_link' => 'https://palautteet.hel.fi/sv/',
     ];
@@ -210,6 +212,7 @@ function hdbt_get_global_url(string $langcode): array {
       'events_link_url' => 'https://tapahtumat.hel.fi/en',
       'decisions_link_url' => 'https://paatokset.hel.fi/en/case',
       'helfi_search_form_url' => 'https://www.hel.fi/search',
+      'helfi_ai_search_form_url' => 'https://helfi-etusivu.docker.so/en/search/new',
       'error_page_home_link' => 'https://www.hel.fi/en',
       'error_page_feedback_link' => 'https://palautteet.hel.fi/en/',
     ];
@@ -856,6 +859,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
   ) {
     $search_urls = hdbt_get_global_url($variables['language']->getId());
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
+    $variables['helfi_ai_search_form_url'] = $search_urls['helfi_ai_search_form_url'];
   }
 }
 

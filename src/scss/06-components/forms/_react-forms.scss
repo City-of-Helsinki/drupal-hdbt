@@ -221,15 +221,10 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
   }
   
   button:first-child::before {
-    background: linear-gradient(90deg, transparent, $color-white);
-    content: "";
-    display: block;
-    height: 100%;
-    left: calc(-1 * #{$spacing});
-    position: absolute;
-    width: $spacing;
+    @include input-overflow-gradient;
   }
 
+  // Hide the gradient for text overflow when the user is writing on the input.
   input:focus + div button:first-child::before {
     display: none;
   }

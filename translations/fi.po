@@ -339,7 +339,7 @@ msgstr "Hel.fi-verkkopalvelun haku"
 
 msgctxt "Header and hero search label"
 msgid "What are you looking for?"
-msgstr "Mitä haet?"
+msgstr "Mitä etsit?"
 
 msgctxt "Other languages-menu open button text for screen readers"
 msgid "Open Information in other languages menu"
