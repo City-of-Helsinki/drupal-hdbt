@@ -6,26 +6,26 @@
   @if $theme != 'primary' and $theme != 'secondary' {
     $theme: 'primary';
   }
-
+  
   [data-hds-component='button']:not(a,[class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary button styles
   a[href][data-hds-component='button']:not([class*='hds-button'],[data-hds-variant]), // When variant is not defined, we fallback to primary link styles
   [data-hds-component='button']:not(a,[class*='hds-button'])[data-hds-variant='primary'], // Primary button styles
   a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='primary'], // Primary link styles (enforces href)
   .hds-button--primary {
     --background-color: var(--hdbt-color-palette-button--#{$theme});
-    --background-color-hover: transparent;
+    --background-color-hover: var(--hdbt-color-palette-primary-button-hover--#{$theme});
     --background-color-focus: var(--hdbt-color-palette-button--#{$theme});
-    --background-color-hover-focus: transparent;
+    --background-color-hover-focus: var(--hdbt-color-palette-primary-button-hover--#{$theme});
     --background-color-disabled: var(--color-black-20);
     --border-color: var(--hdbt-color-palette-button--#{$theme});
-    --border-color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover: transparent;
     --border-color-focus: var(--hdbt-color-palette-button--#{$theme});
-    --border-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-hover-focus: transparent;
     --border-color-disabled: var(--color-black-20);
     --color: var(--hdbt-color-palette-button-contrast--#{$theme});
-    --color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --color-hover: var(--hdbt-color-palette-button-contrast--#{$theme});
     --color-focus: var(--hdbt-color-palette-button-contrast--#{$theme});
-    --color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --color-hover-focus: var(--hdbt-color-palette-button-contrast--#{$theme});
     --color-disabled: var(--color-black);
     --focus-outline-color: var(--hdbt-color-palette-button--#{$theme});
     --submit-input-focus-gutter-color: var(--hdbt-color-palette-button-contrast--#{$theme});
@@ -35,9 +35,9 @@
   a[href][data-hds-component='button']:not([class*='hds-button'])[data-hds-variant='secondary'], // Secondary link styles (enforces href)
   .hds-button--secondary {
     --background-color: transparent;
-    --background-color-hover: var(--hdbt-color-palette-button--#{$theme});
+    --background-color-hover: var(--hdbt-color-palette-secondary-button-hover);  // Hover bg is same for light and dark.
     --background-color-focus: transparent;
-    --background-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
+    --background-color-hover-focus: var(--hdbt-color-palette-secondary-button-hover);
     --background-color-disabled: transparent;
     --border-color: var(--hdbt-color-palette-button--#{$theme});
     --border-color-hover: var(--hdbt-color-palette-button--#{$theme});
@@ -45,9 +45,9 @@
     --border-color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
     --border-color-disabled: var(--hdbt-color-palette-button--#{$theme});
     --color: var(--hdbt-color-palette-button--#{$theme});
-    --color-hover: var(--hdbt-color-palette-button-contrast--#{$theme});
+    --color-hover: var(--hdbt-color-palette-button--#{$theme});
     --color-focus: var(--hdbt-color-palette-button--#{$theme});
-    --color-hover-focus: var(--hdbt-color-palette-button-contrast--#{$theme});
+    --color-hover-focus: var(--hdbt-color-palette-button--#{$theme});
     --focus-outline-color: var(--hdbt-color-palette-button--#{$theme});
   }
 

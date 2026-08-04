@@ -121,8 +121,9 @@ export const submitStateAtom = atom(null, (get, set, directState: Partial<Search
     newState[SearchComponents.PAGE] = '1';
   }
 
+  set(submittedStateAtom, newState);
+
   if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
-    set(submittedStateAtom, newState);
     const params = stateToURLParams(newState);
     const url = new URL(window.location.href);
     url.search = params.toString();
@@ -142,8 +143,14 @@ export const setStateValueAtom = atom(
 
 export const getKeywordAtom = atom((get) => {
   const searchState = get(searchStateAtom);
-  return searchState ? (searchState[SearchComponents.KEYWORD] as string) : '';
+  return searchState ? ((searchState[SearchComponents.KEYWORD] as string) ?? '') : '';
 });
+
+/**
+ * Increments when keyword is cleared by user.
+ * Needed to force remount of HDS component.
+ */
+export const keywordResetCountAtom = atom(0);
 
 export const getTaskAreasAtom = atom((get) => {
   const searchState = get(searchStateAtom);
@@ -200,7 +207,11 @@ export const setSortAtom = atom(null, (get, set, sort: string) => {
   });
 });
 
-export const resetFormAtom = atom(null, (_get, set) => {
+export const resetFormAtom = atom(null, (get, set) => {
+  if (get(getKeywordAtom)) {
+    set(keywordResetCountAtom, (count) => count + 1);
+  }
+
   set(searchStateAtom, defaultSearchState);
   set(submitStateAtom, defaultSearchState);
 });

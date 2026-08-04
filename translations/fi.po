@@ -829,8 +829,12 @@ msgid "Table of contents requires JavaScript. Your browser doesn't support JavaS
 msgstr "Sisällysluettelo käyttää JavaScriptiä. Selaimesi ei tue JavaScriptiä tai se on pois käytöstä. Tarkista selaimesi asetukset ja yritä uudelleen."
 
 msgctxt "HELfi Rekry job search keyword placeholder"
-msgid "E.g. psychologist or sports services"
+msgid "Eg. psychologist or sports services"
 msgstr "Esim. psykologi tai liikuntapalvelut"
+
+msgctxt "HELfi Rekry job search keyword helper text"
+msgid "Write eg. title, location or service"
+msgstr "Kirjoita esimerkiksi nimike, toimipiste tai palvelu"
 
 msgctxt "HELfi Rekry job search keyword input helper"
 msgid "Enter a title or location, for example"
@@ -893,7 +897,7 @@ msgid "Fixed-term contract and service employment"
 msgstr "Määräaikainen työ- ja virkasuhde"
 
 msgctxt "Employment filter placeholder"
-msgid "All employment types"
+msgid "All types of employment"
 msgstr "Kaikki palvelusuhteen tyypit"
 
 msgctxt "Language filter label"
@@ -1989,3 +1993,7 @@ msgstr "Sulje"
 msgctxt "AI Summary"
 msgid "Close the summary"
 msgstr "Sulje tiivistelmä"
+
+msgctxt "React search: Fetching results title"
+msgid "Searching for results..."
+msgstr "Tuloksia haetaan..."
