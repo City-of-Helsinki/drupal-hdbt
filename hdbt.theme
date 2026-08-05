@@ -228,6 +228,24 @@ function hdbt_preprocess_page(&$variables): void {
     $variables['user_not_logged_in'] = TRUE;
   }
 
+  // Cache separately for logged-in and anonymous users (affects header search form).
+  $variables['#cache']['contexts'][] = 'user.roles:authenticated';
+
+  $search_settings = Drupal::config('helfi_search.settings');
+
+  $ai_register_url = $search_settings->get('ai_register_url');
+  if ($ai_register_url) {
+    $variables['help_text_link_url'] = Url::fromUri($ai_register_url);
+  }
+
+  $external_links = $search_settings->get('external_links');
+  if ($external_links) {
+    foreach ($external_links as $key => $link) {
+      $external_links[$key] = Url::fromUri($link);
+    }
+    $variables['external_search_links'] = $external_links;
+  }
+
   if ($data = hdbt_get_settings('footer_color', 'footer_settings')) {
     $variables['page']['footer_color'] = $data;
   }
@@ -860,6 +878,16 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $search_urls = hdbt_get_global_url($variables['language']->getId());
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
     $variables['helfi_ai_search_form_url'] = $search_urls['helfi_ai_search_form_url'];
+
+    // Cache separately for logged-in and anonymous users so the correct
+    // search form variant is rendered.
+    $variables['#cache']['contexts'][] = 'user.roles:authenticated';
+    $variables['user_not_logged_in'] = Drupal::currentUser()->isAnonymous();
+
+    $ai_register_url = Drupal::config('helfi_search.settings')->get('ai_register_url');
+    if ($ai_register_url) {
+      $variables['help_text_link_url'] = Url::fromUri($ai_register_url);
+    }
   }
 }
 

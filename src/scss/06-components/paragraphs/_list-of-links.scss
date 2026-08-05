@@ -48,7 +48,6 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
 .list-of-links__item__title {
   @include heading-hyphens;
   @include font('h4');
-  align-items: center;
   display: flex;
   flex-direction: row;
   margin-block: 0;
@@ -61,12 +60,18 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
   @include breakpoint($breakpoint-s) {
     margin-inline-start: 0;
     min-height: auto;
+
+    // In the layouts the list of links item with image is designed so that there is minimal height for it. This
+    // min-height is defined so that the link text is followed by 48px (spacing-quadruple) of empty space unless
+    // the text goes to multiple lines.
+    min-height: get-line-height('h4.breakpoint_l', $unremify: true) + $spacing-quadruple;
   }
 }
 
 .list-of-links__item__link {
   box-sizing: border-box;
   display: inline-block;
+  height: fit-content;
   overflow-wrap: anywhere;
 
   // Make the clickable area conform with WCAG AAA standard.
@@ -78,18 +83,12 @@ $-item-link-padding: ($wcag-touch-target-size-aaa - get-line-height(h4, $unremif
   @include breakpoint($breakpoint-s) {
     display: block;
 
-    // In the layouts the list of links item with image is designed so that there is minimal height for it. This
-    // min-height is defined so that the link text is followed by 48px (spacing-quadruple) of empty space unless
-    // the text goes to multiple lines.
-    min-height: get-line-height('h4.breakpoint_l', $unremify: true) + $spacing-quadruple;
-
     // The paddings are no longer needed to conform with the WCAG AAA standard since the link has now min-height
     // that is higher than the 44px defined as the minimum clickable area.
     padding-bottom: 0;
     padding-top: 0;
   }
 
-  &:focus,
   &:hover {
     text-decoration: underline;
     text-decoration-thickness: remify(2px);

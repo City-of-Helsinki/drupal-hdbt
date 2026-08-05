@@ -1,6 +1,12 @@
 $search-button-size: 52px;
 $search-input-border-size: 2px;
 
+.hds-search-input__label,
+.hds-search-input__helper-text,
+.hds-search-input__helper-text-link {
+  color: var(--hdbt-color-palette-text--primary);
+}
+
 .hds-search-input .hds-search-input__input {
   // Space for two buttons inside the input container.
   padding-inline-end: calc($search-button-size * 2);
@@ -31,7 +37,7 @@ $search-input-border-size: 2px;
     width: $search-button-size;
     
     &:focus {
-      outline-color: var(--hdbt-color-palette-text--primary);
+      outline-color: $color-black-90;
       outline-offset: -5px;
     }
   }
@@ -70,3 +76,7 @@ $search-input-border-size: 2px;
   }
 }
 
+// Override default spacing.
+.hds-search-input__helper-text {
+  margin-block-start: $spacing;
+}

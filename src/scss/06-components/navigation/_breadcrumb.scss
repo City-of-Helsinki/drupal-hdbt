@@ -22,7 +22,8 @@
   padding-block: $spacing-half;
 
   @include breakpoint($breakpoint-m) {
-    padding-block: $spacing;
+    margin-block: $spacing-half;
+    padding-block: $spacing-half;
   }
 }
 

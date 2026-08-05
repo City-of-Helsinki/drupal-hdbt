@@ -8,17 +8,31 @@
 } %}
 {% endembed %}
 
+{% set modifier_class = 'nav-toggle-dropdown--search js-search-dropdown' ~ (user_not_logged_in ? '' : ' nav-toggle-dropdown--search--ai') %}
+
 {% embed "@hdbt/navigation/nav-toggle-dropdown.twig" with {
   id: dropdown_id,
-  modifier_class: 'nav-toggle-dropdown--search js-search-dropdown',
+  modifier_class: modifier_class,
 } %}
   {% block content%}
-    <div class="header-search-wrapper">
-      <div class="header-search__title">{{'Search in City of Helsinki websites'|t({}, {'context': 'Header search title'})}}</div>
-      {% include "@hdbt/component/helfi-search-form.twig" with {
-        label: 'What are you looking for?'|t({}, {'context': 'Header and hero search label'}),
-        search_id: 'header'
-      } %}
+    <div class="header-search-wrapper{% if not user_not_logged_in %} header-search-wrapper--ai{% endif %}">
+      {% if user_not_logged_in %}
+        <div class="header-search__title">{{'Search in City of Helsinki websites'|t({}, {'context': 'Header search title'})}}</div>
+        {% include "@hdbt/component/helfi-search-form.twig" with {
+          label: 'What are you looking for?'|t({}, {'context': 'Header and hero search label'}),
+          search_id: 'header'
+        } %}
+      {% else %}
+        <div class="header-search__title">{{'Search this site'|t({}, {'context': 'Site search'})}}</div>
+        {% include "@hdbt/component/helfi-search-form.twig" with {
+          label: 'Search term or question'|t({}, {'context': 'Site search'}),
+          help_text: 'The search uses artificial intelligence.'|t({}, {'context': 'Site search'}),
+          help_text_link_url: help_text_link_url,
+          help_text_link_text: 'Read about the use of artificial intelligence in search.'|t({}, {'context': 'Site search'}),
+          search_id: 'header',
+        } %}
+      {% endif %}
+      
       <noscript class="header-search__javascript-disabled">
         {% set search_link_text %}
           {{ "Hel.fi search"|t({}, {'context': 'Header search, no javascript link'}) }}
@@ -28,27 +42,55 @@
           {{ "requires JavaScript. Your browser doesn't support JavaScript or it is disabled. Please check your browser settings and try again."|t({}, {'context': 'Header search, no javascript'}) }}
         </p>
       </noscript>
-      <div class="search-container__links-container">
-        <div class="search-container__link">
-          {% set link_title_events %}
-          {{ 'Search for events'|t({}, {'context': 'Header search, search for events'}) }}
-          {% endset %}
-          {% set link_attributes = {
-            'class': [
-              'search__link-external',
-            ],
-          } %}
-          {{ link(link_title_events, events_link_url, link_attributes) }}
-          <p>{{'Find upcoming events at the Events.hel.fi website.'|t}}</p>
+
+      {% if user_not_logged_in %}
+        <div class="search-container__links-container">
+          <div class="search-container__link">
+            {% set link_title_events %}
+            {{ 'Search for events'|t({}, {'context': 'Header search, search for events'}) }}
+            {% endset %}
+            {% set link_attributes = {
+              'class': [
+                'search__link-external',
+              ],
+            } %}
+            {{ link(link_title_events, events_link_url, link_attributes) }}
+            <p>{{'Find upcoming events at the Events.hel.fi website.'|t}}</p>
+          </div>
+          <div class="search-container__link">
+            {% set link_title_decisions %}
+            {{ 'Search for decisions'|t({}, {'context': 'Header search, search for decisions'}) }}
+            {% endset %}
+            {{ link(link_title_decisions, decisions_link_url, link_attributes) }}
+            <p>{{'Find municipal decisions in the Decision-making section.'|t}}</p>
+          </div>
         </div>
-        <div class="search-container__link">
-          {% set link_title_decisions %}
-          {{ 'Search for decisions'|t({}, {'context': 'Header search, search for decisions'}) }}
-          {% endset %}
-          {{ link(link_title_decisions, decisions_link_url, link_attributes) }}
-          <p>{{'Find municipal decisions in the Decision-making section.'|t}}</p>
-        </div>
-      </div>
+      {% else %}
+        {% set announcement_title = 'Looking for these search services?'|t({}, {'context': 'Site search'}) %}
+        {% set announcement_labelled_by = "announcement__title--" ~ random() %}
+        {% set announcement_type_labelled_by = "announcement__type--" ~ random() %}
+        <section aria-labelledby="{{ announcement_labelled_by }} {{ announcement_type_labelled_by }}" class="announcement hds-notification notification--site-search">
+          <div class="announcement__container">
+            <div class="announcement__title">
+              <span id="{{ announcement_labelled_by }}">{{ announcement_title }}</span>
+            </div>
+            <div class="announcement__content">
+              {% set jobs_title = "Open jobs"|t({}, {'context': 'Site search'}) %}
+              {% set events_title = "Events"|t({}, {'context': 'Site search'}) %}
+              {% set decisions_title = "Decisions"|t({}, {'context': 'Site search'}) %}
+              {% set contact_title = "Contact information"|t({}, {'context': 'Site search'}) %}
+              {% set helsinki_near_you_title = "Helsinki near you"|t({}, {'context': 'Site search'}) %}
+              <ul>
+                <li>{{ link(jobs_title, external_search_links.jobs) }}</li>
+                <li>{{ link(events_title, external_search_links.events) }}</li>
+                <li>{{ link(decisions_title, external_search_links.decisions) }}</li>
+                <li>{{ link(contact_title, external_search_links.contact) }}</li>
+                <li>{{ link(helsinki_near_you_title, external_search_links.helsinki_near_you) }}</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      {% endif %}
     </div>
   {% endblock %}
 {% endembed %}

@@ -30,6 +30,16 @@
   margin-top: 0;
 }
 
+.header-search-wrapper--ai {
+  margin: auto;
+  max-width: 588px; // As in designs.
+  padding-block-end: $spacing-sextuple;
+  
+  .header-search__title {
+    margin-block-end: $spacing-and-half;
+  }
+}
+
 .search-container__links-container {
   display: flex;
   flex-direction: column;
