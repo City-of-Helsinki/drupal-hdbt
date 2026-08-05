@@ -1,4 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import type { JSX } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SearchComponents from '../enum/SearchComponents';
 import { getCheckBoxFilterLabel, stripQuantityFromLabel } from '../helpers/Options';

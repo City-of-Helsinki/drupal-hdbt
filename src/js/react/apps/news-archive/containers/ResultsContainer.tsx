@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { type SyntheticEvent, useRef } from 'react';
+import { type JSX, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';

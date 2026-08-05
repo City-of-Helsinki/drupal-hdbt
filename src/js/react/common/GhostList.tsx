@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { CardGhost, type CardGhostVariant } from './CardGhost';
 
 export const GhostList = ({

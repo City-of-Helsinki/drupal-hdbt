@@ -1,7 +1,12 @@
-import type { SupportedLanguage } from 'hds-react/components/dropdownComponents/modularOptionList/types';
-import type { SelectProps, Texts } from 'hds-react/components/dropdownComponents/select/types';
-import type { OptionIterator } from 'hds-react/components/dropdownComponents/select/utils';
+import type { SelectProps, SupportedLanguage, TextKey } from 'hds-react';
+import type { OptionIterator } from 'hds-react/components/dropdownComponents/select';
 import type OptionType from '@/types/OptionType';
+
+/**
+ * hds-react no longer re-exports ModularOptionListData from its barrel files,
+ * so derive it from the Select onChange signature, where it is the third argument.
+ */
+export type ModularOptionListData = Parameters<NonNullable<SelectProps['onChange']>>[2];
 
 type HDSStorage = {
   getProps: () => SelectProps;
@@ -23,6 +28,14 @@ export const clearAllSelectionsFromStorage = (storage: HDSStorage) => {
   });
   storage.setOpen(false);
   storage.render();
+};
+
+type Texts = Record<TextKey, string> & {
+  searchPlaceholder: string;
+  noOptionsText: string;
+  selectedText: string;
+  deselectAllText: string;
+  selectAllText: string;
 };
 
 export const updateSelectionsInStorage = (storage: HDSStorage, selections: OptionType[]) => {

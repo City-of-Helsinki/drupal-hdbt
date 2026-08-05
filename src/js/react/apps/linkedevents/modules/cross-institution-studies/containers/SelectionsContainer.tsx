@@ -1,6 +1,6 @@
 import type { Option } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { memo } from 'react';
+import { type JSX, memo } from 'react';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import ApiKeys from '../../../enum/ApiKeys';

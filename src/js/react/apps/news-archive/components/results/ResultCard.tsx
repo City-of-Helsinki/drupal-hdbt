@@ -20,7 +20,7 @@ const ResultCard = ({
   const { src, keyedStyles } = useMainImage(main_image_url);
 
   const getDate = () => {
-    if (!published_at || !published_at.length) {
+    if (!published_at?.length) {
       return undefined;
     }
 

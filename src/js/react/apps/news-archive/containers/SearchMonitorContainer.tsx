@@ -5,7 +5,7 @@ import type TagType from '@/types/TagType';
 import useQueryString from '../hooks/useQueryString';
 import { groupOptionsAtom, neighbourhoodOptionsAtom, topicOptionsAtom, urlAtom } from '../store';
 
-const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement> }) => {
+const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement | null> }) => {
   const urlParams = useAtomValue(urlAtom);
   const topicOptions = useAtomValue(topicOptionsAtom);
   const neighbourhoodOptions = useAtomValue(neighbourhoodOptionsAtom);

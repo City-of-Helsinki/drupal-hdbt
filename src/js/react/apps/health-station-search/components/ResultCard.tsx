@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import CardItem from '@/react/common/Card';
 import CardImage from '@/react/common/CardImage';
 import CardPicture from '@/react/common/CardPicture';

@@ -19,7 +19,7 @@ const FormContainer = () => {
   const submitState = useSetAtom(submitStateAtom);
   const readState = useAtomCallback(useCallback((get) => get(searchStateAtom), []));
   const formAction = drupalSettings?.helfi_rekry_job_search?.results_page_path || '';
-  const formRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

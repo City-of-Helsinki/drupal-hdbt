@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type ExternalLinkProps = {
   className?: string;
   href: string;

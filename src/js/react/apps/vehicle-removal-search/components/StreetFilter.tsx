@@ -1,5 +1,5 @@
+import type { SelectProps } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
-import type { SelectProps } from 'hds-react/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { type ReactElement, useCallback, useEffect } from 'react';

@@ -74,7 +74,7 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
         style: 'compressed',
         loadPaths: ['src/scss', 'node_modules', path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')],
         quietDeps: true,
-        silenceDeprecations: ['import', 'mixed-decls'],
+        silenceDeprecations: ['import'],
         sourceMap: isDev,
         charset: false
       });

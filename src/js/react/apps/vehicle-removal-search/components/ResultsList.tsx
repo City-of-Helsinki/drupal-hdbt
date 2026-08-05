@@ -38,9 +38,9 @@ const Header = ({
   leftActions,
 }: {
   children?: ReactNode;
-  dialogTarget: RefObject<HTMLDivElement>;
+  dialogTarget: RefObject<HTMLDivElement | null>;
   leftActions?: ReactElement;
-  scrollTarget: RefObject<HTMLDivElement>;
+  scrollTarget: RefObject<HTMLDivElement | null>;
   total: number;
 }) => (
   <div className='hdbt-search--react__results'>

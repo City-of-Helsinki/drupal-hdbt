@@ -1,10 +1,10 @@
-import type React from 'react';
+import type { JSX, MouseEventHandler } from 'react';
 
 interface IconProps {
   icon: string;
   className?: string;
   label?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export function Icon(props: IconProps): JSX.Element {

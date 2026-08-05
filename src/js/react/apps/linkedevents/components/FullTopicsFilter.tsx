@@ -1,5 +1,5 @@
+import type { SearchFunction, SearchResult } from 'hds-react';
 import { Select, useSelectStorage } from 'hds-react';
-import type { SearchFunction, SearchResult } from 'hds-react/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';

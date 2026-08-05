@@ -17,7 +17,7 @@
       // Don't move the focus on views based searchers first page load
       // where the search hasn't been submitted yet. The actual check is
       // done where the javascript is attached.
-      if (!drupalSettings.theme || !drupalSettings.theme.searchActive) {
+      if (!drupalSettings.theme?.searchActive) {
         return;
       }
 
