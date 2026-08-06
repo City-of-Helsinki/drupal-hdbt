@@ -4,10 +4,25 @@ $search-input-border-size: 2px;
 .hds-search-input__label,
 .hds-search-input__helper-text,
 .hds-search-input__helper-text-link {
-  color: var(--hdbt-color-palette-text--primary);
+  color: $color-black-90;
 }
 
-.hds-search-input .hds-search-input__input {
+.hero--with-search {
+  .hds-search-input__label,
+  .hds-search-input__helper-text,
+  .hds-search-input__helper-text-link {
+    color: var(--hdbt-color-palette-text--primary);
+  }
+
+  .hds-search-input__input-wrapper {
+    width: 345px; // As in designs. 
+  }
+}
+
+.hds-search-input {
+  width: 100%;
+  
+  .hds-search-input__input {
   // Space for two buttons inside the input container.
   padding-inline-end: calc($search-button-size * 2);
 
@@ -21,6 +36,7 @@ $search-input-border-size: 2px;
   &:focus + .hds-search-input__buttons .hds-search-input__button--clear::before {
     display: none;
   }
+}
 }
 
 .hds-search-input__buttons {
