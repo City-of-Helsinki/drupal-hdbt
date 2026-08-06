@@ -17,9 +17,9 @@
     --background-color-focus: var(--hdbt-color-palette-button--#{$theme});
     --background-color-hover-focus: var(--hdbt-color-palette-primary-button-hover--#{$theme});
     --background-color-disabled: var(--color-black-20);
-    --border-color: var(--hdbt-color-palette-button--#{$theme});
+    --border-color:  transparent;
     --border-color-hover: transparent;
-    --border-color-focus: var(--hdbt-color-palette-button--#{$theme});
+    --border-color-focus:  transparent;
     --border-color-hover-focus: transparent;
     --border-color-disabled: var(--color-black-20);
     --color: var(--hdbt-color-palette-button-contrast--#{$theme});
