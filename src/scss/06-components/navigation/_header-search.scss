@@ -28,6 +28,12 @@
   @include font('h3');
   margin-bottom: $spacing;
   margin-top: 0;
+
+  &:focus,
+  &:active {
+    outline: 2px solid $color-black-90;
+    outline-offset: 2px;
+  }
 }
 
 .header-search-wrapper--ai {

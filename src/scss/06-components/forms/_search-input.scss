@@ -7,36 +7,24 @@ $search-input-border-size: 2px;
   color: $color-black-90;
 }
 
-.hero--with-search {
-  .hds-search-input__label,
-  .hds-search-input__helper-text,
-  .hds-search-input__helper-text-link {
-    color: var(--hdbt-color-palette-text--primary);
-  }
-
-  .hds-search-input__input-wrapper {
-    width: 345px; // As in designs. 
-  }
-}
-
 .hds-search-input {
   width: 100%;
   
   .hds-search-input__input {
-  // Space for two buttons inside the input container.
-  padding-inline-end: calc($search-button-size * 2);
+    // Space for two buttons inside the input container.
+    padding-inline-end: calc($search-button-size * 2);
 
-    &:not([readonly]):focus,
-    &:not([readonly]):active {
-      outline-color: var(--hdbt-color-palette-text--primary);
-      outline-offset: 2px;
+      &:not([readonly]):focus,
+      &:not([readonly]):active {
+        outline-color: $color-black-90;
+        outline-offset: 2px;
+      }
+
+    // Hide the gradient for text overflow when the user is writing on the input.
+    &:focus + .hds-search-input__buttons .hds-search-input__button--clear::before {
+      display: none;
     }
-
-  // Hide the gradient for text overflow when the user is writing on the input.
-  &:focus + .hds-search-input__buttons .hds-search-input__button--clear::before {
-    display: none;
   }
-}
 }
 
 .hds-search-input__buttons {
@@ -95,4 +83,24 @@ $search-input-border-size: 2px;
 // Override default spacing.
 .hds-search-input__helper-text {
   margin-block-start: $spacing;
+}
+
+
+.hero--with-search {
+  .hds-search-input__label,
+  .hds-search-input__helper-text,
+  .hds-search-input__helper-text-link {
+    color: var(--hdbt-color-palette-text--primary);
+  }
+
+  .hds-search-input__input-wrapper {
+    width: 345px; // As in designs. 
+  }
+
+  .hds-search-input .hds-search-input__input {
+    &:not([readonly]):focus,
+    &:not([readonly]):active {
+      outline-color: var(--hdbt-color-palette-text--primary);
+    }
+  }
 }
