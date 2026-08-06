@@ -1999,3 +1999,27 @@ msgstr "Stäng sammanfattningen"
 msgctxt "React search: Fetching results title"
 msgid "Searching for results..."
 msgstr "Söker..."
+
+msgctxt "Event registration status label"
+msgid "Status"
+msgstr "Status"
+
+msgctxt "Event registration status value"
+msgid "Registration opens on @date, at @time"
+msgstr "Anmälan öppnar @date kl. @time"
+
+msgctxt "Event registration status value"
+msgid "Registration is open"
+msgstr "Anmälan är öppen"
+
+msgctxt "Event registration status value"
+msgid "No space available"
+msgstr "Inga platser kvar"
+
+msgctxt "Event registration status value"
+msgid "Registration to queue"
+msgstr "Anmälan till köplats"
+
+msgctxt "Event registration status value"
+msgid "Registration has closed"
+msgstr "Anmälan har stängt"

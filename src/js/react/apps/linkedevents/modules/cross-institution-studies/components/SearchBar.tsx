@@ -1,5 +1,5 @@
 import { Search } from 'hds-react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback, useState } from 'react';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import ApiKeys from '../../../enum/ApiKeys';
@@ -10,7 +10,7 @@ import { keywordAtom, visibleParams } from '../store';
 export const SearchBar = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
 
-  const [urlData] = useAtom(loadableInitialUrlAtom);
+  const urlData = useAtomValue(loadableInitialUrlAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const { currentLanguage } = drupalSettings.path;
@@ -49,11 +49,11 @@ export const SearchBar = () => {
 
   const handleSearch = useCallback(
     async (value: string) => {
-      if (!value?.length || urlData.state !== 'hasData') {
+      if (!value?.length || !urlData) {
         return { options: [] };
       }
       try {
-        const url = new URL(urlData.data);
+        const url = new URL(urlData);
         url.searchParams.set(ApiKeys.COMBINED_TEXT, value);
         const res = await fetch(url.toString());
         if (!res.ok) {

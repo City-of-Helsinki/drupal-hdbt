@@ -34,7 +34,7 @@ const SWR_REFRESH_OPTIONS = {
 const SearchContainer = () => {
   const [retriesExhausted, setRetriesExhausted] = useState(false);
   const settings = useAtomValue(settingsAtom);
-  const [urlData] = useAtom(loadableUrlAtom);
+  const urlData = useAtomValue(loadableUrlAtom);
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
   const updateUrl = useSetAtom(updateUrlAtom);
   const [addressInitializationRun, setAddressInitializationRun] = useAtom(addressInitializationRunAtom);
@@ -75,12 +75,9 @@ const SearchContainer = () => {
     throw new Error('Failed to get data from the API');
   };
 
-  const shouldFetch =
-    !fixtureData &&
-    urlData.state === 'hasData' &&
-    (!settings.useLocationSearch || urlData.data.includes(ApiKeys.COORDINATES));
+  const shouldFetch = !fixtureData && urlData && (!settings.useLocationSearch || urlData.includes(ApiKeys.COORDINATES));
 
-  const { data, error, isLoading, isValidating } = useSWR(shouldFetch ? urlData.data : null, getEvents, {
+  const { data, error, isLoading, isValidating } = useSWR(shouldFetch ? urlData : null, getEvents, {
     ...SWR_REFRESH_OPTIONS,
     onErrorRetry(_err, _key, _config, revalidate, revalidateOpts) {
       if (revalidateOpts.retryCount >= SWR_REFRESH_OPTIONS.errorRetryCount) {
@@ -113,8 +110,7 @@ const SearchContainer = () => {
     );
   }
 
-  const loading =
-    (useCrossInstitutionalStudiesForm && !initialStateSet.current) || isLoading || urlData.state === 'loading';
+  const loading = (useCrossInstitutionalStudiesForm && !initialStateSet.current) || isLoading || !urlData;
 
   const getCrossInstitutionalStudiesHeader = (count: number) => {
     return Drupal.formatPlural(

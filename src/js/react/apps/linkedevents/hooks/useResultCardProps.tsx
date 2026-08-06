@@ -2,6 +2,8 @@ import { useAtomValue } from 'jotai';
 import type { JSX } from 'react';
 import { Metarow } from '@/react/common/Card';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
+import { getEnrolmentStatus } from '../helpers/RegistrationHelpers';
+import { formatTime } from '../helpers/TimeHelpers';
 import { hobbiesPublicUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
 
@@ -47,27 +49,27 @@ const formatStartDate = (start: Date, end: Date) => {
   return start.toLocaleDateString('fi-FI');
 };
 
-export const useResultCardProps = ({
-  audience_max_age,
-  audience_min_age,
-  end_time,
-  enrolment_end_time,
-  enrolment_start_time,
-  id,
-  images,
-  location,
-  name,
-  offers,
-  start_time,
-  type_id,
-}: Event) => {
+export const useResultCardProps = (event: Event) => {
+  const {
+    audience_max_age,
+    audience_min_age,
+    end_time,
+    enrolment_end_time,
+    enrolment_start_time,
+    id,
+    images,
+    location,
+    name,
+    offers,
+    start_time,
+    type_id,
+  } = event;
+
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, etusivuBaseUrl, imagePlaceholder } = drupalSettings.helfi_events;
   const { layout, useCrossInstitutionalStudiesForm } = useAtomValue(settingsAtom);
 
   const resolvedName = name?.[currentLanguage] || name?.fi || Object.values(name)[0] || '';
-
-  const formatTime = (date: Date) => date.toLocaleTimeString('fi-FI', { hour: '2-digit', minute: '2-digit' });
 
   const getDateParts = ({ withTimePrefix = true }: { withTimePrefix?: boolean } = {}) => {
     let startDate: Date;
@@ -306,6 +308,14 @@ export const useResultCardProps = ({
     return Drupal.t('@age year-olds and under', { '@age': audience_max_age }, { context: 'Event audience age value' });
   };
 
+  const getEnrolment = (): string | undefined => {
+    if (type_id !== 'Course') {
+      return;
+    }
+
+    return getEnrolmentStatus(event);
+  };
+
   const getCustomMetaRows = (): { bottom: JSX.Element[] } => {
     const bottom: JSX.Element[] = [];
 
@@ -329,6 +339,18 @@ export const useResultCardProps = ({
         content={getPrice()}
       />,
     );
+
+    const enrolmentStatus = getEnrolment();
+    if (enrolmentStatus) {
+      bottom.push(
+        <Metarow
+          key='enrolment'
+          icon='bell'
+          label={Drupal.t('Status', {}, { context: 'Event registration status label' })}
+          content={enrolmentStatus}
+        />,
+      );
+    }
 
     return { bottom };
   };
