@@ -233,7 +233,7 @@ function hdbt_preprocess_page(&$variables): void {
 
   $search_settings = Drupal::config('helfi_search.settings');
 
-  $ai_register_url = $search_settings->get('ai_register_url');
+  $ai_register_url = (string) $search_settings->get('ai_register_url');
   if ($ai_register_url) {
     $variables['help_text_link_url'] = Url::fromUri($ai_register_url);
   }
@@ -884,7 +884,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $variables['#cache']['contexts'][] = 'user.roles:authenticated';
     $variables['user_not_logged_in'] = Drupal::currentUser()->isAnonymous();
 
-    $ai_register_url = Drupal::config('helfi_search.settings')->get('ai_register_url');
+    $ai_register_url = (string) Drupal::config('helfi_search.settings')->get('ai_register_url');
     if ($ai_register_url) {
       $variables['help_text_link_url'] = Url::fromUri($ai_register_url);
     }
