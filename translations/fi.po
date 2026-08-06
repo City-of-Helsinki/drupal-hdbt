@@ -1997,3 +1997,43 @@ msgstr "Sulje tiivistelmä"
 msgctxt "React search: Fetching results title"
 msgid "Searching for results..."
 msgstr "Tuloksia haetaan..."
+
+msgctxt "Site search"
+msgid "Search this site"
+msgstr "Hae sivustolta"
+
+msgctxt "Site search"
+msgid "Search term or question"
+msgstr "Hakusana tai kysymys"
+
+msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Haku käyttää tekoälyä."
+
+msgctxt "Site search"
+msgid "Read about the use of artificial intelligence in search."
+msgstr "Lue tekoälyn käytöstä haussa."
+
+msgctxt "Site search"
+msgid "Looking for these search services?"
+msgstr "Etsitkö näitä hakupalveluja?"
+
+msgctxt "Site search"
+msgid "Open jobs"
+msgstr "Avoimet työpaikat"
+
+msgctxt "Site search"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Site search"
+msgid "Decisions"
+msgstr "Päätökset"
+
+msgctxt "Site search"
+msgid "Contact information"
+msgstr "Yhteystiedot"
+
+msgctxt "Site search"
+msgid "Helsinki near you"
+msgstr "Helsinki lähelläsi"
