@@ -1,6 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import type React from 'react';
+import type { ComponentType, JSX } from 'react';
 import { useCallback, useEffect } from 'react';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
@@ -20,7 +20,7 @@ type ResultsContainerProps = {
   error?: Error;
   events: Event[];
   loading: boolean;
-  ResultCardComponent?: React.ComponentType<ResultCardProps>;
+  ResultCardComponent?: ComponentType<ResultCardProps>;
   retriesExhausted?: boolean;
   resultHeaderFunction?: (count: number) => string;
   sort?: JSX.Element;

@@ -120,7 +120,8 @@ export async function buildReactApps(config = {}) {
   const require = createRequire(import.meta.url);
 
   // Absolute paths for plugin resolvers — computed once per build.
-  const hdsIndexPath = path.resolve(projectRoot, '../../contrib/hdbt/node_modules/hds-react/index.js');
+  // HDS 6 moved its ESM barrel from the package root (hds-react/index.js) to hds-react/lib/index.js.
+  const hdsIndexPath = path.resolve(projectRoot, '../../contrib/hdbt/node_modules/hds-react/lib/index.js');
   const lodashEsPath = path.resolve(projectRoot, 'node_modules/lodash-es/lodash.js');
   const lodashEsEntry = existsSync(lodashEsPath) ? lodashEsPath : null;
 

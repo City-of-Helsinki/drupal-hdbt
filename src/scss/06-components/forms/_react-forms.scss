@@ -232,7 +232,7 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
 
 // HDS 5.0 breaks styling for dropdown checkboxes. Override styles with stupid selectors. Remove if it gets fixed.
 // @todo fix https://helsinkisolutionoffice.atlassian.net/browse/UHF-13187 
-.ModularOptionList-module_listContainer__27JYq .ModularOptionList-module_list__1k-XO .ModularOptionList-module_multiSelectListItem__3iZa0 .ModularOptionList-module_checkboxContainer__SXw4b label::after {
+.ModularOptionList-module_listContainer__QC0yO .ModularOptionList-module_list__zoP2y .ModularOptionList-module_multiSelectListItem__MBecB .ModularOptionList-module_checkboxContainer__sTA67 label::after {
   --background-hover: var(--color-black);
   --background-selected: var(--color-black-90);
   --border-color-selected: var(--color-black-90);

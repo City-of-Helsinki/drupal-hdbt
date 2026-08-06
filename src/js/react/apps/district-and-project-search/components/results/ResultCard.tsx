@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import CardItem from '@/react/common/Card';
 import CardPicture from '@/react/common/CardPicture';
 import { useMainImage } from '@/react/common/hooks/useMainImage';

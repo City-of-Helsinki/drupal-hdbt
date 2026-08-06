@@ -1,13 +1,16 @@
+import type { SearchResult } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
-import type { ModularOptionListData } from 'hds-react/components/dropdownComponents/modularOptionList/types';
-import type { SearchResult } from 'hds-react/components/dropdownComponents/select/types';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
-import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
+import {
+  clearAllSelectionsFromStorage,
+  type ModularOptionListData,
+  updateSelectionsInStorage,
+} from '@/react/common/helpers/HDS';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { ServiceMapPlace } from '@/types/ServiceMap';

@@ -1,4 +1,5 @@
 import { useAtomValue } from 'jotai';
+import type { JSX } from 'react';
 import { Metarow } from '@/react/common/Card';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { hobbiesPublicUrl, settingsAtom } from '../store';

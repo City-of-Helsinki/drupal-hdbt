@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import initSentry from '@/react/common/helpers/Sentry';
 import SearchContainer from './containers/SearchContainer';
@@ -16,13 +16,12 @@ const start = () => {
     return;
   }
 
-  ReactDOM.render(
+  createRoot(rootElement).render(
     <React.StrictMode>
       <div className='component--react-search component--react-search--health-stations'>
         <SearchContainer />
       </div>
     </React.StrictMode>,
-    rootElement,
   );
 };
 

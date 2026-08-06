@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import ExternalLink from './ExternalLink';
 
 export const Teaser = ({

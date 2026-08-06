@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type TagType = {
   tag?: string;
   color?: string; // is this a hds-desing-token color name?

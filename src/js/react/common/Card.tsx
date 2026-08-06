@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import type MetadataType from '@/types/MetadataType';

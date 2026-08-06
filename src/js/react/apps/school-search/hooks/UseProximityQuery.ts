@@ -41,7 +41,7 @@ const UseProximityQuery = (params: SearchParams) => {
       const locationsResponse = await fetch(getLocationsUrl(locationsBaseUrl, lat, lon));
       const locationsData = await locationsResponse.json();
 
-      if (!locationsData || !locationsData.results) {
+      if (!locationsData?.results) {
         return null;
       }
 

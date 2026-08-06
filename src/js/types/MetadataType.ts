@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type MetadataType = {
   icon: JSX.Element | string;
   label: string;

@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { type JSX, Suspense } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import globalSettings from '../enum/Global';
 import FormContainer from './FormContainer';

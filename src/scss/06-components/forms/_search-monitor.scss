@@ -1,8 +1,8 @@
 // Dialog control buttons max width (from sketches).
 $monitor-control-max-width: 200px;
 
-// Fixes a weird issue with hds dialog element. Should be removed if HDS issue is ever fixed.
-html.Dialog-module_dialogVisibleBodyWithHiddenScrollbars__3M__P {
+// HDS hides overflow on <html>, which makes our body height: 100% clip the page in Chrome.
+html[class*='Dialog-module_dialogVisibleBodyWithHiddenScrollbars'] {
   overflow: visible !important;
 }
 
@@ -30,9 +30,9 @@ html.Dialog-module_dialogVisibleBodyWithHiddenScrollbars__3M__P {
 .hdbt-search__search-monitor__content .hdbt-search__search-monitor__heading {
   @include font(h3);
 
-  &:focus::after {
-    border-color: $color-black-90;
-  }
+  --outline-x-gutter: 0px;
+  --outline-y-gutter: 0px;
+  --outline-width: 0px;
 }
 
 .hdbt-search__search-monitor {

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { GhostList } from '@/react/common/GhostList';
 import initSentry from '@/react/common/helpers/Sentry';
 import FormContainer from './containers/FormContainer';
@@ -13,13 +13,12 @@ const rootElement: HTMLElement | null = document.getElementById(rootSelector);
 
 if (rootElement) {
   const hideForm = drupalSettings?.helfi_news_archive?.hide_form ?? false;
-  ReactDOM.render(
+  createRoot(rootElement).render(
     <React.StrictMode>
       <Suspense fallback={<GhostList count={GlobalSettings.SIZE} />}>
         {hideForm || <FormContainer />}
         <ResultsContainer />
       </Suspense>
     </React.StrictMode>,
-    rootElement,
   );
 }

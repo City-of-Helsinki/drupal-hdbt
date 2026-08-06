@@ -1,6 +1,6 @@
 import { getDefaultStore } from 'jotai';
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import initSentry from '@/react/common/helpers/Sentry';
 import { EventsGhostList } from './components/EventsGhostList';
 import SearchContainer from './containers/SearchContainer';
@@ -15,17 +15,15 @@ const start = () => {
     console.warn('Root id missing for Events filter', { ROOT_ID });
     return;
   }
-
   const { eventCount, layout } = getDefaultStore().get(settingsAtom);
   const isLifts = layout === 'lifts';
 
-  ReactDOM.render(
+  createRoot(rootElement).render(
     <React.StrictMode>
       <Suspense fallback={<EventsGhostList count={eventCount} isLifts={isLifts} />}>
         <SearchContainer />
       </Suspense>
     </React.StrictMode>,
-    rootElement,
   );
 };
 

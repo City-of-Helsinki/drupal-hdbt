@@ -5,7 +5,7 @@ import useQueryString from '../hooks/useQueryString';
 import { useSelectionTags } from '../hooks/useSelectionTags';
 import { useVisibleSelections } from '../hooks/useVisibleSelections';
 
-const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement> }) => {
+const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.RefObject<HTMLDivElement | null> }) => {
   const elasticQuery = useQueryString();
   const selections = useVisibleSelections(true);
   const selectionTags = useSelectionTags(

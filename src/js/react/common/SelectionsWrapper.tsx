@@ -9,11 +9,9 @@ type SelectionsWrapperProps = {
 };
 
 const SelectionsWrapper = ({ modifierClass, showClearButton, resetForm, children }: SelectionsWrapperProps) => {
-  // hasContent checks for string and react children if there would be any content to render and does not render the ul container if there is none
-  const hasContent =
-    typeof children === 'string'
-      ? children.trim().length > 0
-      : Children.toArray(children).some((child) => child !== false && child !== undefined);
+  // hasContent checks for string and react children if there would be any content to render and does not render the ul container if there is none.
+  // Children.toArray() already discards false/null/undefined children, so a non-empty result means there is renderable content.
+  const hasContent = typeof children === 'string' ? children.trim().length > 0 : Children.toArray(children).length > 0;
 
   if (!hasContent) {
     return null;

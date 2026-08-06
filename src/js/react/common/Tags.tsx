@@ -1,5 +1,5 @@
 import { Tag } from 'hds-react';
-import React from 'react';
+import React, { type JSX } from 'react';
 import type TagType from '@/types/TagType';
 
 interface TagsProps {

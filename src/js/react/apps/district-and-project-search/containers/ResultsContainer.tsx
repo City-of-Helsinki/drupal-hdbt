@@ -1,5 +1,5 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import type { SyntheticEvent } from 'react';
+import type { JSX, SyntheticEvent } from 'react';
 import useSWR from 'swr';
 import { GhostList } from '@/react/common/GhostList';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
