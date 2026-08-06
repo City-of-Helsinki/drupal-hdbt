@@ -7,21 +7,25 @@ $search-input-border-size: 2px;
   color: var(--hdbt-color-palette-text--primary);
 }
 
-.hds-search-input .hds-search-input__input {
-  // Space for two buttons inside the input container.
-  padding-inline-end: calc($search-button-size * 2);
+.hds-search-input {
+  width: 100%;
 
-  &:not([readonly]):focus,
-  &:not([readonly]):active {
-    outline-color: var(--hdbt-color-palette-text--primary);
-    outline-offset: 2px;
-  }
+  .hds-search-input__input {
+    // Space for two buttons inside the input container.
+    padding-inline-end: calc($search-button-size * 2);
 
-  // Hide the gradient for text overflow when the user is writing on the input.
-  &:focus + .hds-search-input__buttons .hds-search-input__button--clear::before {
-    display: none;
+    &:not([readonly]):focus,
+    &:not([readonly]):active {
+      outline-color: var(--hdbt-color-palette-text--primary);
+      outline-offset: 2px;
+    }
+
+    // Hide the gradient for text overflow when the user is writing on the input.
+    &:focus + .hds-search-input__buttons .hds-search-input__button--clear::before {
+      display: none;
+    }
   }
-}
+} 
 
 .hds-search-input__buttons {
   height: $search-button-size;
