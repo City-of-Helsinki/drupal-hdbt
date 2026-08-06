@@ -241,7 +241,10 @@ function hdbt_preprocess_page(&$variables): void {
   $external_links = $search_settings->get('external_links');
   if ($external_links) {
     foreach ($external_links as $key => $link) {
-      $external_links[$key] = Url::fromUri($link);
+      $link = (string) $link;
+      if ($link) {
+        $external_links[$key] = Url::fromUri($link);
+      }
     }
     $variables['external_search_links'] = $external_links;
   }
