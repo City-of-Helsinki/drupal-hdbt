@@ -203,13 +203,6 @@ function hdbt_preprocess_page(&$variables): void {
   // (affects header search form).
   $variables['#cache']['contexts'][] = 'user.roles:authenticated';
 
-  $search_settings = Drupal::config('helfi_search.settings');
-
-  $ai_register_url = (string) $search_settings->get('ai_register_url');
-  if ($ai_register_url) {
-    $variables['help_text_link_url'] = Url::fromUri($ai_register_url);
-  }
-
   if ($data = hdbt_get_settings('footer_color', 'footer_settings')) {
     $variables['page']['footer_color'] = $data;
   }
@@ -226,6 +219,7 @@ function hdbt_preprocess_page(&$variables): void {
   foreach (hdbt_get_global_url($variables['language']->getId()) as $key => $value) {
     $variables[$key] = $value;
   }
+  $variables['help_text_link_url'] = Url::fromUri($variables['ai_register_url']);
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = _hdbt_use_global_navigation();
@@ -848,10 +842,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $variables['#cache']['contexts'][] = 'user.roles:authenticated';
     $variables['user_not_logged_in'] = Drupal::currentUser()->isAnonymous();
 
-    $ai_register_url = (string) Drupal::config('helfi_search.settings')->get('ai_register_url');
-    if ($ai_register_url) {
-      $variables['help_text_link_url'] = Url::fromUri($ai_register_url);
-    }
+    $variables['help_text_link_url'] = Url::fromUri($search_urls['ai_register_url']);
   }
 }
 
