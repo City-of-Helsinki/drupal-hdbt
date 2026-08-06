@@ -81,11 +81,11 @@
               {% set contact_title = "Contact information"|t({}, {'context': 'Site search'}) %}
               {% set helsinki_near_you_title = "Helsinki near you"|t({}, {'context': 'Site search'}) %}
               <ul>
-                <li>{{ link(jobs_title, external_search_links.jobs) }}</li>
-                <li>{{ link(events_title, external_search_links.events) }}</li>
-                <li>{{ link(decisions_title, external_search_links.decisions) }}</li>
-                <li>{{ link(contact_title, external_search_links.contact) }}</li>
-                <li>{{ link(helsinki_near_you_title, external_search_links.helsinki_near_you) }}</li>
+                {% if external_search_links.jobs %}<li>{{ link(jobs_title, external_search_links.jobs) }}</li>{% endif %}
+                {% if external_search_links.events %}<li>{{ link(events_title, external_search_links.events) }}</li>{% endif %}
+                {% if external_search_links.decisions %}<li>{{ link(decisions_title, external_search_links.decisions) }}</li>{% endif %}
+                {% if external_search_links.contact %}<li>{{ link(contact_title, external_search_links.contact) }}</li>{% endif %}
+                {% if external_search_links.helsinki_near_you %}<li>{{ link(helsinki_near_you_title, external_search_links.helsinki_near_you) }}</li>{% endif %}
               </ul>
             </div>
           </div>
