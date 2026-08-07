@@ -1,13 +1,84 @@
-<form class="helfi-search__form" action="{{ helfi_search_form_url }}" role="search">
-  <div class="form-item hds-text-input">
-    {% if label %}
-      <label class="hds-text-input__label" for="search-form-{{search_id}}">{{ label }}</label>
-    {% endif %}
-    <div class="hds-text-input__input-wrapper">
-      <input type="search" id="search-form-{{search_id}}" name="q" value="" size="30" maxlength="128" class="form-text hds-text-input__input" {% if placeholder %}placeholder="{{ placeholder }}" {% endif %}>
+{% if user_not_logged_in %}
+  <form class="helfi-search__form" action="{{ helfi_search_form_url }}" role="search">
+    <div class="form-item hds-text-input">
+      {% if label %}
+        <label class="hds-text-input__label" for="search-form-{{search_id}}">{{ label }}</label>
+      {% endif %}
+      <div class="hds-text-input__input-wrapper">
+        <input type="search" id="search-form-{{search_id}}" name="q" value="" size="30" maxlength="128" class="form-text hds-text-input__input" {% if placeholder %}placeholder="{{ placeholder }}" {% endif %}>
+      </div>
     </div>
-  </div>
-  <button class="hds-button hds-button--primary helfi-search__submit-button" type="submit" value="Submit">
-    <span class="hds-button__label">{{ 'Search'|t({}, {'context': 'Helfi search button'}) }}</span>
-  </button>
-</form>
+    <button class="hds-button hds-button--primary helfi-search__submit-button" type="submit" value="Submit">
+      <span class="hds-button__label">{{ 'Search'|t({}, {'context': 'Helfi search button'}) }}</span>
+    </button>
+  </form>
+{% else %}
+  {% set help_text_link_attributes = {
+    'class': [
+      'hds-search-input__helper-text-link',
+    ],
+  } %}
+
+  <form class="helfi-search__form" action="{{ helfi_ai_search_form_url }}" role="search">
+    <div class="hds-search-input">
+      {% if label %}
+        <label class="hds-search-input__label" for="search-form-{{search_id}}">{{ label }}</label>
+      {% endif %}
+      <div class="hds-search-input__input-wrapper">
+        <input
+          type="text"
+          id="search-form-{{search_id}}"
+          name="s"
+          value=""
+          size="30"
+          maxlength="128"
+          class="hds-search-input__input"
+          {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
+          oninput="(function() {
+            const input = document.getElementById('search-form-{{search_id}}');
+            const clearButton = document.getElementById('search-form-{{search_id}}-clear');
+            if (input && clearButton && input.value && input.value.length > 0) {
+              clearButton.style.display = '';
+            } else if (clearButton) {
+              clearButton.style.display = 'none';
+            }
+          })()"
+          onkeydown="if (event.key === 'Enter') { event.preventDefault(); const btn = document.getElementById('search-form-{{search_id}}-search'); if (btn) btn.click(); }"
+        >
+        <div class="hds-search-input__buttons">
+          <button
+            type="button"
+            id="search-form-{{search_id}}-clear"
+            aria-label="Clear search field"
+            class="hds-search-input__button hds-search-input__button--clear"
+            style="display: none;"
+            onclick="(function() {
+              const input = document.getElementById('search-form-{{search_id}}');
+              const clearButton = document.getElementById('search-form-{{search_id}}-clear');
+              if (input) {
+                input.value = '';
+                input.focus();
+              }
+              if (clearButton) {
+                clearButton.style.display = 'none';
+              }
+            })()"
+          >
+          </button>
+          <button
+            type="submit"
+            id="search-form-{{search_id}}-search"
+            aria-label="{{ 'Search'|t({}, {'context': 'Helfi search button'}) }}"
+            class="hds-search-input__button hds-search-input__button--search"
+          >
+          </button>
+        </div>
+      </div>
+      {% if help_text or help_text_link_url %}
+        <span class="hds-search-input__helper-text">
+          {{ help_text }}{% if help_text_link_url %} {{ link(help_text_link_text, help_text_link_url, help_text_link_attributes) }}{% endif %}
+        </span>
+      {% endif %}
+    </div>
+  </form>
+{% endif %}

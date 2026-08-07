@@ -13,6 +13,7 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
+use Drupal\helfi_api_base\GlobalUrls;
 use Drupal\helfi_api_base\Environment\ActiveProjectRoles;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
@@ -187,34 +188,7 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings'): st
  * Retrieves urls by langcode.
  */
 function hdbt_get_global_url(string $langcode): array {
-  if ($langcode == 'fi') {
-    $urls = [
-      'events_link_url' => 'https://tapahtumat.hel.fi/fi/',
-      'decisions_link_url' => 'https://paatokset.hel.fi/fi/asia',
-      'helfi_search_form_url' => 'https://www.hel.fi/haku',
-      'error_page_home_link' => 'https://www.hel.fi/fi',
-      'error_page_feedback_link' => 'https://palautteet.hel.fi/fi/',
-    ];
-  }
-  elseif ($langcode == 'sv') {
-    $urls = [
-      'events_link_url' => 'https://tapahtumat.hel.fi/sv',
-      'decisions_link_url' => 'https://paatokset.hel.fi/sv/arende',
-      'helfi_search_form_url' => 'https://www.hel.fi/sok',
-      'error_page_home_link' => 'https://www.hel.fi/sv',
-      'error_page_feedback_link' => 'https://palautteet.hel.fi/sv/',
-    ];
-  }
-  else {
-    $urls = [
-      'events_link_url' => 'https://tapahtumat.hel.fi/en',
-      'decisions_link_url' => 'https://paatokset.hel.fi/en/case',
-      'helfi_search_form_url' => 'https://www.hel.fi/search',
-      'error_page_home_link' => 'https://www.hel.fi/en',
-      'error_page_feedback_link' => 'https://palautteet.hel.fi/en/',
-    ];
-  }
-  return $urls;
+  return GlobalUrls::get($langcode);
 }
 
 /**
@@ -224,6 +198,10 @@ function hdbt_preprocess_page(&$variables): void {
   if (!Drupal::currentUser()->isAuthenticated()) {
     $variables['user_not_logged_in'] = TRUE;
   }
+
+  // Cache separately for logged-in and anonymous users
+  // (affects header search form).
+  $variables['#cache']['contexts'][] = 'user.roles:authenticated';
 
   if ($data = hdbt_get_settings('footer_color', 'footer_settings')) {
     $variables['page']['footer_color'] = $data;
@@ -241,6 +219,7 @@ function hdbt_preprocess_page(&$variables): void {
   foreach (hdbt_get_global_url($variables['language']->getId()) as $key => $value) {
     $variables[$key] = $value;
   }
+  $variables['help_text_link_url'] = Url::fromUri($variables['ai_register_url']);
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = _hdbt_use_global_navigation();
@@ -856,6 +835,14 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
   ) {
     $search_urls = hdbt_get_global_url($variables['language']->getId());
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
+    $variables['helfi_ai_search_form_url'] = $search_urls['helfi_ai_search_form_url'];
+
+    // Cache separately for logged-in and anonymous users so the correct
+    // search form variant is rendered.
+    $variables['#cache']['contexts'][] = 'user.roles:authenticated';
+    $variables['user_not_logged_in'] = Drupal::currentUser()->isAnonymous();
+
+    $variables['help_text_link_url'] = Url::fromUri($search_urls['ai_register_url']);
   }
 }
 

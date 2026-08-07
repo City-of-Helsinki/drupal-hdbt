@@ -12,6 +12,10 @@
   {% set button_modified = 'nav-toggle__button--profile' %}
 {% endif %}
 
+{% if not user_not_logged_in %}
+  {% set button_modified = (button_modified is iterable ? button_modified : (button_modified ? [button_modified] : []))|merge(['nav-toggle__button--with-overlay']) %}
+{% endif %}
+
 {% set wrapper_classes = ['nav-toggle']|merge(modifier_class is iterable ? modifier_class : [modifier_class]) %}
 {% set button_classes = ['nav-toggle__button', js_target]|merge(button_modified is iterable ? button_modified : [button_modified]) %}
 
