@@ -192,6 +192,24 @@ function hdbt_get_global_url(string $langcode): array {
 }
 
 /**
+ * Resolves the AI assisted search form URL for the given language via EnvironmentResolver.
+ *
+ * Falls back to $fallback if the environment cannot be determined.
+ */
+function _hdbt_resolve_ai_search_form_url(string $langcode, string $fallback): string {
+  /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $resolver */
+  $resolver = \Drupal::service('helfi_api_base.environment_resolver');
+  try {
+    $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
+    $etusivu = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
+    return $etusivu->getUrl($langcode) . '/search/new';
+  }
+  catch (\Exception) {
+    return $fallback;
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function hdbt_preprocess_page(&$variables): void {
@@ -220,6 +238,10 @@ function hdbt_preprocess_page(&$variables): void {
     $variables[$key] = $value;
   }
   $variables['help_text_link_url'] = Url::fromUri($variables['ai_register_url']);
+  $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url(
+    $variables['language']->getId(),
+    $variables['helfi_ai_search_form_url'],
+  );
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = _hdbt_use_global_navigation();
@@ -835,7 +857,10 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
   ) {
     $search_urls = hdbt_get_global_url($variables['language']->getId());
     $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
-    $variables['helfi_ai_search_form_url'] = $search_urls['helfi_ai_search_form_url'];
+    $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url(
+      $variables['language']->getId(),
+      $search_urls['helfi_ai_search_form_url'],
+    );
 
     // Cache separately for logged-in and anonymous users so the correct
     // search form variant is rendered.
