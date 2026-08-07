@@ -1,0 +1,25 @@
+{% set container_attributes = create_attribute() %}
+{% set skip_link_before_attributes = create_attribute({
+  'class': 'focusable skip-link',
+  'href': '#' ~ skip_link_after_id,
+  'id': skip_link_before_id,
+}) %}
+{% set skip_link_after_attributes = create_attribute({
+  'class': 'focusable skip-link',
+  'href': '#' ~ skip_link_before_id,
+  'id': skip_link_after_id,
+}) %}
+
+{% if type == 'map' %}
+  {% set container_attributes = container_attributes.addClass('responsive-map-container') %}
+  {% set skip_link_before_attributes = skip_link_before_attributes.addClass('skip-link--map--before') %}
+  {% set skip_link_after_attributes = skip_link_after_attributes.addClass('skip-link--map--after') %}
+{% endif %}
+
+<a {{ skip_link_before_attributes }}>{{ 'Continue below the @map map'|t({'@map': title}, {'context': 'Skip links'}) }}</a>
+
+<div{{ container_attributes }}>
+  <iframe src="{{ url }}" title="{{ title }}" allowfullscreen></iframe>
+</div>
+
+<a {{ skip_link_after_attributes }}>{{ 'Continue above the @map map'|t({'@map': title}, {'context': 'Skip links'}) }}</a>
