@@ -10,6 +10,11 @@ const getEventRegistrationData = (event: Event): Registration | undefined => {
     return event.registration;
   }
 
+  // Lore:
+  // If event has enrolment data set in it's root,
+  // it should also have registration field populated.
+  // This is a strange behaviour in LinkedEvents,
+  // that it might use registration data from super event in this case.
   if (
     hasEnrolmentData(event) &&
     event.super_event &&

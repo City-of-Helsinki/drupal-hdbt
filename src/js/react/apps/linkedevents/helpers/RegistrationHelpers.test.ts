@@ -167,8 +167,7 @@ describe('RegistrationHelpers', () => {
     });
 
     test('reports an open registration for a registration object with no fields', () => {
-      // A registration the API returned as a bare reference (no `include=registration`)
-      // is indistinguishable from an uncapped one here.
+      // An uncapped registration: present, but with no capacity or enrolment times.
       const event = makeEvent({ registration: makeRegistration() });
 
       expect(getEnrolmentStatus(event)).toBe('Registration is open');
