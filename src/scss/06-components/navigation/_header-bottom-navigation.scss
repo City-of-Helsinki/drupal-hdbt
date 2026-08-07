@@ -3,8 +3,8 @@ $-main-nav-dropdown-padding: $-main-nav-spacing;
 
 // Site name padding math
 $-site-name-original-padding-top: $spacing-and-half; // This was the original design padding.
-$-site-name-padding-top: $wcag-touch-target-size-aaa - get-line-height('special.site_name', $unremify: true); // Line-height and padding should sum up to the touch target size.
-$-site-name-container-padding-top: $-site-name-original-padding-top - $-site-name-padding-top; // The remaining original padding should be added to the container.
+$-site-name-padding-block: ($wcag-touch-target-size-aaa - get-line-height('special.site_name', $unremify: true)) * 0.5; // Line-height and padding should sum up to the touch target size.
+$-site-name-container-padding-top: $-site-name-original-padding-top - $-site-name-padding-block; // The remaining original padding should be added to the container.
 
 .header-bottom {
   background-color: $color-white;
@@ -36,6 +36,7 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
 
   .site-name__container {
     display: none;
+    margin-bottom: -$-site-name-padding-block; // Keeps design looking like the original even though padding-block is added to site-name__link
     padding-top: $-site-name-container-padding-top;
 
     @include breakpoint($breakpoint-l) {
@@ -45,7 +46,7 @@ $-site-name-container-padding-top: $-site-name-original-padding-top - $-site-nam
 
   .site-name__link {
     @include font('special.site_name');
-    padding-top: $-site-name-padding-top;
+    padding-block: $-site-name-padding-block;
     text-decoration: none;
 
     &:hover,
