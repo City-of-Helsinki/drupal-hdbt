@@ -192,9 +192,9 @@ function hdbt_get_global_url(string $langcode): array {
 }
 
 /**
- * Resolves the AI assisted search form URL for the given language via EnvironmentResolver.
+ * Resolves the AI assisted search form URL for the given language.
  *
- * Falls back to $fallback if the environment cannot be determined.
+ * Uses EnvironmentResolver; falls back to $fallback on failure.
  */
 function _hdbt_resolve_ai_search_form_url(string $langcode, string $fallback): string {
   /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $resolver */
