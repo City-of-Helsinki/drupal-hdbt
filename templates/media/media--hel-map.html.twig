@@ -42,37 +42,47 @@
 {% set skip_link_before = 'map-' ~ media_id ~ random() ~ '-before'|clean_id %}
 
 {% if media_url %}
-  {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
-    media_url: media_url,
-    media_id: media.id,
-    media_iframe_title: iframe_title,
-    media_service_url: map_service_url,
-    privacy_policy_url: privacy_policy_url,
-    cookie_consent_groups: cookie_consent_groups,
-  } %}
+  {% if 'bypass' in cookie_consent_groups %}
+    {% include '@hdbt/misc/embedded-content-without-cookie-compliance.twig' with {
+      url: media_url,
+      title: iframe_title,
+      type: 'map',
+      skip_link_after_id: skip_link_after,
+      skip_link_before_id: skip_link_before,
+    } %}
+  {% else %}
+    {% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
+      media_url: media_url,
+      media_id: media.id,
+      media_iframe_title: iframe_title,
+      media_service_url: map_service_url,
+      privacy_policy_url: privacy_policy_url,
+      cookie_consent_groups: cookie_consent_groups,
+    } %}
+
+    {% set drupal_settings = {
+      '#attached': {
+        'drupalSettings': {
+          'embedded_media_attributes': {
+            (media_id): {
+              'src': media_url,
+              'title': iframe_title,
+              'type': 'map',
+              'skipLinkAfterId' : skip_link_after,
+              'skipLinkBeforeId' : skip_link_before,
+              'cookieConsentGroups' : cookie_consent_groups,
+            }
+          }
+        }
+      }
+    } %}
+    {{ drupal_settings }}
+    {{ attach_library(media.getJsLibrary()) }}
+  {% endif %}
 
   {% if alternative_language %}
     {% set link = link|merge({'#attributes': {'lang': lang_attributes.fallback_lang, 'dir': lang_attributes.fallback_dir }}) %}
   {% endif %}
-
-  {% set drupal_settings = {
-    '#attached': {
-      'drupalSettings': {
-        'embedded_media_attributes': {
-          (media_id): {
-            'src': media_url,
-            'title': iframe_title,
-            'type': 'map',
-            'skipLinkAfterId' : skip_link_after,
-            'skipLinkBeforeId' : skip_link_before,
-            'cookieConsentGroups' : cookie_consent_groups,
-          }
-        }
-      }
-    }
-  } %}
-  {{ drupal_settings }}
-  {{ attach_library(media.getJsLibrary()) }}
 
   {% set link_attributes = {
     'class': [

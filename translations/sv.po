@@ -2023,3 +2023,43 @@ msgstr "Anmälan till köplats"
 msgctxt "Event registration status value"
 msgid "Registration has closed"
 msgstr "Anmälan har stängt"
+
+msgctxt "Site search"
+msgid "Search this site"
+msgstr "Sök från webbplatsen"
+
+msgctxt "Site search"
+msgid "Search term or question"
+msgstr "Sökord eller fråga"
+
+msgctxt "Site search"
+msgid "The search uses artificial intelligence."
+msgstr "Sökningen använder artificiell intelligens."
+
+msgctxt "Site search"
+msgid "Read about the use of artificial intelligence in search."
+msgstr "Läs om användningen av artificiell intelligens i sökningen."
+
+msgctxt "Site search"
+msgid "Looking for these search services?"
+msgstr "Letar du efter dessa söktjänster?"
+
+msgctxt "Site search"
+msgid "Open jobs"
+msgstr "Lediga jobb"
+
+msgctxt "Site search"
+msgid "Events"
+msgstr "Evenemang"
+
+msgctxt "Site search"
+msgid "Decisions"
+msgstr "Beslut"
+
+msgctxt "Site search"
+msgid "Contact information"
+msgstr "Kontaktuppgifter"
+
+msgctxt "Site search"
+msgid "Helsinki near you"
+msgstr "Helsingfors nära dig"

@@ -11,6 +11,8 @@ $-header-vertical-padding: $spacing-quarter;
     display: flex;
     justify-content: flex-end;
     padding: 0 $spacing-double;
+    position: relative;
+    z-index: 100;
   }
 
   .menu {

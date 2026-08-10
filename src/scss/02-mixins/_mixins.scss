@@ -104,3 +104,13 @@
 @mixin loading-image-background() {
   box-shadow: inset 0 0 0 1px $color-black-10;
 }
+
+@mixin input-overflow-gradient() {
+  background: linear-gradient(90deg, transparent, $color-white);
+  content: "";
+  display: block;
+  height: 100%;
+  left: calc(-1 * #{$spacing});
+  position: absolute;
+  width: $spacing;
+}

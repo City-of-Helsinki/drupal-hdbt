@@ -15,28 +15,12 @@
 
 {% set iframe_attributes = element[0]['iframe']['#attributes'] %}
 
-{% include '@hdbt/misc/embedded-content-cookie-compliance.twig' with {
-  media_url: iframe_attributes['src'],
-  media_id: element['#object'].id.value,
-  media_service_url: map_service_url,
-  privacy_policy_url: privacy_policy_url,
+{% include '@hdbt/misc/embedded-content-without-cookie-compliance.twig' with {
+  url: iframe_attributes['src'],
+  title: iframe_attributes['title'],
+  type: 'map',
+  skip_link_after_id: after_map_id,
+  skip_link_before_id: before_map_id,
 } %}
 
-{% set drupal_settings = {
-  '#attached': {
-    'drupalSettings': {
-      'embedded_media_attributes': {
-        (element['#object'].id.value): {
-          'src': iframe_attributes['src'],
-          'title': iframe_attributes['title'],
-          'type': 'map',
-          'skipLinkAfterId' : after_map_id,
-          'skipLinkBeforeId' : before_map_id,
-          'cookieConsentGroups' : ['bypass'],
-        }
-      }
-    }
-  }
-} %}
-{{ drupal_settings }}
 {{ link(iframe_attributes['title'] ~ ' - ' ~ element[0]['link']['#value'], link_url, link_attributes) }}

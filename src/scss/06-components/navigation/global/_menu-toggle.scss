@@ -38,6 +38,10 @@
   background-color: $color-black-5;
 }
 
+.nav-toggle-dropdown--search--ai .nav-toggle-dropdown__wrapper {
+  background-color: $color-white;
+}
+
 .nav-toggle-dropdown--menu .nav-toggle-dropdown__content {
   background-color: $color-white;
 }
@@ -64,5 +68,25 @@
 .mobile-menu {
   @include breakpoint($breakpoint-l) {
     display: none;
+  }
+}
+
+.dialog-off-canvas-main-canvas::after {
+  @include breakpoint($breakpoint-l) {
+    background: rgb(255 255 255 / 50%);
+    content: '';
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    transition: opacity 0.2s ease;
+    z-index: 99;
+  }
+}
+
+.dialog-off-canvas-main-canvas:has(.nav-toggle__button--with-overlay[aria-expanded="true"])::after {
+  @include breakpoint($breakpoint-l) {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
