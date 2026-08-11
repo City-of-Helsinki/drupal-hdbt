@@ -206,7 +206,7 @@ function CardItem({
             {signUp && (
               <Metarow
                 icon='bell'
-                label={Drupal.t('Registration time', {}, { context: 'Event signup period' })}
+                label={Drupal.t('Status', {}, { context: 'Event registration status label' })}
                 content={signUp}
                 langAttribute={langAttribute}
               />

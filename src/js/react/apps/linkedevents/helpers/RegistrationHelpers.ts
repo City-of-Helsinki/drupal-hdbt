@@ -5,7 +5,7 @@ import { formatTime } from './TimeHelpers';
 const hasEnrolmentData = (event: Event): boolean =>
   !!event.registration || !!event.enrolment_start_time || !!event.enrolment_end_time;
 
-const getEventRegistrationData = (event: Event): Registration | undefined => {
+const getEventRegistrationData = (event: Event): Registration => {
   if (event.registration) {
     return event.registration;
   }
@@ -23,14 +23,22 @@ const getEventRegistrationData = (event: Event): Registration | undefined => {
   ) {
     return event.super_event.registration;
   }
+
+  // fallback to "event root (enrolment) details".
+  // Note that not all the registration fields exists there, but some do.
+  return {
+    ...event,
+    maximum_attendee_capacity: undefined,
+    remaining_attendee_capacity: undefined,
+    remaining_waiting_list_capacity: undefined,
+    waiting_list_capacity: undefined,
+  };
 };
 
-export const getEnrolmentStatus = (event: Event): string | undefined => {
+export const getEnrolmentStatus = (event: Event): string => {
   const now = new Date();
 
   const registrationData = getEventRegistrationData(event);
-
-  if (!registrationData) return;
 
   const {
     enrolment_end_time: enrolmentEndTime,

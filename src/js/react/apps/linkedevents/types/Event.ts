@@ -50,8 +50,8 @@ export type Event = {
   '@context'?: string;
   '@id'?: string;
   '@type'?: string;
-  audience_max_age: number | null;
-  audience_min_age: number | null;
+  audience_max_age?: string | null;
+  audience_min_age?: string | null;
   audience?: IncludableResource[];
   created_time?: string;
   custom_data: unknown | null;
@@ -60,8 +60,8 @@ export type Event = {
   deleted?: boolean;
   description?: MultilingualString;
   end_time: number;
-  enrolment_end_time: number;
-  enrolment_start_time: number;
+  enrolment_end_time?: string | null;
+  enrolment_start_time?: string | null;
   environment?: string | null;
   environmental_certificate?: string | null;
   event_status?: EventStatus;
