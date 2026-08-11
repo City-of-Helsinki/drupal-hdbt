@@ -2035,7 +2035,7 @@ msgid "The search uses artificial intelligence."
 msgstr "Haku käyttää tekoälyä."
 
 msgctxt "Site search"
-msgid "Read about the use of artificial intelligence in search."
+msgid "Read about the use of AI in search."
 msgstr "Lue tekoälyn käytöstä haussa."
 
 msgctxt "Site search"
