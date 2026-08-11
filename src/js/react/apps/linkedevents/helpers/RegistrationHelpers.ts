@@ -35,7 +35,7 @@ const getEventRegistrationData = (event: Event): Registration => {
   };
 };
 
-export const getEnrolmentStatus = (event: Event): string => {
+export const getEnrolmentStatus = (event: Event): string | undefined => {
   const now = new Date();
 
   const registrationData = getEventRegistrationData(event);
@@ -47,6 +47,12 @@ export const getEnrolmentStatus = (event: Event): string => {
     remaining_waiting_list_capacity: remainingWaitingListCapacity,
     waiting_list_capacity: waitingListCapacity,
   } = registrationData;
+
+  const hasStatusSignal = !!enrolmentStartTime || !!enrolmentEndTime || typeof remainingAttendeeCapacity === 'number';
+
+  if (!hasStatusSignal) {
+    return undefined;
+  }
 
   if (enrolmentStartTime && new Date(enrolmentStartTime) > now) {
     const startDate = new Date(enrolmentStartTime);
