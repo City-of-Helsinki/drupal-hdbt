@@ -168,17 +168,17 @@ describe('RegistrationHelpers', () => {
       expect(getEnrolmentStatus(event)).toBe('Registration is open');
     });
 
-    test('reports an open registration when capacity is not tracked', () => {
+    test('reports no status when capacity is not tracked and there are no enrolment times', () => {
       const event = makeEvent({ registration: makeRegistration({ remaining_attendee_capacity: null }) });
 
-      expect(getEnrolmentStatus(event)).toBe('Registration is open');
+      expect(getEnrolmentStatus(event)).toBeUndefined();
     });
 
-    test('reports an open registration for a registration object with no fields', () => {
+    test('reports no status for a registration object with no fields', () => {
       // An uncapped registration: present, but with no capacity or enrolment times.
       const event = makeEvent({ registration: makeRegistration() });
 
-      expect(getEnrolmentStatus(event)).toBe('Registration is open');
+      expect(getEnrolmentStatus(event)).toBeUndefined();
     });
   });
 
@@ -210,7 +210,7 @@ describe('RegistrationHelpers', () => {
       expect(getEnrolmentStatus(event)).toBe('Registration is open');
     });
 
-    test('ignores the super event when the event itself has no enrolment data', () => {
+    test('reports no status, ignoring the super event, when the event itself has no enrolment data', () => {
       const event = makeEvent({
         enrolment_end_time: null,
         enrolment_start_time: null,
@@ -222,7 +222,7 @@ describe('RegistrationHelpers', () => {
         }),
       });
 
-      expect(getEnrolmentStatus(event)).toBe('Registration is open');
+      expect(getEnrolmentStatus(event)).toBeUndefined();
     });
 
     test('falls back to the event root when the super event has no registration either', () => {
