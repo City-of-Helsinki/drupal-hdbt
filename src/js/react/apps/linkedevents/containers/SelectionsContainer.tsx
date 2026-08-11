@@ -27,7 +27,7 @@ import type { EventTypeOption } from '../types/EventTypeOption';
 import type OptionType from '../types/OptionType';
 
 const SelectionsContainer = () => {
-  const [urlData] = useAtom(loadableUrlAtom);
+  const urlData = useAtomValue(loadableUrlAtom);
   const freeFilter = useAtomValue(freeFilterAtom);
   const remoteFilter = useAtomValue(remoteFilterAtom);
   const startDate = useAtomValue(startDateAtom);
@@ -50,48 +50,47 @@ const SelectionsContainer = () => {
     remoteFilter ||
     startDate;
 
-  // Check if data is available
-  if (urlData.state !== 'hasData' || !urlData.data) {
+  if (!urlData) {
     return null;
   }
 
   return (
-    <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={urlData.data}>
+    <FilterBulletsWrapper showClearButton={showClearButton} resetForm={resetForm} url={urlData}>
       <ListFilterPills
         updater={setTopicsSelection}
         valueKey={ApiKeys.KEYWORDS}
         values={topicsSelection}
-        url={urlData.data}
+        url={urlData}
       />
-      <TargetGroupPills targetGroups={targetGroups} url={urlData.data} />
+      <TargetGroupPills targetGroups={targetGroups} url={urlData} />
       <ListFilterPills
         updater={setLocationSelection}
         valueKey={ApiKeys.LOCATION}
         values={locationSelection}
-        url={urlData.data}
+        url={urlData}
       />
       <ListFilterPills
         updater={setLanguageSelection}
         valueKey={ApiKeys.LANGUAGE}
         values={languageSelection}
-        url={urlData.data}
+        url={urlData}
       />
-      <DateFilterPill startDate={startDate} endDate={endDate} url={urlData.data} />
+      <DateFilterPill startDate={startDate} endDate={endDate} url={urlData} />
       <CheckboxFilterPill
         label={Drupal.t('Remote events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.REMOTE}
         atom={remoteFilterAtom}
-        url={urlData.data}
+        url={urlData}
         value={remoteFilter}
       />
       <CheckboxFilterPill
         label={Drupal.t('Free-of-charge events', {}, { context: 'Events search' })}
         valueKey={ApiKeys.FREE}
         atom={freeFilterAtom}
-        url={urlData.data}
+        url={urlData}
         value={freeFilter}
       />
-      <TypeFilterPills {...{ eventTypeSelection }} url={urlData.data} />
+      <TypeFilterPills {...{ eventTypeSelection }} url={urlData} />
     </FilterBulletsWrapper>
   );
 };

@@ -1998,6 +1998,30 @@ msgctxt "React search: Fetching results title"
 msgid "Searching for results..."
 msgstr "Tuloksia haetaan..."
 
+msgctxt "Event registration status label"
+msgid "Status"
+msgstr "Tilanne"
+
+msgctxt "Event registration status value"
+msgid "Registration opens on @date, at @time"
+msgstr "Ilmoittautuminen alkaa @date, klo @time"
+
+msgctxt "Event registration status value"
+msgid "Registration is open"
+msgstr "Ilmoittautuminen käynnissä"
+
+msgctxt "Event registration status value"
+msgid "No space available"
+msgstr "Täynnä"
+
+msgctxt "Event registration status value"
+msgid "Registration to queue"
+msgstr "Täynnä, jonotusmahdollisuus"
+
+msgctxt "Event registration status value"
+msgid "Registration has closed"
+msgstr "Ilmoittautuminen on päättynyt"
+
 msgctxt "Site search"
 msgid "Search this site"
 msgstr "Hae sivustolta"

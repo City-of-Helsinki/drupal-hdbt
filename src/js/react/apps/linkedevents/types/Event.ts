@@ -31,6 +31,21 @@ export type EventExternalLink = { language?: string; link: string; name: string 
 
 type EventStatus = 'EventScheduled' | 'EventCancelled' | 'EventPostponed' | 'EventRescheduled';
 
+export type Registration = {
+  audience_max_age?: string | null;
+  audience_min_age?: string | null;
+  current_attendee_count?: number | null;
+  current_waiting_list_count?: number | null;
+  enrolment_end_time?: string | null;
+  enrolment_start_time?: string | null;
+  maximum_attendee_capacity?: number | null;
+  maximum_group_size?: number | null;
+  minimum_attendee_capacity?: number | null;
+  remaining_attendee_capacity?: number | null;
+  remaining_waiting_list_capacity?: number | null;
+  waiting_list_capacity?: number | null;
+};
+
 export type Event = {
   '@context'?: string;
   '@id'?: string;
@@ -68,14 +83,14 @@ export type Event = {
   provider_contact_info?: MultilingualString | null;
   provider?: MultilingualString;
   publisher?: string;
-  registration: unknown | null;
+  registration: Registration | null;
   replaced_by: string | null;
   short_description?: MultilingualString;
   start_time: number;
   street_address?: MultilingualString;
   sub_events?: IncludableResource[];
   super_event_type: 'recurring' | 'umbrella' | null;
-  super_event: IncludableResource | null;
+  super_event: Event | null;
   type_id: 'Course' | 'General' | 'Volunteering';
 };
 

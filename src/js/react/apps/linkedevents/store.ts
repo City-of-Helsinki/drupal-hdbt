@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12501 */
 import { atom } from 'jotai';
-import { loadable } from 'jotai/utils';
+import { unwrap } from 'jotai/utils';
 import { endOfDay, startOfDay, toLocalISO } from '@/react/common/helpers/dateUtils';
 import useAddressToCoordsQuery from '@/react/common/hooks/useAddressToCoordsQuery';
 import ApiKeys from './enum/ApiKeys';
@@ -141,7 +141,7 @@ export const initialUrlAtom = atom((get) => {
   return `${baseUrl}?${initialParams.toString()}`;
 });
 
-export const loadableInitialUrlAtom = loadable(initialUrlAtom);
+export const loadableInitialUrlAtom = unwrap(initialUrlAtom);
 
 export const initialParamsAtom = atom((get) => get(baseAtom)?.initialParams || new URLSearchParams());
 
@@ -383,7 +383,7 @@ export const urlAtom = atom(async (get) => {
   return `${baseUrl}?${submittedParams.toString()}`;
 });
 
-export const loadableUrlAtom = loadable(urlAtom);
+export const loadableUrlAtom = unwrap(urlAtom);
 
 export const paramsAtom = atom(new URLSearchParams(initialSettings.initialParams));
 
