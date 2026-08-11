@@ -2038,7 +2038,7 @@ msgstr "Sökningen använder artificiell intelligens."
 
 msgctxt "Site search"
 msgid "Read about the use of AI in search."
-msgstr "Läs om användningen av artificiell intelligens i sökningen."
+msgstr "Läs om användningen av AI i sökningen."
 
 msgctxt "Site search"
 msgid "Looking for these search services?"
