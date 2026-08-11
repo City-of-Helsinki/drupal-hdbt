@@ -8,6 +8,7 @@ const NOW = new Date(2025, 7, 5, 12, 0, 0);
 // Local-time ISO strings (no offset) so the assertions stay timezone independent.
 const PAST = '2025-08-01T09:00:00';
 const FUTURE = '2025-08-20T16:00:00';
+const CURRENT = '2025-08-05T12:00:00';
 
 const makeEvent = (overrides: Partial<Event> = {}): Event => ({
   audience_max_age: null,
@@ -15,8 +16,8 @@ const makeEvent = (overrides: Partial<Event> = {}): Event => ({
   custom_data: null,
   date_published: null,
   end_time: NOW.getTime(),
-  enrolment_end_time: 0,
-  enrolment_start_time: 0,
+  enrolment_end_time: null,
+  enrolment_start_time: null,
   id: 'helsinki:test-event',
   in_language: [],
   maximum_attendee_capacity: null,
@@ -43,15 +44,22 @@ describe('RegistrationHelpers', () => {
     vi.useRealTimers();
   });
 
-  describe('getEnrolmentStatus: no registration data', () => {
-    test('returns undefined when the event has no registration at all', () => {
-      expect(getEnrolmentStatus(makeEvent())).toBeUndefined();
+  describe('getEnrolmentStatus: no registration object', () => {
+    // Without a registration object the enrolment fields on the event root are used instead.
+    test('reports an open registration when the event root has no enrolment data either', () => {
+      expect(getEnrolmentStatus(makeEvent())).toBe('Registration is open');
     });
 
-    test('returns undefined when the event has enrolment times but no registration object', () => {
-      const event = makeEvent({ enrolment_start_time: NOW.getTime(), enrolment_end_time: NOW.getTime() });
+    test('announces the opening date from the event root enrolment start time', () => {
+      const event = makeEvent({ enrolment_start_time: FUTURE });
 
-      expect(getEnrolmentStatus(event)).toBeUndefined();
+      expect(getEnrolmentStatus(event)).toBe('Registration opens on 20.8.2025, at 16.00');
+    });
+
+    test('reports a closed registration from the event root enrolment end time', () => {
+      const event = makeEvent({ enrolment_start_time: PAST, enrolment_end_time: PAST });
+
+      expect(getEnrolmentStatus(event)).toBe('Registration has closed');
     });
   });
 
@@ -71,7 +79,7 @@ describe('RegistrationHelpers', () => {
     });
 
     test('is not used when the opening moment is exactly now', () => {
-      const event = makeEvent({ registration: makeRegistration({ enrolment_start_time: '2025-08-05T12:00:00' }) });
+      const event = makeEvent({ registration: makeRegistration({ enrolment_start_time: CURRENT }) });
 
       expect(getEnrolmentStatus(event)).toBe('Registration is open');
     });
@@ -177,7 +185,7 @@ describe('RegistrationHelpers', () => {
   describe('getEnrolmentStatus: super event fallback', () => {
     test('falls back to the super event registration when the event carries enrolment times', () => {
       const event = makeEvent({
-        enrolment_start_time: NOW.getTime(),
+        enrolment_start_time: CURRENT,
         registration: null,
         super_event: makeEvent({
           id: 'helsinki:super-event',
@@ -191,7 +199,7 @@ describe('RegistrationHelpers', () => {
 
     test('prefers the event own registration over the super event one', () => {
       const event = makeEvent({
-        enrolment_start_time: NOW.getTime(),
+        enrolment_start_time: CURRENT,
         registration: makeRegistration({ remaining_attendee_capacity: 5 }),
         super_event: makeEvent({
           id: 'helsinki:super-event',
@@ -204,26 +212,27 @@ describe('RegistrationHelpers', () => {
 
     test('ignores the super event when the event itself has no enrolment data', () => {
       const event = makeEvent({
-        enrolment_end_time: 0,
-        enrolment_start_time: 0,
+        enrolment_end_time: null,
+        enrolment_start_time: null,
         registration: null,
+        // A full super event registration: consulting it would report no space.
         super_event: makeEvent({
           id: 'helsinki:super-event',
-          registration: makeRegistration({ remaining_attendee_capacity: 5 }),
+          registration: makeRegistration({ remaining_attendee_capacity: 0, waiting_list_capacity: 0 }),
         }),
       });
 
-      expect(getEnrolmentStatus(event)).toBeUndefined();
+      expect(getEnrolmentStatus(event)).toBe('Registration is open');
     });
 
-    test('returns undefined when the super event has no registration either', () => {
+    test('falls back to the event root when the super event has no registration either', () => {
       const event = makeEvent({
-        enrolment_start_time: NOW.getTime(),
+        enrolment_start_time: FUTURE,
         registration: null,
         super_event: makeEvent({ id: 'helsinki:super-event', registration: null }),
       });
 
-      expect(getEnrolmentStatus(event)).toBeUndefined();
+      expect(getEnrolmentStatus(event)).toBe('Registration opens on 20.8.2025, at 16.00');
     });
   });
 });
