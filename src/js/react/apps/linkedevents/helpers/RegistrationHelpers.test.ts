@@ -46,8 +46,8 @@ describe('RegistrationHelpers', () => {
 
   describe('getEnrolmentStatus: no registration object', () => {
     // Without a registration object the enrolment fields on the event root are used instead.
-    test('reports an open registration when the event root has no enrolment data either', () => {
-      expect(getEnrolmentStatus(makeEvent())).toBe('Registration is open');
+    test('reports no status when the event root has no enrolment data either', () => {
+      expect(getEnrolmentStatus(makeEvent())).toBeUndefined();
     });
 
     test('announces the opening date from the event root enrolment start time', () => {
