@@ -50,20 +50,8 @@ const formatStartDate = (start: Date, end: Date) => {
 };
 
 export const useResultCardProps = (event: Event) => {
-  const {
-    audience_max_age,
-    audience_min_age,
-    end_time,
-    enrolment_end_time,
-    enrolment_start_time,
-    id,
-    images,
-    location,
-    name,
-    offers,
-    start_time,
-    type_id,
-  } = event;
+  const { audience_max_age, audience_min_age, end_time, id, images, location, name, offers, start_time, type_id } =
+    event;
 
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, etusivuBaseUrl, imagePlaceholder } = drupalSettings.helfi_events;
@@ -223,23 +211,6 @@ export const useResultCardProps = (event: Event) => {
     return tags;
   };
 
-  const getSignUp = () => {
-    if (!enrolment_end_time && !enrolment_start_time) {
-      return;
-    }
-
-    const startDate = new Date(enrolment_start_time);
-    const startString = `${startDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${formatTime(startDate)}`;
-
-    // There should never be a case where we have end date but no start date.
-    if (!enrolment_end_time) {
-      return startString;
-    }
-
-    const endDate = new Date(enrolment_end_time);
-    return `${startString} - ${endDate.toLocaleDateString('fi-FI')} ${Drupal.t('at', {}, { context: 'Indication that events take place in a certain timeframe' })} ${formatTime(endDate)}`;
-  };
-
   const getUrl = () => {
     if (useCrossInstitutionalStudiesForm) {
       const resolvedLanguage = name?.[currentLanguage] ? currentLanguage : 'fi';
@@ -313,7 +284,8 @@ export const useResultCardProps = (event: Event) => {
       return;
     }
 
-    return getEnrolmentStatus(event);
+    const status = getEnrolmentStatus(event);
+    return status;
   };
 
   const getCustomMetaRows = (): { bottom: JSX.Element[] } => {
@@ -340,18 +312,6 @@ export const useResultCardProps = (event: Event) => {
       />,
     );
 
-    const enrolmentStatus = getEnrolment();
-    if (enrolmentStatus) {
-      bottom.push(
-        <Metarow
-          key='enrolment'
-          icon='bell'
-          label={Drupal.t('Status', {}, { context: 'Event registration status label' })}
-          content={enrolmentStatus}
-        />,
-      );
-    }
-
     return { bottom };
   };
 
@@ -362,10 +322,10 @@ export const useResultCardProps = (event: Event) => {
     cardTitle: resolvedName,
     cardUrl: getUrl(),
     customMetaRows: getCustomMetaRows(),
+    jsxTime: getJsxDate(),
     location: isRemote ? 'Internet' : getLocation(),
     registrationRequired: getOffers(),
-    signUp: getSignUp(),
+    signUp: getEnrolment(),
     time: getDate(),
-    jsxTime: getJsxDate(),
   };
 };
