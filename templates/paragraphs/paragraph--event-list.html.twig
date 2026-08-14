@@ -5,6 +5,8 @@
       'component--full-width',
       'component--react-search',
       'component--event-list',
+      'component--event-list--count-' ~ paragraph.getCount(),
+      'component--event-list--type-' ~ (paragraph.getEventListType() ?: 'events')|clean_class,
     ]
   %}
   {% if paragraph.field_event_list_layout.value == 'lifts' %}
