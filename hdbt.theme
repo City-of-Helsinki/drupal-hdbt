@@ -13,7 +13,7 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
-use Drupal\helfi_api_base\GlobalUrls;
+use Drupal\helfi_api_base\GlobalUrl;
 use Drupal\helfi_api_base\Environment\ActiveProjectRoles;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
@@ -186,9 +186,16 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings'): st
 
 /**
  * Retrieves urls by langcode.
+ *
+ * @return array<string, string>
+ *   Keyed URL strings.
  */
 function hdbt_get_global_url(string $langcode): array {
-  return GlobalUrls::get($langcode);
+  $urls = [];
+  foreach (GlobalUrl::cases() as $url) {
+    $urls[$url->value] = $url->url($langcode);
+  }
+  return $urls;
 }
 
 /**
