@@ -187,7 +187,7 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings'): st
 /**
  * Resolves the AI assisted search form URL for the given language.
  *
- * Uses EnvironmentResolver; falls back to AoSearchForm url on failure.
+ * Uses EnvironmentResolver; falls back to AiSearchForm url on failure.
  */
 function _hdbt_resolve_ai_search_form_url(string $langcode): string {
   /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $resolver */
