@@ -35,20 +35,15 @@ const urlParamsToState = (): SearchState => {
 
 const initialState = urlParamsToState();
 
-// Live form state — updates immediately when user interacts with filters.
-export const searchStateAtom = atom<SearchState>(initialState);
-
 export const streetsAtom = atom(
-  (get) => get(searchStateAtom)?.streets || [],
+  (get) => get(submittedStateAtom)?.streets || [],
   (get, set, value: Option[]) => {
-    const state = { ...get(searchStateAtom) } as SearchState;
+    const state = { ...get(submittedStateAtom) } as SearchState;
     state.streets = value;
-    set(searchStateAtom, state);
+    set(submittedStateAtom, state);
   },
 );
 
-// Submitted state — only updates on form submit or selection clearing.
-// The query hook reads from this so results don't change until submission.
 export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void>(
   initialState,
   (get, set, newValue: Partial<SearchState>) => {
@@ -58,7 +53,6 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void
     };
 
     set(submittedStateAtom, update);
-    set(searchStateAtom, update);
 
     const params = stateToURLParams(update);
     const url = new URL(window.location.href);
