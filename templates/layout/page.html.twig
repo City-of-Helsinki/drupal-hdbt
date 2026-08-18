@@ -140,11 +140,11 @@
     </header>
   {% endif %}
 
-  <main role="main" class="layout-main-wrapper" id="main-content">
-    {% if page.breadcrumb %}
-      {{ page.breadcrumb }}
-    {% endif %}
+  {% if page.breadcrumb %}
+    {{ page.breadcrumb }}
+  {% endif %}
 
+  <main role="main" class="layout-main-wrapper" id="main-content">
     {% if page.tools %}
       {{ page.tools }}
     {% endif %}

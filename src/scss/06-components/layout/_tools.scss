@@ -1,4 +1,4 @@
-.breadcrumb__container + .tools__container:has(*) {
+.breadcrumb__container + .layout-main-wrapper .tools__container:has(*) {
   @include breakpoint($breakpoint-m) {
     margin-bottom: ($spacing + $spacing-quarter);
     margin-top: (-$spacing-half);
