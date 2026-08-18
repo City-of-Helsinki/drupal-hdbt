@@ -58,26 +58,25 @@ const useStreetSuggestions = (currentLanguage: string) => {
   );
 };
 
+const getObserverCallback = (callable: CallableFunction): MutationCallback => {
+  return (mutationList) => {
+    for (const mutation of mutationList) {
+      const { target } = mutation;
+
+      if (mutation?.attributeName !== 'aria-expanded' || !(target instanceof Element)) {
+        continue;
+      }
+
+      callable(target.getAttribute('aria-expanded') === 'true');
+    }
+  };
+};
+
 export const StreetFilter = () => {
   const setStreets = useSetAtom(streetsAtom);
   const getStreetsValue = useAtomCallback(useCallback((get) => get(streetsAtom), []));
   const onSearch = useStreetSuggestions(drupalSettings.path.currentLanguage);
   const setDeferSearchFocus = useSetAtom(deferFocusManagementAtom);
-
-  const observerCallback: MutationCallback = (mutationList) => {
-    for (const mutation of mutationList) {
-      if (mutation?.attributeName !== 'aria-expanded') {
-        return;
-      }
-
-      const { target } = mutation;
-      const isExpanded = target?.attributes?.['aria-expanded']?.value === 'true';
-
-      setDeferSearchFocus(isExpanded);
-    }
-  };
-
-  const observer = new MutationObserver(observerCallback);
 
   const onChange = (selectedOptions: Option[]) => {
     setStreets(selectedOptions);
@@ -114,37 +113,47 @@ export const StreetFilter = () => {
     window.addEventListener(Events.VEHICLE_REMOVAL_CLEAR_ALL, clearAllSelections);
     window.addEventListener(Events.VEHICLE_REMOVAL_CLEAR_SINGLE, updateSelections);
 
+    return () => {
+      window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_ALL, clearAllSelections);
+      window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_SINGLE, updateSelections);
+    };
+  });
+
+  useEffect(() => {
     const domElement = document.getElementById(`${id}-main-button`);
+    const observer = new MutationObserver(getObserverCallback(setDeferSearchFocus));
 
     if (domElement) {
       observer.observe(domElement, {
         attributes: true,
+        attributeFilter: ['aria-expanded'],
       });
     }
 
     return () => {
-      window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_ALL, clearAllSelections);
-      window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_SINGLE, updateSelections);
       observer.disconnect();
+      setDeferSearchFocus(false);
     };
-  });
+  }, [setDeferSearchFocus]);
+
+  const selectLabel = Drupal.t('Street name', {}, { context: 'Vehicle removal search' });
 
   return (
     <Select
       className='hdbt-search__dropdown'
       texts={{
-        label: Drupal.t('Street name', {}, { context: 'Vehicle removal search' }),
+        label: selectLabel,
         placeholder: Drupal.t('All', {}, { context: 'Vehicle removal search' }),
         searchLabel: Drupal.t('Write a street name', {}, { context: 'Vehicle removal search' }),
         searchPlaceholder: Drupal.t('For example, Kotikatu', {}, { context: 'Vehicle removal search' }),
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
-          { '@label': 'foobar' },
+          { '@label': selectLabel },
           { context: 'React search clear selection label' },
         ),
         clearButtonAriaLabel_multiple: Drupal.t(
           'Clear @label selection',
-          { '@label': 'barfoo' },
+          { '@label': selectLabel },
           { context: 'React search clear selection label' },
         ),
       }}

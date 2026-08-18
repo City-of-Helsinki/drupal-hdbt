@@ -40,6 +40,7 @@ export const streetsAtom = atom(
   (get, set, value: Option[]) => {
     const state = { ...get(submittedStateAtom) } as SearchState;
     state.streets = value;
+    state.page = 1;
     set(submittedStateAtom, state);
   },
 );
