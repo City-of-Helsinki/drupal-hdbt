@@ -10,6 +10,6 @@
   },
   "conflict": {
     "drupal/helfi_platform_config": "<4.0",
-    "drupal/helfi_api_base": "<2.7.6"
+    "drupal/helfi_api_base": "<2.8.29"
   }
 }

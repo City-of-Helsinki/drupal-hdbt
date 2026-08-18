@@ -156,7 +156,7 @@ export const eventsPublicUrl = atom((get) => get(baseAtom)?.eventsPublicUrl);
 export const settingsAtom = atom(
   (get) =>
     get(baseAtom)?.settings || {
-      eventCount: 3,
+      eventCount: 5,
       eventListType: 'events',
       layout: 'default',
       hideHeading: true,
