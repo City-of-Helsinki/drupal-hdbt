@@ -6,7 +6,7 @@ import { type ReactElement, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
-import { streetsAtom } from '../store';
+import { deferFocusManagementAtom, streetsAtom } from '../store';
 
 /**
  * Query street name suggestions from Elasticsearch.
@@ -62,6 +62,22 @@ export const StreetFilter = () => {
   const setStreets = useSetAtom(streetsAtom);
   const getStreetsValue = useAtomCallback(useCallback((get) => get(streetsAtom), []));
   const onSearch = useStreetSuggestions(drupalSettings.path.currentLanguage);
+  const setDeferSearchFocus = useSetAtom(deferFocusManagementAtom);
+
+  const observerCallback: MutationCallback = (mutationList) => {
+    for (const mutation of mutationList) {
+      if (mutation?.attributeName !== 'aria-expanded') {
+        return;
+      }
+
+      const { target } = mutation;
+      const isExpanded = target?.attributes?.['aria-expanded']?.value === 'true';
+
+      setDeferSearchFocus(isExpanded);
+    }
+  };
+
+  const observer = new MutationObserver(observerCallback);
 
   const onChange = (selectedOptions: Option[]) => {
     setStreets(selectedOptions);
@@ -71,9 +87,11 @@ export const StreetFilter = () => {
     }));
   };
 
+  const id = 'streets';
+
   const selectStorage = useSelectStorage({
     disabled: false,
-    id: 'streets',
+    id,
     invalid: false,
     multiSelect: true,
     noTags: true,
@@ -96,9 +114,18 @@ export const StreetFilter = () => {
     window.addEventListener(Events.VEHICLE_REMOVAL_CLEAR_ALL, clearAllSelections);
     window.addEventListener(Events.VEHICLE_REMOVAL_CLEAR_SINGLE, updateSelections);
 
+    const domElement = document.getElementById(`${id}-main-button`);
+
+    if (domElement) {
+      observer.observe(domElement, {
+        attributes: true,
+      });
+    }
+
     return () => {
       window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_ALL, clearAllSelections);
       window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_SINGLE, updateSelections);
+      observer.disconnect();
     };
   });
 
