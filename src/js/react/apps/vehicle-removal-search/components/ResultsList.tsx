@@ -68,14 +68,14 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
   const { streets } = useAtomValue(submittedStateAtom);
 
-  const validating = isValidating || deferSearchFocusManagement;
-
   const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
-    validating,
+    isValidating,
     query,
     data,
     error,
     submittedState,
+    true,
+    deferSearchFocusManagement,
   );
 
   const selectionTags: TagType[] = streets.map((street) => ({
