@@ -10,8 +10,9 @@ import SearchMonitor from '@/react/common/SearchMonitor';
 import type Result from '@/types/Result';
 import type TagType from '@/types/TagType';
 import Global from '../enum/Global';
+import { getResultText } from '../helpers/ResultText';
 import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
-import { submittedStateAtom } from '../store';
+import { submittedStateAtom, triggerFocusAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
 
@@ -45,15 +46,7 @@ const Header = ({
 }) => (
   <div className='hdbt-search--react__results'>
     <div ref={dialogTarget} />
-    <ResultsHeader
-      leftActions={leftActions}
-      resultText={
-        total > 0
-          ? `${Drupal.formatPlural(String(total), '1 result', '@count results', {}, { context: 'Vehicle removal search' })}`
-          : ''
-      }
-      ref={scrollTarget}
-    />
+    <ResultsHeader leftActions={leftActions} resultText={getResultText(total)} ref={scrollTarget} />
     {children}
   </div>
 );
@@ -62,6 +55,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
   const { page } = submittedState;
   const dialogTargetRef = useRef<HTMLDivElement>(null);
+  const triggerFocus = useAtomValue(triggerFocusAtom);
 
   const query = useVehicleRemovalQuery();
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
@@ -74,6 +68,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     error,
     submittedState,
     true,
+    triggerFocus,
   );
 
   const selectionTags: TagType[] = streets.map((street) => ({

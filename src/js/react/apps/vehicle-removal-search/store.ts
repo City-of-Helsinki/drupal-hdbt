@@ -41,19 +41,20 @@ export const streetsAtom = atom(
     const state = { ...get(submittedStateAtom) } as SearchState;
     state.streets = value;
     state.page = 1;
-    set(submittedStateAtom, state);
+    set(submittedStateAtom, state, true);
   },
 );
 
-export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void>(
+export const submittedStateAtom = atom<SearchState, [Partial<SearchState>, boolean?], void>(
   initialState,
-  (get, set, newValue: Partial<SearchState>) => {
+  (get, set, newValue: Partial<SearchState>, triggerFocus: boolean = false) => {
     const update = {
       ...get(submittedStateAtom),
       ...newValue,
     };
 
     set(submittedStateAtom, update);
+    set(triggerFocusAtom, triggerFocus);
 
     const params = stateToURLParams(update);
     const url = new URL(window.location.href);
@@ -64,3 +65,5 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void
     }
   },
 );
+
+export const triggerFocusAtom = atom<boolean>(true);
