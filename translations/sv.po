@@ -1162,27 +1162,27 @@ msgctxt "Unit search paragraps search input default label"
 msgid "Name, address or postal code"
 msgstr "Namn, adress eller postnummer"
 
-msgctxt "Unit search count singular"
-msgid "result"
-msgstr "resultat"
-
-msgctxt "Unit search count plural"
-msgid "results"
-msgstr "resultat"
-
-msgctxt "Unit search count"
+msgctxt "Content list with count"
 msgid "result"
 msgid_plural "results"
 msgstr[0] "resultat"
 msgstr[1] "resultat"
 
-msgctxt "Unit search no results title"
+msgctxt "Content list with count no results title"
 msgid "No results"
 msgstr "Inga sökresultat"
 
-msgctxt "Unit search no results text"
+msgctxt "Content list with count no results text"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."
+
+msgctxt "Tab-list of Content list with count"
+msgid "Toggle between list and map view"
+msgstr "Växla mellan list- och kartvy"
+
+msgctxt "Content list with count map iframe title"
+msgid "Service map - Front page"
+msgstr "Servicekarta - Framsidan"
 
 msgctxt "Event additional information label"
 msgid "Additional information"

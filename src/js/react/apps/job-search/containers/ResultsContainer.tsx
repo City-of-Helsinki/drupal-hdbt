@@ -62,7 +62,7 @@ const ResultsContainer = () => {
       return (
         <div className='job-search__results'>
           <ResultsHeader
-            resultText={Drupal.t('No results', {}, { context: 'Unit search no results title' })}
+            resultText={Drupal.t('No results', {}, { context: 'Content list with count no results title' })}
             leftActions={searcMonitor}
             ref={scrollTarget}
           />

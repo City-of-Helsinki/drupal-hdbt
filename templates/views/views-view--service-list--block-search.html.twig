@@ -1,85 +1,9 @@
-{#
-/**
- * @file
- * Theme override for main view template.
- *
- * Available variables:
- * - attributes: Remaining HTML attributes for the element.
- * - css_name: A css-safe version of the view name.
- * - css_class: The user-specified classes names, if any.
- * - header: The optional header.
- * - footer: The optional footer.
- * - rows: The results of the view query, if any.
- * - empty: The content to display if there are no rows.
- * - pager: The optional pager next/prev links to display.
- * - exposed: Exposed widget form/info to display.
- * - feed_icons: Optional feed icons to display.
- * - more: An optional link to the next page of results.
- * - title: Title of the view, only used when displaying in the admin preview.
- * - title_prefix: Additional output populated by modules, intended to be
- *   displayed in front of the view title.
- * - title_suffix: Additional output populated by modules, intended to be
- *   displayed after the view title.
- * - attachment_before: An optional attachment view to be displayed before the
- *   view content.
- * - attachment_after: An optional attachment view to be displayed after the
- *   view content.
- * - dom_id: Unique id for every view being printed to give unique class for
- *   Javascript.
- *
- * @see template_preprocess_views_view()
- */
-#}
-{%
-  set classes = [
-  'views',
-  'views--service-list',
-  'views--service-list--search',
-  'unit-search__content',
-  dom_id ? 'js-view-dom-id-' ~ dom_id,
-]
-%}
-
-<div{{attributes.addClass(classes)}}>
-  {{ title_prefix }}
-  {{ title }}
-  {{ title_suffix }}
-
-  {% if header %}
-    <header>
-      {{ header }}
-    </header>
-  {% endif %}
-
-  {{ exposed }}
-  <div class="service-list-search__results unit-search__results" data-id-number="{{ dom_id }}">
-    <h3 class="service-list-search__count-container unit-search__count-container">
-      {%- if total_rows -%}
-        {{ total_rows }} {% trans with {'context': 'Service list search count'}%}advisory service{% plural total_rows %}advisory services{% endtrans %}
-      {%- else -%}
-        {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
-      {%- endif -%}
-    </h3>
-    {{ attachment_before }}
-
-    {{ rows }}
-
-    {%- if empty -%}
-      <p>{{ 'No results were found for the criteria you entered. Try changing your search criteria.'|t({}, {'context' : 'Unit search no results text'}) }}</p>
-    {%- endif -%}
-
-    {{ pager }}
-
-    {{ attachment_after }}
-    {{ more }}
-
-  </div>
-
-  {% if footer %}
-    <footer>
-      {{ footer }}
-    </footer>
-  {% endif %}
-
-  {{ feed_icons }}
-</div>
+{% embed '@hdbt/component/content-list-with-count.twig' with { show_count_container: true }%}
+  {% block count_container%}
+    {% if total_rows %}
+      {{ total_rows }} {% trans with {'context': 'Service list search count'}%}advisory service{% plural total_rows %}advisory services{% endtrans %}
+    {% else %}
+      {{ 'No results'|t({}, {'context' : 'Content list with count no results title'}) }}
+    {% endif %}
+  {% endblock count_container %}
+{% endembed %}

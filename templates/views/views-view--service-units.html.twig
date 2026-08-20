@@ -10,7 +10,7 @@
     {% if total_rows > 1 %}
       {{ total_rows }} {% trans with {'context': 'Service units count'}%}service point{% plural total_rows %}service points{% endtrans %}
     {% elseif total_rows == 0 %}
-      {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+      {{ 'No results'|t({}, {'context' : 'Content list with count no results title'}) }}
     {% endif %}
   {% endblock count_container %}
 {% endembed %}
