@@ -5,10 +5,11 @@ import { useCallback, useEffect, useRef } from 'react';
 // class), so we match the Collapsible-specific class instead.
 const isFilterDialogOpen = () => Boolean(document.querySelector('.collapsible__children[role="dialog"]'));
 
-// Move focus (and optionally scroll) to a results/ghost heading, unless a filter
-// dialog is open — avoids stealing focus out of an open date range filter.
+const shouldSkipFocus = (deferSearchFocus: boolean) => deferSearchFocus || isFilterDialogOpen();
+
+// Move focus (and optionally scroll) to a results/ghost heading.
 const focusHeading = (node: HTMLElement | null, scroll: boolean) => {
-  if (!node || isFilterDialogOpen()) {
+  if (!node) {
     return;
   }
   node.setAttribute('tabindex', '-1');
@@ -36,6 +37,8 @@ const useSearchFocusManagement = <Trigger>(
   // Set to false when the component has no automatic initial fetch (for example the
   // AI assisted site-search).
   suppressInitialLoad = true,
+  // Allows deferring the focus functionality for any reason
+  deferSearchFocus = false,
 ) => {
   const scrollTarget = useRef<HTMLDivElement>(null);
   const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
@@ -56,6 +59,17 @@ const useSearchFocusManagement = <Trigger>(
     skipResultsFocusRef.current = true;
   }, []);
 
+  const triggerFocus = useCallback(
+    (callable: () => void) => {
+      if (shouldSkipFocus(deferSearchFocus)) {
+        return;
+      }
+
+      callable();
+    },
+    [deferSearchFocus],
+  );
+
   // Only show ghost cards when the result is not served from cache. A cached result updates
   // data immediately, so the data changes at the same time as the search key.
   // A real fetch keeps the old data unchanged until the response arrives.
@@ -65,10 +79,12 @@ const useSearchFocusManagement = <Trigger>(
   // When ghost cards appear (not initial load):
   // scroll to and focus the ghost heading, and mark that ghost cards were shown.
   useEffect(() => {
-    if (!isSearching || !initialLoadDoneRef.current) return;
+    if (!isSearching || !initialLoadDoneRef.current) {
+      return;
+    }
     hadGhostCardsRef.current = true;
-    focusHeading(loadingHeaderRef.current, true);
-  }, [isSearching]);
+    triggerFocus(() => focusHeading(loadingHeaderRef.current, true));
+  }, [isSearching, triggerFocus]);
 
   // When a search completes (isValidating false → true → false cycle):
   // focus the results heading. Skip on initial page load. Skip scroll if ghost
@@ -86,6 +102,10 @@ const useSearchFocusManagement = <Trigger>(
         initialLoadDoneRef.current = true;
       }
       if (wasSearchingRef.current) {
+        // Stay armed while a filter is open: the focus fires once it closes.
+        if (shouldSkipFocus(deferSearchFocus)) {
+          return;
+        }
         wasSearchingRef.current = false;
         if (skipResultsFocusRef.current) {
           skipResultsFocusRef.current = false;
@@ -95,30 +115,44 @@ const useSearchFocusManagement = <Trigger>(
         hadGhostCardsRef.current = false;
       }
     }
-  }, [isValidating, queryString, error, data]);
+  }, [isValidating, queryString, error, data, deferSearchFocus]);
 
   // When the user submits the same search again, the query hasn't changed so no
   // new network request is made and no ghost cards appear — focus the results
   // heading directly instead.
+  // Skipped rather than deferred while a filter is open: this effect keys off the
+  // trigger, so re-running it on close would focus after a plain open/close too.
   // biome-ignore lint/correctness/useExhaustiveDependencies: trigger is intentionally used only to detect resubmits
   useEffect(() => {
     if (!triggerFiredOnceRef.current) {
       triggerFiredOnceRef.current = true;
       return;
     }
-    if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || data === undefined) return;
-    if (skipResultsFocusRef.current) return;
-    focusHeading(scrollTarget.current, true);
+    if (!initialLoadDoneRef.current || queryString !== lastDataKeyRef.current || data === undefined) {
+      return;
+    }
+    if (skipResultsFocusRef.current) {
+      return;
+    }
+    triggerFocus(() => focusHeading(scrollTarget.current, true));
   }, [trigger]);
 
   useEffect(() => {
-    if (!pagerFocusPendingRef.current || isValidating) return;
+    if (!pagerFocusPendingRef.current || isValidating) {
+      return;
+    }
+
     const firstLink = resultsListRef.current?.querySelector<HTMLElement>('a');
 
-    if (!firstLink || isFilterDialogOpen()) return;
-    pagerFocusPendingRef.current = false;
-    firstLink.focus({ preventScroll: true });
-    firstLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!firstLink) {
+      return;
+    }
+
+    triggerFocus(() => {
+      pagerFocusPendingRef.current = false;
+      firstLink.focus({ preventScroll: true });
+      firstLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   });
 
   return { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching };
