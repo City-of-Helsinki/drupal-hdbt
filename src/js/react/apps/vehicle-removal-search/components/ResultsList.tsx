@@ -11,7 +11,7 @@ import type Result from '@/types/Result';
 import type TagType from '@/types/TagType';
 import Global from '../enum/Global';
 import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
-import { deferFocusManagementAtom, submittedStateAtom } from '../store';
+import { submittedStateAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
 
@@ -62,7 +62,6 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
   const { page } = submittedState;
   const dialogTargetRef = useRef<HTMLDivElement>(null);
-  const deferSearchFocusManagement = useAtomValue(deferFocusManagementAtom);
 
   const query = useVehicleRemovalQuery();
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
@@ -75,7 +74,6 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     error,
     submittedState,
     true,
-    deferSearchFocusManagement,
   );
 
   const selectionTags: TagType[] = streets.map((street) => ({

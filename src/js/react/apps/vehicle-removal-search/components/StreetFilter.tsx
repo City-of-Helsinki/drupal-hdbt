@@ -6,7 +6,7 @@ import { type ReactElement, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
-import { deferFocusManagementAtom, streetsAtom } from '../store';
+import { streetsAtom } from '../store';
 
 /**
  * Query street name suggestions from Elasticsearch.
@@ -58,25 +58,10 @@ const useStreetSuggestions = (currentLanguage: string) => {
   );
 };
 
-const getObserverCallback = (callable: CallableFunction): MutationCallback => {
-  return (mutationList) => {
-    for (const mutation of mutationList) {
-      const { target } = mutation;
-
-      if (mutation?.attributeName !== 'aria-expanded' || !(target instanceof Element)) {
-        continue;
-      }
-
-      callable(target.getAttribute('aria-expanded') === 'true');
-    }
-  };
-};
-
 export const StreetFilter = () => {
   const setStreets = useSetAtom(streetsAtom);
   const getStreetsValue = useAtomCallback(useCallback((get) => get(streetsAtom), []));
   const onSearch = useStreetSuggestions(drupalSettings.path.currentLanguage);
-  const setDeferSearchFocus = useSetAtom(deferFocusManagementAtom);
 
   const onChange = (selectedOptions: Option[]) => {
     setStreets(selectedOptions);
@@ -118,23 +103,6 @@ export const StreetFilter = () => {
       window.removeEventListener(Events.VEHICLE_REMOVAL_CLEAR_SINGLE, updateSelections);
     };
   });
-
-  useEffect(() => {
-    const domElement = document.getElementById(`${id}-main-button`);
-    const observer = new MutationObserver(getObserverCallback(setDeferSearchFocus));
-
-    if (domElement) {
-      observer.observe(domElement, {
-        attributes: true,
-        attributeFilter: ['aria-expanded'],
-      });
-    }
-
-    return () => {
-      observer.disconnect();
-      setDeferSearchFocus(false);
-    };
-  }, [setDeferSearchFocus]);
 
   const selectLabel = Drupal.t('Street name', {}, { context: 'Vehicle removal search' });
 

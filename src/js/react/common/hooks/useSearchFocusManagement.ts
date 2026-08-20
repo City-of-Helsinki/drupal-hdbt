@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef } from 'react';
 // class), so we match the Collapsible-specific class instead.
 const isFilterDialogOpen = () => Boolean(document.querySelector('.collapsible__children[role="dialog"]'));
 
-const shouldSkipFocus = (deferSearchFocus: boolean) => deferSearchFocus || isFilterDialogOpen();
+const shouldSkipFocus = () => isFilterDialogOpen();
 
 // Move focus (and optionally scroll) to a results/ghost heading.
 const focusHeading = (node: HTMLElement | null, scroll: boolean) => {
@@ -37,8 +37,6 @@ const useSearchFocusManagement = <Trigger>(
   // Set to false when the component has no automatic initial fetch (for example the
   // AI assisted site-search).
   suppressInitialLoad = true,
-  // Allows deferring the focus functionality for any reason
-  deferSearchFocus = false,
 ) => {
   const scrollTarget = useRef<HTMLDivElement>(null);
   const loadingHeaderRef = useRef<HTMLHeadingElement>(null);
@@ -59,16 +57,13 @@ const useSearchFocusManagement = <Trigger>(
     skipResultsFocusRef.current = true;
   }, []);
 
-  const triggerFocus = useCallback(
-    (callable: () => void) => {
-      if (shouldSkipFocus(deferSearchFocus)) {
-        return;
-      }
+  const triggerFocus = useCallback((callable: () => void) => {
+    if (shouldSkipFocus()) {
+      return;
+    }
 
-      callable();
-    },
-    [deferSearchFocus],
-  );
+    callable();
+  }, []);
 
   // Only show ghost cards when the result is not served from cache. A cached result updates
   // data immediately, so the data changes at the same time as the search key.
@@ -103,7 +98,7 @@ const useSearchFocusManagement = <Trigger>(
       }
       if (wasSearchingRef.current) {
         // Stay armed while a filter is open: the focus fires once it closes.
-        if (shouldSkipFocus(deferSearchFocus)) {
+        if (shouldSkipFocus()) {
           return;
         }
         wasSearchingRef.current = false;
@@ -115,7 +110,7 @@ const useSearchFocusManagement = <Trigger>(
         hadGhostCardsRef.current = false;
       }
     }
-  }, [isValidating, queryString, error, data, deferSearchFocus]);
+  }, [isValidating, queryString, error, data]);
 
   // When the user submits the same search again, the query hasn't changed so no
   // new network request is made and no ghost cards appear — focus the results

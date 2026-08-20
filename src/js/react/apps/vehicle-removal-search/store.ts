@@ -64,5 +64,3 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void
     }
   },
 );
-
-export const deferFocusManagementAtom = atom<boolean>(false);
