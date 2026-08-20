@@ -13,7 +13,7 @@ use Drupal\Core\Language\Language;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
 use Drupal\csp\Csp;
-use Drupal\helfi_api_base\GlobalUrls;
+use Drupal\helfi_api_base\GlobalUrl;
 use Drupal\helfi_api_base\Environment\ActiveProjectRoles;
 use Drupal\helfi_api_base\Environment\EnvironmentEnum;
 use Drupal\helfi_api_base\Environment\EnvironmentResolverInterface;
@@ -185,18 +185,11 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings'): st
 }
 
 /**
- * Retrieves urls by langcode.
- */
-function hdbt_get_global_url(string $langcode): array {
-  return GlobalUrls::get($langcode);
-}
-
-/**
  * Resolves the AI assisted search form URL for the given language.
  *
- * Uses EnvironmentResolver; falls back to $fallback on failure.
+ * Uses EnvironmentResolver; falls back to AiSearchForm url on failure.
  */
-function _hdbt_resolve_ai_search_form_url(string $langcode, string $fallback): string {
+function _hdbt_resolve_ai_search_form_url(string $langcode): string {
   /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $resolver */
   $resolver = \Drupal::service('helfi_api_base.environment_resolver');
   try {
@@ -205,7 +198,7 @@ function _hdbt_resolve_ai_search_form_url(string $langcode, string $fallback): s
     return $etusivu->getUrl($langcode) . '/search/new';
   }
   catch (\Exception) {
-    return $fallback;
+    return GlobalUrl::AiSearchForm->url($langcode);
   }
 }
 
@@ -234,14 +227,12 @@ function hdbt_preprocess_page(&$variables): void {
     $variables['published'] = $page_entity->isPublished();
   }
 
-  foreach (hdbt_get_global_url($variables['language']->getId()) as $key => $value) {
-    $variables[$key] = $value;
+  $langcode = $variables['language']->getId();
+  foreach (GlobalUrl::cases() as $url) {
+    $variables[$url->value] = $url->url($langcode);
   }
   $variables['help_text_link_url'] = Url::fromUri($variables['ai_register_url']);
-  $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url(
-    $variables['language']->getId(),
-    $variables['helfi_ai_search_form_url'],
-  );
+  $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = _hdbt_use_global_navigation();
@@ -855,19 +846,16 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $paragraph->hasField('field_hero_design') &&
     $paragraph->get('field_hero_design')->value == 'with-search'
   ) {
-    $search_urls = hdbt_get_global_url($variables['language']->getId());
-    $variables['helfi_search_form_url'] = $search_urls['helfi_search_form_url'];
-    $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url(
-      $variables['language']->getId(),
-      $search_urls['helfi_ai_search_form_url'],
-    );
+    $langcode = $variables['language']->getId();
+    $variables['helfi_search_form_url'] = GlobalUrl::SearchForm->url($langcode);
+    $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
 
     // Cache separately for logged-in and anonymous users so the correct
     // search form variant is rendered.
     $variables['#cache']['contexts'][] = 'user.roles:authenticated';
     $variables['user_not_logged_in'] = Drupal::currentUser()->isAnonymous();
 
-    $variables['help_text_link_url'] = Url::fromUri($search_urls['ai_register_url']);
+    $variables['help_text_link_url'] = Url::fromUri(GlobalUrl::AiRegister->url($langcode));
   }
 }
 
