@@ -1,36 +1,3 @@
-.component--unit-search {
-  @include component-side-padding;
-  background-color: $color-black-5;
-}
-
-.component--unit-search .hds-checkbox__input {
-  z-index: 1; // make sure that the checkbox is above the following label to show focus-ring properly
-}
-
-// Patch Siteimprove false positive color contrast issue to reduce noise
-.component--unit-search .hds-checkbox__label {
-  background-color: $color-black-5;
-}
-
-// Give the checkboxes white background color. The hds-styles have the checkboxes bg transparent for some reason.
-.component--unit-search .hds-checkbox__label::after {
-  background-color: $color-white;
-}
-
-// If the unit-search is just before footer.
-.layout-main-wrapper > *:last-child .component--unit-search:last-child {
-  margin-bottom: -115px; // Enough to get the block under the footer.
-  padding-bottom: 55px; // Leave enough room between the last card and footer.
-}
-
-.component--unit-search .hdbt-search--react__fieldset {
-  margin-bottom: $spacing;
-
-  .form-item:only-child {
-    margin-bottom: 0;
-  }
-}
-
 .unit-search__content .form-actions {
   width: 100%;
 
