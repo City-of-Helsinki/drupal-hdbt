@@ -7,13 +7,26 @@
   border: none;
   display: inline-block;
   padding: $spacing;
+  position: relative;
   text-decoration: none;
 
-  &[aria-selected='true'] {
-    border-bottom: $spacing-quarter solid $color-black-90;
+  &[aria-selected='true']::after {
+    background-color: $color-black-90;
+    bottom: 0;
+    content: "";
+    height: $spacing-quarter;
+    left: 0;
+    position: absolute;
+    width: 100%;
   }
 
   &:hover {
     cursor: pointer;
+  }
+
+  &:focus,
+  &:active {
+    outline: 3px solid $color-black-90;
+    outline-offset: 1px;
   }
 }
