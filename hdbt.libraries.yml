@@ -96,17 +96,6 @@ district-and-project-search:
     - core/drupalSettings
     - core/drupal
 
-embedded-content-cookie-compliance:
-  version: HELFI_DEPLOYMENT_IDENTIFIER
-  js:
-    dist/js/embeddedContentCookieCompliance.min.js: {
-      minified: true
-    }
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - core/drupalSettings
-
 environment-indicator:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   css:

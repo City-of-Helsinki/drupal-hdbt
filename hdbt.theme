@@ -1292,9 +1292,6 @@ function hdbt_preprocess_tpr_unit(&$variables): void {
   // Add current Unit Url to variable.
   $variables['unit_url'] = !$entity->isNew() ? $entity->toUrl('canonical') : NULL;
 
-  // Add cookie compliance JS to unit pages since they have maps.
-  $variables['#attached']['library'][] = 'hdbt/embedded-content-cookie-compliance';
-
   // Handle TPR unit picture caption preprocessing.
   if ($entity->hasField('picture_url_override')) {
     _hdbt_preprocess_image_caption(
