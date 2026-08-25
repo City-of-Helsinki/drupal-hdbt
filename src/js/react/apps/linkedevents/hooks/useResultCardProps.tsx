@@ -2,10 +2,13 @@ import { useAtomValue } from 'jotai';
 import type { JSX } from 'react';
 import { Metarow } from '@/react/common/Card';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
+import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
+import type TagType from '@/types/TagType';
 import { getEnrolmentStatus } from '../helpers/RegistrationHelpers';
 import { formatTime } from '../helpers/TimeHelpers';
 import { hobbiesPublicUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
+import { useMainCategoryIds } from './useMainCategoryIds';
 
 const INTERNET_EXCEPTION = 'helsinki:internet';
 
@@ -50,8 +53,20 @@ const formatStartDate = (start: Date, end: Date) => {
 };
 
 export const useResultCardProps = (event: Event) => {
-  const { audience_max_age, audience_min_age, end_time, id, images, location, name, offers, start_time, type_id } =
-    event;
+  const {
+    audience_max_age,
+    audience_min_age,
+    end_time,
+    id,
+    images,
+    keywords,
+    location,
+    name,
+    offers,
+    start_time,
+    type_id,
+  } = event;
+  const mainCategoryIds = useMainCategoryIds(type_id);
 
   const { currentLanguage } = drupalSettings.path;
   const { baseUrl, etusivuBaseUrl, imagePlaceholder } = drupalSettings.helfi_events;
@@ -184,7 +199,7 @@ export const useResultCardProps = (event: Event) => {
     return <div className='image-placeholder'></div>;
   };
 
-  const getCardCategoryTag = () => {
+  const getTypeTag = (): TagType | undefined => {
     if (!type_id || type_id === 'Volunteering') {
       return;
     }
@@ -192,6 +207,33 @@ export const useResultCardProps = (event: Event) => {
     return type_id === 'Course'
       ? { tag: Drupal.t('Hobby', {}, { context: 'Event search: hobby tag' }), color: 'gold' }
       : { tag: Drupal.t('Event', {}, { context: 'Event search: event tag' }), color: 'fog-medium-light' };
+  };
+
+  // Main categories are keywords that belong to the main category keyword set.
+  const getMainCategoryTags = (): TagType[] =>
+    (keywords ?? []).flatMap((keyword): TagType[] => {
+      if (!('id' in keyword) || !mainCategoryIds.has(keyword.id)) {
+        return [];
+      }
+
+      let label: string | undefined;
+      try {
+        label = getNameTranslation(keyword.name, currentLanguage);
+      } catch {
+        return [];
+      }
+
+      if (!label) {
+        return [];
+      }
+
+      return [{ tag: label.charAt(0).toUpperCase() + label.slice(1), color: 'silver' }];
+    });
+
+  const getCardCategoryTags = (): TagType[] => {
+    const typeTag = getTypeTag();
+
+    return [...(typeTag ? [typeTag] : []), ...getMainCategoryTags()];
   };
 
   const isRemote = location && location.id === INTERNET_EXCEPTION;
@@ -316,7 +358,7 @@ export const useResultCardProps = (event: Event) => {
   };
 
   return {
-    cardCategoryTag: getCardCategoryTag(),
+    cardCategoryTag: getCardCategoryTags(),
     cardImage: getImage(),
     cardTags: getCardTags(),
     cardTitle: resolvedName,
