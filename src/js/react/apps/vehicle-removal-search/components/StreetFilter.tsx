@@ -2,7 +2,7 @@ import type { SelectProps } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { type ReactElement, useCallback, useEffect } from 'react';
+import { type ReactElement, useCallback, useEffect, useState } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
@@ -71,21 +71,27 @@ export const StreetFilter = () => {
     }));
   };
 
+  const id = 'streets';
+  const [storageKey, setStorageKey] = useState(0);
+
   const selectStorage = useSelectStorage({
     disabled: false,
-    id: 'streets',
+    id,
     invalid: false,
     multiSelect: true,
     noTags: true,
     onChange,
     onSearch,
     open: false,
+    updateKey: String(storageKey),
     options: getStreetsValue()?.map((dm) => ({ ...dm, selected: true })) ?? [],
     clearable: true,
   });
 
   const clearAllSelections = () => {
     clearAllSelectionsFromStorage(selectStorage);
+    // Force reload to prevent stale internal state.
+    setStorageKey((key) => key + 1);
   };
 
   const updateSelections = () => {
@@ -102,22 +108,24 @@ export const StreetFilter = () => {
     };
   });
 
+  const selectLabel = Drupal.t('Street name', {}, { context: 'Vehicle removal search' });
+
   return (
     <Select
       className='hdbt-search__dropdown'
       texts={{
-        label: Drupal.t('Street name', {}, { context: 'Vehicle removal search' }),
+        label: selectLabel,
         placeholder: Drupal.t('All', {}, { context: 'Vehicle removal search' }),
         searchLabel: Drupal.t('Write a street name', {}, { context: 'Vehicle removal search' }),
         searchPlaceholder: Drupal.t('For example, Kotikatu', {}, { context: 'Vehicle removal search' }),
         clearButtonAriaLabel_one: Drupal.t(
           'Clear @label selection',
-          { '@label': 'foobar' },
+          { '@label': selectLabel },
           { context: 'React search clear selection label' },
         ),
         clearButtonAriaLabel_multiple: Drupal.t(
           'Clear @label selection',
-          { '@label': 'barfoo' },
+          { '@label': selectLabel },
           { context: 'React search clear selection label' },
         ),
       }}

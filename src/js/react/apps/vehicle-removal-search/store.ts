@@ -35,30 +35,26 @@ const urlParamsToState = (): SearchState => {
 
 const initialState = urlParamsToState();
 
-// Live form state — updates immediately when user interacts with filters.
-export const searchStateAtom = atom<SearchState>(initialState);
-
 export const streetsAtom = atom(
-  (get) => get(searchStateAtom)?.streets || [],
+  (get) => get(submittedStateAtom)?.streets || [],
   (get, set, value: Option[]) => {
-    const state = { ...get(searchStateAtom) } as SearchState;
+    const state = { ...get(submittedStateAtom) } as SearchState;
     state.streets = value;
-    set(searchStateAtom, state);
+    state.page = 1;
+    set(submittedStateAtom, state, true);
   },
 );
 
-// Submitted state — only updates on form submit or selection clearing.
-// The query hook reads from this so results don't change until submission.
-export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void>(
+export const submittedStateAtom = atom<SearchState, [Partial<SearchState>, boolean?], void>(
   initialState,
-  (get, set, newValue: Partial<SearchState>) => {
+  (get, set, newValue: Partial<SearchState>, triggerFocus: boolean = false) => {
     const update = {
       ...get(submittedStateAtom),
       ...newValue,
     };
 
     set(submittedStateAtom, update);
-    set(searchStateAtom, update);
+    set(triggerFocusAtom, triggerFocus);
 
     const params = stateToURLParams(update);
     const url = new URL(window.location.href);
@@ -69,3 +65,5 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>], void
     }
   },
 );
+
+export const triggerFocusAtom = atom<boolean>(true);
