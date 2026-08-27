@@ -1,0 +1,6 @@
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {{- row.content -}}
+{% endfor %}

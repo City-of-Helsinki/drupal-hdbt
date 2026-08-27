@@ -1050,22 +1050,6 @@ msgid_plural "@count schools"
 msgstr[0] "1 koulu"
 msgstr[1] "@count koulua"
 
-msgctxt "React search: result display"
-msgid "View as a list"
-msgstr "Näytä listana"
-
-msgctxt "React search: result display"
-msgid "View in a map"
-msgstr "Näytä kartalla"
-
-msgctxt "React search: result display"
-msgid "Service Map - Front page"
-msgstr "Palvelukartta - Etusivu"
-
-msgctxt "React search: result display"
-msgid "Open large version of the map"
-msgstr "Avaa kartta suurempana"
-
 msgctxt "React search: results loading"
 msgid "Search results are loading"
 msgstr "Hakutuloksia ladataan"
@@ -1178,9 +1162,21 @@ msgctxt "Tab-list of Content list with count"
 msgid "Toggle between list and map view"
 msgstr "Vaihda lista- ja karttanäkymän välillä"
 
+msgctxt "Content list with count list tab text"
+msgid "View as a list"
+msgstr "Näytä listana"
+
+msgctxt "Content list with count map tab text"
+msgid "View in a map"
+msgstr "Näytä kartalla"
+
 msgctxt "Content list with count map iframe title"
 msgid "Service map - Front page"
 msgstr "Palvelukartta - Etusivu"
+
+msgctxt "Content list with count action link"
+msgid "Open large version of the map"
+msgstr "Avaa kartta suurempana"
 
 msgctxt "Event additional information label"
 msgid "Additional information"

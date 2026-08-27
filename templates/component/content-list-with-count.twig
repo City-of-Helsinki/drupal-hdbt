@@ -57,7 +57,7 @@
             aria-selected="false"
             aria-controls="tab-1__content--{{ dom_id }}"
           >
-            {{ 'View as a list'|t }}
+            {{ 'View as a list'|t({}, {'context' : 'Content list with count list tab text'})  }}
           </button>
           <button class="tab tab--map"
             data-drupal-selector="tab-2--{{ dom_id }}"
@@ -66,7 +66,7 @@
             aria-selected="false"
             aria-controls="tab-2__content--{{ dom_id }}"
           >
-            {{ 'View in a map'|t }}
+            {{ 'View in a map'|t({}, {'context' : 'Content list with count map tab text'}) }}
           </button>
         </div>
       </div>
@@ -107,7 +107,7 @@
         </div>
         <div class="content-list-with-count__map-actions">
           {% set link_href = 'https://palvelukartta.hel.fi/fi/embed/search?units=' ~ unit_ids|join(',') %}
-          {% set link_text = 'Open large version of the map'|t %}
+          {% set link_text = 'Open large version of the map'|t({}, {'context' : 'Content list with count action link'}) %}
           {% set link_attributes = { 'class': ['link'] } %}
           {{ link(link_text, link_href, link_attributes) }}
         </div>

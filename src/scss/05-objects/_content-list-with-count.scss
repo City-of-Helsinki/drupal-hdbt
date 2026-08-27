@@ -6,8 +6,7 @@
   display: block;
   width: 100%;
 
-  > .card:first-of-type,
-  > .views-row:first-of-type {
+  > .card:first-of-type {
     margin-block-start: $spacing;
 
     @include breakpoint($breakpoint-m) {
@@ -15,7 +14,7 @@
     }
   }
 
-  > .views-row + .views-row {
+  > .card + .card {
     margin-block-start: $spacing;
   }
 }
@@ -79,8 +78,7 @@
   display: block;
   width: 100%;
 
-  > .card:first-of-type,
-  > .views-row:first-of-type {
+  > .card:first-of-type {
     margin-block-start: $spacing;
 
     @include breakpoint($breakpoint-m) {
@@ -88,7 +86,7 @@
     }
   }
 
-  > .views-row + .views-row {
+  > .card + .card {
     margin-block-start: $spacing;
   }
 }
@@ -135,7 +133,6 @@
   }
 }
 
-
 .content-list-with-count__additional-information {
   @include font('body');
   display: block;
@@ -159,4 +156,9 @@
       margin-top: 0;
     }
   }
+}
+
+// Content lists with large volume of cards listed such as daycare search.
+.content-list-with-count--large-volume .content-list-with-count__content .card + .card {
+  margin-top: $spacing-half;
 }

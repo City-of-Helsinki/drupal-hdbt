@@ -93,7 +93,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
               aria-controls='school-search-results-tabpanel-list'
               onClick={() => setUseMap(false)}
             >
-              {Drupal.t('View as a list', {}, { context: 'React search: result display' })}
+              {Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' })}
             </button>
             <button
               id='school-search-results-tab-map'
@@ -104,7 +104,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
               aria-controls='school-search-results-tabpanel-map'
               onClick={() => setUseMap(true)}
             >
-              {Drupal.t('View in a map', {}, { context: 'React search: result display' })}
+              {Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' })}
             </button>
           </div>
         }

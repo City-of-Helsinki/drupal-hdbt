@@ -43,18 +43,20 @@ const ResultsMap = ({ ids }: ResultsMapProps) => {
 
   return (
     <div className='hdbt-search--react__map-container'>
-      <div className='unit-search__result--map'>
+      <div className='content-list-with-count__result--map'>
         <iframe
-          title={Drupal.t('Service Map - Front page', {}, { context: 'React search: result display' })}
-          className='unit-search__map'
+          title={Drupal.t('Service Map - Front page', {}, { context: 'Content list with count map iframe title' })}
+          className='content-list-with-count__map'
           src={mapUrl}
         ></iframe>
       </div>
-      <div className='unit-search__map-actions'>
+      <div className='content-list-with-count__map-actions'>
         <ExternalLink
           href={mapUrl}
           title={
-            <span>{Drupal.t('Open large version of the map', {}, { context: 'React search: result display' })}</span>
+            <span>
+              {Drupal.t('Open large version of the map', {}, { context: 'Content list with count action link' })}
+            </span>
           }
         />
       </div>
