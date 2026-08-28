@@ -17,7 +17,7 @@ export const Metarow = ({ icon, label, content, langAttribute }: MetadataType) =
 );
 
 export type CardItemProps = {
-  cardCategoryTag?: TagType;
+  cardCategoryTag?: TagType | TagType[];
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
   cardHelptext?: string;
@@ -89,6 +89,11 @@ function CardItem({
     ${cardModifierClass ? ` ${cardModifierClass}` : ''}
     ${cardUrlExternal ? ' card--external' : ''}
   `;
+  const categoryTags: TagType[] = Array.isArray(cardCategoryTag)
+    ? cardCategoryTag
+    : cardCategoryTag
+      ? [cardCategoryTag]
+      : [];
   const HeadingTag = cardTitleLevel ? (`h${cardTitleLevel}` as keyof JSX.IntrinsicElements) : 'h4';
 
   const hasMetas =
@@ -124,9 +129,9 @@ function CardItem({
             <ExternalLink href={cardUrl} title={cardTitle} className='card__link' rel='bookmark' />
           )}
         </HeadingTag>
-        {cardCategoryTag && (
+        {categoryTags.length > 0 && (
           <div className='card__category'>
-            <Tags tags={[cardCategoryTag]} insideCard />
+            <Tags tags={categoryTags} insideCard />
           </div>
         )}
 

@@ -95,6 +95,16 @@ describe('CardItem', () => {
     expect(tagsSection?.textContent).toContain('Sports');
   });
 
+  test('renders multiple category tags when given an array', () => {
+    const { container } = render(
+      <CardItem cardTitle='Hello' cardCategoryTag={[{ tag: 'Event', color: 'fog-medium-light' }, { tag: 'Music' }]} />,
+    );
+    const category = container.querySelector('.card__category');
+    expect(category?.querySelectorAll('li')).toHaveLength(2);
+    expect(category?.textContent).toContain('Event');
+    expect(category?.textContent).toContain('Music');
+  });
+
   test('renders a plain-text helptext', () => {
     const { container } = render(<CardItem cardTitle='Hello' cardHelptext='A helpful note' />);
     expect(container.querySelector('.card__helptext p')?.textContent).toBe('A helpful note');

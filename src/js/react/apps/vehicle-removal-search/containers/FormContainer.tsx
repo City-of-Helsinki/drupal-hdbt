@@ -1,17 +1,19 @@
 import { Button } from 'hds-react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
+import { useAtomCallback } from 'jotai/utils';
 import type React from 'react';
+import { type EventHandler, useCallback } from 'react';
 import { StreetFilter } from '../components/StreetFilter';
 import { streetsAtom, submittedStateAtom } from '../store';
 import SelectionsContainer from './SelectionsContainer';
 
 const FormContainer = () => {
-  const streets = useAtomValue(streetsAtom);
+  const getStreetsValue = useAtomCallback(useCallback((get) => get(streetsAtom), []));
   const updateSubmittedState = useSetAtom(submittedStateAtom);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit: EventHandler<React.SyntheticEvent<HTMLFormElement>> = (event) => {
     event.preventDefault();
-    updateSubmittedState({ streets, page: 1 });
+    updateSubmittedState({ streets: getStreetsValue(), page: 1 });
   };
 
   return (
