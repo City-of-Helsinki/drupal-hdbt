@@ -1180,6 +1180,9 @@ msgctxt "Content list with count action link"
 msgid "Open large version of the map"
 msgstr "Öppna kartan i större format"
 
+msgid "Unit search @id"
+msgstr "Enhetssökning @id"
+
 msgctxt "Event additional information label"
 msgid "Additional information"
 msgstr "Ytterligare information"

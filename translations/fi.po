@@ -1178,6 +1178,9 @@ msgctxt "Content list with count action link"
 msgid "Open large version of the map"
 msgstr "Avaa kartta suurempana"
 
+msgid "Unit search @id"
+msgstr "Toimipistehaku @id"
+
 msgctxt "Event additional information label"
 msgid "Additional information"
 msgstr "Lisätieto"

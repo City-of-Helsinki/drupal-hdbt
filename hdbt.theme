@@ -469,6 +469,17 @@ function hdbt_preprocess_feed_icon(&$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
+function hdbt_preprocess_form__unit_search(array &$variables): void {
+  if (empty($variables['attributes']['aria-label'])) {
+    $variables['attributes']['aria-label'] = t('Unit search @id', [
+      '@id' => $variables['element']['#id'] ?? '',
+    ]);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function hdbt_preprocess_form_element(&$variables): void {
   if (isset($variables['type']) && is_array($variables['label'])) {
     switch ($variables['type']) {
