@@ -2,6 +2,11 @@
   display: none;
 }
 
+.tabs {
+  display: flex;
+  gap: $spacing-half;
+}
+
 .tab {
   background: transparent;
   border: none;

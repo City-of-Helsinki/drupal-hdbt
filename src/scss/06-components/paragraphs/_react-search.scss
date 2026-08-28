@@ -87,18 +87,34 @@
 }
 
 .hdbt-search--react__results--tablist {
+  display: flex;
+  gap: $spacing-half;
+
   .tablist-tab {
     background-color: transparent;
     border: none;
     color: $color-black-90;
     padding: $spacing;
+    position: relative;
 
     &:hover {
       cursor: pointer;
     }
 
-    &[aria-selected='true'] {
-      border-bottom: $spacing-quarter solid $color-black-90;
+    &[aria-selected='true']::after {
+      background-color: $color-black-90;
+      bottom: 0;
+      content: "";
+      height: $spacing-quarter;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    &:focus,
+    &:active {
+      outline: 3px solid $color-black-90;
+      outline-offset: 1px;
     }
   }
 }
