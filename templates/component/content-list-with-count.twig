@@ -1,12 +1,11 @@
-{%
-  set classes = [
-    'views',
-    'views--' ~ id|clean_class,
-    'views--' ~ display_id|clean_class,
+{% set classes = [
+    id ? 'views',
+    id ? 'views--' ~ id|clean_class,
+    display_id ? 'views--' ~ display_id|clean_class,
     dom_id ? 'js-view-dom-id-' ~ dom_id,
-    'unit-search__content'
-  ]
-%}
+    'content-list-with-count',
+    exposed ? 'content-list-with-count--search',
+] %}
 
 {% if modifier_class %}
   {% set classes = classes|merge(modifier_class) %}
@@ -14,47 +13,114 @@
 
 <div{{ attributes.addClass(classes) }}>
   {% if title %}
-    {{ title_prefix }}
-    <h2>{{ title }}</h2>
-    {{ title_suffix }}
+    {{ title_prefix }}<h2 class="content-list-with-count__header">{{ title }}</h2>{{ title_suffix }}
   {% endif %}
 
   {% if header %}
-    <header>
-      {{ header }}
-    </header>
+    <header>{{ header }}</header>
   {% endif %}
 
   {{ exposed }}
   {{ attachment_before }}
 
-  <div class="unit-search__results" data-id-number="{{ dom_id }}">
+  <div class="content-list-with-count__content" data-id-number="{{ dom_id }}"{% if tabs %}data-drupal-selector="tabbed-content"{% endif %}>
+
     {% if show_count_container %}
-      <h3 class="unit-search__count-container">
+      <h3 class="content-list-with-count__count">
         {% block count_container %}
           {%- if total_rows -%}
-            {{ total_rows }} {% trans with {'context': 'Unit search count'} %}result{% plural total_rows %}results{% endtrans %}
+            {{ total_rows }} {% trans with {'context': 'Content list with count'} %}result{% plural total_rows %}results{% endtrans %}
           {%- else -%}
-            {{ 'No results'|t({}, {'context' : 'Unit search no results title'}) }}
+            {{ 'No results'|t({}, {'context' : 'Content list with count no results title'}) }}
           {%- endif -%}
         {% endblock %}
       </h3>
     {% endif %}
-
-    {%- if empty -%}
-      <p>{{ 'No results were found for the criteria you entered. Try changing your search criteria.'|t({}, {'context' : 'Unit search no results text'}) }}</p>
-    {%- endif -%}
-
+    
+    {% if tabs %}
+      <div class="content-list-with-count__result-actions">
+        <h3 class="content-list-with-count__count">
+          {% block tabs_count_container %}
+            {%- if total_rows -%}
+              {{ total_rows }} {% trans with {'context': 'Content list with count'} %}result{% plural total_rows %}results{% endtrans %}
+            {%- else -%}
+              {{ 'No results'|t({}, {'context' : 'Content list with count no results title'}) }}
+            {%- endif -%}
+          {% endblock %}
+        </h3>
+        <div class="tabs" role="tablist" aria-label="{{ 'Toggle between list and map view'|t({}, {'context': 'Tab-list of Content list with count'}) }}">
+          <button 
+            class="tab tab--list"
+            data-drupal-selector="tab-1--{{ dom_id }}"
+            id="tab-1--{{ dom_id }}"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-1__content--{{ dom_id }}"
+          >
+            {{ 'View as a list'|t({}, {'context' : 'Content list with count list tab text'})  }}
+          </button>
+          <button class="tab tab--map"
+            data-drupal-selector="tab-2--{{ dom_id }}"
+            id="tab-2--{{ dom_id }}"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-2__content--{{ dom_id }}"
+          >
+            {{ 'View in a map'|t({}, {'context' : 'Content list with count map tab text'}) }}
+          </button>
+        </div>
+      </div>
+      <div class="tab__content"
+        data-drupal-selector="tab-1__content--{{ dom_id }}"
+        id="tab-1__content--{{ dom_id }}"
+        role="tabpanel"
+        aria-labelledby="tab-1--{{ dom_id }}"
+        aria-hidden="true"
+        tabindex="0"
+      >
+        <div class="content-list-with-count__result--list">
+    {% endif %}
+    
     {{ rows }}
+    
+    {%- if empty -%}
+      {% block empty_container %}
+        <p>{{ 'No results were found for the criteria you entered. Try changing your search criteria.'|t({}, {'context' : 'Content list with count no results text'}) }}</p>
+      {% endblock %}
+    {%- endif -%}
+    
     {{ pager }}
+
+    {% if tabs %}
+          </div>
+      </div>
+      <div class="tab__content"
+        data-drupal-selector="tab-2__content--{{ dom_id }}"
+        id="tab-2__content--{{ dom_id }}"
+        role="tabpanel"
+        aria-labelledby="tab-2--{{ dom_id }}"
+        aria-hidden="true"
+        tabindex="0"
+      >
+        <div class="content-list-with-count__result--map">
+          <iframe title="{{ 'Service map - Front page'|t({}, {'context' : 'Content list with count map iframe title'}) }}" class="content-list-with-count__map" src="https://palvelukartta.hel.fi/fi/embed/search?units={{ unit_ids|join(',') }}"></iframe>
+        </div>
+        <div class="content-list-with-count__map-actions">
+          {% set link_href = 'https://palvelukartta.hel.fi/fi/embed/search?units=' ~ unit_ids|join(',') %}
+          {% set link_text = 'Open large version of the map'|t({}, {'context' : 'Content list with count action link'}) %}
+          {% set link_attributes = { 'class': ['link'] } %}
+          {{ link(link_text, link_href, link_attributes) }}
+        </div>
+      </div>
+    {% endif %}
+    
   </div>
+  
   {{ attachment_after }}
   {{ more }}
 
   {% if footer %}
-    <footer>
-      {{ footer }}
-    </footer>
+    <footer>{{ footer }}</footer>
   {% endif %}
 
   {{ feed_icons }}

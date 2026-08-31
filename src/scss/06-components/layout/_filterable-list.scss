@@ -1,0 +1,34 @@
+.component--filterable-list {
+  @include component-side-padding;
+  background-color: $color-black-5;
+}
+
+// Make sure that the checkbox is above the following label to show focus-ring properly.
+.component--filterable-list .hds-checkbox__input {
+  z-index: 1; 
+}
+
+// Patch Siteimprove false positive color contrast issue to reduce noise.
+.component--filterable-list .hds-checkbox__label {
+  background-color: $color-black-5;
+}
+
+// Give the checkboxes white background color. The hds-styles have the checkboxes 
+// background transparent for some reason.
+.component--filterable-list .hds-checkbox__label::after {
+  background-color: $color-white;
+}
+
+// If the filterable-list is just before footer.
+.layout-main-wrapper > *:last-child .component--filterable-list:last-child {
+  margin-bottom: -115px; // Enough to get the block under the footer.
+  padding-bottom: 55px; // Leave enough room between the last card and footer.
+}
+
+.component--filterable-list .hdbt-search--react__fieldset {
+  margin-bottom: $spacing;
+
+  .form-item:only-child {
+    margin-bottom: 0;
+  }
+}

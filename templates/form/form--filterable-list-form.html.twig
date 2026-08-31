@@ -10,6 +10,9 @@
  * @see template_preprocess_form()
  */
 #}
+{% if search_label %}
+  {% set attributes = attributes.setAttribute('aria-label', search_label) %}
+{% endif %}
 <form{{ attributes.setAttribute('role', 'search') }}>
   {{ children }}
 </form>

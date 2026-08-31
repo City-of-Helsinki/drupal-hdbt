@@ -1048,22 +1048,6 @@ msgid_plural "@count schools"
 msgstr[0] "1 skola"
 msgstr[1] "@count skolor"
 
-msgctxt "React search: result display"
-msgid "View as a list"
-msgstr "Visa som lista"
-
-msgctxt "React search: result display"
-msgid "View in a map"
-msgstr "Visa på kartan"
-
-msgctxt "React search: result display"
-msgid "Service Map - Front page"
-msgstr "Servicekarta - Framsida"
-
-msgctxt "React search: result display"
-msgid "Open large version of the map"
-msgstr "Öppna kartan i större format"
-
 msgctxt "React search: results loading"
 msgid "Search results are loading"
 msgstr "Sökresultat laddas"
@@ -1162,27 +1146,42 @@ msgctxt "Unit search paragraps search input default label"
 msgid "Name, address or postal code"
 msgstr "Namn, adress eller postnummer"
 
-msgctxt "Unit search count singular"
-msgid "result"
-msgstr "resultat"
-
-msgctxt "Unit search count plural"
-msgid "results"
-msgstr "resultat"
-
-msgctxt "Unit search count"
+msgctxt "Content list with count"
 msgid "result"
 msgid_plural "results"
 msgstr[0] "resultat"
 msgstr[1] "resultat"
 
-msgctxt "Unit search no results title"
+msgctxt "Content list with count no results title"
 msgid "No results"
 msgstr "Inga sökresultat"
 
-msgctxt "Unit search no results text"
+msgctxt "Content list with count no results text"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."
+
+msgctxt "Tab-list of Content list with count"
+msgid "Toggle between list and map view"
+msgstr "Växla mellan list- och kartvy"
+
+msgctxt "Content list with count list tab text"
+msgid "View as a list"
+msgstr "Visa som lista"
+
+msgctxt "Content list with count map tab text"
+msgid "View in a map"
+msgstr "Visa på kartan"
+
+msgctxt "Content list with count map iframe title"
+msgid "Service map - Front page"
+msgstr "Servicekarta - Framsidan"
+
+msgctxt "Content list with count action link"
+msgid "Open large version of the map"
+msgstr "Öppna kartan i större format"
+
+msgid "Unit search @id"
+msgstr "Enhetssökning @id"
 
 msgctxt "Event additional information label"
 msgid "Additional information"

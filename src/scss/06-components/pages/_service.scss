@@ -105,19 +105,6 @@ $teaser-icon-size-desktop: 48px;
   @include breakpoint($breakpoint-l) {
     padding-block: $spacing-quadruple;
   }
-
-  .unit-search__content,
-  .unit-search__content > h2 {
-    margin-top: 0;
-  }
-
-  .unit-search__results {
-    margin-block-start: $spacing-double;
-
-    @include breakpoint($breakpoint-l) {
-      margin-block-start: $spacing-quadruple;
-    }
-  }
 }
 
 .service__important-links {

@@ -24,7 +24,7 @@ const ResultsEmpty = forwardRef(
   ) => (
     <div className={wrapperClass}>
       <ResultsHeader
-        resultText={resultText ?? Drupal.t('No results', {}, { context: 'Unit search no results title' })}
+        resultText={resultText ?? Drupal.t('No results', {}, { context: 'Content list with count no results title' })}
         ref={ref}
         leftActions={leftActions}
       />

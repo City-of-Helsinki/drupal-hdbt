@@ -102,7 +102,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
               aria-controls='hdbt-search--react__results--tabpanel'
               onClick={() => setUseMap(false)}
             >
-              {Drupal.t('View as a list', {}, { context: 'React search: result display' })}
+              {Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' })}
             </button>
             <button
               type='button'
@@ -112,7 +112,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
               aria-controls='hdbt-search--react__results--tabpanel'
               onClick={() => setUseMap(true)}
             >
-              {Drupal.t('View in a map', {}, { context: 'React search: result display' })}
+              {Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' })}
             </button>
           </div>
         }
