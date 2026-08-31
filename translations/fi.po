@@ -2060,3 +2060,7 @@ msgstr "Yhteystiedot"
 msgctxt "Site search"
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
+
+msgctxt "Advisory services search form aria label"
+msgid "Advisory services search"
+msgstr "Neuvontapalveluhaku"
