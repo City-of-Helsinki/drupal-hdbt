@@ -1,0 +1,373 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Call to function assert\(\) with true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Cannot access offset ''path'' on array\{scheme\?\: string, host\?\: string, port\?\: int\<0, 65535\>, user\?\: string, pass\?\: string, path\?\: string, query\?\: string, fragment\?\: string\}\|false\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Cannot access offset ''site_name'' on 0\|0\.0\|''''\|''0''\|array\{\}\|false\|null\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function _hdbt_add_image_element_dimensions\(\) has parameter \$element with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function _hdbt_menu_item_apply_attributes\(\) has parameter \$item with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function _hdbt_preprocess_image_caption\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function _hdbt_set_image_style\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function _hdbt_set_site_information\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function _hdbt_set_site_information\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_block\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_breadcrumb\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_feed_icon\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_form__unit_search\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_form_element\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_html\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_imagecache_external_responsive\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_imagecache_external_responsive\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_input__submit\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_links__language_block\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_maintenance_page\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_menu\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_node\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_page\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_pager\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__event_list\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__hero\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__hero\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__image\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__image\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__image_gallery_item\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__liftup_with_image\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__liftup_with_image\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_paragraph__unit_contact_card\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_region\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_responsive_image_formatter\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_tpr_errand_service\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_tpr_service\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_tpr_unit\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_views_exposed_form\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_views_exposed_form\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_preprocess_views_view\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_container_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_container_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_form_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_form_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_form_element_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_form_element_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_form_element_label_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_form_element_label_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_input_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_input_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_menu_alter\(\) has parameter \$suggestions with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_menu_alter\(\) has parameter \$variables with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_views_view_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_views_view_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_views_view_unformatted_alter\(\) has parameter \$suggestions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Function hdbt_theme_suggestions_views_view_unformatted_alter\(\) has parameter \$variables with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Instanceof between Drupal\\helfi_api_base\\Environment\\Project and Drupal\\helfi_api_base\\Environment\\Project will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_contains expects string, int\|string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Strict comparison using \!\=\= between ''costs'' and ''links'' will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Strict comparison using \!\=\= between ''expiration_time''\|''process_description''\|''processing_time'' and ''links'' will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: hdbt.theme
+
+		-
+			message: '#^Using nullsafe method call on non\-nullable type mixed\. Use \-\> instead\.$#'
+			identifier: nullsafe.neverNull
+			count: 1
+			path: hdbt.theme
