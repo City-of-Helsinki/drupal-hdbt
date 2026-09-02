@@ -2064,3 +2064,17 @@ msgstr "Helsinki lähelläsi"
 msgctxt "Advisory services search form aria label"
 msgid "Advisory services search"
 msgstr "Neuvontapalveluhaku"
+
+msgctxt "Job listing search"
+msgid "We have had open job listings that match your search criteria."
+msgstr "Meillä on ollut avoinna hakuasi vastaavia ilmoituksia."
+
+msgctxt "Job listing search"
+msgid "In the last six months, there has been one job listing that matches your search criteria."
+msgid_plural "In the last six months, there have been @count job listings that match your search criteria."
+msgstr[0] "Viimeisen puolen vuoden aikana on ollut avoinna yksi ilmoitus, joka vastasi hakuehtojasi."
+msgstr[1] "Viimeisen puolen vuoden aikana on ollut avoinna @count ilmoitusta, jotka vastasivat hakuehtojasi."
+
+msgctxt "Job listing search"
+msgid "Subscribe to the search alert to receive notifications about new job listings."
+msgstr "Tilaa hakuvahti, niin saat tiedon uusista ilmoituksista."

@@ -2066,3 +2066,17 @@ msgstr "Helsingfors nära dig"
 msgctxt "Advisory services search form aria label"
 msgid "Advisory services search"
 msgstr "Rådgivningstjänstersökning"
+
+msgctxt "Job listing search"
+msgid "We have had open job listings that match your search criteria."
+msgstr "Vi har haft öppna annonser som motsvarar dina sökvillkor."
+
+msgctxt "Job listing search"
+msgid "In the last six months, there has been one job listing that matches your search criteria."
+msgid_plural "In the last six months, there have been @count job listings that match your search criteria."
+msgstr[0] "Under det senaste halvåret har det funnits en öppen annons som motsvarar dina sökvillkor."
+msgstr[1] "Under det senaste halvåret har det funnits @count öppna annonser som motsvarar dina sökvillkor."
+
+msgctxt "Job listing search"
+msgid "Subscribe to the search alert to receive notifications about new job listings."
+msgstr "Beställ sökvakten så att du får ett meddelande om nya annonser."
