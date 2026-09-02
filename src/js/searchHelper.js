@@ -28,8 +28,8 @@
       // card on the new page. The flag is always cleared here so it never
       // carries over to an unrelated page visit.
       const pagerClicked = sessionStorage.getItem(PAGER_FLAG_KEY);
-      sessionStorage.removeItem(PAGER_FLAG_KEY);
       if (pagerClicked && context.querySelector('.pager a')) {
+        sessionStorage.removeItem(PAGER_FLAG_KEY);
         focusElement(context.querySelector('.card__link'));
         return;
       }
