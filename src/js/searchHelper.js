@@ -25,8 +25,8 @@
       });
 
       // If the user just clicked a pager link, move focus to the first result
-      // card on the new page. The flag is always cleared here so it never
-      // carries over to an unrelated page visit.
+      // card on the new page. The flag is only cleared here, once actually
+      // consumed.
       const pagerClicked = sessionStorage.getItem(PAGER_FLAG_KEY);
       if (pagerClicked && context.querySelector('.pager a')) {
         sessionStorage.removeItem(PAGER_FLAG_KEY);
