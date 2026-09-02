@@ -1,5 +1,8 @@
+import LocalStorageManager from './localStorageManager';
+
 (function focusSearchResultsBehavior(Drupal) {
   const PAGER_FLAG_KEY = 'hdbt_search_pager_clicked';
+  const storageManager = new LocalStorageManager('helfi-settings');
 
   function focusElement(element) {
     if (!element) return;
@@ -20,16 +23,16 @@
       // knows to focus the first result instead of the result count.
       context.querySelectorAll('.pager a').forEach((link) => {
         link.addEventListener('click', () => {
-          sessionStorage.setItem(PAGER_FLAG_KEY, '1');
+          storageManager.setValue(PAGER_FLAG_KEY, '1');
         });
       });
 
       // If the user just clicked a pager link, move focus to the first result
       // card on the new page. The flag is always cleared here so it never
       // carries over to an unrelated page visit.
-      const pagerClicked = sessionStorage.getItem(PAGER_FLAG_KEY);
+      const pagerClicked = storageManager.getValue(PAGER_FLAG_KEY);
       if (pagerClicked && context.querySelector('.pager a')) {
-        sessionStorage.removeItem(PAGER_FLAG_KEY);
+        storageManager.deleteKey(PAGER_FLAG_KEY);
         focusElement(context.querySelector('.card__link'));
         return;
       }
