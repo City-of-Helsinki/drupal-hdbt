@@ -2062,3 +2062,7 @@ msgstr "Kontaktuppgifter"
 msgctxt "Site search"
 msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
+
+msgctxt "Advisory services search form aria label"
+msgid "Advisory services search"
+msgstr "Rådgivningstjänstersökning"
