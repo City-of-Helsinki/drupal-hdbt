@@ -15,7 +15,9 @@ const useUnpublishedFallback = (enabled: boolean): string[] => {
   const body = useMemo(() => {
     const parsed = JSON.parse(mainQueryString);
     // Swap the published filter (status: true) for unpublished (status: false)
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const filters: any[] = parsed.query.bool.filter;
+    // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
     const statusIdx = filters.findIndex((f: any) => f?.term?.status === true);
     if (statusIdx >= 0) {
       filters[statusIdx] = { term: { [IndexFields.STATUS]: false } };
@@ -34,7 +36,7 @@ const useUnpublishedFallback = (enabled: boolean): string[] => {
   };
 
   const { data } = useSWR(enabled ? body : null, fetcher, { revalidateOnFocus: false });
-
+  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
   return data?.hits?.hits?.map((h: any) => h._source?.title?.[0]).filter(Boolean) ?? [];
 };
 
