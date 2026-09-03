@@ -11,6 +11,7 @@ import postcssNesting from 'postcss-nesting';
 import postcssImport from 'postcss-import';
 import cssnano from 'cssnano';
 import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins.mjs';
+import pkg from './package.json' with { type: 'json' };
 
 /**
  * Builds all CSS files in parallel using Sass & PostCSS.
@@ -33,6 +34,7 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
     plugins: [
       postcssImport({ path: ['node_modules', path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')] }),
       postcssPresetEnv({
+        browsers: pkg.browserslist,
         stage: 2,
         preserve: true,
         features: { 'logical-properties-and-values': false }
