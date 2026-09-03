@@ -463,7 +463,6 @@ function getConfig(hostname, protocol, type) {
       engine: 'playwright',
       engineOptions: {
         browser: 'chromium',
-        gotoParameters: { waitUntil: 'networkidle' },
       },
       asyncCaptureLimit: 10,
       asyncCompareLimit: 100,
