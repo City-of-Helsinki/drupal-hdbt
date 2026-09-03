@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "node theme-builder.mjs --watch --dev",
     "build": "npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs",
-    "preinstall": "npx update-browserslist-db@latest",
     "lint:scss": "npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map && npm run lint:stylelint",
     "lint:stylelint": "npx stylelint \"src/scss/**/*.scss\" --config ./theme-builder/.stylelintrc.yaml --formatter string --fix",
     "lint:js": "biome check --write --assist-enabled=true src/js/",
@@ -33,6 +32,7 @@
       "backstopjs > puppeteer": ">=25.0.8, Backstop depends on a vulnerable version of puppeteer",
       "postcss": ">=8.5.18, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)",
       "qs": "^6.16.0, dependency of express and body-parser via backstopjs; no fixed express 4.x or body-parser 1.x release exists (GHSA-x5fp-wj9c-mxmx, GHSA-4mjr-xmp4-gh2g)",
+      "test-exclude": "^8.0.0, dependency of @vitest/coverage-v8; drops the deprecated glob 10",
       "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10"
     }
   ],
@@ -40,6 +40,7 @@
     "diff": "^8.0.3",
     "postcss": "^8.5.23",
     "qs": "^6.16.0",
+    "test-exclude": "^8.0.0",
     "backstopjs": {
       "puppeteer": "^25.8.0"
     },
@@ -99,5 +100,11 @@
     "@vitest/coverage-v8": "^3.0.8",
     "jsdom": "^26.0.0",
     "vitest": "^3.0.8"
+  },
+  "allowScripts": {
+    "esbuild": false,
+    "puppeteer": false,
+    "@parcel/watcher": false,
+    "fsevents": false
   }
 }
