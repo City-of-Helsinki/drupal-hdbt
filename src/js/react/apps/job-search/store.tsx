@@ -109,27 +109,35 @@ export type SearchStateType = typeof defaultSearchState;
 export const searchStateAtom = atom<typeof defaultSearchState>(defaultSearchState);
 export const submittedStateAtom = atom<typeof defaultSearchState>(defaultSearchState);
 
-export const submitStateAtom = atom(null, (get, set, directState: Partial<SearchStateType> | null = null) => {
-  const searchState = get(searchStateAtom);
-  const submittedState = get(submittedStateAtom);
-  const stateToUse = directState ? ({ ...submittedState, ...directState } as SearchStateType) : searchState;
-  const newState: SearchStateType = { ...stateToUse };
+export const deferFocusAtom = atom<boolean>(true);
 
-  if (directState?.[SearchComponents.PAGE] !== undefined) {
-    newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE] as string;
-  } else {
-    newState[SearchComponents.PAGE] = '1';
-  }
+export const isDynamicSearch = () => !drupalSettings?.helfi_rekry_job_search?.results_page_path;
 
-  set(submittedStateAtom, newState);
+export const submitStateAtom = atom(
+  null,
+  (get, set, directState: Partial<SearchStateType> | null = null, deferFocus: boolean = false) => {
+    const searchState = get(searchStateAtom);
+    const submittedState = get(submittedStateAtom);
+    const stateToUse = directState ? ({ ...submittedState, ...directState } as SearchStateType) : searchState;
+    const newState: SearchStateType = { ...stateToUse };
 
-  if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
-    const params = stateToURLParams(newState);
-    const url = new URL(window.location.href);
-    url.search = params.toString();
-    window.history.pushState({}, '', url);
-  }
-});
+    if (directState?.[SearchComponents.PAGE] !== undefined) {
+      newState[SearchComponents.PAGE] = directState[SearchComponents.PAGE] as string;
+    } else {
+      newState[SearchComponents.PAGE] = '1';
+    }
+
+    set(submittedStateAtom, newState);
+    set(deferFocusAtom, deferFocus);
+
+    if (JSON.stringify(newState) !== JSON.stringify(submittedState)) {
+      const params = stateToURLParams(newState);
+      const url = new URL(window.location.href);
+      url.search = params.toString();
+      window.history.pushState({}, '', url);
+    }
+  },
+);
 
 export const setStateValueAtom = atom(
   null,
@@ -138,6 +146,17 @@ export const setStateValueAtom = atom(
     const newState = { ...searchState, [payload.key]: payload.value };
 
     set(searchStateAtom, newState);
+  },
+);
+
+export const setFilterValueAtom = atom(
+  null,
+  (_get, set, payload: { key: keyof typeof defaultSearchState; value: string | OptionType[] | boolean }) => {
+    set(setStateValueAtom, payload);
+
+    if (isDynamicSearch()) {
+      set(submitStateAtom, null, true);
+    }
   },
 );
 

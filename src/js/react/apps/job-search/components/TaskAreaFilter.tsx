@@ -2,7 +2,7 @@ import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
-import { getTaskAreasAtom, setStateValueAtom, taskAreasAtom } from '../store';
+import { getTaskAreasAtom, setFilterValueAtom, taskAreasAtom } from '../store';
 import type { OptionType } from '../types/OptionType';
 
 const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas filter label' });
@@ -10,7 +10,7 @@ const taskAreasLabel: string = Drupal.t('Task area', {}, { context: 'Task areas 
 export const TaskAreaFilter = () => {
   const taskAreaOptions = useAtomValue(taskAreasAtom);
   const value = useAtomValue(getTaskAreasAtom);
-  const setStateValue = useSetAtom(setStateValueAtom);
+  const setFilterValue = useSetAtom(setFilterValueAtom);
 
   return (
     <Select
@@ -20,7 +20,7 @@ export const TaskAreaFilter = () => {
       multiSelect
       noTags
       onChange={(selectedOptions) => {
-        setStateValue({ key: SearchComponents.TASK_AREAS, value: selectedOptions as OptionType[] });
+        setFilterValue({ key: SearchComponents.TASK_AREAS, value: selectedOptions as OptionType[] });
       }}
       options={taskAreaOptions as OptionInProps[]}
       texts={{
