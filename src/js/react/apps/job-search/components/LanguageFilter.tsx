@@ -2,13 +2,13 @@ import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
-import { getLanguageAtom, languagesAtom, setStateValueAtom } from '../store';
+import { getLanguageAtom, languagesAtom, setFilterValueAtom } from '../store';
 
 const languageLabel: string = Drupal.t('Language', {}, { context: 'Language filter label' });
 
 export const LanguageFilter = () => {
   const languageOptions = useAtomValue(languagesAtom);
-  const setStateValue = useSetAtom(setStateValueAtom);
+  const setFilterValue = useSetAtom(setFilterValueAtom);
   const value = useAtomValue(getLanguageAtom);
 
   return (
@@ -18,7 +18,7 @@ export const LanguageFilter = () => {
       id={SearchComponents.LANGUAGE}
       noTags
       onChange={(selectedOptions) => {
-        setStateValue({ key: SearchComponents.LANGUAGE, value: selectedOptions });
+        setFilterValue({ key: SearchComponents.LANGUAGE, value: selectedOptions });
       }}
       options={languageOptions as OptionInProps[]}
       texts={{

@@ -3,11 +3,11 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import CustomIds from '../enum/CustomTermIds';
 import SearchComponents from '../enum/SearchComponents';
-import { getCheckBoxValuesAtom, getEmploymentSearchIdMap, setStateValueAtom } from '../store';
+import { getCheckBoxValuesAtom, getEmploymentSearchIdMap, setFilterValueAtom } from '../store';
 
 export const CheckBoxFilters = () => {
   const [continuous, internship, summerJobs, youthSummerJobs] = useAtomValue(getCheckBoxValuesAtom);
-  const setStateValue = useSetAtom(setStateValueAtom);
+  const setFilterValue = useSetAtom(setFilterValueAtom);
   const employmentSearchIdMap = useAtomValue(getEmploymentSearchIdMap);
   const showContinuous = employmentSearchIdMap.get(CustomIds.CONTINUOUS);
   const showInternships = employmentSearchIdMap.get(CustomIds.TRAINING);
@@ -28,7 +28,7 @@ export const CheckBoxFilters = () => {
           id={SearchComponents.CONTINUOUS}
           label={Drupal.t('Open-ended vacancies', {}, { context: 'Job search' })}
           name={SearchComponents.CONTINUOUS}
-          onClick={() => setStateValue({ key: SearchComponents.CONTINUOUS, value: !continuous })}
+          onClick={() => setFilterValue({ key: SearchComponents.CONTINUOUS, value: !continuous })}
           value={continuous.toString()}
           style={defaultCheckboxStyle}
         />
@@ -40,7 +40,7 @@ export const CheckBoxFilters = () => {
           id={SearchComponents.INTERNSHIPS}
           label={Drupal.t('Practical training', {}, { context: 'Job search' })}
           name={SearchComponents.INTERNSHIPS}
-          onClick={() => setStateValue({ key: SearchComponents.INTERNSHIPS, value: !internship })}
+          onClick={() => setFilterValue({ key: SearchComponents.INTERNSHIPS, value: !internship })}
           value={internship.toString()}
           style={defaultCheckboxStyle}
         />
@@ -52,7 +52,7 @@ export const CheckBoxFilters = () => {
           id={SearchComponents.SUMMER_JOBS}
           label={Drupal.t('Summer and seasonal jobs', {}, { context: 'Job search' })}
           name={SearchComponents.SUMMER_JOBS}
-          onClick={() => setStateValue({ key: SearchComponents.SUMMER_JOBS, value: !summerJobs })}
+          onClick={() => setFilterValue({ key: SearchComponents.SUMMER_JOBS, value: !summerJobs })}
           value={summerJobs.toString()}
           style={defaultCheckboxStyle}
         />
@@ -64,7 +64,7 @@ export const CheckBoxFilters = () => {
           id={SearchComponents.YOUTH_SUMMER_JOBS}
           label={Drupal.t('Summer jobs for young people', {}, { context: 'Job search' })}
           name={SearchComponents.YOUTH_SUMMER_JOBS}
-          onClick={() => setStateValue({ key: SearchComponents.YOUTH_SUMMER_JOBS, value: !youthSummerJobs })}
+          onClick={() => setFilterValue({ key: SearchComponents.YOUTH_SUMMER_JOBS, value: !youthSummerJobs })}
           value={youthSummerJobs.toString()}
           style={defaultCheckboxStyle}
         />
