@@ -310,6 +310,8 @@ function getConfig(hostname, protocol, type) {
           removeSelectors: removeDefault,
           selectors: ['.component--event-list'],
           selectorExpansion: expandComponents,
+          // Wait for the React results to replace the loading skeleton.
+          readySelector: '.component--event-list .card:not(.card--ghost)',
         },
         {
           label: 'DC: Image',
@@ -450,6 +452,7 @@ function getConfig(hostname, protocol, type) {
       ],
       mergeImgHack: true,
       onBeforeScript: 'onBefore.js',
+      onReadyScript: 'onReady.js',
       paths: {
         bitmaps_reference: `backstop/${type}/bitmaps_reference`,
         bitmaps_test: `backstop/${type}/bitmaps_test`,
