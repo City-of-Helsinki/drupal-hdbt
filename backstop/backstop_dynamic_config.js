@@ -310,6 +310,8 @@ function getConfig(hostname, protocol, type) {
           removeSelectors: removeDefault,
           selectors: ['.component--event-list'],
           selectorExpansion: expandComponents,
+          // Wait for the React results to replace the loading skeleton.
+          readySelector: '.component--event-list .card:not(.card--ghost)',
         },
         {
           label: 'DC: Image',
@@ -461,6 +463,7 @@ function getConfig(hostname, protocol, type) {
       engine: 'playwright',
       engineOptions: {
         browser: 'chromium',
+        gotoParameters: { waitUntil: 'networkidle' },
       },
       asyncCaptureLimit: 10,
       asyncCompareLimit: 100,

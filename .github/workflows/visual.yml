@@ -129,10 +129,19 @@ jobs:
         # Reference images are stored as Actions artifact, attempt to restore
         # the images.
       - name: Restore bitmaps
+        id: restore-bitmaps
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{ env.THEME_FOLDER }}
-        run: gh run download -n bitmaps -D backstop/full/bitmaps_reference || true
+        # The theme folder lives outside GITHUB_WORKSPACE, so hashFiles cannot
+        # see the restored images. Report the result as a step output instead.
+        run: |
+          gh run download -n bitmaps -D backstop/full/bitmaps_reference || true
+          if [ -n "$(ls -A backstop/full/bitmaps_reference 2>/dev/null)" ]; then
+            echo "references-exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "references-exist=false" >> $GITHUB_OUTPUT
+          fi
 
         # Generate new reference images if:
         # - Something is merged into the main branch.
@@ -142,7 +151,7 @@ jobs:
         id: evaluate-reference-images
         if: |
           contains(github.event.pull_request.labels.*.name, 'recreate-reference-images') ||
-          hashFiles('backstop/full/bitmaps_reference/') != '' ||
+          steps.restore-bitmaps.outputs.references-exist == 'false' ||
           github.ref == 'refs/heads/main'
         run: echo "generate-references=true" >> $GITHUB_OUTPUT
 
