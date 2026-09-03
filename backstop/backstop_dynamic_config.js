@@ -452,6 +452,7 @@ function getConfig(hostname, protocol, type) {
       ],
       mergeImgHack: true,
       onBeforeScript: 'onBefore.js',
+      onReadyScript: 'onReady.js',
       paths: {
         bitmaps_reference: `backstop/${type}/bitmaps_reference`,
         bitmaps_test: `backstop/${type}/bitmaps_test`,
