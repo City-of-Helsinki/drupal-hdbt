@@ -1,3 +1,4 @@
+import { Notification } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
@@ -10,6 +11,7 @@ import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
 import useIndexQuery from '../hooks/useIndexQuery';
 import useResultsQuery from '../hooks/useResultsQuery';
+import useUnpublishedFallback from '../hooks/useUnpublishedFallback';
 import { getPageAtom, setPageAtom, submittedStateAtom } from '../store';
 import SearchMonitorContainer from './SearchMonitorContainer';
 
@@ -30,6 +32,12 @@ const ResultsContainer = () => {
     error,
     submittedState,
   );
+
+  const { results, jobs, total } =
+    data && !error && !data.error ? handleResults(data) : { results: null, jobs: null, total: 0 };
+
+  // Fetch unpublished listings that match the same search criteria, only when the main search returns nothing.
+  const unpublishedTitles = useUnpublishedFallback(!isSearching && !error && total === 0);
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
     e.preventDefault();
@@ -54,8 +62,6 @@ const ResultsContainer = () => {
       return <ResultsError error={error || data.error} className='react-search__results' ref={scrollTarget} />;
     }
 
-    const { results, jobs, total } = handleResults(data || {});
-
     const searcMonitor = drupalSettings?.hakuvahti && <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />;
 
     if (total <= 0) {
@@ -73,6 +79,41 @@ const ResultsContainer = () => {
               { context: 'React search: no search results' },
             )}
           </p>
+          {unpublishedTitles.length > 0 && (
+            <div className='job-search__unpublished-matches'>
+              <Notification
+                label={Drupal.t(
+                  'We have had open job listings that match your search criteria.',
+                  {},
+                  { context: 'Job listing search' },
+                )}
+                type='info'
+                headingLevel={4}
+              >
+                <p>
+                  {Drupal.formatPlural(
+                    unpublishedTitles.length,
+                    'In the last six months, there has been one job listing that matches your search criteria.',
+                    'In the last six months, there have been @count job listings that match your search criteria.',
+                    {},
+                    { context: 'Job listing search' },
+                  )}
+                </p>
+                <ul>
+                  {unpublishedTitles.map((title) => (
+                    <li key={title}>{title}</li>
+                  ))}
+                </ul>
+                <p>
+                  {Drupal.t(
+                    'Subscribe to the search alert to receive notifications about new job listings.',
+                    {},
+                    { context: 'Job listing search' },
+                  )}
+                </p>
+              </Notification>
+            </div>
+          )}
         </div>
       );
     }
