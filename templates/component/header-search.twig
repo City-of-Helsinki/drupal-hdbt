@@ -1,4 +1,5 @@
 {% set dropdown_id = 'search-dropdown' %}
+{{ attach_library('hdbt/search-suggestions') }}
 
 {% embed "@hdbt/navigation/nav-toggle-button.twig" with {
   modifier_class: 'nav-toggle--search',

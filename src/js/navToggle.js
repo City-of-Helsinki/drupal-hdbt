@@ -77,6 +77,18 @@ import { close, open } from './nav-toggle/toggleWidgets';
       // causing multiple simpleClose() calls per focusout event.
       const focusOutHandlers = new WeakMap();
 
+      // Clicking plain text or empty space inside a dropdown also removes
+      // focus from whatever was focused, just like clicking outside the
+      // dropdown does. There's no other way to tell these two cases apart.
+      // So we remember what was just clicked: if it was inside the dropdown,
+      // we know this wasn't really an "outside click".
+      let lastMousedownTarget = null;
+      let lastMousedownTime = 0;
+      document.addEventListener('mousedown', (e) => {
+        lastMousedownTarget = e.target;
+        lastMousedownTime = Date.now();
+      });
+
       // Function to close dropdown when focus moves outside of it.
       const closeOnFocusOut = (wrapper, dropdownClose, instance, toggleButtons = []) => {
         // Remove the previous handler for this wrapper before attaching a new one.
@@ -90,12 +102,20 @@ import { close, open } from './nav-toggle/toggleWidgets';
           // If it's a toggle button, skip — the click handler will manage state.
           if (e.relatedTarget && toggleButtons.includes(e.relatedTarget)) return;
 
+          // Check this right away, since a click always fires mousedown just
+          // before this event. Doing it now (not later, inside the
+          // setTimeout below) makes sure we're looking at the click that
+          // actually caused this, not some other click that happens later.
+          const clickedInsideWrapper = Date.now() - lastMousedownTime < 50 && wrapper.contains(lastMousedownTarget);
+
           // Safari moves focus to body on button clicks instead of the button,
           // so relatedTarget is null. Use a longer delay so the click event has
           // time to fire and move focus to the toggle button before we check.
           const delay = e.relatedTarget ? 10 : 300;
 
           setTimeout(() => {
+            if (clickedInsideWrapper) return;
+
             const active = document.activeElement;
             if (!wrapper.contains(active) && !toggleButtons.includes(active)) {
               dropdownClose();

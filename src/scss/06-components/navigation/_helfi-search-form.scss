@@ -5,6 +5,7 @@ $-search-button-min-height: 56px;
   align-items: flex-end;
   display: flex;
   gap: $spacing-half;
+  position: relative;
 
   .form-item {
     margin-bottom: 0;
@@ -18,4 +19,56 @@ html:not(.js) .helfi-search__form {
 
 .helfi-search__submit-button {
   height: $-search-button-min-height;
+}
+
+.hdbt-search-suggestions {
+  background-color: $color-white;
+  border-bottom: 2px solid $color-black;
+  border-left: 2px solid $color-black;
+  border-right: 2px solid $color-black;
+  border-top: 1px solid $color-black-20;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+
+  // Move the dropdown over the border coming from the focused input.
+  top: calc(100% - 2px);
+  width: 100%;
+  z-index: 10;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.hdbt-search-suggestions__option {
+  margin-block-start: 0; 
+}
+
+.hdbt-search-suggestions__option__button {
+  @include font('body');
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  padding: $spacing-half $spacing;
+  text-align: left;
+  width: 100%;
+
+  &:hover {
+    background-color: $color-black;
+    color: $color-white;
+  }
+
+  &:focus {
+    outline: 2px solid $color-black;
+    outline-offset: -4px;
+  }
+
+  &:focus:hover {
+    outline-color: $color-white;
+    outline-width: 1px;  
+  }
 }

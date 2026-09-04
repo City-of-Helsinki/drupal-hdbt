@@ -33,6 +33,8 @@
           size="30"
           maxlength="128"
           class="hds-search-input__input"
+          data-search-suggestions
+          autocomplete="off"
           {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}
           oninput="(function() {
             const input = document.getElementById('search-form-{{search_id}}');
