@@ -5,12 +5,14 @@ import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagem
 import Pagination from '@/react/common/Pagination';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
+import SearchStatus from '@/react/common/SearchStatus';
 import ResultsList from '../components/results/ResultsList';
 import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
+import { getEmptyResultText, getOptionalResultText, getResultText, getStatusText } from '../helpers/ResultText';
 import useIndexQuery from '../hooks/useIndexQuery';
-import useResultsQuery from '../hooks/useResultsQuery';
-import { getPageAtom, setPageAtom, submittedStateAtom } from '../store';
+import { useResultsQuery } from '../hooks/useResultsQuery';
+import { deferFocusAtom, getPageAtom, setPageAtom, submittedStateAtom } from '../store';
 import SearchMonitorContainer from './SearchMonitorContainer';
 
 const ResultsContainer = () => {
@@ -18,6 +20,7 @@ const ResultsContainer = () => {
   const { size } = Global;
   const currentPage = useAtomValue(getPageAtom);
   const setPage = useSetAtom(setPageAtom);
+  const deferFocus = useAtomValue(deferFocusAtom);
   const dialogTargetRef = useRef<HTMLDivElement>(null);
   const { query, promoted, handleResults } = useResultsQuery();
 
@@ -29,6 +32,8 @@ const ResultsContainer = () => {
     data,
     error,
     submittedState,
+    true,
+    deferFocus,
   );
 
   const updatePage = (e: SyntheticEvent<HTMLButtonElement>, index: number) => {
@@ -37,35 +42,34 @@ const ResultsContainer = () => {
     onPageChange();
   };
 
-  if (isSearching) {
-    return (
-      <div key='ghost' className='job-search__results'>
-        <ResultsHeader
-          resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
-          ref={loadingHeaderRef}
-        />
-        <GhostList count={size} />
-      </div>
-    );
-  }
+  const resultsError = error || data?.error;
+  const hasResults = Boolean(!resultsError && (promoted ? data?.responses : data?.hits));
+  const { results, jobs, total } = hasResults ? handleResults(data) : { results: [], jobs: 0, total: 0 };
+  const jobCount = Number(jobs) || 0;
 
   const getResults = () => {
-    if (error || data?.error) {
-      return <ResultsError error={error || data.error} className='react-search__results' ref={scrollTarget} />;
+    if (isSearching) {
+      return (
+        <>
+          <ResultsHeader
+            resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
+            ref={loadingHeaderRef}
+          />
+          <GhostList count={size} />
+        </>
+      );
     }
 
-    const { results, jobs, total } = handleResults(data || {});
+    if (resultsError) {
+      return <ResultsError error={resultsError} className='react-search__results' ref={scrollTarget} />;
+    }
 
     const searcMonitor = drupalSettings?.hakuvahti && <SearchMonitorContainer dialogTargetRef={dialogTargetRef} />;
 
     if (total <= 0) {
       return (
         <div className='job-search__results'>
-          <ResultsHeader
-            resultText={Drupal.t('No results', {}, { context: 'Content list with count no results title' })}
-            leftActions={searcMonitor}
-            ref={scrollTarget}
-          />
+          <ResultsHeader resultText={getEmptyResultText()} leftActions={searcMonitor} ref={scrollTarget} />
           <p>
             {Drupal.t(
               'No results were found for the criteria you entered. Try changing your search criteria.',
@@ -84,21 +88,9 @@ const ResultsContainer = () => {
         <ResultsHeader
           actions={<ResultsSort />}
           actionsClass='hdbt-search--react__results--sort'
-          optionalResultsText={Drupal.formatPlural(
-            total,
-            '1 job listing',
-            '@count job listings',
-            {},
-            { context: 'Job search results statline' },
-          )}
+          optionalResultsText={getOptionalResultText(total)}
           leftActions={searcMonitor}
-          resultText={Drupal.formatPlural(
-            jobs,
-            '1 open position',
-            '@count open positions',
-            {},
-            { context: 'Job search results statline' },
-          )}
+          resultText={getResultText(jobCount)}
           ref={scrollTarget}
         />
         <div ref={resultsListRef}>
@@ -111,6 +103,11 @@ const ResultsContainer = () => {
 
   return (
     <div className='job-search__results'>
+      <SearchStatus
+        announce={deferFocus}
+        isValidating={isValidating}
+        text={getStatusText(jobCount, total, resultsError)}
+      />
       <div ref={dialogTargetRef} />
       {getResults()}
     </div>
