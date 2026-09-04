@@ -8,11 +8,10 @@ import { useAtomValue } from 'jotai';
 import IndexFields from '../enum/IndexFields';
 import { configurationsAtom, submittedStateAtom } from '../store';
 import type Job from '../types/Job';
-import type { Result } from '../types/Result';
 import usePromotedQuery from './usePromotedQuery';
 import useQueryString from './useQueryString';
 
-type HandlerResponse = { jobs: number; results: Result<Job>[]; total: number };
+type HandlerResponse = { jobs: number; results: SearchHit<Job>[]; total: number };
 type ResultsAggregations = Record<string, AggregationsValueCountAggregate> & {
   total_count: AggregationsValueCountAggregate;
 };
@@ -41,7 +40,7 @@ const handlePromotedResults = (data: MsearchResponse<Job, ResultsAggregations>):
     return { results: [], jobs: 0, total };
   }
 
-  return { results: results as Result<Job>[], jobs, total };
+  return { results, jobs, total };
 };
 
 const handleSimpleResults = (data: SearchResponse<Job, ResultsAggregations>): HandlerResponse => {
@@ -56,7 +55,7 @@ const handleSimpleResults = (data: SearchResponse<Job, ResultsAggregations>): Ha
 
   const jobs = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value || 0;
 
-  return { results: results as Result<Job>[], jobs, total };
+  return { results, jobs, total };
 };
 
 export const useResultsQuery = () => {
