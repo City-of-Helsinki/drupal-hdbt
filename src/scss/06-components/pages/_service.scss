@@ -13,6 +13,19 @@ $teaser-icon-size-desktop: 48px;
   }
 }
 
+.service.service--full .components--tpr-banner + * {
+  @include component-margin-top;
+}
+
+// Hide the divider between a banner and a long description.
+.service.service--full .lead-in ~ .components--tpr-banner + .page-divider:has(+ .long-desc) {
+  display: none;
+
+  & + .long-desc {
+    @include component-margin-top;
+  }
+}
+
 .service.service--teaser {
   @include font('body');
 }
