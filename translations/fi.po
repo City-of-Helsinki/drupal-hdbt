@@ -137,6 +137,10 @@ msgctxt "Cookie compliance"
 msgid "See content on external site"
 msgstr "Siirry ulkoiselle sivustolle"
 
+msgctxt "Cookie compliance"
+msgid "See content @title on external site"
+msgstr "Siirry ulkoiselle sivustolle katsomaan sisältöä @title"
+
 msgid "Service points"
 msgstr "Palvelupisteet"
 

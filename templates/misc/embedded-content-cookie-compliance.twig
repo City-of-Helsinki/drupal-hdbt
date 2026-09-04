@@ -25,14 +25,14 @@
       {% set external_link_title %}
 
         {# Add alternative screenreader only text to button if it's available #}
-        {% if media_iframe_title %}
+        {% if iframe_title %}
           <span class="visually-hidden">
-            {{- media_iframe_title -}}
+            {{- 'See content @title on external site'|t({'@title': iframe_title}, {'context': 'Cookie compliance'}) -}}
           </span>
         {% endif %}
 
         {# If screenreader only text is available, hide default button text from screenreaders #}
-        <span class="hds-button__label" {% if media_iframe_title %}aria-hidden="true"{% endif %}>
+        <span class="hds-button__label" {% if iframe_title %}aria-hidden="true"{% endif %}>
           {{- 'See content on external site'|t({}, {'context': 'Cookie compliance'}) -}}
         </span>
 
