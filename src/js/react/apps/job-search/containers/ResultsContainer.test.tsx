@@ -96,7 +96,7 @@ describe('ResultsContainer', () => {
     expect(liveRegion(container)).toBe(region);
   });
 
- test('does not announce a search that was submitted by hand', () => {
+  test('does not announce a search that was submitted by hand', () => {
     const { container, update } = renderResults(false);
 
     const found = results(12, 10);
