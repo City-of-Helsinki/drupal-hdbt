@@ -14,6 +14,16 @@
 {% set description = content.description.0['#text'] ? content.description : content.enrich_description %}
 {% set show_description = description.0['#text'] and hide_description == false ?: false %}
 
+{% set has_main_image = content.picture_url_override|render or content.picture_url|render ? true : false %}
+
+{% set banner %}
+  {% if content.field_banner|render %}
+    <div class="components components--tpr-banner hide-from-table-of-contents">
+      {{ content.field_banner }}
+    </div>
+  {% endif %}
+{% endset %}
+
 {% set supports_swedish %}
   {% if 'sv' in provided_languages %}
     {% set tag_content %}
@@ -47,6 +57,10 @@
 
   {{ supports_swedish }}
 
+  {% if not has_main_image %}
+    {{ banner }}
+  {% endif %}
+
   {{ content.toc_enabled }}
 
   {# Main image #}
@@ -71,6 +85,10 @@
     } %}
   {% endif %}
   {# End of Main image #}
+
+  {% if has_main_image %}
+    {{ banner }}
+  {% endif %}
 
   {% if show_description %}
     <div class="long-desc user-edited-content">
