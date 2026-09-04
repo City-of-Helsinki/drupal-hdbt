@@ -11,7 +11,7 @@ import ResultsSort from '../components/results/ResultsSort';
 import Global from '../enum/Global';
 import { getEmptyResultText, getOptionalResultText, getResultText, getStatusText } from '../helpers/ResultText';
 import useIndexQuery from '../hooks/useIndexQuery';
-import useResultsQuery from '../hooks/useResultsQuery';
+import { useResultsQuery } from '../hooks/useResultsQuery';
 import { deferFocusAtom, getPageAtom, setPageAtom, submittedStateAtom } from '../store';
 import SearchMonitorContainer from './SearchMonitorContainer';
 
@@ -44,7 +44,7 @@ const ResultsContainer = () => {
 
   const resultsError = error || data?.error;
   const hasResults = Boolean(!resultsError && (promoted ? data?.responses : data?.hits));
-  const { results, jobs, total } = hasResults ? handleResults(data) : { results: null, jobs: 0, total: 0 };
+  const { results, jobs, total } = hasResults ? handleResults(data) : { results: [], jobs: 0, total: 0 };
   const jobCount = Number(jobs) || 0;
 
   const getResults = () => {

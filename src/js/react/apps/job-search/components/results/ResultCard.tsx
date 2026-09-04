@@ -1,7 +1,6 @@
+import type { SearchHit } from '@elastic/elasticsearch/lib/api/types';
 import { useAtomValue } from 'jotai';
-
 import CardItem from '@/react/common/Card';
-import type Result from '@/types/Result';
 import SearchComponents from '../../enum/SearchComponents';
 import { currentLanguage } from '../../query/queries';
 import { employmentTagColorAtom, submittedStateAtom } from '../../store';
@@ -63,8 +62,7 @@ const getResultCard = (job: Job, tagColorMap: Map<string, string>) => {
   const searchIds = Array.isArray(employment_search_id) ? employment_search_id : [];
   const employmentNames = Array.isArray(field_employment) ? field_employment : [];
   const typeTags = Array.isArray(field_employment_type) ? field_employment_type : [];
-  // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-  const tags: any = employmentNames
+  const tags = employmentNames
     .map((tag, index) => ({ tag, color: tagColorMap.get(searchIds[index]) }))
     .concat(typeTags.map((tag) => ({ tag, color: undefined })));
 
@@ -84,7 +82,7 @@ const getResultCard = (job: Job, tagColorMap: Map<string, string>) => {
   );
 };
 
-type ResultCardProps = { job: Job; innerHits: Result<Job>[] };
+type ResultCardProps = { job: Job; innerHits: SearchHit<Job>[] };
 
 const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   const submittedState = useAtomValue(submittedStateAtom);
@@ -99,7 +97,7 @@ const ResultCard = ({ job, innerHits }: ResultCardProps) => {
   // If no filtering by language, prefer showing current language translation
   if (!languageFilterActive && innerHits.length > 1 && !_language.includes(currentLanguage)) {
     for (const hit of innerHits) {
-      if (hit._source._language.includes(currentLanguage)) {
+      if (hit._source?._language.includes(currentLanguage)) {
         return getResultCard(hit._source, tagColorMap);
       }
     }
