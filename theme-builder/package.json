@@ -38,5 +38,10 @@
     "stylelint-scss": "^6.12.1",
     "svg-sprite": "3.0.0-rc3",
     "terser": "^5.43.1"
-  }
+  },
+  "browserslist": [
+    "last 3 major versions",
+    "> 1%",
+    "not dead"
+  ]
 }

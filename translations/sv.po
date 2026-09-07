@@ -133,6 +133,10 @@ msgctxt "Cookie compliance"
 msgid "See content on external site"
 msgstr "Gå till extern webbplats"
 
+msgctxt "Cookie compliance"
+msgid "See content @title on external site"
+msgstr "Gå till extern webbplats att see innehåll @title"
+
 msgid "Service points"
 msgstr "Serviceställen"
 
