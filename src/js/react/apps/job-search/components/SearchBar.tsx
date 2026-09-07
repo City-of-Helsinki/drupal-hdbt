@@ -10,6 +10,11 @@ import SearchComponents from '../enum/SearchComponents';
 import { getElasticUrlAtom, getKeywordAtom, keywordResetCountAtom, setStateValueAtom } from '../store';
 import type Job from '../types/Job';
 
+/**
+ * Suggestions are temporarily disabled.
+ */
+const SUGGESTIONS_ENABLED = false;
+
 export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElement | null> }) => {
   const readKeyword = useAtomCallback(useCallback((get) => get(getKeywordAtom), []));
   const ref = useRef<SearchInputHandle>(null);
@@ -170,7 +175,7 @@ export const SearchBar = ({ formRef }: { formRef: React.RefObject<HTMLFormElemen
       value={keyword}
       hideSubmitButton={true}
       onChange={handleInputChange}
-      onSearch={handleSearch}
+      onSearch={SUGGESTIONS_ENABLED ? handleSearch : undefined}
       onSend={handleSubmit}
     />
   );

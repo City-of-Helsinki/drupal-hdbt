@@ -12,6 +12,13 @@ const interpolate = (template: string, args?: Record<string, string | number>) =
 // Signature mirrors src/js/types/drupal.d.ts: t(str, options?, context?).
 const Drupal = {
   t: (key: string, args?: Record<string, string | number>, _context?: object) => interpolate(key, args),
+  formatPlural: (
+    count: string | number,
+    singular: string,
+    plural: string,
+    args?: Record<string, string | number>,
+    _context?: object,
+  ) => interpolate(Number(count) === 1 ? singular : plural, { '@count': count, ...args }),
 };
 vi.stubGlobal('Drupal', Drupal);
 

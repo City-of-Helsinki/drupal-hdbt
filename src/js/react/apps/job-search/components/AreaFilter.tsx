@@ -2,13 +2,13 @@ import { type OptionInProps, Select } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import SearchComponents from '../enum/SearchComponents';
-import { areaFilterAtom, getAreaAtom, setStateValueAtom } from '../store';
+import { areaFilterAtom, getAreaAtom, setFilterValueAtom } from '../store';
 
 const areaFilterLabel: string = Drupal.t('Job location', {}, { context: 'Job search: Job location label' });
 
 export const AreaFilter = () => {
   const areaOptions = useAtomValue(areaFilterAtom);
-  const setStateValue = useSetAtom(setStateValueAtom);
+  const setFilterValue = useSetAtom(setFilterValueAtom);
   const value = useAtomValue(getAreaAtom);
 
   return (
@@ -19,7 +19,7 @@ export const AreaFilter = () => {
       multiSelect
       noTags
       onChange={(selectedOptions) => {
-        setStateValue({ key: SearchComponents.AREA_FILTER, value: selectedOptions });
+        setFilterValue({ key: SearchComponents.AREA_FILTER, value: selectedOptions });
       }}
       options={areaOptions as OptionInProps[]}
       value={value as OptionInProps[]}
