@@ -9,10 +9,10 @@
   .nav-toggle__label {
     align-self: stretch;
     grid-area: link;
-    grid-column: auto min-content;
     grid-template-areas:
     'icon arrow'
     'label .';
+    grid-template-columns: auto min-content;
     min-height: remify(5px + $-default-label-icon-size + 5px);
 
     @include breakpoint($breakpoint-l) {

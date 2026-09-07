@@ -44,6 +44,7 @@
 
 .nav-toggle-dropdown--menu .nav-toggle-dropdown__content {
   background-color: $color-white;
+  overflow-y: hidden; // .mmenu__panel is the scroll container here, so this one must not scroll
 }
 
 // What should happen when menu is opened
@@ -62,12 +63,6 @@
     & ~ * .language-wrapper {
       display: flex;
     } // This breakpoint needs to be in sync with header branding lang button position breakpoint
-  }
-}
-
-.mobile-menu {
-  @include breakpoint($breakpoint-l) {
-    display: none;
   }
 }
 

@@ -77,15 +77,10 @@ $label-font: 'special.navigation.icon_label';
   }
 
   &::before {
-    // @include pseudo-icon('menu-hamburger', 32px, currentColor, block);
     align-self: end;
     grid-area: icon;
     justify-self: center;
   }
-}
-
-.nav-toggle__label.nav-toggle__label {
-  grid-area: link;
 }
 
 // Outermost dropdown container, always open.
@@ -97,12 +92,8 @@ $label-font: 'special.navigation.icon_label';
   width: 100%;
 
   @include breakpoint($breakpoint-l) {
-    width: 100%;
-    z-index: 100; // Needs to be higher than page content
-  }
-
-  @include breakpoint($breakpoint-l) {
     max-width: min(1920px, 100vw);
+    z-index: 100; // Needs to be higher than page content
   }
 
   @media (prefers-reduced-motion) {
@@ -137,10 +128,6 @@ $label-font: 'special.navigation.icon_label';
 
   @supports (height: 100dvh) {
     --menu-height: 100dvh; // Dynamic viewport height, helpful for mobile viewports and their browser chrome
-  }
-
-  @include breakpoint($breakpoint-l) {
-    --menu-height: auto;
   }
 
   @include breakpoint($breakpoint-l) {
@@ -186,7 +173,7 @@ $label-font: 'special.navigation.icon_label';
   }
 }
 
-@mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
+@mixin button-toggle-rules($id, $nav-toggle-dropdown-modifier) {
   #{$id}[data-target='true'] {
     & ~ * #{$nav-toggle-dropdown-modifier} {
       .nav-toggle-dropdown__wrapper {
@@ -205,25 +192,19 @@ $label-font: 'special.navigation.icon_label';
       }
     }
   }
-
-  #{$nav-toggle-dropdown-modifier} {
-    .nav-toggle-dropdown__content {
-      overflow-y: hidden;
-    }
-  }
 }
 
 // What should happen when nav-toggle dropdown is opened
-@include button-toggle-rules('#menu', '.nav-toggle--menu', '.nav-toggle-dropdown--menu');
-@include button-toggle-rules('#cssmenu', '.nav-toggle--cssmenu', '.nav-toggle-dropdown--cssmenu');
-@include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
-@include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
-@include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
+@include button-toggle-rules('#menu', '.nav-toggle-dropdown--menu');
+@include button-toggle-rules('#cssmenu', '.nav-toggle-dropdown--cssmenu');
+@include button-toggle-rules('#search', '.nav-toggle-dropdown--search');
+@include button-toggle-rules('#otherlangs', '.nav-toggle-dropdown--otherlangs');
+@include button-toggle-rules('#profile', '.nav-toggle-dropdown--profile');
 
 @each $lang in fi, sv, en {
   $suffix: 'language-toast--#{$lang}';
 
-  @include button-toggle-rules('##{$suffix}', '.nav-toggle--#{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
+  @include button-toggle-rules('##{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
 }
 
 // toggleWidgets.js could maybe inject this
