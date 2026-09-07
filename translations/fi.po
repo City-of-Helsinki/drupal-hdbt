@@ -1664,16 +1664,20 @@ msgid "Close the popup"
 msgstr "Sulje ponnahdusikkuna"
 
 msgctxt "Event search: target group label"
-msgid "Target group"
-msgstr "Kohderyhmä"
+msgid "Age group"
+msgstr "Ikäryhmä"
 
 msgctxt "Event search: target group placeholder"
-msgid "All target groups"
-msgstr "Kaikki kohderyhmät"
+msgid "All age groups"
+msgstr "Kaikki ikäryhmät"
 
 msgctxt "Event search: target group"
 msgid "Families with babies"
 msgstr "Vauvaperheet"
+
+msgctxt "Event search: target group"
+msgid "Babies"
+msgstr "Vauvat"
 
 msgctxt "Event search: target group"
 msgid "Children"
