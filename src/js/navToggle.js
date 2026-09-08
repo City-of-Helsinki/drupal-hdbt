@@ -52,16 +52,14 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
       const isMobile = () => window.matchMedia('(max-width: 992px)').matches;
 
-      const AllElements = brandingElements;
-
-      const keys = Object.keys(AllElements);
+      const keys = Object.keys(brandingElements);
 
       // Close all open menus on click outside.
       const closeFromOutside = ({ target }) => {
         if (target.closest('.desktop-menu, .header-top') || !target.closest('.header')) {
           // Close all open menus.
           keys.forEach((key) => {
-            AllElements[key].simpleClose();
+            brandingElements[key].simpleClose();
           });
 
           // Close global menu if it is open.
@@ -119,9 +117,9 @@ import { close, open } from './nav-toggle/toggleWidgets';
       };
 
       keys.forEach((key) => {
-        const name = AllElements[key];
-        AllElements[key] = NavToggleDropdown();
-        AllElements[key].init({
+        const name = brandingElements[key];
+        brandingElements[key] = NavToggleDropdown();
+        brandingElements[key].init({
           buttonSelector: `.js-${name}-button`,
           dropdownSelector: `.js-${name}-dropdown`,
           name: `${name} dropdown`,
@@ -133,7 +131,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
             // Close all open menus before opening a new one.
             keys.forEach((menuName) => {
               if (menuName !== key) {
-                AllElements[menuName].simpleClose();
+                brandingElements[menuName].simpleClose();
               }
             });
             // Close global menu if it is open.
@@ -151,7 +149,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
               );
             }
 
-            const dropdownInstance = AllElements[key];
+            const dropdownInstance = brandingElements[key];
             let menuWrapper = dropdownInstance?.dropdownInstance;
 
             // Language toast dropdown is inside language link wrapper.
@@ -173,7 +171,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
         globalMenu.init({
           onOpen: () => {
             keys.forEach((key) => {
-              AllElements[key].close();
+              brandingElements[key].close();
             });
             const wrapper = document.getElementById('nav-toggle-dropdown--menu');
             if (wrapper) {
@@ -191,7 +189,7 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
       // Check if any menu instance is open.
       const isAnyMenuOpen = () =>
-        keys.some((key) => AllElements[key].dataset && AllElements[key].isOpen()) || globalMenu?.isOpen();
+        keys.some((key) => brandingElements[key].running && brandingElements[key].isOpen()) || globalMenu?.isOpen();
 
       // Prevent body scrolling when menus are open.
       const blockBrandingScroll = (e) => {
