@@ -41,7 +41,7 @@ const Header = ({
   children?: ReactNode;
   dialogTarget: RefObject<HTMLDivElement | null>;
   leftActions?: ReactElement;
-  scrollTarget: RefObject<HTMLDivElement | null>;
+  scrollTarget?: RefObject<HTMLDivElement | null>;
   total: number;
 }) => (
   <div className='hdbt-search--react__results'>
@@ -156,7 +156,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
 
   if (!data?.hits?.hits?.length) {
     return (
-      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget}>
+      <Header total={0} dialogTarget={dialogTargetRef}>
         <ResultsEmpty
           ref={scrollTarget}
           leftActions={searchMonitor}
