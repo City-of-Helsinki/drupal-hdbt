@@ -17,9 +17,9 @@
 {% set has_main_image = content.picture_url_override|render or content.picture_url|render ? true : false %}
 
 {% set banner %}
-  {% if content.field_banner|render %}
-    <div class="components components--tpr-banner hide-from-table-of-contents">
-      {{ content.field_banner }}
+  {% if content.field_upper_content|render %}
+    <div class="components components--tpr-upper-content hide-from-table-of-contents">
+      {{ content.field_upper_content }}
     </div>
   {% endif %}
 {% endset %}

@@ -141,12 +141,12 @@
   }
 }
 
-.unit.unit--full .components--tpr-banner + * {
+.unit.unit--full .components--tpr-upper-content + * {
   @include component-margin-top;
 }
 
-// Hide the divider between a banner and a long description.
-.unit.unit--full .lead-in ~ .components--tpr-banner + .page-divider:has(+ .long-desc) {
+// Hide the divider between the upper content (banner) and the long description.
+.unit.unit--full .lead-in ~ .components--tpr-upper-content + .page-divider:has(+ .long-desc) {
   display: none;
 
   & + .long-desc {
