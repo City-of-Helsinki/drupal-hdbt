@@ -18,6 +18,8 @@ function getBrowserSize() {
     const getPublishedTime = () => document.querySelector('meta[property="article:published_time"]')?.content || '';
     const getUpdatedTime = () => document.querySelector('meta[property="og:updated_time"]')?.content || '';
     const getNewsTaxonomyTermIds = () => drupalSettings.news_taxonomy_term_ids;
+    const hasStatisticsConsent = () => Boolean(Drupal.cookieConsent.getConsentStatus(['statistics']));
+    const getCookieConsentStatus = () => (hasStatisticsConsent() ? 'Accepted' : 'Not accepted');
     // biome-ignore lint/suspicious/noAssignInExpressions: _paq assignment is intentional.
     const _paq = (window._paq = window._paq || []);
     const excludedParams = [
@@ -196,7 +198,7 @@ function getBrowserSize() {
     // they grant consent, at which point cookies are enabled.
     _paq.push(['requireCookieConsent']);
 
-    if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+    if (hasStatisticsConsent()) {
       // Consent was given in a previous session — enable cookies immediately.
       _paq.push(['rememberCookieConsentGiven']);
     } else {
@@ -207,8 +209,9 @@ function getBrowserSize() {
       window.addEventListener(
         'hds-cookie-consent-changed',
         () => {
-          if (Drupal.cookieConsent.getConsentStatus(['statistics'])) {
+          if (hasStatisticsConsent()) {
             window._paq.push(['rememberCookieConsentGiven']);
+            window._paq.push(['setCustomDimension', 11, getCookieConsentStatus()]);
           }
         },
         { once: true },
@@ -222,6 +225,7 @@ function getBrowserSize() {
     _paq.push(['setCustomDimension', 5, getPublishedTime()]);
     _paq.push(['setCustomDimension', 6, getUpdatedTime()]);
     _paq.push(['setCustomDimension', 7, getBrowserSize()]);
+    _paq.push(['setCustomDimension', 11, getCookieConsentStatus()]);
     (() => {
       const u = '//webanalytics.digiaiiris.com/js/';
       // Etusivu ID is 141 (1292 in testing).
