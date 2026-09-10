@@ -1,4 +1,6 @@
+$-menu-transition-duration: 0.2s;
 $-cssnav-summary-width: 40px;
+$-cssmenu-bottom-padding: 80px; // Reserve space for mobile browser untappable-area
 
 .nav-toggle--cssmenu {
   grid-area: toggle;
@@ -53,6 +55,7 @@ $-cssnav-summary-width: 40px;
 // Navigation ul inside cssmenu
 .cssnav {
   border-bottom: 1px solid $color-black-20;
+  grid-area: nav;
   position: relative;
 }
 

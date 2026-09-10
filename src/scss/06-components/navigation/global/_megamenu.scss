@@ -8,15 +8,6 @@
   }
 }
 
-.megamenu:not(.megamenu__subnav) {
-  @include breakpoint($breakpoint-l) {
-    @include flex-gap($spacing);
-    display: flex;
-    flex-wrap: wrap;
-    max-width: min(1920px, 100vw);
-  }
-}
-
 .megamenu__subnav {
   border-left: 1px solid $color-black-20;
   padding-left: 0;
@@ -67,6 +58,17 @@
 .megamenu__item--level-2 {
   margin-bottom: $spacing-triple;
   margin-top: 0;
+}
+
+.megamenu:not(.megamenu__subnav) {
+  display: none;
+
+  @include breakpoint($breakpoint-l) {
+    @include flex-gap($spacing);
+    display: flex;
+    flex-wrap: wrap;
+    max-width: min(1920px, 100vw);
+  }
 }
 
 .megamenu__item.megamenu__item--level-2 {
