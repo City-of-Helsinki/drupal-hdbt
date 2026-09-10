@@ -210,8 +210,8 @@ function getBrowserSize() {
         'hds-cookie-consent-changed',
         () => {
           if (hasStatisticsConsent()) {
-            window._paq.push(['rememberCookieConsentGiven']);
             window._paq.push(['setCustomDimension', 11, getCookieConsentStatus()]);
+            window._paq.push(['rememberCookieConsentGiven']);
           }
         },
         { once: true },
