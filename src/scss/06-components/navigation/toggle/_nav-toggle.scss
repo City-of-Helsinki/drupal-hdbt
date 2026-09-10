@@ -186,7 +186,7 @@ $label-font: 'special.navigation.icon_label';
   }
 }
 
-@mixin button-toggle-rules($id, $nav-toggle-modifier, $nav-toggle-dropdown-modifier) {
+@mixin button-toggle-rules($id, $nav-toggle-dropdown-modifier) {
   #{$id}[data-target='true'] {
     & ~ * #{$nav-toggle-dropdown-modifier} {
       .nav-toggle-dropdown__wrapper {
@@ -208,16 +208,16 @@ $label-font: 'special.navigation.icon_label';
 }
 
 // What should happen when nav-toggle dropdown is opened
-@include button-toggle-rules('#menu', '.nav-toggle--menu', '.nav-toggle-dropdown--menu');
-@include button-toggle-rules('#cssmenu', '.nav-toggle--cssmenu', '.nav-toggle-dropdown--cssmenu');
-@include button-toggle-rules('#search', '.nav-toggle--search', '.nav-toggle-dropdown--search');
-@include button-toggle-rules('#otherlangs', '.nav-toggle--otherlangs', '.nav-toggle-dropdown--otherlangs');
-@include button-toggle-rules('#profile', '.nav-toggle--profile', '.nav-toggle-dropdown--profile');
+@include button-toggle-rules('#menu', '.nav-toggle-dropdown--menu');
+@include button-toggle-rules('#cssmenu', '.nav-toggle-dropdown--cssmenu');
+@include button-toggle-rules('#search', '.nav-toggle-dropdown--search');
+@include button-toggle-rules('#otherlangs', '.nav-toggle-dropdown--otherlangs');
+@include button-toggle-rules('#profile', '.nav-toggle-dropdown--profile');
 
 @each $lang in fi, sv, en {
   $suffix: 'language-toast--#{$lang}';
 
-  @include button-toggle-rules('##{$suffix}', '.nav-toggle--#{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
+  @include button-toggle-rules('##{$suffix}', '.nav-toggle-dropdown--#{$suffix}');
 }
 
 // toggleWidgets.js could maybe inject this

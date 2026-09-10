@@ -44,7 +44,7 @@
 
 .nav-toggle-dropdown--menu .nav-toggle-dropdown__content {
   background-color: $color-white;
-  overflow-y: hidden; // .mmenu__panel is the scroll container here, so this one must not scroll
+  overflow-y: hidden;
 }
 
 // What should happen when menu is opened
