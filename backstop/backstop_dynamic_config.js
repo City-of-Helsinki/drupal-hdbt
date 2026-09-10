@@ -168,6 +168,36 @@ function getConfig(hostname, protocol, type) {
           url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-no-subnav`,
           removeSelectors: removeDefault,
         },
+        {
+          label: 'DC: TPR Unit - banner - main image - toc',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-banner-main-image-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Unit - banner - main image - no toc',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-banner-main-image-no-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Unit - banner - no main image - toc',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-banner-no-main-image-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Unit - banner - no main image - no toc',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-banner-no-main-image-no-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Unit - banner - lead-in only',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-banner-lead-in-only`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Unit - banner - long description only',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-unit/dc-tpr-unit-banner-long-description-only`,
+          removeSelectors: removeDefault,
+        },
         // TPR Service
         {
           label: 'DC: TPR Service - subnav - sidebar',
@@ -187,6 +217,21 @@ function getConfig(hostname, protocol, type) {
         {
           label: 'DC: TPR Service - no-subnav - no-sidebar',
           url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-no-subnav-no-sidebar`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Service - banner - toc',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-banner-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Service - banner - no toc',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-banner-no-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: TPR Service - banner - long description only',
+          url: `${protocol}://${hostname}/en/dc-layouts/dc-tpr-service/dc-tpr-service-banner-long-description-only`,
           removeSelectors: removeDefault,
         },
 
