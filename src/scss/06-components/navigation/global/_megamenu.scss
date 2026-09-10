@@ -4,6 +4,12 @@
   padding-left: $spacing-double;
 
   @include breakpoint($breakpoint-l) {
+    display: block;
+  }
+}
+
+.megamenu:not(.megamenu__subnav) {
+  @include breakpoint($breakpoint-l) {
     @include flex-gap($spacing);
     display: flex;
     flex-wrap: wrap;
