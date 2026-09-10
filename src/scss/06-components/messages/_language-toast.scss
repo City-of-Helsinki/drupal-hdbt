@@ -12,6 +12,7 @@
   width: 284px; // As in the layouts.
 
   .nav-toggle-dropdown__content {
+    overflow-y: hidden;
     padding-block-start: $toast-arrow-size;
     position: relative;
 

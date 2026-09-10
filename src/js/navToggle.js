@@ -187,10 +187,6 @@ import { close, open } from './nav-toggle/toggleWidgets';
         });
       }
 
-      // Check if any menu instance is open.
-      const isAnyMenuOpen = () =>
-        keys.some((key) => brandingElements[key].running && brandingElements[key].isOpen()) || globalMenu?.isOpen();
-
       // Prevent body scrolling when menus are open.
       const blockBrandingScroll = (e) => {
         // Ignore touch events.
@@ -198,10 +194,11 @@ import { close, open } from './nav-toggle/toggleWidgets';
 
         const scrolledPanel = e.target.closest('.mmenu__panel--current, .nav-toggle-dropdown__content');
 
-        // Prevent scrolling when menu is open.
+        // Prevent scrolling when menu is open. Only the global menu needs this guard;
+        // branding dropdowns hide the page content in CSS, see _nav-toggle.scss.
         const preventBodyScrolling =
           isMobile() &&
-          isAnyMenuOpen() &&
+          globalMenu?.isOpen() &&
           // Don't scroll body from shared header.
           (!e.target.closest('.nav-toggle-dropdown') ||
             // If element has no overflow, it has no overscroll containment.
