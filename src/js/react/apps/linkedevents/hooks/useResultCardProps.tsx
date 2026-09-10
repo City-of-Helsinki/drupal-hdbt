@@ -6,7 +6,7 @@ import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import type TagType from '@/types/TagType';
 import { getEnrolmentStatus } from '../helpers/RegistrationHelpers';
 import { formatTime } from '../helpers/TimeHelpers';
-import { hobbiesPublicUrl, settingsAtom } from '../store';
+import { hobbiesBaseUrl, settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
 import { useMainCategoryIds } from './useMainCategoryIds';
 
@@ -277,7 +277,7 @@ export const useResultCardProps = (event: Event) => {
         ({ fi: 'kurssit', sv: 'kurser' } as Partial<Record<typeof currentLanguage, string>>)[currentLanguage] ??
         'courses';
 
-      return `${hobbiesPublicUrl}/${currentLanguage}/${type}/${id}`;
+      return `${hobbiesBaseUrl}/${currentLanguage}/${type}/${id}`;
     }
 
     const type =

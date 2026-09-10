@@ -5,6 +5,7 @@ import { eventsPublicUrl, hobbiesPublicUrl, settingsAtom } from '../store';
 function SeeAllButton() {
   const filterSettings = useAtomValue(settingsAtom);
   const eventsUrl = useAtomValue(eventsPublicUrl) || '';
+  const hobbiesUrl = useAtomValue(hobbiesPublicUrl) || '';
   const { seeAllButtonOverride } = drupalSettings?.helfi_events || null;
   const { eventListType, layout } = filterSettings;
 
@@ -14,7 +15,7 @@ function SeeAllButton() {
         <ExternalLink
           data-hds-component='button'
           data-hds-variant='primary'
-          href={eventListType === 'hobbies' ? hobbiesPublicUrl : eventsUrl}
+          href={eventListType === 'hobbies' ? hobbiesUrl : eventsUrl}
           title={Drupal.t('View all events', {}, { context: 'Events search' })}
         />
       </div>
@@ -41,7 +42,7 @@ function SeeAllButton() {
           <ExternalLink
             data-hds-component='button'
             data-hds-variant='secondary'
-            href={hobbiesPublicUrl}
+            href={hobbiesUrl}
             title={Drupal.t('Search for more events on the Hobbies website', {}, { context: 'Events search' })}
           />
         </div>

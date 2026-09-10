@@ -1520,6 +1520,7 @@ function hdbt_preprocess_paragraph__event_list(&$variables): void {
     ], $paragraph->getFilterKeywords());
 
     $settings['events_public_url'] = $paragraph->getEventsPublicUrl();
+    $settings['hobbies_public_url'] = $paragraph->getHobbiesPublicUrl();
     $settings['events_api_url'] = $paragraph->getApiUrl();
     $settings['event_list_type'] = $paragraph->getEventListType();
     $settings['event_list_layout'] = $paragraph->getEventListLayout();
