@@ -70,6 +70,7 @@
 }
 
 .hdbt-search--react__results--title {
+  @include font(h3);
   align-items: center;
   display: inline-flex;
   margin-bottom: $spacing-three-quarters;
