@@ -18,11 +18,9 @@
         const anchor = input.closest('.hds-search-input__input') || input;
         if (!form) return;
 
-        // When the input sits inside a toggle dropdown,
-        // close suggestions once focus leaves that whole
-        // panel instead just the form.
-        const dropdown = input.closest('.nav-toggle-dropdown');
-        const boundary = dropdown || form;
+        // Close suggestions once focus leaves the input and its buttons,
+        // not the whole dropdown/form.
+        const boundary = input.parentElement || form;
 
         const list = document.createElement('ul');
         list.className = 'hdbt-search-suggestions';
@@ -33,6 +31,16 @@
           list.hidden = true;
           list.innerHTML = '';
         };
+
+        // Clicking blank space in the list (not a suggestion, not the
+        // scrollbar) closes it, so it doesn't stay open over whatever
+        // is behind it.
+        list.addEventListener('mousedown', (event) => {
+          const clickedScrollbar = event.target === list && event.offsetX >= list.clientWidth;
+          if (!clickedScrollbar && !event.target.closest('button')) {
+            close();
+          }
+        });
 
         const open = (suggestions) => {
           list.innerHTML = '';

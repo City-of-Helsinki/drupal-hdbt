@@ -26,45 +26,40 @@ html:not(.js) .helfi-search__form {
   border-bottom: 2px solid $color-black-50;
   border-left: 2px solid $color-black-50;
   border-right: 2px solid $color-black-50;
-  border-top: 0;
+  border-top: 1px solid $color-black-20;
   left: 0;
   list-style: none;
   margin: 0;
+  max-height: 268px; // Approximate height of 6 items.
+  overflow-y: auto;
   padding: 2px 0 0;
   position: absolute;
-
-  // Move the dropdown over the border coming from the focused input.
-  top: calc(100% - 2px);
+  top: calc(100% - 2px); // Move dropdown over the border from focused input.
   width: 100%;
   z-index: 11;
 
   &[hidden] {
     display: none;
   }
-
-  &::before {
-    background-color: $color-black-20;
-    content: "";
-    display: block;
-    height: 1px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
 }
 
+// React version adjustments.
+.hdbt-search--react__input-wrapper .hdbt-search-suggestions {
+  left: -2px;
+  top: 100%;
+  width: calc(100% + 4px);
+}
+
+// Vanilla JS version of focus & hover styles for suggestions.
 .hds-search-input__input:focus + .hdbt-search-suggestions,
 .hds-search-input__input:hover + .hdbt-search-suggestions,
+// React version of focus & hover styles for suggestions.
 .hdbt-search--react__input:focus-within input ~ .hdbt-search-suggestions,
 .hdbt-search--react__input input:hover ~ .hdbt-search-suggestions,
 .hdbt-search--react__input .hdbt-search-suggestions:hover {
-  border-color: $color-black-90;
-}
-
-.hdbt-search--react__input-wrapper .hdbt-search-suggestions {
-  left: -2px;
-  width: calc(100% + 4px);
+  border-bottom-color: $color-black-90;
+  border-left-color: $color-black-90;
+  border-right-color: $color-black-90;
 }
 
 .hdbt-search-suggestions__option {
