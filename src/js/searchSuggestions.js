@@ -75,7 +75,9 @@
           }
         });
 
-        Drupal.toastPositioner.attachFocusOut(boundary, close, []);
+        // No trigger buttons here, so there's nothing to wait for Safari to
+        // settle focus onto - skip the default 300ms margin.
+        Drupal.toastPositioner.attachFocusOut(boundary, close, [], { delay: 10 });
       });
     },
   };
