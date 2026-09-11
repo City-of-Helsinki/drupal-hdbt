@@ -23,13 +23,26 @@
         const boundary = input.parentElement || form;
 
         const list = document.createElement('ul');
+        list.id = `${input.id}-suggestions`;
         list.className = 'hdbt-search-suggestions';
         list.hidden = true;
+        list.setAttribute('role', 'group');
+        list.setAttribute(
+          'aria-label',
+          Drupal.t('Search suggestions', {}, { context: 'Accessible label for the search suggestions list' }),
+        );
         anchor.insertAdjacentElement('afterend', list);
+
+        // Let assistive tech know the input opens a popup, and reflect
+        // whether it's currently open.
+        input.setAttribute('aria-haspopup', 'true');
+        input.setAttribute('aria-controls', list.id);
+        input.setAttribute('aria-expanded', 'false');
 
         const close = () => {
           list.hidden = true;
           list.innerHTML = '';
+          input.setAttribute('aria-expanded', 'false');
         };
 
         // Clicking blank space in the list (not a suggestion, not the
@@ -64,6 +77,7 @@
             list.appendChild(item);
           });
           list.hidden = false;
+          input.setAttribute('aria-expanded', 'true');
         };
 
         const showSuggestions = () => {
@@ -84,6 +98,16 @@
             showSuggestions();
           } else {
             close();
+          }
+        });
+
+        // Escape closes just the suggestions. Stop it from bubbling further
+        // so it doesn't also close the enclosing dropdown on the same key
+        // press - a second Escape does that instead.
+        boundary.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !list.hidden) {
+            close();
+            event.stopPropagation();
           }
         });
 
