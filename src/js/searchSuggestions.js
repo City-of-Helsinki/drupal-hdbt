@@ -62,11 +62,15 @@
           fetchSuggestions(drupalSettings.path?.currentLanguage || 'fi').then(open);
         };
 
-        input.addEventListener('focus', showSuggestions);
+        // Suggestions are not autocomplete dropdown: they only make sense
+        // for an empty input, whether that's on focus, after clearing, or
+        // after typing something and then deleting it again.
+        input.addEventListener('focus', () => {
+          if (input.value === '') {
+            showSuggestions();
+          }
+        });
 
-        // Suggestions are not autocomplete dropdown: typing
-        // closes the suggestion dropdown, but clearing the
-        // input or focusing an empty input shows them.
         input.addEventListener('input', () => {
           if (input.value === '') {
             showSuggestions();

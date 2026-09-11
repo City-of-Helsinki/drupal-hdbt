@@ -23,24 +23,48 @@ html:not(.js) .helfi-search__form {
 
 .hdbt-search-suggestions {
   background-color: $color-white;
-  border-bottom: 2px solid $color-black;
-  border-left: 2px solid $color-black;
-  border-right: 2px solid $color-black;
-  border-top: 1px solid $color-black-20;
+  border-bottom: 2px solid $color-black-50;
+  border-left: 2px solid $color-black-50;
+  border-right: 2px solid $color-black-50;
+  border-top: 0;
   left: 0;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 2px 0 0;
   position: absolute;
 
   // Move the dropdown over the border coming from the focused input.
   top: calc(100% - 2px);
   width: 100%;
-  z-index: 10;
+  z-index: 11;
 
   &[hidden] {
     display: none;
   }
+
+  &::before {
+    background-color: $color-black-20;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.hds-search-input__input:focus + .hdbt-search-suggestions,
+.hds-search-input__input:hover + .hdbt-search-suggestions,
+.hdbt-search--react__input:focus-within input ~ .hdbt-search-suggestions,
+.hdbt-search--react__input input:hover ~ .hdbt-search-suggestions,
+.hdbt-search--react__input .hdbt-search-suggestions:hover {
+  border-color: $color-black-90;
+}
+
+.hdbt-search--react__input-wrapper .hdbt-search-suggestions {
+  left: -2px;
+  width: calc(100% + 4px);
 }
 
 .hdbt-search-suggestions__option {
