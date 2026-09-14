@@ -81,7 +81,7 @@
         };
 
         const showSuggestions = () => {
-          fetchSuggestions(drupalSettings.path?.currentLanguage || 'fi').then(open);
+          fetchSuggestions(drupalSettings.path?.currentLanguage || 'en').then(open);
         };
 
         // Suggestions are not autocomplete dropdown: they only make sense
