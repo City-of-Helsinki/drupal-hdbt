@@ -1,3 +1,4 @@
+import type { estypes } from '@elastic/elasticsearch';
 import { useAtom, useAtomValue } from 'jotai';
 import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
@@ -7,7 +8,6 @@ import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import SearchMonitor from '@/react/common/SearchMonitor';
-import type Result from '@/types/Result';
 import type TagType from '@/types/TagType';
 import Global from '../enum/Global';
 import { getResultText } from '../helpers/ResultText';
@@ -16,16 +16,9 @@ import { submittedStateAtom, triggerFocusAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
 
-type VehicleRemovalResponse = {
-  hits: {
-    total: { value: number; relation: string };
-    hits: Result<VehicleRemoval>[];
-  };
-};
-
 type ResultsListProps = {
   /** Elasticsearch results. */
-  data?: VehicleRemovalResponse;
+  data?: estypes.SearchResponse<VehicleRemoval>;
   error: string | Error;
   isLoading: boolean;
   isValidating: boolean;
@@ -41,7 +34,7 @@ const Header = ({
   children?: ReactNode;
   dialogTarget: RefObject<HTMLDivElement | null>;
   leftActions?: ReactElement;
-  scrollTarget: RefObject<HTMLDivElement | null>;
+  scrollTarget?: RefObject<HTMLDivElement | null>;
   total: number;
 }) => (
   <div className='hdbt-search--react__results'>
@@ -156,7 +149,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
 
   if (!data?.hits?.hits?.length) {
     return (
-      <Header total={0} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget}>
+      <Header total={0} dialogTarget={dialogTargetRef}>
         <ResultsEmpty
           ref={scrollTarget}
           leftActions={searchMonitor}
@@ -176,8 +169,8 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     );
   }
 
-  const results: Result<VehicleRemoval>[] = data.hits.hits;
-  const total: number = data.hits.total.value;
+  const results = data.hits.hits;
+  const total = typeof data.hits.total === 'number' ? data.hits.total : (data.hits.total?.value ?? 0);
   const pages = Math.floor(total / Global.size);
   const addLastPage = total > Global.size && total % Global.size;
   const totalPages = addLastPage ? pages + 1 : pages;
@@ -192,9 +185,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   return (
     <Header total={total} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
       <div ref={resultsListRef}>
-        {results.map((hit) => (
-          <ResultCard key={hit._id} item={hit._source} />
-        ))}
+        {results.map((hit) => (hit._source ? <ResultCard key={hit._id} item={hit._source} /> : null))}
       </div>
       {showPagination && (
         <Pagination currentPage={page || 1} pages={5} totalPages={totalPages} updatePage={updatePage} />

@@ -1,11 +1,11 @@
 class NavToggleDropdown {
   constructor() {
-    this.HASH_ID = null;
     this.buttonSelector = null;
     this.buttonInstances = []; // Support multiple buttons
     this.dropdownSelector = null;
     this.dropdownInstance = null;
     this.running = false;
+    this.targetSelector = null;
     this.targetNode = null;
     this.onOpen = null;
     this.onClose = null;
@@ -15,7 +15,7 @@ class NavToggleDropdown {
   }
 
   isOpen() {
-    return window.location.hash === this.HASH_ID || this.targetNode.dataset.target === 'true';
+    return this.targetNode.dataset.target === 'true';
   }
 
   // The simpleClose function is for events such as closing all the
@@ -55,10 +55,6 @@ class NavToggleDropdown {
       // Move focus if a valid button is found
       if (buttonToFocus) {
         buttonToFocus.focus();
-      }
-
-      if (this.onClose) {
-        this.onClose();
       }
     }
   }
@@ -123,17 +119,16 @@ class NavToggleDropdown {
     this.dropdownSelector = dropdownSelector;
     this.dropdownInstance = this.dropdownSelector ? document.querySelector(this.dropdownSelector) : null;
     this.dropdownInstance?.classList.add('nav-toggle-dropdown--closed');
-    this.HASH_ID = targetSelector;
+    this.targetSelector = targetSelector;
     this.onOpen = onOpen;
     this.onClose = onClose;
 
     // Ensure the target node exists
-    this.targetNode = document.querySelector(this.HASH_ID);
+    this.targetNode = document.querySelector(this.targetSelector);
     if (!this.targetNode) {
-      throw new Error(`${name} target node missing. Looking for ${this.HASH_ID}`);
+      throw new Error(`${name} target node missing. Looking for ${this.targetSelector}`);
     }
 
-    this.targetNode.dataset.js = true;
     this.addListeners();
 
     this.running = true;

@@ -1,6 +1,6 @@
 /**
  * 3rd party Widgets are hidden using [data-] selectors
- * See _menu_toggle.scss, _mobile_navigation.scss
+ * See _nav-toggle.scss
  */
 
 const HIDE_SELECTORS = [
@@ -24,8 +24,4 @@ const open = () => {
   });
 };
 
-const setHide = (hide) => {
-  (hide === true ? close : open)();
-};
-
-module.exports = { setHide, close, open, HIDE_SELECTORS };
+module.exports = { close, open, HIDE_SELECTORS };

@@ -74,10 +74,8 @@ $-current-border-size: 3px;
     padding: $-padding-size $spacing-half;
   }
 
-  // The anchor and button are the "language-link" element of the disabled
-  // languages so they need the same padding for the clickable area to be
-  // tall enough.
-  .nav-toggle__anchor,
+  // The button is the "language-link" element of the disabled languages so it
+  // needs the same padding for the clickable area to be tall enough.
   .nav-toggle__button {
     &:focus .nav-toggle__label ,
     &:active .nav-toggle__label {

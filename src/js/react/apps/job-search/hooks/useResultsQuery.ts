@@ -1,48 +1,64 @@
-// biome-ignore-all lint/suspicious/noExplicitAny: @todo UHF-12501
+import type {
+  AggregationsValueCountAggregate,
+  MsearchResponse,
+  SearchHit,
+  SearchResponse,
+} from '@elastic/elasticsearch/lib/api/types';
 import { useAtomValue } from 'jotai';
 import IndexFields from '../enum/IndexFields';
 import { configurationsAtom, submittedStateAtom } from '../store';
+import type Job from '../types/Job';
 import usePromotedQuery from './usePromotedQuery';
 import useQueryString from './useQueryString';
 
-type HandleQueryResults = (data: any) => { jobs: any; results: any; total: any };
+type HandlerResponse = { jobs: number; results: SearchHit<Job>[]; total: number };
+type ResultsAggregations = Record<string, AggregationsValueCountAggregate> & {
+  total_count: AggregationsValueCountAggregate;
+};
 
-const handlePromotedResults: HandleQueryResults = (data) => {
-  const [promotedResponse, baseResponse] = data.responses;
+const handlePromotedResults = (data: MsearchResponse<Job, ResultsAggregations>): HandlerResponse => {
+  let total = 0;
+  let jobs = 0;
+  let results: SearchHit<Job>[] = [];
 
-  // Typecheck and combine totals from both queries
-  const promotedTotal = Number(promotedResponse.aggregations?.total_count?.value);
-  const baseTotal = Number(baseResponse.aggregations?.total_count?.value);
-  const total = (Number.isNaN(promotedTotal) ? 0 : promotedTotal) + (Number.isNaN(baseTotal) ? 0 : baseTotal);
+  const responseIds = ['promotions', 'base'];
 
-  if (total <= 0) {
-    return { results: null, jobs: null, total };
+  for (const [index, response] of data.responses.entries()) {
+    if ('error' in response) {
+      console.error(`Failed to fetch data for ${responseIds[index]}`, response);
+      continue;
+    }
+
+    const aggregations = response.aggregations as ResultsAggregations;
+
+    total += aggregations?.total_count.value || 0;
+    jobs += aggregations?.[IndexFields.NUMBER_OF_JOBS].value || 0;
+    results = [...results, ...response.hits.hits];
   }
 
-  // Typecheck and combine job totals (aggregated vacancies)
-  const promotedJobs = promotedResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-  const baseJobs = baseResponse.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
-  const jobs: string = (Number.isNaN(promotedJobs) ? 0 : promotedJobs) + (Number.isNaN(baseJobs) ? 0 : baseJobs);
-  const results = [...promotedResponse.hits.hits, ...baseResponse.hits.hits];
+  if (total <= 0) {
+    return { results: [], jobs: 0, total };
+  }
 
   return { results, jobs, total };
 };
 
-const handleSimpleResults: HandleQueryResults = (data) => {
+const handleSimpleResults = (data: SearchResponse<Job, ResultsAggregations>): HandlerResponse => {
   if (!data?.hits?.hits.length) {
-    return { results: null, jobs: null, total: 0 };
+    return { results: [], jobs: 0, total: 0 };
   }
 
   const results = data.hits.hits;
-  const total = data.aggregations.total_count.value || data.hits.total.value;
+  const hitsTotal = data.hits.total;
+  const total: number =
+    data.aggregations?.total_count.value || (typeof hitsTotal === 'number' ? hitsTotal : hitsTotal?.value) || 0;
 
-  // Total number of available jobs
-  const jobs = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value;
+  const jobs = data?.aggregations?.[IndexFields.NUMBER_OF_JOBS]?.value || 0;
 
   return { results, jobs, total };
 };
 
-const useResultsQuery = () => {
+export const useResultsQuery = () => {
   const submittedState = useAtomValue(submittedStateAtom);
   const { promoted } = useAtomValue(configurationsAtom) || {};
   const query = useQueryString();
@@ -54,5 +70,3 @@ const useResultsQuery = () => {
     handleResults: promoted ? handlePromotedResults : handleSimpleResults,
   };
 };
-
-export default useResultsQuery;
