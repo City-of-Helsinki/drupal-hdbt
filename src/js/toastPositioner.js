@@ -13,6 +13,10 @@
  *   Closes a toast when keyboard focus moves outside its container.
  *   Replaces any previously attached handler for the same container.
  *   options.onlyDesktop {boolean} - only attach on non-mobile screens (default: false)
+ *   options.delay {number} - fixed delay (ms) before checking focus, instead
+ *     of the default 10ms/300ms split. The 300ms case exists to give Safari
+ *     time to settle focus on a trigger button. Skip it with a smaller fixed
+ *     delay when there are no trigger buttons to wait for.
  *
  * registerOpen(trigger, wrapper, options) / unregisterOpen(wrapper)
  *   Register/unregister a toast for automatic repositioning on window resize.
@@ -109,7 +113,7 @@
   }
 
   function attachFocusOut(container, closeCallback, triggerButtons, options) {
-    const { onlyDesktop = false } = options || {};
+    const { onlyDesktop = false, delay: fixedDelay } = options || {};
     const buttons = triggerButtons || [];
 
     // Remove any existing handlers for this container before attaching new ones
@@ -130,7 +134,9 @@
       // Safari moves focus to <body> on button clicks instead of the clicked
       // element, so relatedTarget can be null. Use a longer delay to let the
       // click event fire and settle focus before we check where focus ended up.
-      const delay = e.relatedTarget ? 10 : 300;
+      // If there are no trigger buttons, there's nothing to wait for, so
+      // callers can pass options.delay to use a shorter delay instead.
+      const delay = fixedDelay ?? (e.relatedTarget ? 10 : 300);
 
       setTimeout(() => {
         const active = document.activeElement;

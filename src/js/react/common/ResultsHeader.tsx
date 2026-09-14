@@ -1,8 +1,12 @@
 import { type ForwardedRef, forwardRef, type ReactElement } from 'react';
 
+type HeadingLevel = 2 | 3 | 4 | 5 | 6;
+type HeadingTag = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
 type ResultsHeaderProps = {
   actions?: ReactElement;
   actionsClass?: string;
+  headingLevel?: HeadingLevel;
   leftActions?: ReactElement;
   optionalResultsText?: ReactElement | string;
   resultText: ReactElement | string;
@@ -10,13 +14,15 @@ type ResultsHeaderProps = {
 
 const ResultsHeader = forwardRef(
   (
-    { actions, actionsClass, leftActions, optionalResultsText, resultText }: ResultsHeaderProps,
+    { actions, actionsClass, headingLevel = 3, leftActions, optionalResultsText, resultText }: ResultsHeaderProps,
     ref: ForwardedRef<HTMLHeadingElement>,
   ) => {
+    const Heading: HeadingTag = `h${headingLevel}`;
+
     const headerElement = (
-      <h3 className='hdbt-search--react__results--title' ref={ref}>
+      <Heading className='hdbt-search--react__results--title' ref={ref}>
         {resultText} {optionalResultsText && <>({optionalResultsText})</>}
-      </h3>
+      </Heading>
     );
 
     if (leftActions) {
