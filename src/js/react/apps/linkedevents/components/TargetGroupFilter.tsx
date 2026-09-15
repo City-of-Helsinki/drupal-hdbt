@@ -17,12 +17,9 @@ export const TargetGroupFilter = () => {
     updateParams(targetGroupsToParams(selectedGroups));
   };
 
-  const getOptions = () =>
-    Object.entries(TargetGroups)
-      .map(([label, _value]) => ({ label, value: label }))
-      .sort((a, b) => a.label.localeCompare(b.label));
+  const getOptions = () => Object.entries(TargetGroups).map(([label, _value]) => ({ label, value: label }));
 
-  const selectLabel = Drupal.t('Target group', {}, { context: 'Event search: target group label' });
+  const selectLabel = Drupal.t('Age group', {}, { context: 'Event search: target group label' });
 
   return (
     <div className='hdbt-search__filter'>
@@ -46,7 +43,7 @@ export const TargetGroupFilter = () => {
           ),
           label: selectLabel,
           language: getCurrentLanguage(window.drupalSettings.path.currentLanguage),
-          placeholder: Drupal.t('All target groups', {}, { context: 'Event search: target group placeholder' }),
+          placeholder: Drupal.t('All age groups', {}, { context: 'Event search: target group placeholder' }),
         }}
         theme={defaultSelectTheme}
         value={targetGroupSelection}
