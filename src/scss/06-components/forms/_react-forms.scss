@@ -220,7 +220,7 @@ fieldset .hdbt-search--react__checkbox:not(:first-of-type) {
     padding: 0 0 0 $spacing !important;
   }
   
-  button:first-child::before {
+  input + button:first-child::before {
     @include input-overflow-gradient;
   }
 

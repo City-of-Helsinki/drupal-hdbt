@@ -1666,16 +1666,20 @@ msgid "Close the popup"
 msgstr "Stäng popup-fönstret"
 
 msgctxt "Event search: target group label"
-msgid "Target group"
-msgstr "Målgrupp"
+msgid "Age group"
+msgstr "Åldersgrupp"
 
 msgctxt "Event search: target group placeholder"
-msgid "All target groups"
-msgstr "Alla målgrupper"
+msgid "All age groups"
+msgstr "Alla åldersgrupper"
 
 msgctxt "Event search: target group"
 msgid "Families with babies"
 msgstr "Småbarnsfamiljer"
+
+msgctxt "Event search: target group"
+msgid "Babies"
+msgstr "Bebisar"
 
 msgctxt "Event search: target group"
 msgid "Children"

@@ -350,6 +350,18 @@ search-helper:
       minified: true
     }
 
+search-suggestions:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/searchSuggestions.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - hdbt/toast-positioner
+
 search-monitor-helper:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:

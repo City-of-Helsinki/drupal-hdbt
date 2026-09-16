@@ -239,20 +239,6 @@ export const useResultCardProps = (event: Event) => {
   const isRemote = location && location.id === INTERNET_EXCEPTION;
   const isFree = offers?.some(({ is_free }) => is_free);
 
-  const getCardTags = () => {
-    const tags = [];
-
-    if (isRemote) {
-      tags.push({ tag: Drupal.t('Remote participation', {}, { context: 'Label for remote events' }), color: 'silver' });
-    }
-
-    if (isFree) {
-      tags.push({ tag: Drupal.t('Free', {}, { context: 'Label for free events' }), color: 'silver' });
-    }
-
-    return tags;
-  };
-
   const getUrl = () => {
     if (useCrossInstitutionalStudiesForm) {
       const resolvedLanguage = name?.[currentLanguage] ? currentLanguage : 'fi';
@@ -360,7 +346,6 @@ export const useResultCardProps = (event: Event) => {
   return {
     cardCategoryTag: getCardCategoryTags(),
     cardImage: getImage(),
-    cardTags: getCardTags(),
     cardTitle: resolvedName,
     cardUrl: getUrl(),
     customMetaRows: getCustomMetaRows(),

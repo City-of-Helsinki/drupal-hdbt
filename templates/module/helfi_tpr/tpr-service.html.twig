@@ -27,6 +27,10 @@
       </div>
     {% endif %}
 
+    {# AI Summary #}
+    {% if content.ai_summary|render %}
+      {{ content.ai_summary }}
+    {% endif %}
 
     {% if content.errand_services|render and not content.field_hide_errand_services['#items'].value %}
       <div class="enriched-content service__errand-services">
