@@ -39,7 +39,7 @@ const transformLocations = (locations: any = null) => {
   return locationOptions;
 };
 
-export const hobbiesPublicUrl = 'https://harrastukset.hel.fi';
+export const hobbiesBaseUrl = 'https://harrastukset.hel.fi';
 
 const getInitialSettings = () => {
   const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
@@ -55,6 +55,7 @@ const getInitialSettings = () => {
   const eventsApiUrl = settings?.events_api_url;
   const eventListTitle = settings?.field_event_list_title;
   const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
+  const hobbiesPublicUrl = settings?.hobbies_public_url || hobbiesBaseUrl;
 
   const filterSettings: FilterSettings = {
     eventCount: Number(settings?.field_event_count),
@@ -110,6 +111,7 @@ const getInitialSettings = () => {
     baseUrl,
     eventListTitle,
     eventsPublicUrl,
+    hobbiesPublicUrl,
     initialParams,
     initialUrl: eventsApiUrl,
     locations,
@@ -152,6 +154,8 @@ export const topicsAtom = atom((get) => get(baseAtom)?.topics || []);
 export const titleAtom = atom((get) => get(baseAtom)?.eventListTitle);
 
 export const eventsPublicUrl = atom((get) => get(baseAtom)?.eventsPublicUrl);
+
+export const hobbiesPublicUrl = atom((get) => get(baseAtom)?.hobbiesPublicUrl);
 
 export const settingsAtom = atom(
   (get) =>
