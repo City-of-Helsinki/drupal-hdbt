@@ -5,23 +5,26 @@
   "author": "Druid",
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt",
+  "@comment scripts": [
+    "Every script below runs inside a disposable Node container via tools/sandbox.sh."
+  ],
   "scripts": {
-    "dev": "node theme-builder.mjs --watch --dev",
-    "build": "npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs",
-    "lint:scss": "npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map && npm run lint:stylelint",
-    "lint:stylelint": "npx stylelint \"src/scss/**/*.scss\" --config ./theme-builder/.stylelintrc.yaml --formatter string --fix",
-    "lint:js": "biome check --write --assist-enabled=true src/js/",
-    "format:js": "biome format --write src/js/",
-    "lint": "npm-run-all --parallel lint:scss lint:js -s",
+    "dev": "tools/sandbox.sh node theme-builder.mjs --watch --dev",
+    "build": "tools/sandbox.sh sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
+    "lint:scss": "tools/sandbox.sh sh -c 'npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map && npm run lint:stylelint'",
+    "lint:stylelint": "tools/sandbox.sh npx stylelint \"src/scss/**/*.scss\" --config ./theme-builder/.stylelintrc.yaml --formatter string --fix",
+    "lint:js": "tools/sandbox.sh biome check --write --assist-enabled=true src/js/",
+    "format:js": "tools/sandbox.sh biome format --write src/js/",
+    "lint": "tools/sandbox.sh npm-run-all --parallel lint:scss lint:js -s",
     "full-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full reference",
     "full-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full test",
     "full-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full approve",
     "fast-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast reference",
     "fast-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast test",
     "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve",
-    "validate-ts": "tsc --noEmit",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "validate-ts": "tools/sandbox.sh tsc --noEmit",
+    "test": "tools/sandbox.sh vitest",
+    "coverage": "tools/sandbox.sh vitest run --coverage"
   },
   "@comment dependencies": [
     "The following packages were updated manually.",
