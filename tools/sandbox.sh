@@ -25,8 +25,22 @@ if ! command -v docker >/dev/null 2>&1; then
   exit 127
 fi
 
-THEME_DIR=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
-WORKDIR=/app/public/themes/contrib/hdbt
+HDBT_DIR=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
+THEMES_DIR=$(CDPATH='' cd -- "$HDBT_DIR/../.." && pwd)
+THEME_DIR=$(pwd)
+
+case "$THEME_DIR" in
+  "$THEMES_DIR"/*) ;;
+  *)
+    echo "$0: must be run from a theme directory under $THEMES_DIR" >&2
+    exit 1
+    ;;
+esac
+
+# Mirror the host layout under /app/public/themes.
+THEMES_WORKDIR=/app/public/themes
+WORKDIR="$THEMES_WORKDIR/${THEME_DIR#"$THEMES_DIR"/}"
+HDBT_WORKDIR="$THEMES_WORKDIR/${HDBT_DIR#"$THEMES_DIR"/}"
 
 IMAGE=node:24-alpine
 
@@ -36,9 +50,15 @@ if [ -t 0 ] && [ -t 1 ]; then
   TTY_FLAG='-t'
 fi
 
+# A subtheme needs hdbt as well, read-only.
+HDBT_VOLUME=''
+if [ "$THEME_DIR" != "$HDBT_DIR" ]; then
+  HDBT_VOLUME="--volume=$HDBT_DIR:$HDBT_WORKDIR:ro"
+fi
+
 # npm adds node_modules/.bin to $PATH. `docker run` starts the
 # command directly, so the bin directories have to be declared.
-SANDBOX_PATH="$WORKDIR/node_modules/.bin:$WORKDIR/theme-builder/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+SANDBOX_PATH="$WORKDIR/node_modules/.bin:$HDBT_WORKDIR/node_modules/.bin:$HDBT_WORKDIR/theme-builder/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 exec docker run \
   --rm \
@@ -53,6 +73,7 @@ exec docker run \
   --tmpfs /tmp:rw,mode=1777,size=1g \
   --tmpfs /sandbox-home:rw,uid=$(id -u),gid=$(id -g),size=256m \
   --volume "$THEME_DIR:$WORKDIR" \
+  $HDBT_VOLUME \
   --workdir "$WORKDIR" \
   --env HOME=/sandbox-home \
   --env PATH="$SANDBOX_PATH" \
