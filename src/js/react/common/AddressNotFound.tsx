@@ -1,20 +1,27 @@
 import { type ForwardedRef, forwardRef } from 'react';
+import { type AddressSearchErrorType, getAddressSearchResultsText } from './helpers/addressSearchError';
 
-export const AddressNotFound = forwardRef((_props, ref: ForwardedRef<HTMLHeadingElement>) => (
+type AddressMessageProps = { title: string; hint: string };
+
+const AddressMessage = forwardRef(({ title, hint }: AddressMessageProps, ref: ForwardedRef<HTMLHeadingElement>) => (
   <div>
     <div className='hdbt-search--react__result-top-area'>
       <h3 className='hdbt-search--react__results--title' ref={ref}>
-        {Drupal.t('No results for the address entered', {}, { context: 'React search: Address not found title' })}
+        {title}
       </h3>
     </div>
     <div>
-      <span>
-        {Drupal.t(
-          'Make sure the address is written correctly. You can also search using a nearby street number.',
-          {},
-          { context: 'React search: Address not found hint' },
-        )}
-      </span>
+      <span>{hint}</span>
     </div>
   </div>
 ));
+
+export const AddressNotFound = forwardRef((_props, ref: ForwardedRef<HTMLHeadingElement>) => (
+  <AddressMessage {...getAddressSearchResultsText('not-found')} ref={ref} />
+));
+
+export const AddressSearchError = forwardRef(
+  ({ type }: { type: AddressSearchErrorType }, ref: ForwardedRef<HTMLHeadingElement>) => (
+    <AddressMessage {...getAddressSearchResultsText(type)} ref={ref} />
+  ),
+);

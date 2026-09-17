@@ -1,5 +1,6 @@
 import GlobalSettings from '@/react/common/enum/GlobalSettings';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
+import { fetchServiceMap, firstRejectionReason, ServiceMapUnavailableError } from './ServiceMap';
 
 export const getAddressUrls = (address: string) => {
   const { addressBaseUrl } = GlobalSettings;
@@ -17,10 +18,23 @@ export const getAddressUrls = (address: string) => {
   });
 };
 
-export const getAddresses = (urls: string[]): Promise<ServiceMapResponse<ServiceMapAddress>[]> => {
-  const promises = urls.map(async (url: string) => fetch(url).then((res) => res.json()));
+export const getAddresses = async (urls: string[]): Promise<ServiceMapResponse<ServiceMapAddress>[]> => {
+  const settled = await Promise.allSettled(
+    urls.map((url: string) => fetchServiceMap<ServiceMapResponse<ServiceMapAddress>>(url)),
+  );
 
-  return Promise.all(promises);
+  if (settled.every((result) => result.status === 'rejected')) {
+    throw new ServiceMapUnavailableError('Address could not be resolved, every service map request failed.', {
+      cause: firstRejectionReason(settled),
+    });
+  }
+
+  return settled
+    .filter(
+      (result): result is PromiseFulfilledResult<ServiceMapResponse<ServiceMapAddress>> =>
+        result.status === 'fulfilled',
+    )
+    .map((result) => result.value);
 };
 
 export const parseCoordinates = (addressData: ServiceMapResponse<ServiceMapAddress>[]) => {

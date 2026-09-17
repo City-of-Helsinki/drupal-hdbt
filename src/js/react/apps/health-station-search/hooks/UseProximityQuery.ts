@@ -1,12 +1,12 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
-import getNameTranslation from '@/react/common/helpers/ServiceMap';
+import getNameTranslation, { ServiceMapUnavailableError } from '@/react/common/helpers/ServiceMap';
 import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/ProximityQuery';
 import { configurationsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
+import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 
 type Result = { units?: number[] };
 
@@ -24,7 +24,18 @@ const UseProximityQuery = (params: SearchParams) => {
     let ids = null;
 
     if (home_address) {
-      let addresses = await getAddresses(getAddressUrls(home_address));
+      let addresses: Awaited<ReturnType<typeof getAddresses>>;
+
+      try {
+        addresses = await getAddresses(getAddressUrls(home_address));
+      } catch (e) {
+        if (e instanceof ServiceMapUnavailableError) {
+          return { addressError: 'unavailable' as const };
+        }
+
+        throw e;
+      }
+
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       addresses = addresses.filter((_address: any) => _address.results.length);
 
@@ -35,7 +46,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (home_address && !coordinates) {
-      return null;
+      return { addressError: 'not-found' as const };
     }
 
     if (coordinates?.length) {
@@ -50,8 +61,7 @@ const UseProximityQuery = (params: SearchParams) => {
       ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
-    const result = await useTimeoutFetch(`${baseUrl}/${index}/_search`, {
+    const result = await timeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: getQueryString(ids, coordinates, page, sv_only),

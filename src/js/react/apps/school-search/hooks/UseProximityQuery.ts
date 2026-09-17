@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
-import getNameTranslation from '@/react/common/helpers/ServiceMap';
+import getNameTranslation, { ServiceMapUnavailableError } from '@/react/common/helpers/ServiceMap';
 import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/ProximityQuery';
@@ -23,7 +23,18 @@ const UseProximityQuery = (params: SearchParams) => {
     let ids = null;
 
     if (keyword) {
-      let addresses = await getAddresses(getAddressUrls(keyword));
+      let addresses: Awaited<ReturnType<typeof getAddresses>>;
+
+      try {
+        addresses = await getAddresses(getAddressUrls(keyword));
+      } catch (e) {
+        if (e instanceof ServiceMapUnavailableError) {
+          return { addressError: 'unavailable' as const };
+        }
+
+        throw e;
+      }
+
       addresses = addresses.filter((address) => address.results.length);
 
       if (addresses.length) {
@@ -33,7 +44,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (keyword && !coordinates) {
-      return null;
+      return { addressError: 'not-found' as const };
     }
 
     if (coordinates?.length) {
