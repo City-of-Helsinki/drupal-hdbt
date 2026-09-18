@@ -12,37 +12,38 @@ This theme requires Drupal core >= 10.5.
 Requirements for developing:
 - [NodeJS](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
+- [Docker](https://www.docker.com/), used to sandbox the build tools (see [Sandbox](#sandbox))
 - optional [NVM](https://github.com/nvm-sh/nvm)
 
 ## Commands
 
-| Command       | Make command      | Description                                                                       |
-|---------------|-------------------|-----------------------------------------------------------------------------------|
-| nvm use       | N/A               | Uses correct Node version chosen for the theme compiler.                          |
-| npm i         | make install-hdbt | Install dependencies and link local packages.                                     |
-| npm ci        | N/A               | Install a project with a clean slate. Use especially in travis like environments. |
-| npm run dev   | make watch-hdbt   | Compile styles and js for development environment. and watch file changes.        |
-| npm run build | make build-hdbt   | Build packages for production. Minify CSS/JS.                                     |
+| Command       | Description                                                                       |
+|---------------|-----------------------------------------------------------------------------------|
+| nvm use       | Uses correct Node version chosen for the theme compiler.                          |
+| npm i         | Install dependencies and link local packages.                                     |
+| npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
+| npm run dev   | Compile styles and js for development environment. and watch file changes.        |
+| npm run build | Build packages for production. Minify CSS/JS.                                     |
 
-Consistent Node version defined in `.nvmrc` should be used. For development, use either `nvm` to select the correct
-version or `make` commands that select the version automatically. Run `make` the commands from the table above in the
-project directory of your instance. For more information, see
-[build-assets.md](https://github.com/City-of-Helsinki/drupal-helfi-platform/blob/main/documentation/build-assets.md).
-
-Set up the developing environment with `nvm` by running
+Consistent Node version defined in `.nvmrc` should be used. Set up the developing environment with `nvm` by running
 
     nvm use
     npm i
-
-Explanations for commands.
-- `nvm use` : Install and use the correct version of Node.
-- `npm i` : As stated above; Install dependencies and link local packages.
 
 Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.
 - `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
 - `theme-builder/` : The theme builder tools.
 - `theme-builder.mjs` : Configuration file for the theme builder tool that is used to build the theme.
+- `tools/sandbox.sh` : Wrapper that runs the npm scripts inside a disposable Docker container.
+
+## Sandbox
+
+The build, lint and test scripts in `package.json` are executed through `tools/sandbox.sh`, which runs the given
+command inside a disposable Node container. The purpose is to make sure that third party code never runs directly
+on the developer's user account.
+
+Environment variables prefixed with `HDBT_` are forwarded to the sanbox container (e.g. `HDBT_DEBUG_MODE=1 npm run ...` sets `DEBUG_MODE=1` to the container).
 
 ## Structure for files and folders
 
