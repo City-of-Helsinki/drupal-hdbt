@@ -53,7 +53,6 @@ export const getNameTranslation = (names: TranslatedString, language: string | n
   throw new Error('No name found');
 };
 
-/** Longitude, latitude and the resolved street name, in WGS84. */
 export type AddressCoordinates = [number, number, string];
 
 export const getAddressCoordinates = async (

@@ -163,7 +163,6 @@ describe('sanitizeAddress', () => {
     ['Topeliuksenkatu 1-3', 'Topeliuksenkatu 1-3'],
     ["O'Briens gränd", "O'Briens gränd"],
     ['Föreningsgatan 4 & 6', 'Föreningsgatan 4 & 6'],
-    // Unicode letters outside a-z survive, matching the backend.
     ['Étoile 2', 'Étoile 2'],
     ['<script>alert(1)</script>', 'scriptalert1script'],
     [';;;', ''],
