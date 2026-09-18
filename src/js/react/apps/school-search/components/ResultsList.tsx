@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { type SyntheticEvent, useState } from 'react';
-import { AddressSearchError } from '@/react/common/AddressNotFound';
+import { AddressNotFound } from '@/react/common/AddressNotFound';
 import { GhostList } from '@/react/common/GhostList';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
@@ -58,7 +58,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
   }
 
   if (data?.addressError) {
-    return <AddressSearchError type={data.addressError} ref={scrollTarget} />;
+    return <AddressNotFound ref={scrollTarget} />;
   }
 
   if (!data?.hits?.hits.length) {

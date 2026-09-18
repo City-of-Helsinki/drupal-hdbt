@@ -1,6 +1,6 @@
 import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
-import getNameTranslation, { ServiceMapUnavailableError } from '@/react/common/helpers/ServiceMap';
+import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
 import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 import AppSettings from '../enum/AppSettings';
@@ -24,18 +24,7 @@ const UseProximityQuery = (params: SearchParams) => {
     let ids = null;
 
     if (home_address) {
-      let addresses: Awaited<ReturnType<typeof getAddresses>>;
-
-      try {
-        addresses = await getAddresses(getAddressUrls(home_address));
-      } catch (e) {
-        if (e instanceof ServiceMapUnavailableError) {
-          return { addressError: 'unavailable' };
-        }
-
-        throw e;
-      }
-
+      let addresses = await getAddresses(getAddressUrls(home_address));
       // biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
       addresses = addresses.filter((_address: any) => _address.results.length);
 
@@ -46,7 +35,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (home_address && !coordinates) {
-      return { addressError: 'not-found' };
+      return { addressError: true };
     }
 
     if (coordinates?.length) {

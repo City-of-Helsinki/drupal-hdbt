@@ -1,41 +1,7 @@
 import type { ServiceMapAddress, ServiceMapResponse, TranslatedString } from '@/types/ServiceMap';
 import ServiceMapUrls from '../enum/ServiceMap';
 
-export class ServiceMapUnavailableError extends Error {
-  constructor(message: string, options?: { cause?: unknown }) {
-    super(message, options);
-    this.name = 'ServiceMapUnavailableError';
-  }
-}
-
-export const fetchServiceMap = async <T>(url: string, init?: RequestInit): Promise<T> => {
-  let response: Response;
-
-  try {
-    response = await fetch(url, init);
-  } catch (cause) {
-    if (cause instanceof DOMException && cause.name === 'AbortError') {
-      throw cause;
-    }
-
-    throw new ServiceMapUnavailableError(`Service map request failed: ${url}`, { cause });
-  }
-
-  if (!response.ok) {
-    throw new ServiceMapUnavailableError(`Service map responded with ${response.status}: ${url}`);
-  }
-
-  try {
-    return (await response.json()) as T;
-  } catch (cause) {
-    throw new ServiceMapUnavailableError(`Service map response was not valid JSON: ${url}`, { cause });
-  }
-};
-
 export const sanitizeAddress = (address: string): string => address.replace(/[^\p{L}\p{N} .,'+\-&|]/gu, '');
-
-export const firstRejectionReason = (settled: readonly PromiseSettledResult<unknown>[]): unknown =>
-  settled.find((result): result is PromiseRejectedResult => result.status === 'rejected')?.reason;
 
 export const getNameTranslation = (names: TranslatedString, language: string | null) => {
   if (language && names[language as 'fi' | 'sv' | 'en']) {
@@ -65,40 +31,32 @@ export const getAddressCoordinates = async (
     return null;
   }
 
-  const settled = await Promise.allSettled(
-    ['fi', 'sv'].map((language) => {
-      const url = new URL(ServiceMapUrls.EVENTS_URL);
-      url.search = new URLSearchParams({
-        format: 'json',
-        language,
-        municipality: 'helsinki',
-        page: '1',
-        page_size: pageSize.toString(),
-        q: sanitized,
-        type: 'address',
-      }).toString();
+  const results = ['fi', 'sv'].map((language) => {
+    const url = new URL(ServiceMapUrls.EVENTS_URL);
+    url.search = new URLSearchParams({
+      format: 'json',
+      language,
+      municipality: 'helsinki',
+      page: '1',
+      page_size: pageSize.toString(),
+      q: sanitized,
+      type: 'address',
+    }).toString();
 
-      return fetchServiceMap<ServiceMapResponse<ServiceMapAddress>>(url.toString());
-    }),
+    return fetch(url.toString()).then((response) => response.json());
+  });
+
+  const settled = await Promise.allSettled<ServiceMapResponse<ServiceMapAddress>>(results);
+  const fulfilled = settled.filter(
+    (result): result is PromiseFulfilledResult<ServiceMapResponse<ServiceMapAddress>> =>
+      result.status === 'fulfilled' && Boolean(result.value.results?.length),
   );
 
-  if (settled.every((result) => result.status === 'rejected')) {
-    throw new ServiceMapUnavailableError('Address could not be resolved, every service map request failed.', {
-      cause: firstRejectionReason(settled),
-    });
-  }
-
-  const match = settled
-    .filter(
-      (result): result is PromiseFulfilledResult<ServiceMapResponse<ServiceMapAddress>> =>
-        result.status === 'fulfilled',
-    )
-    .map((result) => result.value.results?.[0])
-    .find((result) => Boolean(result));
-
-  if (!match) {
+  if (!fulfilled.length) {
     return null;
   }
+
+  const match = fulfilled[0].value.results[0];
 
   return [...match.location.coordinates, getNameTranslation(match.name, drupalSettings.path.currentLanguage) || ''];
 };

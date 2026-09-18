@@ -3,12 +3,7 @@ import { type ChangeEvent, type ComponentProps, useCallback, useEffect, useRef, 
 import { defaultSearchInputTheme } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapLocationResult, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
-import {
-  type AddressSearchErrorType,
-  getAddressSearchInlineText,
-  resolveAddressSearchError,
-} from './helpers/addressSearchError';
-import getNameTranslation, { fetchServiceMap, firstRejectionReason, sanitizeAddress } from './helpers/ServiceMap';
+import getNameTranslation, { sanitizeAddress } from './helpers/ServiceMap';
 
 export type AddressWithCoordinates = { label: string; value: [number, number, string] };
 
@@ -21,7 +16,7 @@ const useLocationOption = {
 
 type BaseAddressSearchProps = {
   className?: string;
-  error?: boolean | AddressSearchErrorType;
+  error?: boolean;
   hideSearchButton?: boolean;
   onChange?: (value: string) => void;
   searchInputClassname?: string;
@@ -53,7 +48,6 @@ export const AddressSearch = ({
   const addressMap = useRef(new Map<string, [number, number]>());
   const [geoLocationError, setGeoLocationError] = useState<string | null>(null);
   const [geoLoading, setGeoLoading] = useState(false);
-  const [suggestionsUnavailable, setSuggestionsUnavailable] = useState(false);
 
   const [props] = useState({
     ...rest,
@@ -138,7 +132,8 @@ export const AddressSearch = ({
         }).toString();
 
         try {
-          const data = await fetchServiceMap<ServiceMapResponse<ServiceMapLocationResult>>(url.toString());
+          const response = await fetch(url.toString());
+          const data: ServiceMapResponse<ServiceMapLocationResult> = await response.json();
           if (data.results.length > 0) {
             const addressResult = data.results[0];
             const resolvedName = getNameTranslation(addressResult.full_name, 'fi') || '';
@@ -190,7 +185,7 @@ export const AddressSearch = ({
       const fetchSuggestions = async (param: URLSearchParams) => {
         const url = new URL(ServiceMap.EVENTS_URL);
         url.search = param.toString();
-        return fetchServiceMap<ServiceMapResponse<ServiceMapAddress>>(url.toString());
+        return fetch(url.toString()).then((response) => response.json());
       };
 
       const [fiParams, svParams] = ['fi', 'sv'].map(
@@ -213,26 +208,7 @@ export const AddressSearch = ({
           return { label: resolvedName, value: resolvedName };
         });
 
-      const settled = await Promise.allSettled([fetchSuggestions(fiParams), fetchSuggestions(svParams)]);
-
-      if (settled.every((result) => result.status === 'rejected')) {
-        console.error('Failed to load address suggestions from the service map.', firstRejectionReason(settled));
-        setSuggestionsUnavailable(true);
-        return [];
-      }
-
-      setSuggestionsUnavailable(false);
-
-      const emptyResponse: ServiceMapResponse<ServiceMapAddress> = {
-        count: 0,
-        next: null,
-        previous: null,
-        results: [],
-      };
-      const [fiResults, svResults] = settled.map((result) =>
-        result.status === 'fulfilled' ? result.value : emptyResponse,
-      );
-
+      const [fiResults, svResults] = await Promise.all([fetchSuggestions(fiParams), fetchSuggestions(svParams)]);
       return [...parseResults(fiResults, 'fi'), ...parseResults(svResults, 'sv')].slice(0, 10);
     },
     [includeCoordinates],
@@ -254,7 +230,6 @@ export const AddressSearch = ({
   );
 
   const geoInProgress = useLocation && geoLoading;
-  const addressError = resolveAddressSearchError(error) ?? (suggestionsUnavailable ? 'unavailable' : null);
 
   const searchComponent = (
     <Search
@@ -293,8 +268,14 @@ export const AddressSearch = ({
       ) : (
         searchComponent
       )}
-      {addressError && (
-        <div className='hds-text-input hds-text-input__error-text'>{getAddressSearchInlineText(addressError)}</div>
+      {error && (
+        <div className='hds-text-input hds-text-input__error-text'>
+          {Drupal.t(
+            'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
+            {},
+            { context: 'Address search error message' },
+          )}
+        </div>
       )}
     </div>
   );

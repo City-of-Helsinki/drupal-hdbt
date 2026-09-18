@@ -2,11 +2,7 @@
 import { atom } from 'jotai';
 import { unwrap } from 'jotai/utils';
 import { endOfDay, startOfDay, toLocalISO } from '@/react/common/helpers/dateUtils';
-import {
-  type AddressCoordinates,
-  getAddressCoordinates,
-  ServiceMapUnavailableError,
-} from '@/react/common/helpers/ServiceMap';
+import { getAddressCoordinates } from '@/react/common/helpers/ServiceMap';
 import ApiKeys from './enum/ApiKeys';
 import ROOT_ID from './enum/RootId';
 import { BloatingTargetGroups } from './enum/TargetGroups';
@@ -325,19 +321,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
     }
   }
 
-  let coordinates: AddressCoordinates | null = null;
-  let addressUnavailable = false;
-
-  try {
-    coordinates = await getAddressCoordinates(address);
-  } catch (e) {
-    if (!(e instanceof ServiceMapUnavailableError)) {
-      throw e;
-    }
-
-    addressUnavailable = true;
-  }
-
+  const coordinates = await getAddressCoordinates(address);
   if (coordinates?.length) {
     stagedParams.set(ApiKeys.COORDINATES, coordinates.slice(0, 2).join(','));
     stagedParams.set(ApiKeys.RADIUS, '2000');
@@ -372,10 +356,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
       );
     }
   } else if (address && address.trim() !== '') {
-    set(formErrorsAtom, {
-      ...currentErrors,
-      invalidAddress: addressUnavailable ? 'unavailable' : 'not-found',
-    });
+    set(formErrorsAtom, { ...currentErrors, invalidAddress: true });
     const clearedParams = new URLSearchParams(get(initialParamsAtom));
     set(submittedParamsAtom, clearedParams);
     return;
