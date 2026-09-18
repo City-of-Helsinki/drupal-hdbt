@@ -174,3 +174,5 @@ export const updateParamsAtom = atom(null, (_get, set, params: SearchParams) => 
 });
 
 export const keywordAtom = atom<string | undefined>('');
+
+export const addressErrorAtom = atom<boolean>(false);

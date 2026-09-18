@@ -4,7 +4,7 @@ import { AddressSearch } from '@/react/common/AddressSearch';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
-import { keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
+import { addressErrorAtom, keywordAtom, paramsAtom, stagedParamsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
 type SubmitFormType = HTMLFormElement & { sv_only: HTMLInputElement };
@@ -15,6 +15,7 @@ const ProximityFormContainer = () => {
   const setParams = useSetAtom(paramsAtom);
   const setStagedParams = useSetAtom(stagedParamsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
+  const addressError = useAtomValue(addressErrorAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -40,6 +41,7 @@ const ProximityFormContainer = () => {
       onKeyDown={handleKeyDown}
     >
       <AddressSearch
+        error={addressError}
         className='hdbt-search__filter hdbt-search--react__text-field'
         id='home_address'
         onChange={(address: string) => setKeyword(address)}

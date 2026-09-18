@@ -1,15 +1,16 @@
 import { Button } from 'hds-react';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { AddressSearch } from '@/react/common/AddressSearch';
 import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
-import { keywordAtom, paramsAtom } from '../store';
+import { addressErrorAtom, keywordAtom, paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
 
 const ProximityFormContainer = () => {
   const [keyword, setKeyword] = useAtom(keywordAtom);
   const setParams = useSetAtom(paramsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
+  const addressError = useAtomValue(addressErrorAtom);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,6 +49,7 @@ const ProximityFormContainer = () => {
         )}
       </p>
       <AddressSearch
+        error={addressError}
         className='hdbt-search__filter'
         value={keyword || ''}
         id='keyword'
