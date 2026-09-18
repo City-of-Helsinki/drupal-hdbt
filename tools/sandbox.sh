@@ -60,6 +60,13 @@ fi
 # command directly, so the bin directories have to be declared.
 SANDBOX_PATH="$WORKDIR/node_modules/.bin:$HDBT_WORKDIR/node_modules/.bin:$HDBT_WORKDIR/theme-builder/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+# Forward environment variables prefixed with HDBT_ to the sandbox.
+FORWARDED_ENV=''
+for name in $(env | sed -n 's/^HDBT_\([A-Za-z_][A-Za-z0-9_]*\)=.*/\1/p'); do
+  eval "export $name=\"\${HDBT_$name}\""
+  FORWARDED_ENV="$FORWARDED_ENV --env $name"
+done
+
 exec docker run \
   --rm \
   --init \
@@ -79,5 +86,6 @@ exec docker run \
   --env PATH="$SANDBOX_PATH" \
   --env npm_config_cache=/sandbox-home/npm \
   --env CI \
+  $FORWARDED_ENV \
   "$IMAGE" \
   "$@"
