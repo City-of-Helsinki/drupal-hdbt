@@ -12,6 +12,7 @@ This theme requires Drupal core >= 10.5.
 Requirements for developing:
 - [NodeJS](https://nodejs.org/en/)
 - [NPM](https://npmjs.com/)
+- [Docker](https://www.docker.com/), used to sandbox the build tools (see [Sandbox](#sandbox))
 - optional [NVM](https://github.com/nvm-sh/nvm)
 
 ## Commands
@@ -43,6 +44,13 @@ Related files.
 - `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
 - `theme-builder/` : The theme builder tools.
 - `theme-builder.mjs` : Configuration file for the theme builder tool that is used to build the theme.
+- `tools/sandbox.sh` : Wrapper that runs the npm scripts inside a disposable Docker container.
+
+## Sandbox
+
+The build, lint and test scripts in `package.json` are executed through `tools/sandbox.sh`, which runs the given
+command inside a disposable Node container. The purpose is to make sure that third party code never runs directly
+on the developer's user account.
 
 ## Structure for files and folders
 
