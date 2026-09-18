@@ -29,7 +29,7 @@ const UseProximityQuery = (params: SearchParams) => {
         addresses = await getAddresses(getAddressUrls(keyword));
       } catch (e) {
         if (e instanceof ServiceMapUnavailableError) {
-          return { addressError: 'unavailable' as const };
+          return { addressError: 'unavailable' };
         }
 
         throw e;
@@ -44,7 +44,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (keyword && !coordinates) {
-      return { addressError: 'not-found' as const };
+      return { addressError: 'not-found' };
     }
 
     if (coordinates?.length) {
