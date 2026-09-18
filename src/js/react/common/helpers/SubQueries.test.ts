@@ -39,3 +39,28 @@ describe('getAddresses', () => {
     expect(addresses.every((address) => address.results.length === 0)).toBe(true);
   });
 });
+
+describe('getAddressUrls', () => {
+  test('strips characters the api rejects', () => {
+    const urls = getAddressUrls('Kotikatu 1;');
+
+    expect(urls).toHaveLength(2);
+    for (const url of urls) {
+      expect(new URL(url).searchParams.get('q')).toBe('Kotikatu 1');
+    }
+  });
+
+  test('returns no urls when nothing queryable survives sanitizing', () => {
+    expect(getAddressUrls(';;;')).toEqual([]);
+  });
+});
+
+describe('getAddresses with no urls', () => {
+  test('resolves empty instead of reporting an outage', async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(getAddresses([])).resolves.toEqual([]);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});

@@ -8,7 +8,7 @@ import {
   getAddressSearchInlineText,
   resolveAddressSearchError,
 } from './helpers/addressSearchError';
-import getNameTranslation, { fetchServiceMap, firstRejectionReason } from './helpers/ServiceMap';
+import getNameTranslation, { fetchServiceMap, firstRejectionReason, sanitizeAddress } from './helpers/ServiceMap';
 
 export type AddressWithCoordinates = { label: string; value: [number, number, string] };
 
@@ -181,10 +181,11 @@ export const AddressSearch = ({
 
   const getSuggestions = useCallback(
     async (searchTerm?: string) => {
-      if (!searchTerm) {
+      const sanitized = searchTerm ? sanitizeAddress(searchTerm) : '';
+
+      if (!sanitized) {
         return [];
       }
-      const sanitized = searchTerm.replace(/[^a-zA-ZäöåÄÖÅ0-9.,+&'|\-\s]*/g, '');
 
       const fetchSuggestions = async (param: URLSearchParams) => {
         const url = new URL(ServiceMap.EVENTS_URL);

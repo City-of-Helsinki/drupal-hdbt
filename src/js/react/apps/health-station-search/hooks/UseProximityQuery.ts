@@ -2,11 +2,11 @@ import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import getNameTranslation, { ServiceMapUnavailableError } from '@/react/common/helpers/ServiceMap';
 import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
+import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/ProximityQuery';
 import { configurationsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
-import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 
 type Result = { units?: number[] };
 

@@ -32,6 +32,8 @@ export const fetchServiceMap = async <T>(url: string, init?: RequestInit): Promi
   }
 };
 
+export const sanitizeAddress = (address: string): string => address.replace(/[^\p{L}\p{N} .,'+\-&|]/gu, '');
+
 export const firstRejectionReason = (settled: readonly PromiseSettledResult<unknown>[]): unknown =>
   settled.find((result): result is PromiseRejectedResult => result.status === 'rejected')?.reason;
 
@@ -58,7 +60,9 @@ export const getAddressCoordinates = async (
   address: string | null | undefined,
   pageSize: number | string = 1,
 ): Promise<AddressCoordinates | null> => {
-  if (!address) {
+  const sanitized = address ? sanitizeAddress(address) : '';
+
+  if (!sanitized) {
     return null;
   }
 
@@ -71,7 +75,7 @@ export const getAddressCoordinates = async (
         municipality: 'helsinki',
         page: '1',
         page_size: pageSize.toString(),
-        q: address,
+        q: sanitized,
         type: 'address',
       }).toString();
 
