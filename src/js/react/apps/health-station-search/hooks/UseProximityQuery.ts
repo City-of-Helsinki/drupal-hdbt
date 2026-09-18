@@ -2,7 +2,7 @@ import { useAtomValue } from 'jotai';
 import useSWR from 'swr';
 import getNameTranslation from '@/react/common/helpers/ServiceMap';
 import { getAddresses, getAddressUrls, getLocationsUrl, parseCoordinates } from '@/react/common/helpers/SubQueries';
-import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
+import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 import AppSettings from '../enum/AppSettings';
 import getQueryString from '../helpers/ProximityQuery';
 import { configurationsAtom } from '../store';
@@ -35,7 +35,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (home_address && !coordinates) {
-      return null;
+      return { addressError: true };
     }
 
     if (coordinates?.length) {
@@ -50,8 +50,7 @@ const UseProximityQuery = (params: SearchParams) => {
       ids = locationsData.results.flatMap((result: Result) => result.units ?? []);
     }
 
-    // biome-ignore lint/correctness/useHookAtTopLevel: @todo UHF-12501
-    const result = await useTimeoutFetch(`${baseUrl}/${index}/_search`, {
+    const result = await timeoutFetch(`${baseUrl}/${index}/_search`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: getQueryString(ids, coordinates, page, sv_only),

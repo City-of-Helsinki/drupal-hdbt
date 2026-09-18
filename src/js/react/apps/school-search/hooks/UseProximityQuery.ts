@@ -33,7 +33,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (keyword && !coordinates) {
-      return null;
+      return { addressError: true };
     }
 
     if (coordinates?.length) {

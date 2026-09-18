@@ -1,7 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 import ResultsList from '../components/ResultsList';
 import UseProximityQuery from '../hooks/UseProximityQuery';
-import { paramsAtom, updateParamsAtom } from '../store';
+import { addressErrorAtom, paramsAtom, updateParamsAtom } from '../store';
 
 const ProximityResultsContainer = () => {
   const params = useAtomValue(paramsAtom);
@@ -11,6 +12,11 @@ const ProximityResultsContainer = () => {
     setParams({ ...params, page });
   };
   const { data, error, isLoading, isValidating, queryString } = UseProximityQuery(params);
+  const setAddressError = useSetAtom(addressErrorAtom);
+
+  useEffect(() => {
+    setAddressError(Boolean(data?.addressError));
+  }, [data, setAddressError]);
   const { page } = params;
 
   return <ResultsList {...{ data, error, isLoading, isValidating, page, queryString, updatePage }} />;

@@ -3,7 +3,7 @@ import { type ChangeEvent, type ComponentProps, useCallback, useEffect, useRef, 
 import { defaultSearchInputTheme } from '@/react/common/constants/searchInputStyle';
 import type { ServiceMapAddress, ServiceMapLocationResult, ServiceMapResponse } from '@/types/ServiceMap';
 import ServiceMap from './enum/ServiceMap';
-import getNameTranslation from './helpers/ServiceMap';
+import getNameTranslation, { sanitizeAddress } from './helpers/ServiceMap';
 
 export type AddressWithCoordinates = { label: string; value: [number, number, string] };
 
@@ -176,10 +176,11 @@ export const AddressSearch = ({
 
   const getSuggestions = useCallback(
     async (searchTerm?: string) => {
-      if (!searchTerm) {
+      const sanitized = searchTerm ? sanitizeAddress(searchTerm) : '';
+
+      if (!sanitized) {
         return [];
       }
-      const sanitized = searchTerm.replace(/[^a-zA-ZäöåÄÖÅ0-9.,+&'|\-\s]*/g, '');
 
       const fetchSuggestions = async (param: URLSearchParams) => {
         const url = new URL(ServiceMap.EVENTS_URL);

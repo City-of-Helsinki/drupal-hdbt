@@ -35,7 +35,7 @@ const UseProximityQuery = (params: SearchParams) => {
     }
 
     if (home_address && !coordinates) {
-      return null;
+      return { addressError: true };
     }
 
     if (coordinates?.length) {
