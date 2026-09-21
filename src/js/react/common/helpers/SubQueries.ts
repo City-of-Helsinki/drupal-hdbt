@@ -1,15 +1,21 @@
 import GlobalSettings from '@/react/common/enum/GlobalSettings';
 import type { ServiceMapAddress, ServiceMapResponse } from '@/types/ServiceMap';
+import { sanitizeAddress } from './ServiceMap';
 
 export const getAddressUrls = (address: string) => {
   const { addressBaseUrl } = GlobalSettings;
   const languages = ['fi', 'sv'];
+  const sanitized = sanitizeAddress(address);
+
+  if (!sanitized) {
+    return [];
+  }
 
   // Servicemap's search endpoint works only with one language, distinct urls is needed to get both lang data
   return languages.map((language: string) => {
     const url = new URL(addressBaseUrl);
     const params = new URLSearchParams(url.search);
-    params.set('q', address);
+    params.set('q', sanitized);
     params.set('language', language);
     url.search = params.toString();
 

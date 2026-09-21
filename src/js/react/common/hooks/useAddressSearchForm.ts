@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { sanitizeAddress } from '../helpers/ServiceMap';
 
 export const useAddressSearchForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -17,7 +18,7 @@ export const useAddressSearchForm = () => {
   };
   const handleAddressSubmit = (address: string, setKeyword: (address: string) => void) => {
     // Palvelukarttaa address search only allows specific characters.
-    setKeyword(address.replace(/[^a-zA-ZäöåÄÖÅ0-9.,+&'|\-\s]*/g, ''));
+    setKeyword(sanitizeAddress(address));
   };
   return {
     formRef,
