@@ -37,6 +37,8 @@
   {% set has_icon = true %}
 {% endif %}
 
+{% set hide_from_toc = paragraph.field_banner_hide_from_toc.value %}
+
 {% set link = content.field_banner_link.0['#url'] %}
 {% set text = content.field_banner_link.0['#title'] %}
 {% set link_type = content.field_banner_link_design[0]['#markup'] %}
@@ -49,7 +51,8 @@
         component_classes: [
           'component--banner',
           design_class,
-          has_icon ? 'component--banner-has-icon'
+          has_icon ? 'component--banner-has-icon',
+          hide_from_toc ? 'hide-from-table-of-contents'
         ],
         component_content_class: 'banner',
       }
