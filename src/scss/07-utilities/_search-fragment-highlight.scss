@@ -1,0 +1,11 @@
+// Search fragment highlight (CSS Highlight API + class fallback).
+// Triggered when arriving from site search with a #fragment:hl hash.
+
+::highlight(search-fragment) {
+  background-color: rgba($color-fog, 0.45);
+}
+
+.search-fragment-highlight {
+  outline: $spacing-quarter solid $color-fog;
+  outline-offset: $spacing-quarter;
+}
