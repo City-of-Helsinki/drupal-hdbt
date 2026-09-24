@@ -362,6 +362,16 @@ search-suggestions:
     - core/once
     - hdbt/toast-positioner
 
+search-fragment-highlight:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  js:
+    dist/js/searchFragmentHighlight.min.js: {
+      minified: true
+    }
+  dependencies:
+    - core/drupal
+    - helfi_platform_config/heading_id_injector
+
 search-monitor-helper:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
