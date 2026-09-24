@@ -4,9 +4,10 @@ import { Metarow } from '@/react/common/Card';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import { getNameTranslation } from '@/react/common/helpers/ServiceMap';
 import type TagType from '@/types/TagType';
+import { hobbiesBaseUrl } from '../enum/PublicUrls';
 import { getEnrolmentStatus } from '../helpers/RegistrationHelpers';
 import { formatTime } from '../helpers/TimeHelpers';
-import { hobbiesBaseUrl, settingsAtom } from '../store';
+import { settingsAtom } from '../store';
 import type { Event, EventImage } from '../types/Event';
 import { useMainCategoryIds } from './useMainCategoryIds';
 

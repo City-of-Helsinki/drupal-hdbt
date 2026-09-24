@@ -1,6 +1,6 @@
 import type { SearchFunction, SearchResult } from 'hds-react';
 import { Select, useSelectStorage } from 'hds-react';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import { memo, useCallback, useEffect } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
@@ -12,12 +12,16 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { LinkedEventsTopic } from '@/types/LinkedEvents';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import { topicSelectionAtom, updateParamsAtom } from '../store';
+import { useScopedId } from '../hooks/useScopedId';
+import { clearFilterSignalAtom, clearSignalAtom, topicSelectionAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
+  const clearSignal = useAtomValue(clearSignalAtom);
+  const clearFilterSignal = useAtomValue(clearFilterSignalAtom);
+  const topicsId = useScopedId(SearchComponents.TOPICS);
 
   const getTopicsParamValue = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
 
@@ -71,7 +75,7 @@ const FullTopicsFilter = memo(() => {
   const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
-    id: SearchComponents.TOPICS,
+    id: topicsId,
     multiSelect: true,
     noTags: true,
     onChange,
@@ -86,15 +90,19 @@ const FullTopicsFilter = memo(() => {
     updateSelectionsInStorage(storage, getTopicsParamValue());
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
   useEffect(() => {
-    window.addEventListener('eventsearch-clear', clearAllSelections);
-    window.addEventListener(`eventsearch-clear-${ApiKeys.KEYWORDS}`, updateSelections);
+    if (clearSignal) {
+      clearAllSelections();
+    }
+  }, [clearSignal]);
 
-    return () => {
-      window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${ApiKeys.KEYWORDS}`, updateSelections);
-    };
-  });
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
+  useEffect(() => {
+    if (clearFilterSignal?.key === ApiKeys.KEYWORDS) {
+      updateSelections();
+    }
+  }, [clearFilterSignal]);
 
   return (
     <div className='hdbt-search__filter event-form__filter--topics'>

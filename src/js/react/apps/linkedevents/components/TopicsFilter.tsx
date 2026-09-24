@@ -7,7 +7,8 @@ import { clearAllSelectionsFromStorage } from '@/react/common/helpers/HDS';
 import useSelectedOptions from '@/react/common/hooks/useSelectedOptions';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import { topicSelectionAtom, topicsAtom, updateParamsAtom } from '../store';
+import { useScopedId } from '../hooks/useScopedId';
+import { clearFilterSignalAtom, clearSignalAtom, topicSelectionAtom, topicsAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
 function TopicsFilter() {
@@ -15,6 +16,9 @@ function TopicsFilter() {
   const [topicSelection, setTopicsFilter] = useAtom(topicSelectionAtom);
   const selectedOptions = useSelectedOptions(topics, topicSelection);
   const updateParams = useSetAtom(updateParamsAtom);
+  const clearSignal = useAtomValue(clearSignalAtom);
+  const clearFilterSignal = useAtomValue(clearFilterSignalAtom);
+  const topicsId = useScopedId(SearchComponents.TOPICS);
 
   const onChange = (value: OptionType[], _clickedOption?: OptionType) => {
     setTopicsFilter(value);
@@ -27,7 +31,7 @@ function TopicsFilter() {
   const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
-    id: SearchComponents.TOPICS,
+    id: topicsId,
     multiSelect: true,
     noTags: true,
     onChange,
@@ -54,14 +58,19 @@ function TopicsFilter() {
     storage.render();
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
   useEffect(() => {
-    window.addEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
+    if (clearSignal) {
+      clearAllSelections();
+    }
+  }, [clearSignal]);
 
-    return () => {
-      window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
-    };
-  });
+  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
+  useEffect(() => {
+    if (clearFilterSignal?.key === ApiKeys.KEYWORDS) {
+      updateSelections();
+    }
+  }, [clearFilterSignal]);
 
   return (
     <div className='hdbt-search__filter event-form__filter--topics'>

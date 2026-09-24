@@ -2,6 +2,7 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { DateRangeSelect } from '@/react/common/DateRangeSelect';
 import { formatHDSDate, parseHDSDate } from '@/react/common/helpers/dateUtils';
 import SearchComponents from '../enum/SearchComponents';
+import { useScopedId } from '../hooks/useScopedId';
 import {
   endDateAtom,
   endDisabledAtom,
@@ -33,11 +34,13 @@ function DateSelect() {
     setErrors({ ...errors, [errorKey]: date ? Number.isNaN(date.getTime()) : false });
   };
 
+  const dateId = useScopedId(SearchComponents.DATE);
+
   return (
     <DateRangeSelect
       endDate={endDate ? formatHDSDate(endDate) : undefined}
       endDisabled={endDisabled}
-      id={SearchComponents.DATE}
+      id={dateId}
       label={Drupal.t('Date', {}, { context: 'React search: date selection label' })}
       setEnd={(d) => setDate(d, 'end')}
       setEndDisabled={setEndDisabled}

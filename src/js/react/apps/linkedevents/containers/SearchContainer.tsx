@@ -5,12 +5,14 @@ import useSWR from 'swr';
 import timeoutFetch from '@/react/common/helpers/TimeoutFetch';
 import { LiftCard } from '../components/LiftCard';
 import ApiKeys from '../enum/ApiKeys';
+import { HOME_ADDRESS_PARAM } from '../enum/QueryParams';
 import { ResultCard } from '../modules/cross-institution-studies/components/ResultCard';
 import { ResultsSort } from '../modules/cross-institution-studies/components/ResultsSort';
 import { CrossStudiesFormContainer } from '../modules/cross-institution-studies/containers/CrossStudiesFormContainer';
 import {
   addressInitializationRunAtom,
   formErrorsAtom,
+  initialQueryAtom,
   loadableUrlAtom,
   settingsAtom,
   updateUrlAtom,
@@ -38,6 +40,7 @@ const SearchContainer = () => {
   const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
   const updateUrl = useSetAtom(updateUrlAtom);
   const [addressInitializationRun, setAddressInitializationRun] = useAtom(addressInitializationRunAtom);
+  const initialQuery = useAtomValue(initialQueryAtom);
   const initialStateSet = useRef(false);
 
   const { useCrossInstitutionalStudiesForm } = settings;
@@ -46,12 +49,11 @@ const SearchContainer = () => {
   useEffect(() => {
     if (addressInitializationRun) return;
 
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('home_address')) {
+    if (initialQuery.get(HOME_ADDRESS_PARAM)) {
       updateUrl();
       setAddressInitializationRun(true);
     }
-  }, [updateUrl, addressInitializationRun, setAddressInitializationRun]);
+  }, [updateUrl, addressInitializationRun, setAddressInitializationRun, initialQuery]);
 
   const setInitialStateInitialized = () => {
     if (initialStateSet.current) return;

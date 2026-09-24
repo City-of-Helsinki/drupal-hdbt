@@ -5,6 +5,7 @@ import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import ApiKeys from '../enum/ApiKeys';
 import { LanguageOptions } from '../enum/LanguageOptions';
 import SearchComponents from '../enum/SearchComponents';
+import { useScopedId } from '../hooks/useScopedId';
 import { languageAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
@@ -32,11 +33,13 @@ export const LanguageFilter = ({
 
   const selectLanguageLabel: string = Drupal.t('Language', {}, { context: 'React search' });
 
+  const languageId = useScopedId(SearchComponents.LANGUAGE);
+
   return (
     <div className='hdbt-search__filter'>
       <Select
         className='hdbt-search__dropdown'
-        id={SearchComponents.LANGUAGE}
+        id={languageId}
         multiSelect
         noTags
         onChange={onChange}
