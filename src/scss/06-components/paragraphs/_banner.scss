@@ -10,6 +10,25 @@
   p:first-child {
     margin: 0;
   }
+
+  // Scale user-edited headings one step down so that they stay visually
+  // below the banner title while keeping their semantic level.
+  h2 {
+    @include font('h3');
+  }
+
+  h3 {
+    @include font('h4');
+    letter-spacing: normal;
+  }
+
+  h4 {
+    @include font('h5');
+  }
+
+  h5 {
+    @include font('h6');
+  }
 }
 
 .banner__icon {
