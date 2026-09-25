@@ -33,7 +33,7 @@ const settingsFor = (count: string, eventType: string) => ({
   hobbies_public_url: 'https://harrastukset.hel.fi',
   places: {},
   removeBloatingEvents: false,
-  use_fixtures: false,
+  use_fixtures: false as const,
   useCrossInstitutionalStudiesForm: false,
   useFullLocationFilter: false,
   useFullTopicsFilter: false,

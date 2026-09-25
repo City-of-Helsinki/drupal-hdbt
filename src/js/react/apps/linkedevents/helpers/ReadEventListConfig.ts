@@ -1,5 +1,6 @@
 import { eventsBaseUrl, hobbiesBaseUrl } from '../enum/PublicUrls';
 import { BloatingTargetGroups } from '../enum/TargetGroups';
+import type EventsResponse from '../types/EventsResponse';
 import type FilterSettings from '../types/FilterSettings';
 import type OptionType from '../types/OptionType';
 import type Topic from '../types/Topic';
@@ -22,8 +23,7 @@ export type EventsAppConfig = {
   ownsPageUrl: boolean;
   settings: FilterSettings;
   topics: Topic[];
-  // biome-ignore lint/suspicious/noExplicitAny: mirrors the untyped drupalSettings fixture shape
-  useFixtures: any;
+  useFixtures: EventsResponse | false;
 };
 
 export type ReadConfigContext = {
@@ -32,26 +32,12 @@ export type ReadConfigContext = {
   search: string;
 };
 
-// Transform locations from API response to options
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-const transformLocations = (locations: any = null) => {
-  if (!locations) {
-    return [];
-  }
+type Places = (typeof drupalSettings.helfi_events.data)[string]['places'];
 
-  const { currentLanguage } = drupalSettings.path;
-  const locationOptions: OptionType[] = [];
-
-  const keys = Object.keys(locations);
-  keys.forEach((id: string) => {
-    const location = locations[id];
-    if (location.id && location.name?.[currentLanguage]) {
-      locationOptions.push({ value: location.id, label: location.name[currentLanguage] });
-    }
-  });
-
-  return locationOptions;
-};
+const transformLocations = (locations?: Places): OptionType[] =>
+  Object.values(locations ?? {})
+    .filter((location) => location.id && location.name?.[drupalSettings.path.currentLanguage])
+    .map((location) => ({ value: location.id, label: location.name[drupalSettings.path.currentLanguage] }));
 
 export const readEventListConfig = (
   element: HTMLElement,

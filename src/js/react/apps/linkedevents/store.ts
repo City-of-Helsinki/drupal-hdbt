@@ -89,7 +89,7 @@ export const settingsAtom = atom(
     },
 );
 
-export const useFixturesAtom = atom<object | false>((get) => get(configAtom)?.useFixtures);
+export const useFixturesAtom = atom((get) => get(configAtom)?.useFixtures ?? false);
 
 export const pageAtom = atom<number>(1);
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
@@ -175,9 +175,9 @@ export const remoteFilterAtom = atom<boolean>(false);
 export const addressInitializationRunAtom = atom<boolean>(false);
 
 // Selections held in HDS storage are not jotai state, so resetting the form has to signal the
-// filter components. The nonce keeps repeated clears of the same filter distinguishable.
+// filter components.
 export const clearSignalAtom = atom<number>(0);
-export const clearFilterSignalAtom = atom<{ key: string; nonce: number } | null>(null);
+export const clearFilterSignalAtom = atom<{ key: string } | null>(null);
 
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);

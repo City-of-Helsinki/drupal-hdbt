@@ -143,7 +143,7 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
     updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     updateUrl();
 
-    setClearFilterSignal((previous) => ({ key: valueKey, nonce: (previous?.nonce ?? 0) + 1 }));
+    setClearFilterSignal({ key: valueKey });
   };
 
   return (

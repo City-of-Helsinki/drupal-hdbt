@@ -18,11 +18,9 @@ import {
   updateUrlAtom,
   useFixturesAtom,
 } from '../store';
-import type Event from '../types/Event';
+import type EventsResponse from '../types/EventsResponse';
 import FormContainer from './FormContainer';
 import ResultsContainer from './ResultsContainer';
-
-type ResponseType = { data: Event[]; meta: { count: number; next?: string; previous?: string } };
 
 const SWR_REFRESH_OPTIONS = {
   errorRetryCount: 3,
@@ -37,7 +35,7 @@ const SearchContainer = () => {
   const [retriesExhausted, setRetriesExhausted] = useState(false);
   const settings = useAtomValue(settingsAtom);
   const urlData = useAtomValue(loadableUrlAtom);
-  const fixtureData = useAtomValue(useFixturesAtom) as ResponseType;
+  const fixtureData = useAtomValue(useFixturesAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
   const [addressInitializationRun, setAddressInitializationRun] = useAtom(addressInitializationRunAtom);
   const initialQuery = useAtomValue(initialQueryAtom);
@@ -60,7 +58,7 @@ const SearchContainer = () => {
     initialStateSet.current = true;
   };
 
-  const getEvents = async (reqUrl: string): Promise<ResponseType | null> => {
+  const getEvents = async (reqUrl: string): Promise<EventsResponse | null> => {
     const response = await Sentry.startSpan(
       { name: 'Linkedevents api call', op: 'external.api' },
       async () => await timeoutFetch(reqUrl, undefined, 10000),

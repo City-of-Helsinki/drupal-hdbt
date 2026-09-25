@@ -1,8 +1,8 @@
 import type { SearchFunction, SearchResult } from 'hds-react';
 import { Select, useSelectStorage } from 'hds-react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -12,6 +12,7 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { LinkedEventsTopic } from '@/types/LinkedEvents';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
+import { useAtomListener } from '../hooks/useAtomListener';
 import { useScopedId } from '../hooks/useScopedId';
 import { clearFilterSignalAtom, clearSignalAtom, topicSelectionAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
@@ -19,8 +20,6 @@ import type OptionType from '../types/OptionType';
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-  const clearSignal = useAtomValue(clearSignalAtom);
-  const clearFilterSignal = useAtomValue(clearFilterSignalAtom);
   const topicsId = useScopedId(SearchComponents.TOPICS);
 
   const getTopicsParamValue = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
@@ -90,19 +89,12 @@ const FullTopicsFilter = memo(() => {
     updateSelectionsInStorage(storage, getTopicsParamValue());
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
-  useEffect(() => {
-    if (clearSignal) {
-      clearAllSelections();
-    }
-  }, [clearSignal]);
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
-  useEffect(() => {
-    if (clearFilterSignal?.key === ApiKeys.KEYWORDS) {
+  useAtomListener(clearSignalAtom, clearAllSelections);
+  useAtomListener(clearFilterSignalAtom, (signal) => {
+    if (signal?.key === ApiKeys.KEYWORDS) {
       updateSelections();
     }
-  }, [clearFilterSignal]);
+  });
 
   return (
     <div className='hdbt-search__filter event-form__filter--topics'>

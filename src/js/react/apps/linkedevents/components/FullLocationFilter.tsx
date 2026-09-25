@@ -1,8 +1,8 @@
 import type { SearchResult } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -16,14 +16,13 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { ServiceMapPlace } from '@/types/ServiceMap';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
+import { useAtomListener } from '../hooks/useAtomListener';
 import { useScopedId } from '../hooks/useScopedId';
 import { clearFilterSignalAtom, clearSignalAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 
 const FullLocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-  const clearSignal = useAtomValue(clearSignalAtom);
-  const clearFilterSignal = useAtomValue(clearFilterSignalAtom);
   const locationId = useScopedId(SearchComponents.LOCATION);
 
   const getLocationParamValue = useAtomCallback(useCallback((get) => get(locationSelectionAtom), []));
@@ -93,19 +92,12 @@ const FullLocationFilter = memo(() => {
     updateSelectionsInStorage(storage, getLocationParamValue());
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
-  useEffect(() => {
-    if (clearSignal) {
-      clearAllSelections();
-    }
-  }, [clearSignal]);
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only the signal should retrigger
-  useEffect(() => {
-    if (clearFilterSignal?.key === ApiKeys.LOCATION) {
+  useAtomListener(clearSignalAtom, clearAllSelections);
+  useAtomListener(clearFilterSignalAtom, (signal) => {
+    if (signal?.key === ApiKeys.LOCATION) {
       updateSelections();
     }
-  }, [clearFilterSignal]);
+  });
 
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
