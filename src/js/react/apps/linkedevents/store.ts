@@ -295,7 +295,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
   }
 });
 
-export const urlAtom = atom(async (get) => {
+export const urlAtom = atom((get) => {
   const submittedParams = get(submittedParamsAtom);
   const baseUrl = get(baseUrlAtom);
 
