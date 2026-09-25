@@ -14,6 +14,7 @@ import SubmitButton from '../components/SubmitButton';
 import { TargetGroupFilter } from '../components/TargetGroupFilter';
 import TopicsFilter from '../components/TopicsFilter';
 import ApiKeys from '../enum/ApiKeys';
+import { useScopedId } from '../hooks/useScopedId';
 import {
   addressAtom,
   formErrorsAtom,
@@ -49,6 +50,9 @@ function FormContainer() {
   } = filterSettings;
   const initialParams = useAtomValue(initialParamsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
+  const addressId = useScopedId('address');
+  const remoteToggleId = useScopedId('remote-toggle');
+  const freeToggleId = useScopedId('free-toggle');
 
   // Searchbar is hidden if initialParamas has FULL_TEXT option too
   const showSearchBar = useSearchBar && !initialParams.has(ApiKeys.FULL_TEXT);
@@ -114,7 +118,7 @@ function FormContainer() {
         {useLocationSearch && (
           <AddressSearch
             hideSearchButton
-            id='location'
+            id={addressId}
             onChange={(value: string) => updateAddress(value)}
             onSubmit={(value: string) => handleAddressSubmit(value, updateAddress)}
             texts={{
@@ -155,14 +159,14 @@ function FormContainer() {
               {bothCheckboxes && <legend className='hdbt-search--react__legend'>{showOnlyLabel}</legend>}
               {showRemoteFilter && (
                 <CheckboxFilter
-                  id='remote-toggle'
+                  id={remoteToggleId}
                   label={remoteLabel}
                   atom={remoteFilterAtom}
                   valueKey={ApiKeys.REMOTE}
                 />
               )}
               {showFreeFilter && (
-                <CheckboxFilter id='free-toggle' label={freeLabel} atom={freeFilterAtom} valueKey={ApiKeys.FREE} />
+                <CheckboxFilter id={freeToggleId} label={freeLabel} atom={freeFilterAtom} valueKey={ApiKeys.FREE} />
               )}
             </fieldset>
           </div>

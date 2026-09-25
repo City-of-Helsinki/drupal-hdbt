@@ -2,7 +2,7 @@ import type { SearchResult } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -16,11 +16,14 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { ServiceMapPlace } from '@/types/ServiceMap';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import { locationSelectionAtom, updateParamsAtom } from '../store';
+import { useAtomListener } from '../hooks/useAtomListener';
+import { useScopedId } from '../hooks/useScopedId';
+import { clearFilterSignalAtom, clearSignalAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 
 const FullLocationFilter = memo(() => {
   const setLocationFilter = useSetAtom(locationSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
+  const locationId = useScopedId(SearchComponents.LOCATION);
 
   const getLocationParamValue = useAtomCallback(useCallback((get) => get(locationSelectionAtom), []));
 
@@ -73,7 +76,7 @@ const FullLocationFilter = memo(() => {
   const selectVenueLabel: string = Drupal.t('Venue', {}, { context: 'Events search' });
 
   const storage = useSelectStorage({
-    id: SearchComponents.LOCATION,
+    id: locationId,
     multiSelect: true,
     noTags: true,
     onChange,
@@ -89,14 +92,11 @@ const FullLocationFilter = memo(() => {
     updateSelectionsInStorage(storage, getLocationParamValue());
   };
 
-  useEffect(() => {
-    window.addEventListener('eventsearch-clear', clearAllSelections);
-    window.addEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
-
-    return () => {
-      window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${ApiKeys.LOCATION}`, updateSelections);
-    };
+  useAtomListener(clearSignalAtom, clearAllSelections);
+  useAtomListener(clearFilterSignalAtom, (signal) => {
+    if (signal?.key === ApiKeys.LOCATION) {
+      updateSelections();
+    }
   });
 
   return (

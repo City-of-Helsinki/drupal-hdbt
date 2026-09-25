@@ -1,131 +1,38 @@
 /** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12501 */
-import { atom } from 'jotai';
-import { unwrap } from 'jotai/utils';
+// Nothing here may read `window`, `document` or `drupalSettings` at module scope: a page can hold
+// several embeds, each with its own store, so every initial value has to come from `configAtom`.
+import { atom, createStore } from 'jotai';
+import { atomWithDefault, unwrap } from 'jotai/utils';
 import { endOfDay, startOfDay, toLocalISO } from '@/react/common/helpers/dateUtils';
 import { getAddressCoordinates } from '@/react/common/helpers/ServiceMap';
 import ApiKeys from './enum/ApiKeys';
-import ROOT_ID from './enum/RootId';
-import { BloatingTargetGroups } from './enum/TargetGroups';
+import { HOME_ADDRESS_PARAM } from './enum/QueryParams';
+import type { EventsAppConfig } from './helpers/ReadEventListConfig';
 import type { EventTypeOption } from './types/EventTypeOption';
-import type FilterSettings from './types/FilterSettings';
 import type FormErrors from './types/FormErrors';
 import type OptionType from './types/OptionType';
 import type Topic from './types/Topic';
-
-const queryStringParams = new URLSearchParams(window.location.search);
 
 interface Options {
   [key: string]: string | undefined;
 }
 
-// Transform locations from API response to options
-// biome-ignore lint/suspicious/noExplicitAny: @todo UHF-12501
-const transformLocations = (locations: any = null) => {
-  if (!locations) {
-    return [];
-  }
+export const configAtom = atom<EventsAppConfig | null>(null);
 
-  const { currentLanguage } = drupalSettings.path;
-  const locationOptions: OptionType[] = [];
+export const createEventsStore = (config: EventsAppConfig) => {
+  const store = createStore();
+  store.set(configAtom, config);
 
-  const keys = Object.keys(locations);
-  keys.forEach((id: string) => {
-    const location = locations[id];
-    if (location.id && location.name?.[currentLanguage]) {
-      locationOptions.push({ value: location.id, label: location.name[currentLanguage] });
-    }
-  });
-
-  return locationOptions;
+  return store;
 };
 
-export const hobbiesBaseUrl = 'https://harrastukset.hel.fi';
+export const instanceIdAtom = atom((get) => get(configAtom)?.instanceId ?? '');
 
-const getInitialSettings = () => {
-  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
-  const paragraphId = rootElement?.dataset?.paragraphId;
+export const initialQueryAtom = atom((get) => get(configAtom)?.initialQuery ?? new URLSearchParams());
 
-  if (!rootElement || !paragraphId) {
-    console.warn('Paragraph id not found in source HTML');
-    return;
-  }
-
-  const settings = drupalSettings.helfi_events?.data?.[paragraphId];
-  const useFixtures = settings?.use_fixtures;
-  const eventsApiUrl = settings?.events_api_url;
-  const eventListTitle = settings?.field_event_list_title;
-  const eventsPublicUrl = settings?.events_public_url || 'https://tapahtumat.hel.fi';
-  const hobbiesPublicUrl = settings?.hobbies_public_url || hobbiesBaseUrl;
-
-  const filterSettings: FilterSettings = {
-    eventCount: Number(settings?.field_event_count),
-    eventListType: settings?.event_list_type,
-    layout: settings?.event_list_layout || 'default',
-    hideHeading: settings?.hideHeading,
-    hidePagination: settings?.hidePagination,
-    removeBloatingEvents: settings?.removeBloatingEvents,
-    showFreeFilter: settings?.field_free_events,
-    showLanguageFilter: settings?.field_language,
-    showLocation: settings?.field_event_location,
-    showRemoteFilter: settings?.field_remote_events,
-    showTimeFilter: settings?.field_event_time,
-    showTopicsFilter: settings?.field_filter_keywords?.length > 0,
-    useCrossInstitutionalStudiesForm: settings?.useCrossInstitutionalStudiesForm,
-    useFullLocationFilter: settings?.useFullLocationFilter,
-    useFullTopicsFilter: settings?.useFullTopicsFilter,
-    useLocationSearch: settings?.useLocationSearch,
-    useSearchBar: settings?.field_search_term,
-    useTargetGroupFilter: settings?.useTargetGroupFilter,
-  };
-  const locations = transformLocations(settings?.places);
-  const topics: Topic[] = settings?.field_filter_keywords?.map((topic) => ({
-    value: topic.id,
-    label: topic.name.charAt(0).toUpperCase() + topic.name.slice(1),
-  }));
-
-  let baseUrl;
-  let initialParams;
-
-  const hasQuery = eventsApiUrl.indexOf('?') !== -1;
-  if (hasQuery) {
-    const [url, queryString] = eventsApiUrl.split('?');
-    baseUrl = url;
-    initialParams = new URLSearchParams(queryString);
-  } else {
-    baseUrl = eventsApiUrl;
-  }
-
-  if (initialParams && filterSettings.eventCount) {
-    initialParams.set('page_size', filterSettings.eventCount.toString());
-  }
-
-  if (initialParams && filterSettings.showLanguageFilter) {
-    initialParams.delete('language');
-  }
-
-  if (initialParams && filterSettings.removeBloatingEvents) {
-    initialParams.set('keyword!', BloatingTargetGroups.join(','));
-  }
-
-  return {
-    baseUrl,
-    eventListTitle,
-    eventsPublicUrl,
-    hobbiesPublicUrl,
-    initialParams,
-    initialUrl: eventsApiUrl,
-    locations,
-    settings: filterSettings,
-    topics,
-    useFixtures,
-  };
-};
-const initialSettings = getInitialSettings();
-if (!initialSettings) {
-  throw new Error('Failed to initialize settings');
-}
-// Store all needed data to 'master' atom
-const baseAtom = atom(initialSettings);
+// The query string, and page-wide elements such as the Helsinki near you breadcrumb, need a
+// single owner when a page holds several embeds.
+export const ownsPageUrlAtom = atom((get) => get(configAtom)?.ownsPageUrl ?? false);
 
 declare const LINKED_EVENTS_DEV_URL: string | undefined;
 
@@ -133,7 +40,7 @@ declare const LINKED_EVENTS_DEV_URL: string | undefined;
 export const baseUrlAtom = atom((get) => {
   const devUrl = typeof LINKED_EVENTS_DEV_URL !== 'undefined' ? LINKED_EVENTS_DEV_URL : null;
 
-  return devUrl || get(baseAtom)?.baseUrl;
+  return devUrl || get(configAtom)?.baseUrl;
 });
 
 export const initialUrlAtom = atom((get) => {
@@ -145,21 +52,21 @@ export const initialUrlAtom = atom((get) => {
 
 export const loadableInitialUrlAtom = unwrap(initialUrlAtom);
 
-export const initialParamsAtom = atom((get) => get(baseAtom)?.initialParams || new URLSearchParams());
+export const initialParamsAtom = atom((get) => get(configAtom)?.initialParams || new URLSearchParams());
 
-export const locationAtom = atom((get) => get(baseAtom)?.locations || []);
+export const locationAtom = atom((get) => get(configAtom)?.locations || []);
 
-export const topicsAtom = atom((get) => get(baseAtom)?.topics || []);
+export const topicsAtom = atom((get) => get(configAtom)?.topics || []);
 
-export const titleAtom = atom((get) => get(baseAtom)?.eventListTitle);
+export const titleAtom = atom((get) => get(configAtom)?.eventListTitle);
 
-export const eventsPublicUrl = atom((get) => get(baseAtom)?.eventsPublicUrl);
+export const eventsPublicUrl = atom((get) => get(configAtom)?.eventsPublicUrl);
 
-export const hobbiesPublicUrl = atom((get) => get(baseAtom)?.hobbiesPublicUrl);
+export const hobbiesPublicUrl = atom((get) => get(configAtom)?.hobbiesPublicUrl);
 
 export const settingsAtom = atom(
   (get) =>
-    get(baseAtom)?.settings || {
+    get(configAtom)?.settings || {
       eventCount: 5,
       eventListType: 'events',
       layout: 'default',
@@ -182,7 +89,7 @@ export const settingsAtom = atom(
     },
 );
 
-export const useFixturesAtom = atom<object | false>((get) => get(baseAtom)?.useFixtures);
+export const useFixturesAtom = atom((get) => get(configAtom)?.useFixtures ?? false);
 
 export const pageAtom = atom<number>(1);
 export const locationSelectionAtom = atom<OptionType[]>([] as OptionType[]);
@@ -267,6 +174,11 @@ export const freeFilterAtom = atom<boolean>(false);
 export const remoteFilterAtom = atom<boolean>(false);
 export const addressInitializationRunAtom = atom<boolean>(false);
 
+// Selections held in HDS storage are not jotai state, so resetting the form has to signal the
+// filter components.
+export const clearSignalAtom = atom<number>(0);
+export const clearFilterSignalAtom = atom<{ key: string } | null>(null);
+
 export const resetFormAtom = atom(null, (get, set) => {
   set(locationSelectionAtom, []);
   set(topicSelectionAtom, []);
@@ -294,11 +206,12 @@ export const resetFormAtom = atom(null, (get, set) => {
   set(paramsAtom, newParams);
   set(submittedParamsAtom, newParams);
 
-  const clearEvent = new Event('eventsearch-clear');
-  window.dispatchEvent(clearEvent);
+  set(clearSignalAtom, (count) => count + 1);
 });
 
-export const submittedParamsAtom = atom<URLSearchParams>(new URLSearchParams(initialSettings.initialParams));
+export const submittedParamsAtom = atomWithDefault<URLSearchParams>(
+  (get) => new URLSearchParams(get(initialParamsAtom)),
+);
 
 export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[] | null = null) => {
   const address = get(addressAtom);
@@ -306,15 +219,17 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
   const currentErrors = get(formErrorsAtom);
   const addressInitializationRun = get(addressInitializationRunAtom);
 
+  const ownsPageUrl = get(ownsPageUrlAtom);
+
   const removeHomeAddressParam = () => {
     const currentUrl = new URL(window.location.href);
-    currentUrl.searchParams.delete('home_address');
+    currentUrl.searchParams.delete(HOME_ADDRESS_PARAM);
     window.history.pushState({}, '', currentUrl.toString());
   };
 
   // If user does an empty search, clear out url params
   if (addressInitializationRun) {
-    const urlAddress = queryStringParams.get('home_address');
+    const urlAddress = get(initialQueryAtom).get(HOME_ADDRESS_PARAM);
     if (urlAddress && address?.trim() === '') {
       removeHomeAddressParam();
       set(addressInitializationRunAtom, false);
@@ -331,7 +246,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
 
     // If user searched a different address than the one from URL params, clean up the URL
     if (addressInitializationRun) {
-      const urlAddress = queryStringParams.get('home_address');
+      const urlAddress = get(initialQueryAtom).get(HOME_ADDRESS_PARAM);
       if (urlAddress !== addressName) {
         removeHomeAddressParam();
         set(addressInitializationRunAtom, false);
@@ -344,10 +259,10 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
     }
 
     // Update the Helsinki Near You breadcrumb if present.
-    const breadcrumbLink = document.getElementById('hny-address-breadcrumb');
+    const breadcrumbLink = ownsPageUrl ? document.getElementById('hny-address-breadcrumb') : null;
     if (breadcrumbLink instanceof HTMLAnchorElement) {
       const url = new URL(breadcrumbLink.href);
-      url.searchParams.set('home_address', addressName);
+      url.searchParams.set(HOME_ADDRESS_PARAM, addressName);
       breadcrumbLink.href = url.toString();
       breadcrumbLink.textContent = Drupal.t(
         'Results for @address',
@@ -365,7 +280,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
   set(pageAtom, 1);
   set(submittedParamsAtom, stagedParams);
 
-  if (visibleParams) {
+  if (visibleParams && ownsPageUrl) {
     const persistedParams = new URLSearchParams();
     visibleParams.forEach((param) => {
       const value = stagedParams.get(param);
@@ -380,7 +295,7 @@ export const updateUrlAtom = atom(null, async (get, set, visibleParams: string[]
   }
 });
 
-export const urlAtom = atom(async (get) => {
+export const urlAtom = atom((get) => {
   const submittedParams = get(submittedParamsAtom);
   const baseUrl = get(baseUrlAtom);
 
@@ -389,7 +304,7 @@ export const urlAtom = atom(async (get) => {
 
 export const loadableUrlAtom = unwrap(urlAtom);
 
-export const paramsAtom = atom(new URLSearchParams(initialSettings.initialParams));
+export const paramsAtom = atomWithDefault<URLSearchParams>((get) => new URLSearchParams(get(initialParamsAtom)));
 
 export const updatePageParamAtom = atom(null, (get, set, page: number) => {
   const submittedParams = new URLSearchParams(get(submittedParamsAtom));
@@ -420,8 +335,10 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
   set(paramsAtom, params);
 });
 
-// Strore address input. Converted to coordinates during form submit.
-export const addressAtom = atom<string | undefined | null>(queryStringParams.get('home_address'));
+// Store address input. Converted to coordinates during form submit.
+export const addressAtom = atomWithDefault<string | undefined | null>((get) =>
+  get(initialQueryAtom).get(HOME_ADDRESS_PARAM),
+);
 
 export const languageAtom = atom<OptionType[]>([]);
 

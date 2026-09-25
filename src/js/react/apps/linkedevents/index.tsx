@@ -1,30 +1,42 @@
-import { getDefaultStore } from 'jotai';
+import { Provider } from 'jotai';
 import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import initSentry from '@/react/common/helpers/Sentry';
 import { EventsGhostList } from './components/EventsGhostList';
 import SearchContainer from './containers/SearchContainer';
-import ROOT_ID from './enum/RootId';
-import { settingsAtom } from './store';
+import { EVENTS_ROOT_SELECTOR } from './enum/RootId';
+import { readEventListConfig } from './helpers/ReadEventListConfig';
+import { createEventsStore } from './store';
+
+initSentry(0.05);
 
 const start = () => {
-  initSentry(0.05);
-  const rootElement: HTMLElement | null = document.getElementById(ROOT_ID);
+  const rootElements = document.querySelectorAll<HTMLElement>(EVENTS_ROOT_SELECTOR);
 
-  if (!rootElement) {
-    console.warn('Root id missing for Events filter', { ROOT_ID });
+  if (!rootElements.length) {
+    console.warn('Root element missing for Events filter', { EVENTS_ROOT_SELECTOR });
     return;
   }
-  const { eventCount, layout } = getDefaultStore().get(settingsAtom);
-  const isLifts = layout === 'lifts';
 
-  createRoot(rootElement).render(
-    <React.StrictMode>
-      <Suspense fallback={<EventsGhostList count={eventCount} isLifts={isLifts} />}>
-        <SearchContainer />
-      </Suspense>
-    </React.StrictMode>,
-  );
+  rootElements.forEach((rootElement, index) => {
+    const config = readEventListConfig(rootElement, { index, search: window.location.search });
+
+    if (!config) {
+      return;
+    }
+
+    const { eventCount, layout } = config.settings;
+
+    createRoot(rootElement).render(
+      <React.StrictMode>
+        <Provider store={createEventsStore(config)}>
+          <Suspense fallback={<EventsGhostList count={eventCount} isLifts={layout === 'lifts'} />}>
+            <SearchContainer />
+          </Suspense>
+        </Provider>
+      </React.StrictMode>,
+    );
+  });
 };
 
 document.addEventListener('DOMContentLoaded', start);

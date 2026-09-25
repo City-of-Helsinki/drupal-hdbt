@@ -8,6 +8,7 @@ import ApiKeys from '../enum/ApiKeys';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
 import {
+  clearFilterSignalAtom,
   endDateAtom,
   eventTypeAtom,
   freeFilterAtom,
@@ -127,6 +128,7 @@ type ListFilterBulletsProps = {
 const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBulletsProps) => {
   const updateParams = useSetAtom(updateParamsAtom);
   const updateUrl = useSetAtom(updateUrlAtom);
+  const setClearFilterSignal = useSetAtom(clearFilterSignalAtom);
 
   if (!values.length) {
     return null;
@@ -141,8 +143,7 @@ const ListFilterBullets = ({ updater, values, valueKey, url }: ListFilterBullets
     updateParams({ [valueKey]: newValue.map((v: any) => v.value).join(',') });
     updateUrl();
 
-    const event = new Event(`eventsearch-clear-${valueKey}`);
-    window.dispatchEvent(event);
+    setClearFilterSignal({ key: valueKey });
   };
 
   return (
