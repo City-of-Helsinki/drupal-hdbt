@@ -207,6 +207,9 @@ koro-helper:
     dist/js/koroHelper.min.js: {
       minified: true
     }
+  dependencies:
+    - core/drupal
+    - core/once
 
 language-toast:
   version: HELFI_DEPLOYMENT_IDENTIFIER
