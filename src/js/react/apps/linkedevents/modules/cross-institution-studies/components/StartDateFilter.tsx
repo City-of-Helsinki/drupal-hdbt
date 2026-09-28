@@ -2,6 +2,7 @@ import { type Option, Select } from 'hds-react';
 import { useAtom, useSetAtom } from 'jotai';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
+import { useScopedId } from '../../../hooks/useScopedId';
 import { updateDatesAtom } from '../../../store';
 import { startDateAtom } from '../store';
 
@@ -36,12 +37,14 @@ export const StartDateFilter = ({ dateOptions }: { dateOptions: Map<string, { st
   const languageLabel = Drupal.t('Start time', {}, { context: 'Cross-institutional studies: start time filter label' });
   const options = Array.from(dateOptions.keys()).map((label) => ({ label, value: label }));
 
+  const startDateSelectId = useScopedId('start-date-select');
+
   return (
     <div className='hdbt-search__filter'>
       <Select
         className='hdbt-search__dropdown'
         clearable
-        id='start-date-select'
+        id={startDateSelectId}
         onChange={(selectedOptions) => handleChange(selectedOptions)}
         options={options}
         value={value}

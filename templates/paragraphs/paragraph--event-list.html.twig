@@ -24,7 +24,8 @@
     {% block component_content %}
       {# Hook React app to this div #}
       <div
-        id="helfi-events-search"
+        class="helfi-events-search"
+        id="helfi-events-search--{{ paragraph.id() }}"
         data-paragraph-id="{{ paragraph.id() }}"
       >
       </div>

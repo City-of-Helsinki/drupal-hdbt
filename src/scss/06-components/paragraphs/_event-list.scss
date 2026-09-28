@@ -3,6 +3,7 @@ $select-max-width: 420px;
 
 .component--event-list {
   @include component-side-padding;
+  overflow-anchor: none;
 }
 
 .events-list__empty-subtext {

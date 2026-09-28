@@ -3,7 +3,7 @@ import { atom } from 'jotai';
 import ApiKeys from '../../enum/ApiKeys';
 import { LanguageOptions } from '../../enum/LanguageOptions';
 import { optionDefaults } from '../../enum/OptionDefaults';
-import { languageAtom, pageAtom, paramsAtom, submittedParamsAtom } from '../../store';
+import { initialQueryAtom, languageAtom, pageAtom, paramsAtom, submittedParamsAtom } from '../../store';
 import { sortOptions } from '../enum/SortOptions';
 import { TeachingModes } from '../enum/TeachingModes';
 
@@ -26,7 +26,7 @@ export const visibleParams = [
 ];
 
 export const initializeStateAtom = atom(null, (get, set, dateOptions: Map<string, { start?: Date; end?: Date }>) => {
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(get(initialQueryAtom));
 
   if (params.get(ApiKeys.COMBINED_TEXT)) {
     set(keywordAtom, params.get(ApiKeys.COMBINED_TEXT)?.trim() || '');

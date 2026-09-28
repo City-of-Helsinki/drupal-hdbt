@@ -22,10 +22,18 @@
         t: function(str, args, options) {
           return str;
         },
+        formatPlural: function(count, singular, plural) {
+          return (Number(count) === 1 ? singular : plural).replace('@count', count);
+        },
         theme: function(id) {
           return '<div class="hds-loading-spinner"><div></div><div></div><div></div></div>';
         }
       };
+
+      // Two embeds with different configuration, so filtering one can be seen not to affect
+      // the other.
+      var eventsApi = 'https://api.hel.fi/linkedevents/v1/event/';
+      var commonQuery = 'format=json&include=keywords,location,registration,super_event&page=1&sort=end_time&start=now';
 
       window.drupalSettings = {
         path: {
@@ -33,7 +41,66 @@
         },
         helfi_events: {
           "imagePlaceholder": "<div class=\"image-placeholder\">\n  <span class=\"hel-icon hel-icon--calendar-clock \"  aria-hidden=\"true\" ></span>\n</div>\n",
-          "baseUrl": "https://tapahtumat.hel.fi"
+          "baseUrl": "https://tapahtumat.hel.fi",
+          "data": {
+            "1375": {
+              "field_event_list_title": "Tapahtumat",
+              "field_event_count": "3",
+              "field_filter_keywords": [
+                { "id": "yso:p1235", "name": "elokuvat" },
+                { "id": "yso:p1808", "name": "musiikki" }
+              ],
+              "events_api_url": eventsApi + '?' + commonQuery + '&event_type=General&page_size=3',
+              "events_public_url": "https://tapahtumat.hel.fi",
+              "hobbies_public_url": "https://harrastukset.hel.fi",
+              "event_list_type": "events",
+              "event_list_layout": "default",
+              "hideHeading": false,
+              "hidePagination": false,
+              "removeBloatingEvents": false,
+              "field_event_location": true,
+              "field_event_time": true,
+              "field_free_events": true,
+              "field_language": true,
+              "field_remote_events": true,
+              "field_search_term": true,
+              "places": {},
+              "use_fixtures": false,
+              "useCrossInstitutionalStudiesForm": false,
+              "useFullLocationFilter": false,
+              "useFullTopicsFilter": false,
+              "useLocationSearch": false,
+              "useTargetGroupFilter": false
+            },
+            "1402": {
+              "field_event_list_title": "Harrastukset",
+              "field_event_count": "5",
+              "field_filter_keywords": [
+                { "id": "yso:p916", "name": "liikunta" }
+              ],
+              "events_api_url": eventsApi + '?' + commonQuery + '&event_type=Course&page_size=5',
+              "events_public_url": "https://tapahtumat.hel.fi",
+              "hobbies_public_url": "https://harrastukset.hel.fi",
+              "event_list_type": "hobbies",
+              "event_list_layout": "default",
+              "hideHeading": false,
+              "hidePagination": false,
+              "removeBloatingEvents": false,
+              "field_event_location": false,
+              "field_event_time": true,
+              "field_free_events": true,
+              "field_language": false,
+              "field_remote_events": false,
+              "field_search_term": true,
+              "places": {},
+              "use_fixtures": false,
+              "useCrossInstitutionalStudiesForm": false,
+              "useFullLocationFilter": false,
+              "useFullTopicsFilter": false,
+              "useLocationSearch": false,
+              "useTargetGroupFilter": false
+            }
+          }
         }
       }
     </script>
@@ -47,8 +114,21 @@
           <div class="component__container">
             <div class="component__content district-and-project-search development-container">
               <div
-                id="helfi-events-search"
+                class="helfi-events-search"
+                id="helfi-events-search--1375"
                 data-paragraph-id="1375"
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="component component--event-list">
+          <div class="component__container">
+            <div class="component__content district-and-project-search development-container">
+              <!-- Carries the id a subtheme emits before it migrates to the class. -->
+              <div
+                id="helfi-events-search"
+                data-paragraph-id="1402"
                 >
               </div>
             </div>

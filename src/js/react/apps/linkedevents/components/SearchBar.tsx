@@ -2,12 +2,14 @@ import { TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
+import { useScopedId } from '../hooks/useScopedId';
 import { initialParamsAtom, searchKeywordAtom, updateParamsAtom } from '../store';
 
 export const SearchBar = () => {
   const [value, setValue] = useAtom(searchKeywordAtom);
   const updateParams = useSetAtom(updateParamsAtom);
   const initialParams = useAtomValue(initialParamsAtom);
+  const searchBarId = useScopedId(SearchComponents.SEARCH_BAR);
 
   // Bail if conflicting paremeter is set.
   if (initialParams.has(ApiKeys.FULL_TEXT)) {
@@ -25,7 +27,7 @@ export const SearchBar = () => {
 
   return (
     <TextInput
-      id={SearchComponents.SEARCH_BAR}
+      id={searchBarId}
       className='hdbt-search__filter'
       label={Drupal.t('Search term', {}, { context: 'Search keyword label' })}
       onChange={handleChange}

@@ -3,6 +3,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import ApiKeys from '../enum/ApiKeys';
 import { typeSelectionsToString } from '../helpers/TypeSelectionsToString';
+import { useScopedId } from '../hooks/useScopedId';
 import { eventTypeAtom, updateParamsAtom } from '../store';
 import type { EventTypeOption } from '../types/EventTypeOption';
 
@@ -10,9 +11,8 @@ export const EventTypeFilter = () => {
   const [typeSelections, setTypes] = useAtom(eventTypeAtom);
   const updateParams = useSetAtom(updateParamsAtom);
 
-  const toggleValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const toggleValue = (value: EventTypeOption) => (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event?.target?.checked;
-    const value = event.target.id === 'event-type-toggle' ? 'General' : 'Course';
     const newTypeSelections: EventTypeOption[] = checked
       ? [...typeSelections, value]
       : typeSelections.filter((type) => type !== value);
@@ -20,22 +20,25 @@ export const EventTypeFilter = () => {
     updateParams({ [ApiKeys.EVENT_TYPE]: typeSelectionsToString(newTypeSelections) });
   };
 
+  const eventToggleId = useScopedId('event-type-toggle');
+  const hobbyToggleId = useScopedId('hobby-type-toggle');
+
   return (
     <>
       <Checkbox
         checked={typeSelections.includes('General')}
         className='hdbt-search--react__checkbox'
-        id='event-type-toggle'
+        id={eventToggleId}
         label={Drupal.t('Events', {}, { context: 'Event search: events type' })}
-        onChange={toggleValue}
+        onChange={toggleValue('General')}
         style={defaultCheckboxStyle}
       />
       <Checkbox
         checked={typeSelections.includes('Course')}
         className='hdbt-search--react__checkbox'
-        id='hobby-type-toggle'
+        id={hobbyToggleId}
         label={Drupal.t('Hobbies', {}, { context: 'Event search: hobbies type' })}
-        onChange={toggleValue}
+        onChange={toggleValue('Course')}
         style={defaultCheckboxStyle}
       />
     </>

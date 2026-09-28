@@ -1,13 +1,16 @@
 import { type OptionInProps, Select, useSelectStorage } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useAtomCallback } from 'jotai/utils';
+import { useCallback } from 'react';
 import { defaultSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import { clearAllSelectionsFromStorage } from '@/react/common/helpers/HDS';
 import useSelectedOptions from '@/react/common/hooks/useSelectedOptions';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import { topicSelectionAtom, topicsAtom, updateParamsAtom } from '../store';
+import { useAtomListener } from '../hooks/useAtomListener';
+import { useScopedId } from '../hooks/useScopedId';
+import { clearFilterSignalAtom, clearSignalAtom, topicSelectionAtom, topicsAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
 function TopicsFilter() {
@@ -15,6 +18,8 @@ function TopicsFilter() {
   const [topicSelection, setTopicsFilter] = useAtom(topicSelectionAtom);
   const selectedOptions = useSelectedOptions(topics, topicSelection);
   const updateParams = useSetAtom(updateParamsAtom);
+  const topicsId = useScopedId(SearchComponents.TOPICS);
+  const getTopicSelection = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
 
   const onChange = (value: OptionType[], _clickedOption?: OptionType) => {
     setTopicsFilter(value);
@@ -27,7 +32,7 @@ function TopicsFilter() {
   const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
-    id: SearchComponents.TOPICS,
+    id: topicsId,
     multiSelect: true,
     noTags: true,
     onChange,
@@ -46,7 +51,7 @@ function TopicsFilter() {
 
   const updateSelections = () => {
     storage.updateAllOptions((option, _group, _groupindex) => {
-      if (option.selected && !topicSelection.some((selection) => selection.value === option.value)) {
+      if (option.selected && !getTopicSelection().some((selection) => selection.value === option.value)) {
         return { ...option, selected: false };
       }
       return option;
@@ -54,13 +59,11 @@ function TopicsFilter() {
     storage.render();
   };
 
-  useEffect(() => {
-    window.addEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
-
-    return () => {
-      window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${SearchComponents.TOPICS}`, updateSelections);
-    };
+  useAtomListener(clearSignalAtom, clearAllSelections);
+  useAtomListener(clearFilterSignalAtom, (signal) => {
+    if (signal?.key === ApiKeys.KEYWORDS) {
+      updateSelections();
+    }
   });
 
   return (

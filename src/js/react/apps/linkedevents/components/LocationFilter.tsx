@@ -4,6 +4,7 @@ import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
+import { useScopedId } from '../hooks/useScopedId';
 import { locationAtom, locationSelectionAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
@@ -24,11 +25,13 @@ function LocationFilter() {
 
   const selectVenueLabel: string = Drupal.t('Venue', {}, { context: 'Events search' });
 
+  const locationId = useScopedId(SearchComponents.LOCATION);
+
   return (
     <div className='hdbt-search__filter event-form__filter--location'>
       <Select
         className='hdbt-search__dropdown'
-        id={SearchComponents.LOCATION}
+        id={locationId}
         multiSelect
         noTags
         onChange={onChange}

@@ -9,7 +9,7 @@ rules:
   plugin/declaration-block-no-ignored-properties: true # Helps weed out unnecessary code
   plugin/no-low-performance-animation-properties: true # Guides to better, more performant animation properties
   declaration-property-value-disallowed-list:
-    - /^overflow/:
+    - /^overflow(-x|-y|-block|-inline)?$/:
       - /(none)/i # `none` is not a valid value for overflow, use `hidden` instead
     - message: "HELFI: `none` is not a valid value for overflow, use `hidden` instead"
     - /(color$|background|border|box-shadow|column-rule|filter|opacity|outline|text-decoration|text-shadow)/:

@@ -29,6 +29,7 @@ const drupalSettings = {
     sentry_dsn_react: '',
     elastic_proxy_url: '',
   },
+  helfi_events: { data: {} },
 };
 vi.stubGlobal('drupalSettings', drupalSettings);
 

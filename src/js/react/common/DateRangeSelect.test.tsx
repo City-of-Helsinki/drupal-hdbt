@@ -42,33 +42,53 @@ describe('DateRangeSelect', () => {
 
   test('propagates a valid start date', () => {
     const { setStart, typeInto } = setup();
-    typeInto('#start-date', '5.3.2026');
+    typeInto('#dr--start-date', '5.3.2026');
     expect(setStart).toHaveBeenCalledWith('5.3.2026');
   });
 
   test('rejects an invalid start date without propagating it', () => {
     vi.spyOn(console, 'warn').mockImplementation(() => {});
     const { setStart, typeInto } = setup();
-    typeInto('#start-date', '31.2.2026');
+    typeInto('#dr--start-date', '31.2.2026');
     expect(setStart).not.toHaveBeenCalled();
   });
 
   test('clamps the end date when the chosen start date is past it', () => {
     vi.spyOn(console, 'warn').mockImplementation(() => {});
     const { setEnd, typeInto } = setup({ endDate: '5.3.2026' });
-    typeInto('#start-date', '10.3.2026');
+    typeInto('#dr--start-date', '10.3.2026');
     expect(setEnd).toHaveBeenCalledWith('11.3.2026');
   });
 
   test('enabling the same-day checkbox clears the end date and hides its input', () => {
     const { container, setEnd, setEndDisabled } = setup({ endDate: '9.3.2026' });
-    fireEvent.click(container.querySelector('#date-range-select__end-date-disabled') as Element);
+    fireEvent.click(container.querySelector('#dr--end-date-disabled') as Element);
     expect(setEndDisabled).toHaveBeenCalledWith(true);
     expect(setEnd).toHaveBeenCalledWith(undefined);
   });
 
   test('does not render the end date input when end is disabled', () => {
     const { container } = setup({ endDisabled: true });
-    expect(container.querySelector('#end-date')).toBeNull();
+    expect(container.querySelector('#dr--end-date')).toBeNull();
+  });
+
+  test('derives its sub-element ids from the id prop, so two instances do not collide', () => {
+    const { container } = render(
+      <>
+        <DateRangeSelect id='first' label='Dates' setStart={vi.fn()} setEnd={vi.fn()} setEndDisabled={vi.fn()} />
+        <DateRangeSelect id='second' label='Dates' setStart={vi.fn()} setEnd={vi.fn()} setEndDisabled={vi.fn()} />
+      </>,
+    );
+    const allIds = () => [...container.querySelectorAll('[id]')].map((element) => element.id);
+
+    // Only one collapsible stays open at a time, so each is checked in turn.
+    ['first', 'second'].forEach((instance, index) => {
+      fireEvent.click(container.querySelectorAll('.collapsible__control')[index]);
+
+      const ids = allIds();
+      expect(new Set(ids).size).toBe(ids.length);
+      expect(container.querySelector(`#${instance}--start-date`)).not.toBeNull();
+      expect(container.querySelector(`#${instance}--end-date-disabled`)).not.toBeNull();
+    });
   });
 });

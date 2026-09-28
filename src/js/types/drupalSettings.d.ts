@@ -27,7 +27,7 @@ declare namespace drupalSettings {
         hidePagination: boolean;
         places: { [key: string]: { id: string; name: { [key: string]: string } } };
         removeBloatingEvents: boolean;
-        use_fixtures: boolean;
+        use_fixtures: import('../react/apps/linkedevents/types/EventsResponse').default | false;
         useCrossInstitutionalStudiesForm: boolean;
         useFullLocationFilter: boolean;
         useFullTopicsFilter: boolean;

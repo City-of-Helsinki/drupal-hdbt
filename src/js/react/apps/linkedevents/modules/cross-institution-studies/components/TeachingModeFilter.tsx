@@ -3,6 +3,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { getDefaultSelectTexts } from '@/react/common/helpers/Texts';
 import ApiKeys from '../../../enum/ApiKeys';
+import { useScopedId } from '../../../hooks/useScopedId';
 import { updateParamsAtom } from '../../../store';
 import { TeachingModes } from '../../enum/TeachingModes';
 import { teachingModeAtom } from '../store';
@@ -17,11 +18,13 @@ export const TeachingModeFilter = () => {
     updateParams({ [ApiKeys.KEYWORDS]: selectedValues.join(',') });
   };
 
+  const teachingModeId = useScopedId('teaching-mode-filter');
+
   return (
     <div className='hdbt-search__filter'>
       <Select
         className='hdbt-search__dropdown'
-        id='teaching-mode-filter'
+        id={teachingModeId}
         multiSelect
         noTags
         onChange={handleChange}

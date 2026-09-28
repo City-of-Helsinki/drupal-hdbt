@@ -5,6 +5,7 @@ import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import SearchComponents from '../enum/SearchComponents';
 import { TargetGroups } from '../enum/TargetGroups';
 import { targetGroupsToParams } from '../helpers/TargetGroupsToParams';
+import { useScopedId } from '../hooks/useScopedId';
 import { targetGroupsAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
@@ -21,11 +22,13 @@ export const TargetGroupFilter = () => {
 
   const selectLabel = Drupal.t('Age group', {}, { context: 'Event search: target group label' });
 
+  const targetGroupsId = useScopedId(SearchComponents.TARGET_GROUPS);
+
   return (
     <div className='hdbt-search__filter'>
       <Select
         className='hdbt-search__dropdown'
-        id={SearchComponents.TARGET_GROUPS}
+        id={targetGroupsId}
         noTags
         clearable
         onChange={onChange}

@@ -20,7 +20,7 @@ export const DateRangeSelect = ({
   dialogLabel = Drupal.t('Choose date', {}, { context: 'React search: date range select' }),
   endDate,
   endDateHelperText = dateHelperText,
-  endDateId = 'end-date',
+  endDateId,
   endDateLabel = Drupal.t('Last day of the time period', {}, { context: 'React search: date range select' }),
   endDisabled,
   helperText = Drupal.t('Select a time period for the event', {}, { context: 'React search: date range select' }),
@@ -32,7 +32,7 @@ export const DateRangeSelect = ({
   setStart,
   startDate,
   startDateHelperText = dateHelperText,
-  startDateId = 'start-date',
+  startDateId,
   startDateLabel = Drupal.t('First day of the time period', {}, { context: 'React search: date range select' }),
 }: {
   dialogLabel?: string;
@@ -53,6 +53,11 @@ export const DateRangeSelect = ({
   startDateId?: string;
   startDateLabel?: string;
 }) => {
+  // Derived from `id` so that several date ranges on one page do not share element ids.
+  const startId = startDateId ?? `${id}--start-date`;
+  const endId = endDateId ?? `${id}--end-date`;
+  const endDisabledId = `${id}--end-date-disabled`;
+
   const [errors, setErrors] = useState<{ start?: string; end?: string }>({});
 
   const collapsibleTitleText = getDateString({
@@ -148,7 +153,7 @@ export const DateRangeSelect = ({
             className='hdbt-search__filter hdbt-search__date-input'
             errorText={errors.start}
             helperText={startDateHelperText}
-            id={startDateId}
+            id={startId}
             invalid={!!errors.start}
             label={startDateLabel}
             language={language}
@@ -158,7 +163,7 @@ export const DateRangeSelect = ({
           />
           <Checkbox
             checked={endDisabled}
-            id='date-range-select__end-date-disabled'
+            id={endDisabledId}
             label={Drupal.t(
               'The last day of the time period is the same as the first day',
               {},
@@ -175,7 +180,7 @@ export const DateRangeSelect = ({
               className='hdbt-search__filter hdbt-search__date-input'
               errorText={errors.end}
               helperText={endDateHelperText}
-              id={endDateId}
+              id={endId}
               invalid={!!errors.end}
               label={endDateLabel}
               language={language}

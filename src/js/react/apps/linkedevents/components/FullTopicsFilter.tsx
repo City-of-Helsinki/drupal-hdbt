@@ -2,7 +2,7 @@ import type { SearchFunction, SearchResult } from 'hds-react';
 import { Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -12,12 +12,15 @@ import useTimeoutFetch from '@/react/common/hooks/useTimeoutFetch';
 import type { LinkedEventsTopic } from '@/types/LinkedEvents';
 import ApiKeys from '../enum/ApiKeys';
 import SearchComponents from '../enum/SearchComponents';
-import { topicSelectionAtom, updateParamsAtom } from '../store';
+import { useAtomListener } from '../hooks/useAtomListener';
+import { useScopedId } from '../hooks/useScopedId';
+import { clearFilterSignalAtom, clearSignalAtom, topicSelectionAtom, updateParamsAtom } from '../store';
 import type OptionType from '../types/OptionType';
 
 const FullTopicsFilter = memo(() => {
   const setTopicsFilter = useSetAtom(topicSelectionAtom);
   const updateParams = useSetAtom(updateParamsAtom);
+  const topicsId = useScopedId(SearchComponents.TOPICS);
 
   const getTopicsParamValue = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
 
@@ -71,7 +74,7 @@ const FullTopicsFilter = memo(() => {
   const selectLabel: string = Drupal.t('Topic', {}, { context: 'React search: topics filter' });
 
   const storage = useSelectStorage({
-    id: SearchComponents.TOPICS,
+    id: topicsId,
     multiSelect: true,
     noTags: true,
     onChange,
@@ -86,14 +89,11 @@ const FullTopicsFilter = memo(() => {
     updateSelectionsInStorage(storage, getTopicsParamValue());
   };
 
-  useEffect(() => {
-    window.addEventListener('eventsearch-clear', clearAllSelections);
-    window.addEventListener(`eventsearch-clear-${ApiKeys.KEYWORDS}`, updateSelections);
-
-    return () => {
-      window.addEventListener('eventsearch-clear', clearAllSelections);
-      window.removeEventListener(`eventsearch-clear-${ApiKeys.KEYWORDS}`, updateSelections);
-    };
+  useAtomListener(clearSignalAtom, clearAllSelections);
+  useAtomListener(clearFilterSignalAtom, (signal) => {
+    if (signal?.key === ApiKeys.KEYWORDS) {
+      updateSelections();
+    }
   });
 
   return (
