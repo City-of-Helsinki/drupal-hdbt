@@ -249,7 +249,6 @@ matomo:
     }
   dependencies:
     - core/drupal
-    - core/jquery
 
 mobile-language-switcher:
   version: HELFI_DEPLOYMENT_IDENTIFIER
