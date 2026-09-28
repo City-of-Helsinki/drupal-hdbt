@@ -53,6 +53,12 @@ jobs:
           git clone -b 5.x https://github.com/druidfi/stonehenge.git ~/stonehenge
           cd ~/stonehenge && make up
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: curl, dom
+
       - name: Build project
         working-directory: ${{ env.DRUPAL_ROOT }}
         env:
