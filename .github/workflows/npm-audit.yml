@@ -24,7 +24,6 @@ jobs:
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
-          npm install --silent
           set +e
           npm audit --package-lock-only --loglevel=error;
           # The npm audit command will exit with a 0 exit code if no vulnerabilities were found.
