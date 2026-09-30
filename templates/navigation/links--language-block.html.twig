@@ -30,7 +30,7 @@
           <span class="language-link__wrapper">
             <a
               {{ create_attribute({'class': classes}) }}
-              {{ create_attribute({'href': path(item.link['#url'].toString(), {}, {'language': item.link['#options']['language']})}) }}
+              {{ create_attribute({'href': item.link['#url'].toString()}) }}
               {{ create_attribute({'lang': lang}) }}
               {{ ariaCurrent }}
             >{{ item.text|capitalize }}
