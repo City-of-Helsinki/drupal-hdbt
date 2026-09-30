@@ -1,7 +1,7 @@
 import type { SearchHit } from '@elastic/elasticsearch/lib/api/types';
 import { render } from '@testing-library/react';
 import { createStore, Provider } from 'jotai';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { deferFocusAtom } from '../store';
 import type Job from '../types/Job';
 import ResultsContainer from './ResultsContainer';
@@ -76,6 +76,10 @@ describe('ResultsContainer', () => {
     query.current = 'first-search';
   });
 
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('keeps the live region mounted while the ghost cards are shown', () => {
     const { container, update } = renderResults();
     const region = liveRegion(container);
@@ -109,13 +113,16 @@ describe('ResultsContainer', () => {
   });
 
   test('announces a failed search', () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const error = new Error('Elasticsearch is down');
     const { container, update } = renderResults();
 
     const found = results(12, 10);
     update(found);
     update(revalidating(found), 'second-search');
-    update({ data: undefined, error: new Error('Elasticsearch is down'), isValidating: false });
+    update({ data: undefined, error, isValidating: false });
 
     expect(liveRegion(container)?.textContent).toBe('An error occurred while loading the content');
+    expect(spy).toHaveBeenCalledWith('Error loading data from Elastic:', error);
   });
 });
