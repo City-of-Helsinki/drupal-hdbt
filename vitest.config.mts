@@ -5,8 +5,8 @@ export default defineConfig({
   resolve: {
     // Keep these in sync with the "paths" in tsconfig.json.
     alias: {
-      '@/react/common': resolve(__dirname, 'src/js/react/common'),
-      '@/types': resolve(__dirname, 'src/js/types'),
+      '@/react/common': resolve(import.meta.dirname, 'src/js/react/common'),
+      '@/types': resolve(import.meta.dirname, 'src/js/types'),
     },
   },
   test: {
