@@ -1,6 +1,6 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: tests use minimal Elastic response stubs
 import { fireEvent, render } from '@testing-library/react';
-import { describe, expect, test, vi } from 'vitest';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 import { ResultsWrapper } from './ResultsWrapper';
 
 const baseProps = {
@@ -24,6 +24,10 @@ const pageLink = (container: HTMLElement, page: string) =>
   Array.from(container.querySelectorAll('.hds-pagination__item-link')).find((el) => el.textContent === page) as Element;
 
 describe('ResultsWrapper', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test('renders a bordered ghost list with the searching header while validating with no data', () => {
     const { container, getByText } = render(<ResultsWrapper {...baseProps} isValidating />);
     expect(getByText('Searching for results...')).toBeTruthy();
@@ -31,16 +35,20 @@ describe('ResultsWrapper', () => {
   });
 
   test('renders the error state when there is an error', () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const { getByText } = render(<ResultsWrapper {...baseProps} error='boom' />);
     expect(getByText('An error occurred while loading the content')).toBeTruthy();
+    expect(spy).toHaveBeenCalledWith('Error loading data from Elastic:', 'boom');
   });
 
   test('replaces the error with ghost cards once a new query starts loading', () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
     const { container, rerender, getByText } = render(<ResultsWrapper {...baseProps} queryString='a' error='boom' />);
     expect(getByText('An error occurred while loading the content')).toBeTruthy();
 
     rerender(<ResultsWrapper {...baseProps} queryString='b' error='boom' isValidating />);
     expect(container.querySelectorAll('.card--ghost.card--border')).toHaveLength(10);
+    expect(spy).toHaveBeenCalledWith('Error loading data from Elastic:', 'boom');
   });
 
   test('renders the empty state when there are no hits', () => {

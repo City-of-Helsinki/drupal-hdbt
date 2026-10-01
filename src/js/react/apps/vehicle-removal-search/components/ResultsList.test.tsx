@@ -1,5 +1,5 @@
 import type { estypes } from '@elastic/elasticsearch';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { createStore, Provider } from 'jotai';
 import { describe, expect, test } from 'vitest';
 import { submittedStateAtom } from '../store';
@@ -56,7 +56,7 @@ describe('ResultsList', () => {
 
     (document.activeElement as HTMLElement)?.blur();
 
-    store.set(submittedStateAtom, { page: 1 });
+    act(() => store.set(submittedStateAtom, { page: 1 }));
     rerender(ui(response(3)));
 
     expect(document.activeElement).toBe(heading(container));

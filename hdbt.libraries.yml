@@ -171,7 +171,8 @@ hyphenopoly:
     dist/js/hyphenopolySettings.min.js: {
       minified: true,
       preprocess: false,
-      weight: 0
+      weight: 0,
+      attributes: { defer: true }
     }
   dependencies:
     - hdbt/hyphenopoly-loader
@@ -185,7 +186,8 @@ hyphenopoly-loader:
     dist/js/hyphenopoly/Hyphenopoly_Loader.js: {
       minified: true,
       preprocess: false,
-      weight: -1
+      weight: -1,
+      attributes: { defer: true }
     }
 
 job-search:
@@ -205,6 +207,9 @@ koro-helper:
     dist/js/koroHelper.min.js: {
       minified: true
     }
+  dependencies:
+    - core/drupal
+    - core/once
 
 language-toast:
   version: HELFI_DEPLOYMENT_IDENTIFIER
@@ -247,7 +252,6 @@ matomo:
     }
   dependencies:
     - core/drupal
-    - core/jquery
 
 mobile-language-switcher:
   version: HELFI_DEPLOYMENT_IDENTIFIER

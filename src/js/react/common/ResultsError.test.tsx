@@ -1,9 +1,14 @@
 import { render } from '@testing-library/react';
 import { createRef } from 'react';
-import { afterEach, describe, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import ResultsError from './ResultsError';
 
 describe('ResultsError', () => {
+  // ResultsError logs every non-TypeError error, including a missing one.
+  beforeEach(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
   afterEach(() => {
     vi.restoreAllMocks();
   });

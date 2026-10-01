@@ -1,3 +1,4 @@
+/// <reference types="vitest/jsdom" />
 import { vi } from 'vitest';
 
 // Interpolate Drupal.t placeholders (e.g. "@date") with the provided args.
@@ -34,7 +35,7 @@ const drupalSettings = {
 vi.stubGlobal('drupalSettings', drupalSettings);
 
 // HDS produces css parsing errors with jsdom. We don't really care about these.
-console.error = (_message, ..._optionalParams) => {};
+jsdom.virtualConsole.removeAllListeners('jsdomError');
 
 window.ResizeObserver = class ResizeObserver {
   observe() {}

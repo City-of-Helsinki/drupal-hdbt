@@ -1,4 +1,4 @@
-((Drupal) => {
+((Drupal, once) => {
   // Base values: 67px koro pattern width.
   const baseKoroPatternWidth = 67;
 
@@ -26,14 +26,10 @@
   }
 
   // Adjust dynamically the height of the cover based on the scaled pattern.
-  function adjustCoverHeight(wrapper, koroPatternWidth) {
-    const koros = wrapper.querySelector('.hds-koros__inner');
-    if (!koros) return;
-
+  function adjustCoverHeight(wrapper, width, koroPatternWidth) {
     const { baseCoverHeight, scaleBoost } = getKoroConfig(wrapper);
 
     // Calculate the adjusted width of the koro pattern being displayed.
-    const width = koros.offsetWidth;
     const repeatCount = Math.max(1, Math.round(width / koroPatternWidth));
 
     // We are calculating the average rendered width of one pattern unit, then comparing that to the base (67px).
@@ -58,33 +54,24 @@
     }
   }
 
-  // Loop through all koros and update their cover height.
-  function updateAllKoros(koroPatternWidth, context) {
-    const wrappers = (context || document).querySelectorAll('.hds-koros');
-    wrappers.forEach((wrapper) => {
-      adjustCoverHeight(wrapper, koroPatternWidth);
-    });
-  }
+  // Update the cover height whenever a koro is first rendered or resized.
+  const resizeObserver = new ResizeObserver((entries) => {
+    entries.forEach(({ target, borderBoxSize }) => {
+      const width = borderBoxSize[0].inlineSize;
 
-  // Observe each koro for resizing and update their cover height accordingly.
-  function observeKoros(koroPatternWidth, context) {
-    const wrappers = (context || document).querySelectorAll('.hds-koros');
-    wrappers.forEach((wrapper) => {
-      const koros = wrapper.querySelector('.hds-koros__inner');
-      if (koros) {
-        const resizeObserver = new ResizeObserver(() => {
-          adjustCoverHeight(wrapper, koroPatternWidth);
-        });
-        resizeObserver.observe(koros);
-      }
+      // Skip hidden koros.
+      if (!width) return;
+
+      adjustCoverHeight(target.closest('.hds-koros'), width, baseKoroPatternWidth);
     });
-  }
+  });
 
   // Attach behavior to ensure compatibility with BigPipe and other dynamic rendering.
   Drupal.behaviors.korosAdjuster = {
     attach(context) {
-      updateAllKoros(baseKoroPatternWidth, context);
-      observeKoros(baseKoroPatternWidth, context);
+      once('korosAdjuster', '.hds-koros__inner', context).forEach((koros) => {
+        resizeObserver.observe(koros);
+      });
     },
   };
-})(Drupal);
+})(Drupal, once);
