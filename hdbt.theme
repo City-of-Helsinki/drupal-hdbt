@@ -1136,6 +1136,11 @@ function hdbt_preprocess_responsive_image_formatter(&$variables): void {
     ? $variables['responsive_image']['#responsive_image_style_id']
     : NULL;
 
+  // Prioritize the hero image.
+  if ($image_style && str_starts_with($image_style, 'hero__')) {
+    $variables['responsive_image']['#attributes']['fetchpriority'] = 'high';
+  }
+
   _hdbt_add_image_element_dimensions(
     $image_style,
     $variables['responsive_image']['#width'],

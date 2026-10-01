@@ -56,7 +56,7 @@ const staticFiles = [
   ['node_modules/hyphenopoly/min/patterns/en-us.wasm', `${outDir}/js/hyphenopoly/patterns/en-us.wasm`],
   ['node_modules/focus-trap/dist/focus-trap.umd.min.js', `${outDir}/js/focus-trap/focus-trap.min.js`],
   ['node_modules/tabbable/dist/index.umd.min.js', `${outDir}/js/tabbable/tabbable.min.js`],
-  ['src/fonts/**/*.{woff,eot,ttf,svg}', `${outDir}/fonts`],
+  ['src/fonts/**/*.{woff2,woff}', `${outDir}/fonts`],
 ];
 
 // Builder configurations.
