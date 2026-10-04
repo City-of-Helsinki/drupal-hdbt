@@ -8,6 +8,7 @@ import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsMap from '@/react/common/ResultsMap';
+import TabList from '@/react/common/TabList';
 import type Result from '@/types/Result';
 import AppSettings from '../enum/AppSettings';
 import { paramsAtom } from '../store';
@@ -93,33 +94,34 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
           </>
         }
         actions={
-          <div className='hdbt-search--react__results--tablist' role='tablist'>
-            <button
-              type='button'
-              className='tablist-tab'
-              role='tab'
-              aria-selected={!useMap}
-              aria-controls='hdbt-search--react__results--tabpanel'
-              onClick={() => setUseMap(false)}
-            >
-              {Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' })}
-            </button>
-            <button
-              type='button'
-              className='tablist-tab'
-              role='tab'
-              aria-selected={useMap}
-              aria-controls='hdbt-search--react__results--tabpanel'
-              onClick={() => setUseMap(true)}
-            >
-              {Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' })}
-            </button>
-          </div>
+          <TabList
+            label={Drupal.t('Toggle between list and map view', {}, { context: 'Tab-list of Content list with count' })}
+            selected={useMap ? 'map' : 'list'}
+            onSelect={(value) => setUseMap(value === 'map')}
+            tabs={[
+              {
+                value: 'list',
+                id: 'maternity-clinic-search-results-tab-list',
+                controls: 'hdbt-search--react__results--tabpanel',
+                label: Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' }),
+              },
+              {
+                value: 'map',
+                id: 'maternity-clinic-search-results-tab-map',
+                controls: 'hdbt-search--react__results--tabpanel',
+                label: Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' }),
+              },
+            ]}
+          />
         }
         actionsClass='hdbt-search--react__results--sort'
         ref={scrollTarget}
       />
-      <div id='hdbt-search--react__results--tabpanel' role='tabpanel'>
+      <div
+        id='hdbt-search--react__results--tabpanel'
+        role='tabpanel'
+        aria-labelledby={`maternity-clinic-search-results-tab-${useMap ? 'map' : 'list'}`}
+      >
         {useMap ? (
           <ResultsMap ids={mapIds} />
         ) : (

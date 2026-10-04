@@ -10,6 +10,7 @@
     // Update visibility
     for (let i = 0; i < allTabs.length; i++) {
       allTabs[i].setAttribute('aria-selected', 'false');
+      allTabs[i].setAttribute('tabindex', '-1');
       allContent[i].setAttribute('aria-hidden', 'true');
     }
   }
@@ -26,6 +27,7 @@
 
     // Then show the selected tab.
     tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
     tabsContent.setAttribute('aria-hidden', 'false');
 
     // Refresh the map view by submitting the search/filter form.
@@ -45,6 +47,52 @@
     if (tabId && contentId) {
       activeTabId = tabId;
       activeContentId = contentId;
+    }
+  }
+
+  // Move focus to the tab matching the pressed key, following the WAI-ARIA APG
+  // tabs pattern with manual activation: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
+  // The focused tab is selected with Enter or Space, which buttons translate
+  // into a click.
+  function onTabKeydown(event) {
+    const tabs = Array.from(this.closest('[role="tablist"]').querySelectorAll('[role="tab"]'));
+    const index = tabs.indexOf(this);
+    const last = tabs.length - 1;
+    let next;
+
+    switch (event.key) {
+      case 'ArrowRight':
+        next = index === last ? 0 : index + 1;
+        break;
+      case 'ArrowLeft':
+        next = index === 0 ? last : index - 1;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = last;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    // Make the focused tab the tabbable one so Tab leaves the tablist.
+    for (let i = 0; i < tabs.length; i++) {
+      tabs[i].setAttribute('tabindex', i === next ? '0' : '-1');
+    }
+    tabs[next].focus();
+  }
+
+  // When focus leaves the tablist, make the selected tab tabbable again so
+  // that entering the tablist focuses it.
+  function onTablistFocusout(event) {
+    if (this.contains(event.relatedTarget)) return;
+
+    const tabs = this.querySelectorAll('[role="tab"]');
+    for (let i = 0; i < tabs.length; i++) {
+      tabs[i].setAttribute('tabindex', tabs[i].getAttribute('aria-selected') === 'true' ? '0' : '-1');
     }
   }
 
@@ -76,13 +124,21 @@
         return;
       }
 
+      const allTabs = instance.querySelectorAll('.tab');
+      instance.querySelector('[role="tablist"]')?.addEventListener('focusout', onTablistFocusout);
+
+      // Only the active tab is in the tab sequence, the rest are reached with
+      // arrow keys.
+      for (let j = 0; j < allTabs.length; j++) {
+        allTabs[j].setAttribute('tabindex', '-1');
+      }
+
       // Set them active with aria-attributes.
       activeTabElement.setAttribute('aria-selected', 'true');
+      activeTabElement.setAttribute('tabindex', '0');
       activeContentElement.setAttribute('aria-hidden', 'false');
 
-      const allTabs = instance.querySelectorAll('.tab');
-
-      // Go through all tabs and add a listener for mouse click or keyboard enter.
+      // Go through all tabs and add listeners for mouse click and keyboard.
       for (let j = 0; j < allTabs.length; j++) {
         const tab = allTabs[j];
 
@@ -91,12 +147,7 @@
           toggleTabs(this);
           updateActiveTab(this);
         });
-        tab.addEventListener('keydown', function onTabEnter(event) {
-          if (event.which === 13) {
-            toggleTabs(this);
-            updateActiveTab(this);
-          }
-        });
+        tab.addEventListener('keydown', onTabKeydown);
       }
     }
   }
