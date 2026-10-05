@@ -1,0 +1,9 @@
+{
+  "name": "micromatch",
+  "version": "4.0.8",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "picomatch": "^4.0.7"
+  }
+}
