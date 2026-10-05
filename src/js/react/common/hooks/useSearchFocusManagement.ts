@@ -53,6 +53,20 @@ const useSearchFocusManagement = <Trigger>(
   const triggerFiredOnceRef = useRef(!suppressInitialLoad);
   // biome-ignore lint/suspicious/noExplicitAny: data shape varies per search
   const lastKeyDataRef = useRef<any>(undefined);
+  // Set when the user starts a search (the trigger changes). Fetches without
+  // it, such as SWR revalidating cached data when the results list remounts,
+  // must not move focus.
+  const searchTriggeredRef = useRef(!suppressInitialLoad);
+  const lastTriggerRef = useRef(trigger);
+
+  // Declared before the other effects so they see the flag in the same render
+  // in which the trigger changes.
+  useEffect(() => {
+    if (trigger !== lastTriggerRef.current) {
+      lastTriggerRef.current = trigger;
+      searchTriggeredRef.current = true;
+    }
+  }, [trigger]);
 
   const onPageChange = useCallback(() => {
     pagerFocusPendingRef.current = true;
@@ -79,7 +93,7 @@ const useSearchFocusManagement = <Trigger>(
   // When ghost cards appear (not initial load):
   // scroll to and focus the ghost heading, and mark that ghost cards were shown.
   useEffect(() => {
-    if (!isSearching || !initialLoadDoneRef.current) {
+    if (!isSearching || !initialLoadDoneRef.current || !searchTriggeredRef.current) {
       return;
     }
     hadGhostCardsRef.current = true;
@@ -92,7 +106,7 @@ const useSearchFocusManagement = <Trigger>(
   // Also keeps lastDataKeyRef in sync for cache-hit detection below.
   useEffect(() => {
     if (isValidating) {
-      if (initialLoadDoneRef.current) {
+      if (initialLoadDoneRef.current && searchTriggeredRef.current) {
         wasSearchingRef.current = true;
       }
     } else {
@@ -107,6 +121,7 @@ const useSearchFocusManagement = <Trigger>(
           return;
         }
         wasSearchingRef.current = false;
+        searchTriggeredRef.current = false;
         if (skipResultsFocusRef.current) {
           skipResultsFocusRef.current = false;
           return;
@@ -134,6 +149,7 @@ const useSearchFocusManagement = <Trigger>(
     if (skipResultsFocusRef.current) {
       return;
     }
+    searchTriggeredRef.current = false;
     triggerFocus(() => focusHeading(scrollTarget.current, true));
   }, [trigger]);
 
