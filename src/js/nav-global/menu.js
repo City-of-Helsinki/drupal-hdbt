@@ -183,7 +183,7 @@ const MobilePanel = {
         >{{name}}</span>{{#externalLinkIcon}} <span class="{{class}}"></span><span class="visually-hidden">({{ text }})</span>{{/externalLinkIcon}}</a>
         {{>sub_tree}}
       </div>
-      ${document.querySelector('.js-mmenu__footer')?.outerHTML}
+      ${document.querySelector('.js-mmenu__footer')?.innerHTML ?? ''}
     </section>
   {{/panels}}
 
