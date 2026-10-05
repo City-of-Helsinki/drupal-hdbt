@@ -10,8 +10,8 @@ html[class*='Dialog-module_dialogVisibleBodyWithHiddenScrollbars'] {
 // The header that contains title and closing button shouldn't have padding on the bottom.
 // Also the paddings on the sides are different.
 .hdbt-search__search-monitor__content > div {
-  padding-inline: $spacing;
   padding-bottom: 0;
+  padding-inline: $spacing;
 
   @include breakpoint($breakpoint-l) {
     padding-inline: $spacing-double;

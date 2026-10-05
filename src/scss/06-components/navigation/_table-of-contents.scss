@@ -66,8 +66,8 @@
 
   .nojs__icon {
     display: inline-flex;
-    margin-inline-end: $spacing;
     margin-bottom: $spacing-and-half;
+    margin-inline-end: $spacing;
 
     @include breakpoint($breakpoint-m) {
       margin-inline-end: $spacing-and-half;
