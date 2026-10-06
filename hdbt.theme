@@ -234,7 +234,7 @@ function hdbt_preprocess_page(&$variables): void {
     $variables[$url->value] = $url->url($langcode);
   }
   $variables['help_text_link_url'] = Url::fromUri($variables['ai_register_url']);
-  $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
+  $variables['helfi_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
 
   // Toggle between global and local navigation in twig templates.
   $variables['use_global_navigation'] = _hdbt_use_global_navigation();
@@ -865,7 +865,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $paragraph->get('field_hero_design')->value == 'with-search'
   ) {
     $langcode = $variables['language']->getId();
-    $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
+    $variables['helfi_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
     $variables['help_text_link_url'] = Url::fromUri(GlobalUrl::AiRegister->url($langcode));
   }
 }
