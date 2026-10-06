@@ -27,14 +27,6 @@ $label-font: 'special.navigation.icon_label';
   }
 }
 
-.mmenu > .mmenu__footer {
-  padding-top: $spacing;
-
-  @include breakpoint($breakpoint-l) {
-    display: none;
-  }
-}
-
 .nav-toggle__label {
   @include font($label-font);
   align-self: center;

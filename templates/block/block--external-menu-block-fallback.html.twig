@@ -67,21 +67,24 @@
 
       <div id="mmenu" class="mmenu">
         <div id="mmenu__panels" class="mmenu__panels"></div>
-        <div class="mmenu__footer js-mmenu__footer">
-          {% set inside_cssmenu = true %}
-          {{ header_top_navigation_content }}
-          <div class="mmenu__logo">
-            {% set link_label %}
-              {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
-            {% endset %}
-            {% set link_attributes = {
-              'class': [
-                'mmenu__logo-link',
-              ],
-            } %}
-            {{ link(link_label, site_front_url, link_attributes) }}
+        {# Footer is cloned into every mobile menu panel by nav-global/menu.js. #}
+        <template class="js-mmenu__footer">
+          <div class="mmenu__footer">
+            {% set inside_cssmenu = true %}
+            {{ header_top_navigation_content }}
+            <div class="mmenu__logo">
+              {% set link_label %}
+                {% embed "@hdbt/misc/logo.twig" %}{% endembed %}
+              {% endset %}
+              {% set link_attributes = {
+                'class': [
+                  'mmenu__logo-link',
+                ],
+              } %}
+              {{ link(link_label, site_front_url, link_attributes) }}
+            </div>
           </div>
-        </div>
+        </template>
       </div>
     {% endblock %}
   {% endembed %}
