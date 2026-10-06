@@ -186,19 +186,21 @@ function hdbt_get_settings(string $setting, string $group = 'site_settings'): st
 
 /**
  * Resolves the AI assisted search form URL for the given language.
- *
- * Uses EnvironmentResolver; falls back to AiSearchForm url on failure.
  */
 function _hdbt_resolve_ai_search_form_url(string $langcode): string {
-  /** @var \Drupal\helfi_api_base\Environment\EnvironmentResolverInterface $resolver */
-  $resolver = \Drupal::service('helfi_api_base.environment_resolver');
+  $resolver = \Drupal::service(EnvironmentResolverInterface::class);
   try {
     $activeEnvironment = $resolver->getActiveEnvironment()->getEnvironmentName();
     $etusivu = $resolver->getEnvironment(Project::ETUSIVU, $activeEnvironment);
-    return $etusivu->getUrl($langcode) . '/search/new';
+    return $etusivu->getUrl($langcode) . '/' . match ($langcode) {
+      'fi' => 'haku',
+      'sv' => 'sok',
+      default => 'search',
+    };
   }
   catch (\Exception) {
-    return GlobalUrl::AiSearchForm->url($langcode);
+    // Falls back to production url on failure.
+    return GlobalUrl::SearchForm->url($langcode);
   }
 }
 
@@ -863,14 +865,7 @@ function hdbt_preprocess_paragraph__hero(&$variables) {
     $paragraph->get('field_hero_design')->value == 'with-search'
   ) {
     $langcode = $variables['language']->getId();
-    $variables['helfi_search_form_url'] = GlobalUrl::SearchForm->url($langcode);
     $variables['helfi_ai_search_form_url'] = _hdbt_resolve_ai_search_form_url($langcode);
-
-    // Cache separately for logged-in and anonymous users so the correct
-    // search form variant is rendered.
-    $variables['#cache']['contexts'][] = 'user.roles:authenticated';
-    $variables['user_not_logged_in'] = Drupal::currentUser()->isAnonymous();
-
     $variables['help_text_link_url'] = Url::fromUri(GlobalUrl::AiRegister->url($langcode));
   }
 }
