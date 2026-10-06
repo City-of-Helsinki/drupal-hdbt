@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useInitialParams from '@/react/common/hooks/useInitialParams';
 import ResultsError from '@/react/common/ResultsError';
+import TabList from '@/react/common/TabList';
 import AppSettings from '../enum/AppSettings';
 import UseConfigurationsQuery from '../hooks/UseConfigurationsQuery';
 import { keywordAtom, paramsAtom, setConfigurationsAtom } from '../store';
@@ -54,30 +55,25 @@ const SearchContainer = () => {
 
   return (
     <>
-      <div className='hdbt-search--react__results--tablist' role='tablist'>
-        <button
-          id='school-search-tab-proximity'
-          type='button'
-          className='tablist-tab'
-          role='tab'
-          aria-selected={searchMode === MODE_OPTIONS.proximity}
-          aria-controls='school-search-tabpanel-proximity'
-          onClick={() => changeSearchMode(MODE_OPTIONS.proximity)}
-        >
-          {Drupal.t('Search for your local school', {}, { context: 'School search: local search title' })}
-        </button>
-        <button
-          id='school-search-tab-feature'
-          type='button'
-          className='tablist-tab'
-          role='tab'
-          aria-selected={searchMode === MODE_OPTIONS.feature}
-          aria-controls='school-search-tabpanel-feature'
-          onClick={() => changeSearchMode(MODE_OPTIONS.feature)}
-        >
-          {Drupal.t('Search with school information', {}, { context: 'School search: Feature form title' })}
-        </button>
-      </div>
+      <TabList
+        label={Drupal.t('School search mode', {}, { context: 'School search: tablist label' })}
+        selected={searchMode}
+        onSelect={changeSearchMode}
+        tabs={[
+          {
+            value: MODE_OPTIONS.proximity,
+            id: 'school-search-tab-proximity',
+            controls: 'school-search-tabpanel-proximity',
+            label: Drupal.t('Search for your local school', {}, { context: 'School search: local search title' }),
+          },
+          {
+            value: MODE_OPTIONS.feature,
+            id: 'school-search-tab-feature',
+            controls: 'school-search-tabpanel-feature',
+            label: Drupal.t('Search with school information', {}, { context: 'School search: Feature form title' }),
+          },
+        ]}
+      />
       <ErrorBoundary fallback={<ResultsError error={new Error('Error loading school search results')} />}>
         <Suspense fallback={<GhostList count={AppSettings.size} />}>
           {searchMode === MODE_OPTIONS.proximity ? (

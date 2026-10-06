@@ -105,11 +105,12 @@ describe('ResultsWrapper', () => {
     const first = dataWith([{ _id: 'a' }], 25) as any;
     const { container, rerender } = render(<ResultsWrapper {...baseProps} queryString='a' data={first} />);
 
-    rerender(<ResultsWrapper {...baseProps} queryString='b' data={first} isValidating />);
+    // A new search changes the submitted params (trigger) along with the query.
+    rerender(<ResultsWrapper {...baseProps} queryString='b' data={first} trigger={1} isValidating />);
     expect(document.activeElement).toBe(headerOf(container));
     expect(document.activeElement?.textContent).toBe('Searching for results... ');
 
-    rerender(<ResultsWrapper {...baseProps} queryString='b' data={dataWith([{ _id: 'b' }], 25) as any} />);
+    rerender(<ResultsWrapper {...baseProps} queryString='b' data={dataWith([{ _id: 'b' }], 25) as any} trigger={1} />);
     expect(document.activeElement).toBe(headerOf(container));
     expect(document.activeElement?.textContent).toBe('2 results ');
   });

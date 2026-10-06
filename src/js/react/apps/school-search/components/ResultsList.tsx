@@ -8,6 +8,7 @@ import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import ResultsMap from '@/react/common/ResultsMap';
+import TabList from '@/react/common/TabList';
 import type Result from '@/types/Result';
 import AppSettings from '../enum/AppSettings';
 import { paramsAtom } from '../store';
@@ -83,30 +84,25 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
             : resultHeader
         }
         actions={
-          <div className='hdbt-search--react__results--tablist' role='tablist'>
-            <button
-              id='school-search-results-tab-list'
-              type='button'
-              className='tablist-tab'
-              role='tab'
-              aria-selected={!useMap}
-              aria-controls='school-search-results-tabpanel-list'
-              onClick={() => setUseMap(false)}
-            >
-              {Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' })}
-            </button>
-            <button
-              id='school-search-results-tab-map'
-              type='button'
-              className='tablist-tab'
-              role='tab'
-              aria-selected={useMap}
-              aria-controls='school-search-results-tabpanel-map'
-              onClick={() => setUseMap(true)}
-            >
-              {Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' })}
-            </button>
-          </div>
+          <TabList
+            label={Drupal.t('Toggle between list and map view', {}, { context: 'Tab-list of Content list with count' })}
+            selected={useMap ? 'map' : 'list'}
+            onSelect={(value) => setUseMap(value === 'map')}
+            tabs={[
+              {
+                value: 'list',
+                id: 'school-search-results-tab-list',
+                controls: 'school-search-results-tabpanel-list',
+                label: Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' }),
+              },
+              {
+                value: 'map',
+                id: 'school-search-results-tab-map',
+                controls: 'school-search-results-tabpanel-map',
+                label: Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' }),
+              },
+            ]}
+          />
         }
         actionsClass='hdbt-search--react__results--sort'
         ref={scrollTarget}
