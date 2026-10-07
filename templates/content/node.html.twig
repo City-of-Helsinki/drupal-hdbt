@@ -92,7 +92,7 @@
   {{ title_suffix }}
 
   {% block main_content %}
-    {{ content|without('field_lower_content', 'field_sidebar_content') }}
+    {{ content|without('field_lower_content') }}
   {% endblock main_content %}
 
 </article>
