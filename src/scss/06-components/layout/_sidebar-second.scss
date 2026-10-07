@@ -1,0 +1,4 @@
+.layout-sidebar-second {
+  @include component-side-padding;
+  grid-area: sidebar;
+}
