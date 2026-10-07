@@ -30,20 +30,19 @@
     "The following packages were updated manually.",
     "Remove this section once the dependencies have been updated in their respective upstream packages.",
     {
-      "tar-fs": ">=3.0.9, dependency of backstopjs",
       "diff": "^8.0.3, dependency of backstopjs",
-      "backstopjs > puppeteer": ">=25.0.8, Backstop depends on a vulnerable version of puppeteer",
-      "postcss": ">=8.5.18, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)",
+      "backstopjs > puppeteer": "^25.8.0, Backstop depends on a vulnerable version of puppeteer",
+      "postcss": "^8.5.23, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)",
+      "postcss-selector-parser": "^7.1.6, dependency of postcss-nesting via hds-react; PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion (GHSA-rj75-hqrm-r3gf)",
       "qs": "^6.16.0, dependency of express and body-parser via backstopjs; no fixed express 4.x or body-parser 1.x release exists (GHSA-x5fp-wj9c-mxmx, GHSA-4mjr-xmp4-gh2g)",
-      "test-exclude": "^8.0.0, dependency of @vitest/coverage-v8; drops the deprecated glob 10",
       "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10"
     }
   ],
   "overrides": {
     "diff": "^8.0.3",
     "postcss": "^8.5.23",
+    "postcss-selector-parser": "^7.1.6",
     "qs": "^6.16.0",
-    "test-exclude": "^8.0.0",
     "backstopjs": {
       "puppeteer": "^25.8.0"
     },
@@ -89,7 +88,6 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "swr": "2.3.6",
-    "tar-fs": ">=3.0.9",
     "typescript": "7.0.2"
   },
   "devDependencies": {
