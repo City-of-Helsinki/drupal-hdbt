@@ -1949,6 +1949,14 @@ msgctxt "Address search error message"
 msgid "No results were found for the street address. Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
 msgstr "Katuosoitteella ei löytynyt tuloksia. Varmista, että osoite on oikein. Voit kokeilla hakea myös läheisellä katuosoitteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
 
+msgctxt "Address search error message"
+msgid "Address not found. Please check that the address you have entered is correct. The search function suggests alternatives as you start typing."
+msgstr "Osoitetta ei löytynyt. Varmista, että osoite on oikein. Haku ehdottaa osoitteita, kun alat kirjoittaa."
+
+msgctxt "Health station search: address error message"
+msgid "No results found for this address. The search function uses your home address to locate your local health station. Please check that the address you have entered is correct. Enter only your street name and house number. The search function suggests alternatives as you start typing."
+msgstr "Osoitteella ei löytynyt tuloksia. Haku etsii omaa terveysasemaa kotiosoitteen perusteella. Varmista, että osoite on oikein. Kirjoita pelkästään kadunnimi ja talonumero. Haku ehdottaa osoitteita, kun alat kirjoittaa."
+
 msgctxt "Location autocomplete"
 msgid "Geolocation is not supported by this browser."
 msgstr "Sijainnin haku ei toimi tällä selaimella."

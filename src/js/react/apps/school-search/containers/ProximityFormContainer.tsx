@@ -50,6 +50,11 @@ const ProximityFormContainer = () => {
       </p>
       <AddressSearch
         error={addressError}
+        errorText={Drupal.t(
+          'Address not found. Please check that the address you have entered is correct. The search function suggests alternatives as you start typing.',
+          {},
+          { context: 'Address search error message' },
+        )}
         className='hdbt-search__filter'
         value={keyword || ''}
         id='keyword'

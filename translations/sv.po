@@ -1951,6 +1951,14 @@ msgctxt "Address search error message"
 msgid "No results were found for the street address. Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
 msgstr "Inga resultat hittades för gatuadressen. Kontrollera adressen eller prova en annan adress i närheten. Sökningen föreslår alternativ när du börjar skriva in adressen."
 
+msgctxt "Address search error message"
+msgid "Address not found. Please check that the address you have entered is correct. The search function suggests alternatives as you start typing."
+msgstr "Adressen hittades inte. Kontrollera att adressen är korrekt. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
+msgctxt "Health station search: address error message"
+msgid "No results found for this address. The search function uses your home address to locate your local health station. Please check that the address you have entered is correct. Enter only your street name and house number. The search function suggests alternatives as you start typing."
+msgstr "Inga resultat hittades för adressen. Sökning av egen hälsostation utgående ifrån hemadress. Kontrollera att adressen är korrekt. Skriv bara gatunamn och husnummer. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
 msgctxt "Location autocomplete"
 msgid "Geolocation is not supported by this browser."
 msgstr "Din webbläsare stöder inte geolokalisering."
