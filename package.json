@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "sandbox node theme-builder.mjs --watch --dev",
     "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
-    "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/@hdbt/theme-builder/.stylelintrc.yaml --formatter string --fix",
+    "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/theme-builder/.stylelintrc.yaml --formatter string --fix",
     "lint:js": "sandbox biome check --write --assist-enabled=true src/js/",
     "format:js": "sandbox biome format --write src/js/",
     "lint": "sandbox npm-run-all --parallel lint:scss lint:js -s",
@@ -35,7 +35,7 @@
       "postcss-selector-parser": "^7.1.6, dependency of postcss-nesting via hds-react; PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion (GHSA-rj75-hqrm-r3gf)",
       "qs": "^6.16.0, dependency of express and body-parser via backstopjs; no fixed express 4.x or body-parser 1.x release exists (GHSA-x5fp-wj9c-mxmx, GHSA-4mjr-xmp4-gh2g)",
       "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10",
-      "svg-sprite > glob": "^13.0.0, dependency of @hdbt/theme-builder; drops deprecated glob@7 and inflight"
+      "svg-sprite > glob": "^13.0.0, dependency of theme-builder; drops deprecated glob@7 and inflight"
     }
   ],
   "overrides": {
@@ -70,7 +70,6 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
     "@elastic/elasticsearch": "^9.0.2",
-    "@hdbt/theme-builder": "file:theme-builder",
     "@sentry/react": "^10.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.2.0",
