@@ -90,6 +90,7 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "swr": "2.3.6",
+    "theme-builder": "github:khalima/theme-builder#7869ef7a7fbc495308a23718b04d14dffadbbedd",
     "typescript": "7.0.2"
   },
   "devDependencies": {
