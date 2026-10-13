@@ -443,13 +443,6 @@ function getConfig(hostname, protocol, type) {
           selectorExpansion: expandComponents,
         },
         {
-          label: 'DC: Sidebar text',
-          url: `${protocol}://${hostname}/en/dc-components/dc-sidebar-text`,
-          removeSelectors: removeDefault,
-          selectors: ['.sidebar-text'],
-          selectorExpansion: expandComponents,
-        },
-        {
           label: 'DC: Text',
           url: `${protocol}://${hostname}/en/dc-components/dc-text`,
           removeSelectors: removeDefault,
