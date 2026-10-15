@@ -5,9 +5,6 @@
  * (e.g. #my-heading:hl). On arrival we strip the marker, scroll to
  * the heading, and use the CSS Highlight API from that heading through the
  * end of the wrapping .component__container.
- *
- * Runs after headingIdInjector has assigned IDs
- * (helfiHeadingIdsInjected event).
  */
 
 ((Drupal) => {
@@ -96,16 +93,7 @@
         return;
       }
 
-      const run = () => {
-        highlightFragment(request.id);
-      };
-
-      if (window.headingIdInjectorInitialized) {
-        run();
-        return;
-      }
-
-      document.addEventListener('helfiHeadingIdsInjected', run, { once: true });
+      highlightFragment(request.id);
     },
   };
 })(Drupal);
