@@ -1465,6 +1465,10 @@ msgctxt "React search: clear selections"
 msgid "Clear selections"
 msgstr "Töm val"
 
+msgctxt "React search: tags aria label"
+msgid "Search criteria"
+msgstr "Sökvillkor"
+
 msgctxt "React search: date selection label"
 msgid "Date"
 msgstr "Tidpunkt"
