@@ -54,3 +54,9 @@
     margin-top: 0;
   }
 }
+
+.component--remote-video.component--no-header:not(:has(.component__title, .component__description)) {
+  .remote-video__video-title {
+    margin-top: 0;
+  }
+}
