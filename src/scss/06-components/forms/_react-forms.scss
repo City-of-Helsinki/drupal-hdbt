@@ -116,6 +116,16 @@ $monitor-button-min-width: 288px;
 
 .hdbt-search__selections-container {
   list-style-type: none;
+
+  .hdbt-search__remove-selection-button {
+    @include breakpoint($breakpoint-s) {
+      max-width: 288px;
+    }
+
+    @include breakpoint($breakpoint-l) {
+      max-width: 448px;
+    }
+  }
 }
 
 .hdbt-search__clear-all {
