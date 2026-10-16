@@ -1,5 +1,5 @@
 import esbuild from 'esbuild';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -67,10 +67,12 @@ async function revertDrupalGlobal(file, isDev = false) {
  * @param {Object} config.jsFiles - An object where keys are file names and values are file paths.
  * @param {string} config.outDir - Output directory.
  * @param {boolean} [config.isDev=false] - Whether to build in development mode.
+ * @param {string[]} [config.nodePaths] - Extra package directories relative to the working directory.
  * @return {Promise<void>} - Resolves when all files are built.
  */
 export async function buildVanillaJs(config = {}) {
-  const { jsFiles, outDir, isDev = false } = config;
+  const { jsFiles, outDir, isDev = false, nodePaths = ['../../contrib/hdbt/node_modules'] } = config;
+  const failed = [];
 
   await Promise.all(
     Object.entries(jsFiles).map(async ([name, entry]) => {
@@ -78,6 +80,7 @@ export async function buildVanillaJs(config = {}) {
 
       try {
         await esbuild.build({
+          absWorkingDir: process.cwd(),
           bundle: true,
           charset: 'utf8',
           define: {
@@ -90,19 +93,24 @@ export async function buildVanillaJs(config = {}) {
           keepNames: true,
           legalComments: 'none',
           logLevel: 'silent',
-          nodePaths: [path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')],
+          nodePaths: nodePaths.map((nodePath) => path.resolve(nodePath)),
           outfile: `${outDir}/js/${name}.min.js`,
           sourcemap: isDev,
-          target: 'es2020',
+          target: 'es2022',
         });
 
         await stripUseStrict(outfile);
         await revertDrupalGlobal(outfile, isDev);
       } catch (err) {
         console.error(`❌ Error bundling ${name}:`, err.message);
+        failed.push(name);
       }
     })
   );
+
+  if (failed.length) {
+    throw new Error(`JS build failed for ${failed.join(', ')}`);
+  }
 }
 
 /**
@@ -112,16 +120,21 @@ export async function buildVanillaJs(config = {}) {
  * @param {Object} config.reactApps - An object where keys are app names and values are entry points.
  * @param {string} config.outDir - Output directory.
  * @param {boolean} [config.isDev=false] - Whether to build in development mode.
+ * @param {string[]} [config.nodePaths] - Extra package directories relative to the working directory.
  * @return {Promise<void>} - Resolves when all apps are built.
  */
 export async function buildReactApps(config = {}) {
-  const { reactApps, outDir, isDev = false } = config;
+  const { reactApps, outDir, isDev = false, nodePaths = ['../../contrib/hdbt/node_modules'] } = config;
+  const failed = [];
   const projectRoot = process.cwd();
   const require = createRequire(import.meta.url);
+  const resolvedNodePaths = nodePaths.map((nodePath) => path.resolve(nodePath));
 
   // Absolute paths for plugin resolvers — computed once per build.
   // HDS 6 moved its ESM barrel from the package root (hds-react/index.js) to hds-react/lib/index.js.
-  const hdsIndexPath = path.resolve(projectRoot, '../../contrib/hdbt/node_modules/hds-react/lib/index.js');
+  const hdsIndexPath = resolvedNodePaths
+    .map((nodePath) => path.join(nodePath, 'hds-react/lib/index.js'))
+    .find((file) => existsSync(file));
   const lodashEsPath = path.resolve(projectRoot, 'node_modules/lodash-es/lodash.js');
   const lodashEsEntry = existsSync(lodashEsPath) ? lodashEsPath : null;
 
@@ -131,6 +144,7 @@ export async function buildReactApps(config = {}) {
 
       try {
         await esbuild.build({
+          absWorkingDir: process.cwd(),
           plugins: [
             {
               name: 'dedupe-react',
@@ -140,7 +154,7 @@ export async function buildReactApps(config = {}) {
                 // This is needed to prevent esbuild from using the 'react'
                 // or 'react-dom' dependency from two different packages.
                 build.onResolve({ filter: /^react(-dom)?$/ }, args => ({
-                  path: require.resolve(args.path),
+                  path: require.resolve(args.path, { paths: [...resolvedNodePaths, projectRoot] }),
                 }));
               }
             },
@@ -152,6 +166,7 @@ export async function buildReactApps(config = {}) {
                 // esbuild sees the file — packages genuinely needed by used components are still
                 // bundled through their own chunk imports. Real file path (not a virtual alias)
                 // keeps the package.json sideEffects context intact for chunk-level tree-shaking.
+                if (!hdsIndexPath) return;
                 build.onResolve({ filter: /^hds-react$/ }, () => ({
                   path: hdsIndexPath,
                   namespace: 'hds-barrel',
@@ -193,16 +208,21 @@ export async function buildReactApps(config = {}) {
           minify: !isDev,
           legalComments: 'none',
           logLevel: 'silent',
-          nodePaths: [path.resolve(projectRoot, '../../contrib/hdbt/node_modules')],
+          nodePaths: resolvedNodePaths,
           tsconfig: path.resolve(projectRoot, 'tsconfig.json'),
           outfile,
           sourcemap: isDev,
-          target: 'es2020',
+          target: 'es2022',
         });
         await stripUseStrict(outfile);
       } catch (err) {
         console.error(`❌ Error bundling React app ${name}:`, err.message);
+        failed.push(name);
       }
     })
   );
+
+  if (failed.length) {
+    throw new Error(`React build failed for ${failed.join(', ')}`);
+  }
 }
