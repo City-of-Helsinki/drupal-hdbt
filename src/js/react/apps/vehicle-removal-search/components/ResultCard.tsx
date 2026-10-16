@@ -58,6 +58,8 @@ const formatValidityRange = (from?: string | number | null, to?: string | number
 
 const ResultCard = ({ item }: { item: VehicleRemoval }) => {
   const mapUrl = String(normalizeScalar(item.map_url) || '').trim();
+  // Show address info field when URL has ?debug=1.
+  const debug = new URLSearchParams(window.location.search).has('debug');
 
   return (
     <CardItem
@@ -87,6 +89,17 @@ const ResultCard = ({ item }: { item: VehicleRemoval }) => {
                   // additional_text is not translated.
                   langAttribute={{ lang: 'fi' }}
                   content={String(normalizeScalar(item.additional_text) || '')}
+                />,
+              ]
+            : []),
+          ...(debug
+            ? [
+                <Metarow
+                  key='debug-address-info'
+                  icon='info-circle'
+                  label='Address info'
+                  langAttribute={{ lang: 'fi' }}
+                  content={String(normalizeScalar(item.address_info) || '').trim() || EMPTY_META_VALUE}
                 />,
               ]
             : []),
