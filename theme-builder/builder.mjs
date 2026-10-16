@@ -1,7 +1,7 @@
 import chokidar from 'chokidar';
-import { rmSync } from 'fs';
-import path from 'path';
-import { performance } from 'perf_hooks';
+import { rmSync } from 'node:fs';
+import path from 'node:path';
+import { performance } from 'node:perf_hooks';
 import themeBuilderCopy from './copy.mjs';
 import { findStylesForFile, themeBuilderCss } from './css.mjs';
 import themeBuilderIcons from './icons.mjs';

@@ -1,5 +1,5 @@
 import esbuild from 'esbuild';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
