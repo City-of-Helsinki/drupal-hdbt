@@ -1,5 +1,5 @@
 {
-  "extends": ["theme-builder/biome"],
+  "extends": ["@hdbt/theme-builder/biome"],
   "files": {
     "includes": [
       "src/**/*.js",

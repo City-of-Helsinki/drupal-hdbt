@@ -9,9 +9,10 @@
     "Every script below runs inside a disposable Node container via the sandbox command."
   ],
   "scripts": {
+    "preinstall": "npm install ./theme-builder --loglevel=silent",
     "dev": "sandbox node theme-builder.mjs --watch --dev",
     "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
-    "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/theme-builder/.stylelintrc.yaml --formatter string --fix",
+    "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/@hdbt/theme-builder/.stylelintrc.yaml --formatter string --fix",
     "lint:js": "sandbox biome check --write --assist-enabled=true src/js/",
     "format:js": "sandbox biome format --write src/js/",
     "lint": "sandbox npm-run-all --parallel lint:scss lint:js -s",
@@ -70,6 +71,7 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.15.0",
     "@elastic/elasticsearch": "^9.0.2",
+    "@hdbt/theme-builder": "file:theme-builder",
     "@sentry/react": "^10.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.2.0",
@@ -90,7 +92,6 @@
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "swr": "2.3.6",
-    "theme-builder": "github:khalima/theme-builder#7869ef7a7fbc495308a23718b04d14dffadbbedd",
     "typescript": "7.0.2"
   },
   "devDependencies": {

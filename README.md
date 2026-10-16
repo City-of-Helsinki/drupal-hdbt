@@ -20,7 +20,7 @@ Requirements for developing:
 | Command       | Description                                                                       |
 |---------------|-----------------------------------------------------------------------------------|
 | nvm use       | Uses correct Node version chosen for the theme compiler.                          |
-| npm i         | Install dependencies and link local packages.                                     |
+| npm i         | Install dependencies. The `preinstall` script refreshes the theme builder.        |
 | npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
 | npm run dev   | Compile styles and js for development environment. and watch file changes.        |
 | npm run build | Build packages for production. Minify CSS/JS.                                     |

@@ -1,0 +1,76 @@
+{
+  "name": "@hdbt/theme-builder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Builds the CSS, JavaScript, React apps, icon sprite and static files for Drupal themes and modules.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/City-of-Helsinki/drupal-hdbt.git",
+    "directory": "theme-builder"
+  },
+  "type": "module",
+  "files": [
+    "*.mjs",
+    "biome.json",
+    ".stylelintrc.yaml",
+    "tools/"
+  ],
+  "bin": {
+    "sandbox": "tools/sandbox.sh"
+  },
+  "exports": {
+    "./biome": "./biome.json",
+    "./builder": "./builder.mjs",
+    "./copy": "./copy.mjs",
+    "./css": "./css.mjs",
+    "./icons": "./icons.mjs",
+    "./js": "./js.mjs"
+  },
+  "scripts": {
+    "test": "tools/sandbox.sh node --test 'tests/*.test.mjs'"
+  },
+  "@comment dependencies": [
+    {
+      "glob": "Overridden for svg-sprite to drop deprecated glob@7 and inflight",
+      "hds-design-tokens": "Imported by the hdbt SCSS, keep the version in sync with hdbt"
+    }
+  ],
+  "overrides": {
+    "svg-sprite": {
+      "glob": "^13.0.0"
+    }
+  },
+  "dependencies": {
+    "@biomejs/biome": "^2.2.4",
+    "breakpoint-sass": "^3.0.0",
+    "chokidar": "^4.0.3",
+    "cli-progress": "^3.12.0",
+    "cssnano": "^7.0.7",
+    "esbuild": "^0.28.0",
+    "hds-design-tokens": "6.0.5",
+    "postcss": "^8.5.6",
+    "postcss-import": "^16.1.1",
+    "postcss-preset-env": "^10.2.4",
+    "sass": "^1.89.2",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard-scss": "^15.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-high-performance-animation": "^1.11.0",
+    "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.1",
+    "svg-sprite": "3.0.0-rc3",
+    "terser": "^5.43.1"
+  },
+  "browserslist": [
+    "baseline widely available"
+  ],
+  "engines": {
+    "npm": ">=12.0.0",
+    "node": ">=24.0.0"
+  },
+  "allowScripts": {
+    "esbuild": false,
+    "@parcel/watcher": false
+  }
+}
