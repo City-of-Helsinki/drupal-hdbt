@@ -1,8 +1,3 @@
-{% set video_title_level = 'h2' %}
-{% if paragraph_title|render %}
-  {% set video_title_level = 'h3' %}
-{% endif %}
-
 {% set videographer = video[0]['#media'].getVideographer() %}
 
 {% embed "@hdbt/misc/component.twig" with
@@ -19,7 +14,7 @@
   %}
   {% block component_content %}
     {% if video_title|render %}
-      <{{ video_title_level }} class="remote-video__video-title">{{ video_title }}</{{ video_title_level }}>
+      <h3 class="remote-video__video-title">{{ video_title }}</h3>
     {% endif %}
     <div class="remote-video__video">
       {{ video }}
