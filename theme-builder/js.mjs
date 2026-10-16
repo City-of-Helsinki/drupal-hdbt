@@ -154,7 +154,7 @@ export async function buildReactApps(config = {}) {
                 // This is needed to prevent esbuild from using the 'react'
                 // or 'react-dom' dependency from two different packages.
                 build.onResolve({ filter: /^react(-dom)?$/ }, args => ({
-                  path: require.resolve(args.path),
+                  path: require.resolve(args.path, { paths: [...resolvedNodePaths, projectRoot] }),
                 }));
               }
             },

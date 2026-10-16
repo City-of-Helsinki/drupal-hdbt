@@ -9,7 +9,7 @@
     "Every script below runs inside a disposable Node container via the sandbox command."
   ],
   "scripts": {
-    "preinstall": "npm install ./theme-builder --loglevel=silent",
+    "preinstall": "rm -rf node_modules/@hdbt/theme-builder && npm install ./theme-builder --loglevel=silent",
     "dev": "sandbox node theme-builder.mjs --watch --dev",
     "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
     "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/@hdbt/theme-builder/.stylelintrc.yaml --formatter string --fix",

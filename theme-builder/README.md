@@ -14,11 +14,11 @@ Add the builder to the theme or module dependencies with a path relative to hdbt
 
 Set `install-links=true` in the `.npmrc` so npm copies the builder and installs only its dependencies.
 
-`npm install` keeps the builder copy from the lockfile. Install it by path in a `preinstall` script so every `npm i` picks up the builder changes.
+`npm install` keeps the builder copy from the lockfile, and an install by path keeps a copy with the same version even when its files changed. Remove the copy and install it by path in a `preinstall` script so every `npm i` picks up the builder changes.
 
 ```json
 "scripts": {
-  "preinstall": "npm install ../../contrib/hdbt/theme-builder --loglevel=silent"
+  "preinstall": "rm -rf node_modules/@hdbt/theme-builder && npm install ../../contrib/hdbt/theme-builder --loglevel=silent"
 }
 ```
 
