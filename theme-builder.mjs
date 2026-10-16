@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { globSync } from 'glob';
 import { buildAll, watchAndBuild } from '@hdbt/theme-builder/builder';
 
