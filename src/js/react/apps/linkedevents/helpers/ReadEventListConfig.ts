@@ -8,6 +8,11 @@ import type Topic from '../types/Topic';
 // Everything one embed needs to run, resolved from its root element and its own entry in
 // drupalSettings. Reading it here rather than in the store is what lets several embeds coexist.
 export type EventsAppConfig = {
+  // Editor-defined "all events" link, used by the lifts layout.
+  allEventsLink: {
+    title: string;
+    url: string;
+  } | null;
   baseUrl: string;
   eventListTitle?: string;
   eventsPublicUrl: string;
@@ -120,6 +125,7 @@ export const readEventListConfig = (
   const ownsPageUrl = index === 0;
 
   return {
+    allEventsLink: settings.all_events_link ?? null,
     baseUrl,
     eventListTitle,
     eventsPublicUrl,
