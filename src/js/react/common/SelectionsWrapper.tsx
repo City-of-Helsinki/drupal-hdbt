@@ -19,7 +19,10 @@ const SelectionsWrapper = ({ modifierClass, showClearButton, resetForm, children
 
   return (
     <div className={`hdbt-search__selections-wrapper${modifierClass ? ` ${modifierClass}` : ''}`}>
-      <ul className='hdbt-search__selections-container content-tags__tags'>
+      <ul
+        className='hdbt-search__selections-container content-tags__tags'
+        aria-label={Drupal.t('Search criteria', {}, { context: 'React search: tags aria label' })}
+      >
         {children}
         <li className='hdbt-search__clear-all'>
           <Button

@@ -1463,6 +1463,10 @@ msgctxt "React search: clear selections"
 msgid "Clear selections"
 msgstr "Tyhjennä valinnat"
 
+msgctxt "React search: tags aria label"
+msgid "Search criteria"
+msgstr "Hakukriteerit"
+
 msgctxt "React search: date selection label"
 msgid "Date"
 msgstr "Ajankohta"
