@@ -237,58 +237,113 @@ function getConfig(hostname, protocol, type) {
 
         // Colors
         {
-          label: 'DC: Suomenlinna',
+          label: 'DC: Colors - Suomenlinna',
           url: `${protocol}://${hostname}/en/dc-colors/dc-suomenlinna`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Copper',
+          label: 'DC: Colors - Suomenlinna - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-suomenlinna-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Copper',
           url: `${protocol}://${hostname}/en/dc-colors/dc-copper`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Gold',
+          label: 'DC: Colors - Copper - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-copper-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Gold',
           url: `${protocol}://${hostname}/en/dc-colors/dc-gold`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Coat of Arms',
+          label: 'DC: Colors - Gold - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-gold-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Coat of Arms',
           url: `${protocol}://${hostname}/en/dc-colors/dc-coat-of-arms`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Tram',
+          label: 'DC: Colors - Coat of Arms - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-coat-of-arms-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Tram',
           url: `${protocol}://${hostname}/en/dc-colors/dc-tram`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Silver',
+          label: 'DC: Colors - Tram - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-tram-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Silver',
           url: `${protocol}://${hostname}/en/dc-colors/dc-silver`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Engel',
+          label: 'DC: Colors - Silver - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-silver-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Engel',
           url: `${protocol}://${hostname}/en/dc-colors/dc-engel`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Summer',
+          label: 'DC: Colors - Engel - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-engel-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Summer',
           url: `${protocol}://${hostname}/en/dc-colors/dc-summer`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Bus',
+          label: 'DC: Colors - Summer - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-summer-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Bus',
           url: `${protocol}://${hostname}/en/dc-colors/dc-bus`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Metro',
+          label: 'DC: Colors - Bus - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-bus-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Metro',
           url: `${protocol}://${hostname}/en/dc-colors/dc-metro`,
           removeSelectors: removeDefault,
         },
         {
-          label: 'DC: Fog',
+          label: 'DC: Colors - Metro - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-metro-toc`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Fog',
           url: `${protocol}://${hostname}/en/dc-colors/dc-fog`,
+          removeSelectors: removeDefault,
+        },
+        {
+          label: 'DC: Colors - Fog - Table of contents',
+          url: `${protocol}://${hostname}/en/dc-colors/dc-fog-toc`,
           removeSelectors: removeDefault,
         },
 

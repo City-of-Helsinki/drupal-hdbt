@@ -33,7 +33,9 @@ const useQueryString = (urlParams: URLParams): string => {
       bool: {
         should: [
           {
-            query_string: {
+            // Unlike 'query_string', this doesn't fail on invalid syntax or
+            // allow querying other fields.
+            simple_query_string: {
               query: `${urlParams.keyword.toString().toLowerCase()}~`,
               fields: [
                 `${IndexFields.FULLTEXT_TITLE}^2`,
