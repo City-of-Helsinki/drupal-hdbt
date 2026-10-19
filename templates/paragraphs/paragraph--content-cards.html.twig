@@ -9,7 +9,7 @@
   {% set design_class = null %} {# This should not happen #}
 {% endif %}
 
-{% if content.field_content_cards_content|render|striptags|trim %}
+{% if paragraph.hasField('field_content_cards_content_ext') and not paragraph.field_content_cards_content_ext.isEmpty() %}
   {% block paragraph %}
     {% embed "@hdbt/misc/component.twig" with
       {
@@ -20,11 +20,10 @@
         component_koro: has_koro ? { flip: true },
         component_title: title,
         component_description: content.field_content_cards_desc,
-        component_content_class: 'content-cards',
       }
     %}
       {% block component_content %}
-        {{ content.field_content_cards_content }}
+        {{ content.field_content_cards_content_ext }}
       {% endblock component_content %}
     {% endembed %}
   {% endblock paragraph %}

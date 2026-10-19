@@ -1,0 +1,37 @@
+{% set image = content.liftup_image_url %}
+
+{%
+  set classes = [
+    'content-card',
+  ]
+%}
+
+{% set link_title %}
+  {{ title_prefix }}
+  <span class="content-card__title">
+    {{ content.title }}
+  </span>
+  {{ title_suffix }}
+{% endset %}
+
+{% set link_attributes = {
+  'class': [
+    'content-card__link',
+  ],
+  'rel': 'bookmark',
+} %}
+
+{# Role is removed from below to avoid populating UI with role="article" elements for accessibility #}
+<div{{ attributes.removeAttribute('role').addClass(classes) }}>
+
+  <div class="content-card__image">
+    {% if image.0 %}
+      {{ image }}
+    {% else %}
+      {% include '@hdbt/media/image--card.html.twig' with {content: '' } %}
+    {% endif %}
+  </div>
+
+  {{ link(link_title, external_entity.getExternalUrl(), link_attributes) }}
+
+</div>
