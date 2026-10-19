@@ -520,14 +520,6 @@ msgid "Continue below the @chart chart"
 msgstr "Gå förbi diagrammet @chart nedåt"
 
 msgctxt "Skip links"
-msgid "Continue above the video"
-msgstr "Gå förbi videon uppåt"
-
-msgctxt "Skip links"
-msgid "Continue below the video"
-msgstr "Gå förbi videon nedåt"
-
-msgctxt "Skip links"
 msgid "Continue above the @video video"
 msgstr "Gå förbi videon @video uppåt"
 
