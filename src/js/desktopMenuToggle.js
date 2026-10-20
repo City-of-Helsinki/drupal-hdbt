@@ -95,7 +95,7 @@ const handleEscKey = (event) => {
     const parentItem = event.target.closest('.menu__item--item-below');
 
     if (parentItem) {
-      parentItem.querySelector('.menu__link-wrapper .menu__link')?.focus();
+      parentItem.querySelector('.menu__link-wrapper .menu__toggle-button')?.focus();
     }
   }
 };

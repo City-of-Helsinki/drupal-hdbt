@@ -8,6 +8,7 @@ import FormContainer from './FormContainer';
 // Every filter turned on, so the test covers each id-emitting component at once and keeps
 // covering new ones as filters are added.
 const allFiltersOn = {
+  all_events_link: null,
   event_list_layout: 'default' as const,
   event_list_type: 'events_and_hobbies' as const,
   events_api_url: 'https://api.hel.fi/linkedevents/v1/event/?page=1',

@@ -1,11 +1,12 @@
 import { useAtomValue } from 'jotai';
 import ExternalLink from '../../../common/ExternalLink';
-import { eventsPublicUrl, hobbiesPublicUrl, settingsAtom } from '../store';
+import { allEventsLinkAtom, eventsPublicUrl, hobbiesPublicUrl, settingsAtom } from '../store';
 
 function SeeAllButton() {
   const filterSettings = useAtomValue(settingsAtom);
   const eventsUrl = useAtomValue(eventsPublicUrl) || '';
   const hobbiesUrl = useAtomValue(hobbiesPublicUrl) || '';
+  const allEventsLink = useAtomValue(allEventsLinkAtom);
   const { seeAllButtonOverride } = drupalSettings?.helfi_events || null;
   const { eventListType, layout } = filterSettings;
 
@@ -15,8 +16,8 @@ function SeeAllButton() {
         <ExternalLink
           data-hds-component='button'
           data-hds-variant='primary'
-          href={eventListType === 'hobbies' ? hobbiesUrl : eventsUrl}
-          title={Drupal.t('View all events', {}, { context: 'Events search' })}
+          href={allEventsLink?.url || (eventListType === 'hobbies' ? hobbiesUrl : eventsUrl)}
+          title={allEventsLink?.title || Drupal.t('View all events', {}, { context: 'Events search' })}
         />
       </div>
     );

@@ -64,6 +64,8 @@ export const eventsPublicUrl = atom((get) => get(configAtom)?.eventsPublicUrl);
 
 export const hobbiesPublicUrl = atom((get) => get(configAtom)?.hobbiesPublicUrl);
 
+export const allEventsLinkAtom = atom((get) => get(configAtom)?.allEventsLink);
+
 export const settingsAtom = atom(
   (get) =>
     get(configAtom)?.settings || {
