@@ -22,7 +22,8 @@ export default class AccordionItem {
     // Do not animate accordions on page load so adding the noAnimation to true.
     this.setHidden(true);
     this.addEventListeners();
-    this.handleLinkAnchor(urlHash);
+    // urlHash is sometimes read and stored before highlighting suffix is cleared.
+    this.handleLinkAnchor(urlHash.replace(/:hl+$/, ''));
     this.setAriaOpen();
   }
 
