@@ -52,7 +52,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
 
   const query = useVehicleRemovalQuery();
   const elasticQuery = useVehicleRemovalQuery({ from: 0 });
-  const { streets } = useAtomValue(submittedStateAtom);
+  const { streets, postalCodes, parkingZones } = useAtomValue(submittedStateAtom);
 
   const { scrollTarget, loadingHeaderRef, resultsListRef, onPageChange, isSearching } = useSearchFocusManagement(
     isValidating,
@@ -64,8 +64,9 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     triggerFocus,
   );
 
-  const selectionTags: TagType[] = streets.map((street) => ({
-    tag: street.label,
+  // Shown in the search monitor dialog and saved as the subscription's search description.
+  const selectionTags: TagType[] = [...streets, ...postalCodes, ...parkingZones].map((option) => ({
+    tag: option.label,
   }));
 
   const { hakuvahti } = drupalSettings;
