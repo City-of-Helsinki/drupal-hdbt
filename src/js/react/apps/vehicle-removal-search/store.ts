@@ -5,12 +5,14 @@ import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 export interface SearchState {
   streets: Option[];
   postalCodes: Option[];
+  parkingZones: Option[];
   page: number;
 }
 
 const defaultState: SearchState = {
   streets: [],
   postalCodes: [],
+  parkingZones: [],
   page: 1,
 };
 
@@ -31,6 +33,7 @@ const urlParamsToState = (): SearchState => {
     ...defaultState,
     streets: paramToOptions(params.getAll('streets')),
     postalCodes: paramToOptions(params.getAll('postalCodes')),
+    parkingZones: paramToOptions(params.getAll('parkingZones')),
     page: Number(params.get('page')) || 1,
   };
 };
@@ -52,6 +55,16 @@ export const postalCodesAtom = atom(
   (get, set, value: Option[]) => {
     const state = { ...get(submittedStateAtom) } as SearchState;
     state.postalCodes = value;
+    state.page = 1;
+    set(submittedStateAtom, state, true);
+  },
+);
+
+export const parkingZonesAtom = atom(
+  (get) => get(submittedStateAtom)?.parkingZones || [],
+  (get, set, value: Option[]) => {
+    const state = { ...get(submittedStateAtom) } as SearchState;
+    state.parkingZones = value;
     state.page = 1;
     set(submittedStateAtom, state, true);
   },

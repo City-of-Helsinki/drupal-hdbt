@@ -1796,6 +1796,18 @@ msgid "For example, 00100"
 msgstr "T.ex. 00100"
 
 msgctxt "Vehicle removal search"
+msgid "Parking zone"
+msgstr "Invånarparkeringsområde"
+
+msgctxt "Vehicle removal search"
+msgid "Write a parking zone"
+msgstr "Skriv ett invånarparkeringsområde"
+
+msgctxt "Vehicle removal search"
+msgid "For example, Kamppi"
+msgstr "T.ex. Kamppi"
+
+msgctxt "Vehicle removal search"
 msgid "Period of validity"
 msgstr "Giltighetstid"
 

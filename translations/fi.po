@@ -1794,6 +1794,18 @@ msgid "For example, 00100"
 msgstr "Esim. 00100"
 
 msgctxt "Vehicle removal search"
+msgid "Parking zone"
+msgstr "Asukaspysäköintialue"
+
+msgctxt "Vehicle removal search"
+msgid "Write a parking zone"
+msgstr "Kirjoita asukaspysäköintialue"
+
+msgctxt "Vehicle removal search"
+msgid "For example, Kamppi"
+msgstr "Esim. Kamppi"
+
+msgctxt "Vehicle removal search"
 msgid "Period of validity"
 msgstr "Voimassaoloaika"
 

@@ -5,37 +5,36 @@ import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import { Events } from '../enum/Event';
 import { type SearchState, submittedStateAtom } from '../store';
 
+type FilterKey = 'streets' | 'postalCodes' | 'parkingZones';
+
+const filterKeys: FilterKey[] = ['streets', 'postalCodes', 'parkingZones'];
+
 const SelectionsContainer = () => {
-  const { streets, postalCodes } = useAtomValue(submittedStateAtom);
+  const state = useAtomValue(submittedStateAtom);
   const setSubmittedState = useSetAtom(submittedStateAtom);
 
   const clearAll = () => {
-    setSubmittedState({ streets: [], postalCodes: [], page: 1 });
+    setSubmittedState({ streets: [], postalCodes: [], parkingZones: [], page: 1 });
     window.dispatchEvent(new CustomEvent(Events.VEHICLE_REMOVAL_CLEAR_ALL));
   };
 
-  const clearSingle = (key: 'streets' | 'postalCodes', value: string) => {
-    const current: SearchState[typeof key] = key === 'streets' ? streets : postalCodes;
-    setSubmittedState({ [key]: current.filter((option) => option.value !== value), page: 1 });
+  const clearSingle = (key: FilterKey, value: string) => {
+    const updated: SearchState[FilterKey] = state[key].filter((option) => option.value !== value);
+    setSubmittedState({ [key]: updated, page: 1 });
     window.dispatchEvent(new CustomEvent(Events.VEHICLE_REMOVAL_CLEAR_SINGLE));
   };
 
   return (
-    <SelectionsWrapper showClearButton={streets.length > 0 || postalCodes.length > 0} resetForm={clearAll}>
-      {streets.map((street) => (
-        <FilterButton
-          key={`street-${street.value}`}
-          value={street.label}
-          clearSelection={() => clearSingle('streets', street.value as string)}
-        />
-      ))}
-      {postalCodes.map((postalCode) => (
-        <FilterButton
-          key={`postal-code-${postalCode.value}`}
-          value={postalCode.label}
-          clearSelection={() => clearSingle('postalCodes', postalCode.value as string)}
-        />
-      ))}
+    <SelectionsWrapper showClearButton={filterKeys.some((key) => state[key].length > 0)} resetForm={clearAll}>
+      {filterKeys.flatMap((key) =>
+        state[key].map((option) => (
+          <FilterButton
+            key={`${key}-${option.value}`}
+            value={option.label}
+            clearSelection={() => clearSingle(key, option.value as string)}
+          />
+        )),
+      )}
     </SelectionsWrapper>
   );
 };

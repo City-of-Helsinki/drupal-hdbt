@@ -4,6 +4,8 @@ interface VehicleRemoval {
   address_info: string;
   street_names: string[];
   postal_codes: string[];
+  // Not every item has the parking zone data.
+  parking_zone_names?: string[];
   reason: string;
   sign_type: string;
   notes: string;

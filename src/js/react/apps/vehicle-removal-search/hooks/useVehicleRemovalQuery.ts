@@ -3,7 +3,7 @@ import Global from '../enum/Global';
 import { submittedStateAtom } from '../store';
 
 const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {}): string => {
-  const { streets, postalCodes, page } = useAtomValue(submittedStateAtom);
+  const { streets, postalCodes, parkingZones, page } = useAtomValue(submittedStateAtom);
 
   const query: Record<string, unknown> = {
     size: override.size ?? Global.size,
@@ -19,6 +19,10 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
 
   if (postalCodes.length) {
     must.push({ terms: { postal_codes: postalCodes.flatMap((postalCode) => postalCode.value) } });
+  }
+
+  if (parkingZones.length) {
+    must.push({ terms: { parking_zone_names: parkingZones.flatMap((parkingZone) => parkingZone.value) } });
   }
 
   const innerQuery = must.length ? { bool: { must } } : { match_all: {} };
