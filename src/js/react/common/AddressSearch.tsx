@@ -18,6 +18,7 @@ type BaseAddressSearchProps = {
   className?: string;
   error?: boolean;
   errorText?: string;
+  errorTitle?: string;
   hideSearchButton?: boolean;
   onChange?: (value: string) => void;
   searchInputClassname?: string;
@@ -37,6 +38,7 @@ export const AddressSearch = ({
   className,
   error,
   errorText,
+  errorTitle,
   hideSearchButton,
   includeCoordinates = false,
   onChange,
@@ -233,6 +235,14 @@ export const AddressSearch = ({
 
   const geoInProgress = useLocation && geoLoading;
 
+  const errorMessage =
+    errorText ??
+    Drupal.t(
+      'Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing.',
+      {},
+      { context: 'Address search error message' },
+    );
+
   const searchComponent = (
     <Search
       {...props}
@@ -270,16 +280,20 @@ export const AddressSearch = ({
       ) : (
         searchComponent
       )}
-      {error && (
-        <div className='hds-text-input hds-text-input__error-text'>
-          {errorText ??
-            Drupal.t(
-              'Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing.',
-              {},
-              { context: 'Address search error message' },
-            )}
-        </div>
-      )}
+      {error &&
+        (errorTitle ? (
+          <div className='hds-notification hds-notification--error'>
+            <div className='hds-notification__content'>
+              <div className='hds-notification__label'>
+                <span className='hds-icon hds-icon--error-fill' aria-hidden='true' />
+                <span>{errorTitle}</span>
+              </div>
+              <div className='hds-notification__body'>{errorMessage}</div>
+            </div>
+          </div>
+        ) : (
+          <div className='hds-text-input hds-text-input__error-text'>{errorMessage}</div>
+        ))}
     </div>
   );
 };

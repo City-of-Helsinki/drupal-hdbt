@@ -1954,6 +1954,10 @@ msgid "Please check that the address you entered is correct or try another nearb
 msgstr "Varmista, että osoite on oikein. Voit kokeilla hakea myös läheisellä katuosoitteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
 
 msgctxt "Address search error message"
+msgid "No results found for this street address"
+msgstr "Katuosoitteella ei löytynyt tuloksia"
+
+msgctxt "Address search error message"
 msgid "No results were found for the street address. Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
 msgstr "Katuosoitteella ei löytynyt tuloksia. Varmista, että osoite on oikein. Voit kokeilla hakea myös läheisellä katuosoitteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
 

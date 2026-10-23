@@ -33,6 +33,15 @@ describe('AddressSearch', () => {
     expect(queryByText(/Please check that the address you entered is correct/)).toBeNull();
   });
 
+  test('shows the address error as a notification with a heading when errorTitle is given', () => {
+    const { container, getByText } = render(
+      <AddressSearch onSubmit={vi.fn()} error errorTitle='No results found for this street address' />,
+    );
+    expect(container.querySelector('.hds-notification--error')).not.toBeNull();
+    expect(getByText('No results found for this street address')).toBeTruthy();
+    expect(getByText(/Please check that the address you entered is correct/)).toBeTruthy();
+  });
+
   test('pushes the initial value back to the parent to survive HDS clearing it on mount', () => {
     const onChange = vi.fn();
     render(<AddressSearch onSubmit={vi.fn()} value='Mannerheimintie 1' onChange={onChange} />);
