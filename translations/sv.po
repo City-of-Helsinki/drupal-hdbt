@@ -1820,12 +1820,12 @@ msgid "Find vehicle removal requests"
 msgstr "Sök flyttningsuppmaningar"
 
 msgctxt "Vehicle removal search"
-msgid "Use street names to search for areas with vehicle removal requests."
-msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
+msgid "Search for areas with vehicle removal requests. You can narrow down your search by street name, postal code or resident parking zone."
+msgstr "Sök efter områden som har flyttningsuppmaningar. Du kan avgränsa sökningen med gatunamn, postnummer eller boendeparkeringsområden."
 
 msgctxt "Vehicle removal search"
-msgid "The search results will show you the location of vehicle removal request signs on the street that you searched for or a street near it."
-msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat på den gata du sökte efter eller på en närliggande gata."
+msgid "The search results will show you the location of the vehicle removal request sign."
+msgstr "I sökresultatet anges var förflyttningsuppmaningsmärket är placerat."
 
 msgctxt "Vehicle removal search"
 msgid "No vehicle removal requests"
