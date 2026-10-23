@@ -123,7 +123,7 @@ describe('SearchBar', () => {
   test('empties the field when the keyword selection is removed', () => {
     const { store, getByLabelText } = renderSearchBar('psychologist', 'keyword');
 
-    fireEvent.click(getByLabelText('Remove Search term: psychologist from search results'));
+    fireEvent.click(getByLabelText('Remove psychologist from search results'));
 
     expect(store.get(getKeywordAtom)).toBe('');
     // The field is remounted to reset the copy of the term HDS keeps internally,
@@ -134,7 +134,7 @@ describe('SearchBar', () => {
   test('accepts a new keyword after the keyword selection was removed', () => {
     const { store, getByLabelText } = renderSearchBar('psychologist', 'keyword');
 
-    fireEvent.click(getByLabelText('Remove Search term: psychologist from search results'));
+    fireEvent.click(getByLabelText('Remove psychologist from search results'));
 
     // The input is remounted when the selection is removed, so the fresh input
     // element has to be looked up again.

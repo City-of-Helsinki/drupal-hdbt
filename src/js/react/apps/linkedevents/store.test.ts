@@ -15,6 +15,7 @@ import {
 const API = 'https://api.hel.fi/linkedevents/v1/event/';
 
 const settingsFor = (count: string, eventType: string) => ({
+  all_events_link: null,
   event_list_layout: 'default' as const,
   event_list_type: 'events' as const,
   events_api_url: `${API}?event_type=${eventType}&page=1`,

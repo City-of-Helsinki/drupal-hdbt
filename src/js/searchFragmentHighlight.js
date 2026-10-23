@@ -74,7 +74,7 @@
     cleanHash(id);
     heading.scrollIntoView({ block: 'start' });
 
-    const container = heading.closest('.component__container');
+    const container = heading.closest('.helfi-accordion-item') ?? heading.closest('.component__container');
     if (!container) {
       return;
     }
