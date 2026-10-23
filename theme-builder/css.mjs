@@ -1,13 +1,11 @@
-import path from 'path';
-import fs from 'fs';
+import path from 'node:path';
+import fs from 'node:fs';
 import * as sass from 'sass';
 import postcss from 'postcss';
-import { cpus } from 'os';
+import { cpus } from 'node:os';
 import cliProgress from 'cli-progress';
 
 import postcssPresetEnv from 'postcss-preset-env';
-import postcssNested from 'postcss-nested';
-import postcssNesting from 'postcss-nesting';
 import postcssImport from 'postcss-import';
 import cssnano from 'cssnano';
 import { stripInlineComments, skipCharsetPlugin, runWithConcurrency } from './css.plugins.mjs';
@@ -19,31 +17,31 @@ import pkg from './package.json' with { type: 'json' };
  * @param {Array<[string, string]>} styles - list of [input.scss, output.css] pairs
  * @param {boolean} isDev - true if development mode
  * @param {string} outDir - output directory
+ * @param {string[]} [nodePaths] - extra package directories relative to the working directory
  */
-export async function themeBuilderCss({ styles, isDev, outDir }) {
+export async function themeBuilderCss({ styles, isDev, outDir, nodePaths = ['../../contrib/hdbt/node_modules'] }) {
   console.warn('🎨 Building CSS…');
 
   const debugVar = `$debug_mode: ${isDev};\n`;
   const queue = styles.slice();
+  const failed = [];
+  const packagePaths = ['node_modules', ...nodePaths.map((nodePath) => path.resolve(nodePath))];
 
   stripInlineComments.postcss = true;
 
   // Configure PostCSS with desired plugins
   const postcssConfig = {
-    parser: 'postcss-scss',
     plugins: [
-      postcssImport({ path: ['node_modules', path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')] }),
+      postcssImport({ path: packagePaths }),
       postcssPresetEnv({
         browsers: pkg.browserslist,
         stage: 2,
         preserve: true,
         features: { 'logical-properties-and-values': false }
       }),
-      postcssNested(),
-      postcssNesting(),
       stripInlineComments(),
       skipCharsetPlugin(),
-      cssnano({ preset: 'default' })
+      cssnano({ preset: ['default', { overrideBrowserslist: pkg.browserslist }] })
     ]
   };
 
@@ -74,7 +72,7 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
 
       const result = sass.compileString(contentWithDebug, {
         style: 'compressed',
-        loadPaths: ['src/scss', 'node_modules', path.resolve(process.cwd(), '../../contrib/hdbt/node_modules')],
+        loadPaths: ['src/scss', ...packagePaths],
         quietDeps: true,
         silenceDeprecations: ['import'],
         sourceMap: isDev,
@@ -90,6 +88,7 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
       fs.writeFileSync(outFile, postcssResult.css, 'utf8');
     } catch (e) {
       console.error(`❌ Error building ${input}:`, e.message);
+      failed.push(input);
     }
 
     progressBar.increment();
@@ -100,6 +99,10 @@ export async function themeBuilderCss({ styles, isDev, outDir }) {
   // Run tasks with concurrency limit (one per CPU core)
   await runWithConcurrency(tasks, concurrency);
   progressBar.stop();
+
+  if (failed.length) {
+    throw new Error(`CSS build failed for ${failed.join(', ')}`);
+  }
 }
 
 /**

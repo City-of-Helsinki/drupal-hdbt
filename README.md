@@ -20,7 +20,7 @@ Requirements for developing:
 | Command       | Description                                                                       |
 |---------------|-----------------------------------------------------------------------------------|
 | nvm use       | Uses correct Node version chosen for the theme compiler.                          |
-| npm i         | Install dependencies and link local packages.                                     |
+| npm i         | Install dependencies. The `preinstall` script refreshes the theme builder.        |
 | npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
 | npm run dev   | Compile styles and js for development environment. and watch file changes.        |
 | npm run build | Build packages for production. Minify CSS/JS.                                     |
@@ -33,13 +33,11 @@ Consistent Node version defined in `.nvmrc` should be used. Set up the developin
 Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.
 - `package.json and package-lock.json` : Defines the node modules and scripts for compiling the theme.
-- `theme-builder/` : The theme builder tools.
 - `theme-builder.mjs` : Configuration file for the theme builder tool that is used to build the theme.
-- `tools/sandbox.sh` : Wrapper that runs the npm scripts inside a disposable Docker container.
 
 ## Sandbox
 
-The build, lint and test scripts in `package.json` are executed through `tools/sandbox.sh`, which runs the given
+The build, lint and test scripts in `package.json` are executed through the `sandbox` command from `theme-builder/tools/sandbox.sh`, which runs the given
 command inside a disposable Node container. The purpose is to make sure that third party code never runs directly
 on the developer's user account.
 
