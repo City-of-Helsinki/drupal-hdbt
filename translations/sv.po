@@ -1784,6 +1784,18 @@ msgid "For example, Kotikatu"
 msgstr "T.ex. Hemgatan"
 
 msgctxt "Vehicle removal search"
+msgid "Postal code"
+msgstr "Postnummer"
+
+msgctxt "Vehicle removal search"
+msgid "Write a postal code"
+msgstr "Skriv ett postnummer"
+
+msgctxt "Vehicle removal search"
+msgid "For example, 00100"
+msgstr "T.ex. 00100"
+
+msgctxt "Vehicle removal search"
 msgid "Period of validity"
 msgstr "Giltighetstid"
 

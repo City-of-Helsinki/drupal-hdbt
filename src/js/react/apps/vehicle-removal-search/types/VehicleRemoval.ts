@@ -3,6 +3,7 @@ interface VehicleRemoval {
   address: string;
   address_info: string;
   street_names: string[];
+  postal_codes: string[];
   reason: string;
   sign_type: string;
   notes: string;

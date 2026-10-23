@@ -4,33 +4,35 @@ import { stateToURLParams } from '@/react/common/helpers/StateToURLParams';
 
 export interface SearchState {
   streets: Option[];
+  postalCodes: Option[];
   page: number;
 }
 
 const defaultState: SearchState = {
   streets: [],
+  postalCodes: [],
   page: 1,
 };
 
-const urlParamsToState = (): SearchState => {
-  const params = new URLSearchParams(window.location.search);
-  const streetsParam = params.getAll('streets');
-  const page = Number(params.get('page')) || 1;
-
-  if (!streetsParam) {
-    return defaultState;
-  }
-
-  const streets: Option[] = streetsParam.map((name) => ({
-    value: name,
-    label: name,
+const paramToOptions = (values: string[]): Option[] =>
+  values.map((value) => ({
+    value,
+    label: value,
     selected: true,
     isGroupLabel: false,
     visible: true,
     disabled: false,
   }));
 
-  return { streets, page };
+const urlParamsToState = (): SearchState => {
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    ...defaultState,
+    streets: paramToOptions(params.getAll('streets')),
+    postalCodes: paramToOptions(params.getAll('postalCodes')),
+    page: Number(params.get('page')) || 1,
+  };
 };
 
 const initialState = urlParamsToState();
@@ -40,6 +42,16 @@ export const streetsAtom = atom(
   (get, set, value: Option[]) => {
     const state = { ...get(submittedStateAtom) } as SearchState;
     state.streets = value;
+    state.page = 1;
+    set(submittedStateAtom, state, true);
+  },
+);
+
+export const postalCodesAtom = atom(
+  (get) => get(submittedStateAtom)?.postalCodes || [],
+  (get, set, value: Option[]) => {
+    const state = { ...get(submittedStateAtom) } as SearchState;
+    state.postalCodes = value;
     state.page = 1;
     set(submittedStateAtom, state, true);
   },
