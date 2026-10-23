@@ -10,8 +10,18 @@
   }
 
   .hdbt-search--react__dropdown-filters {
+    gap: $spacing;
+    margin-block-start: $spacing;
+
     @include breakpoint($breakpoint-m) {
+      gap: $spacing-double;
       margin-block-start: $spacing-and-half;
+    }
+
+    > div {
+      @include breakpoint($breakpoint-m) {
+        width: calc(50% - $spacing);
+      }
     }
   }
 } 
