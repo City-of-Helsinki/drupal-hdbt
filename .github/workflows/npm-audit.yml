@@ -24,6 +24,7 @@ jobs:
           export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install $node_version
           nvm use $node_version
+          npm install --global npm@12 --loglevel=error
           npm install --silent
           set +e
           npm audit --package-lock-only --loglevel=error;
