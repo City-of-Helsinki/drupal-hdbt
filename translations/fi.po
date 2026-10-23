@@ -1950,7 +1950,7 @@ msgid "Autumn"
 msgstr "Syksy"
 
 msgctxt "Address search error message"
-msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
+msgid "Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing."
 msgstr "Varmista, että osoite on oikein. Voit kokeilla hakea myös läheisellä katuosoitteella. Haku ehdottaa osoitteita, kun alat kirjoittaa."
 
 msgctxt "Address search error message"

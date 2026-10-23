@@ -274,7 +274,7 @@ export const AddressSearch = ({
         <div className='hds-text-input hds-text-input__error-text'>
           {errorText ??
             Drupal.t(
-              'Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type.',
+              'Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing.',
               {},
               { context: 'Address search error message' },
             )}

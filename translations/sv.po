@@ -1952,7 +1952,7 @@ msgid "Autumn"
 msgstr "Höst"
 
 msgctxt "Address search error message"
-msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
+msgid "Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing."
 msgstr "Kontrollera adressen eller prova en annan adress i närheten. Sökningen föreslår alternativ när du börjar skriva in adressen."
 
 msgctxt "Address search error message"

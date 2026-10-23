@@ -22,7 +22,7 @@ describe('AddressSearch', () => {
 
   test('shows the address error message when error is set', () => {
     const { getByText } = render(<AddressSearch onSubmit={vi.fn()} error />);
-    expect(getByText(/Make sure the address is correct/)).toBeTruthy();
+    expect(getByText(/Please check that the address you entered is correct/)).toBeTruthy();
   });
 
   test('shows a custom address error message when errorText is given', () => {
@@ -30,7 +30,7 @@ describe('AddressSearch', () => {
       <AddressSearch onSubmit={vi.fn()} error errorText='Address not found.' />,
     );
     expect(getByText('Address not found.')).toBeTruthy();
-    expect(queryByText(/Make sure the address is correct/)).toBeNull();
+    expect(queryByText(/Please check that the address you entered is correct/)).toBeNull();
   });
 
   test('pushes the initial value back to the parent to survive HDS clearing it on mount', () => {
