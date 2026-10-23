@@ -2,7 +2,7 @@ import type { SearchResult } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -26,6 +26,7 @@ const FullLocationFilter = memo(() => {
   const locationId = useScopedId(SearchComponents.LOCATION);
 
   const getLocationParamValue = useAtomCallback(useCallback((get) => get(locationSelectionAtom), []));
+  const [initialSelection] = useState(getLocationParamValue);
 
   const getLocations: SearchFunction = async (searchTerm) => {
     const url = new URL(LinkedEvents.PLACES_URL);
@@ -80,6 +81,7 @@ const FullLocationFilter = memo(() => {
     multiSelect: true,
     noTags: true,
     onChange,
+    options: initialSelection.map((option) => ({ ...option, selected: true })),
     open: false,
     onSearch: getLocations,
   });
