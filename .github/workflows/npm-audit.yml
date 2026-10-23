@@ -14,3 +14,4 @@ jobs:
     uses: city-of-helsinki/drupal-gh-actions/.github/workflows/npm-audit.yml@main
     with:
       paths: '.'
+      fetch_hdbt: false
