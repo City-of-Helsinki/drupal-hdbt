@@ -28,8 +28,10 @@ const FormContainer = () => {
   return (
     <form className='hdbt-search--react__form-container vehicle-removal-search-form' onSubmit={handleSubmit}>
       <StreetFilter />
-      <PostalCodeFilter />
-      <ParkingZoneFilter />
+      <div className='hdbt-search--react__dropdown-filters'>
+        <PostalCodeFilter />
+        <ParkingZoneFilter />
+      </div>
       <Button className='hdbt-search--react__submit-button' type='submit'>
         {Drupal.t('Search', {}, { context: 'React search: submit button label' })}
       </Button>

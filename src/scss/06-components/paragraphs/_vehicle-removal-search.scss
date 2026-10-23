@@ -1,3 +1,17 @@
 .component--vehicle-removal-search {
   @include component-side-padding;
 }
+
+.vehicle-removal-search-form {
+  .hdbt-search__dropdown--street-name {
+    @include breakpoint($breakpoint-m) {
+      max-width: 100%;
+    }
+  }
+
+  .hdbt-search--react__dropdown-filters {
+    @include breakpoint($breakpoint-m) {
+      margin-block-start: $spacing-and-half;
+    }
+  }
+} 

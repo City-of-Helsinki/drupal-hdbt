@@ -112,7 +112,7 @@ export const StreetFilter = () => {
 
   return (
     <Select
-      className='hdbt-search__dropdown'
+      className='hdbt-search__dropdown hdbt-search__dropdown--street-name'
       texts={{
         label: selectLabel,
         placeholder: Drupal.t('All', {}, { context: 'Vehicle removal search' }),
