@@ -1,3 +1,4 @@
+import type { estypes } from '@elastic/elasticsearch';
 import type { SelectProps } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
@@ -7,14 +8,20 @@ import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
 import { parkingZonesAtom } from '../store';
+import type VehicleRemoval from '../types/VehicleRemoval';
+
+type ParkingZoneSuggestionsResponse = estypes.SearchResponse<
+  VehicleRemoval,
+  Record<'parking_zone_names', estypes.AggregationsStringTermsAggregate>
+>;
 
 /**
  * Build a case-insensitive regex for the terms aggregation include.
  *
  * Parking zone names are Finnish and may combine several parts of the city,
- * e.g. "Kamppi" or "Taka-Töölö/Meilahti", so the term is matched anywhere in the
- * name. Only letters, numbers, spaces, hyphens and slashes are kept, and the
- * non-alphanumeric ones are escaped so the term is safe to use in a regex.
+ * so the term is matched anywhere in the name. Only letters, numbers, spaces,
+ * hyphens and slashes are kept, and the non-alphanumeric ones are escaped so
+ * that it is safe to use in a regex.
  */
 const toIncludePattern = (searchTerm: string): string => {
   const term = searchTerm.replace(/[^\p{L}\p{N} /-]/gu, '').trim();
@@ -71,10 +78,12 @@ const useParkingZoneSuggestions = () => {
         body: JSON.stringify(query),
       });
 
-      const data = await response.json();
-      const buckets: Array<{ key: string }> = data?.aggregations?.parking_zone_names?.buckets ?? [];
+      const data: ParkingZoneSuggestionsResponse = await response.json();
+      const buckets = data.aggregations?.parking_zone_names?.buckets ?? [];
+      // Buckets are an array unless the aggregation is keyed.
+      const names = (Array.isArray(buckets) ? buckets : Object.values(buckets)).map(({ key }) => String(key));
 
-      return { options: buckets.map(({ key }) => ({ value: key, label: key })) };
+      return { options: names.map((name) => ({ value: name, label: name })) };
     },
     [url],
   );

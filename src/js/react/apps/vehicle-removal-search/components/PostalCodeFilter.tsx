@@ -1,3 +1,4 @@
+import type { estypes } from '@elastic/elasticsearch';
 import type { SelectProps } from 'hds-react';
 import { type Option, type SearchFunction, Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
@@ -7,6 +8,12 @@ import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
 import { postalCodesAtom } from '../store';
+import type VehicleRemoval from '../types/VehicleRemoval';
+
+type PostalCodeSuggestionsResponse = estypes.SearchResponse<
+  VehicleRemoval,
+  Record<'postal_codes', estypes.AggregationsStringTermsAggregate>
+>;
 
 /**
  * Query postal code suggestions from the postal codes present in the index.
@@ -44,10 +51,12 @@ const usePostalCodeSuggestions = () => {
         body: JSON.stringify(query),
       });
 
-      const data = await response.json();
-      const buckets: Array<{ key: string }> = data?.aggregations?.postal_codes?.buckets ?? [];
+      const data: PostalCodeSuggestionsResponse = await response.json();
+      const buckets = data.aggregations?.postal_codes?.buckets ?? [];
+      // Buckets are an array unless the aggregation is keyed.
+      const postalCodes = (Array.isArray(buckets) ? buckets : Object.values(buckets)).map(({ key }) => String(key));
 
-      return { options: buckets.map(({ key }) => ({ value: key, label: key })) };
+      return { options: postalCodes.map((postalCode) => ({ value: postalCode, label: postalCode })) };
     },
     [url],
   );
