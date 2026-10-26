@@ -10,22 +10,22 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
     from: override.from ?? (page - 1) * Global.size,
   };
 
-  // Values within a filter are OR'ed, separate filters are AND'ed.
-  const must: Record<string, unknown>[] = [];
+  // A result matches if it matches any of the selected filters.
+  const should: Record<string, unknown>[] = [];
 
   if (streets.length) {
-    must.push({ terms: { street_names: streets.flatMap((street) => street.value) } });
+    should.push({ terms: { street_names: streets.flatMap((street) => street.value) } });
   }
 
   if (postalCodes.length) {
-    must.push({ terms: { postal_codes: postalCodes.flatMap((postalCode) => postalCode.value) } });
+    should.push({ terms: { postal_codes: postalCodes.flatMap((postalCode) => postalCode.value) } });
   }
 
   if (parkingZones.length) {
-    must.push({ terms: { parking_zone_names: parkingZones.flatMap((parkingZone) => parkingZone.value) } });
+    should.push({ terms: { parking_zone_names: parkingZones.flatMap((parkingZone) => parkingZone.value) } });
   }
 
-  const innerQuery = must.length ? { bool: { must } } : { match_all: {} };
+  const innerQuery = should.length ? { bool: { should, minimum_should_match: 1 } } : { match_all: {} };
 
   query.query = {
     function_score: {
