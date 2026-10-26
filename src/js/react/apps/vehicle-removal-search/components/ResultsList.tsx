@@ -85,13 +85,19 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
           { context: 'Vehicle removal search' },
         ),
         formDescription: [
+          Drupal.t('Make a search and save it as a Vehicle Removal Alert.', {}, { context: 'Vehicle removal search' }),
           Drupal.t(
-            'Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert.',
+            'You will be notified of new vehicle removal requests no more than once a day.',
             {},
             { context: 'Vehicle removal search' },
           ),
           Drupal.t(
-            'You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification.',
+            'You will receive an automatic reminder when the Vehicle Removal Alert is about to expire.',
+            {},
+            { context: 'Vehicle removal search' },
+          ),
+          Drupal.t(
+            'You can cancel your subscription using the link sent with each notification.',
             {},
             { context: 'Vehicle removal search' },
           ),
@@ -154,14 +160,9 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
         <ResultsEmpty
           ref={scrollTarget}
           leftActions={searchMonitor}
-          resultText={Drupal.t('No vehicle removal requests', {}, { context: 'Vehicle removal search' })}
+          resultText={Drupal.t('No active vehicle removal requests', {}, { context: 'Vehicle removal search' })}
           bodyText={Drupal.t(
-            'No vehicle removal requests were found with your search criteria.',
-            {},
-            { context: 'Vehicle removal search' },
-          )}
-          additionalDescription={Drupal.t(
-            'Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests.',
+            "Subscribe to the Vehicle Removal Alert Service, and you'll be notified when new vehicle removal requests matching your search become active.",
             {},
             { context: 'Vehicle removal search' },
           )}

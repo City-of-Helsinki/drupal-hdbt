@@ -1828,16 +1828,12 @@ msgid "The search results will show you the location of the vehicle removal requ
 msgstr "I sökresultatet anges var förflyttningsuppmaningsmärket är placerat."
 
 msgctxt "Vehicle removal search"
-msgid "No vehicle removal requests"
-msgstr "Inga flyttningsuppmaningar"
+msgid "No active vehicle removal requests"
+msgstr "Inga aktiva flyttningsuppmaningar"
 
 msgctxt "Vehicle removal search"
-msgid "No vehicle removal requests were found with your search criteria."
-msgstr "Din sökning gav inga gällande flyttningsuppmaningar."
-
-msgctxt "Vehicle removal search"
-msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
-msgstr "Beställ Flyttningsvakten så får du information om nya flyttningsuppmaningar."
+msgid "Subscribe to the Vehicle Removal Alert Service, and you'll be notified when new vehicle removal requests matching your search become active."
+msgstr "Beställ Flyttningsvakten så får du besked när nya flyttningsuppmaningar som matchar din sökning blir tillgängliga."
 
 msgctxt "Vehicle removal search"
 msgid "1 result"
@@ -1862,16 +1858,20 @@ msgid "Make a search according to your specifications and save it as a Vehicle R
 msgstr "Gör en sökning enligt dina önskemål och spara den som Flyttningsvakt."
 
 msgctxt "Vehicle removal search"
-msgid "You can add more than one street to the same Vehicle Removal Alert."
-msgstr "Du kan välja flera gator till samma Flyttningsvakt."
+msgid "Make a search and save it as a Vehicle Removal Alert."
+msgstr "Gör först en sökning och spara den som Flyttningsvakt."
 
 msgctxt "Vehicle removal search"
-msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert."
-msgstr "Gör en sökning enligt dina önskemål och spara den som Flyttningsvakt. Du kan välja flera gator till samma Flyttningsvakt."
+msgid "You will be notified of new vehicle removal requests no more than once a day."
+msgstr "Du får information om nya förflyttningsuppmaningar högst en gång per dagen."
 
 msgctxt "Vehicle removal search"
-msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
-msgstr "Du får information om nya träffar högst en gång om dagen. Du kan avsluta din beställning via en länk som finns i varje meddelande."
+msgid "Du får en automatisk påminnelse när Flyttningsvakten kommer att upphöra."
+msgstr "Saat automaattisen muistutuksen, kun Siirtovahti on vanhenemassa."
+
+msgctxt "Vehicle removal search"
+msgid "You can cancel your subscription using the link sent with each notification."
+msgstr "Du kan avsluta din beställning via en länk som finns i varje meddelande."
 
 msgctxt "Vehicle removal search"
 msgid "Required fields are indicated with an asterisk (*)."
