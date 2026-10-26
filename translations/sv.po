@@ -1866,8 +1866,8 @@ msgid "You will be notified of new vehicle removal requests no more than once a 
 msgstr "Du får information om nya förflyttningsuppmaningar högst en gång per dagen."
 
 msgctxt "Vehicle removal search"
-msgid "Du får en automatisk påminnelse när Flyttningsvakten kommer att upphöra."
-msgstr "Saat automaattisen muistutuksen, kun Siirtovahti on vanhenemassa."
+msgid "You will receive an automatic reminder when the Vehicle Removal Alert is about to expire."
+msgstr "Du får en automatisk påminnelse när Flyttningsvakten kommer att upphöra."
 
 msgctxt "Vehicle removal search"
 msgid "You can cancel your subscription using the link sent with each notification."
