@@ -14,6 +14,11 @@
     --item-indentation: #{$spacing-double};
     --item-padding-inline: #{$spacing-double};
   }
+
+  // Visual marker is hidden based on design. Functionality is described in paragraph text.
+  .link__type--external {
+    display: none;
+  }
 }
 
 .org-chart__container--inner {
@@ -62,17 +67,15 @@
 
   // The first level doesn't need the item relation indicators eiter.
   &::before,
-  > .org-chart__item__title::after {
+  > .org-chart__item__wrapper::after {
     display: none;
   }
 }
-
-.org-chart__item__title {
-  background-color: var(--hdbt-color-palette--secondary);
+.org-chart__item__wrapper {
+  border: 2px solid $color-black-60;
   display: block;
   margin: 0;
   padding: var(--item-padding-block) var(--item-padding-inline);
-  position: relative;
 
   // This after adds the horizontal line that connects the vertical line to each item.
   &::after {
@@ -86,6 +89,10 @@
     width: var(--item-indentation);
   }
 }
+.org-chart__item__title {
+  background-color: $color-white;
+  display: block;
+}
 
 .org-chart__item__title--level-1 {
   @include font('h3');
@@ -97,10 +104,25 @@
 
 .org-chart__item__title--level-3 {
   @include font('h5');
-  padding-block: var(--item-lvl-3-padding-block);
 }
 
 .org-chart__item__title--level-4 {
   @include font('h6');
-  padding-block: var(--item-lvl-4-padding-block);
+}
+
+
+.org-chart__item__type-elected-officials,
+.org-chart__item__type-administration {
+  border-radius: 100vw;
+  display: inline-block;
+  font-size: remify(14px);
+  font-weight: $font-weight-medium;
+  margin-block-start: $spacing-half;
+  padding: $spacing-quarter $spacing;
+}
+.org-chart__item__type-elected-officials {
+  background-color: var(--color-gold-medium-light);
+}
+.org-chart__item__type-administration {
+  background-color: var(--color-bus-medium-light);
 }
