@@ -1,6 +1,5 @@
-import fs from 'fs';
-import { globSync } from 'glob';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 export default async function themeBuilderCopy(opts = {}) {
 
@@ -27,7 +26,7 @@ export default async function themeBuilderCopy(opts = {}) {
   await new Promise((resolve) => {
     staticFiles.forEach(([from, to]) => {
       if (isGlob(from)) {
-        const files = globSync(from);
+        const files = fs.globSync(from);
         files.forEach((file) => {
           const filename = path.basename(file);
           const destPath = path.join(to, filename);

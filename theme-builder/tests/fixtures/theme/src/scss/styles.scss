@@ -1,0 +1,11 @@
+@import 'breakpoint-sass/stylesheets/breakpoint';
+
+.fixture {
+  @include breakpoint(768px) {
+    display: flex;
+  }
+
+  &__item {
+    display: block;
+  }
+}

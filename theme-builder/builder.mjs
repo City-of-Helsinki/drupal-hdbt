@@ -1,7 +1,7 @@
 import chokidar from 'chokidar';
-import { rmSync } from 'fs';
-import path from 'path';
-import { performance } from 'perf_hooks';
+import { rmSync } from 'node:fs';
+import path from 'node:path';
+import { performance } from 'node:perf_hooks';
 import themeBuilderCopy from './copy.mjs';
 import { findStylesForFile, themeBuilderCss } from './css.mjs';
 import themeBuilderIcons from './icons.mjs';
@@ -59,17 +59,17 @@ export async function buildAll(config) {
     }
 
     // Run only when jsConfig is a non-empty object.
-    if (Object.keys(jsConfig.jsFiles).length > 0) {
+    if (Object.keys(jsConfig.jsFiles ?? {}).length > 0) {
       await withTimer('JS', () => buildVanillaJs(jsConfig));
     }
 
     // Run only when reactConfig is a non-empty object.
-    if (Object.keys(reactConfig.reactApps).length > 0) {
+    if (Object.keys(reactConfig.reactApps ?? {}).length > 0) {
       await withTimer('React', () => buildReactApps(reactConfig));
     }
 
     // Run only when cssConfig is a non-empty object.
-    if (Object.keys(cssConfig.styles).length > 0) {
+    if (Object.keys(cssConfig.styles ?? {}).length > 0) {
       await withTimer('CSS', () => themeBuilderCss(cssConfig));
     }
   });
@@ -82,17 +82,19 @@ export function watchAndBuild({
   buildArguments,
   watchPaths = ['src/js', 'src/scss'],
 }) {
-  buildAll(buildArguments)
+  const watcher = chokidar.watch(watchPaths, {
+    ignored: /node_modules|^dist$|theme-buidler/,
+    ignoreInitial: true,
+  });
+  const ready = new Promise((resolve) => watcher.once('ready', resolve));
+
+  // Announce watching once the initial build and the watcher are both ready.
+  Promise.all([buildAll(buildArguments), ready])
     .catch((e) => {
       console.error('❌ Build failed:', e);
       process.exit(1);
     })
     .then(() => console.warn('\n👀 Watching for changes…'));
-
-  const watcher = chokidar.watch(watchPaths, {
-    ignored: /node_modules|^dist$|theme-buidler/,
-    ignoreInitial: true,
-  });
 
   const { styles, ...cssConfig } = buildArguments.cssConfig;
   const { ...jsConfig } = buildArguments.jsConfig;
@@ -102,16 +104,22 @@ export function watchAndBuild({
     console.warn(`🔄 ${event}: ${filePath}`);
 
     const ext = path.extname(filePath);
+
+    // Keep watching after a failed rebuild.
     if (ext === '.scss') {
       const matched = findStylesForFile({ filePath, styles });
       const cfg = matched.length
         ? { ...cssConfig, styles: matched }
         : { ...cssConfig, styles };
-      withTimer('CSS', () => themeBuilderCss(cfg));
+      withTimer('CSS', () => themeBuilderCss(cfg)).catch((e) => console.error('❌', e.message));
     } else if (ext === '.js') {
-      buildVanillaJs(jsConfig).then(() => console.warn('✅ Rebuilt JS.'));
+      buildVanillaJs(jsConfig)
+        .then(() => console.warn('✅ Rebuilt JS.'))
+        .catch((e) => console.error('❌', e.message));
     } else if (['.ts', '.tsx', '.jsx'].includes(ext)) {
-      buildReactApps(reactConfig).then(() => console.warn('✅ Rebuilt React.'));
+      buildReactApps(reactConfig)
+        .then(() => console.warn('✅ Rebuilt React.'))
+        .catch((e) => console.error('❌', e.message));
     }
   });
 }
