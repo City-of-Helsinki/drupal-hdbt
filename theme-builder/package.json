@@ -42,7 +42,7 @@
     }
   },
   "dependencies": {
-    "@biomejs/biome": "^2.2.4",
+    "@biomejs/biome": "^2.5.15",
     "breakpoint-sass": "^3.0.0",
     "chokidar": "^4.0.3",
     "cli-progress": "^3.12.0",
