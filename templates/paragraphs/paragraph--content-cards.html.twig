@@ -9,7 +9,15 @@
   {% set design_class = null %} {# This should not happen #}
 {% endif %}
 
-{% if content.field_content_cards_content|render|striptags|trim %}
+{# The view display includes one content field. The external field's HTMX
+   placeholder already has the content-cards class. #}
+{% set show_external = content.field_content_cards_content_ext is defined
+  and content.field_content_cards_content_ext.0 is defined %}
+{% set show_local = not show_external
+  and content.field_content_cards_content is defined
+  and content.field_content_cards_content|render|striptags|trim %}
+
+{% if show_external or show_local %}
   {% block paragraph %}
     {% embed "@hdbt/misc/component.twig" with
       {
@@ -20,11 +28,15 @@
         component_koro: has_koro ? { flip: true },
         component_title: title,
         component_description: content.field_content_cards_desc,
-        component_content_class: 'content-cards',
+        component_content_class: show_local ? 'content-cards' : null,
       }
     %}
       {% block component_content %}
-        {{ content.field_content_cards_content }}
+        {% if show_external %}
+          {{ content.field_content_cards_content_ext }}
+        {% else %}
+          {{ content.field_content_cards_content }}
+        {% endif %}
       {% endblock component_content %}
     {% endembed %}
   {% endblock paragraph %}
