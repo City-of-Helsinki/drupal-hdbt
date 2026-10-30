@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import CardItem from './Card';
 
 describe('CardItem', () => {
@@ -152,5 +152,40 @@ describe('CardItem', () => {
     );
     expect(getByText('Top row')).toBeTruthy();
     expect(getByText('Bottom row')).toBeTruthy();
+  });
+
+  test('omits the actions section when there are no actions', () => {
+    const { container } = render(<CardItem cardTitle='Hello' cardActions={[]} />);
+    expect(container.querySelector('.card__actions')).toBeNull();
+  });
+
+  test('renders card actions as secondary buttons', () => {
+    const { container } = render(
+      <CardItem
+        cardTitle='Hello'
+        cardActions={[
+          { label: 'Edit', url: '/edit', icon: 'pen-line' },
+          { label: 'Delete', url: '/delete', className: 'js-delete', ariaLabel: 'Delete application 1' },
+        ]}
+      />,
+    );
+    const actions = container.querySelectorAll('.card__actions a');
+    expect(actions).toHaveLength(2);
+    expect(actions[0].getAttribute('href')).toBe('/edit');
+    expect(actions[0].className).toBe('hds-button hds-button--secondary');
+    expect(actions[0].querySelector('.hel-icon--pen-line')).not.toBeNull();
+    expect(actions[0].querySelector('.hds-button__label')?.getAttribute('aria-hidden')).toBeNull();
+    expect(actions[1].className).toContain('js-delete');
+    expect(actions[1].querySelector('.hds-button__label')?.getAttribute('aria-hidden')).toBe('true');
+    expect(actions[1].querySelector('.visually-hidden')?.textContent).toBe('Delete application 1');
+  });
+
+  test('calls the action click handler', () => {
+    const onClick = vi.fn((e) => e.preventDefault());
+    const { container } = render(
+      <CardItem cardTitle='Hello' cardActions={[{ label: 'Delete', url: '/delete', onClick }]} />,
+    );
+    (container.querySelector('.card__actions a') as HTMLAnchorElement).click();
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

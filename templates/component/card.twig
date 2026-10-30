@@ -16,6 +16,14 @@
     card_description_html: false,
     card_helptext: 'Ohjeteksti',
     card_helptext_html: false,
+    card_actions: [
+      {
+        label: 'Lue lisää',
+        url: 'https://www.hel.fi/fi/',
+        icon: 'trash'
+        class: 'class'
+      },
+    ],
     card_metas: [
       {
         icon: 'clock',
@@ -39,6 +47,10 @@
     ],
   } %}
 {% endembed %}
+
+card_actions renders secondary buttons at the bottom of the card. Each action
+takes a label and url, and optionally an icon name (e.g. 'trash').
+The whole block can also be overridden with {% block card_actions %}.
 #}
 
 {{ attach_library('hdbt/card-helper') }}
@@ -54,7 +66,11 @@
 
   <div class="card__text">
     <{{ card_title_level|default('h4') }} class="card__title" {% if card_title_lang %}lang="{{ card_title_lang }}"{% endif %}>
-      {{ link(card_title, card_url, { 'class':['card__link'], 'rel':'bookmark' }) }}
+      {% if card_url %}
+        {{ link(card_title, card_url, { 'class':['card__link'], 'rel':'bookmark' }) }}
+      {% else %}
+        {{ card_title }}
+      {% endif %}
     </{{ card_title_level|default('h4') }}>
 
     {% if card_category_tag %}
@@ -106,6 +122,28 @@
       <div class="card__tags">
         {% embed '@hdbt/misc/tag-list.twig' with { tags: card_tags, addSpan: true, tag_container_class: 'content-tags--card' } %}
         {% endembed %}
+      </div>
+    {% endif %}
+
+    {% set card_actions_output %}
+      {% block card_actions %}
+        {% for card_action in card_actions %}
+          <a class="hds-button hds-button--secondary {{card_action.class}}" href="{{ card_action.url }}">
+            {% if card_action.icon %}
+              {% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_action.icon} only %}
+            {% endif %}
+            <span class="hds-button__label"{% if card_action.aria_label %}aria-hidden="true"{% endif %}>{{ card_action.label }}</span>
+            {% if card_action.aria_label %}
+              <span class="visually-hidden">{{ card_action.aria_label }}</span>
+            {% endif %}
+          </a>
+        {% endfor %}
+      {% endblock card_actions %}
+    {% endset %}
+
+    {% if card_actions_output|trim is not empty %}
+      <div class="card__actions">
+        {{ card_actions_output }}
       </div>
     {% endif %}
   </div>
