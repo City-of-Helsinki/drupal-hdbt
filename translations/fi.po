@@ -1786,6 +1786,30 @@ msgid "For example, Kotikatu"
 msgstr "Esim. Kotikatu"
 
 msgctxt "Vehicle removal search"
+msgid "Postal code"
+msgstr "Postinumero"
+
+msgctxt "Vehicle removal search"
+msgid "Write a postal code"
+msgstr "Kirjoita postinumero"
+
+msgctxt "Vehicle removal search"
+msgid "For example, 00100"
+msgstr "Esim. 00100"
+
+msgctxt "Vehicle removal search"
+msgid "Parking zone"
+msgstr "Asukaspysäköintialue"
+
+msgctxt "Vehicle removal search"
+msgid "Write a parking zone"
+msgstr "Kirjoita asukaspysäköintialue"
+
+msgctxt "Vehicle removal search"
+msgid "For example, Kamppi"
+msgstr "Esim. Kamppi"
+
+msgctxt "Vehicle removal search"
 msgid "Period of validity"
 msgstr "Voimassaoloaika"
 
@@ -1798,24 +1822,20 @@ msgid "Find vehicle removal requests"
 msgstr "Etsi siirtokehotuksia"
 
 msgctxt "Vehicle removal search"
-msgid "Use street names to search for areas with vehicle removal requests."
-msgstr "Etsi kadunnimillä alueita, joilla on siirtokehotuksia."
+msgid "Search for areas with vehicle removal requests. You can narrow down your search by street name, postal code or resident parking zone."
+msgstr "Etsi alueita, joilla on siirtokehotuksia. Voit rajata hakua kadunnimillä, postinumeroilla tai asukaspysäköintialueilla."
 
 msgctxt "Vehicle removal search"
-msgid "The search results will show you the location of vehicle removal request signs on the street that you searched for or a street near it."
-msgstr "Hakutuloksissa kerrotaan siirtokehotusmerkin sijainti hakemallasi kadulla tai sen lähikadulla."
+msgid "The search results will show you the location of the vehicle removal request sign."
+msgstr "Hakutuloksissa kerrotaan siirtokehotusmerkin sijainti."
 
 msgctxt "Vehicle removal search"
-msgid "No vehicle removal requests"
-msgstr "Ei siirtokehotuksia"
+msgid "No active vehicle removal requests"
+msgstr "Ei voimassa olevia siirtokehotuksia"
 
 msgctxt "Vehicle removal search"
-msgid "No vehicle removal requests were found with your search criteria."
-msgstr "Haullasi ei löytynyt voimassa olevia siirtokehotuksia."
-
-msgctxt "Vehicle removal search"
-msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
-msgstr "Tilaa Siirtovahti, niin saat tiedon uusista siirtokehotuksista."
+msgid "Subscribe to the Vehicle Removal Alert Service, and you'll be notified when new vehicle removal requests matching your search become active."
+msgstr "Tilaa Siirtovahti, niin saat tiedon uusista siirtokehotuksista, jotka vastaavat hakuasi."
 
 msgctxt "Vehicle removal search"
 msgid "1 result"
@@ -1840,16 +1860,20 @@ msgid "Make a search according to your specifications and save it as a Vehicle R
 msgstr "Tee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi."
 
 msgctxt "Vehicle removal search"
-msgid "You can add more than one street to the same Vehicle Removal Alert."
-msgstr "Voit valita useamman kadun samaan Siirtovahtiin."
+msgid "Make a search and save it as a Vehicle Removal Alert."
+msgstr "Tee ensin haku ja tallenna se Siirtovahdiksi."
 
 msgctxt "Vehicle removal search"
-msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert."
-msgstr "Tee toiveidesi mukainen haku ja tallenna se Siirtovahdiksi. Voit valita useamman kadun samaan Siirtovahtiin."
+msgid "You will be notified of new vehicle removal requests no more than once a day."
+msgstr "Saat ilmoituksen uusista siirtokehotuksista korkeintaan kerran päivässä."
 
 msgctxt "Vehicle removal search"
-msgid "You will receive an email with new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
-msgstr "Saat tiedon uusista osumista korkeintaan kerran päivässä. Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
+msgid "You will receive an automatic reminder when the Vehicle Removal Alert is about to expire."
+msgstr "Saat automaattisen muistutuksen, kun Siirtovahti on vanhenemassa."
+
+msgctxt "Vehicle removal search"
+msgid "You can cancel your subscription using the link sent with each notification."
+msgstr "Voit perua tilauksen linkillä, jonka saat jokaisen ilmoituksen mukana."
 
 msgctxt "Vehicle removal search"
 msgid "Required fields are indicated with an asterisk (*)."

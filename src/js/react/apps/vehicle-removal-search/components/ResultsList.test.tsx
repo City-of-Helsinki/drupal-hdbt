@@ -14,6 +14,8 @@ const hit = (index: number): estypes.SearchHit<VehicleRemoval> => ({
     address: `Street ${index}`,
     address_info: '',
     street_names: [`Street ${index}`],
+    postal_codes: ['00100'],
+    parking_zone_names: ['Taka-Töölö/Meilahti'],
     reason: '',
     sign_type: '',
     notes: '',
