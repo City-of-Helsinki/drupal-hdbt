@@ -1,5 +1,6 @@
 import { useAtomValue } from 'jotai';
 import { type SyntheticEvent, useState } from 'react';
+import { addressSearchNoResultsText } from '@/react/common/constants/defaultAddressSearchTexts';
 import { GhostList } from '@/react/common/GhostList';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
@@ -59,7 +60,7 @@ const ResultsList = ({ data, error, isLoading, isValidating, page, queryString, 
   }
 
   if (!data?.hits?.hits.length) {
-    return <ResultsEmpty ref={scrollTarget} />;
+    return <ResultsEmpty bodyText={addressSearchNoResultsText} ref={scrollTarget} />;
   }
 
   const results = data.hits.hits;

@@ -6,25 +6,25 @@
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt",
   "@comment scripts": [
-    "Every script below runs inside a disposable Node container via tools/sandbox.sh."
+    "Every script below runs inside a disposable Node container via the sandbox command."
   ],
   "scripts": {
-    "dev": "tools/sandbox.sh node theme-builder.mjs --watch --dev",
-    "build": "tools/sandbox.sh sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
-    "lint:scss": "tools/sandbox.sh sh -c 'npx postcss \"src/scss/**/*.scss\" --syntax postcss-scss --use css-declaration-sorter --replace --no-map && npm run lint:stylelint'",
-    "lint:stylelint": "tools/sandbox.sh npx stylelint \"src/scss/**/*.scss\" --config ./theme-builder/.stylelintrc.yaml --formatter string --fix",
-    "lint:js": "tools/sandbox.sh biome check --write --assist-enabled=true src/js/",
-    "format:js": "tools/sandbox.sh biome format --write src/js/",
-    "lint": "tools/sandbox.sh npm-run-all --parallel lint:scss lint:js -s",
+    "preinstall": "rm -rf node_modules/@hdbt/theme-builder && npm install ./theme-builder --loglevel=silent",
+    "dev": "sandbox node theme-builder.mjs --watch --dev",
+    "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
+    "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/@hdbt/theme-builder/.stylelintrc.yaml --formatter string --fix",
+    "lint:js": "sandbox biome check --write --assist-enabled=true src/js/",
+    "format:js": "sandbox biome format --write src/js/",
+    "lint": "sandbox npm-run-all --parallel lint:scss lint:js -s",
     "full-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full reference",
     "full-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full test",
     "full-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config full approve",
     "fast-reference": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast reference",
     "fast-test": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast test",
     "fast-approve": "./node_modules/.bin/dotenvx run -- node backstop/backstop_dynamic_config fast approve",
-    "validate-ts": "tools/sandbox.sh tsc --noEmit",
-    "test": "tools/sandbox.sh vitest",
-    "coverage": "tools/sandbox.sh vitest run --coverage"
+    "validate-ts": "sandbox tsc --noEmit",
+    "test": "sandbox vitest",
+    "coverage": "sandbox vitest run --coverage"
   },
   "@comment dependencies": [
     "The following packages were updated manually.",
@@ -35,7 +35,8 @@
       "postcss": "^8.5.23, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)",
       "postcss-selector-parser": "^7.1.6, dependency of postcss-nesting via hds-react; PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion (GHSA-rj75-hqrm-r3gf)",
       "qs": "^6.16.0, dependency of express and body-parser via backstopjs; no fixed express 4.x or body-parser 1.x release exists (GHSA-x5fp-wj9c-mxmx, GHSA-4mjr-xmp4-gh2g)",
-      "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10"
+      "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10",
+      "svg-sprite > glob": "^13.0.0, dependency of theme-builder; drops deprecated glob@7 and inflight"
     }
   ],
   "overrides": {
@@ -62,6 +63,9 @@
     "react-popper": {
       "react": "$react",
       "react-dom": "$react-dom"
+    },
+    "svg-sprite": {
+      "glob": "^13.0.0"
     }
   },
   "dependencies": {

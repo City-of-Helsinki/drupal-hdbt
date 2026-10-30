@@ -72,4 +72,7 @@ module.exports = async (page) => {
       new Promise((resolve) => setTimeout(resolve, 10000)),
     ]);
   });
+
+  // Wait for web fonts before the screenshot is taken.
+  await page.evaluate(() => document.fonts.ready);
 };
