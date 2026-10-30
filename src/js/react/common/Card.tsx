@@ -1,4 +1,4 @@
-import type { JSX, ReactNode } from 'react';
+import type { JSX, MouseEventHandler, ReactNode } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import { htmlToReact } from '@/react/common/helpers/htmlToReact';
 import type MetadataType from '@/types/MetadataType';
@@ -16,7 +16,18 @@ export const Metarow = ({ icon, label, content, langAttribute }: MetadataType) =
   </div>
 );
 
+export type CardActionType = {
+  // Accessible label read instead of the visible label, e.g. "Edit application 123".
+  ariaLabel?: string;
+  className?: string;
+  icon?: string;
+  label: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  url: string;
+};
+
 export type CardItemProps = {
+  cardActions?: CardActionType[];
   cardCategoryTag?: TagType | TagType[];
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
@@ -52,6 +63,7 @@ export type CardItemProps = {
 };
 
 function CardItem({
+  cardActions,
   cardCategoryTag,
   cardDescription,
   cardDescriptionHtml,
@@ -234,6 +246,25 @@ function CardItem({
         {cardTags && cardTags.length > 0 && (
           <div className='card__tags'>
             <Tags tags={cardTags} langAttribute={langAttribute} insideCard />
+          </div>
+        )}
+
+        {cardActions && cardActions.length > 0 && (
+          <div className='card__actions'>
+            {cardActions.map(({ ariaLabel, className, icon, label, onClick, url }) => (
+              <a
+                key={`${label}-${url}`}
+                className={`hds-button hds-button--secondary${className ? ` ${className}` : ''}`}
+                href={url}
+                onClick={onClick}
+              >
+                {icon && <Icon icon={icon} />}
+                <span className='hds-button__label' aria-hidden={ariaLabel ? 'true' : undefined}>
+                  {label}
+                </span>
+                {ariaLabel && <span className='visually-hidden'>{ariaLabel}</span>}
+              </a>
+            ))}
           </div>
         )}
       </div>

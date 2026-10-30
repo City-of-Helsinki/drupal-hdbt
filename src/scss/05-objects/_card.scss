@@ -128,7 +128,8 @@ $-card-border-width: 2px;
   margin-top: 0;
 }
 
-.card__metas {
+.card__metas,
+.card_acitions {
   margin-top: $section-gap;
 }
 
@@ -157,6 +158,16 @@ $-card-border-width: 2px;
 
 .card__tags {
   margin-top: $section-gap;
+}
+
+// Lift actions above the stretched .card__link::before so they stay clickable.
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-half;
+  margin-top: $section-gap;
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes loading {
