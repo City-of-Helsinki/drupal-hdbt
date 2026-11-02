@@ -1828,10 +1828,6 @@ msgid "Search for areas with vehicle removal requests. You can narrow down your 
 msgstr "Sök efter områden som har flyttningsuppmaningar. Du kan avgränsa sökningen med gatunamn, postnummer eller boendeparkeringsområden."
 
 msgctxt "Vehicle removal search"
-msgid "The search results will show you the location of the vehicle removal request sign."
-msgstr "I sökresultatet anges var förflyttningsuppmaningsmärket är placerat."
-
-msgctxt "Vehicle removal search"
 msgid "No active vehicle removal requests"
 msgstr "Inga aktiva flyttningsuppmaningar"
 
