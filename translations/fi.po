@@ -1826,10 +1826,6 @@ msgid "Search for areas with vehicle removal requests. You can narrow down your 
 msgstr "Etsi alueita, joilla on siirtokehotuksia. Voit rajata hakua kadunnimillä, postinumeroilla tai asukaspysäköintialueilla."
 
 msgctxt "Vehicle removal search"
-msgid "The search results will show you the location of the vehicle removal request sign."
-msgstr "Hakutuloksissa kerrotaan siirtokehotusmerkin sijainti."
-
-msgctxt "Vehicle removal search"
 msgid "No active vehicle removal requests"
 msgstr "Ei voimassa olevia siirtokehotuksia"
 
