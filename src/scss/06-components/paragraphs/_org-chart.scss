@@ -76,7 +76,24 @@
   border: 2px solid $color-black-60;
   display: block;
   margin: 0;
-  padding: var(--item-padding-block) var(--item-padding-inline);
+  padding: calc(var(--item-padding-block) * 0.75) var(--item-padding-inline);
+
+  &:has(.org-chart__item__title--level-3),
+  &:has(.org-chart__item__title--level-4) {
+    padding: calc(var(--item-padding-block) * 0.5) var(--item-padding-inline);
+  }
+
+  @include breakpoint($breakpoint-m) {
+    padding: var(--item-padding-block) var(--item-padding-inline);
+
+    &:has(.org-chart__item__title--level-3) {
+      padding: calc(var(--item-padding-block) * 0.75) var(--item-padding-inline);
+    }
+
+    &:has(.org-chart__item__title--level-4) {
+      padding: calc(var(--item-padding-block) * 0.5) var(--item-padding-inline);
+    }
+  }
 
   // This after adds the horizontal line that connects the vertical line to each item.
   &::after {
@@ -91,8 +108,9 @@
   }
 }
 
+
+
 .org-chart__item__title {
-  background-color: $color-white;
   display: block;
 }
 
@@ -112,15 +130,9 @@
   @include font('h6');
 }
 
-
 .org-chart__item__type-elected-officials,
 .org-chart__item__type-administration {
-  border-radius: 100vw;
-  display: inline-block;
-  font-size: remify(14px);
-  font-weight: $font-weight-medium;
   margin-block-start: $spacing-half;
-  padding: $spacing-quarter $spacing;
 }
 
 .org-chart__item__type-elected-officials {
