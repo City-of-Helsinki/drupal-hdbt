@@ -1,0 +1,11 @@
+<span class="visually-hidden" role="status">{{ message }}</span>
+<{{ wrapper }} {{ attributes.addClass('content-cards') }}>
+  {% for i in range(1, num_items) %}
+    <div class="content-card" aria-hidden="true">
+      <div class="content-card__image">
+        <div class="image-placeholder"></div>
+      </div>
+      <span class="content-card__title"></span>
+    </div>
+  {% endfor %}
+</{{ wrapper }}>
