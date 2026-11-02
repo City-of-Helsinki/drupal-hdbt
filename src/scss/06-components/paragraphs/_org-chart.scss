@@ -71,6 +71,7 @@
     display: none;
   }
 }
+
 .org-chart__item__wrapper {
   border: 2px solid $color-black-60;
   display: block;
@@ -89,6 +90,7 @@
     width: var(--item-indentation);
   }
 }
+
 .org-chart__item__title {
   background-color: $color-white;
   display: block;
@@ -120,9 +122,11 @@
   margin-block-start: $spacing-half;
   padding: $spacing-quarter $spacing;
 }
+
 .org-chart__item__type-elected-officials {
   background-color: var(--color-gold-medium-light);
 }
+
 .org-chart__item__type-administration {
   background-color: var(--color-bus-medium-light);
 }

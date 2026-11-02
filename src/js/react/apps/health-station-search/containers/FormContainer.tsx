@@ -42,6 +42,11 @@ const ProximityFormContainer = () => {
     >
       <AddressSearch
         error={addressError}
+        errorText={Drupal.t(
+          'No results found for this address. The search function uses your home address to locate your local health station. Please check that the address you have entered is correct. Enter only your street name and house number. The search function suggests alternatives as you start typing.',
+          {},
+          { context: 'Health station search: address error message' },
+        )}
         id='home_address'
         onChange={(address: string) => setKeyword(address)}
         onSubmit={(address: string) => {

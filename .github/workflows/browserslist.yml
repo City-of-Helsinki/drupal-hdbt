@@ -20,6 +20,9 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
+      - name: Install npm 12
+        run: npm install -g npm@12 --no-audit --progress=false
+
       - name: Install dependencies
         run: npm ci
 

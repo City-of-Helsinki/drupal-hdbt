@@ -1,11 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import { globSync } from 'glob';
-import md5 from 'md5';
+import { createHash } from 'node:crypto';
+import fs from 'node:fs';
+import path from 'node:path';
 import SVGSpriter from 'svg-sprite';
 
 /**
- * Build HDBT icon sprite and related CSS/JSON.
+ * Build the icon sprite and related CSS and JSON.
  *
  * @param {Object} opts - Options
  * @param {string} [opts.inputPattern] - Glob pattern to find SVGs
@@ -15,6 +14,7 @@ import SVGSpriter from 'svg-sprite';
  * @param {string} [opts.ckeditorCssOut] - Relative CKEditor CSS output path
  * @param {string} [opts.jsonOut] - Relative JSON output path
  * @param {string} [opts.iconClass] - Icon CSS class prefix
+ * @param {string} [opts.spriteBaseUrl] - URL of the folder that contains the sprite
  */
 export default async function themeBuilderIcons(opts = {}) {
   const {
@@ -25,9 +25,10 @@ export default async function themeBuilderIcons(opts = {}) {
     ckeditorCssOut,
     jsonOut,
     iconClass,
+    spriteBaseUrl = '../../../../contrib/hdbt/dist',
   } = opts;
 
-  const files = globSync(inputPattern);
+  const files = fs.globSync(inputPattern).sort();
 
   if (!files.length) {
     console.warn('⚠️ No SVG files found.');
@@ -57,7 +58,7 @@ export default async function themeBuilderIcons(opts = {}) {
 
         .flatMap(([, resources]) =>
           Object.entries(resources).map(([, { contents }]) => {
-            const hash = md5(contents).slice(-5);
+            const hash = createHash('md5').update(contents).digest('hex').slice(-5);
             const filename = spriteOut.replace(/\.svg$/, `-${hash}.svg`);
             return { spriteFilename: filename, spriteContent: contents };
           })
@@ -73,7 +74,7 @@ export default async function themeBuilderIcons(opts = {}) {
         `:root{${iconNames
           .map(
             (name) =>
-              `--${iconClass}-icon--${name}:url(../../../../contrib/hdbt/dist/${spriteFilename}#${name})`
+              `--${iconClass}-icon--${name}:url(${spriteBaseUrl}/${spriteFilename}#${name})`
           )
           .join(';')}}`;
 
@@ -91,9 +92,9 @@ export default async function themeBuilderIcons(opts = {}) {
 
       const fullCSS = cssRoot + cssClasses + iconUrlCSS;
 
-      const hdbtIconsCSSPath = path.join(outDir, cssOut);
-      fs.mkdirSync(path.dirname(hdbtIconsCSSPath), { recursive: true });
-      fs.writeFileSync(hdbtIconsCSSPath, fullCSS);
+      const iconsCSSPath = path.join(outDir, cssOut);
+      fs.mkdirSync(path.dirname(iconsCSSPath), { recursive: true });
+      fs.writeFileSync(iconsCSSPath, fullCSS);
 
       const ckeditorCSS = iconNames
         .map(

@@ -1,12 +1,13 @@
 /** biome-ignore-all lint/suspicious/noImplicitAnyLet: @todo UHF-12501 */
 // Nothing here may read `window`, `document` or `drupalSettings` at module scope: a page can hold
 // several embeds, each with its own store, so every initial value has to come from `configAtom`.
-import { atom, createStore } from 'jotai';
+import { atom, createStore, type Setter } from 'jotai';
 import { atomWithDefault, unwrap } from 'jotai/utils';
 import { endOfDay, startOfDay, toLocalISO } from '@/react/common/helpers/dateUtils';
 import { getAddressCoordinates } from '@/react/common/helpers/ServiceMap';
 import ApiKeys from './enum/ApiKeys';
 import { HOME_ADDRESS_PARAM } from './enum/QueryParams';
+import { clearSnapshot, readSnapshot, type Snapshot, writeSnapshot } from './helpers/PersistedState';
 import type { EventsAppConfig } from './helpers/ReadEventListConfig';
 import type { EventTypeOption } from './types/EventTypeOption';
 import type FormErrors from './types/FormErrors';
@@ -19,9 +20,111 @@ interface Options {
 
 export const configAtom = atom<EventsAppConfig | null>(null);
 
+type EventsStore = ReturnType<typeof createStore>;
+
+type FormValues = {
+  end?: Date;
+  eventTypes: EventTypeOption[];
+  free: boolean;
+  keyword: string;
+  languages: OptionType[];
+  locations: OptionType[];
+  page: number;
+  params: URLSearchParams;
+  remote: boolean;
+  start?: Date;
+  submitted: URLSearchParams;
+  targetGroups: OptionType[];
+  topics: Topic[];
+};
+
+const setFormValues = (set: Setter, values: FormValues) => {
+  set(locationSelectionAtom, values.locations);
+  set(topicSelectionAtom, values.topics);
+  set(languageAtom, values.languages);
+  set(startDateAtom, values.start);
+  set(endDateAtom, values.end);
+  set(remoteFilterAtom, values.remote);
+  set(freeFilterAtom, values.free);
+  set(targetGroupsAtom, values.targetGroups);
+  set(eventTypeAtom, values.eventTypes);
+  set(pageAtom, values.page);
+  set(searchKeywordAtom, values.keyword);
+  set(paramsAtom, values.params);
+  set(submittedParamsAtom, values.submitted);
+};
+
+const snapshotFrom = (store: EventsStore): Snapshot => ({
+  address: store.get(addressAtom),
+  end: store.get(endDateAtom),
+  endDisabled: store.get(endDisabledAtom),
+  eventTypes: store.get(eventTypeAtom),
+  free: store.get(freeFilterAtom),
+  keyword: store.get(searchKeywordAtom),
+  languages: store.get(languageAtom),
+  locations: store.get(locationSelectionAtom),
+  page: store.get(pageAtom),
+  params: store.get(paramsAtom),
+  remote: store.get(remoteFilterAtom),
+  start: store.get(startDateAtom),
+  submitted: store.get(submittedParamsAtom),
+  targetGroups: store.get(targetGroupsAtom),
+  topics: store.get(topicSelectionAtom),
+});
+
+// State is stored in session storage, so the form is restored when the user returns to
+// the page, e.g. with the back button from an event page.
+const persistState = (store: EventsStore, config: EventsAppConfig) => {
+  const { layout, useCrossInstitutionalStudiesForm } = config.settings;
+
+  // The cross-institutional studies form keeps its state in the query string instead.
+  if (useCrossInstitutionalStudiesForm || layout === 'lifts' || config.useFixtures) {
+    return;
+  }
+
+  const key = `${window.location.pathname}#${config.instanceId}`;
+  const snapshot = readSnapshot(key);
+
+  // An address handed over in the query string takes precedence over a stored search.
+  if (snapshot && !config.initialQuery.has(HOME_ADDRESS_PARAM)) {
+    setFormValues(store.set, {
+      end: snapshot.end,
+      eventTypes: snapshot.eventTypes,
+      free: snapshot.free,
+      keyword: snapshot.keyword,
+      languages: snapshot.languages,
+      locations: snapshot.locations,
+      page: snapshot.page,
+      params: snapshot.params,
+      remote: snapshot.remote,
+      start: snapshot.start,
+      submitted: snapshot.submitted,
+      targetGroups: snapshot.targetGroups,
+      topics: snapshot.topics,
+    });
+    store.set(endDisabledAtom, snapshot.endDisabled);
+
+    if (snapshot.address) {
+      store.set(addressAtom, snapshot.address);
+    }
+  }
+
+  store.sub(submittedParamsAtom, () => {
+    const current = snapshotFrom(store);
+
+    if (current.submitted.toString() === config.initialParams.toString()) {
+      clearSnapshot(key);
+      return;
+    }
+
+    writeSnapshot(key, current);
+  });
+};
+
 export const createEventsStore = (config: EventsAppConfig) => {
   const store = createStore();
   store.set(configAtom, config);
+  persistState(store, config);
 
   return store;
 };
@@ -182,17 +285,6 @@ export const clearSignalAtom = atom<number>(0);
 export const clearFilterSignalAtom = atom<{ key: string } | null>(null);
 
 export const resetFormAtom = atom(null, (get, set) => {
-  set(locationSelectionAtom, []);
-  set(topicSelectionAtom, []);
-  set(languageAtom, []);
-  set(startDateAtom, undefined);
-  set(endDateAtom, undefined);
-  set(remoteFilterAtom, false);
-  set(freeFilterAtom, false);
-  set(targetGroupsAtom, []);
-  set(eventTypeAtom, []);
-  set(pageAtom, 1);
-  set(searchKeywordAtom, '');
   set(formErrorsAtom, { invalidEndDate: false, invalidStartDate: false, invalidAddress: false });
 
   const newParams = new URLSearchParams(get(initialParamsAtom));
@@ -205,8 +297,19 @@ export const resetFormAtom = atom(null, (get, set) => {
     }
   });
 
-  set(paramsAtom, newParams);
-  set(submittedParamsAtom, newParams);
+  setFormValues(set, {
+    eventTypes: [],
+    free: false,
+    keyword: '',
+    languages: [],
+    locations: [],
+    page: 1,
+    params: newParams,
+    remote: false,
+    submitted: newParams,
+    targetGroups: [],
+    topics: [],
+  });
 
   set(clearSignalAtom, (count) => count + 1);
 });

@@ -50,6 +50,27 @@ jobs:
         run: vendor/bin/phpstan analyze -c public/themes/contrib/$THEME_NAME/phpstan.neon public/themes/contrib/$THEME_NAME
 
 
+  test-theme-builder:
+    runs-on: ubuntu-latest
+    container:
+      image: node:24-alpine
+    defaults:
+      run:
+        working-directory: theme-builder
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install npm 12
+        run: npm install -g npm@12 --no-audit --progress=false
+
+      - name: Install dependencies
+        run: npm ci --no-audit --progress=false
+
+      - name: Run theme-builder tests
+        run: npm test
+
   test-js:
     runs-on: ubuntu-latest
     defaults:
@@ -77,7 +98,7 @@ jobs:
         run: npm run coverage
 
       - name: NPM Audit
-        run: npm audit --audit-level high
+        run: npm audit --audit-level critical
 
       - name: Check that the build produced no changes
         run: |

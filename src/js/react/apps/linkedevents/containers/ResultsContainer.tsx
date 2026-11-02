@@ -2,6 +2,7 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
 import type { ComponentType, JSX } from 'react';
 import { useCallback, useEffect } from 'react';
+import { addressSearchNoResultsText } from '@/react/common/constants/defaultAddressSearchTexts';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
@@ -167,7 +168,9 @@ function ResultsContainer({
       );
     }
 
-    return <ResultsEmpty wrapperClass='event-list__no-results' ref={scrollTarget} />;
+    return (
+      <ResultsEmpty wrapperClass='event-list__no-results' bodyText={addressSearchNoResultsText} ref={scrollTarget} />
+    );
   };
 
   return (

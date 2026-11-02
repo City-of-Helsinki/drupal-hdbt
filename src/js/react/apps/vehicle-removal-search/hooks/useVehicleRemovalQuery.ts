@@ -3,26 +3,29 @@ import Global from '../enum/Global';
 import { submittedStateAtom } from '../store';
 
 const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {}): string => {
-  const { streets, page } = useAtomValue(submittedStateAtom);
+  const { streets, postalCodes, parkingZones, page } = useAtomValue(submittedStateAtom);
 
   const query: Record<string, unknown> = {
     size: override.size ?? Global.size,
     from: override.from ?? (page - 1) * Global.size,
   };
 
-  const innerQuery = streets.length
-    ? {
-        bool: {
-          must: [
-            {
-              terms: {
-                street_names: streets.flatMap((street) => street.value),
-              },
-            },
-          ],
-        },
-      }
-    : { match_all: {} };
+  // A result matches if it matches any of the selected filters.
+  const should: Record<string, unknown>[] = [];
+
+  if (streets.length) {
+    should.push({ terms: { street_names: streets.flatMap((street) => street.value) } });
+  }
+
+  if (postalCodes.length) {
+    should.push({ terms: { postal_codes: postalCodes.flatMap((postalCode) => postalCode.value) } });
+  }
+
+  if (parkingZones.length) {
+    should.push({ terms: { parking_zone_names: parkingZones.flatMap((parkingZone) => parkingZone.value) } });
+  }
+
+  const innerQuery = should.length ? { bool: { should, minimum_should_match: 1 } } : { match_all: {} };
 
   query.query = {
     function_score: {

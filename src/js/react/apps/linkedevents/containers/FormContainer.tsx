@@ -133,6 +133,11 @@ function FormContainer() {
             value={address || ''}
             visibleSuggestions={5}
             error={errors.invalidAddress}
+            errorTitle={Drupal.t(
+              'No results found for this street address',
+              {},
+              { context: 'Address search error message' },
+            )}
           />
         )}
         <div className='event-form__filter-section-container'>

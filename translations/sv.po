@@ -455,6 +455,10 @@ msgctxt "React search: no search results"
 msgid "No results were found for the criteria you entered. Try changing your search criteria."
 msgstr "Med dina val hittades inga resultat. Du kan försöka ändra dina sökvillkor."
 
+msgctxt "React search: address search no results"
+msgid "Your search returned no results. Try changing your search criteria."
+msgstr "Din sökning gav inga resultat. Du kan försöka ändra dina sökvillkor."
+
 msgctxt "School search: education level option"
 msgid "School providing grades 1 to 6"
 msgstr "Skolor med årskurserna 1–6"
@@ -1784,6 +1788,30 @@ msgid "For example, Kotikatu"
 msgstr "T.ex. Hemgatan"
 
 msgctxt "Vehicle removal search"
+msgid "Postal code"
+msgstr "Postnummer"
+
+msgctxt "Vehicle removal search"
+msgid "Write a postal code"
+msgstr "Skriv ett postnummer"
+
+msgctxt "Vehicle removal search"
+msgid "For example, 00100"
+msgstr "T.ex. 00100"
+
+msgctxt "Vehicle removal search"
+msgid "Parking zone"
+msgstr "Invånarparkeringsområde"
+
+msgctxt "Vehicle removal search"
+msgid "Write a parking zone"
+msgstr "Skriv ett invånarparkeringsområde"
+
+msgctxt "Vehicle removal search"
+msgid "For example, Kamppi"
+msgstr "T.ex. Kamppi"
+
+msgctxt "Vehicle removal search"
 msgid "Period of validity"
 msgstr "Giltighetstid"
 
@@ -1796,24 +1824,20 @@ msgid "Find vehicle removal requests"
 msgstr "Sök flyttningsuppmaningar"
 
 msgctxt "Vehicle removal search"
-msgid "Use street names to search for areas with vehicle removal requests."
-msgstr "Sök efter områden med gatunamn som har gällande flyttningsuppmaningar."
+msgid "Search for areas with vehicle removal requests. You can narrow down your search by street name, postal code or resident parking zone."
+msgstr "Sök efter områden som har flyttningsuppmaningar. Du kan avgränsa sökningen med gatunamn, postnummer eller boendeparkeringsområden."
 
 msgctxt "Vehicle removal search"
-msgid "The search results will show you the location of vehicle removal request signs on the street that you searched for or a street near it."
-msgstr "I sökresultaten anges var förflyttningsuppmaningsmärket är placerat på den gata du sökte efter eller på en närliggande gata."
+msgid "The search results will show you the location of the vehicle removal request sign."
+msgstr "I sökresultatet anges var förflyttningsuppmaningsmärket är placerat."
 
 msgctxt "Vehicle removal search"
-msgid "No vehicle removal requests"
-msgstr "Inga flyttningsuppmaningar"
+msgid "No active vehicle removal requests"
+msgstr "Inga aktiva flyttningsuppmaningar"
 
 msgctxt "Vehicle removal search"
-msgid "No vehicle removal requests were found with your search criteria."
-msgstr "Din sökning gav inga gällande flyttningsuppmaningar."
-
-msgctxt "Vehicle removal search"
-msgid "Subscribe to the Vehicle Removal Alert Service to be notified of new removal requests."
-msgstr "Beställ Flyttningsvakten så får du information om nya flyttningsuppmaningar."
+msgid "Subscribe to the Vehicle Removal Alert Service, and you'll be notified when new vehicle removal requests matching your search become active."
+msgstr "Beställ Flyttningsvakten så får du besked när nya flyttningsuppmaningar som matchar din sökning blir tillgängliga."
 
 msgctxt "Vehicle removal search"
 msgid "1 result"
@@ -1838,16 +1862,20 @@ msgid "Make a search according to your specifications and save it as a Vehicle R
 msgstr "Gör en sökning enligt dina önskemål och spara den som Flyttningsvakt."
 
 msgctxt "Vehicle removal search"
-msgid "You can add more than one street to the same Vehicle Removal Alert."
-msgstr "Du kan välja flera gator till samma Flyttningsvakt."
+msgid "Make a search and save it as a Vehicle Removal Alert."
+msgstr "Gör först en sökning och spara den som Flyttningsvakt."
 
 msgctxt "Vehicle removal search"
-msgid "Make a search according to your specifications and save it as a Vehicle Removal Alert. You can add more than one street to the same Vehicle Removal Alert."
-msgstr "Gör en sökning enligt dina önskemål och spara den som Flyttningsvakt. Du kan välja flera gator till samma Flyttningsvakt."
+msgid "You will be notified of new vehicle removal requests no more than once a day."
+msgstr "Du får information om nya förflyttningsuppmaningar högst en gång per dagen."
 
 msgctxt "Vehicle removal search"
-msgid "You will be notified of new search matches no more than once a day. You can cancel your subscription using the link sent with each notification."
-msgstr "Du får information om nya träffar högst en gång om dagen. Du kan avsluta din beställning via en länk som finns i varje meddelande."
+msgid "You will receive an automatic reminder when the Vehicle Removal Alert is about to expire."
+msgstr "Du får en automatisk påminnelse när Flyttningsvakten kommer att upphöra."
+
+msgctxt "Vehicle removal search"
+msgid "You can cancel your subscription using the link sent with each notification."
+msgstr "Du kan avsluta din beställning via en länk som finns i varje meddelande."
 
 msgctxt "Vehicle removal search"
 msgid "Required fields are indicated with an asterisk (*)."
@@ -1948,12 +1976,24 @@ msgid "Autumn"
 msgstr "Höst"
 
 msgctxt "Address search error message"
-msgid "Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
+msgid "Please check that the address you entered is correct or try another nearby address. The search function suggests alternatives as you start typing."
 msgstr "Kontrollera adressen eller prova en annan adress i närheten. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
+msgctxt "Address search error message"
+msgid "No results found for this street address"
+msgstr "Inga resultat hittades för gatuadressen"
 
 msgctxt "Address search error message"
 msgid "No results were found for the street address. Make sure the address is correct. You can also try searching with a nearby address. The search suggests addresses as you type."
 msgstr "Inga resultat hittades för gatuadressen. Kontrollera adressen eller prova en annan adress i närheten. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
+msgctxt "Address search error message"
+msgid "Address not found. Please check that the address you have entered is correct. The search function suggests alternatives as you start typing."
+msgstr "Adressen hittades inte. Kontrollera att adressen är korrekt. Sökningen föreslår alternativ när du börjar skriva in adressen."
+
+msgctxt "Health station search: address error message"
+msgid "No results found for this address. The search function uses your home address to locate your local health station. Please check that the address you have entered is correct. Enter only your street name and house number. The search function suggests alternatives as you start typing."
+msgstr "Inga resultat hittades för adressen. Sökning av egen hälsostation utgående ifrån hemadress. Kontrollera att adressen är korrekt. Skriv bara gatunamn och husnummer. Sökningen föreslår alternativ när du börjar skriva in adressen."
 
 msgctxt "Location autocomplete"
 msgid "Geolocation is not supported by this browser."

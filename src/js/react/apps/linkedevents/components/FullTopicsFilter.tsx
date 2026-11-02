@@ -2,7 +2,7 @@ import type { SearchFunction, SearchResult } from 'hds-react';
 import { Select, useSelectStorage } from 'hds-react';
 import { useSetAtom } from 'jotai';
 import { useAtomCallback } from 'jotai/utils';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import LinkedEvents from '@/react/common/enum/LinkedEvents';
 import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
@@ -23,6 +23,7 @@ const FullTopicsFilter = memo(() => {
   const topicsId = useScopedId(SearchComponents.TOPICS);
 
   const getTopicsParamValue = useAtomCallback(useCallback((get) => get(topicSelectionAtom), []));
+  const [initialSelection] = useState(getTopicsParamValue);
 
   const getTopics: SearchFunction = async (searchTerm) => {
     const url = new URL(LinkedEvents.KEYWORDS_URL);
@@ -78,6 +79,7 @@ const FullTopicsFilter = memo(() => {
     multiSelect: true,
     noTags: true,
     onChange,
+    options: initialSelection.map((option) => ({ ...option, selected: true })),
     onSearch: getTopics,
   });
 

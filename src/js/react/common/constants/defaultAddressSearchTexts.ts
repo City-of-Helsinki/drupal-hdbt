@@ -8,3 +8,9 @@ export const defaultAddressSearchTexts = {
     { context: 'React search: street input helper placeholder' },
   ),
 };
+
+export const addressSearchNoResultsText = Drupal.t(
+  'Your search returned no results. Try changing your search criteria.',
+  {},
+  { context: 'React search: address search no results' },
+);
