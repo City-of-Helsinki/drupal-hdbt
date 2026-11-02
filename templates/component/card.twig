@@ -20,7 +20,7 @@
       {
         label: 'Lue lisää',
         url: 'https://www.hel.fi/fi/',
-        icon: 'trash'
+        icon: 'trash',
         class: 'class'
       },
     ],
@@ -132,7 +132,7 @@ The whole block can also be overridden with {% block card_actions %}.
             {% if card_action.icon %}
               {% include '@hdbt/misc/icon.twig' ignore missing with {icon: card_action.icon} only %}
             {% endif %}
-            <span class="hds-button__label"{% if card_action.aria_label %}aria-hidden="true"{% endif %}>{{ card_action.label }}</span>
+            <span class="hds-button__label"{% if card_action.aria_label %} aria-hidden="true"{% endif %}>{{ card_action.label }}</span>
             {% if card_action.aria_label %}
               <span class="visually-hidden">{{ card_action.aria_label }}</span>
             {% endif %}
