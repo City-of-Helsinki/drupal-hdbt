@@ -11,7 +11,7 @@ export const PostalCodeFilter = () => (
   <TermFilter
     id='postal-codes'
     atom={postalCodesAtom}
-    field='postal_codes'
+    values={drupalSettings.helfi_react_search?.postal_codes ?? []}
     filter={filter}
     texts={{
       label: Drupal.t('Postal code', {}, { context: 'Vehicle removal search' }),

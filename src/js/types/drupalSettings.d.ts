@@ -43,7 +43,12 @@ declare namespace drupalSettings {
     seeAllNearYouLink: string;
     cardsWithBorders: boolean;
   };
-  const helfi_react_search: { elastic_proxy_url: string; sentry_dsn_react: string };
+  const helfi_react_search: {
+    elastic_proxy_url: string;
+    sentry_dsn_react: string;
+    postal_codes?: string[];
+    resident_parking_zones?: string[];
+  };
   const helfi_rekry_job_search: {
     results_page_path: string;
   };
