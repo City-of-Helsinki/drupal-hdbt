@@ -6,15 +6,14 @@ import { type ReactElement, useCallback, useEffect, useState } from 'react';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { clearAllSelectionsFromStorage, updateSelectionsInStorage } from '@/react/common/helpers/HDS';
 import { Events } from '../enum/Event';
-import useTermValues, { type TermField } from '../hooks/useTermValues';
 
 type TermFilterProps = {
   /** Id of the select element. */
   id: string;
   /** Atom holding the selected options. */
   atom: WritableAtom<Option[], [Option[]], void>;
-  /** The index field the options are fetched from. */
-  field: TermField;
+  /** The option values. */
+  values: string[];
   /** Decides which options match the text typed in the filter input. */
   filter: FilterFunction;
   /** Translated texts. */
@@ -26,12 +25,11 @@ type TermFilterProps = {
 };
 
 /**
- * Multiselect filter with options from the values of a mobilenote_data index field.
+ * Multiselect filter with the given option values.
  */
-export const TermFilter = ({ id, atom, field, filter, texts }: TermFilterProps) => {
+export const TermFilter = ({ id, atom, values, filter, texts }: TermFilterProps) => {
   const setValue = useSetAtom(atom);
   const getValue = useAtomCallback(useCallback((get) => get(atom), [atom]));
-  const values = useTermValues(field);
 
   const onChange = (selectedOptions: Option[]) => {
     setValue(selectedOptions);
@@ -43,7 +41,7 @@ export const TermFilter = ({ id, atom, field, filter, texts }: TermFilterProps) 
 
   const getOptions = () => {
     const selectedValues = getValue().map((option) => option.value);
-    // Keep selections that are no longer in the index like ones restored from the URL.
+    // Keep selections missing from the values like ones restored from the URL.
     const allValues = [...new Set([...values, ...selectedValues])];
 
     return allValues.map((value) => ({ value, label: value, selected: selectedValues.includes(value) }));
@@ -64,12 +62,6 @@ export const TermFilter = ({ id, atom, field, filter, texts }: TermFilterProps) 
     options: getOptions(),
     clearable: true,
   });
-
-  // The values are fetched after the first render, reload the storage once they arrive.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reload only when the values change
-  useEffect(() => {
-    setStorageKey((key) => key + 1);
-  }, [values]);
 
   const clearAllSelections = () => {
     clearAllSelectionsFromStorage(selectStorage);
