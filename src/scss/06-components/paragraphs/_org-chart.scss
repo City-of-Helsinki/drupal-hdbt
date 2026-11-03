@@ -1,8 +1,8 @@
 .org-chart__container {
   --item-indentation: #{$spacing};
   --item-gap: #{$spacing};
-  --item-padding-block: #{$spacing-double};
-  --item-lvl-3-padding-block: #{$spacing-and-half};
+  --item-padding-block: #{$spacing-and-half};
+  --item-lvl-3-padding-block: #{$spacing};
   --item-lvl-4-padding-block: #{$spacing};
   --item-padding-inline: #{$spacing};
   --item-relation-indicator-width: 2px;
@@ -10,11 +10,13 @@
   margin: 0;
   padding: 0;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     --item-indentation: #{$spacing-double};
     --item-padding-inline: #{$spacing-double};
+    --item-padding-block: #{$spacing-double};
+    --item-lvl-3-padding-block: #{$spacing-and-half};
   }
-
+ 
   // Visual marker is hidden based on design. Functionality is described in paragraph text.
   .link__type--external {
     display: none;
@@ -76,23 +78,14 @@
   border: 2px solid $color-black-60;
   display: block;
   margin: 0;
-  padding: calc(var(--item-padding-block) * 0.75) var(--item-padding-inline);
+  padding: var(--item-padding-block) var(--item-padding-inline);
 
-  &:has(.org-chart__item__title--level-3),
-  &:has(.org-chart__item__title--level-4) {
-    padding: calc(var(--item-padding-block) * 0.5) var(--item-padding-inline);
+  &:has(.org-chart__item__title--level-3) {
+    padding: var(--item-lvl-3-padding-block) var(--item-padding-inline);
   }
 
-  @include breakpoint($breakpoint-m) {
-    padding: var(--item-padding-block) var(--item-padding-inline);
-
-    &:has(.org-chart__item__title--level-3) {
-      padding: calc(var(--item-padding-block) * 0.75) var(--item-padding-inline);
-    }
-
-    &:has(.org-chart__item__title--level-4) {
-      padding: calc(var(--item-padding-block) * 0.5) var(--item-padding-inline);
-    }
+  &:has(.org-chart__item__title--level-4) {
+    padding: var(--item-lvl-4-padding-block) var(--item-padding-inline);
   }
 
   // This after adds the horizontal line that connects the vertical line to each item.
