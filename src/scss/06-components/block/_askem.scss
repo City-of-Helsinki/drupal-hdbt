@@ -30,14 +30,14 @@
     background: $color-black-5;
 
     .askem .askem-plugin {
-      padding-block-end: 112px;
+      padding-block-end: $negate-footer-margin;
     }
   }
 }
 
 .js .block--askem:has(+ style + style:last-child), // When logged in as admin, an accessibility plugin adds two style-elements and this combats that case
 .js .block--askem:last-child {
-  margin-block-end: -112px;
+  margin-block-end: -$negate-footer-margin;
 }
 
 /* stylelint-disable max-nesting-depth */
