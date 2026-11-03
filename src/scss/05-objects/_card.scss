@@ -276,3 +276,10 @@ $-card-border-width: 2px;
     border-bottom: 1px solid $color-black-20;
   }
 }
+
+.card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing;
+  margin-block-start: $spacing;
+}
