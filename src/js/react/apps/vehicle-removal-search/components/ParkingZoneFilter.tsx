@@ -9,7 +9,7 @@ export const ParkingZoneFilter = () => (
   <TermFilter
     id='parking-zones'
     atom={parkingZonesAtom}
-    field='parking_zone_names'
+    values={drupalSettings.helfi_react_search?.resident_parking_zones ?? []}
     filter={defaultFilter}
     texts={{
       label: Drupal.t('Parking zone', {}, { context: 'Vehicle removal search' }),
