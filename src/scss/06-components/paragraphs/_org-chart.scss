@@ -1,8 +1,8 @@
 .org-chart__container {
   --item-indentation: #{$spacing};
   --item-gap: #{$spacing};
-  --item-padding-block: #{$spacing-double};
-  --item-lvl-3-padding-block: #{$spacing-and-half};
+  --item-padding-block: #{$spacing-and-half};
+  --item-lvl-3-padding-block: #{$spacing};
   --item-lvl-4-padding-block: #{$spacing};
   --item-padding-inline: #{$spacing};
   --item-relation-indicator-width: 2px;
@@ -10,9 +10,16 @@
   margin: 0;
   padding: 0;
 
-  @include breakpoint($breakpoint-m) {
+  @include breakpoint($breakpoint-l) {
     --item-indentation: #{$spacing-double};
     --item-padding-inline: #{$spacing-double};
+    --item-padding-block: #{$spacing-double};
+    --item-lvl-3-padding-block: #{$spacing-and-half};
+  }
+ 
+  // Visual marker is hidden based on design. Functionality is described in paragraph text.
+  .link__type--external {
+    display: none;
   }
 }
 
@@ -62,17 +69,24 @@
 
   // The first level doesn't need the item relation indicators eiter.
   &::before,
-  > .org-chart__item__title::after {
+  > .org-chart__item__wrapper::after {
     display: none;
   }
 }
 
-.org-chart__item__title {
-  background-color: var(--hdbt-color-palette--secondary);
+.org-chart__item__wrapper {
+  border: 2px solid $color-black-60;
   display: block;
   margin: 0;
   padding: var(--item-padding-block) var(--item-padding-inline);
-  position: relative;
+
+  &:has(.org-chart__item__title--level-3) {
+    padding: var(--item-lvl-3-padding-block) var(--item-padding-inline);
+  }
+
+  &:has(.org-chart__item__title--level-4) {
+    padding: var(--item-lvl-4-padding-block) var(--item-padding-inline);
+  }
 
   // This after adds the horizontal line that connects the vertical line to each item.
   &::after {
@@ -87,6 +101,12 @@
   }
 }
 
+
+
+.org-chart__item__title {
+  display: block;
+}
+
 .org-chart__item__title--level-1 {
   @include font('h3');
 }
@@ -97,10 +117,21 @@
 
 .org-chart__item__title--level-3 {
   @include font('h5');
-  padding-block: var(--item-lvl-3-padding-block);
 }
 
 .org-chart__item__title--level-4 {
   @include font('h6');
-  padding-block: var(--item-lvl-4-padding-block);
+}
+
+.org-chart__item__type-elected-officials,
+.org-chart__item__type-administration {
+  margin-block-start: $spacing-half;
+}
+
+.org-chart__item__type-elected-officials {
+  background-color: $color-gold-medium-light;
+}
+
+.org-chart__item__type-administration {
+  background-color: $color-bus-medium-light;
 }
