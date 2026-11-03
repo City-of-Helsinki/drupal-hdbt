@@ -35,6 +35,10 @@ const Filter = ({ label, options, placeholder, stateKey, ...rest }: FilterProps)
   return (
     <Select
       clearable
+      // Without an id, hds-react generates a new one on every render,
+      // which breaks its own logic for closing the dropdown after a
+      // selection. A fixed id avoids that.
+      id={`news-archive-filter-${stateKey}`}
       multiSelect
       noTags
       onChange={onChange}
