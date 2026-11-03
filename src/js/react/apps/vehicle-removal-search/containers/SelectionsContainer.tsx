@@ -3,32 +3,38 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import FilterButton from '@/react/common/FilterButton';
 import SelectionsWrapper from '@/react/common/SelectionsWrapper';
 import { Events } from '../enum/Event';
-import { submittedStateAtom } from '../store';
+import { type SearchState, submittedStateAtom } from '../store';
+
+type FilterKey = 'streets' | 'postalCodes' | 'parkingZones';
+
+const filterKeys: FilterKey[] = ['streets', 'postalCodes', 'parkingZones'];
 
 const SelectionsContainer = () => {
-  const { streets } = useAtomValue(submittedStateAtom);
+  const state = useAtomValue(submittedStateAtom);
   const setSubmittedState = useSetAtom(submittedStateAtom);
 
   const clearAll = () => {
-    setSubmittedState({ streets: [], page: 1 });
+    setSubmittedState({ streets: [], postalCodes: [], parkingZones: [], page: 1 });
     window.dispatchEvent(new CustomEvent(Events.VEHICLE_REMOVAL_CLEAR_ALL));
   };
 
-  const clearSingle = (value: string) => {
-    const updated = streets.filter((street) => street.value !== value);
-    setSubmittedState({ streets: updated, page: 1 });
+  const clearSingle = (key: FilterKey, value: string) => {
+    const updated: SearchState[FilterKey] = state[key].filter((option) => option.value !== value);
+    setSubmittedState({ [key]: updated, page: 1 });
     window.dispatchEvent(new CustomEvent(Events.VEHICLE_REMOVAL_CLEAR_SINGLE));
   };
 
   return (
-    <SelectionsWrapper showClearButton={streets.length > 0} resetForm={clearAll}>
-      {streets.map((street) => (
-        <FilterButton
-          key={street.value}
-          value={street.label}
-          clearSelection={() => clearSingle(street.value as string)}
-        />
-      ))}
+    <SelectionsWrapper showClearButton={filterKeys.some((key) => state[key].length > 0)} resetForm={clearAll}>
+      {filterKeys.flatMap((key) =>
+        state[key].map((option) => (
+          <FilterButton
+            key={`${key}-${option.value}`}
+            value={option.label}
+            clearSelection={() => clearSingle(key, option.value as string)}
+          />
+        )),
+      )}
     </SelectionsWrapper>
   );
 };
