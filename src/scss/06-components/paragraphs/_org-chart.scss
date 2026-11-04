@@ -43,7 +43,7 @@
 
   // This before draws the vertical line from item to item.
   &::before {
-    background-color: $color-black;
+    background-color: $color-black-60;
     height: calc(100% + var(--item-gap));
     left: calc(var(--item-indentation) * -1);
     top: calc(var(--item-gap) * -1);
