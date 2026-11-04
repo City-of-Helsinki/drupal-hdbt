@@ -90,7 +90,7 @@
 
   // This after adds the horizontal line that connects the vertical line to each item.
   &::after {
-    border-top: var(--item-relation-indicator-width) solid $color-black;
+    border-top: var(--item-relation-indicator-width) solid $color-black-60;
     content: "";
     display: block;
     height: 50%;
