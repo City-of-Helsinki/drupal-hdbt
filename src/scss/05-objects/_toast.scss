@@ -4,7 +4,7 @@
 
 $toast-arrow-size: $spacing-half;
 $toast-fixed-width: 328px;
-$toast-slide-duration: 85ms;
+$toast-slide-duration: 0.3s;
 
 .toast {
   background-color: var(--color-info-light);
