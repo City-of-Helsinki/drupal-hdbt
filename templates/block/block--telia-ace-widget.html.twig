@@ -1,0 +1,29 @@
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+
+  {% include '@hdbt/misc/toast.twig' with {
+    id: 'telia-ace-toast',
+    title: 'The chat was hidden'|t({}, {'context': 'Telia ACE chat'}),
+    text: 'You can reopen the chat with the button at the bottom of the page.'|t({}, {'context': 'Telia ACE chat'}),
+    link: {
+      title: 'Go to the bottom of the page'|t({}, {'context': 'Telia ACE chat'}),
+      url: 'internal:#telia-ace-footer-button',
+    },
+    close_label: 'Close the notification'|t({}, {'context': 'Telia ACE chat'}),
+    placement: 'fixed',
+    animation: 'slide',
+    hidden: true,
+  } %}
+
+  <button id="telia-ace-footer-button" class="telia-chat-footer-button" type="button" hidden>
+    {% include '@hdbt/misc/icon.twig' with {icon: 'speechbubble-text'} %}
+    <span>{{ 'Open chat'|t({}, {'context': 'Telia ACE chat'}) }}</span>
+  </button>
+</div>
