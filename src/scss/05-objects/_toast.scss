@@ -4,7 +4,7 @@
 
 $toast-arrow-size: $spacing-half;
 $toast-fixed-width: 328px;
-$toast-slide-duration: 0.3s;
+$toast-slide-duration: 85ms;
 
 .toast {
   background-color: var(--color-info-light);
@@ -14,6 +14,10 @@ $toast-slide-duration: 0.3s;
   flex-direction: row-reverse;
   gap: 0;
   padding: $spacing;
+}
+
+.toast[hidden] {
+  display: none;
 }
 
 .toast--border-top {
@@ -27,6 +31,7 @@ $toast-slide-duration: 0.3s;
 .toast__content {
   @include font('special.navigation.header_top');
   display: block;
+  flex-grow: 1;
 }
 
 .toast__header {
@@ -73,6 +78,7 @@ $toast-slide-duration: 0.3s;
   left: $spacing;
   position: fixed;
   right: $spacing;
+  visibility: visible;
   z-index: 100;
 
   @include breakpoint($breakpoint-l) {
