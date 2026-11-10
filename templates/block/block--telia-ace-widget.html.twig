@@ -24,7 +24,7 @@
 
   <div id="chat-footer" class="chat-widget__footer" hidden>
     <button id="chat-footer-button" class="chat-widget__footer-button" type="button">
-      {% include '@hdbt/misc/icon.twig' with {icon: 'speechbubble-text'} %}
+      {% include '@hdbt/misc/icon.twig' with {icon: configuration.chat_icon|default('speechbubble-text')} %}
       <span class="chat-widget__footer-label"></span>
     </button>
   </div>
