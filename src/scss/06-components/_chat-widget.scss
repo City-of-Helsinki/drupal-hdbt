@@ -37,9 +37,11 @@
   @include font('body');
   gap: $spacing-half;
   padding: $spacing-half $spacing;
+  text-align: left;
 
   .hel-icon {
     --icon-size: #{$spacing-and-half};
+    flex-shrink: 0;
   }
 
   &.loading {
@@ -48,6 +50,7 @@
 }
 
 .chat-widget__dismiss {
+  align-self: stretch;
   justify-content: center;
   min-width: $wcag-touch-target-size-aaa;
   padding: 0 $spacing-half;
@@ -56,16 +59,58 @@
   // Divider between the buttons.
   &::before {
     border-left: 2px solid $color-white;
+    bottom: 25%;
     content: '';
-    height: $spacing-and-half;
     left: 0;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25%;
   }
 
   .hel-icon {
     --icon-size: #{$spacing-and-half};
+    flex-shrink: 0;
+  }
+}
+
+.chat-widget__footer {
+  flex-basis: 100%;
+  margin-top: $spacing-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-double;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// Tighten the space between the chat button and the footer bottom.
+.footer:has(.chat-widget__footer:not([hidden])) .footer-bottom {
+  margin-top: $spacing-double;
+}
+
+.chat-widget__footer-button {
+  @include font('body');
+  align-items: center;
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: $spacing-double;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  gap: $spacing-half;
+  min-height: $wcag-touch-target-size-aaa;
+  padding: $spacing-half $spacing;
+
+  &:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .hel-icon {
+    --icon-size: #{$spacing-and-half};
+    flex-shrink: 0;
   }
 }
 
