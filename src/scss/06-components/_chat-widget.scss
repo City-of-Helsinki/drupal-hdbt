@@ -1,18 +1,71 @@
-.telia-chat-leijuke {
-  @include font('body');
+.chat-widget {
   align-items: center;
   background: $color-black;
   border: 2px solid $color-white;
-  border-radius: $spacing-half;
+  border-radius: $spacing-double;
+  bottom: $spacing;
+  box-shadow: 0 0 20px 0 rgba($color-black, 0.3);
   color: $color-white;
+  display: flex;
+  position: fixed;
+  right: $spacing;
+  z-index: 1;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.chat-widget__trigger,
+.chat-widget__dismiss {
+  align-items: center;
+  background: transparent;
+  border: 0 none;
+  border-radius: $spacing-double;
+  color: inherit;
   cursor: pointer;
   display: flex;
-  flex: auto;
+  min-height: $wcag-touch-target-size-aaa;
+
+  &:focus-visible {
+    outline: 3px solid $color-white;
+    outline-offset: -6px;
+  }
+}
+
+.chat-widget__trigger {
+  @include font('body');
   gap: $spacing-half;
   padding: $spacing-half $spacing;
 
-  &.hidden {
-    display: none;
+  .hel-icon {
+    --icon-size: #{$spacing-and-half};
+  }
+
+  &.loading {
+    cursor: wait;
+  }
+}
+
+.chat-widget__dismiss {
+  justify-content: center;
+  min-width: $wcag-touch-target-size-aaa;
+  padding: 0 $spacing-half;
+  position: relative;
+
+  // Divider between the buttons.
+  &::before {
+    border-left: 2px solid $color-white;
+    content: '';
+    height: $spacing-and-half;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hel-icon {
+    --icon-size: #{$spacing-and-half};
   }
 }
 
