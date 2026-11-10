@@ -7,6 +7,7 @@ const HIDE_SELECTORS = [
   '.si-toggle-container', // Siteimprove accessibility tool
   '.aca--button--desktop, .aca--button--mobile, .aca--widget--mobile, .aca--widget--desktop, #aca--widget-button-close', // Watson chatbot in asuminen
   '#chat-widget', // Chat widget
+  '.toast--fixed', // Fixed toasts such as the chat toast
   '.humany-trigger, .humany-widget', // Telia ACE chat button and widget
   '#ed11y-panel', // Editoria11y accessibility tool
   '#sliding-popup', // Cookie banner
