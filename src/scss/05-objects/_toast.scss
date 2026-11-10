@@ -14,6 +14,11 @@ $toast-slide-duration: 0.3s;
   flex-direction: row-reverse;
   gap: 0;
   padding: $spacing;
+
+  &:focus-visible {
+    outline: 3px solid var(--color-black);
+    outline-offset: 3px;
+  }
 }
 
 .toast[hidden] {
