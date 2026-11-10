@@ -76,14 +76,15 @@ $toast-slide-duration: 0.3s;
 .toast--fixed {
   bottom: $spacing;
   left: $spacing;
+  margin-inline: auto;
+  max-width: $toast-fixed-width;
   position: fixed;
   right: $spacing;
   visibility: visible;
   z-index: 100;
 
-  @include breakpoint($breakpoint-l) {
+  @include breakpoint($breakpoint-m) {
     left: auto;
-    width: $toast-fixed-width;
   }
 }
 
@@ -91,7 +92,7 @@ $toast-slide-duration: 0.3s;
   --toast-slide-from: translateY(calc(100% + #{$spacing}));
   animation: toast-slide-in $toast-slide-duration ease-out;
 
-  @include breakpoint($breakpoint-l) {
+  @include breakpoint($breakpoint-m) {
     --toast-slide-from: translateX(calc(100% + #{$spacing}));
   }
 
