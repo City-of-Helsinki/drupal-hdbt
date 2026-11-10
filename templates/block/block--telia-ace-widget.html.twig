@@ -9,12 +9,12 @@
   {% endblock %}
 
   {% include '@hdbt/misc/toast.twig' with {
-    id: 'telia-ace-toast',
+    id: 'chat-toast',
     title: 'The chat was hidden'|t({}, {'context': 'Chat toast'}),
     text: 'You can reopen the chat with the button at the bottom of the page.'|t({}, {'context': 'Chat toast'}),
     link: {
       title: 'Go to the bottom of the page'|t({}, {'context': 'Chat toast'}),
-      url: 'internal:#telia-ace-footer-button',
+      url: 'internal:#chat-footer-button',
     },
     close_label: 'Close the notification'|t({}, {'context': 'Chat toast'}),
     placement: 'fixed',
@@ -22,8 +22,10 @@
     hidden: true,
   } %}
 
-  <button id="telia-ace-footer-button" class="chat-widget__footer-button" type="button" hidden>
-    {% include '@hdbt/misc/icon.twig' with {icon: 'speechbubble-text'} %}
-    <span>{{ 'Open chat'|t({}, {'context': 'Chat toast'}) }}</span>
-  </button>
+  <div id="chat-footer" class="chat-widget__footer" hidden>
+    <button id="chat-footer-button" class="chat-widget__footer-button" type="button">
+      {% include '@hdbt/misc/icon.twig' with {icon: 'speechbubble-text'} %}
+      <span>{{ 'Open chat'|t({}, {'context': 'Chat toast'}) }}</span>
+    </button>
+  </div>
 </div>
