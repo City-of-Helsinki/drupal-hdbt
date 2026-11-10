@@ -29,6 +29,10 @@ export type CardActionType = {
 export type CardItemProps = {
   cardActions?: CardActionType[];
   cardCategoryTag?: TagType | TagType[];
+  cardContactPersonAddresses?: JSX.Element;
+  cardContactPersonLinks?: JSX.Element;
+  cardContactPersonOrganisation?: JSX.Element;
+  cardContactPersonTitle?: string;
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
   cardHelptext?: string;
@@ -65,6 +69,10 @@ export type CardItemProps = {
 function CardItem({
   cardActions,
   cardCategoryTag,
+  cardContactPersonAddresses,
+  cardContactPersonLinks,
+  cardContactPersonOrganisation,
+  cardContactPersonTitle,
   cardDescription,
   cardDescriptionHtml,
   cardHelptext,
@@ -96,11 +104,7 @@ function CardItem({
   timeLabel,
   weightedEducation,
 }: CardItemProps) {
-  const cardClass = `
-    card
-    ${cardModifierClass ? ` ${cardModifierClass}` : ''}
-    ${cardUrlExternal ? ' card--external' : ''}
-  `;
+  const cardClass = `card${cardModifierClass ? ` ${cardModifierClass}` : ''}${cardUrlExternal ? ' card--external' : ''}`;
   const categoryTags: TagType[] = Array.isArray(cardCategoryTag)
     ? cardCategoryTag
     : cardCategoryTag
@@ -141,6 +145,17 @@ function CardItem({
             <ExternalLink href={cardUrl} title={cardTitle} className='card__link' rel='bookmark' />
           )}
         </HeadingTag>
+        {cardContactPersonTitle && (
+          <div className='card__person-title'>
+            <span className='label visually-hidden'>
+              {Drupal.t('Title', {}, { context: 'Contact card paragraph field labels' })}
+            </span>
+            {cardContactPersonTitle}
+          </div>
+        )}
+        {cardContactPersonOrganisation}
+        {cardContactPersonLinks}
+        {cardContactPersonAddresses}
         {categoryTags.length > 0 && (
           <div className='card__category'>
             <Tags tags={categoryTags} insideCard />

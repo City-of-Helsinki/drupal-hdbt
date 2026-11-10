@@ -158,16 +158,27 @@ const useSearchFocusManagement = <Trigger>(
       return;
     }
 
-    const firstLink = resultsListRef.current?.querySelector<HTMLElement>('a');
+    // Focus the title link of the first card, or the title itself when it isn't
+    // a link. Other links in the card are skipped. Lists without cards fall back to
+    // their first link.
+    const firstCard = resultsListRef.current?.querySelector<HTMLElement>('.card');
+    const target = firstCard
+      ? (firstCard.querySelector<HTMLElement>('.card__title a') ?? firstCard.querySelector<HTMLElement>('.card__title'))
+      : resultsListRef.current?.querySelector<HTMLElement>('a');
 
-    if (!firstLink) {
+    if (!target) {
       return;
     }
 
     triggerFocus(() => {
       pagerFocusPendingRef.current = false;
-      firstLink.focus({ preventScroll: true });
-      firstLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Reset the flag here, or the next search won't focus the results heading.
+      skipResultsFocusRef.current = false;
+      if (target.tagName !== 'A') {
+        target.setAttribute('tabindex', '-1');
+      }
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 
