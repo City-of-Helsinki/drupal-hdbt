@@ -1,6 +1,6 @@
 import type { estypes } from '@elastic/elasticsearch';
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useRef } from 'react';
+import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useEffect, useRef } from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
 import Pagination from '@/react/common/Pagination';
@@ -12,7 +12,7 @@ import type TagType from '@/types/TagType';
 import Global from '../enum/Global';
 import { getResultText } from '../helpers/ResultText';
 import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
-import { submittedStateAtom, triggerFocusAtom } from '../store';
+import { hasInitialSearchParams, submittedStateAtom, triggerFocusAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
 
@@ -63,6 +63,20 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     true,
     triggerFocus,
   );
+
+  // Focus on pageload if search specific query parameters are set.
+  const focusRef = useRef(hasInitialSearchParams());
+  useEffect(() => {
+    const target = scrollTarget.current;
+    if (!focusRef.current || isValidating || !target) {
+      return;
+    }
+
+    focusRef.current = false;
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [isValidating, scrollTarget]);
 
   // Shown in the search monitor dialog and saved as the subscription's search description.
   const selectionTags: TagType[] = [...streets, ...postalCodes, ...parkingZones].map((option) => ({
