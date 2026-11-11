@@ -65,6 +65,11 @@ const useSearchFocusManagement = <Trigger>(
     if (trigger !== lastTriggerRef.current) {
       lastTriggerRef.current = trigger;
       searchTriggeredRef.current = true;
+      // A new search after a finished page change: focus the results heading
+      // again. In site search, nothing else resets the flag after a page change.
+      if (!pagerFocusPendingRef.current) {
+        skipResultsFocusRef.current = false;
+      }
     }
   }, [trigger]);
 
@@ -172,8 +177,6 @@ const useSearchFocusManagement = <Trigger>(
 
     triggerFocus(() => {
       pagerFocusPendingRef.current = false;
-      // Reset the flag here, or the next search won't focus the results heading.
-      skipResultsFocusRef.current = false;
       if (target.tagName !== 'A') {
         target.setAttribute('tabindex', '-1');
       }
