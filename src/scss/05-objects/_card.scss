@@ -132,6 +132,15 @@ $-card-border-width: 2px;
   margin-top: $section-gap;
 }
 
+// If there is description and metas on the cards there should be a 
+// bit more spacing between the two elements to help distiguishing data 
+// in desktop view.
+.card__description + .card__metas {
+  @include breakpoint($breakpoint-l) {
+    margin-top: $spacing-and-half;
+  }
+}
+
 .card__meta {
   @include font('body');
   padding-inline-start: $spacing-double; // icon-size + gap
