@@ -28,11 +28,9 @@ export type CardActionType = {
 
 export type CardItemProps = {
   cardActions?: CardActionType[];
+  // Custom content shown under the title.
+  cardBody?: ReactNode;
   cardCategoryTag?: TagType | TagType[];
-  cardContactPersonAddresses?: JSX.Element;
-  cardContactPersonLinks?: JSX.Element;
-  cardContactPersonOrganisation?: JSX.Element;
-  cardContactPersonTitle?: string;
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
   cardHelptext?: string;
@@ -68,11 +66,8 @@ export type CardItemProps = {
 
 function CardItem({
   cardActions,
+  cardBody,
   cardCategoryTag,
-  cardContactPersonAddresses,
-  cardContactPersonLinks,
-  cardContactPersonOrganisation,
-  cardContactPersonTitle,
   cardDescription,
   cardDescriptionHtml,
   cardHelptext,
@@ -145,17 +140,7 @@ function CardItem({
             <ExternalLink href={cardUrl} title={cardTitle} className='card__link' rel='bookmark' />
           )}
         </HeadingTag>
-        {cardContactPersonTitle && (
-          <div className='card__person-title'>
-            <span className='label visually-hidden'>
-              {Drupal.t('Title', {}, { context: 'Contact card paragraph field labels' })}
-            </span>
-            {cardContactPersonTitle}
-          </div>
-        )}
-        {cardContactPersonOrganisation}
-        {cardContactPersonLinks}
-        {cardContactPersonAddresses}
+        {cardBody}
         {categoryTags.length > 0 && (
           <div className='card__category'>
             <Tags tags={categoryTags} insideCard />
