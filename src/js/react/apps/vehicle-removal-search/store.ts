@@ -32,8 +32,8 @@ const urlParamsToState = (): SearchState => {
   return {
     ...defaultState,
     streets: paramToOptions(params.getAll('streets')),
-    postalCodes: paramToOptions(params.getAll('postalCodes')),
-    parkingZones: paramToOptions(params.getAll('parkingZones')),
+    postalCodes: paramToOptions(params.getAll('postal_codes')),
+    parkingZones: paramToOptions(params.getAll('parking_zones')),
     page: Number(params.get('page')) || 1,
   };
 };
@@ -81,7 +81,13 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>, boole
     set(submittedStateAtom, update);
     set(triggerFocusAtom, triggerFocus);
 
-    const params = stateToURLParams(update);
+    const params = stateToURLParams({
+      streets: update.streets,
+      postal_codes: update.postalCodes,
+      parking_zones: update.parkingZones,
+      page: update.page,
+    });
+
     const url = new URL(window.location.href);
 
     if (url.searchParams.toString() !== params.toString()) {
@@ -92,3 +98,8 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>, boole
 );
 
 export const triggerFocusAtom = atom<boolean>(true);
+
+export const hasInitialSearchParams = () => {
+  const params = new URLSearchParams(window.location.search);
+  return ['streets', 'postal_codes', 'parking_zones', 'page'].some((key) => params.has(key));
+};
