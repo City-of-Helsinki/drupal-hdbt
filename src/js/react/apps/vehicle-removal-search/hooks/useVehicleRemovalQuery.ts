@@ -25,7 +25,14 @@ const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {})
     should.push({ terms: { parking_zone_names: parkingZones.flatMap((parkingZone) => parkingZone.value) } });
   }
 
-  const innerQuery = should.length ? { bool: { should, minimum_should_match: 1 } } : { match_all: {} };
+  // Show removals until a day after valid_to. The index also keeps the ones
+  // that ended before that.
+  const innerQuery = {
+    bool: {
+      filter: [{ range: { valid_to: { gte: 'now-1d' } } }],
+      ...(should.length ? { should, minimum_should_match: 1 } : {}),
+    },
+  };
 
   query.query = {
     function_score: {
