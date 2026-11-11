@@ -63,7 +63,7 @@
   <div class="toast__content">
     {% if title %}
       <div class="toast__header">
-        {% include '@hdbt/misc/icon.twig' with {icon: icon ?: 'info-circle-fill', class: 'toast__icon'} %}
+        {% include '@hdbt/misc/icon.twig' with {icon: icon ?: 'info-circle-fill', class: 'toast__icon'} only %}
         <{{ title_level ?: 'h2' }} id="{{ title_id }}" class="toast__title">{{ title }}</{{ title_level ?: 'h2' }}>
       </div>
     {% endif %}
