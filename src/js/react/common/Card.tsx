@@ -28,6 +28,8 @@ export type CardActionType = {
 
 export type CardItemProps = {
   cardActions?: CardActionType[];
+  // Custom content shown under the title.
+  cardBody?: ReactNode;
   cardCategoryTag?: TagType | TagType[];
   cardDescription?: string;
   cardDescriptionHtml?: boolean;
@@ -64,6 +66,7 @@ export type CardItemProps = {
 
 function CardItem({
   cardActions,
+  cardBody,
   cardCategoryTag,
   cardDescription,
   cardDescriptionHtml,
@@ -96,11 +99,7 @@ function CardItem({
   timeLabel,
   weightedEducation,
 }: CardItemProps) {
-  const cardClass = `
-    card
-    ${cardModifierClass ? ` ${cardModifierClass}` : ''}
-    ${cardUrlExternal ? ' card--external' : ''}
-  `;
+  const cardClass = `card${cardModifierClass ? ` ${cardModifierClass}` : ''}${cardUrlExternal ? ' card--external' : ''}`;
   const categoryTags: TagType[] = Array.isArray(cardCategoryTag)
     ? cardCategoryTag
     : cardCategoryTag
@@ -141,6 +140,7 @@ function CardItem({
             <ExternalLink href={cardUrl} title={cardTitle} className='card__link' rel='bookmark' />
           )}
         </HeadingTag>
+        {cardBody}
         {categoryTags.length > 0 && (
           <div className='card__category'>
             <Tags tags={categoryTags} insideCard />
