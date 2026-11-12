@@ -364,6 +364,16 @@ school-search:
     - core/drupalSettings
     - core/drupal
 
+select:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/select.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 search-helper:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
