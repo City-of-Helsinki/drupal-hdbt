@@ -239,6 +239,16 @@ toast-positioner:
   dependencies:
     - core/drupal
 
+liftup-with-image:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/liftup-with-image.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 maternity-and-child-health-clinic-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
