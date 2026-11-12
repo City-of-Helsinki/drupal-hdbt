@@ -447,6 +447,16 @@ throbber:
     - core/jquery
     - core/drupal
 
+unit:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/unit.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 vehicle-removal-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:

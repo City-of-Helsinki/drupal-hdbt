@@ -47,6 +47,7 @@ const styles = [
   ['src/scss/environment-indicator.scss', 'css/environment-indicator.min.css'],
   ['src/scss/06-components/helfi-calculator/__index.scss', 'css/helfi-calculator.min.css'],
   ['src/scss/06-components/paragraphs/liftup-with-image/__index.scss', 'css/liftup-with-image.min.css'],
+  ['src/scss/06-components/pages/unit/__index.scss', 'css/unit.min.css'],
 ];
 
 // Static files.
