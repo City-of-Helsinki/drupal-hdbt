@@ -4,6 +4,12 @@
   {% endfor %}
 {% endset %}
 
+{% set ai_urls = {
+  fi: 'https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/muotoilu-ja-digitaalisuus/digitaalinen-helsinki/tekoaly-kaupungin-palveluissa/tekoalyn-kaytto-helsingissa',
+  sv: 'https://www.hel.fi/sv/beslutsfattande-och-forvaltning/information-om-helsingfors/design-och-digitalisering/digitala-helsingfors/artificiell-intelligens-inom-stadens-tjanster/anvandning-av-ai-i-Helsingfors',
+  en: 'https://www.hel.fi/en/decision-making/information-on-helsinki/design-and-digitalisation/digital-helsinki/ai-in-the-city-of-helsinkis-services/use-of-ai-by-the-city-of-helsinki',
+} %}
+
 {% if content|render %}
   {{ attach_library('hdbt/ai-summary-toast') }}
   {{ attach_library('hdbt/ai-summary-expander') }}
@@ -25,7 +31,7 @@
             </button>
             <div class="ai-summary__toast" id="ai-summary-info-toast" hidden>
               {% set ai_summary_toast_text %}
-                {{ 'The summary has been created with artificial intelligence, but has been checked by a human.'|t({}, {'context': 'AI summary'}) }} <a href="https://ai.hel.fi/eettiset-periaatteet" class="toast__link">{{ 'Read more about the use of artificial intelligence'|t({}, {'context': 'AI summary'}) }}</a>
+                {{ 'The summary has been created with artificial intelligence, but has been checked by a human.'|t({}, {'context': 'AI summary'}) }} <a href="{{ ai_urls[language.id]|default(ai_urls.en) }}" class="toast__link">{{ 'Read more about the use of artificial intelligence'|t({}, {'context': 'AI summary'}) }}</a>
               {% endset %}
               {% include '@hdbt/misc/toast.twig' with {
                 id: 'ai-summary-toast',
