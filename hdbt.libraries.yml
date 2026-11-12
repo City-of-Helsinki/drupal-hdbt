@@ -151,6 +151,16 @@ health-station-search:
     - core/drupalSettings
     - core/drupal
 
+helfi-calculator:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/helfi-calculator.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 # Attached in:
 # - templates/block/block--announcements.html.twig
 hide-announcements:

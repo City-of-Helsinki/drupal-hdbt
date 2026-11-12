@@ -45,6 +45,7 @@ const styles = [
   ['src/scss/ckeditor.scss', 'css/ckeditor.min.css'],
   ['src/scss/color-palette.scss', 'css/color-palette.min.css'],
   ['src/scss/environment-indicator.scss', 'css/environment-indicator.min.css'],
+  ['src/scss/06-components/helfi-calculator/__index.scss', 'css/helfi-calculator.min.css'],
 ];
 
 // Static files.
