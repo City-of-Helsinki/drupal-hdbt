@@ -242,7 +242,6 @@ maternity-and-child-health-clinic-search:
 
 matomo:
   version: HELFI_DEPLOYMENT_IDENTIFIER
-  header: true
   js:
     dist/js/matomo.min.js: {
       weight: -10,
