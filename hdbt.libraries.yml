@@ -50,7 +50,6 @@ closable-announcements:
       minified: true
     }
   dependencies:
-    - core/jquery
     - core/drupal
     - core/drupalSettings
 
