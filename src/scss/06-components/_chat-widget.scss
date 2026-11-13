@@ -1,18 +1,121 @@
-.telia-chat-leijuke {
-  @include font('body');
+.chat-widget {
   align-items: center;
   background: $color-black;
   border: 2px solid $color-white;
-  border-radius: $spacing-half;
+  border-radius: $spacing-double;
+  bottom: $spacing-half;
+  box-shadow: 0 0 20px 0 rgba($color-black, 0.3);
   color: $color-white;
+  display: flex;
+  position: fixed;
+  right: $spacing-half;
+  z-index: 1;
+
+  @include breakpoint($breakpoint-m) {
+    bottom: $spacing;
+    right: $spacing;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.chat-widget__trigger,
+.chat-widget__dismiss {
+  align-items: center;
+  background: transparent;
+  border: 0 none;
+  border-radius: $spacing-double;
+  color: inherit;
   cursor: pointer;
   display: flex;
-  flex: auto;
+  min-height: $wcag-touch-target-size-aaa;
+
+  &:focus-visible {
+    outline: 3px solid $color-white;
+    outline-offset: -6px;
+  }
+}
+
+.chat-widget__trigger {
+  @include font('body');
   gap: $spacing-half;
   padding: $spacing-half $spacing;
+  text-align: left;
 
-  &.hidden {
+  .hel-icon {
+    --icon-size: #{$spacing-and-half};
+    flex-shrink: 0;
+  }
+
+  &.loading {
+    cursor: wait;
+  }
+}
+
+.chat-widget__dismiss {
+  align-self: stretch;
+  justify-content: center;
+  min-width: $wcag-touch-target-size-aaa;
+  padding: 0 $spacing-half;
+  position: relative;
+
+  // Divider between the buttons.
+  &::before {
+    border-left: 2px solid $color-white;
+    bottom: 25%;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 25%;
+  }
+
+  .hel-icon {
+    --icon-size: #{$spacing-and-half};
+    flex-shrink: 0;
+  }
+}
+
+.chat-widget__footer {
+  flex-basis: 100%;
+  margin-top: $spacing-half;
+
+  @include breakpoint($breakpoint-m) {
+    margin-top: $spacing-double;
+  }
+
+  &[hidden] {
     display: none;
+  }
+}
+
+// Tighten the space between the chat button and the footer bottom.
+.footer:has(.chat-widget__footer:not([hidden])) .footer-bottom {
+  margin-top: $spacing-double;
+}
+
+.chat-widget__footer-button {
+  @include font('body');
+  align-items: center;
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: $spacing-double;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  gap: $spacing-half;
+  min-height: $wcag-touch-target-size-aaa;
+  padding: $spacing-half $spacing;
+
+  &:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  .hel-icon {
+    --icon-size: #{$spacing-and-half};
+    flex-shrink: 0;
   }
 }
 

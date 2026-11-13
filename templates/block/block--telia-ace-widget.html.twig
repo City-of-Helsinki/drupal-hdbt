@@ -1,0 +1,31 @@
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+
+  {% include '@hdbt/misc/toast.twig' with {
+    id: 'chat-toast',
+    title: 'The chat was hidden'|t({}, {'context': 'Chat toast'}),
+    text: 'You can reopen the chat with the button at the bottom of the page.'|t({}, {'context': 'Chat toast'}),
+    link: {
+      title: 'Go to the bottom of the page'|t({}, {'context': 'Chat toast'}),
+      url: 'internal:#chat-footer-button',
+    },
+    close_label: 'Close the notification'|t({}, {'context': 'Chat toast'}),
+    placement: 'fixed',
+    animation: 'slide',
+    hidden: true,
+  } %}
+
+  <div id="chat-footer" class="chat-widget__footer" hidden>
+    <button id="chat-footer-button" class="chat-widget__footer-button" type="button">
+      {% include '@hdbt/misc/icon.twig' with {icon: configuration.chat_icon|default('speechbubble-text')} only %}
+      <span class="chat-widget__footer-label"></span>
+    </button>
+  </div>
+</div>
