@@ -1,0 +1,21 @@
+// Import this file in a component that is built as its own CSS file, see theme-builder.mjs.
+// It gives the component the same functions, variables and mixins as styles.scss
+// without adding any CSS to the built file.
+
+// The 01-variables/__index.scss is not imported because it outputs the HDS design
+// tokens as :root custom properties. They are already in styles.min.css on every
+// page, so importing the index would only duplicate about 3.4 KB of CSS.
+@import 'breakpoint-sass/stylesheets/breakpoint';
+@import '00-functions/_index';
+
+// The font() mixin reads font sizes and line heights from the $config map.
+// The map is normally created in 01-variables/__index.scss, so create it
+// here before typography-variables fills it.
+$config: ();
+
+// The HDS design tokens as Sass variables only.
+@import 'hds-design-tokens/lib/all';
+@import '01-variables/constraint-variables';
+@import '01-variables/typography-variables';
+@import '01-variables/component-variables';
+@import '02-mixins/_index';

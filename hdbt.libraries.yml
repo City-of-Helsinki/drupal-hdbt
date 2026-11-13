@@ -50,7 +50,6 @@ closable-announcements:
       minified: true
     }
   dependencies:
-    - core/jquery
     - core/drupal
     - core/drupalSettings
 
@@ -151,6 +150,16 @@ health-station-search:
     - core/drupalSettings
     - core/drupal
 
+helfi-calculator:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/helfi-calculator.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 # Attached in:
 # - templates/block/block--announcements.html.twig
 hide-announcements:
@@ -229,6 +238,16 @@ toast-positioner:
   dependencies:
     - core/drupal
 
+liftup-with-image:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/liftup-with-image.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 maternity-and-child-health-clinic-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
@@ -242,7 +261,6 @@ maternity-and-child-health-clinic-search:
 
 matomo:
   version: HELFI_DEPLOYMENT_IDENTIFIER
-  header: true
   js:
     dist/js/matomo.min.js: {
       weight: -10,
@@ -345,6 +363,16 @@ school-search:
     - core/drupalSettings
     - core/drupal
 
+select:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/select.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 search-helper:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
@@ -427,6 +455,16 @@ throbber:
   dependencies:
     - core/jquery
     - core/drupal
+
+unit:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/unit.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
 
 vehicle-removal-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER

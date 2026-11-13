@@ -45,6 +45,10 @@ const styles = [
   ['src/scss/ckeditor.scss', 'css/ckeditor.min.css'],
   ['src/scss/color-palette.scss', 'css/color-palette.min.css'],
   ['src/scss/environment-indicator.scss', 'css/environment-indicator.min.css'],
+  ['src/scss/06-components/helfi-calculator/__index.scss', 'css/helfi-calculator.min.css'],
+  ['src/scss/06-components/paragraphs/liftup-with-image/__index.scss', 'css/liftup-with-image.min.css'],
+  ['src/scss/06-components/pages/unit/__index.scss', 'css/unit.min.css'],
+  ['src/scss/06-components/forms/select/__index.scss', 'css/select.min.css'],
 ];
 
 // Static files.
