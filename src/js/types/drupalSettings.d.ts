@@ -55,6 +55,7 @@ declare namespace drupalSettings {
   const hakuvahti:
     | {
         apiUrl: string;
+        langcode: string;
         texts: {
           hakuvahti_tos_checkbox_label?: string;
           hakuvahti_tos_link_text?: string;
