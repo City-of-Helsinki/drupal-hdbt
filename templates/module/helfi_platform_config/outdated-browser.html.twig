@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for the outdated browser notification.
+ *
+ * The closing is handled by the helfi_platform_config/outdated_browser
+ * library, so the hdbt announcement scripts are not used.
+ *
+ * Available variables:
+ * - title: The notification title.
+ * - body: The notification text.
+ * - type_label: The notification type for assistive technology.
+ * - close_label: The close button label.
+ *
+ * @see \Drupal\helfi_platform_config\Plugin\Block\OutdatedBrowserBlock
+ */
+#}
+{% embed '@hdbt/component/announcement.twig' with {
+  announcement_type: 'attention',
+  title: title,
+  type_label: type_label,
+  close_label: close_label,
+  closable_announcement: false,
+} %}
+  {% block announcement_content %}
+    <div class="announcement__content-body">
+      <p>{{ body }}</p>
+    </div>
+  {% endblock %}
+{% endembed %}
