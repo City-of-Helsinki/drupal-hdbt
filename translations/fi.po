@@ -2130,3 +2130,19 @@ msgstr[1] "Viimeisen puolen vuoden aikana on ollut avoinna @count ilmoitusta, jo
 msgctxt "Job listing search"
 msgid "Subscribe to the search alert to receive notifications about new job listings."
 msgstr "Tilaa hakuvahti, niin saat tiedon uusista ilmoituksista."
+
+msgctxt "Chat toast"
+msgid "The chat was hidden"
+msgstr "Chat piilotettiin"
+
+msgctxt "Chat toast"
+msgid "You can reopen the chat with the button at the bottom of the page."
+msgstr "Voit avata chatin uudelleen painikkeella, joka on sivun lopussa."
+
+msgctxt "Chat toast"
+msgid "Go to the bottom of the page"
+msgstr "Siirry sivun loppuun"
+
+msgctxt "Chat toast"
+msgid "Close the notification"
+msgstr "Sulje ilmoitus"

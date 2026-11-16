@@ -2132,3 +2132,19 @@ msgstr[1] "Under det senaste halvåret har det funnits @count öppna annonser so
 msgctxt "Job listing search"
 msgid "Subscribe to the search alert to receive notifications about new job listings."
 msgstr "Beställ sökvakten så att du får ett meddelande om nya annonser."
+
+msgctxt "Chat toast"
+msgid "The chat was hidden"
+msgstr "Chatten gömdes"
+
+msgctxt "Chat toast"
+msgid "You can reopen the chat with the button at the bottom of the page."
+msgstr "Du kan öppna chatten på nytt med knappen i sidans nedre kant."
+
+msgctxt "Chat toast"
+msgid "Go to the bottom of the page"
+msgstr "Gå till sidans slut"
+
+msgctxt "Chat toast"
+msgid "Close the notification"
+msgstr "Stäng meddelandet"
