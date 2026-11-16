@@ -1887,6 +1887,10 @@ msgctxt "Vehicle removal search"
 msgid "Additional information"
 msgstr "Lisätiedot"
 
+msgctxt "Vehicle removal search"
+msgid "Vehicle removal requests on the map"
+msgstr "Siirtokehotukset kartalla"
+
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
 msgstr "Hakusana"

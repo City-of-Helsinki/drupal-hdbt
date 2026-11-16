@@ -1,5 +1,5 @@
 import type { estypes } from '@elastic/elasticsearch';
-import { act, render } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { createStore, Provider } from 'jotai';
 import { describe, expect, test } from 'vitest';
 import { submittedStateAtom } from '../store';
@@ -62,5 +62,34 @@ describe('ResultsList', () => {
     rerender(ui(response(3)));
 
     expect(document.activeElement).toBe(heading(container));
+  });
+
+  test('focuses the map link after a page change in map view and keeps tab focus when switching back', () => {
+    const store = createStore();
+    const ui = (data: estypes.SearchResponse<VehicleRemoval>, isValidating = false) => (
+      <Provider store={store}>
+        <ResultsList {...baseProps} data={data} isValidating={isValidating} />
+      </Provider>
+    );
+
+    // More results than fit on one page, so the pager is shown.
+    const firstPage = response(31);
+    const { container, rerender } = render(ui(firstPage));
+
+    fireEvent.click(screen.getByRole('tab', { name: 'View in a map' }));
+    fireEvent.click(screen.getByRole('link', { name: 'Go to page 2' }));
+
+    rerender(ui(firstPage, true));
+    rerender(ui(response(31)));
+
+    const mapLink = container.querySelector('.content-list-with-count__map-actions a');
+    expect(mapLink).not.toBeNull();
+    expect(document.activeElement).toBe(mapLink);
+
+    const listTab = screen.getByRole('tab', { name: 'View as a list' });
+    act(() => listTab.focus());
+    fireEvent.click(listTab);
+
+    expect(document.activeElement).toBe(listTab);
   });
 });

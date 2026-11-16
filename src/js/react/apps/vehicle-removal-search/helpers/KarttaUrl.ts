@@ -5,11 +5,16 @@ const KARTTA_BASE_URL = 'https://kartta.hel.fi/';
 // kartta.hel.fi answers 414 somewhere between 8k and 12k characters.
 export const MAX_URL_LENGTH = 7500;
 
-// Rough iframe viewport in pixels, used to fit all results into view.
-const VIEWPORT_WIDTH = 700;
-const VIEWPORT_HEIGHT = 360;
+// Fallback viewport in pixels, used to fit all results into view when the
+// size of the map is unknown (for example the full-page map link).
+const DEFAULT_VIEWPORT: Viewport = { width: 700, height: 360 };
 const MIN_RESOLUTION = 1;
 const PADDING_FACTOR = 1.3;
+
+export type Viewport = {
+  width: number;
+  height: number;
+};
 
 type Feature = {
   e: number;
@@ -83,7 +88,11 @@ const buildUrl = (base: string, params: Record<string, string>) => {
  * If the full geometries would make the URL too long, every result is drawn
  * as a point at its centre instead.
  */
-export const getKarttaUrls = (mapUrls: string[], lang?: string): { embedUrl: string; url: string } => {
+export const getKarttaUrls = (
+  mapUrls: string[],
+  lang?: string,
+  viewport: Viewport = DEFAULT_VIEWPORT,
+): { embedUrl: string; url: string } => {
   const language = getCurrentLanguage(lang);
   const features = mapUrls.map(parseMapUrl).filter((feature): feature is Feature => feature !== null);
 
@@ -93,12 +102,14 @@ export const getKarttaUrls = (mapUrls: string[], lang?: string): { embedUrl: str
   }
 
   const { minE, minN, maxE, maxN } = getBounds(features);
-  const resolution = Math.max(
-    MIN_RESOLUTION,
-    Math.ceil(Math.max((maxE - minE) / VIEWPORT_WIDTH, (maxN - minN) / VIEWPORT_HEIGHT) * PADDING_FACTOR),
-  );
+  // Metres per pixel needed to fit the bounds into the given viewport.
+  const getResolution = ({ width, height }: Viewport) =>
+    Math.max(
+      MIN_RESOLUTION,
+      Math.ceil(Math.max((maxE - minE) / Math.max(width, 1), (maxN - minN) / Math.max(height, 1)) * PADDING_FACTOR),
+    );
 
-  const params = (geom: string) => ({
+  const params = (geom: string, resolution: number) => ({
     setlanguage: language,
     e: String(Math.round((minE + maxE) / 2)),
     n: String(Math.round((minN + maxN) / 2)),
@@ -108,12 +119,13 @@ export const getKarttaUrls = (mapUrls: string[], lang?: string): { embedUrl: str
   });
 
   let geom = features.map(({ e, n, wkt }) => wkt || `POINT (${e} ${n})`).join(';');
-  let embedUrl = buildUrl(`${KARTTA_BASE_URL}embed/`, params(geom));
+  const embedResolution = getResolution(viewport);
+  let embedUrl = buildUrl(`${KARTTA_BASE_URL}embed/`, params(geom, embedResolution));
 
   if (embedUrl.length > MAX_URL_LENGTH) {
     geom = features.map(({ e, n }) => `POINT (${e} ${n})`).join(';');
-    embedUrl = buildUrl(`${KARTTA_BASE_URL}embed/`, params(geom));
+    embedUrl = buildUrl(`${KARTTA_BASE_URL}embed/`, params(geom, embedResolution));
   }
 
-  return { embedUrl, url: buildUrl(KARTTA_BASE_URL, params(geom)) };
+  return { embedUrl, url: buildUrl(KARTTA_BASE_URL, params(geom, getResolution(DEFAULT_VIEWPORT))) };
 };

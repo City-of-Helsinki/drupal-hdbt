@@ -258,7 +258,11 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
         aria-labelledby={`vehicle-removal-results-tab-${useMap ? 'map' : 'list'}`}
       >
         {useMap ? (
-          <ResultsMap mapUrls={mapUrls} />
+          // Same ref as the list, so that after a page change in map view the
+          // focus hook moves focus to the map's link instead of staying pending.
+          <div ref={resultsListRef}>
+            <ResultsMap mapUrls={mapUrls} />
+          </div>
         ) : (
           <div ref={resultsListRef}>
             {results.map((hit) => (hit._source ? <ResultCard key={hit._id} item={hit._source} /> : null))}

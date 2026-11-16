@@ -34,6 +34,29 @@ describe('getKarttaUrls', () => {
     expect(Number(params.get('r'))).toBeGreaterThan(2);
   });
 
+  test('zooms out for a narrow map so all results stay in view', () => {
+    // Two results 1000 m apart horizontally.
+    const urls = [
+      mapUrl(25502931, 6674228, 'POINT (25502000 6674228)'),
+      mapUrl(25503931, 6674228, 'POINT (25503000 6674228)'),
+    ];
+    const resolution = (width: number) =>
+      Number(new URL(getKarttaUrls(urls, 'fi', { width, height: width * 0.52 }).embedUrl).searchParams.get('r'));
+
+    expect(resolution(700)).toBeLessThan(resolution(320));
+    // 1931 m of bounds must fit into 320 px.
+    expect(resolution(320) * 320).toBeGreaterThanOrEqual(1931);
+  });
+
+  test('uses the default viewport for the full-page map link', () => {
+    const urls = [mapUrl(25502931, 6674228), mapUrl(25503931, 6675228)];
+    const narrow = getKarttaUrls(urls, 'fi', { width: 320, height: 166 });
+    const wide = getKarttaUrls(urls, 'fi');
+
+    expect(narrow.embedUrl).not.toBe(wide.embedUrl);
+    expect(narrow.url).toBe(wide.url);
+  });
+
   test('falls back to points when the URL would be too long', () => {
     const urls = Array.from({ length: 60 }, (_, i) => mapUrl(25502931 + i, 6674228 + i));
     const { embedUrl } = getKarttaUrls(urls, 'fi');
