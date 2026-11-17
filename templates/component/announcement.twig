@@ -1,0 +1,60 @@
+{#
+{% embed '@hdbt/component/announcement.twig' with {
+  announcement_type: 'alert',
+  title: 'Title of the announcement',
+  type_label: 'Alert',
+  close_label: 'Close',
+  uuid: 'd4533d49-a148-460f-b85a-fad70747ff3a',
+  container_attributes: {},
+} %}
+    {% block announcement_content %}
+      {{ content }}
+    {% endblock %}
+{% endembed %}
+#}
+
+{% if announcement_type == 'alert' %}
+  {% set announcement_modifier = 'hds-notification--error' %}
+  {% set announcement_icon = 'hds-icon hds-icon--error-fill' %}
+{% elseif announcement_type == 'attention' %}
+  {% set announcement_modifier = 'hds-notification--alert' %}
+  {% set announcement_icon = 'hds-icon hds-icon--alert-circle-fill' %}
+{% else %}
+  {% set announcement_modifier = null %}
+  {% set announcement_icon = 'hds-icon hds-icon--info-circle-fill' %}
+{% endif %}
+
+{% set closable_announcement = closable_announcement ?? true %}
+{% set announcement_classes = [
+  'announcement',
+  closable_announcement ? 'js-announcement',
+  'hds-notification',
+  announcement_modifier,
+] %}
+{% set close_classes = [
+  'announcement__close',
+  closable_announcement ? 'js-announcement__close--disabled',
+] %}
+{% set container_attributes = create_attribute(container_attributes|default({})).addClass('announcement__container') %}
+
+{% set announcement_labelled_by = 'announcement__title--' ~ random() %}
+{% set announcement_type_labelled_by = 'announcement__type--' ~ random() %}
+{% set announcement_close_labelled_by = 'announcement__close__aria-label--' ~ random() %}
+
+<div class="container">
+  <section aria-labelledby="{{ announcement_labelled_by }} {{ announcement_type_labelled_by }}" class="{{ announcement_classes|filter(class => class)|join(' ') }}"{% if uuid %} data-uuid="{{ uuid }}"{% endif %}>
+    <div{{ container_attributes }}>
+      <button type="button" class="{{ close_classes|filter(class => class)|join(' ') }}" aria-labelledby="{{ announcement_close_labelled_by }}">
+        <span id="{{ announcement_close_labelled_by }}" class="is-hidden">{{ [title, close_label, type_label|lower]|join(' ') }}</span>
+      </button>
+      <div class="announcement__title">
+        <span class="{{ announcement_icon }}" aria-hidden="true"></span>
+        <span id="{{ announcement_labelled_by }}">{{ title }}</span>
+        <span id="{{ announcement_type_labelled_by }}" class="is-hidden"> - {{ type_label }}</span>
+      </div>
+      <div class="announcement__content">
+        {% block announcement_content %}{% endblock %}
+      </div>
+    </div>
+  </section>
+</div>

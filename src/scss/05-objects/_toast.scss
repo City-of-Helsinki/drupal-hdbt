@@ -14,6 +14,15 @@ $toast-slide-duration: 0.3s;
   flex-direction: row-reverse;
   gap: 0;
   padding: $spacing;
+
+  &:focus-visible {
+    outline: 3px solid var(--color-black);
+    outline-offset: 3px;
+  }
+}
+
+.toast[hidden] {
+  display: none;
 }
 
 .toast--border-top {
@@ -27,6 +36,7 @@ $toast-slide-duration: 0.3s;
 .toast__content {
   @include font('special.navigation.header_top');
   display: block;
+  flex-grow: 1;
 }
 
 .toast__header {
@@ -71,13 +81,15 @@ $toast-slide-duration: 0.3s;
 .toast--fixed {
   bottom: $spacing;
   left: $spacing;
+  margin-inline: auto;
+  max-width: $toast-fixed-width;
   position: fixed;
   right: $spacing;
+  visibility: visible;
   z-index: 100;
 
-  @include breakpoint($breakpoint-l) {
+  @include breakpoint($breakpoint-m) {
     left: auto;
-    width: $toast-fixed-width;
   }
 }
 
@@ -85,7 +97,7 @@ $toast-slide-duration: 0.3s;
   --toast-slide-from: translateY(calc(100% + #{$spacing}));
   animation: toast-slide-in $toast-slide-duration ease-out;
 
-  @include breakpoint($breakpoint-l) {
+  @include breakpoint($breakpoint-m) {
     --toast-slide-from: translateX(calc(100% + #{$spacing}));
   }
 
