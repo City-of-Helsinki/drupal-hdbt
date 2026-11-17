@@ -1,94 +1,144 @@
 import { describe, expect, test } from 'vitest';
-import { getKarttaUrls, MAX_URL_LENGTH, parseMapUrl } from './KarttaUrl';
+import {
+  buildNoticeFilter,
+  getKarttaUrls,
+  MAX_URL_LENGTH,
+  type MapResult,
+  parseCentre,
+  withLanguage,
+} from './KarttaUrl';
 
-const polygon =
-  'POLYGON ((25502827.48 6674216.21, 25503030.65 6674259.65, 25503034.83 6674240.09, 25502831.66 6674196.65, 25502827.48 6674216.21))';
-const mapUrl = (e: number, n: number, wkt = polygon) =>
-  `https://kartta.hel.fi/?e=${e}&n=${n}&r=2&l=Karttasarja&geom=${encodeURIComponent(wkt)}`;
+const mapUrl = (e: number, n: number, nro = 1) =>
+  `https://kartta.hel.fi/?e=${e}&n=${n}&r=2&l=Karttasarja%2CAjoneuvojen_siirtokehotukset&w=%2Anro%3D%3D${nro}`;
+const result = (nro: number, e = 25502931, n = 6674228): MapResult => ({ nro, mapUrl: mapUrl(e, n, nro) });
 
-describe('parseMapUrl', () => {
-  test('parses centre and geometry', () => {
-    expect(parseMapUrl(mapUrl(25502931, 6674228))).toEqual({ e: 25502931, n: 6674228, wkt: polygon });
+const params = (url: string) => new URL(url).searchParams;
+
+// Nesting depth of the parentheses in a filter.
+const depth = (filter: string) =>
+  [...filter].reduce(
+    ({ current, max }, char) => {
+      const next = current + (char === '(' ? 1 : char === ')' ? -1 : 0);
+      return { current: next, max: Math.max(max, next) };
+    },
+    { current: 0, max: 0 },
+  ).max;
+
+describe('parseCentre', () => {
+  test('parses the centre point', () => {
+    expect(parseCentre(mapUrl(25502931, 6674228))).toEqual({ e: 25502931, n: 6674228 });
   });
 
   test.each(['', 'not a url', 'https://kartta.hel.fi/?l=Karttasarja'])('returns null for %s', (url) => {
-    expect(parseMapUrl(url)).toBeNull();
+    expect(parseCentre(url)).toBeNull();
+  });
+});
+
+describe('buildNoticeFilter', () => {
+  test('matches a single notice', () => {
+    expect(buildNoticeFilter([73567])).toBe('nro==73567');
+  });
+
+  test('combines notices with "||"', () => {
+    expect(buildNoticeFilter([1, 2])).toBe('(nro==1)||(nro==2)');
+    expect(buildNoticeFilter([1, 2, 3])).toBe('(nro==1)||((nro==2)||(nro==3))');
+  });
+
+  test('keeps the nesting shallow, since kartta.hel.fi fails on 64 levels', () => {
+    const nros = Array.from({ length: 300 }, (_, i) => 70000 + i);
+    const filter = buildNoticeFilter(nros);
+
+    expect(depth(filter)).toBeLessThanOrEqual(Math.ceil(Math.log2(300)));
+    expect(filter.match(/nro==\d+/g)).toHaveLength(300);
+  });
+});
+
+describe('withLanguage', () => {
+  test('adds the language to a kartta.hel.fi link', () => {
+    expect(withLanguage(mapUrl(25502931, 6674228, 5), 'sv')).toBe(`${mapUrl(25502931, 6674228, 5)}&setlanguage=sv`);
+  });
+
+  test.each(['', 'not a url', 'https://example.com/?a=1'])('leaves %s as it is', (url) => {
+    expect(withLanguage(url, 'sv')).toBe(url);
   });
 });
 
 describe('getKarttaUrls', () => {
-  test('returns a plain map when there are no geometries', () => {
-    const { embedUrl, url } = getKarttaUrls([], 'sv');
-    expect(embedUrl).toBe('https://kartta.hel.fi/embed/?setlanguage=sv&l=Karttasarja');
-    expect(url).toBe('https://kartta.hel.fi/?setlanguage=sv&l=Karttasarja');
+  test('shows the notice layer filtered to the results', () => {
+    const { embedUrl, url, filtered } = getKarttaUrls([result(73567), result(73410, 25503931, 6675228)], 'fi');
+
+    expect(filtered).toBe(true);
+    expect(embedUrl.startsWith('https://kartta.hel.fi/embed/?')).toBe(true);
+    expect(url.startsWith('https://kartta.hel.fi/?')).toBe(true);
+    expect(params(embedUrl).get('l')).toBe('Karttasarja,Ajoneuvojen_siirtokehotukset');
+    // No filter for the base map, then the filter for the notice layer.
+    expect(params(embedUrl).get('w')).toBe('*(nro==73567)||(nro==73410)');
+    expect(params(url).get('w')).toBe('*(nro==73567)||(nro==73410)');
+    expect(params(embedUrl).get('setlanguage')).toBe('fi');
   });
 
-  test('combines geometries and centres the map on them', () => {
-    const { embedUrl } = getKarttaUrls([mapUrl(25502931, 6674228), mapUrl(25503931, 6675228)], 'fi');
-    const params = new URL(embedUrl).searchParams;
+  test('centres the map on the results', () => {
+    const { embedUrl } = getKarttaUrls([result(1, 25502931, 6674228), result(2, 25503931, 6675228)], 'fi');
 
-    expect(embedUrl).toContain('%20');
-    expect(params.get('geom')?.split(';')).toEqual([polygon, polygon]);
-    expect(params.get('e')).toBe('25503379');
-    expect(params.get('n')).toBe('6674712');
-    expect(Number(params.get('r'))).toBeGreaterThan(2);
+    expect(params(embedUrl).get('e')).toBe('25503431');
+    expect(params(embedUrl).get('n')).toBe('6674728');
+  });
+
+  test('does not zoom in all the way on a single result', () => {
+    const { embedUrl } = getKarttaUrls([result(1)], 'fi', { width: 700, height: 364 });
+
+    // At least 400 m of the map around the notice is visible.
+    expect(Number(params(embedUrl).get('r')) * 364).toBeGreaterThanOrEqual(400);
   });
 
   test('zooms out for a narrow map so all results stay in view', () => {
     // Two results 1000 m apart horizontally.
-    const urls = [
-      mapUrl(25502931, 6674228, 'POINT (25502000 6674228)'),
-      mapUrl(25503931, 6674228, 'POINT (25503000 6674228)'),
-    ];
+    const results = [result(1, 25502000, 6674228), result(2, 25503000, 6674228)];
     const resolution = (width: number) =>
-      Number(new URL(getKarttaUrls(urls, 'fi', { width, height: width * 0.52 }).embedUrl).searchParams.get('r'));
+      Number(params(getKarttaUrls(results, 'fi', { width, height: width * 0.52 }).embedUrl).get('r'));
 
     expect(resolution(700)).toBeLessThan(resolution(320));
-    // 1931 m of bounds must fit into 320 px.
-    expect(resolution(320) * 320).toBeGreaterThanOrEqual(1931);
+    expect(resolution(320) * 320).toBeGreaterThanOrEqual(1000);
   });
 
   test('uses the default viewport for the full-page map link', () => {
-    const urls = [mapUrl(25502931, 6674228), mapUrl(25503931, 6675228)];
-    const narrow = getKarttaUrls(urls, 'fi', { width: 320, height: 166 });
-    const wide = getKarttaUrls(urls, 'fi');
+    const results = [result(1, 25502931, 6674228), result(2, 25503931, 6675228)];
+    const narrow = getKarttaUrls(results, 'fi', { width: 320, height: 166 });
+    const wide = getKarttaUrls(results, 'fi');
 
     expect(narrow.embedUrl).not.toBe(wide.embedUrl);
     expect(narrow.url).toBe(wide.url);
   });
 
-  test('falls back to points when the URL would be too long', () => {
-    const urls = Array.from({ length: 60 }, (_, i) => mapUrl(25502931 + i, 6674228 + i));
-    const { embedUrl } = getKarttaUrls(urls, 'fi');
-    const geoms = new URL(embedUrl).searchParams.get('geom')?.split(';') ?? [];
+  test('filters up to about 300 results', () => {
+    const results = Array.from({ length: 280 }, (_, i) => result(70000 + i));
+    const { embedUrl, url, filtered } = getKarttaUrls(results, 'fi');
 
-    expect(embedUrl.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
-    expect(geoms).toHaveLength(60);
-    expect(geoms[0]).toBe('POINT (25502931 6674228)');
-  });
-
-  test('reports all results as shown when they fit', () => {
-    const { shown, truncated } = getKarttaUrls([mapUrl(25502931, 6674228), mapUrl(25503931, 6675228)], 'fi');
-
-    expect(shown).toBe(2);
-    expect(truncated).toBe(false);
-  });
-
-  test('keeps the first results that fit when even the points do not all fit', () => {
-    const urls = Array.from({ length: 400 }, (_, i) => mapUrl(25502931 + i, 6674228 + i));
-    const { embedUrl, url, shown, truncated } = getKarttaUrls(urls, 'fi');
-    const geoms = new URL(embedUrl).searchParams.get('geom')?.split(';') ?? [];
-
-    expect(truncated).toBe(true);
-    expect(shown).toBeLessThan(400);
-    expect(shown).toBeGreaterThan(150);
-    expect(geoms).toHaveLength(shown);
-    expect(geoms[0]).toBe('POINT (25502931 6674228)');
+    expect(filtered).toBe(true);
     expect(embedUrl.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
     expect(url.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
+  });
 
-    // One more result would not have fit.
-    const oneMore = getKarttaUrls(urls.slice(0, shown + 1), 'fi');
-    expect(oneMore.shown).toBe(shown);
+  test('shows all notices when the results do not fit into the URL', () => {
+    const results = Array.from({ length: 400 }, (_, i) => result(70000 + i));
+    const { embedUrl, url, filtered } = getKarttaUrls(results, 'fi');
+
+    expect(filtered).toBe(false);
+    expect(params(embedUrl).has('w')).toBe(false);
+    expect(params(url).has('w')).toBe(false);
+    expect(params(embedUrl).get('l')).toBe('Karttasarja,Ajoneuvojen_siirtokehotukset');
+  });
+
+  test('shows all notices when not all results were fetched', () => {
+    const { embedUrl, filtered } = getKarttaUrls([result(1), result(2)], 'fi', undefined, false);
+
+    expect(filtered).toBe(false);
+    expect(params(embedUrl).has('w')).toBe(false);
+  });
+
+  test('lists each notice once', () => {
+    const { embedUrl } = getKarttaUrls([result(5), result(5)], 'fi');
+
+    expect(params(embedUrl).get('w')).toBe('*nro==5');
   });
 });

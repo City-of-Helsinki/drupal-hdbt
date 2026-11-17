@@ -1,5 +1,7 @@
 interface VehicleRemoval {
   id: string;
+  // Notice number, the same on the kartta.hel.fi notice layer.
+  nro?: number;
   address: string;
   address_info: string;
   street_names: string[];

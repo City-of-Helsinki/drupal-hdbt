@@ -1891,14 +1891,6 @@ msgctxt "Vehicle removal search"
 msgid "Vehicle removal requests on the map"
 msgstr "Siirtokehotukset kartalla"
 
-msgctxt "Vehicle removal search"
-msgid "The map shows @shown of @total vehicle removal requests"
-msgstr "Kartalla näytetään @shown siirtokehotusta (yhteensä @total)"
-
-msgctxt "Vehicle removal search"
-msgid "Narrow down your search to see all of them on the map."
-msgstr "Rajaa hakua, niin näet kaikki kartalla."
-
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
 msgstr "Hakusana"
