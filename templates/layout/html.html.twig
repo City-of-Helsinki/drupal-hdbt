@@ -58,6 +58,8 @@
   <head>
     <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
+    {# Add the JS class before the first paint. #}
+    <script>document.documentElement.classList.add('js');</script>
     <noscript><style>div.nav-toggle { display: none; }</style></noscript>
     <link rel="icon" href="{{ theme_path }}/src/images/favicon/favicon-32x32.ico" sizes="any">
     <link rel="icon" href="{{ theme_path }}/src/images/favicon/favicon.svg" type="image/svg+xml">
