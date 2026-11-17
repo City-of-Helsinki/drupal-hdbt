@@ -1,20 +1,31 @@
 import type { estypes } from '@elastic/elasticsearch';
 import { useAtom, useAtomValue } from 'jotai';
-import { type ReactElement, type ReactNode, type RefObject, type SyntheticEvent, useRef } from 'react';
+import {
+  type ReactElement,
+  type ReactNode,
+  type RefObject,
+  type SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { GhostList } from '@/react/common/GhostList';
 import useSearchFocusManagement from '@/react/common/hooks/useSearchFocusManagement';
+import LoadingOverlay from '@/react/common/LoadingOverlay';
 import Pagination from '@/react/common/Pagination';
 import ResultsEmpty from '@/react/common/ResultsEmpty';
 import ResultsError from '@/react/common/ResultsError';
 import ResultsHeader from '@/react/common/ResultsHeader';
 import SearchMonitor from '@/react/common/SearchMonitor';
+import TabList from '@/react/common/TabList';
 import type TagType from '@/types/TagType';
 import Global from '../enum/Global';
 import { getResultText } from '../helpers/ResultText';
 import useVehicleRemovalQuery from '../hooks/useVehicleRemovalQuery';
-import { submittedStateAtom, triggerFocusAtom } from '../store';
+import { hasInitialSearchParams, submittedStateAtom, triggerFocusAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultCard from './ResultCard';
+import ResultsMap from './ResultsMap';
 
 type ResultsListProps = {
   /** Elasticsearch results. */
@@ -29,8 +40,10 @@ const Header = ({
   children,
   scrollTarget,
   dialogTarget,
+  actions,
   leftActions,
 }: {
+  actions?: ReactElement;
   children?: ReactNode;
   dialogTarget: RefObject<HTMLDivElement | null>;
   leftActions?: ReactElement;
@@ -39,7 +52,13 @@ const Header = ({
 }) => (
   <div className='hdbt-search--react__results'>
     <div ref={dialogTarget} />
-    <ResultsHeader leftActions={leftActions} resultText={getResultText(total)} ref={scrollTarget} />
+    <ResultsHeader
+      actions={actions}
+      actionsClass='hdbt-search--react__results--sort'
+      leftActions={leftActions}
+      resultText={getResultText(total)}
+      ref={scrollTarget}
+    />
     {children}
   </div>
 );
@@ -47,6 +66,7 @@ const Header = ({
 const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const [submittedState, setSubmittedState] = useAtom(submittedStateAtom);
   const { page } = submittedState;
+  const [useMap, setUseMap] = useState<boolean>(false);
   const dialogTargetRef = useRef<HTMLDivElement>(null);
   const triggerFocus = useAtomValue(triggerFocusAtom);
 
@@ -63,6 +83,20 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     true,
     triggerFocus,
   );
+
+  // Focus on pageload if search specific query parameters are set.
+  const focusRef = useRef(hasInitialSearchParams());
+  useEffect(() => {
+    const target = scrollTarget.current;
+    if (!focusRef.current || isValidating || !target) {
+      return;
+    }
+
+    focusRef.current = false;
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [isValidating, scrollTarget]);
 
   // Shown in the search monitor dialog and saved as the subscription's search description.
   const selectionTags: TagType[] = [...streets, ...postalCodes, ...parkingZones].map((option) => ({
@@ -145,7 +179,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
           resultText={Drupal.t('Searching for results...', {}, { context: 'React search: Fetching results title' })}
           ref={loadingHeaderRef}
         />
-        <GhostList count={Global.size} />
+        {useMap ? <LoadingOverlay /> : <GhostList count={Global.size} />}
       </div>
     );
   }
@@ -176,7 +210,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const pages = Math.floor(total / Global.size);
   const addLastPage = total > Global.size && total % Global.size;
   const totalPages = addLastPage ? pages + 1 : pages;
-  const showPagination = pages > 1 || addLastPage;
+  const showPagination = !useMap && (pages > 1 || addLastPage);
 
   const updatePage = (e: SyntheticEvent, nextPage: number) => {
     e.preventDefault();
@@ -184,14 +218,52 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     onPageChange();
   };
 
+  const tabs = (
+    <TabList
+      label={Drupal.t('Toggle between list and map view', {}, { context: 'Tab-list of Content list with count' })}
+      selected={useMap ? 'map' : 'list'}
+      onSelect={(value) => setUseMap(value === 'map')}
+      tabs={[
+        {
+          value: 'list',
+          id: 'vehicle-removal-results-tab-list',
+          controls: 'vehicle-removal-results-tabpanel-list',
+          label: Drupal.t('View as a list', {}, { context: 'Content list with count list tab text' }),
+        },
+        {
+          value: 'map',
+          id: 'vehicle-removal-results-tab-map',
+          controls: 'vehicle-removal-results-tabpanel-map',
+          label: Drupal.t('View in a map', {}, { context: 'Content list with count map tab text' }),
+        },
+      ]}
+    />
+  );
+
   return (
-    <Header total={total} dialogTarget={dialogTargetRef} scrollTarget={scrollTarget} leftActions={searchMonitor}>
-      <div ref={resultsListRef}>
-        {results.map((hit) => (hit._source ? <ResultCard key={hit._id} item={hit._source} /> : null))}
+    <Header
+      total={total}
+      dialogTarget={dialogTargetRef}
+      scrollTarget={scrollTarget}
+      leftActions={searchMonitor}
+      actions={tabs}
+    >
+      <div
+        id={`vehicle-removal-results-tabpanel-${useMap ? 'map' : 'list'}`}
+        role='tabpanel'
+        aria-labelledby={`vehicle-removal-results-tab-${useMap ? 'map' : 'list'}`}
+      >
+        {useMap ? (
+          <ResultsMap total={total} />
+        ) : (
+          <div ref={resultsListRef}>
+            {results.map((hit) => (hit._source ? <ResultCard key={hit._id} item={hit._source} /> : null))}
+          </div>
+        )}
+        {showPagination && (
+          <Pagination currentPage={page || 1} pages={5} totalPages={totalPages} updatePage={updatePage} />
+        )}
       </div>
-      {showPagination && (
-        <Pagination currentPage={page || 1} pages={5} totalPages={totalPages} updatePage={updatePage} />
-      )}
     </Header>
   );
 };

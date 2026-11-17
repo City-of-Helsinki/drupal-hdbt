@@ -2,3 +2,12 @@
   left: 21px !important;
   right: auto !important;
 }
+
+// Move the panel above the chat widget.
+body:has(.chat-widget:not([hidden])) ed11y-element-panel {
+  bottom: calc(#{$spacing-half} + #{$wcag-touch-target-size-aaa} + 4px + #{$spacing-half}) !important;
+
+  @include breakpoint($breakpoint-m) {
+    bottom: calc(#{$spacing} + #{$wcag-touch-target-size-aaa} + 4px + #{$spacing}) !important;
+  }
+}

@@ -65,6 +65,11 @@ const useSearchFocusManagement = <Trigger>(
     if (trigger !== lastTriggerRef.current) {
       lastTriggerRef.current = trigger;
       searchTriggeredRef.current = true;
+      // A new search after a finished page change: focus the results heading
+      // again. In site search, nothing else resets the flag after a page change.
+      if (!pagerFocusPendingRef.current) {
+        skipResultsFocusRef.current = false;
+      }
     }
   }, [trigger]);
 
@@ -158,16 +163,25 @@ const useSearchFocusManagement = <Trigger>(
       return;
     }
 
-    const firstLink = resultsListRef.current?.querySelector<HTMLElement>('a');
+    // Focus the title link of the first card, or the title itself when it isn't
+    // a link. Other links in the card are skipped. Lists without cards fall back to
+    // their first link.
+    const firstCard = resultsListRef.current?.querySelector<HTMLElement>('.card');
+    const target = firstCard
+      ? (firstCard.querySelector<HTMLElement>('.card__title a') ?? firstCard.querySelector<HTMLElement>('.card__title'))
+      : resultsListRef.current?.querySelector<HTMLElement>('a');
 
-    if (!firstLink) {
+    if (!target) {
       return;
     }
 
     triggerFocus(() => {
       pagerFocusPendingRef.current = false;
-      firstLink.focus({ preventScroll: true });
-      firstLink.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (target.tagName !== 'A') {
+        target.setAttribute('tabindex', '-1');
+      }
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 

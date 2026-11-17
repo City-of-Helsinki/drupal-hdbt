@@ -2,13 +2,17 @@ import { useAtomValue } from 'jotai';
 import Global from '../enum/Global';
 import { submittedStateAtom } from '../store';
 
-const useVehicleRemovalQuery = (override: { size?: number; from?: number } = {}): string => {
+const useVehicleRemovalQuery = (override: { size?: number; from?: number; source?: string[] } = {}): string => {
   const { streets, postalCodes, parkingZones, page } = useAtomValue(submittedStateAtom);
 
   const query: Record<string, unknown> = {
     size: override.size ?? Global.size,
     from: override.from ?? (page - 1) * Global.size,
   };
+
+  if (override.source) {
+    query._source = override.source;
+  }
 
   // A result matches if it matches any of the selected filters.
   const should: Record<string, unknown>[] = [];

@@ -98,3 +98,8 @@ export const submittedStateAtom = atom<SearchState, [Partial<SearchState>, boole
 );
 
 export const triggerFocusAtom = atom<boolean>(true);
+
+export const hasInitialSearchParams = () => {
+  const params = new URLSearchParams(window.location.search);
+  return ['streets', 'postal_codes', 'parking_zones', 'page'].some((key) => params.has(key));
+};

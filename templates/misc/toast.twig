@@ -1,0 +1,75 @@
+{#
+  Toast template.
+
+  Example usage:
+
+  {% include '@hdbt/misc/toast.twig' with
+    {
+      id: 'my-toast',
+      title: title_variable,
+      title_level: 'h2',
+      icon: 'info-circle-fill',
+      text: text_variable,
+      link: {
+        title: link_title_variable,
+        url: link_url_variable,
+      },
+      close_label: close_label_variable,
+      close_attributes: create_attribute({'aria-controls': 'my-dropdown'}),
+      aria_label: aria_label_variable,
+      border: 'top',
+      placement: 'fixed',
+      animation: 'slide',
+      hidden: true,
+      lang: 'fi',
+    }
+  %}
+#}
+
+{% set title_id = id ~ '__title' %}
+
+{% set toast_attributes = create_attribute({
+  'id': id,
+  'class': [
+    'toast',
+    'toast--border-' ~ (border ?: 'top'),
+    placement ? 'toast--' ~ placement,
+    animation ? 'toast--' ~ animation,
+  ],
+}) %}
+
+{% if title %}
+  {% set toast_attributes = toast_attributes.setAttribute('aria-labelledby', title_id) %}
+{% elseif aria_label %}
+  {% set toast_attributes = toast_attributes.setAttribute('aria-label', aria_label) %}
+{% endif %}
+
+{% if lang %}
+  {% set toast_attributes = toast_attributes.setAttribute('lang', lang) %}
+{% endif %}
+
+{% if hidden %}
+  {% set toast_attributes = toast_attributes.setAttribute('hidden', '') %}
+{% endif %}
+
+{% set close_attributes = (close_attributes ?: create_attribute()).addClass('toast__close') %}
+
+<section{{ toast_attributes }}>
+  <div class="toast__close-wrapper">
+    <button{{ close_attributes }}>
+      <span class="visually-hidden">{{ close_label }}</span>
+    </button>
+  </div>
+  <div class="toast__content">
+    {% if title %}
+      <div class="toast__header">
+        {% include '@hdbt/misc/icon.twig' with {icon: icon ?: 'info-circle-fill', class: 'toast__icon'} only %}
+        <{{ title_level ?: 'h2' }} id="{{ title_id }}" class="toast__title">{{ title }}</{{ title_level ?: 'h2' }}>
+      </div>
+    {% endif %}
+    <div class="toast__text">{{ text }}</div>
+    {% if link %}
+      {{ link(link.title, link.url, {'class': ['toast__link']}) }}
+    {% endif %}
+  </div>
+</section>

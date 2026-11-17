@@ -1,7 +1,7 @@
 import type { estypes } from '@elastic/elasticsearch';
-import { act, render } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { createStore, Provider } from 'jotai';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { submittedStateAtom } from '../store';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import ResultsList from './ResultsList';
@@ -62,5 +62,30 @@ describe('ResultsList', () => {
     rerender(ui(response(3)));
 
     expect(document.activeElement).toBe(heading(container));
+  });
+
+  test('hides the pager in map view', () => {
+    // Keep the map from fetching.
+    const originalFetch = globalThis.fetch;
+    globalThis.fetch = vi.fn(() => new Promise<Response>(() => {}));
+
+    const store = createStore();
+    // More results than fit on one page, so the pager is shown.
+    render(
+      <Provider store={store}>
+        <ResultsList {...baseProps} data={response(31)} />
+      </Provider>,
+    );
+
+    const pager = () => screen.queryByRole('navigation', { name: 'Pagination' });
+    expect(pager()).not.toBeNull();
+
+    fireEvent.click(screen.getByRole('tab', { name: 'View in a map' }));
+    expect(pager()).toBeNull();
+
+    fireEvent.click(screen.getByRole('tab', { name: 'View as a list' }));
+    expect(pager()).not.toBeNull();
+
+    globalThis.fetch = originalFetch;
   });
 });

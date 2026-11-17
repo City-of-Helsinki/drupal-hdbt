@@ -3,6 +3,8 @@
 // styles live in the respective component files.
 
 $toast-arrow-size: $spacing-half;
+$toast-fixed-width: 328px;
+$toast-slide-duration: 0.3s;
 
 .toast {
   background-color: var(--color-info-light);
@@ -12,6 +14,15 @@ $toast-arrow-size: $spacing-half;
   flex-direction: row-reverse;
   gap: 0;
   padding: $spacing;
+
+  &:focus-visible {
+    outline: 3px solid var(--color-black);
+    outline-offset: 3px;
+  }
+}
+
+.toast[hidden] {
+  display: none;
 }
 
 .toast--border-top {
@@ -25,6 +36,24 @@ $toast-arrow-size: $spacing-half;
 .toast__content {
   @include font('special.navigation.header_top');
   display: block;
+  flex-grow: 1;
+}
+
+.toast__header {
+  align-items: center;
+  display: flex;
+  gap: $spacing-half;
+  margin-block-end: $spacing-half;
+}
+
+.toast__icon {
+  color: var(--color-info);
+  flex-shrink: 0;
+}
+
+.toast__title {
+  @include font('h5');
+  margin: 0;
 }
 
 .toast__text {
@@ -46,4 +75,43 @@ $toast-arrow-size: $spacing-half;
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+// Keep the toast in the bottom corner of the viewport.
+.toast--fixed {
+  bottom: $spacing;
+  left: $spacing;
+  margin-inline: auto;
+  max-width: $toast-fixed-width;
+  position: fixed;
+  right: $spacing;
+  visibility: visible;
+  z-index: 100;
+
+  @include breakpoint($breakpoint-m) {
+    left: auto;
+  }
+}
+
+.toast--slide {
+  --toast-slide-from: translateY(calc(100% + #{$spacing}));
+  animation: toast-slide-in $toast-slide-duration ease-out;
+
+  @include breakpoint($breakpoint-m) {
+    --toast-slide-from: translateX(calc(100% + #{$spacing}));
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
+}
+
+@keyframes toast-slide-in {
+  from {
+    transform: var(--toast-slide-from);
+  }
+
+  to {
+    transform: none;
+  }
 }

@@ -1889,6 +1889,18 @@ msgctxt "Vehicle removal search"
 msgid "Additional information"
 msgstr "Ytterligare upplysningar"
 
+msgctxt "Vehicle removal search"
+msgid "Vehicle removal requests on the map"
+msgstr "Flyttningsuppmaningar på kartan"
+
+msgctxt "Vehicle removal search"
+msgid "The map shows @shown of @total vehicle removal requests"
+msgstr "Kartan visar @shown av @total flyttningsuppmaningar"
+
+msgctxt "Vehicle removal search"
+msgid "Narrow down your search to see all of them on the map."
+msgstr "Avgränsa sökningen för att se alla på kartan."
+
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
 msgstr "Sökord"
@@ -2132,3 +2144,19 @@ msgstr[1] "Under det senaste halvåret har det funnits @count öppna annonser so
 msgctxt "Job listing search"
 msgid "Subscribe to the search alert to receive notifications about new job listings."
 msgstr "Beställ sökvakten så att du får ett meddelande om nya annonser."
+
+msgctxt "Chat toast"
+msgid "The chat was hidden"
+msgstr "Chatten gömdes"
+
+msgctxt "Chat toast"
+msgid "You can reopen the chat with the button at the bottom of the page."
+msgstr "Du kan öppna chatten på nytt med knappen i sidans nedre kant."
+
+msgctxt "Chat toast"
+msgid "Go to the bottom of the page"
+msgstr "Gå till sidans slut"
+
+msgctxt "Chat toast"
+msgid "Close the notification"
+msgstr "Stäng meddelandet"
