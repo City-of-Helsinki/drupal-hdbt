@@ -66,4 +66,29 @@ describe('getKarttaUrls', () => {
     expect(geoms).toHaveLength(60);
     expect(geoms[0]).toBe('POINT (25502931 6674228)');
   });
+
+  test('reports all results as shown when they fit', () => {
+    const { shown, truncated } = getKarttaUrls([mapUrl(25502931, 6674228), mapUrl(25503931, 6675228)], 'fi');
+
+    expect(shown).toBe(2);
+    expect(truncated).toBe(false);
+  });
+
+  test('keeps the first results that fit when even the points do not all fit', () => {
+    const urls = Array.from({ length: 400 }, (_, i) => mapUrl(25502931 + i, 6674228 + i));
+    const { embedUrl, url, shown, truncated } = getKarttaUrls(urls, 'fi');
+    const geoms = new URL(embedUrl).searchParams.get('geom')?.split(';') ?? [];
+
+    expect(truncated).toBe(true);
+    expect(shown).toBeLessThan(400);
+    expect(shown).toBeGreaterThan(150);
+    expect(geoms).toHaveLength(shown);
+    expect(geoms[0]).toBe('POINT (25502931 6674228)');
+    expect(embedUrl.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
+    expect(url.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
+
+    // One more result would not have fit.
+    const oneMore = getKarttaUrls(urls.slice(0, shown + 1), 'fi');
+    expect(oneMore.shown).toBe(shown);
+  });
 });

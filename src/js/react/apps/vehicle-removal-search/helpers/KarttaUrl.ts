@@ -81,51 +81,88 @@ const buildUrl = (base: string, params: Record<string, string>) => {
   return `${base}?${query}`;
 };
 
+type KarttaUrls = {
+  embedUrl: string;
+  url: string;
+  // How many of the given results are drawn on the map.
+  shown: number;
+  // Whether some of the results were left out because the URL got too long.
+  truncated: boolean;
+};
+
 /**
  * Builds kartta.hel.fi URLs that show the given results on the map.
  *
  * All geometries are passed in the `geom` parameter separated by semicolons.
  * If the full geometries would make the URL too long, every result is drawn
- * as a point at its centre instead.
+ * as a point at its centre instead. If even the points do not fit, only the
+ * first results that fit are drawn, and `shown` tells how many.
  */
-export const getKarttaUrls = (
-  mapUrls: string[],
-  lang?: string,
-  viewport: Viewport = DEFAULT_VIEWPORT,
-): { embedUrl: string; url: string } => {
+export const getKarttaUrls = (mapUrls: string[], lang?: string, viewport: Viewport = DEFAULT_VIEWPORT): KarttaUrls => {
   const language = getCurrentLanguage(lang);
   const features = mapUrls.map(parseMapUrl).filter((feature): feature is Feature => feature !== null);
 
   if (!features.length) {
     const params = { setlanguage: language, l: 'Karttasarja' };
-    return { embedUrl: buildUrl(`${KARTTA_BASE_URL}embed/`, params), url: buildUrl(KARTTA_BASE_URL, params) };
+    return {
+      embedUrl: buildUrl(`${KARTTA_BASE_URL}embed/`, params),
+      url: buildUrl(KARTTA_BASE_URL, params),
+      shown: 0,
+      truncated: false,
+    };
   }
 
-  const { minE, minN, maxE, maxN } = getBounds(features);
-  // Metres per pixel needed to fit the bounds into the given viewport.
-  const getResolution = ({ width, height }: Viewport) =>
-    Math.max(
-      MIN_RESOLUTION,
-      Math.ceil(Math.max((maxE - minE) / Math.max(width, 1), (maxN - minN) / Math.max(height, 1)) * PADDING_FACTOR),
-    );
+  const build = (shownFeatures: Feature[], asPoints: boolean): KarttaUrls => {
+    const { minE, minN, maxE, maxN } = getBounds(shownFeatures);
 
-  const params = (geom: string, resolution: number) => ({
-    setlanguage: language,
-    e: String(Math.round((minE + maxE) / 2)),
-    n: String(Math.round((minN + maxN) / 2)),
-    r: String(resolution),
-    l: 'Karttasarja',
-    geom,
-  });
+    // Metres per pixel needed to fit the bounds into the given viewport.
+    const getResolution = ({ width, height }: Viewport) =>
+      Math.max(
+        MIN_RESOLUTION,
+        Math.ceil(Math.max((maxE - minE) / Math.max(width, 1), (maxN - minN) / Math.max(height, 1)) * PADDING_FACTOR),
+      );
 
-  let geom = features.map(({ e, n, wkt }) => wkt || `POINT (${e} ${n})`).join(';');
-  const embedResolution = getResolution(viewport);
-  let embedUrl = buildUrl(`${KARTTA_BASE_URL}embed/`, params(geom, embedResolution));
+    const geom = shownFeatures.map(({ e, n, wkt }) => (asPoints || !wkt ? `POINT (${e} ${n})` : wkt)).join(';');
 
-  if (embedUrl.length > MAX_URL_LENGTH) {
-    geom = features.map(({ e, n }) => `POINT (${e} ${n})`).join(';');
-    embedUrl = buildUrl(`${KARTTA_BASE_URL}embed/`, params(geom, embedResolution));
+    const params = (resolution: number) => ({
+      setlanguage: language,
+      e: String(Math.round((minE + maxE) / 2)),
+      n: String(Math.round((minN + maxN) / 2)),
+      r: String(resolution),
+      l: 'Karttasarja',
+      geom,
+    });
+
+    return {
+      embedUrl: buildUrl(`${KARTTA_BASE_URL}embed/`, params(getResolution(viewport))),
+      url: buildUrl(KARTTA_BASE_URL, params(getResolution(DEFAULT_VIEWPORT))),
+      shown: shownFeatures.length,
+      truncated: shownFeatures.length < features.length,
+    };
+  };
+
+  const fits = ({ embedUrl, url }: KarttaUrls) => Math.max(embedUrl.length, url.length) <= MAX_URL_LENGTH;
+
+  const full = build(features, false);
+  if (fits(full)) return full;
+
+  // Find the largest number of results that fit as points. The results are in
+  // relevance order, so the most relevant ones are kept.
+  let low = 1;
+  let high = features.length;
+  let best = build(features.slice(0, 1), true);
+
+  while (low <= high) {
+    const middle = Math.floor((low + high) / 2);
+    const candidate = build(features.slice(0, middle), true);
+
+    if (fits(candidate)) {
+      best = candidate;
+      low = middle + 1;
+    } else {
+      high = middle - 1;
+    }
   }
 
-  return { embedUrl, url: buildUrl(KARTTA_BASE_URL, params(geom, getResolution(DEFAULT_VIEWPORT))) };
+  return best;
 };

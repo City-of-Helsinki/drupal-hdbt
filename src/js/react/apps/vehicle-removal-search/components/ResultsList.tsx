@@ -210,7 +210,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
   const pages = Math.floor(total / Global.size);
   const addLastPage = total > Global.size && total % Global.size;
   const totalPages = addLastPage ? pages + 1 : pages;
-  const showPagination = pages > 1 || addLastPage;
+  const showPagination = !useMap && (pages > 1 || addLastPage);
 
   const updatePage = (e: SyntheticEvent, nextPage: number) => {
     e.preventDefault();
@@ -240,10 +240,6 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
     />
   );
 
-  // The map shows the results of the current page, since kartta.hel.fi
-  // takes the geometries as URL parameters and long URLs are rejected.
-  const mapUrls = results.map((hit) => String(hit._source?.map_url ?? '').trim()).filter(Boolean);
-
   return (
     <Header
       total={total}
@@ -258,11 +254,8 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
         aria-labelledby={`vehicle-removal-results-tab-${useMap ? 'map' : 'list'}`}
       >
         {useMap ? (
-          // Same ref as the list, so that after a page change in map view the
-          // focus hook moves focus to the map's link instead of staying pending.
-          <div ref={resultsListRef}>
-            <ResultsMap mapUrls={mapUrls} />
-          </div>
+          // The map shows all results of the search, so it has no pages.
+          <ResultsMap total={total} />
         ) : (
           <div ref={resultsListRef}>
             {results.map((hit) => (hit._source ? <ResultCard key={hit._id} item={hit._source} /> : null))}

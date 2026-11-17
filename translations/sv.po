@@ -1893,6 +1893,14 @@ msgctxt "Vehicle removal search"
 msgid "Vehicle removal requests on the map"
 msgstr "Flyttningsuppmaningar på kartan"
 
+msgctxt "Vehicle removal search"
+msgid "The map shows @shown of @total vehicle removal requests"
+msgstr "Kartan visar @shown av @total flyttningsuppmaningar"
+
+msgctxt "Vehicle removal search"
+msgid "Narrow down your search to see all of them on the map."
+msgstr "Avgränsa sökningen för att se alla på kartan."
+
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
 msgstr "Sökord"
