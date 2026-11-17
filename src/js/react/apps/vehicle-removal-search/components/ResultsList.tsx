@@ -254,7 +254,6 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
         aria-labelledby={`vehicle-removal-results-tab-${useMap ? 'map' : 'list'}`}
       >
         {useMap ? (
-          // The map shows all results of the search, so it has no pages.
           <ResultsMap total={total} />
         ) : (
           <div ref={resultsListRef}>
