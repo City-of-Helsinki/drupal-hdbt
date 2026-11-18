@@ -2,8 +2,8 @@ import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 
 const KARTTA_BASE_URL = 'https://kartta.hel.fi/';
 
-// The base map and the kartta.hel.fi layer of vehicle removal notices. The
-// layer shows the same MobileNote notices that are indexed for the search.
+// Karttasarja = the base map
+// Ajoneuvojen_siirtokehotukset = vehicle removals layer
 const LAYERS = 'Karttasarja,Ajoneuvojen_siirtokehotukset';
 
 // kartta.hel.fi answers 414 somewhere between 8k and 12k characters.
@@ -24,9 +24,7 @@ export type Viewport = {
 };
 
 export type MapResult = {
-  // Notice number, the same on the kartta.hel.fi layer.
-  nro: number;
-  // kartta.hel.fi link to the notice, from the index.
+  noticeNumber: number;
   mapUrl: string;
 };
 
@@ -37,8 +35,6 @@ type Centre = {
 
 /**
  * Parses the centre point out of a pre-built kartta.hel.fi link.
- *
- * Links look like: https://kartta.hel.fi/?e=25502931&n=6674228&r=2&l=...
  */
 export const parseCentre = (mapUrl: string): Centre | null => {
   if (!mapUrl) return null;
@@ -60,16 +56,13 @@ export const parseCentre = (mapUrl: string): Centre | null => {
 
 /**
  * Builds a kartta.hel.fi filter that matches the given notice numbers.
- *
- * kartta.hel.fi fails on "nro in (...)", and its filter parser fails on a flat
- * chain of 64 or more "||" comparisons. A balanced tree of comparisons keeps
- * the nesting shallow, so any number of notices works.
  */
-export const buildNoticeFilter = (nros: number[]): string => {
-  if (nros.length === 1) return `nro==${nros[0]}`;
+export const buildNoticeFilter = (noticeNumbers: number[]): string => {
+  // The notice number is called "nro" on the kartta.hel.fi layer.
+  if (noticeNumbers.length === 1) return `nro==${noticeNumbers[0]}`;
 
-  const middle = Math.floor(nros.length / 2);
-  return `(${buildNoticeFilter(nros.slice(0, middle))})||(${buildNoticeFilter(nros.slice(middle))})`;
+  const middle = Math.floor(noticeNumbers.length / 2);
+  return `(${buildNoticeFilter(noticeNumbers.slice(0, middle))})||(${buildNoticeFilter(noticeNumbers.slice(middle))})`;
 };
 
 const buildUrl = (base: string, params: Record<string, string>) => {
@@ -99,9 +92,6 @@ export const withLanguage = (mapUrl: string, lang?: string): string => {
 type KarttaUrls = {
   embedUrl: string;
   url: string;
-  // Whether the map shows only the given results. When there are too many to
-  // fit into the URL, the map shows all notices on the layer instead.
-  filtered: boolean;
 };
 
 /**
@@ -120,7 +110,7 @@ export const getKarttaUrls = (
   complete = true,
 ): KarttaUrls => {
   const centres = results.map(({ mapUrl }) => parseCentre(mapUrl)).filter((c): c is Centre => c !== null);
-  const nros = [...new Set(results.map(({ nro }) => nro))];
+  const noticeNumbers = [...new Set(results.map(({ noticeNumber }) => noticeNumber))];
 
   const params: Record<string, string> = { setlanguage: getCurrentLanguage(lang), l: LAYERS };
 
@@ -130,8 +120,6 @@ export const getKarttaUrls = (
       return {
         ...params,
         ...(resolution ? { r: String(resolution) } : {}),
-        // The "w" parameter has a filter for each layer in "l", separated by
-        // "*". The base map is not filtered.
         ...(filter ? { w: `*${filter}` } : {}),
       };
     };
@@ -163,14 +151,13 @@ export const getKarttaUrls = (
       );
   }
 
-  if (complete && nros.length) {
-    const filtered = build(resolutionFor, buildNoticeFilter(nros));
+  if (complete && noticeNumbers.length) {
+    const filtered = build(resolutionFor, buildNoticeFilter(noticeNumbers));
     if (Math.max(filtered.embedUrl.length, filtered.url.length) <= MAX_URL_LENGTH) {
-      return { ...filtered, filtered: true };
+      return filtered;
     }
   }
 
-  // Too many results for the URL: show all notices, like the school search
-  // shows all schools when there are too many results.
-  return { ...build(resolutionFor), filtered: false };
+  // Too many results for the URL: show all notices
+  return build(resolutionFor);
 };

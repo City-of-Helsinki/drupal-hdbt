@@ -8,11 +8,11 @@ import ResultsMap from './ResultsMap';
 const mapUrl = (i: number) =>
   `https://kartta.hel.fi/?e=${25496000 + i * 10}&n=${6672000 + i * 10}&r=2&l=Karttasarja%2CAjoneuvojen_siirtokehotukset&w=%2Anro%3D%3D${70000 + i}`;
 
-type Hit = { _id: string; _source: { nro?: number; map_url: string } };
+type Hit = { _id: string; _source: { notice_number?: number; map_url: string } };
 
 const hit = (i: number, withNumber = true): Hit => ({
   _id: `mobilenote_data_source/ppoytakirjaExtranet.${70000 + i}`,
-  _source: { ...(withNumber ? { nro: 70000 + i } : {}), map_url: mapUrl(i) },
+  _source: { ...(withNumber ? { notice_number: 70000 + i } : {}), map_url: mapUrl(i) },
 });
 
 const mockFetch = (hits: Hit[], total = hits.length) => {
@@ -55,7 +55,7 @@ describe('ResultsMap', () => {
 
     expect(body.from).toBe(0);
     expect(body.size).toBeGreaterThan(30);
-    expect(body._source).toEqual(['nro', 'map_url']);
+    expect(body._source).toEqual(['notice_number', 'map_url']);
   });
 
   test('filters the notice layer to the results', async () => {
@@ -75,19 +75,17 @@ describe('ResultsMap', () => {
 
 describe('getNoticeNumber', () => {
   test('uses the indexed notice number', () => {
-    expect(getNoticeNumber({ _index: 'i', _id: 'x.1', _source: { nro: 73567, map_url: '' } })).toBe(73567);
+    expect(getNoticeNumber({ _index: 'i', _id: 'x.1', _source: { notice_number: 73567, map_url: '' } })).toBe(73567);
   });
 
   test('handles numbers returned as arrays', () => {
     // biome-ignore lint/suspicious/noExplicitAny: the index may return arrays for single values.
-    expect(getNoticeNumber({ _index: 'i', _id: 'x.1', _source: { nro: [73567] as any, map_url: '' } })).toBe(73567);
+    expect(getNoticeNumber({ _index: 'i', _id: 'x.1', _source: { notice_number: [73567] as any, map_url: '' } })).toBe(
+      73567,
+    );
   });
 
-  test('falls back to the item ID for items indexed without the number', () => {
-    expect(getNoticeNumber({ _index: 'i', ...hit(5, false) })).toBe(70005);
-  });
-
-  test('returns null when there is no number', () => {
-    expect(getNoticeNumber({ _index: 'i', _id: 'something', _source: { map_url: '' } })).toBeNull();
+  test('returns null when the number is not indexed', () => {
+    expect(getNoticeNumber({ _index: 'i', ...hit(5, false) })).toBeNull();
   });
 });

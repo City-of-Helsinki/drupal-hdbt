@@ -8,9 +8,12 @@ import {
   withLanguage,
 } from './KarttaUrl';
 
-const mapUrl = (e: number, n: number, nro = 1) =>
-  `https://kartta.hel.fi/?e=${e}&n=${n}&r=2&l=Karttasarja%2CAjoneuvojen_siirtokehotukset&w=%2Anro%3D%3D${nro}`;
-const result = (nro: number, e = 25502931, n = 6674228): MapResult => ({ nro, mapUrl: mapUrl(e, n, nro) });
+const mapUrl = (e: number, n: number, noticeNumber = 1) =>
+  `https://kartta.hel.fi/?e=${e}&n=${n}&r=2&l=Karttasarja%2CAjoneuvojen_siirtokehotukset&w=%2Anro%3D%3D${noticeNumber}`;
+const result = (noticeNumber: number, e = 25502931, n = 6674228): MapResult => ({
+  noticeNumber,
+  mapUrl: mapUrl(e, n, noticeNumber),
+});
 
 const params = (url: string) => new URL(url).searchParams;
 
@@ -45,8 +48,8 @@ describe('buildNoticeFilter', () => {
   });
 
   test('keeps the nesting shallow, since kartta.hel.fi fails on 64 levels', () => {
-    const nros = Array.from({ length: 300 }, (_, i) => 70000 + i);
-    const filter = buildNoticeFilter(nros);
+    const noticeNumbers = Array.from({ length: 300 }, (_, i) => 70000 + i);
+    const filter = buildNoticeFilter(noticeNumbers);
 
     expect(depth(filter)).toBeLessThanOrEqual(Math.ceil(Math.log2(300)));
     expect(filter.match(/nro==\d+/g)).toHaveLength(300);
@@ -65,9 +68,8 @@ describe('withLanguage', () => {
 
 describe('getKarttaUrls', () => {
   test('shows the notice layer filtered to the results', () => {
-    const { embedUrl, url, filtered } = getKarttaUrls([result(73567), result(73410, 25503931, 6675228)], 'fi');
+    const { embedUrl, url } = getKarttaUrls([result(73567), result(73410, 25503931, 6675228)], 'fi');
 
-    expect(filtered).toBe(true);
     expect(embedUrl.startsWith('https://kartta.hel.fi/embed/?')).toBe(true);
     expect(url.startsWith('https://kartta.hel.fi/?')).toBe(true);
     expect(params(embedUrl).get('l')).toBe('Karttasarja,Ajoneuvojen_siirtokehotukset');
@@ -112,27 +114,29 @@ describe('getKarttaUrls', () => {
 
   test('filters up to about 300 results', () => {
     const results = Array.from({ length: 280 }, (_, i) => result(70000 + i));
-    const { embedUrl, url, filtered } = getKarttaUrls(results, 'fi');
+    const { embedUrl, url } = getKarttaUrls(results, 'fi');
 
-    expect(filtered).toBe(true);
+    expect(
+      params(embedUrl)
+        .get('w')
+        ?.match(/nro==\d+/g),
+    ).toHaveLength(280);
     expect(embedUrl.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
     expect(url.length).toBeLessThanOrEqual(MAX_URL_LENGTH);
   });
 
   test('shows all notices when the results do not fit into the URL', () => {
     const results = Array.from({ length: 400 }, (_, i) => result(70000 + i));
-    const { embedUrl, url, filtered } = getKarttaUrls(results, 'fi');
+    const { embedUrl, url } = getKarttaUrls(results, 'fi');
 
-    expect(filtered).toBe(false);
     expect(params(embedUrl).has('w')).toBe(false);
     expect(params(url).has('w')).toBe(false);
     expect(params(embedUrl).get('l')).toBe('Karttasarja,Ajoneuvojen_siirtokehotukset');
   });
 
   test('shows all notices when not all results were fetched', () => {
-    const { embedUrl, filtered } = getKarttaUrls([result(1), result(2)], 'fi', undefined, false);
+    const { embedUrl } = getKarttaUrls([result(1), result(2)], 'fi', undefined, false);
 
-    expect(filtered).toBe(false);
     expect(params(embedUrl).has('w')).toBe(false);
   });
 
