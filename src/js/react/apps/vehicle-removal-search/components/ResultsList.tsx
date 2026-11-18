@@ -254,7 +254,7 @@ const ResultsList = ({ data, error, isValidating }: ResultsListProps) => {
         aria-labelledby={`vehicle-removal-results-tab-${useMap ? 'map' : 'list'}`}
       >
         {useMap ? (
-          <ResultsMap total={total} />
+          <ResultsMap />
         ) : (
           <div ref={resultsListRef}>
             {results.map((hit) => (hit._source ? <ResultCard key={hit._id} item={hit._source} /> : null))}
