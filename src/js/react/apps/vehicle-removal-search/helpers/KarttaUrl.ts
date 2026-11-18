@@ -92,6 +92,8 @@ export const withLanguage = (mapUrl: string, lang?: string): string => {
 type KarttaUrls = {
   embedUrl: string;
   url: string;
+  // False when the map shows all notices instead of only the given results.
+  filtered: boolean;
 };
 
 /**
@@ -152,12 +154,12 @@ export const getKarttaUrls = (
   }
 
   if (complete && noticeNumbers.length) {
-    const filtered = build(resolutionFor, buildNoticeFilter(noticeNumbers));
-    if (Math.max(filtered.embedUrl.length, filtered.url.length) <= MAX_URL_LENGTH) {
-      return filtered;
+    const withFilter = build(resolutionFor, buildNoticeFilter(noticeNumbers));
+    if (Math.max(withFilter.embedUrl.length, withFilter.url.length) <= MAX_URL_LENGTH) {
+      return { ...withFilter, filtered: true };
     }
   }
 
   // Too many results for the URL: show all notices
-  return build(resolutionFor);
+  return { ...build(resolutionFor), filtered: false };
 };

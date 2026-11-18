@@ -6,9 +6,8 @@ import type { MapResult } from '../helpers/KarttaUrl';
 import type VehicleRemoval from '../types/VehicleRemoval';
 import useVehicleRemovalQuery from './useVehicleRemovalQuery';
 
-// More results than this do not fit into a kartta.hel.fi URL. With more, the
-// map shows all notices instead.
-export const MAP_FETCH_SIZE = 500;
+// About 300 notice numbers fit into a kartta.hel.fi URL
+export const MAP_FETCH_SIZE = 300;
 
 type MapSource = Pick<VehicleRemoval, 'notice_number' | 'map_url'>;
 

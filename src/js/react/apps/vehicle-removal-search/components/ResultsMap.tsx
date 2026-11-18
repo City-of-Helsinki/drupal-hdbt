@@ -1,9 +1,12 @@
+import { Notification } from 'hds-react';
+import { useAtomValue } from 'jotai';
 import { useLayoutEffect, useRef, useState } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
 import { getKarttaUrls, type Viewport } from '../helpers/KarttaUrl';
 import useMapResults from '../hooks/useMapResults';
+import { submittedStateAtom } from '../store';
 
 const RESIZE_DEBOUNCE_MS = 250;
 
@@ -42,7 +45,11 @@ const ResultsMap = () => {
     };
   }, []);
 
-  const { embedUrl, url } = getKarttaUrls(results, drupalSettings?.path?.currentLanguage, viewport, complete);
+  const { streets, postalCodes, parkingZones } = useAtomValue(submittedStateAtom);
+  const { embedUrl, url, filtered } = getKarttaUrls(results, drupalSettings?.path?.currentLanguage, viewport, complete);
+
+  const hasFilters = Boolean(streets.length || postalCodes.length || parkingZones.length);
+  const showsAllNotices = !isLoading && !filtered && hasFilters;
 
   if (error) {
     return <ResultsError error={error} />;
@@ -50,6 +57,19 @@ const ResultsMap = () => {
 
   return (
     <div className='hdbt-search--react__map-container'>
+      {showsAllNotices && (
+        <Notification
+          type='info'
+          headingLevel={4}
+          label={Drupal.t('The map shows all vehicle removal requests', {}, { context: 'Vehicle removal search' })}
+        >
+          {Drupal.t(
+            'Your search has too many results to show only them on the map. Narrow down your search to see only your results on the map.',
+            {},
+            { context: 'Vehicle removal search' },
+          )}
+        </Notification>
+      )}
       <div className='content-list-with-count__result--map' ref={containerRef}>
         {isLoading && <LoadingOverlay />}
         {viewport && !isLoading && (

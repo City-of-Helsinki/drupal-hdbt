@@ -3,6 +3,7 @@ import { createStore, Provider } from 'jotai';
 import { SWRConfig } from 'swr';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 import { getNoticeNumber } from '../hooks/useMapResults';
+import { submittedStateAtom } from '../store';
 import ResultsMap from './ResultsMap';
 
 const mapUrl = (i: number) =>
@@ -23,14 +24,31 @@ const mockFetch = (hits: Hit[], total = hits.length) => {
   return fetchMock;
 };
 
-const renderMap = () =>
-  render(
+const option = (value: string) => ({
+  value,
+  label: value,
+  selected: true,
+  isGroupLabel: false,
+  visible: true,
+  disabled: false,
+});
+
+const renderMap = ({ withFilters = false } = {}) => {
+  const store = createStore();
+  if (withFilters) {
+    store.set(submittedStateAtom, { postalCodes: [option('00100')] });
+  }
+
+  return render(
     <SWRConfig value={{ provider: () => new Map(), dedupingInterval: 0 }}>
-      <Provider store={createStore()}>
+      <Provider store={store}>
         <ResultsMap />
       </Provider>
     </SWRConfig>,
   );
+};
+
+const allNoticesNotice = () => screen.queryByText('The map shows all vehicle removal requests');
 
 // The iframe needs a measured size, which jsdom does not have, so the
 // full-page map link is checked instead. It has the same filter.
@@ -70,6 +88,30 @@ describe('ResultsMap', () => {
     renderMap();
 
     expect(await mapLinkFilter()).toBeNull();
+  });
+
+  test('explains when a filtered search shows all notices on the map', async () => {
+    mockFetch([hit(1), hit(2)], 900);
+    renderMap({ withFilters: true });
+
+    expect(await mapLinkFilter()).toBeNull();
+    expect(allNoticesNotice()).not.toBeNull();
+  });
+
+  test('needs no explanation for all notices when the search has no filters', async () => {
+    mockFetch([hit(1), hit(2)], 900);
+    renderMap();
+
+    await mapLinkFilter();
+    expect(allNoticesNotice()).toBeNull();
+  });
+
+  test('needs no explanation when the map shows only the results', async () => {
+    mockFetch([hit(1), hit(2)]);
+    renderMap({ withFilters: true });
+
+    expect(await mapLinkFilter()).not.toBeNull();
+    expect(allNoticesNotice()).toBeNull();
   });
 });
 

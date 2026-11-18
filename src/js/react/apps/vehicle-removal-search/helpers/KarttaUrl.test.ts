@@ -68,7 +68,9 @@ describe('withLanguage', () => {
 
 describe('getKarttaUrls', () => {
   test('shows the notice layer filtered to the results', () => {
-    const { embedUrl, url } = getKarttaUrls([result(73567), result(73410, 25503931, 6675228)], 'fi');
+    const { embedUrl, url, filtered } = getKarttaUrls([result(73567), result(73410, 25503931, 6675228)], 'fi');
+
+    expect(filtered).toBe(true);
 
     expect(embedUrl.startsWith('https://kartta.hel.fi/embed/?')).toBe(true);
     expect(url.startsWith('https://kartta.hel.fi/?')).toBe(true);
@@ -127,7 +129,9 @@ describe('getKarttaUrls', () => {
 
   test('shows all notices when the results do not fit into the URL', () => {
     const results = Array.from({ length: 400 }, (_, i) => result(70000 + i));
-    const { embedUrl, url } = getKarttaUrls(results, 'fi');
+    const { embedUrl, url, filtered } = getKarttaUrls(results, 'fi');
+
+    expect(filtered).toBe(false);
 
     expect(params(embedUrl).has('w')).toBe(false);
     expect(params(url).has('w')).toBe(false);
@@ -135,7 +139,9 @@ describe('getKarttaUrls', () => {
   });
 
   test('shows all notices when not all results were fetched', () => {
-    const { embedUrl } = getKarttaUrls([result(1), result(2)], 'fi', undefined, false);
+    const { embedUrl, filtered } = getKarttaUrls([result(1), result(2)], 'fi', undefined, false);
+
+    expect(filtered).toBe(false);
 
     expect(params(embedUrl).has('w')).toBe(false);
   });

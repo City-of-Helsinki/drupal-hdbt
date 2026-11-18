@@ -1891,6 +1891,14 @@ msgctxt "Vehicle removal search"
 msgid "Vehicle removal requests on the map"
 msgstr "Siirtokehotukset kartalla"
 
+msgctxt "Vehicle removal search"
+msgid "The map shows all vehicle removal requests"
+msgstr "Kartalla näytetään kaikki siirtokehotukset"
+
+msgctxt "Vehicle removal search"
+msgid "Your search has too many results to show only them on the map. Narrow down your search to see only your results on the map."
+msgstr "Hakusi tuloksia on liian monta, jotta vain ne voitaisiin näyttää kartalla. Rajaa hakua, niin näet kartalla vain hakusi tulokset."
+
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
 msgstr "Hakusana"
