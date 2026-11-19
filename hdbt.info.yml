@@ -37,6 +37,8 @@ libraries-override:
 libraries-extend:
   core/drupal.ajax:
     - hdbt/throbber
+  helfi_platform_config/image_viewer:
+    - hdbt/image-viewer
 
 ckeditor5-stylesheets:
   - dist/css/hdbt-icons.css

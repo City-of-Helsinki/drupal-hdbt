@@ -197,6 +197,16 @@ hyphenopoly-loader:
       attributes: { defer: true }
     }
 
+image-viewer:
+  version: HELFI_DEPLOYMENT_IDENTIFIER
+  css:
+    theme:
+      dist/css/image-viewer.min.css: {
+        minified: true
+      }
+  dependencies:
+    - hdbt/global-styling
+
 job-search:
   version: HELFI_DEPLOYMENT_IDENTIFIER
   js:
