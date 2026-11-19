@@ -49,6 +49,7 @@ const styles = [
   ['src/scss/06-components/paragraphs/liftup-with-image/__index.scss', 'css/liftup-with-image.min.css'],
   ['src/scss/06-components/pages/unit/__index.scss', 'css/unit.min.css'],
   ['src/scss/06-components/forms/select/__index.scss', 'css/select.min.css'],
+  ['src/scss/06-components/media/image-viewer/__index.scss', 'css/image-viewer.min.css'],
 ];
 
 // Static files.

@@ -1,0 +1,58 @@
+.image-viewer {
+  position: relative;
+}
+
+.image-viewer__trigger {
+  inset: 0;
+  position: absolute;
+}
+
+.image-viewer__dialog {
+  background: $color-black;
+  border: 0;
+  color: $color-white;
+  flex-direction: column;
+  height: 100%;
+  max-height: none;
+  max-width: none;
+  padding: 0;
+  width: 100%;
+
+  &[open] {
+    display: flex;
+  }
+
+  button {
+    color: $color-black;
+  }
+}
+
+.image-viewer__stage {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-viewer__image {
+  height: auto;
+  inset: 0;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  width: auto;
+}
+
+.image-viewer__toolbar {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto 1fr;
+}
+
+.image-viewer__button--zoom-out {
+  grid-column: 2;
+}
+
+.image-viewer__button--close {
+  justify-self: end;
+}

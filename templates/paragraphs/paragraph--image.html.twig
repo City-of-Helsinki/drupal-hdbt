@@ -11,7 +11,8 @@
       {% if content.field_image|render %}
         {% include '@hdbt/misc/image-with-caption.twig' with {
           image: content.field_image,
-          image_caption: image_caption
+          image_caption: image_caption,
+          image_viewer: image_viewer,
         } %}
       {% endif %}
 
