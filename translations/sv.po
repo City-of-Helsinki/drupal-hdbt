@@ -1322,12 +1322,12 @@ msgid "The last day of the time period is the same as the first day"
 msgstr "Tidsperiodens sista dag är samma som första"
 
 msgctxt "React search: date range select"
-msgid "First day of the time period"
-msgstr "Tidsperiodens första dag"
+msgid "Start date"
+msgstr "Startdatum"
 
 msgctxt "React search: date range select"
-msgid "Last day of the time period"
-msgstr "Tidsperiodens sista dag"
+msgid "End date"
+msgstr "Slutdatum"
 
 msgctxt "React search: date range select"
 msgid "Selected time period: @period"
@@ -1335,7 +1335,7 @@ msgstr "Vald tidsperiod: @period"
 
 msgctxt "React search: date range select"
 msgid "Choose date"
-msgstr "Välj datum"
+msgstr "Välj tidpunkt"
 
 msgctxt "Events search"
 msgid "Venue"

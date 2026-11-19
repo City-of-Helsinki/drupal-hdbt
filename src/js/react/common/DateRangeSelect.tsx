@@ -17,25 +17,24 @@ const INVALID_DATE = (dt: Date | null | undefined): boolean => {
 };
 
 export const DateRangeSelect = ({
-  dialogLabel = Drupal.t('Choose date', {}, { context: 'React search: date range select' }),
   endDate,
   endDateHelperText = dateHelperText,
   endDateId,
-  endDateLabel = Drupal.t('Last day of the time period', {}, { context: 'React search: date range select' }),
+  endDateLabel = Drupal.t('End date', {}, { context: 'React search: date range select' }),
   endDisabled,
   helperText = Drupal.t('Select a time period for the event', {}, { context: 'React search: date range select' }),
   id,
   label,
   language = 'fi',
+  panelLabel = Drupal.t('Choose date', {}, { context: 'React search: date range select' }),
   setEnd,
   setEndDisabled,
   setStart,
   startDate,
   startDateHelperText = dateHelperText,
   startDateId,
-  startDateLabel = Drupal.t('First day of the time period', {}, { context: 'React search: date range select' }),
+  startDateLabel = Drupal.t('Start date', {}, { context: 'React search: date range select' }),
 }: {
-  dialogLabel?: string;
   endDate?: string;
   endDateHelperText?: string;
   endDateId?: string;
@@ -45,6 +44,7 @@ export const DateRangeSelect = ({
   id: string;
   label: string;
   language?: 'fi' | 'en' | 'sv';
+  panelLabel?: string;
   setEnd: (d?: string) => void;
   setEndDisabled: (disabled: boolean) => void;
   setStart: (d?: string) => void;
@@ -142,11 +142,10 @@ export const DateRangeSelect = ({
   return (
     <div className='hdbt-search__filter hdbt-search--react__dropdown'>
       <Collapsible
-        {...{ id, label, dialogLabel }}
+        {...{ id, label, panelLabel }}
         isPlaceholder={!startDate && !endDate}
         helper={helperText}
         title={collapsibleTitle}
-        ariaModal={true}
       >
         <div className='event-form__date-container'>
           <DateInput
