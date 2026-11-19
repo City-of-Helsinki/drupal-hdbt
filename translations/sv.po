@@ -93,6 +93,10 @@ msgctxt "Image photographer"
 msgid "Photo"
 msgstr "Bild"
 
+msgctxt "Image viewer"
+msgid "Open image in a larger view"
+msgstr "Öppna bilden i större format"
+
 msgctxt "Label for screen reader software users explaining that this is a list of tags related to this page."
 msgid "Tags"
 msgstr "Taggar"
