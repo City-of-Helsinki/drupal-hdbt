@@ -84,6 +84,7 @@ $collapsible-height: 56px;
 .collapsible__children {
   background-color: $color-white;
   border-top: none;
+  margin-inline: 0;
   padding: $spacing;
   position: absolute;
   width: 100%;
