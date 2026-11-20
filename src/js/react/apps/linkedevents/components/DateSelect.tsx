@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { DateRangeSelect } from '@/react/common/DateRangeSelect';
 import { formatHDSDate, parseHDSDate } from '@/react/common/helpers/dateUtils';
+import { getCurrentLanguage } from '@/react/common/helpers/GetCurrentLanguage';
 import SearchComponents from '../enum/SearchComponents';
 import { useScopedId } from '../hooks/useScopedId';
 import {
@@ -41,6 +42,8 @@ function DateSelect() {
       endDate={endDate ? formatHDSDate(endDate) : undefined}
       endDisabled={endDisabled}
       id={dateId}
+      // Fall back to English on pages in languages HDS doesn't support.
+      language={getCurrentLanguage(window.drupalSettings.path.currentLanguage, 'en')}
       label={Drupal.t('Date', {}, { context: 'React search: date selection label' })}
       setEnd={(d) => setDate(d, 'end')}
       setEndDisabled={setEndDisabled}
