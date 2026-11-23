@@ -14,6 +14,8 @@ const initSentry = (tracesSampleRate = 1.0) => {
       'ResizeObserver loop limit exceeded',
       'ResizeObserver loop completed with undelivered notifications.',
       'Non-Error promise rejection captured',
+      'TypeError: Load failed',
+      'TypeError: Failed to fetch',
     ],
     beforeSend: (event) => {
       const exceptions = event.exception?.values || [];

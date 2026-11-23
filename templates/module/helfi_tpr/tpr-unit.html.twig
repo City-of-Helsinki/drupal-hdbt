@@ -6,6 +6,7 @@
  * @see hdbt_admin_tools_preprocess_tpr_unit()
  */
 #}
+{{ attach_library('hdbt/unit') }}
 {% set has_prices = content.price_info|render ? true : false %}
 {% set has_contacts = show_phone_with_contacts or content.contacts|render ? true : false %}
 {% set has_ontologyword_details = content.field_ontologyword_details|render ? true : false %}

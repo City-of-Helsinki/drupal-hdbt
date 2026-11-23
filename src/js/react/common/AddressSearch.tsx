@@ -7,7 +7,7 @@ import getNameTranslation, { sanitizeAddress } from './helpers/ServiceMap';
 
 export type AddressWithCoordinates = { label: string; value: [number, number, string] };
 
-const USE_LOCATION_VALUE = Drupal.t('Use current Location', {}, { context: 'Location autocomplete' });
+const USE_LOCATION_VALUE = Drupal.t('Use current location', {}, { context: 'Location autocomplete' });
 
 const useLocationOption = {
   label: USE_LOCATION_VALUE,

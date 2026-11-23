@@ -14,7 +14,7 @@ const SearchMonitorContainer = ({ dialogTargetRef }: { dialogTargetRef: React.Re
 
   const { hakuvahti } = drupalSettings;
 
-  if (!hakuvahti) {
+  if (!hakuvahti || !['fi', 'en', 'sv'].includes(hakuvahti?.langcode ?? 'fi')) {
     return null;
   }
 
