@@ -12,6 +12,7 @@ $-announcement-link-padding: $spacing-three-quarters;
 
 .announcement__title {
   @extend .hds-notification__label;
+  margin-block-start: 0;
 }
 
 .announcement__content {
