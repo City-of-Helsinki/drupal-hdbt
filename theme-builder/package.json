@@ -30,17 +30,6 @@
   "scripts": {
     "test": "tools/sandbox.sh node --test 'tests/*.test.mjs'"
   },
-  "@comment dependencies": [
-    {
-      "glob": "Overridden for svg-sprite to drop deprecated glob@7 and inflight",
-      "hds-design-tokens": "Imported by the hdbt SCSS, keep the version in sync with hdbt"
-    }
-  ],
-  "overrides": {
-    "svg-sprite": {
-      "glob": "^14.0.0"
-    }
-  },
   "dependencies": {
     "@biomejs/biome": "^2.5.15",
     "breakpoint-sass": "^3.0.0",
@@ -59,7 +48,7 @@
     "stylelint-high-performance-animation": "^1.11.0",
     "stylelint-order": "^7.0.0",
     "stylelint-scss": "^6.12.1",
-    "svg-sprite": "3.0.0-rc3",
+    "svgo": "^4.1.0",
     "terser": "^5.43.1"
   },
   "browserslist": [
