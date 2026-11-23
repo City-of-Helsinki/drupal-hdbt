@@ -6,10 +6,9 @@ import useOutsideClick from './hooks/useOutsideClick';
 type Props = {
   active?: boolean;
   ariaControls?: string;
-  ariaModal?: boolean;
   children: React.ReactElement;
   className?: string;
-  dialogLabel?: string;
+  panelLabel?: string;
   helper?: string;
   id: string;
   isPlaceholder?: boolean;
@@ -21,10 +20,9 @@ type Props = {
 function Collapsible({
   active,
   ariaControls,
-  ariaModal,
   children,
   className,
-  dialogLabel,
+  panelLabel,
   helper,
   id,
   isPlaceholder,
@@ -34,11 +32,12 @@ function Collapsible({
 }: Props) {
   const [isActive, setActive] = useState<boolean>(active || false);
   const ref = useRef<HTMLDivElement | null>(null);
-  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const panelRef = useRef<HTMLFieldSetElement | null>(null);
+  const panelId = `${id}-panel`;
 
   useEffect(() => {
-    if (isActive && dialogRef.current) {
-      const focusable = dialogRef.current.querySelector<HTMLElement>(
+    if (isActive && panelRef.current) {
+      const focusable = panelRef.current.querySelector<HTMLElement>(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
       focusable?.focus();
@@ -75,25 +74,24 @@ function Collapsible({
         id={id}
         type='button'
         className='collapsible__element collapsible__control'
-        aria-controls={ariaControls}
+        aria-controls={ariaControls ?? panelId}
         aria-expanded={isActive}
         aria-describedby={helperIds.join(' ')}
-        aria-haspopup='dialog'
         onClick={() => setActive(!isActive)}
       >
         {titleElement}
         {getHandle()}
       </button>
       {isActive && (
-        <div
+        // A disclosure panel, not a dialog. The group role allows labelling the panel.
+        <fieldset
+          id={panelId}
           className='collapsible__element collapsible__children'
-          role='dialog'
-          aria-label={dialogLabel}
-          {...(ariaModal && { 'aria-modal': true })}
-          ref={dialogRef}
+          aria-label={panelLabel}
+          ref={panelRef}
         >
           {children}
-        </div>
+        </fieldset>
       )}
       {helper && (
         <div id={`${id}-helper`} className='collapsible__helper'>
