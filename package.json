@@ -76,7 +76,6 @@
     "chokidar": "^4.0.3",
     "classnames": "^2.3.1",
     "focus-trap": "^7.5.4",
-    "glob": "^14.0.0",
     "hds-core": "6.0.5",
     "hds-design-tokens": "6.0.5",
     "hds-react": "6.0.5",
