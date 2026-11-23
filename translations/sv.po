@@ -1894,12 +1894,12 @@ msgid "Vehicle removal requests on the map"
 msgstr "Flyttningsuppmaningar på kartan"
 
 msgctxt "Vehicle removal search"
-msgid "The map shows @shown of @total vehicle removal requests"
-msgstr "Kartan visar @shown av @total flyttningsuppmaningar"
+msgid "The map shows all vehicle removal requests"
+msgstr "Kartan visar alla flyttningsuppmaningar"
 
 msgctxt "Vehicle removal search"
-msgid "Narrow down your search to see all of them on the map."
-msgstr "Avgränsa sökningen för att se alla på kartan."
+msgid "Your search has too many results to show only them on the map. Narrow down your search to see only your results on the map."
+msgstr "Din sökning har för många resultat för att bara de ska kunna visas på kartan. Avgränsa sökningen för att bara se dina resultat på kartan."
 
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"

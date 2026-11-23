@@ -461,6 +461,8 @@ function getConfig(hostname, protocol, type) {
           removeSelectors: removeDefault,
           selectors: ['.component--news-list'],
           selectorExpansion: expandComponents,
+          // Wait for the lazy loaded news items.
+          readySelector: '.component--news-list .news-listing__item',
         },
         {
           label: 'DC: Organization Chart',
