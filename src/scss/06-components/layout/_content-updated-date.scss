@@ -1,0 +1,18 @@
+// Updated date printed as the last element of the content article.
+.components.components--content-updated-date {
+  margin-block: $component-spacing-mobile;
+
+  @include breakpoint($component-spacing-breakpoint) {
+    margin-block: $component-spacing-desktop;
+  }
+}
+
+.content-updated-date {
+  margin-block: 0;
+}
+
+// Landing pages without sidebar give side padding to components per wrapper,
+// see layout/_component.scss. Mirror it so the date aligns with the content.
+.page-type--landing-page.no-sidebar .components--content-updated-date > .component {
+  @include component-side-padding;
+}
