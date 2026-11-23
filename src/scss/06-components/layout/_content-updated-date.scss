@@ -1,10 +1,6 @@
-// Updated date printed as the last element of the content article.
 .components.components--content-updated-date {
-  margin-block: $component-spacing-mobile;
-
-  @include breakpoint($component-spacing-breakpoint) {
-    margin-block: $component-spacing-desktop;
-  }
+  @include component-margin-top;
+  @include component-margin-bottom;
 }
 
 .content-updated-date {
