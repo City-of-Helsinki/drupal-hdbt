@@ -15,7 +15,8 @@ import type OptionType from './types/OptionType';
 import type Topic from './types/Topic';
 
 interface Options {
-  [key: string]: string | undefined;
+  // An empty value falls back to the paragraph's initial param, null removes it outright.
+  [key: string]: string | null | undefined;
 }
 
 export const configAtom = atom<EventsAppConfig | null>(null);
@@ -439,6 +440,11 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
     }
 
     const value = options[option];
+    if (value === null) {
+      params.delete(option);
+      return;
+    }
+
     if (value) {
       params.set(option, value);
       return;

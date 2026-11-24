@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { readEventListConfig } from './helpers/ReadEventListConfig';
+import { targetGroupsToParams } from './helpers/TargetGroupsToParams';
 import {
   addressAtom,
   clearSignalAtom,
@@ -112,6 +113,19 @@ describe('event list store', () => {
     a.set(updateParamsAtom, { location: '' });
 
     expect(a.get(paramsAtom).has('location')).toBe(false);
+  });
+
+  it('drops the bloating exclusions only while an age group is selected', () => {
+    drupalSettings.helfi_events.data['1375'].removeBloatingEvents = true;
+    const a = storeFor('1375', 0);
+    const defaults = a.get(paramsAtom).get('keyword!');
+
+    a.set(updateParamsAtom, targetGroupsToParams([{ value: 'Children', label: 'Children' }]));
+    expect(a.get(paramsAtom).get('keyword_OR')).toBe('yso:p4354,yso:p13050');
+    expect(a.get(paramsAtom).has('keyword!')).toBe(false);
+
+    a.set(updateParamsAtom, targetGroupsToParams([]));
+    expect(a.get(paramsAtom).get('keyword!')).toBe(defaults);
   });
 
   it('resets only the embed the form belongs to', () => {

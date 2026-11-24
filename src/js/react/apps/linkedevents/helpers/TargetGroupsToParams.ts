@@ -19,9 +19,14 @@ export const targetGroupsToParams = (selectedGroups: OptionType[]) => {
     [[], []],
   );
 
+  // Filter out intersecting target groups
+  const negateIds = result[1].filter((targetGroup) => result[0].indexOf(targetGroup) === -1).join(',');
+
   return {
     [ApiKeys.KEYWORDS]: result[0].join(','),
-    // Filter out intersecting target groups
-    [ApiKeys.NEGATE_KEYWORDS]: result[1].filter((targetGroup) => result[0].indexOf(targetGroup) === -1).join(','),
+    // While a target group is selected, an empty exclusion is intentional: the paragraph's
+    // default exclusions (e.g. removeBloatingEvents) would contain the very keywords asked for.
+    // Only an emptied filter falls back to them.
+    [ApiKeys.NEGATE_KEYWORDS]: negateIds || (selectedGroups.length ? null : ''),
   };
 };
