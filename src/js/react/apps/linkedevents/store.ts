@@ -431,11 +431,23 @@ export const resetParamAtom = atom(null, (get, set, option: string) => {
 });
 
 export const updateParamsAtom = atom(null, (get, set, options: Options) => {
+  const initialParams = get(initialParamsAtom);
   const params = new URLSearchParams(get(paramsAtom));
   Object.keys(options).forEach((option: string) => {
-    if (Object.values(ApiKeys).indexOf(option) !== -1) {
-      options[option] === undefined ? params.delete(option) : params.set(option, options[option]);
+    if (Object.values(ApiKeys).indexOf(option) === -1) {
+      return;
     }
+
+    const value = options[option];
+    if (value) {
+      params.set(option, value);
+      return;
+    }
+
+    // An emptied filter falls back to the constraint set by the editor in the paragraph,
+    // e.g. a list limited to a handful of venues, instead of lifting it altogether.
+    const initial = initialParams.get(option);
+    initial ? params.set(option, initial) : params.delete(option);
   });
   set(paramsAtom, params);
 });
