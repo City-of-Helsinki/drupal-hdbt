@@ -1,5 +1,22 @@
 <figure class="image {{figure_class}}">
-  {{ image }}
+  {% if image_viewer %}
+    <div class="image-viewer">
+      {{ image }}
+      <a
+        class="image-viewer__trigger"
+        href="{{ image_viewer.src }}"
+        data-width="{{ image_viewer.width }}"
+        data-height="{{ image_viewer.height }}"
+        data-alt="{{ image_viewer.alt }}"
+        data-caption="{{ image_caption.caption }}"
+        data-credit="{{ image_caption.credit }}"
+      >
+        <span class="visually-hidden">{{ 'Open image in a larger view'|t({}, {'context': 'Image viewer'}) }}</span>
+      </a>
+    </div>
+  {% else %}
+    {{ image }}
+  {% endif %}
   {% if image_caption.caption or image_caption.credit %}
     {% embed '@hdbt/misc/caption.twig' with {
         caption_identifier_class: image_caption.caption_identifier_class,
