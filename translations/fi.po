@@ -2125,6 +2125,10 @@ msgctxt "Site search"
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
 
+msgctxt "Helsinki near you events search"
+msgid "Search for an event"
+msgstr "Etsi tapahtumia"
+
 msgctxt "Advisory services search form aria label"
 msgid "Advisory services search"
 msgstr "Neuvontapalveluhaku"
