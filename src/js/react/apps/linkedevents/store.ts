@@ -444,8 +444,6 @@ export const updateParamsAtom = atom(null, (get, set, options: Options) => {
       return;
     }
 
-    // An emptied filter falls back to the constraint set by the editor in the paragraph,
-    // e.g. a list limited to a handful of venues, instead of lifting it altogether.
     const initial = initialParams.get(option);
     initial ? params.set(option, initial) : params.delete(option);
   });
