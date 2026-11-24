@@ -13,14 +13,16 @@ export const LanguageFilter = ({
   labelOverride,
   placeholderOverride,
   includeLanguages,
+  languageLabels = LanguageOptions,
 }: {
   labelOverride?: string;
   placeholderOverride?: string;
   includeLanguages?: string[];
+  languageLabels?: Record<string, string>;
 }) => {
   const [languageSelection, setLanguage] = useAtom(languageAtom);
   const updateParams = useSetAtom(updateParamsAtom);
-  const languageOptions = Object.entries(LanguageOptions).map(([key, value]) => ({ label: value, value: key }));
+  const languageOptions = Object.entries(languageLabels).map(([key, value]) => ({ label: value, value: key }));
   const filteredLanguageOptions = includeLanguages
     ? languageOptions.filter((option) => includeLanguages.includes(option.value))
     : languageOptions;
