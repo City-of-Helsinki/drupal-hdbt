@@ -6,6 +6,11 @@
   close_label: 'Close',
   uuid: 'd4533d49-a148-460f-b85a-fad70747ff3a',
   container_attributes: {},
+  closable_announcement: true,
+  hide_close_button: false,
+  hide_icon: false,
+  hide_container: false,
+  additional_classes: ['notification--site-search'],
 } %}
     {% block announcement_content %}
       {{ content }}
@@ -24,13 +29,18 @@
   {% set announcement_icon = 'hds-icon hds-icon--info-circle-fill' %}
 {% endif %}
 
-{% set closable_announcement = closable_announcement ?? true %}
+{% set hide_close_button = hide_close_button ?? false %}
+{% set hide_icon = hide_icon ?? false %}
+{% set hide_container = hide_container ?? false %}
+{# An announcement without a close button can't be closed with the hdbt announcement scripts either. #}
+{% set closable_announcement = (closable_announcement ?? true) and not hide_close_button %}
 {% set announcement_classes = [
   'announcement',
   closable_announcement ? 'js-announcement',
   'hds-notification',
   announcement_modifier,
-] %}
+  'hide-from-table-of-contents',
+]|merge(additional_classes|default([])) %}
 {% set close_classes = [
   'announcement__close',
   closable_announcement ? 'js-announcement__close--disabled',
@@ -40,21 +50,29 @@
 {% set announcement_labelled_by = 'announcement__title--' ~ random() %}
 {% set announcement_type_labelled_by = 'announcement__type--' ~ random() %}
 {% set announcement_close_labelled_by = 'announcement__close__aria-label--' ~ random() %}
+{# Reference the type label only if there is one. #}
+{% set section_labelled_by = type_label ? announcement_labelled_by ~ ' ' ~ announcement_type_labelled_by : announcement_labelled_by %}
 
-<div class="container">
-  <section aria-labelledby="{{ announcement_labelled_by }} {{ announcement_type_labelled_by }}" class="{{ announcement_classes|filter(class => class)|join(' ') }}"{% if uuid %} data-uuid="{{ uuid }}"{% endif %}>
+{% if not hide_container %}<div class="container">{% endif %}
+  <section aria-labelledby="{{ section_labelled_by }}" class="{{ announcement_classes|filter(class => class)|join(' ') }}"{% if uuid %} data-uuid="{{ uuid }}"{% endif %}>
     <div{{ container_attributes }}>
-      <button type="button" class="{{ close_classes|filter(class => class)|join(' ') }}" aria-labelledby="{{ announcement_close_labelled_by }}">
-        <span id="{{ announcement_close_labelled_by }}" class="is-hidden">{{ [title, close_label, type_label|lower]|join(' ') }}</span>
-      </button>
-      <div class="announcement__title">
-        <span class="{{ announcement_icon }}" aria-hidden="true"></span>
+      {% if not hide_close_button %}
+        <button type="button" class="{{ close_classes|filter(class => class)|join(' ') }}" aria-labelledby="{{ announcement_close_labelled_by }}">
+          <span id="{{ announcement_close_labelled_by }}" class="is-hidden">{{ [title, close_label, type_label|lower]|join(' ') }}</span>
+        </button>
+      {% endif %}
+      <h2 class="announcement__title">
+        {% if not hide_icon %}
+          <span class="{{ announcement_icon }}" aria-hidden="true"></span>
+        {% endif %}
         <span id="{{ announcement_labelled_by }}">{{ title }}</span>
-        <span id="{{ announcement_type_labelled_by }}" class="is-hidden"> - {{ type_label }}</span>
-      </div>
+        {% if type_label %}
+          <span id="{{ announcement_type_labelled_by }}" class="is-hidden"> - {{ type_label }}</span>
+        {% endif %}
+      </h2>
       <div class="announcement__content">
         {% block announcement_content %}{% endblock %}
       </div>
     </div>
   </section>
-</div>
+{% if not hide_container %}</div>{% endif %}

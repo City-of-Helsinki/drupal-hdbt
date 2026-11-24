@@ -1,15 +1,12 @@
 import { Notification } from 'hds-react';
+import { useAtomValue } from 'jotai';
 import { useLayoutEffect, useRef, useState } from 'react';
 import ExternalLink from '@/react/common/ExternalLink';
 import LoadingOverlay from '@/react/common/LoadingOverlay';
 import ResultsError from '@/react/common/ResultsError';
 import { getKarttaUrls, type Viewport } from '../helpers/KarttaUrl';
 import useMapResults from '../hooks/useMapResults';
-
-type ResultsMapProps = {
-  // Total number of results in the current search.
-  total: number;
-};
+import { submittedStateAtom } from '../store';
 
 const RESIZE_DEBOUNCE_MS = 250;
 
@@ -18,8 +15,8 @@ const measure = (element: HTMLElement): Viewport | undefined => {
   return width && height ? { width: Math.round(width), height: Math.round(height) } : undefined;
 };
 
-const ResultsMap = ({ total }: ResultsMapProps) => {
-  const { mapUrls, fetched, error, isLoading } = useMapResults();
+const ResultsMap = () => {
+  const { results, complete, error, isLoading } = useMapResults();
   const containerRef = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState<Viewport>();
 
@@ -48,11 +45,11 @@ const ResultsMap = ({ total }: ResultsMapProps) => {
     };
   }, []);
 
-  const { embedUrl, url, shown, truncated } = getKarttaUrls(mapUrls, drupalSettings?.path?.currentLanguage, viewport);
+  const { streets, postalCodes, parkingZones } = useAtomValue(submittedStateAtom);
+  const { embedUrl, url, filtered } = getKarttaUrls(results, drupalSettings?.path?.currentLanguage, viewport, complete);
 
-  // Only some of the results fit on the map. Results without a map link are
-  // not counted here, since narrowing the search would not show them either.
-  const limited = !isLoading && !error && (truncated || fetched < total);
+  const hasFilters = Boolean(streets.length || postalCodes.length || parkingZones.length);
+  const showsAllNotices = !isLoading && !filtered && hasFilters;
 
   if (error) {
     return <ResultsError error={error} />;
@@ -60,18 +57,14 @@ const ResultsMap = ({ total }: ResultsMapProps) => {
 
   return (
     <div className='hdbt-search--react__map-container'>
-      {limited && (
+      {showsAllNotices && (
         <Notification
           type='info'
           headingLevel={4}
-          label={Drupal.t(
-            'The map shows @shown of @total vehicle removal requests',
-            { '@shown': shown, '@total': total },
-            { context: 'Vehicle removal search' },
-          )}
+          label={Drupal.t('The map shows all vehicle removal requests', {}, { context: 'Vehicle removal search' })}
         >
           {Drupal.t(
-            'Narrow down your search to see all of them on the map.',
+            'Your search has too many results to show only them on the map. Narrow down your search to see only your results on the map.',
             {},
             { context: 'Vehicle removal search' },
           )}

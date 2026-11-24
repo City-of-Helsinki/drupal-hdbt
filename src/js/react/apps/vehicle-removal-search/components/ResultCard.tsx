@@ -1,4 +1,5 @@
 import CardItem, { Metarow } from '@/react/common/Card';
+import { withLanguage } from '../helpers/KarttaUrl';
 import type VehicleRemoval from '../types/VehicleRemoval';
 
 const formatUnixToHumanReadable = (unix: string | number): string | undefined => {
@@ -57,7 +58,10 @@ const formatValidityRange = (from?: string | number | null, to?: string | number
 };
 
 const ResultCard = ({ item }: { item: VehicleRemoval }) => {
-  const mapUrl = String(normalizeScalar(item.map_url) || '').trim();
+  const mapUrl = withLanguage(
+    String(normalizeScalar(item.map_url) || '').trim(),
+    drupalSettings?.path?.currentLanguage,
+  );
 
   return (
     <CardItem
