@@ -24,9 +24,7 @@ export const targetGroupsToParams = (selectedGroups: OptionType[]) => {
 
   return {
     [ApiKeys.KEYWORDS]: result[0].join(','),
-    // While a target group is selected, an empty exclusion is intentional: the paragraph's
-    // default exclusions (e.g. removeBloatingEvents) would contain the very keywords asked for.
-    // Only an emptied filter falls back to them.
+    // When no negating ids are present, return null to remove keyword! param entirely or '' to return params to initial value
     [ApiKeys.NEGATE_KEYWORDS]: negateIds || (selectedGroups.length ? null : ''),
   };
 };
