@@ -15,7 +15,8 @@ import type OptionType from './types/OptionType';
 import type Topic from './types/Topic';
 
 interface Options {
-  [key: string]: string | undefined;
+  // An empty value falls back to the paragraph's initial param, null removes it outright.
+  [key: string]: string | null | undefined;
 }
 
 export const configAtom = atom<EventsAppConfig | null>(null);
@@ -431,11 +432,26 @@ export const resetParamAtom = atom(null, (get, set, option: string) => {
 });
 
 export const updateParamsAtom = atom(null, (get, set, options: Options) => {
+  const initialParams = get(initialParamsAtom);
   const params = new URLSearchParams(get(paramsAtom));
   Object.keys(options).forEach((option: string) => {
-    if (Object.values(ApiKeys).indexOf(option) !== -1) {
-      options[option] === undefined ? params.delete(option) : params.set(option, options[option]);
+    if (Object.values(ApiKeys).indexOf(option) === -1) {
+      return;
     }
+
+    const value = options[option];
+    if (value === null) {
+      params.delete(option);
+      return;
+    }
+
+    if (value) {
+      params.set(option, value);
+      return;
+    }
+
+    const initial = initialParams.get(option);
+    initial ? params.set(option, initial) : params.delete(option);
   });
   set(paramsAtom, params);
 });
