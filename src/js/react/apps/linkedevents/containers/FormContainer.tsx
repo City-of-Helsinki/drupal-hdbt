@@ -53,6 +53,7 @@ function FormContainer() {
   const addressId = useScopedId('address');
   const remoteToggleId = useScopedId('remote-toggle');
   const freeToggleId = useScopedId('free-toggle');
+  const headingId = useScopedId('form-heading');
 
   // Searchbar is hidden if initialParamas has FULL_TEXT option too
   const showSearchBar = useSearchBar && !initialParams.has(ApiKeys.FULL_TEXT);
@@ -111,8 +112,18 @@ function FormContainer() {
       role='search'
       onSubmit={handleSubmit}
       onKeyDown={handleKeyDown}
+      {...(!hideHeading && heading
+        ? { 'aria-labelledby': headingId }
+        : {
+            'aria-label':
+              heading || Drupal.t('Search for an event', {}, { context: 'Helsinki near you events search' }),
+          })}
     >
-      {!hideHeading && <HeadingTag className='event-list__filter-title'>{heading}</HeadingTag>}
+      {!hideHeading && (
+        <HeadingTag id={headingId} className='event-list__filter-title'>
+          {heading}
+        </HeadingTag>
+      )}
       <div className='event-form__filters-container'>
         {showSearchBar && <SearchBar />}
         {useLocationSearch && (
