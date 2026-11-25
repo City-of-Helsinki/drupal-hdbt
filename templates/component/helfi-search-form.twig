@@ -4,10 +4,13 @@
   ],
 } %}
 
-<form class="helfi-search__form" action="{{ helfi_search_form_url }}" role="search">
+{# Name the search landmark with aria_label if given, otherwise with the visible label. #}
+{% set label_id = 'search-form-' ~ search_id ~ '-label' %}
+
+<form class="helfi-search__form" action="{{ helfi_search_form_url }}" role="search"{% if aria_label %} aria-label="{{ aria_label }}"{% elseif label %} aria-labelledby="{{ label_id }}"{% endif %}>
   <div class="hds-search-input">
     {% if label %}
-      <label class="hds-search-input__label" for="search-form-{{search_id}}">{{ label }}</label>
+      <label class="hds-search-input__label" id="{{ label_id }}" for="search-form-{{search_id}}">{{ label }}</label>
     {% endif %}
     <div class="hds-search-input__input-wrapper">
       <input

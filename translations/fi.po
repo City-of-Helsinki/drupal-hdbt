@@ -361,6 +361,10 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Pikalinkit"
 
+msgctxt "Footer navigation screen reader name"
+msgid "Footer: @menu_name"
+msgstr "Alatunniste: @menu_name"
+
 msgctxt "TPR unit result card"
 msgid "Distance from the address you have given"
 msgstr "Etäisyys kirjoittamastasi osoitteesta"
@@ -2158,3 +2162,7 @@ msgstr "Siirry sivun loppuun"
 msgctxt "Chat toast"
 msgid "Close the notification"
 msgstr "Sulje ilmoitus"
+
+msgctxt "Header search landmark name"
+msgid "Header"
+msgstr "Ylätunniste"

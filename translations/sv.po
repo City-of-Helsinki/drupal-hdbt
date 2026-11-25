@@ -359,6 +359,10 @@ msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Snabblänkar"
 
+msgctxt "Footer navigation screen reader name"
+msgid "Footer: @menu_name"
+msgstr "Sidfot: @menu_name"
+
 msgctxt "TPR unit result card"
 msgid "Distance from the address you have given"
 msgstr "Avstånd från adressen du angett"
@@ -2160,3 +2164,7 @@ msgstr "Gå till sidans slut"
 msgctxt "Chat toast"
 msgid "Close the notification"
 msgstr "Stäng meddelandet"
+
+msgctxt "Header search landmark name"
+msgid "Header"
+msgstr "Sidhuvud"
