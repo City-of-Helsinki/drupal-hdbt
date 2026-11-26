@@ -42,7 +42,14 @@ const FormContainer = () => {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form ref={formRef} className='job-search-form' role='search' onSubmit={handleSubmit} action={formAction}>
+    <form
+      ref={formRef}
+      className='job-search-form'
+      role='search'
+      aria-label={Drupal.t('Open jobs', {}, { context: 'Search landmark name' })}
+      onSubmit={handleSubmit}
+      action={formAction}
+    >
       <SearchBar formRef={formRef} />
       <div className='job-search-form__dropdowns'>
         <div className='job-search-form__dropdowns__upper'>

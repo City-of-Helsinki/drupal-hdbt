@@ -2170,3 +2170,27 @@ msgstr "Sulje ilmoitus"
 msgctxt "Header search landmark name"
 msgid "Header"
 msgstr "Ylätunniste"
+
+msgctxt "Search landmark name"
+msgid "Open jobs"
+msgstr "Avoimet työpaikat"
+
+msgctxt "Search landmark name"
+msgid "News archive"
+msgstr "Uutisarkisto"
+
+msgctxt "Search landmark name"
+msgid "Plans and building projects"
+msgstr "Suunnitelmat ja rakennushankkeet"
+
+msgctxt "Search landmark name"
+msgid "Maternity and child health clinics"
+msgstr "Neuvolat"
+
+msgctxt "Search landmark name"
+msgid "Health stations"
+msgstr "Terveysasemat"
+
+msgctxt "Search landmark name"
+msgid "Cross-institutional studies"
+msgstr "Ristiinopiskelu"

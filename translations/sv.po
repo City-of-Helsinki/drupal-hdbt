@@ -2172,3 +2172,27 @@ msgstr "Stäng meddelandet"
 msgctxt "Header search landmark name"
 msgid "Header"
 msgstr "Sidhuvud"
+
+msgctxt "Search landmark name"
+msgid "Open jobs"
+msgstr "Lediga jobb"
+
+msgctxt "Search landmark name"
+msgid "News archive"
+msgstr "Nyhetsarkiv"
+
+msgctxt "Search landmark name"
+msgid "Plans and building projects"
+msgstr "Planer och byggnadsprojekt"
+
+msgctxt "Search landmark name"
+msgid "Maternity and child health clinics"
+msgstr "Rådgivningsbyråer"
+
+msgctxt "Search landmark name"
+msgid "Health stations"
+msgstr "Hälsostationer"
+
+msgctxt "Search landmark name"
+msgid "Cross-institutional studies"
+msgstr "Korsstudier"
