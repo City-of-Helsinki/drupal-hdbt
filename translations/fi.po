@@ -1892,12 +1892,12 @@ msgid "Vehicle removal requests on the map"
 msgstr "Siirtokehotukset kartalla"
 
 msgctxt "Vehicle removal search"
-msgid "The map shows @shown of @total vehicle removal requests"
-msgstr "Kartalla näytetään @shown siirtokehotusta (yhteensä @total)"
+msgid "The map shows all vehicle removal requests"
+msgstr "Kartalla näytetään kaikki siirtokehotukset"
 
 msgctxt "Vehicle removal search"
-msgid "Narrow down your search to see all of them on the map."
-msgstr "Rajaa hakua, niin näet kaikki kartalla."
+msgid "Your search has too many results to show only them on the map. Narrow down your search to see only your results on the map."
+msgstr "Hakusi tuloksia on liian monta, jotta vain ne voitaisiin näyttää kartalla. Rajaa hakua, niin näet kartalla vain hakusi tulokset."
 
 msgctxt "Cross-institutional studies: search input label"
 msgid "Search word"
@@ -1914,6 +1914,18 @@ msgstr "Aloitusajankohta"
 msgctxt "Cross-institutional studies: start time filter placeholder"
 msgid "All start times"
 msgstr "Kaikki aloitusajankohdat"
+
+msgctxt "Cross-institutional studies: language of instruction filter option"
+msgid "Finnish"
+msgstr "Suomi"
+
+msgctxt "Cross-institutional studies: language of instruction filter option"
+msgid "English"
+msgstr "Englanti"
+
+msgctxt "Cross-institutional studies: language of instruction filter option"
+msgid "Swedish"
+msgstr "Ruotsi"
 
 msgctxt "Cross-institutional studies: Teaching mode filter label"
 msgid "Mode of teaching"

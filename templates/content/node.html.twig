@@ -93,6 +93,12 @@
 
   {% block main_content %}
     {{ content|without('field_lower_content') }}
+
+    {% if view_mode == 'full' and node.bundle in ['landing_page', 'page', 'district'] and node.hasField('changed_at') %}
+      {% include '@hdbt/misc/content-updated-date.twig' with {
+        changed_at: node.changed_at.value,
+      } only %}
+    {% endif %}
   {% endblock main_content %}
 
 </article>

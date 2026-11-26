@@ -36,30 +36,28 @@
         </p>
       </noscript>
 
-      {% set announcement_title = 'Looking for these search services?'|t({}, {'context': 'Site search'}) %}
-      {% set announcement_labelled_by = "announcement__title--" ~ random() %}
-      {% set announcement_type_labelled_by = "announcement__type--" ~ random() %}
-      <section aria-labelledby="{{ announcement_labelled_by }} {{ announcement_type_labelled_by }}" class="announcement hds-notification notification--site-search">
-        <div class="announcement__container">
-          <div class="announcement__title">
-            <span id="{{ announcement_labelled_by }}">{{ announcement_title }}</span>
-          </div>
-          <div class="announcement__content">
-            {% set jobs_title = "Open jobs"|t({}, {'context': 'Site search'}) %}
-            {% set events_title = "Events"|t({}, {'context': 'Site search'}) %}
-            {% set decisions_title = "Decisions"|t({}, {'context': 'Site search'}) %}
-            {% set contact_title = "Contact information"|t({}, {'context': 'Site search'}) %}
-            {% set helsinki_near_you_title = "Helsinki near you"|t({}, {'context': 'Site search'}) %}
-            <ul>
-              {% if jobs_link_url %}<li>{{ link(jobs_title, jobs_link_url) }}</li>{% endif %}
-              {% if events_link_url %}<li>{{ link(events_title, events_link_url) }}</li>{% endif %}
-              {% if decisions_link_url %}<li>{{ link(decisions_title, decisions_link_url) }}</li>{% endif %}
-              {% if contact_link_url %}<li>{{ link(contact_title, contact_link_url) }}</li>{% endif %}
-              {% if helsinki_near_you_link_url %}<li>{{ link(helsinki_near_you_title, helsinki_near_you_link_url) }}</li>{% endif %}
-            </ul>
-          </div>
-        </div>
-      </section>
+      {% embed '@hdbt/component/announcement.twig' with {
+        title: 'Looking for these search services?'|t({}, {'context': 'Site search'}),
+        hide_close_button: true,
+        hide_icon: true,
+        hide_container: true,
+        additional_classes: ['notification--site-search'],
+      } %}
+        {% block announcement_content %}
+          {% set jobs_title = "Open jobs"|t({}, {'context': 'Site search'}) %}
+          {% set events_title = "Events"|t({}, {'context': 'Site search'}) %}
+          {% set decisions_title = "Decisions"|t({}, {'context': 'Site search'}) %}
+          {% set contact_title = "Contact information"|t({}, {'context': 'Site search'}) %}
+          {% set helsinki_near_you_title = "Helsinki near you"|t({}, {'context': 'Site search'}) %}
+          <ul>
+            {% if jobs_link_url %}<li>{{ link(jobs_title, jobs_link_url) }}</li>{% endif %}
+            {% if events_link_url %}<li>{{ link(events_title, events_link_url) }}</li>{% endif %}
+            {% if decisions_link_url %}<li>{{ link(decisions_title, decisions_link_url) }}</li>{% endif %}
+            {% if contact_link_url %}<li>{{ link(contact_title, contact_link_url) }}</li>{% endif %}
+            {% if helsinki_near_you_link_url %}<li>{{ link(helsinki_near_you_title, helsinki_near_you_link_url) }}</li>{% endif %}
+          </ul>
+        {% endblock %}
+      {% endembed %}
     </div>
   {% endblock %}
 {% endembed %}

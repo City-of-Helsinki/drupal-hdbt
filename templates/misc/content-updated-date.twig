@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Updated date for content, printed as the last element of the article.
+ *
+ * Available variables:
+ * - changed_at: Unix timestamp of the last content change.
+ */
+#}
+{% if changed_at %}
+  <div class="components components--content-updated-date hide-from-table-of-contents">
+    {% embed '@hdbt/misc/component.twig' with {
+      component_classes: ['component--content-updated-date'],
+    } %}
+      {% block component_content %}
+        <p class="content-updated-date">
+          <strong>{{ 'Updated'|t({}, {'context': 'The helper text before the node changed timestamp'}) }}:</strong>
+          <time datetime="{{ changed_at|format_date('html_date') }}">{{ changed_at|format_date('short') }}</time>
+        </p>
+      {% endblock component_content %}
+    {% endembed %}
+  </div>
+{% endif %}

@@ -35,8 +35,7 @@
       "postcss": "^8.5.23, dependency of hds-react; fixes path traversal via sourceMappingURL (GHSA-r28c-9q8g-f849)",
       "postcss-selector-parser": "^7.1.6, dependency of postcss-nesting via hds-react; PostCSS: Quadratic complexity in flat selector parsing allows CPU exhaustion (GHSA-rj75-hqrm-r3gf)",
       "qs": "^6.16.0, dependency of express and body-parser via backstopjs; no fixed express 4.x or body-parser 1.x release exists (GHSA-x5fp-wj9c-mxmx, GHSA-4mjr-xmp4-gh2g)",
-      "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10",
-      "svg-sprite > glob": "^13.0.0, dependency of theme-builder; drops deprecated glob@7 and inflight"
+      "@react-spring/* and react-popper": "$react, dependencies of hds-react; stale react ^18 peer ranges, verified React 19 safe. Remove once hds-react ships @react-spring/web >=10"
     }
   ],
   "overrides": {
@@ -63,9 +62,6 @@
     "react-popper": {
       "react": "$react",
       "react-dom": "$react-dom"
-    },
-    "svg-sprite": {
-      "glob": "^13.0.0"
     }
   },
   "dependencies": {
@@ -80,7 +76,6 @@
     "chokidar": "^4.0.3",
     "classnames": "^2.3.1",
     "focus-trap": "^7.5.4",
-    "glob": "^13.0.0",
     "hds-core": "6.0.5",
     "hds-design-tokens": "6.0.5",
     "hds-react": "6.0.5",

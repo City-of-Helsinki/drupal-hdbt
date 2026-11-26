@@ -22,6 +22,7 @@ function getConfig(hostname, protocol, type) {
     '.footer',
     '.hds-cc--banner',
     'iframe',
+    '#block-announcements',
   ];
 
   // All of our breakpoints
@@ -358,9 +359,11 @@ function getConfig(hostname, protocol, type) {
         {
           label: 'DC: Announcements',
           url: `${protocol}://${hostname}/en/dc-components/dc-announcements`,
-          removeSelectors: removeDefault,
+          removeSelectors: removeDefault.filter((selector) => selector !== '#block-announcements'),
           selectors: ['#block-announcements'],
           selectorExpansion: expandComponents,
+          // Wait for the lazy loaded remote announcements.
+          readySelector: '#block-announcements .announcement',
         },
         {
           label: 'DC: Banner',
@@ -461,6 +464,8 @@ function getConfig(hostname, protocol, type) {
           removeSelectors: removeDefault,
           selectors: ['.component--news-list'],
           selectorExpansion: expandComponents,
+          // Wait for the lazy loaded news items.
+          readySelector: '.component--news-list .news-listing__item',
         },
         {
           label: 'DC: Organization Chart',

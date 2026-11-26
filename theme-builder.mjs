@@ -1,5 +1,5 @@
+import { globSync } from 'node:fs';
 import path from 'node:path';
-import { globSync } from 'glob';
 import { buildAll, watchAndBuild } from '@hdbt/theme-builder/builder';
 
 const __dirname = path.resolve();
@@ -23,8 +23,8 @@ const reactApps = {
 };
 
 // Vanilla JS files.
-const jsFiles = globSync('./src/js/**/*.js', {
-  ignore: [
+const jsFiles = globSync('src/js/**/*.js', {
+  exclude: [
     'src/js/accordion/accordion-item.js',
     'src/js/accordion/events.js',
     'src/js/helfi-accordion.js',

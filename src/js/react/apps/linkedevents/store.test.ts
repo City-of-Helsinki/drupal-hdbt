@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { readEventListConfig } from './helpers/ReadEventListConfig';
+import { targetGroupsToParams } from './helpers/TargetGroupsToParams';
 import {
   addressAtom,
   clearSignalAtom,
@@ -9,6 +10,7 @@ import {
   settingsAtom,
   submittedParamsAtom,
   topicSelectionAtom,
+  updateParamsAtom,
   updateUrlAtom,
 } from './store';
 
@@ -91,6 +93,39 @@ describe('event list store', () => {
 
     expect(a.get(submittedParamsAtom).get('event_type')).toBe('General');
     expect(b.get(submittedParamsAtom).get('event_type')).toBe('Course');
+  });
+
+  it('falls back to the editor`s venues when the venue filter is emptied', () => {
+    drupalSettings.helfi_events.data['1375'].events_api_url = `${API}?event_type=General&location=tprek:1,tprek:2`;
+    const a = storeFor('1375', 0);
+
+    a.set(updateParamsAtom, { location: 'tprek:1' });
+    expect(a.get(paramsAtom).get('location')).toBe('tprek:1');
+
+    a.set(updateParamsAtom, { location: '' });
+    expect(a.get(paramsAtom).get('location')).toBe('tprek:1,tprek:2');
+  });
+
+  it('drops an emptied filter the editor did not constrain', () => {
+    const a = storeFor('1375', 0);
+
+    a.set(updateParamsAtom, { location: 'tprek:1' });
+    a.set(updateParamsAtom, { location: '' });
+
+    expect(a.get(paramsAtom).has('location')).toBe(false);
+  });
+
+  it('drops the bloating exclusions only while an age group is selected', () => {
+    drupalSettings.helfi_events.data['1375'].removeBloatingEvents = true;
+    const a = storeFor('1375', 0);
+    const defaults = a.get(paramsAtom).get('keyword!');
+
+    a.set(updateParamsAtom, targetGroupsToParams([{ value: 'Children', label: 'Children' }]));
+    expect(a.get(paramsAtom).get('keyword_OR')).toBe('yso:p4354,yso:p13050');
+    expect(a.get(paramsAtom).has('keyword!')).toBe(false);
+
+    a.set(updateParamsAtom, targetGroupsToParams([]));
+    expect(a.get(paramsAtom).get('keyword!')).toBe(defaults);
   });
 
   it('resets only the embed the form belongs to', () => {
