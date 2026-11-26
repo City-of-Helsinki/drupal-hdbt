@@ -290,4 +290,10 @@
       {% endif %}
     </div>
   {% endblock main_content %}
+
+  {% if view_mode == 'full' %}
+    {% include '@hdbt/misc/content-updated-date.twig' with {
+      changed_at: entity.getChangedTime(),
+    } only %}
+  {% endif %}
 </article>

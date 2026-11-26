@@ -52,6 +52,12 @@
       </div>
     {% endif %}
 
+    {% if view_mode == 'full' %}
+      {% include '@hdbt/misc/content-updated-date.twig' with {
+        changed_at: entity.getChangedTime(),
+      } only %}
+    {% endif %}
+
   </article>
 
 {% elseif view_mode == 'teaser' %}
