@@ -1,9 +1,9 @@
 import type { Option } from 'hds-react';
 import { atom } from 'jotai';
 import ApiKeys from '../../enum/ApiKeys';
-import { LanguageOptions } from '../../enum/LanguageOptions';
 import { optionDefaults } from '../../enum/OptionDefaults';
 import { initialQueryAtom, languageAtom, pageAtom, paramsAtom, submittedParamsAtom } from '../../store';
+import { InstructionLanguages } from '../enum/InstructionLanguages';
 import { sortOptions } from '../enum/SortOptions';
 import { TeachingModes } from '../enum/TeachingModes';
 
@@ -56,7 +56,7 @@ export const initializeStateAtom = atom(null, (get, set, dateOptions: Map<string
         .filter((lang) => enabledLanguages.includes(lang))
         .map((lang) => ({
           ...optionDefaults,
-          label: LanguageOptions[lang as keyof typeof LanguageOptions] || lang,
+          label: InstructionLanguages[lang as keyof typeof InstructionLanguages] || lang,
           selected: true,
           value: lang,
         })) || [];
