@@ -239,6 +239,10 @@ msgctxt "Pagination aria-label"
 msgid "Pagination"
 msgstr "Paginering"
 
+msgctxt "Pagination aria-label"
+msgid "Pagination: @context"
+msgstr "Paginering: @context"
+
 msgctxt "Pagination previous page link title"
 msgid "Go to previous page number"
 msgstr "Gå till föregående sida nummer"

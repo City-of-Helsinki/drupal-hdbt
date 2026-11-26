@@ -241,6 +241,10 @@ msgctxt "Pagination aria-label"
 msgid "Pagination"
 msgstr "Sivutus"
 
+msgctxt "Pagination aria-label"
+msgid "Pagination: @context"
+msgstr "Sivutus: @context"
+
 msgctxt "Pagination previous page link title"
 msgid "Go to previous page number"
 msgstr "Palaa edelliselle sivulle numero"

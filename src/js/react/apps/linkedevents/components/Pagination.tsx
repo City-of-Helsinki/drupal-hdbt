@@ -1,7 +1,7 @@
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import type React from 'react';
 import { Pagination as CommonPagination } from '@/react/common/Pagination';
-import { pageAtom, updatePageParamAtom } from '../store';
+import { pageAtom, titleAtom, updatePageParamAtom } from '../store';
 
 type PaginationProps = {
   onPageChange?: () => void;
@@ -12,6 +12,8 @@ type PaginationProps = {
 export const Pagination = ({ onPageChange, pages, totalPages }: PaginationProps) => {
   const [page, setPage] = useAtom(pageAtom);
   const updatePageParam = useSetAtom(updatePageParamAtom);
+  // Event list title separates multiple event lists on the same page.
+  const title = useAtomValue(titleAtom);
 
   if (!Number.isFinite(totalPages)) {
     return null;
@@ -24,7 +26,15 @@ export const Pagination = ({ onPageChange, pages, totalPages }: PaginationProps)
     onPageChange?.();
   };
 
-  return <CommonPagination updatePage={updatePage} currentPage={page} pages={pages} totalPages={totalPages} />;
+  return (
+    <CommonPagination
+      updatePage={updatePage}
+      currentPage={page}
+      pages={pages}
+      totalPages={totalPages}
+      ariaContext={title || undefined}
+    />
+  );
 };
 
 export default Pagination;

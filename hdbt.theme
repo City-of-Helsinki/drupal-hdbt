@@ -1257,6 +1257,15 @@ function hdbt_preprocess_views_view(&$variables): void {
   if ($variables['view']->pager != NULL) {
     $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
   }
+
+  // Use the view title as the pager context so that the pager navigation
+  // landmarks get unique names if there are multiple pagers on the page.
+  if (!empty($variables['pager']) && is_array($variables['pager']) && !isset($variables['pager']['#aria_context'])) {
+    $view_title = trim(strip_tags((string) $variables['view']->getTitle()));
+    if ($view_title !== '') {
+      $variables['pager']['#aria_context'] = $view_title;
+    }
+  }
   // Add total rows as a variable.
   $variables['total_rows'] = $variables['view']->total_rows ?: 0;
 
@@ -1501,6 +1510,9 @@ function hdbt_preprocess_pager(&$variables): void {
   $total_pages = isset($pager) ? $pager->getTotalPages() : 0;
 
   $variables['total_pages'] = $total_pages;
+
+  // Optional context for the pager's accessible name.
+  $variables['pager_context'] = $variables['pager']['#aria_context'] ?? NULL;
 }
 
 /**

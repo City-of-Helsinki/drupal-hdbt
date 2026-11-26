@@ -6,6 +6,9 @@ type PaginationProps = {
   currentPage: number;
   pages: number;
   totalPages: number;
+  // Added to the accessible name, e.g. "Pagination: Events", so that
+  // multiple paginations on the same page get unique names.
+  ariaContext?: string;
 };
 
 const getPagination = (current: number, pages: number, totalPages: number) => {
@@ -30,7 +33,7 @@ const getPagination = (current: number, pages: number, totalPages: number) => {
   return { prevPages, nextPages };
 };
 
-export const Pagination = ({ updatePage, currentPage, pages, totalPages }: PaginationProps) => {
+export const Pagination = ({ updatePage, currentPage, pages, totalPages, ariaContext }: PaginationProps) => {
   const { prevPages, nextPages } = getPagination(currentPage, pages, totalPages);
   const prevPageExists = currentPage > 1;
   const nextPageExists = currentPage < totalPages;
@@ -41,7 +44,11 @@ export const Pagination = ({ updatePage, currentPage, pages, totalPages }: Pagin
     <div className='hds-pagination-container'>
       <nav
         className='hds-pagination pager'
-        aria-label={Drupal.t('Pagination', {}, { context: 'Pagination aria-label' })}
+        aria-label={
+          ariaContext
+            ? Drupal.t('Pagination: @context', { '@context': ariaContext }, { context: 'Pagination aria-label' })
+            : Drupal.t('Pagination', {}, { context: 'Pagination aria-label' })
+        }
         data-next={Drupal.t('Next', {}, { context: 'Pagination next page link text' })}
       >
         {prevPageExists ? (
