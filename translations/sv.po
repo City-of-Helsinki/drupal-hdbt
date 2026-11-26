@@ -2200,3 +2200,15 @@ msgstr "Hälsostationer"
 msgctxt "Search landmark name"
 msgid "Cross-institutional studies"
 msgstr "Korsstudier"
+
+msgctxt "Pagination aria-label context"
+msgid "Events"
+msgstr "Evenemang"
+
+msgctxt "Pagination aria-label context"
+msgid "Hobbies"
+msgstr "Hobbyer"
+
+msgctxt "Pagination aria-label context"
+msgid "Events and hobbies"
+msgstr "Evenemang och hobbyer"

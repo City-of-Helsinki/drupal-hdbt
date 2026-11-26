@@ -28,6 +28,7 @@ use Drupal\helfi_tpr\Entity\Unit;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
+use Drupal\paragraphs\ParagraphInterface;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -1256,6 +1257,27 @@ function hdbt_preprocess_views_view(&$variables): void {
   // Add pager items per page as a variable.
   if ($variables['view']->pager != NULL) {
     $variables['pager_items_per_page'] = $variables['view']->pager->options['items_per_page'];
+  }
+
+  // Unit search views are titleless, so use the title of the unit search
+  // paragraph (passed as the second view argument) as the pager context.
+  if (
+    $variables['view']->id() === 'unit_search' &&
+    !empty($variables['pager']) &&
+    is_array($variables['pager']) &&
+    !empty($variables['view']->args[1])
+  ) {
+    $paragraph = \Drupal::entityTypeManager()
+      ->getStorage('paragraph')
+      ->load($variables['view']->args[1]);
+
+    if ($paragraph instanceof ParagraphInterface && $paragraph->hasField('field_unit_search_title')) {
+      $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($paragraph);
+      $unit_search_title = trim((string) $paragraph->get('field_unit_search_title')->value);
+      if ($unit_search_title !== '') {
+        $variables['pager']['#aria_context'] = $unit_search_title;
+      }
+    }
   }
 
   // Use the view title as the pager context so that the pager navigation

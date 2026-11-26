@@ -2198,3 +2198,15 @@ msgstr "Terveysasemat"
 msgctxt "Search landmark name"
 msgid "Cross-institutional studies"
 msgstr "Ristiinopiskelu"
+
+msgctxt "Pagination aria-label context"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Pagination aria-label context"
+msgid "Hobbies"
+msgstr "Harrastukset"
+
+msgctxt "Pagination aria-label context"
+msgid "Events and hobbies"
+msgstr "Tapahtumat ja harrastukset"
