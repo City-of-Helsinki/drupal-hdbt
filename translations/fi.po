@@ -1923,6 +1923,18 @@ msgctxt "Cross-institutional studies: start time filter placeholder"
 msgid "All start times"
 msgstr "Kaikki aloitusajankohdat"
 
+msgctxt "Cross-institutional studies: language of instruction filter option"
+msgid "Finnish"
+msgstr "Suomi"
+
+msgctxt "Cross-institutional studies: language of instruction filter option"
+msgid "English"
+msgstr "Englanti"
+
+msgctxt "Cross-institutional studies: language of instruction filter option"
+msgid "Swedish"
+msgstr "Ruotsi"
+
 msgctxt "Cross-institutional studies: Teaching mode filter label"
 msgid "Mode of teaching"
 msgstr "Opiskelumuoto"

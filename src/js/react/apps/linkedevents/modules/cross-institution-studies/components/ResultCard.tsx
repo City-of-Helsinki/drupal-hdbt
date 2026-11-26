@@ -1,7 +1,7 @@
 import CardItem, { Metarow } from '@/react/common/Card';
 import type { ResultCardProps } from '../../../components/ResultCard';
-import { LanguageOptions } from '../../../enum/LanguageOptions';
 import { useResultCardProps } from '../../../hooks/useResultCardProps';
+import { InstructionLanguages } from '../../enum/InstructionLanguages';
 import { TeachingModes } from '../../enum/TeachingModes';
 
 export const ResultCard = (props: ResultCardProps) => {
@@ -46,8 +46,8 @@ export const ResultCard = (props: ResultCardProps) => {
 
     for (const lang of in_language ?? []) {
       const key = '@id' in lang ? /\/([^/?]+)\/?(?:\?.*)?$/.exec(lang['@id'])?.[1] : undefined;
-      if (key && allowedLanguages.has(key as 'fi' | 'sv' | 'en') && key in LanguageOptions) {
-        matched.push(LanguageOptions[key as keyof typeof LanguageOptions]?.toLowerCase() || '');
+      if (key && allowedLanguages.has(key as 'fi' | 'sv' | 'en') && key in InstructionLanguages) {
+        matched.push(InstructionLanguages[key as keyof typeof InstructionLanguages]?.toLowerCase() || '');
       }
     }
 
