@@ -6,10 +6,12 @@
   "license": "MIT",
   "repository": "github:City-of-Helsinki/drupal-hdbt",
   "@comment scripts": [
-    "Every script below runs inside a disposable Node container via the sandbox command."
+    "Every script below runs inside a disposable Node container via the sandbox command.",
+    "preinstall checks that package-lock.json matches the theme-builder dependencies, since npm ci does not. update-theme-builder updates the lockfile after theme-builder changes."
   ],
   "scripts": {
-    "preinstall": "rm -rf node_modules/@hdbt/theme-builder && npm install ./theme-builder --loglevel=silent",
+    "preinstall": "node theme-builder/tools/check-lock.mjs ./theme-builder",
+    "update-theme-builder": "rm -rf node_modules/@hdbt/theme-builder && npm install ./theme-builder --ignore-scripts",
     "dev": "sandbox node theme-builder.mjs --watch --dev",
     "build": "sandbox sh -c 'npm run format:js --loglevel=silent && npm run lint -s && npm run validate-ts && node theme-builder.mjs'",
     "lint:scss": "sandbox npx stylelint \"src/scss/**/*.scss\" --config node_modules/@hdbt/theme-builder/.stylelintrc.yaml --formatter string --fix",
