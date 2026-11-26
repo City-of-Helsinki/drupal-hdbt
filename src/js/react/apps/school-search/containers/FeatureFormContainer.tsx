@@ -1,6 +1,6 @@
 import { Button, Checkbox, Select, TextInput } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { defaultCheckboxStyle } from '@/react/common/constants/checkboxStyle';
 import { defaultMultiSelectTheme } from '@/react/common/constants/selectTheme';
 import { defaultTextInputStyle } from '@/react/common/constants/textInputStyle';
@@ -36,6 +36,7 @@ type SubmitFormType = HTMLFormElement & {
 };
 
 const FeatureFormContainer = () => {
+  const headingId = useId();
   const [keywordValue, setKeywordValue] = useState<string>('');
   const stagedParams = useAtomValue(stagedParamsAtom) || {};
   const setParams = useSetAtom(updateParamsAtom);
@@ -126,8 +127,10 @@ const FeatureFormContainer = () => {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
-      <h3>{Drupal.t('Search with school details', {}, { context: 'School search: Feature form title' })}</h3>
+    <form className='hdbt-search--react__form-container' role='search' aria-labelledby={headingId} onSubmit={onSubmit}>
+      <h3 id={headingId}>
+        {Drupal.t('Search with school details', {}, { context: 'School search: Feature form title' })}
+      </h3>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
           'You can search for a school by its name, language of instruction, grade or post code.',

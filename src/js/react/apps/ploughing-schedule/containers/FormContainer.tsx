@@ -1,6 +1,6 @@
 import { Button, Search } from 'hds-react';
 import { useAtomValue, useSetAtom } from 'jotai';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useId, useRef, useState } from 'react';
 import getSuggestionsQuery from '../helpers/GetSuggestionsQuery';
 import configurationsAtom, { paramsAtom } from '../store';
 import type SearchParams from '../types/SearchParams';
@@ -9,6 +9,7 @@ type SuggestionItemType = { value: string };
 
 const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null }) => {
   const setParams = useSetAtom(paramsAtom);
+  const headingId = useId();
   const [address, setAddress] = useState(initialParams?.address || '');
   const { baseUrl, index } = useAtomValue(configurationsAtom);
 
@@ -88,8 +89,14 @@ const FormContainer = ({ initialParams }: { initialParams?: SearchParams | null 
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
-    <form ref={formRef} className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
-      <h2 className='hdbt-search--react__form-title'>
+    <form
+      ref={formRef}
+      className='hdbt-search--react__form-container'
+      role='search'
+      aria-labelledby={headingId}
+      onSubmit={onSubmit}
+    >
+      <h2 id={headingId} className='hdbt-search--react__form-title'>
         {Drupal.t('See the ploughing schedule', {}, { context: 'Ploughing schedule: Form title / submit' })}
       </h2>
       <p className='hdbt-search--react__form-description'>

@@ -35,7 +35,7 @@
 {# Render navigation with content from another instance "globally" #}
 {% if use_global_navigation %}
   {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-  <nav aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby', 'id') }}>
+  <nav aria-label="{{ 'Footer: @menu_name'|t({'@menu_name': configuration.label}, {'context': 'Footer navigation screen reader name'}) }}"{{ attributes|without('role', 'aria-labelledby', 'aria-label', 'id') }}>
     {# Label. If not displayed, we still provide it for screen readers. #}
     {% if not configuration.label_display %}
       {% set title_attributes = title_attributes.addClass('visually-hidden') %}

@@ -120,7 +120,11 @@ const FormContainer = () => {
   return (
     // Our typings are lagging behind since our react version is locked. If we want to wrap all search forms in search, we should do so and use ts-ignore instead.
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form onSubmit={handleSubmit} role='search'>
+    <form
+      onSubmit={handleSubmit}
+      role='search'
+      aria-label={Drupal.t('Plans and building projects', {}, { context: 'Search landmark name' })}
+    >
       <div className='district-project-search-form__filters-container'>
         <div className='district-project-search-form__filters'>
           <TextInput

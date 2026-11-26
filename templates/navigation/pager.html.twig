@@ -27,12 +27,22 @@
  *     at the first page.
  *   - next: Present if the visible list of pages ends before the last page.
  *
+ * - pager_context: Optional context added to the pager's accessible name.
+ *   Set it with '#aria_context' on the pager render element. Views set
+ *   it automatically from the view's display title.
+ *
  * @see template_preprocess_pager()
  */
 #}
 {% if items %}
+  {# Add context to the label so that multiple pagers on the same page get unique names. #}
+  {% if pager_context %}
+    {% set pager_label = 'Pagination: @context'|t({'@context': pager_context}, {'context': 'Pagination aria-label'}) %}
+  {% else %}
+    {% set pager_label = 'Pagination'|t({}, {'context': 'Pagination aria-label'}) %}
+  {% endif %}
   <div class="hds-pagination-container">
-    <nav class="hds-pagination pager" aria-label="{{ 'Pagination'|t({}, {'context': 'Pagination aria-label'}) }}" data-next="{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}">
+    <nav class="hds-pagination pager" aria-label="{{ pager_label }}" data-next="{{ items.next.text|default('Next'|t({}, {'context': 'Pagination next page link text'})) }}">
       {# Print previous item if we are not on the first page. #}
       {% if items.previous %}
         {% set prev_button_classes = [

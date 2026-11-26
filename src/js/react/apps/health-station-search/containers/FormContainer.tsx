@@ -37,6 +37,7 @@ const ProximityFormContainer = () => {
       ref={formRef}
       className='hdbt-search--react__form-container'
       role='search'
+      aria-label={Drupal.t('Health stations', {}, { context: 'Search landmark name' })}
       onSubmit={onSubmit}
       onKeyDown={handleKeyDown}
     >

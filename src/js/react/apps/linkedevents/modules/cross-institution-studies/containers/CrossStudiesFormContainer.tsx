@@ -89,7 +89,12 @@ export const CrossStudiesFormContainer = ({
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: We use form with role for now
-    <form className='hdbt-search--react__form-container' onSubmit={handleSubmit} role='search'>
+    <form
+      className='hdbt-search--react__form-container'
+      onSubmit={handleSubmit}
+      role='search'
+      aria-label={Drupal.t('Cross-institutional studies', {}, { context: 'Search landmark name' })}
+    >
       <div className='event-form__filters-container'>
         <SearchBar />
         <div className='event-form__filter-section-container'>

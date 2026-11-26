@@ -239,6 +239,10 @@ msgctxt "Pagination aria-label"
 msgid "Pagination"
 msgstr "Paginering"
 
+msgctxt "Pagination aria-label"
+msgid "Pagination: @context"
+msgstr "Paginering: @context"
+
 msgctxt "Pagination previous page link title"
 msgid "Go to previous page number"
 msgstr "Gå till föregående sida nummer"
@@ -358,6 +362,10 @@ msgstr "Ta bort @item från sökresultaten"
 msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Snabblänkar"
+
+msgctxt "Footer navigation screen reader name"
+msgid "Footer: @menu_name"
+msgstr "Sidfot: @menu_name"
 
 msgctxt "TPR unit result card"
 msgid "Distance from the address you have given"
@@ -2139,6 +2147,10 @@ msgctxt "Site search"
 msgid "Helsinki near you"
 msgstr "Helsingfors nära dig"
 
+msgctxt "Helsinki near you events search"
+msgid "Search for an event"
+msgstr "Sök evenemang"
+
 msgctxt "Advisory services search form aria label"
 msgid "Advisory services search"
 msgstr "Rådgivningstjänstersökning"
@@ -2172,3 +2184,43 @@ msgstr "Gå till sidans slut"
 msgctxt "Chat toast"
 msgid "Close the notification"
 msgstr "Stäng meddelandet"
+
+msgctxt "Header search landmark name"
+msgid "Header"
+msgstr "Sidhuvud"
+
+msgctxt "Search landmark name"
+msgid "Open jobs"
+msgstr "Lediga jobb"
+
+msgctxt "Search landmark name"
+msgid "News archive"
+msgstr "Nyhetsarkiv"
+
+msgctxt "Search landmark name"
+msgid "Plans and building projects"
+msgstr "Planer och byggnadsprojekt"
+
+msgctxt "Search landmark name"
+msgid "Maternity and child health clinics"
+msgstr "Rådgivningsbyråer"
+
+msgctxt "Search landmark name"
+msgid "Health stations"
+msgstr "Hälsostationer"
+
+msgctxt "Search landmark name"
+msgid "Cross-institutional studies"
+msgstr "Korsstudier"
+
+msgctxt "Pagination aria-label context"
+msgid "Events"
+msgstr "Evenemang"
+
+msgctxt "Pagination aria-label context"
+msgid "Hobbies"
+msgstr "Hobbyer"
+
+msgctxt "Pagination aria-label context"
+msgid "Events and hobbies"
+msgstr "Evenemang och hobbyer"

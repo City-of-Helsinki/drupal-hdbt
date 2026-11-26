@@ -89,7 +89,12 @@ const FormContainer = () => {
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: @todo UHF-12501
-    <form className='hdbt-search--react__form-container' role='search' onSubmit={onSubmit}>
+    <form
+      className='hdbt-search--react__form-container'
+      role='search'
+      aria-label={Drupal.t('News archive', {}, { context: 'Search landmark name' })}
+      onSubmit={onSubmit}
+    >
       <SearchInput />
       <div className='hdbt-search--react__dropdown-filters'>
         {topicOptions && (

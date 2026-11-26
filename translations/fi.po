@@ -241,6 +241,10 @@ msgctxt "Pagination aria-label"
 msgid "Pagination"
 msgstr "Sivutus"
 
+msgctxt "Pagination aria-label"
+msgid "Pagination: @context"
+msgstr "Sivutus: @context"
+
 msgctxt "Pagination previous page link title"
 msgid "Go to previous page number"
 msgstr "Palaa edelliselle sivulle numero"
@@ -360,6 +364,10 @@ msgstr "Poista @item hakutuloksista"
 msgctxt "Header top navigation screen reader name"
 msgid "Quick links"
 msgstr "Pikalinkit"
+
+msgctxt "Footer navigation screen reader name"
+msgid "Footer: @menu_name"
+msgstr "Alatunniste: @menu_name"
 
 msgctxt "TPR unit result card"
 msgid "Distance from the address you have given"
@@ -2137,6 +2145,10 @@ msgctxt "Site search"
 msgid "Helsinki near you"
 msgstr "Helsinki lähelläsi"
 
+msgctxt "Helsinki near you events search"
+msgid "Search for an event"
+msgstr "Etsi tapahtumia"
+
 msgctxt "Advisory services search form aria label"
 msgid "Advisory services search"
 msgstr "Neuvontapalveluhaku"
@@ -2170,3 +2182,43 @@ msgstr "Siirry sivun loppuun"
 msgctxt "Chat toast"
 msgid "Close the notification"
 msgstr "Sulje ilmoitus"
+
+msgctxt "Header search landmark name"
+msgid "Header"
+msgstr "Ylätunniste"
+
+msgctxt "Search landmark name"
+msgid "Open jobs"
+msgstr "Avoimet työpaikat"
+
+msgctxt "Search landmark name"
+msgid "News archive"
+msgstr "Uutisarkisto"
+
+msgctxt "Search landmark name"
+msgid "Plans and building projects"
+msgstr "Suunnitelmat ja rakennushankkeet"
+
+msgctxt "Search landmark name"
+msgid "Maternity and child health clinics"
+msgstr "Neuvolat"
+
+msgctxt "Search landmark name"
+msgid "Health stations"
+msgstr "Terveysasemat"
+
+msgctxt "Search landmark name"
+msgid "Cross-institutional studies"
+msgstr "Ristiinopiskelu"
+
+msgctxt "Pagination aria-label context"
+msgid "Events"
+msgstr "Tapahtumat"
+
+msgctxt "Pagination aria-label context"
+msgid "Hobbies"
+msgstr "Harrastukset"
+
+msgctxt "Pagination aria-label context"
+msgid "Events and hobbies"
+msgstr "Tapahtumat ja harrastukset"

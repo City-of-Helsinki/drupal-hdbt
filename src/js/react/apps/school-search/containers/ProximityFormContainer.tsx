@@ -1,5 +1,6 @@
 import { Button } from 'hds-react';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { useId } from 'react';
 import { AddressSearch } from '@/react/common/AddressSearch';
 import { defaultAddressSearchTexts } from '@/react/common/constants/defaultAddressSearchTexts';
 import { useAddressSearchForm } from '@/react/common/hooks/useAddressSearchForm';
@@ -11,6 +12,7 @@ const ProximityFormContainer = () => {
   const setParams = useSetAtom(paramsAtom);
   const { formRef, handleKeyDown, handleAddressSubmit } = useAddressSearchForm();
   const addressError = useAtomValue(addressErrorAtom);
+  const headingId = useId();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,10 +39,13 @@ const ProximityFormContainer = () => {
       ref={formRef}
       className='hdbt-search--react__form-container'
       role='search'
+      aria-labelledby={headingId}
       onSubmit={onSubmit}
       onKeyDown={handleKeyDown}
     >
-      <h3>{Drupal.t('Search for your local school', {}, { context: 'School search: local search title' })}</h3>
+      <h3 id={headingId}>
+        {Drupal.t('Search for your local school', {}, { context: 'School search: local search title' })}
+      </h3>
       <p className='hdbt-search--react__form-description'>
         {Drupal.t(
           "Your child's primary comprehensive school, i.e., the local school, is assigned based on the child's home address. You can search for Finnish- and Swedish-language comprehensive schools.",
