@@ -86,8 +86,8 @@ jobs:
         with:
           node-version-file: 'public/themes/contrib/hdbt/.nvmrc'
 
-      - name: Install the npm version required by package.json
-        run: npm install -g npm@latest
+      - name: Install npm 12
+        run: npm install -g npm@12 --no-audit --progress=false
 
       - name: Run tests
         run: |
