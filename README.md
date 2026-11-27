@@ -20,15 +20,16 @@ Requirements for developing:
 | Command       | Description                                                                       |
 |---------------|-----------------------------------------------------------------------------------|
 | nvm use       | Uses correct Node version chosen for the theme compiler.                          |
-| npm i         | Install dependencies. The `preinstall` script refreshes the theme builder.        |
-| npm ci        | Install a project with a clean slate. Use especially in travis like environments. |
+| npm ci        | Install dependencies exactly as locked. The `preinstall` script checks that the lockfile matches the theme builder. |
+| npm run update-theme-builder | Update `package-lock.json` after the theme builder dependencies changed. |
+| npm i         | Install dependencies and update `package-lock.json` when `package.json` changed.  |
 | npm run dev   | Compile styles and js for development environment. and watch file changes.        |
 | npm run build | Build packages for production. Minify CSS/JS.                                     |
 
 Consistent Node version defined in `.nvmrc` should be used. Set up the developing environment with `nvm` by running
 
     nvm use
-    npm i
+    npm ci
 
 Related files.
 - `.nvmrc` : Defines the node version used to compile the theme.

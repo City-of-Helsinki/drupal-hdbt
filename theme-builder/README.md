@@ -14,15 +14,16 @@ Add the builder to the theme or module dependencies with a path relative to hdbt
 
 Set `install-links=true` in the `.npmrc` so npm copies the builder and installs only its dependencies.
 
-`npm install` keeps the builder copy from the lockfile, and an install by path keeps a copy with the same version even when its files changed. Remove the copy and install it by path in a `preinstall` script so every `npm i` picks up the builder changes.
+`npm ci` copies the current builder files, but it does not compare the builder's `package.json` with the lockfile. When an hdbt update changes the builder dependencies, `npm ci` installs the new builder without them. Check the lockfile in a `preinstall` script, and update it with a separate script.
 
 ```json
 "scripts": {
-  "preinstall": "rm -rf node_modules/@hdbt/theme-builder && npm install ../../contrib/hdbt/theme-builder --loglevel=silent"
+  "preinstall": "node ../../contrib/hdbt/theme-builder/tools/check-lock.mjs ../../contrib/hdbt/theme-builder",
+  "update-theme-builder": "rm -rf node_modules/@hdbt/theme-builder && npm install ../../contrib/hdbt/theme-builder --ignore-scripts"
 }
 ```
 
-| Package | `preinstall` path |
+| Package | Builder path |
 | --- | --- |
 | hdbt | `./theme-builder` |
 | hdbt_admin | `../hdbt/theme-builder` |
@@ -30,7 +31,17 @@ Set `install-links=true` in the `.npmrc` so npm copies the builder and installs 
 | `helfi_platform_config` | `../../../themes/contrib/hdbt/theme-builder` |
 | `helfi_calculator` | `../../../../../themes/contrib/hdbt/theme-builder` |
 
-`npm i` and `npm ci` run the `preinstall` before they install anything. The `preinstall` does not loop, since npm runs install scripts only for `npm install` without arguments.
+Use `npm ci` for installs. It installs exactly what the lockfile says and never resolves new versions. When `preinstall` reports that the lockfile does not match the builder, run `npm run update-theme-builder`, review the `package-lock.json` diff, and commit it. The update does not run `preinstall`, since npm runs install scripts only for `npm install` without arguments.
+
+### Using hdbt node_modules
+
+A theme that bundles hdbt source, for example React components through the `@/react/common/*` path, or that has `file:` dependencies into `hdbt/node_modules`, needs the hdbt dependencies installed first. Add the hdbt install to `preinstall`:
+
+```json
+"preinstall": "node ../../contrib/hdbt/theme-builder/tools/check-lock.mjs ../../contrib/hdbt/theme-builder && npm --prefix ../../contrib/hdbt ci --ignore-scripts --no-audit --no-fund"
+```
+
+It has to be `preinstall`: npm reads the `file:` dependencies before `postinstall` runs. `--ignore-scripts` keeps the install scripts of the hdbt dependencies from running on the host.
 
 Create a `theme-builder.mjs` file in the theme or module root.
 
@@ -145,12 +156,13 @@ Inside a Drupal project the container mirrors the `public` folder layout and mou
 
 ## Updating dependencies
 
-The themes and modules get the builder dependencies through the builder. An hdbt release updates them in every Drupal instance through the `Update config` action.
+The themes and modules get the builder dependencies through the builder. An hdbt release reaches every Drupal instance through the `Update config` action. When the builder dependencies changed, the `preinstall` check fails until `npm run update-theme-builder` updates the lockfile of the theme or module.
 
 1. Raise the minimum of the range in `package.json`. The consumers keep the locked version while it satisfies the range.
 2. Run `npm install` and `npm test`.
-3. Build hdbt, hdbt_admin, `helfi_platform_config` and a subtheme, and compare `dist/`.
-4. Release hdbt.
+3. Run `npm run update-theme-builder` in hdbt and commit its `package-lock.json`. The hdbt CI fails while the lockfile does not match the builder.
+4. Build hdbt, hdbt_admin, `helfi_platform_config` and a subtheme, and compare `dist/`.
+5. Release hdbt.
 
 The `overrides` in this `package.json` apply to the builder tests only. Override a package for the consumers in their own `package.json`.
 

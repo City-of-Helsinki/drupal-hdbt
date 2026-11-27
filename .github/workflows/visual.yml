@@ -130,8 +130,8 @@ jobs:
       - name: NPM Install
         working-directory: ${{ env.THEME_FOLDER }}
         run: |
-          npm i -g npm@latest
-          npm install
+          npm install -g npm@12 --no-audit --progress=false
+          npm ci
 
         # Reference images are stored as Actions artifact, attempt to restore
         # the images.
